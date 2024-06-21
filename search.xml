@@ -24,8 +24,7 @@
     <content><![CDATA[<p>这是一篇测试文章</p>
 <img src="/2024/06/07/test-article/test.png" class="" title="图片引用方法一">
 
-<p><img src="/test.png" alt="图片引用方法二"></p>
-<p><img src="/test-article/test.png" alt="图片引用方法三"></p>
+<p><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/dm1.png" alt="图片引用方法二"></p>
 ]]></content>
       <categories>
         <category>Java</category>
