@@ -11,7 +11,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tahoma:300,300italic,400,400italic,700,700italic%7CComic+Sans+MS:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css?family=Tahoma:300,300italic,400,400italic,700,700italic%7CComic+Sans+MS:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
@@ -27,8 +27,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data/bd2.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data/bd3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data/bd1.png">
 <meta property="article:published_time" content="2024-06-22T13:59:45.000Z">
-<meta property="article:modified_time" content="2024-06-23T02:03:01.408Z">
+<meta property="article:modified_time" content="2024-06-23T08:48:14.834Z">
 <meta property="article:author" content="墨独凌">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="CSE Learning">
@@ -116,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data"><span class="nav-number">1.</span> <span class="nav-text">Big Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Pre-Knowledge"><span class="nav-number">1.1.</span> <span class="nav-text">0. Pre-Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Linear-Algebra"><span class="nav-number">1.1.1.</span> <span class="nav-text">Recall for Linear Algebra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Calculus"><span class="nav-number">1.1.2.</span> <span class="nav-text">Recall for Calculus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Prepared-Knowledge"><span class="nav-number">1.1.3.</span> <span class="nav-text">Other Prepared Knowledge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-Intro"><span class="nav-number">1.2.</span> <span class="nav-text">I. Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#About-Big-Data"><span class="nav-number">1.2.1.</span> <span class="nav-text">About Big Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Representation-of-Data"><span class="nav-number">1.2.2.</span> <span class="nav-text">Representation of Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modeling-and-Analysis"><span class="nav-number">1.2.3.</span> <span class="nav-text">Modeling and Analysis</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data"><span class="nav-number">1.</span> <span class="nav-text">Big Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Pre-Knowledge"><span class="nav-number">1.1.</span> <span class="nav-text">0. Pre-Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Linear-Algebra"><span class="nav-number">1.1.1.</span> <span class="nav-text">Recall for Linear Algebra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Calculus"><span class="nav-number">1.1.2.</span> <span class="nav-text">Recall for Calculus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Prepared-Knowledge"><span class="nav-number">1.1.3.</span> <span class="nav-text">Other Prepared Knowledge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-Intro"><span class="nav-number">1.2.</span> <span class="nav-text">I. Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#About-Big-Data"><span class="nav-number">1.2.1.</span> <span class="nav-text">About Big Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Representation-of-Data"><span class="nav-number">1.2.2.</span> <span class="nav-text">Representation of Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modeling-and-Analysis"><span class="nav-number">1.2.3.</span> <span class="nav-text">Modeling and Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.4.</span> <span class="nav-text">Data Science vs. Other Techniques</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -211,7 +212,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-06-23 10:03:01" itemprop="dateModified" datetime="2024-06-23T10:03:01+08:00">2024-06-23</time>
+      <time title="修改时间：2024-06-23 16:48:14" itemprop="dateModified" datetime="2024-06-23T16:48:14+08:00">2024-06-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -356,8 +357,8 @@
 <p>Maths method about Supervised Learning </p>
 <ul>
 <li>Goal: Find the conditional distribution $\mathcal P(y|\textbf{x})$ of $y$ given $\textbf{x}$ </li>
-<li>Training dataset: $\{(\textbf{x_i}, y_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to learn an approximation $\hat{f}(\textbf{x})$ or $\hat{\mathcal P}(y|\textbf{x})$</li>
-<li>Test dataset: $\{(\textbf{x_j}, y_j)\}_{j=n+1}^{n+m} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to test</li>
+<li>Training dataset: $\{(\textbf{x}_i, y_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to learn an approximation $\hat{f}(\textbf{x})$ or $\hat{\mathcal P}(y|\textbf{x})$</li>
+<li>Test dataset: $\{(\textbf{x}_j, y_j)\}_{j=n+1}^{n+m} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to test</li>
 </ul>
 <p><img src="/2024/06/22/Big-Data/bd2.png" alt="bd2"></p>
 <blockquote>
@@ -396,25 +397,77 @@
 <p><strong>Risk Minimize Strategy :</strong> </p>
 <ul>
 <li>Empirical risk minimization (<strong>ERM</strong>) : <ul>
-<li>given training set $\{(\textbf{x_i},y_i)\}_{i=1}^{n}$ , $R_{emp}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x_i}))$ <font color="grey">(Loss function 的均值定义为预测模型 f 的经验风险)</font> .<ul>
+<li>given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , $R_{emp}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ <font color="grey">(Loss function 的均值定义为预测模型 f 的经验风险)</font> .<ul>
 <li>By law of large number, $\underset{n\to\infty}{\lim} R_{emp}(f)=R_{exp}(f)$ . <font color="Grey">(即经验风险趋近于预测风险)</font></li>
-<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x_i}))$ </li>
-<li><font color="Green">Now we only need to know</font>  $\color{green}f$ <font color="Green">and training set</font>  $\color{green}\textbf{x_i}$ </li>
+<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ </li>
+<li><font color="Green">Now we only need to know</font>  $\color{green}f$ <font color="Green">and training set</font>  $\color{green}\textbf{x}_i$ </li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Structural risk minimization (<strong>SRM</strong>) : <ul>
-<li>given training set $\{(\textbf{x_i},y_i)\}_{i=1}^{n}$ , and a complexity function $J=J(f)$ , $R_{SRM}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x_i}))+\lambda J(f)$ <ul>
+<li>given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , and a complexity function $J=J(f)$ , $R_{SRM}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ <ul>
 <li>$J(f)$ measures how complex the model $f$ is, typically the degree of complexity</li>
 <li>$λ\ge 0$ is a tradeoff(平衡项) between the empirical risk and model complexity</li>
-<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x_i}))+\lambda J(f)$ </li>
-<li><font color="Green">We need to know</font> $\color{green}f$ <font color="Green">and training set</font> $\color{green}{\textbf{x_i}}$ <font color="Green">, and need to</font> <font color="#8cea00">adjust the parameter</font>  $\color{8cea00}\lambda$</li>
+<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ </li>
+<li><font color="Green">We need to know</font> $\color{green}f$ <font color="Green">and training set</font> $\color{green}{\textbf{x}_i}$ <font color="Green">, and need to</font> <font color="#8cea00">adjust the parameter</font>  $\color{8cea00}\lambda$</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>We see that <font color="#c6a300">Optimization Method</font> is essencial in machine learning. Here are some of them: </p>
+<ul>
+<li>Gradient descent method (梯度下降), including coordinate descent, sequential minimal optimization (SMO), etc.</li>
+<li>Newton’s method and quasi-Newton’s method (拟牛顿法)</li>
+<li>Combinatorial optimization (组合优化)</li>
+<li>Genetic algorithms (遗传算法)</li>
+<li>Monte Carlo methods (随机算法)</li>
+</ul>
+</blockquote>
+<p><strong>Model assessment :</strong></p>
+<ul>
+<li>Training error: $R_{emp}(\hat f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,\hat f(\textbf{x}_i))$ , tells the diﬃculty of learning problem</li>
+<li>Test error: $e_{test}(\hat f)=\frac{1}{m}\sum_{j=n+1}^{n+m}L(y_j,\hat f(\textbf{x}_j))$ , tells the capability of prediction ;<br> In particular, if 0-1 loss is used (below)<ul>
+<li>Error rate : $e_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j\ne\hat f(\textbf{x}_j)}$</li>
+<li>Accuracy : $r_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j=\hat f(\textbf{x}_j)}$</li>
+<li>$e_{test}+ r_{test} = 1$ </li>
+</ul>
+</li>
+<li><p>Generalization error (泛化误差——模型对新样本的预测性的度量)</p>
+<ul>
+<li>$R_{exp}(\hat f)=E_{\mathcal P}[L(y,\hat f(\textbf{x}))]=\underset{\mathcal X\times\mathcal Y}{\int}L(y,\hat f(\textbf{x}))\mathcal P(\textbf{x},y)\text d\textbf{x} \text d y$ <br>tells the capability for predicting <font color="#9f4d95">unknown data</font> from the same distribution</li>
+<li>Its upper bound $M$ deﬁnes the generalization ability (负相关)<ul>
+<li>As $n\to\infty$, $M\to 0$ (which means almost no error)</li>
+<li>As $\mathcal F$ becomes larger, $M$ increases.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><em>Overfitting</em></p>
+<ul>
+<li>Too many model paramters （模型太复杂）</li>
+<li>Better for training set, but worse for test set</li>
+</ul>
+</li>
+<li><em>Underfitting</em><ul>
+<li>Better for test set, but worse for training set</li>
+</ul>
+</li>
+</ul>
+<p><strong>Model Selection :</strong> choose the most proper model.</p>
+<ul>
+<li><a name="cross validation">Cross-validation</a> (交叉验证) : split the training set into training subset and validation subset, use training set to train diﬀerent models repeatedly, use validation set to select the best model with the smallest (validation) error<ul>
+<li>Simple CV : randomly split the data into two subsets</li>
+<li>K-fold CV : randomly split the data into $K$ disjoint subsets with the same size, treat the union of $K − 1$ subsets as training set, the other one as validation set, do this repeatedly and select the best model with smallest mean (validation) error</li>
+<li>Leave-one-out CV : $K = n$ in the previous case</li>
+</ul>
+</li>
+</ul>
+<h3>Data Science vs. Other Techniques</h3>
+
+<p><img src="/2024/06/22/Big-Data/bd1.png" alt="bd1"></p>
 
     </div>
 
