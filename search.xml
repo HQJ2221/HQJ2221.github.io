@@ -175,7 +175,7 @@
 </ul>
 </li>
 <li><strong>Risk</strong> : in average sense,<br>         $\mathcal{R}(f)=E_{\mathcal P} [L(y, f(x))]=\underset{\mathcal X \times \mathcal Y}{\int}L(y, f(x))\mathcal{P}(x,y)\text d x \text d y$ </li>
-<li><font color="Red"><strong>Target of Learning</strong></font> : minimize $\mathcal R_{exp}(f)$ to get $f^<em>$ $(\text{即} f^</em>=\underset{f}{min}\ \mathcal R_{exp}(f))$</li>
+<li><font color="Red"><strong>Target of Learning</strong></font> : minimize $\mathcal R_{exp}(f)$ to get $f^{<em>}$ ( $\text{即} f^{</em>}=\underset{f}{min}\ \mathcal{R}_{exp}(f)$ )</li>
 </ul>
 <p><strong>Risk Minimize Strategy :</strong> </p>
 <ul>
