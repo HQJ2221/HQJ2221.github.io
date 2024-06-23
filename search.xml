@@ -55,7 +55,7 @@
 <ul>
 <li>If $A$ is a basis of $V$ , then $\forall \vec{w} \in V$ , there must be unique array $[a_1, a_2,\cdots,a_k]$ such that $\vec{w}=a_1v_1+a_2v_2+\cdots +a_kv_k$ . Then we call this array a <font color="red">coordinate</font> of $\vec w$ in $A$ , noted $[\vec w]_{A}$</li>
 </ul>
-<h3 id="Recall-for-Calculus"><a href="#Recall-for-Calculus" class="headerlink" title="Recall for Calculus"></a>Recall for Calculus</h3><p><strong>1. Langrange Multiplier</strong> [拉格朗日乘子法]</p>
+<h3 id="Recall-for-Calculus"><a href="#Recall-for-Calculus" class="headerlink" title="Recall for Calculus"></a>Recall for Calculus</h3><p><strong>1. Langrange Multiplier</strong> [拉格朗日乘数法]</p>
 <h3 id="Other-Prepared-Knowledge"><a href="#Other-Prepared-Knowledge" class="headerlink" title="Other Prepared Knowledge"></a>Other Prepared Knowledge</h3><p><strong>1. Norm</strong></p>
 <p>On vectors :</p>
 <ul>
