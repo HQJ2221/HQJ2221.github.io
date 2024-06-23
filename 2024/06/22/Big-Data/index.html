@@ -26,8 +26,9 @@
 <meta property="og:description" content="Big Data(MA234) is a Math course about Data processing and analyzing. It focus on Machine Learning and you can learn about some algorithm and principles about data analysis.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data/bd2.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data/bd3.png">
 <meta property="article:published_time" content="2024-06-22T13:59:45.000Z">
-<meta property="article:modified_time" content="2024-06-23T01:45:13.157Z">
+<meta property="article:modified_time" content="2024-06-23T01:54:50.560Z">
 <meta property="article:author" content="墨独凌">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="CSE Learning">
@@ -115,7 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data"><span class="nav-number">1.</span> <span class="nav-text">Big Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Pre-Knowledge"><span class="nav-number">1.1.</span> <span class="nav-text">0. Pre-Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Linear-Algebra"><span class="nav-number">1.1.1.</span> <span class="nav-text">Recall for Linear Algebra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Calculus"><span class="nav-number">1.1.2.</span> <span class="nav-text">Recall for Calculus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Prepared-Knowledge"><span class="nav-number">1.1.3.</span> <span class="nav-text">Other Prepared Knowledge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-Intro"><span class="nav-number">1.2.</span> <span class="nav-text">I. Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#About-Big-Data"><span class="nav-number">1.2.1.</span> <span class="nav-text">About Big Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Representation-of-Data"><span class="nav-number">1.2.2.</span> <span class="nav-text">Representation of Data</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data"><span class="nav-number">1.</span> <span class="nav-text">Big Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Pre-Knowledge"><span class="nav-number">1.1.</span> <span class="nav-text">0. Pre-Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Linear-Algebra"><span class="nav-number">1.1.1.</span> <span class="nav-text">Recall for Linear Algebra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Calculus"><span class="nav-number">1.1.2.</span> <span class="nav-text">Recall for Calculus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Prepared-Knowledge"><span class="nav-number">1.1.3.</span> <span class="nav-text">Other Prepared Knowledge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-Intro"><span class="nav-number">1.2.</span> <span class="nav-text">I. Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#About-Big-Data"><span class="nav-number">1.2.1.</span> <span class="nav-text">About Big Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Representation-of-Data"><span class="nav-number">1.2.2.</span> <span class="nav-text">Representation of Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modeling-and-Analysis"><span class="nav-number">1.2.3.</span> <span class="nav-text">Modeling and Analysis</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -210,7 +211,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-06-23 09:45:13" itemprop="dateModified" datetime="2024-06-23T09:45:13+08:00">2024-06-23</time>
+      <time title="修改时间：2024-06-23 09:54:50" itemprop="dateModified" datetime="2024-06-23T09:54:50+08:00">2024-06-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,9 +276,9 @@
 <p>On vectors :</p>
 <ul>
 <li>1-Norm: $|x|_1 = \sum_{i=1}^{N}{|x_i|}$</li>
-<li>2-Norm: $|\bold x|_2= \sqrt{\sum_{i=1}^{N} x_i^2}$</li>
-<li>$\pm\infty$-Norm: $|\bold x|_{\infty}=\underset{i}\max{|x_i|}$  ;  $|\bold x|_{-\infty}=\underset{i}\min{|x_i|}$</li>
-<li>p-Norm: $|\bold x|_p=(\sum_{i=1}^{N}{|x_i|}^p)^{\frac{1}{p}}$</li>
+<li>2-Norm: $|\bold{x}|_2= \sqrt{\sum_{i=1}^{N} x_i^2}$</li>
+<li>$\pm\infty$-Norm: $|\bold{x}|_{\infty}=\underset{i}\max{|x_i|}$  ;  $|\bold{x}|_{-\infty}=\underset{i}\min{|x_i|}$</li>
+<li>p-Norm: $|\bold{x}|_p=(\sum_{i=1}^{N}{|x_i|}^p)^{\frac{1}{p}}$</li>
 </ul>
 <p>On matrix :</p>
 <ul>
@@ -340,7 +341,7 @@
 <li>Large noise (噪点, <font color="#921aff">values</font>) : data are always contaminated with noises</li>
 </ul>
 <h3 id="Representation-of-Data"><a href="#Representation-of-Data" class="headerlink" title="Representation of Data"></a>Representation of Data</h3><ul>
-<li>Input space $\mathcal X = \{\text{All possible samples}\}$ ; $\bold x \in \mathcal{X}$ is an input vector, also called feature, predictor, independent variable, etc; <strong>typically multi-dimension</strong>. For multi-dimension, $\bold x \in \mathbb R^p$ is a weight vector (权重向量，每一维度所占权重可调整) or coding vector (编码向量，e.g. 矢量图).</li>
+<li>Input space $\mathcal X = \{\text{All possible samples}\}$ ; $\bold{x} \in \mathcal{X}$ is an input vector, also called feature, predictor, independent variable, etc; <strong>typically multi-dimension</strong>. For multi-dimension, $\bold{x} \in \mathbb R^p$ is a weight vector (权重向量，每一维度所占权重可调整) or coding vector (编码向量，e.g. 矢量图).</li>
 <li>Output space $\mathcal{Y} = \{\text{All possible results}\}$ ; $y \in \mathcal{Y}$ is an output vector, also called response, dependent variable, etc; <strong>typically one dimension</strong>. E.g. $y = 0\ \text{or}\ 1$ for classiﬁcation problems, $y \in \mathbb{R}$ for regression problems.</li>
 <li>For supervised learning, assume that $(\bold{x},y)\sim \mathcal P$, a joint distribution on the sample space $\mathcal X \times \mathcal Y$</li>
 </ul>
@@ -354,11 +355,66 @@
 </ul>
 <p>Maths method about Supervised Learning </p>
 <ul>
-<li>Goal: Find the conditional distribution $\mathcal P(y|\bold x)$ of $y$ given $\bold x$ </li>
-<li>Training dataset: $\{(\bold x_i, y_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to learn an approximation $\hat{f}(\bold x)$ or $\hat{\mathcal P}(y|\bold x)$</li>
-<li>Test dataset: $\{(\bold x_j, y_j)\}_{j=n+1}^{n+m} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to test</li>
+<li>Goal: Find the conditional distribution $\mathcal P(y|\bold{x})$ of $y$ given $\bold{x}$ </li>
+<li>Training dataset: $\{(\bold{x_i}, y_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to learn an approximation $\hat{f}(\bold{x})$ or $\hat{\mathcal P}(y|\bold{x})$</li>
+<li>Test dataset: $\{(\bold{x_j}, y_j)\}_{j=n+1}^{n+m} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to test</li>
 </ul>
 <p><img src="/2024/06/22/Big-Data/bd2.png" alt="bd2"></p>
+<blockquote>
+<p>So we can conclude that a predictor must be developed from a Supervised Learning Model.</p>
+</blockquote>
+<font size="4">**Unsupervised Learning (无监督学习) —— <font color="Grey">no labels</font>**</font>
+
+<ul>
+<li>Optimize the parameters based on some <font color="#ce0000">natural rules</font>, e.g., cohesion (收敛) or divergence (发散)</li>
+<li>Clutering : K-Means, SOM (Self-Organizing Map)</li>
+</ul>
+<p><img src="/2024/06/22/Big-Data/bd3.png" alt="bd3"></p>
+<p>Maths method about Unsupervised Learning</p>
+<ul>
+<li>Goal : in probabilistic settings, ﬁnd the distribution (PDF) $\mathcal P(\bold{x})$ of $\bold{x}$ and approximate it (there is no y)</li>
+<li>Training dataset : $\{(x_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$ , used to learn an approximation $\hat{\mathcal P}(\bold{x})$ (no test data in general)</li>
+</ul>
+<p><font size="4"><strong>Semi-supervised learning:</strong></font> with missing data, e.g., EM; self-supervised learning, learn the missing part of images, inpainting.</p>
+<p><font size="4"><strong>Reinforcement learning (强化学习):</strong></font>  <font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.</p>
+<h3 id="Modeling-and-Analysis"><a href="#Modeling-and-Analysis" class="headerlink" title="Modeling and Analysis"></a>Modeling and Analysis</h3><ul>
+<li>Decision function (hypothesis) space : <ul>
+<li>$\mathcal{F}=\{\mathcal{f_\theta}=\mathcal{f_\theta}(x), \theta \in \Theta \}$ </li>
+<li>or $\mathcal{F}=\{\mathcal{P_\theta}=\mathcal{P_\theta}(y|x), \theta \in \Theta \}$</li>
+</ul>
+</li>
+<li><font color="red">Loss function :</font> a measure for the “goodness” of the prediction, $L(y, \mathcal{f}(x))$ <ul>
+<li><a name="0-1 loss"><em>0-1 loss</em></a>: $L(y, \mathcal{f}(x))=\bold{l}_{y\not{=}f(x)}=1-\bold{l}_{y=f(x)}$ （个人理解一般是用于二元项预测的误差判断）</li>
+<li><em>Square loss</em>: $L(y, \mathcal{f}(x))=(y-f(x))^2$ （比绝对值误差更泛用）</li>
+<li><em>Absolute loss</em>: $L(y, \mathcal{f}(x))={|y-f(x)|}$ </li>
+<li><em>Cross-entropy (交叉熵 ) loss</em>: <br>   $\color{red}L(y, \mathcal{f}(x))=-y\log{f(x)}-(1-y)\log{(1-f(x))}$</li>
+</ul>
+</li>
+<li><strong>Risk</strong> : in average sense,<br>         $\mathcal{R}(f)=E_{\mathcal P} [L(y, f(x))]=\underset{\mathcal X \times \mathcal Y}{\int}L(y, f(x))\mathcal{P}(x,y)\text d x \text d y$ </li>
+<li><font color="Red"><strong>Target of Learning</strong></font> : minimize $\mathcal R_{exp}(f)$ to get $f^<em>$ $(\text{即} f^</em>=\underset{f}{min}\ \mathcal R_{exp}(f))$</li>
+</ul>
+<p><strong>Risk Minimize Strategy :</strong> </p>
+<ul>
+<li>Empirical risk minimization (<strong>ERM</strong>) : <ul>
+<li>given training set $\{(\bold{x_i},y_i)\}_{i=1}^{n}$ , $R_{emp}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\bold{x_i}))$ <font color="grey">(Loss function 的均值定义为预测模型 f 的经验风险)</font> .<ul>
+<li>By law of large number, $\underset{n\to\infty}{\lim} R_{emp}(f)=R_{exp}(f)$ . <font color="Grey">(即经验风险趋近于预测风险)</font></li>
+<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\bold{x_i}))$ </li>
+<li><font color="Green">Now we only need to know</font>  $\color{green}f$ <font color="Green">and training set</font>  $\color{green}\bold{x_i}$ </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Structural risk minimization (<strong>SRM</strong>) : <ul>
+<li>given training set $\{(\bold{x_i},y_i)\}_{i=1}^{n}$ , and a complexity function $J=J(f)$ , $R_{SRM}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\bold{x_i}))+\lambda J(f)$ <ul>
+<li>$J(f)$ measures how complex the model $f$ is, typically the degree of complexity</li>
+<li>$λ\ge 0$ is a tradeoff(平衡项) between the empirical risk and model complexity</li>
+<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\bold{x_i}))+\lambda J(f)$ </li>
+<li><font color="Green">We need to know</font> $\color{green}f$ <font color="Green">and training set</font> $\color{green}{\bold{x_i}}$ <font color="Green">, and need to</font> <font color="#8cea00">adjust the parameter</font>  $\color{8cea00}\lambda$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
