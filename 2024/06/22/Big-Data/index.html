@@ -25,12 +25,14 @@
 <meta property="og:site_name" content="墨独凌">
 <meta property="og:description" content="Big Data(MA234) is a Math course about Data processing and analyzing. It focus on Machine Learning and you can learn about some algorithm and principles about data analysis.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data/bd2.png">
 <meta property="article:published_time" content="2024-06-22T13:59:45.000Z">
-<meta property="article:modified_time" content="2024-06-22T14:44:28.767Z">
+<meta property="article:modified_time" content="2024-06-23T01:45:13.157Z">
 <meta property="article:author" content="墨独凌">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="CSE Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hqj2221.github.io/2024/06/22/Big-Data/bd2.png">
 
 
 <link rel="canonical" href="http://hqj2221.github.io/2024/06/22/Big-Data/">
@@ -113,7 +115,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data"><span class="nav-number">1.</span> <span class="nav-text">Big Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Pre-Knowledge"><span class="nav-number">1.1.</span> <span class="nav-text">0. Pre-Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Linear-Algebra"><span class="nav-number">1.1.1.</span> <span class="nav-text">Recall for Linear Algebra</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data"><span class="nav-number">1.</span> <span class="nav-text">Big Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Pre-Knowledge"><span class="nav-number">1.1.</span> <span class="nav-text">0. Pre-Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Linear-Algebra"><span class="nav-number">1.1.1.</span> <span class="nav-text">Recall for Linear Algebra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-for-Calculus"><span class="nav-number">1.1.2.</span> <span class="nav-text">Recall for Calculus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Prepared-Knowledge"><span class="nav-number">1.1.3.</span> <span class="nav-text">Other Prepared Knowledge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-Intro"><span class="nav-number">1.2.</span> <span class="nav-text">I. Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#About-Big-Data"><span class="nav-number">1.2.1.</span> <span class="nav-text">About Big Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Representation-of-Data"><span class="nav-number">1.2.2.</span> <span class="nav-text">Representation of Data</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -200,9 +202,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-06-22 21:59:45 / 修改时间：22:44:28" itemprop="dateCreated datePublished" datetime="2024-06-22T21:59:45+08:00">2024-06-22</time>
+      <time title="创建时间：2024-06-22 21:59:45" itemprop="dateCreated datePublished" datetime="2024-06-22T21:59:45+08:00">2024-06-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-06-23 09:45:13" itemprop="dateModified" datetime="2024-06-23T09:45:13+08:00">2024-06-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -225,7 +233,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h1 id="Big-Data"><a href="#Big-Data" class="headerlink" title="Big Data"></a>Big Data</h1><h2 id="0-Pre-Knowledge"><a href="#0-Pre-Knowledge" class="headerlink" title="0. Pre-Knowledge"></a>0. Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
-<p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\bold V$. If any vector from $\bold V$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$ , or $\alpha$ is a Linear Combination of $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$. </p>
+<p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\bold{V}$. If any vector from $\bold{V}$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$ , or $\alpha$ is a Linear Combination of $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$. </p>
 <script type="math/tex; mode=display">
 \begin{align}
 &\text{Set }A=\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}\\
@@ -248,6 +256,109 @@
 </ul>
 </li>
 </ul>
+<ul>
+<li>About <strong>Linear Independent</strong><ul>
+<li><strong>Def.</strong> Suppose $A=\{v_1,v_2,\cdots, v_n\}$ is vector set of $\mathbb R^n$. If $\exist v_i \in A, v_i=\sum_{j\neq i} \lambda_j v_j, \lambda_j \in \mathcal R$ , then we say $A$ is <strong>linear dependent</strong>. <font color="red">If not, we say it’s <strong>Linear Independent</strong>.</font></li>
+<li><strong>Thm.</strong> $A$ is linear independent <font color="red">if and only if</font> $\lambda_1 \vec{v_1}+\lambda_2\vec{v_2}+\cdots +\lambda_k\vec{v_k}=0$ only holds when $\lambda_1=\lambda_2=\cdots =\lambda_k=0$</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Then we can talk about <strong>Basis</strong>(基)</p>
+</blockquote>
+<p><strong>Def.</strong> For vector space $V$ , if vector group $A=\{v_1,v_2,\cdots, v_k\}$ satisfies that $V=\text{Span}(A)$ , and $A$ is <font color="red">linear independent</font> , then we say that $\color{red}A$ <font color="red">is one of the <strong>basis</strong> of</font> $\color{red}V$.</p>
+<ul>
+<li>If $A$ is a basis of $V$ , then $\forall \vec{w} \in V$ , there must be unique array $[a_1, a_2,\cdots,a_k]$ such that $\vec{w}=a_1v_1+a_2v_2+\cdots +a_kv_k$ . Then we call this array a <font color="red">coordinate</font> of $\vec w$ in $A$ , noted $[\vec w]_{A}$</li>
+</ul>
+<h3 id="Recall-for-Calculus"><a href="#Recall-for-Calculus" class="headerlink" title="Recall for Calculus"></a>Recall for Calculus</h3><p><strong>1. Langrange Multiplier</strong> [拉格朗日乘子法]</p>
+<h3 id="Other-Prepared-Knowledge"><a href="#Other-Prepared-Knowledge" class="headerlink" title="Other Prepared Knowledge"></a>Other Prepared Knowledge</h3><p><strong>1. Norm</strong></p>
+<p>On vectors :</p>
+<ul>
+<li>1-Norm: $|x|_1 = \sum_{i=1}^{N}{|x_i|}$</li>
+<li>2-Norm: $|\bold x|_2= \sqrt{\sum_{i=1}^{N} x_i^2}$</li>
+<li>$\pm\infty$-Norm: $|\bold x|_{\infty}=\underset{i}\max{|x_i|}$  ;  $|\bold x|_{-\infty}=\underset{i}\min{|x_i|}$</li>
+<li>p-Norm: $|\bold x|_p=(\sum_{i=1}^{N}{|x_i|}^p)^{\frac{1}{p}}$</li>
+</ul>
+<p>On matrix :</p>
+<ul>
+<li>1-Norm(列和范数) : $|A|_1=\underset{j}\max \sum_{i=1}^{m}{|a_{i,j}|}$  , maximum among <font color="red">absolute sum of column vector</font>.</li>
+<li>2-Norm: $|A|_2=\sqrt{\lambda_1}$  , where $\lambda_1$ is the maximum eigenvalue(特征值) of $A^TA$</li>
+<li>$\infty$-Norm(行和范数) : $|A|_\infty=\underset{i}\max \sum_{j=1}^{n}{|a_{i,j}|}$  , maximum among <font color="red">absolute sum of row vector</font>.</li>
+<li>F-Norm(核范数) : $|A|_*=\sum_{i=1}^{n}\lambda_i$  , where $\lambda_i$ is singular value(奇异值) of $A$</li>
+</ul>
+<h2 id="I-Intro"><a href="#I-Intro" class="headerlink" title="I. Intro"></a>I. Intro</h2><h3 id="About-Big-Data"><a href="#About-Big-Data" class="headerlink" title="About Big Data"></a>About Big Data</h3><ul>
+<li><font color="Red"><strong>4 Big “V”</strong></font> required in Big Data<ul>
+<li><strong>Volume</strong>: KB, MB, GB (10^9^ bytes), TB, PB, EB (10^18^ bytes), ZB, YB<ul>
+<li>Data of Baidu: several ZB</li>
+</ul>
+</li>
+<li><strong>Variety</strong>: diﬀerent sources from business to industry, diﬀerent types</li>
+<li><strong>Value</strong>: redundant information contained in the data, need to retrieve useful information</li>
+<li><strong>Velocity</strong> (速度): fast speed for information transfer</li>
+</ul>
+</li>
+<li><em>Two perspectives of data sciences</em> :<ul>
+<li>Study science with the help of data : bioinformatics, astrophysics, geosciences, etc.</li>
+<li>Use scientiﬁc methods to exploit (利用) data : statistics, machine learning, data mining, pattern recognition, data base, etc.</li>
+</ul>
+</li>
+<li><em>Data Analysis</em><ul>
+<li>Ordinary data types :<ul>
+<li>Table : classical data (could be treated as matrix)</li>
+<li>Set of points : mathematical description</li>
+<li>Time series : text, audio, stock prices, DNA sequences, etc.</li>
+<li>Image : 2D signal (or matrix equivalently, e.g., pixels), MRI, CT, supersonic imaging</li>
+<li>Video : Totally 3D, with 2D in space and 1D in time (another kind of time series)</li>
+<li>Webpage and newspaper : time series with spacial structure</li>
+<li>Network : relational data, graph (nodes and edges)</li>
+</ul>
+</li>
+<li>Basic assumption : the data are generated from an underlying model, which is unknown in practice<ul>
+<li>Set of points : probability distribution</li>
+<li>Time series : stochastic processes, e.g., Hidden Markov Model (HMM)</li>
+<li>Image : random ﬁelds, e.g., Gibbs random ﬁelds</li>
+<li>Network : graphical models, Beyesian models</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Difficulties of Data Analysis</strong></p>
+<ul>
+<li>Huge <font color="#921aff">volume</font> of data</li>
+<li>Extremely high dimensions<ul>
+<li>Solutions: <ul>
+<li>Make use of prior information</li>
+<li>Restrict to simple models</li>
+<li>Make use of special structures, e.g., sparsity, low rank, smoothness</li>
+<li>Dimensionality reduction, e.g., PCA, LDA, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Complex <font color="#921aff">variety</font> of data</li>
+<li>Large noise (噪点, <font color="#921aff">values</font>) : data are always contaminated with noises</li>
+</ul>
+<h3 id="Representation-of-Data"><a href="#Representation-of-Data" class="headerlink" title="Representation of Data"></a>Representation of Data</h3><ul>
+<li>Input space $\mathcal X = \{\text{All possible samples}\}$ ; $\bold x \in \mathcal{X}$ is an input vector, also called feature, predictor, independent variable, etc; <strong>typically multi-dimension</strong>. For multi-dimension, $\bold x \in \mathbb R^p$ is a weight vector (权重向量，每一维度所占权重可调整) or coding vector (编码向量，e.g. 矢量图).</li>
+<li>Output space $\mathcal{Y} = \{\text{All possible results}\}$ ; $y \in \mathcal{Y}$ is an output vector, also called response, dependent variable, etc; <strong>typically one dimension</strong>. E.g. $y = 0\ \text{or}\ 1$ for classiﬁcation problems, $y \in \mathbb{R}$ for regression problems.</li>
+<li>For supervised learning, assume that $(\bold{x},y)\sim \mathcal P$, a joint distribution on the sample space $\mathcal X \times \mathcal Y$</li>
+</ul>
+<hr>
+<font size="4">**Supervised Learning (监督学习) —— <font color="Grey">given labels of data</font>**</font>
+
+<ul>
+<li>Training : ﬁnd the optimal parameters (or model) to minimize the error between the prediction and target</li>
+<li>Classiﬁcation <font color="Grey">(if output is discrete)</font>: SVM (支持向量机), KNN (K-Nearest Neighbor), Desicion tree, etc.</li>
+<li>Regression <font color="Grey">(if output is continuous)</font>: linear regression, CART, etc.</li>
+</ul>
+<p>Maths method about Supervised Learning </p>
+<ul>
+<li>Goal: Find the conditional distribution $\mathcal P(y|\bold x)$ of $y$ given $\bold x$ </li>
+<li>Training dataset: $\{(\bold x_i, y_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to learn an approximation $\hat{f}(\bold x)$ or $\hat{\mathcal P}(y|\bold x)$</li>
+<li>Test dataset: $\{(\bold x_j, y_j)\}_{j=n+1}^{n+m} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to test</li>
+</ul>
+<p><img src="/2024/06/22/Big-Data/bd2.png" alt="bd2"></p>
 
     </div>
 
