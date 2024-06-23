@@ -43,7 +43,7 @@
 </ul>
 <ul>
 <li>About <strong>Linear Independent</strong><ul>
-<li><strong>Def.</strong> Suppose $A=\{v_1,v_2,\cdots, v_n\}$ is vector set of $\mathbb R^n$. If $\exist v_i \in A, v_i=\sum_{j\neq i} \lambda_j v_j, \lambda_j \in \mathcal R$ , then we say $A$ is <strong>linear dependent</strong>. <font color="red">If not, we say it’s <strong>Linear Independent</strong>.</font></li>
+<li><strong>Def.</strong> Suppose $A=\{v_1,v_2,\cdots, v_n\}$ is vector set of $\mathbb R^n$. If $\exists v_i \in A, v_i=\sum_{j\neq i} \lambda_j v_j, \lambda_j \in \mathcal R$ , then we say $A$ is <strong>linear dependent</strong>. <font color="red">If not, we say it’s <strong>Linear Independent</strong>.</font></li>
 <li><strong>Thm.</strong> $A$ is linear independent <font color="red">if and only if</font> $\lambda_1 \vec{v_1}+\lambda_2\vec{v_2}+\cdots +\lambda_k\vec{v_k}=0$ only holds when $\lambda_1=\lambda_2=\cdots =\lambda_k=0$</li>
 </ul>
 </li>
