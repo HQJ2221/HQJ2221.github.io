@@ -130,7 +130,7 @@
 <li>For supervised learning, assume that $(\textbf{x},y)\sim \mathcal P$, a joint distribution on the sample space $\mathcal X \times \mathcal Y$</li>
 </ul>
 <hr>
-<font size="4">**Supervised Learning (监督学习) —— <font color="Grey">given labels of data</font>**</font>
+<font size="4"><b>Supervised Learning (监督学习) —— <font color="Grey">given labels of data</font></b></font>
 
 <ul>
 <li>Training : ﬁnd the optimal parameters (or model) to minimize the error between the prediction and target</li>
@@ -147,7 +147,7 @@
 <blockquote>
 <p>So we can conclude that a predictor must be developed from a Supervised Learning Model.</p>
 </blockquote>
-<font size="4">**Unsupervised Learning (无监督学习) —— <font color="Grey">no labels</font>**</font>
+<font size="4"><b>Unsupervised Learning (无监督学习) —— <font color="Grey">no labels</font></b></font>
 
 <ul>
 <li>Optimize the parameters based on some <font color="#ce0000">natural rules</font>, e.g., cohesion (收敛) or divergence (发散)</li>
@@ -193,7 +193,7 @@
 <li>$J(f)$ measures how complex the model $f$ is, typically the degree of complexity</li>
 <li>$λ\ge 0$ is a tradeoff(平衡项) between the empirical risk and model complexity</li>
 <li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ </li>
-<li><font color="Green">We need to know</font> $\color{green}f$ <font color="Green">and training set</font> $\color{green}{\textbf{x}_i}$ <font color="Green">, and need to</font> <font color="#8cea00">adjust the parameter</font>  $\color{8cea00}\lambda$</li>
+<li><font color="Green">We need to know</font> $\color{green}f$ <font color="Green">and training set</font> $\color{green}{\textbf{x}_i}$ <font color="Green">, and need to</font> <font color="#00CD00">adjust the parameter</font>  $\color{green}{\lambda}$</li>
 </ul>
 </li>
 </ul>
