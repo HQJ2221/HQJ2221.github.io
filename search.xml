@@ -73,7 +73,7 @@
 </ul>
 <h2 id="I-Intro"><a href="#I-Intro" class="headerlink" title="I. Intro"></a>I. Intro</h2><h3 id="About-Big-Data"><a href="#About-Big-Data" class="headerlink" title="About Big Data"></a>About Big Data</h3><ul>
 <li><font color="Red"><strong>4 Big “V”</strong></font> required in Big Data<ul>
-<li><strong>Volume</strong>: KB, MB, GB (10^9^ bytes), TB, PB, EB (10^18^ bytes), ZB, YB<ul>
+<li><strong>Volume</strong>: KB, MB, GB ($10^9$ bytes), TB, PB, EB ($10^{18}$ bytes), ZB, YB<ul>
 <li>Data of Baidu: several ZB</li>
 </ul>
 </li>
