@@ -301,7 +301,7 @@
 
 
 
-### Modeling and Analysis
+## Modeling and Analysis
 
 - Decision function (hypothesis) space : 
   - $\mathcal{F}=\{\mathcal{f_\theta}=\mathcal{f_\theta}(x), \theta \in \Theta \}$ 
