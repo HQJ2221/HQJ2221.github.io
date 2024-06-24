@@ -184,7 +184,7 @@ body {
   background: var(--body-bg-color);
   box-sizing: border-box;
   color: var(--text-color);
-  font-family: Din, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Noto Serif SC, "Noto Serif SC", sans-serif;
   font-size: 1em;
   line-height: 2;
   min-height: 100%;
@@ -197,7 +197,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Din, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Noto Serif SC, "Noto Serif SC", sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -518,7 +518,7 @@ pre figcaption a:hover {
 }
 pre,
 code {
-  font-family: consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
+  font-family: Roboto Mono, consolas, Menlo, monospace, "Noto Serif SC";
 }
 code {
   border-radius: 3px;
@@ -1092,7 +1092,7 @@ pre code {
   color: var(--brand-hover-color);
 }
 .site-title {
-  font-family: Din, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Noto Serif SC, "Noto Serif SC", sans-serif;
   font-size: 1.375em;
   font-weight: normal;
   line-height: 1.5;
@@ -1235,7 +1235,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #6522ff;
+    background: #ac0de2;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1578,6 +1578,30 @@ pre code {
   color: #999;
   font-size: 0.8125em;
 }
+.sidebar-post-related {
+  font-size: 0.8125em;
+  padding: 18px 0 0 0;
+}
+.popular-posts {
+  margin: 0;
+  padding: 1em 0;
+  text-align: left;
+}
+.popular-posts .popular-posts-item {
+  display: block;
+}
+.popular-posts .popular-posts-item .popular-posts-link {
+  border-bottom: 0;
+  display: block;
+  padding: 5px 20px;
+  transition: background 0.2s ease-in-out;
+}
+.popular-posts .popular-posts-item .popular-posts-link:hover {
+  background: var(--menu-item-bg-color);
+}
+.popular-posts .popular-posts-item .popular-posts-time {
+  color: #999;
+}
 .footer {
   color: #999;
   font-size: 0.875em;
@@ -1671,7 +1695,6 @@ pre code {
 }
 .back-to-top span {
   margin-right: 8px;
-  display: none;
 }
 .back-to-top .fa {
   text-align: center;
@@ -1714,7 +1737,7 @@ pre code {
   font-family: UKIJ Ekran;
 }
 .post-button {
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: center;
 }
 .use-motion .post-block,
@@ -1845,7 +1868,7 @@ pre code {
   width: 4px;
 }
 .post-body {
-  font-family: Din, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Noto Serif SC, "Noto Serif SC", sans-serif;
   overflow-wrap: break-word;
 }
 @media (min-width: 1200px) {
@@ -2031,7 +2054,7 @@ pre code {
 }
 .posts-expand .post-meta-container {
   color: #999;
-  font-family: Din, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Noto Serif SC, "Noto Serif SC", sans-serif;
   font-size: 0.75em;
   margin-top: 3px;
 }
@@ -2387,8 +2410,8 @@ mjx-container[display='true'] + br {
 }
 header.header {
   background: var(--content-bg-color);
-  border-radius: initial;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 @media (max-width: 991px) {
   header.header {
@@ -2424,9 +2447,9 @@ header.header {
   }
 }
 .main-inner {
-  border-radius: initial;
+  border-radius: 0 0 10px 10px;
   box-sizing: border-box;
-  width: calc(100% - 294px);
+  width: calc(100% - 300px);
 }
 @media (max-width: 991px) {
   .main-inner {
@@ -2435,7 +2458,7 @@ header.header {
   }
 }
 .footer-inner {
-  padding-left: 294px;
+  padding-left: 300px;
 }
 @media (max-width: 991px) {
   .footer-inner {
@@ -2542,19 +2565,19 @@ header.header {
   .sidebar {
     position: -webkit-sticky;
     position: sticky;
-    top: 14px;
+    top: 20px;
   }
   .sidebar-toggle {
     display: none;
   }
   .sidebar-inner {
     background: var(--content-bg-color);
-    border-radius: initial;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
     box-sizing: border-box;
     color: var(--text-color);
-    margin-top: 14px;
-    max-height: calc(100vh - 28px);
+    margin-top: 20px;
+    max-height: calc(100vh - 40px);
     visibility: hidden;
   }
   .site-state-item {
@@ -2609,13 +2632,13 @@ header.header {
 .main-inner .comment-position .comments,
 .main-inner .pagination {
   background: var(--content-bg-color);
-  border-radius: initial;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 .main-inner .post-block:not(:first-child):not(:first-child) {
-  border-radius: initial;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  margin-top: 14px;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
+  margin-top: 20px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .main-inner .post-block:not(:first-child):not(:first-child) {
@@ -2631,9 +2654,9 @@ header.header {
 .main-inner > .comments,
 .main-inner .comment-position .comments,
 .main-inner .pagination {
-  border-radius: initial;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  margin-top: 14px;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
+  margin-top: 20px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .main-inner .tabs-comment,
@@ -2688,13 +2711,13 @@ header.header {
     padding: 8px;
   }
   .posts-expand .post-button {
-    margin: 14px 0;
+    margin: 20px 0;
   }
   .post-block {
-    padding: 14px;
+    padding: 20px;
   }
   .comments {
-    padding: 10px 14px;
+    padding: 10px 20px;
   }
 }
 @media (min-width: 992px) and (max-width: 991px) {

@@ -15,139 +15,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Big Data 2</title>
-    <url>/2024/06/24/Big-Data-2/</url>
-    <content><![CDATA[<h1 id="Big-Data-II"><a href="#Big-Data-II" class="headerlink" title="Big Data (II)"></a>Big Data (II)</h1><h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><blockquote>
-<p>本章内容较多，先写下本章主要内容：</p>
-<p>本章涉及分类算法，主要会提及 KNN 算法，决策树算法和朴素贝叶斯算法（是分类算法中最基础的几种）<br>其中，每种算法的应用里涵盖了一些多用概念，如剪枝操作、似然函数计算等。</p>
-<p>介绍三种基本算法后，本章还涉及模型评估，讲解如何通过不同问题使用不同的算法以得到最优的结果</p>
-<p>注：本章含有不亚于数据预处理章节的数学公式，要求理解公式基本内涵。</p>
-</blockquote>
-<h3 id="K-Nearest-Neighbor-KNN"><a href="#K-Nearest-Neighbor-KNN" class="headerlink" title="K-Nearest Neighbor (KNN)"></a>K-Nearest Neighbor (KNN)</h3><blockquote>
-<p>Supervised learning method, especially useful when prior knowledge on the data is very limited.</p>
-<p><font color="red">Low bias, high variance</font> : <font color="blue">just for small</font> <code>k</code> </p>
-<p><strong>Advantages</strong> : not sensitive to outliers (异常值距离一般较远) , easy to implement and parallelize, good for large training set</p>
-<p><strong>Drawbacks</strong> : need to tune (调节) $k$, take large storage, computationally intensive (计算缓慢，算力要求高)</p>
-</blockquote>
-<font size="4"><b>Algorithm</b></font>
-
-<ul>
-<li>Input : training set $D_{train} = \{(x_1, y_1),\cdots,(x_N, y_N)\}$,  a test sample $x$ without label $y$, $k$ and distance metric $d(x, y)$</li>
-<li>Output : predicted label $y_{pred}$ for $x$ </li>
-</ul>
-<ol>
-<li>Compute $d(x, x_j)$ for each $(x_j , y_j) \in D_{train}$</li>
-<li>Sort the distances in an <font color="Red">ascending</font> order, choose the ﬁrst $k$ samples $(x_{(1)}, y_{(1)}),\cdots,(x_{(k)} , y_{(k)})$ </li>
-<li>Make majority vote $y_{pred} = \text{Mode}(y_{(1)},\cdots, y_{(k)})$ </li>
-</ol>
-<p>Time Complexity : $O(mndK)$ where $n$ is the number of training samples, $m$ is the number of test samples, $d$ is the dimension, and $K$ is the number of nearest neighbors</p>
-<p><img src="/2024/06/24/Big-Data-2/bd8.png" alt="bd8"></p>
-<p><strong>Similarity and Divergence</strong></p>
-<ul>
-<li><a href="/2024/06/22/Big-Data-1/index.html#cosine distance">Cosine similarity</a></li>
-<li><a href="/2024/06/22/Big-Data-1/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\frac{|A\cap B|}{|A\cup B|}$ </li>
-<li>Kullback-Leibler (KL) divergence : $d_{KL}(P||Q) = E_P log \frac{P(x)}{Q(x)}$ , measures the distance between two probability <font color="red">distributions</font> $P$ and $Q$ ; in discrete case, $d_{KL}(p||q) = \sum^m_{i=1} p_i log \frac{p_i}{q_i}$ (CDF of $P$ and $Q$)</li>
-</ul>
-<p><strong>Tuning <code>k</code></strong> </p>
-<ul>
-<li>Different <code>k</code> value can lead to totally different results. ( model overfit the data when <code>k = 1</code>, bad for generalization )</li>
-<li><strong>M-fold Cross-validation (CV)</strong> to tune <code>k</code> : <ul>
-<li>partition the dataset into M parts ( M = 5 or 10 ) , let $\kappa : \{1,\cdots, N\} \to \{1,\cdots, M\}$ be <em>randomized partition index map</em> (随机分布索引映射) . The <em>CV estimate of prediction error</em> (预测误差的CV估计) is<br> $CV(\hat f,k)=\frac{1}{N} \sum_{n=1}^{N}L(y_i,\hat f^{-\kappa(i)}(x_i,k))$</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/06/24/Big-Data-2/bd9.png" alt="bd9"></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">k’s value</th>
-<th style="text-align:center">$k=1$ (complex model)</th>
-<th style="text-align:center">$k=\infty$ (simplier model)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Bias</td>
-<td style="text-align:center">decrease</td>
-<td style="text-align:center">increase</td>
-</tr>
-<tr>
-<td style="text-align:center">Variance</td>
-<td style="text-align:center">increase</td>
-<td style="text-align:center">$0$</td>
-</tr>
-<tr>
-<td style="text-align:center">Generalization</td>
-<td style="text-align:center">overfitting (train-set friendly)</td>
-<td style="text-align:center">underfitting (test-set friendly)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><a name="Bayes"><strong>Bayes Classifier (Oracle Classifier)</strong></a></p>
-<ul>
-<li>Assume $Y \in \mathcal{Y} = \{1, 2, . . . , C\}$, the classiﬁer $f : \mathcal X → \mathcal Y$ is a piecewise (分段) constant function</li>
-<li>For <a href="/2024/06/22/Big-Data-1/index.html#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{align}
-\mathcal E(f)&=E_{P(X,Y)}[L(Y,f(X))]=1-P(Y=f(X))\\
-&=1-\int_{\mathcal X}P(Y=f(X)|X=x)p_X(x)\text dx
-\end{align}</script><ul>
-<li>Bayes rule : $f^{∗} (x) = \arg \max_c P(Y = c|X = x)$ , <font color="grey">“the most probable label under the conditional probability on x”</font></li>
-<li>Bayes Error Rate (贝叶斯误差) : $\text{inf}_{f}\varepsilon (f)=$ $\color{red}\mathcal E(f^{\ast})$ $=1-P(Y=f^{\ast}(X))$</li>
-<li><strong>Bayes Decision Boundary</strong> (贝叶斯决策边界) : the boundary separating the <strong>K partition</strong> domains in $\mathcal X$ on each of which $f^{ ∗ }(x) \in Y$ is constant. For binary classiﬁcation, it is the level set on which $P(Y=1|X=x)=P(Y=0|X=x)=0.5$<ul>
-<li><font color="green">Recall : Decision boundary of 15NN is smoother than that of 1NN</font> 
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<font color="red">Analysis of 1NN</font>
-
-<ul>
-<li>1NN error rate is twice the Bayes error rate<ul>
-<li>Bayes error $=1-p_{c^<em>}(x)$ where $c^</em>=\arg\max_{c}p_c(x)$</li>
-<li>Assume the samples are i.i.d. (独立同分布) , for any test sample $x$ and small $\delta$, there is always a training sample $z \in B(x, \delta)$ (the label of $x$ is the same as that of $z$), then 1NN error is</li>
-</ul>
-</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{align}
-\epsilon=\sum_{c=1}^{C}p_c(x)(1-p_c(z))\overset{\delta\to 0}{\longrightarrow}&1-\sum_{c=1}^{C}p_{c}^{2}(x)\\
-\le &1-p_{c^*}^{2}(x)\\
-\le &2(1-p_{c^*}(x))
-\end{align}</script><ul>
-<li><ul>
-<li><font color="green">Remark : In fact,  $\epsilon\le 2(1-p_{c^*}^{2}(x))-\frac{C}{C-1}(1-p_{c^*}^{2}(x))^2$</font>
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<font color="blue">Case : Use kNN to diagnose breast cancer (cookdata) </font>
-
-<ul>
-<li>We have to consider its radius, texture (质地) , perimeter, area, smoothness, etc. (n-dimension)</li>
-<li>Data scaling : 0-1 scaling or z-score scaling</li>
-<li>Use code to assist</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">KNeighborsClassifier(n_neighbors = <span class="number">10</span>, metric = <span class="string">&#x27;minkowski&#x27;</span>, p = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>2024 Spring</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>CSE Learning</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Big Data 1</title>
     <url>/2024/06/22/Big-Data-1/</url>
     <content><![CDATA[<h1 id="Big-Data-I"><a href="#Big-Data-I" class="headerlink" title="Big Data (I)"></a>Big Data (I)</h1><h2 id="Pre-Knowledge"><a href="#Pre-Knowledge" class="headerlink" title="Pre-Knowledge"></a>Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
@@ -562,6 +429,139 @@
 
 </blockquote>
 <h1 style="text-align:center"><font color="green" face="Segoe Print">End</font></h1>
+]]></content>
+      <categories>
+        <category>2024 Spring</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>CSE Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Big Data 2</title>
+    <url>/2024/06/24/Big-Data-2/</url>
+    <content><![CDATA[<h1 id="Big-Data-II"><a href="#Big-Data-II" class="headerlink" title="Big Data (II)"></a>Big Data (II)</h1><h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><blockquote>
+<p>本章内容较多，先写下本章主要内容：</p>
+<p>本章涉及分类算法，主要会提及 KNN 算法，决策树算法和朴素贝叶斯算法（是分类算法中最基础的几种）<br>其中，每种算法的应用里涵盖了一些多用概念，如剪枝操作、似然函数计算等。</p>
+<p>介绍三种基本算法后，本章还涉及模型评估，讲解如何通过不同问题使用不同的算法以得到最优的结果</p>
+<p>注：本章含有不亚于数据预处理章节的数学公式，要求理解公式基本内涵。</p>
+</blockquote>
+<h3 id="K-Nearest-Neighbor-KNN"><a href="#K-Nearest-Neighbor-KNN" class="headerlink" title="K-Nearest Neighbor (KNN)"></a>K-Nearest Neighbor (KNN)</h3><blockquote>
+<p>Supervised learning method, especially useful when prior knowledge on the data is very limited.</p>
+<p><font color="red">Low bias, high variance</font> : <font color="blue">just for small</font> <code>k</code> </p>
+<p><strong>Advantages</strong> : not sensitive to outliers (异常值距离一般较远) , easy to implement and parallelize, good for large training set</p>
+<p><strong>Drawbacks</strong> : need to tune (调节) $k$, take large storage, computationally intensive (计算缓慢，算力要求高)</p>
+</blockquote>
+<font size="4"><b>Algorithm</b></font>
+
+<ul>
+<li>Input : training set $D_{train} = \{(x_1, y_1),\cdots,(x_N, y_N)\}$,  a test sample $x$ without label $y$, $k$ and distance metric $d(x, y)$</li>
+<li>Output : predicted label $y_{pred}$ for $x$ </li>
+</ul>
+<ol>
+<li>Compute $d(x, x_j)$ for each $(x_j , y_j) \in D_{train}$</li>
+<li>Sort the distances in an <font color="Red">ascending</font> order, choose the ﬁrst $k$ samples $(x_{(1)}, y_{(1)}),\cdots,(x_{(k)} , y_{(k)})$ </li>
+<li>Make majority vote $y_{pred} = \text{Mode}(y_{(1)},\cdots, y_{(k)})$ </li>
+</ol>
+<p>Time Complexity : $O(mndK)$ where $n$ is the number of training samples, $m$ is the number of test samples, $d$ is the dimension, and $K$ is the number of nearest neighbors</p>
+<p><img src="/2024/06/24/Big-Data-2/bd8.png" alt="bd8"></p>
+<p><strong>Similarity and Divergence</strong></p>
+<ul>
+<li><a href="/2024/06/22/Big-Data-1/index.html#cosine distance">Cosine similarity</a></li>
+<li><a href="/2024/06/22/Big-Data-1/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\frac{|A\cap B|}{|A\cup B|}$ </li>
+<li>Kullback-Leibler (KL) divergence : $d_{KL}(P||Q) = E_P log \frac{P(x)}{Q(x)}$ , measures the distance between two probability <font color="red">distributions</font> $P$ and $Q$ ; in discrete case, $d_{KL}(p||q) = \sum^m_{i=1} p_i log \frac{p_i}{q_i}$ (CDF of $P$ and $Q$)</li>
+</ul>
+<p><strong>Tuning <code>k</code></strong> </p>
+<ul>
+<li>Different <code>k</code> value can lead to totally different results. ( model overfit the data when <code>k = 1</code>, bad for generalization )</li>
+<li><strong>M-fold Cross-validation (CV)</strong> to tune <code>k</code> : <ul>
+<li>partition the dataset into M parts ( M = 5 or 10 ) , let $\kappa : \{1,\cdots, N\} \to \{1,\cdots, M\}$ be <em>randomized partition index map</em> (随机分布索引映射) . The <em>CV estimate of prediction error</em> (预测误差的CV估计) is<br> $CV(\hat f,k)=\frac{1}{N} \sum_{n=1}^{N}L(y_i,\hat f^{-\kappa(i)}(x_i,k))$</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/06/24/Big-Data-2/bd9.png" alt="bd9"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">k’s value</th>
+<th style="text-align:center">$k=1$ (complex model)</th>
+<th style="text-align:center">$k=\infty$ (simplier model)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Bias</td>
+<td style="text-align:center">decrease</td>
+<td style="text-align:center">increase</td>
+</tr>
+<tr>
+<td style="text-align:center">Variance</td>
+<td style="text-align:center">increase</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">Generalization</td>
+<td style="text-align:center">overfitting (train-set friendly)</td>
+<td style="text-align:center">underfitting (test-set friendly)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a name="Bayes"><strong>Bayes Classifier (Oracle Classifier)</strong></a></p>
+<ul>
+<li>Assume $Y \in \mathcal{Y} = \{1, 2, . . . , C\}$, the classiﬁer $f : \mathcal X → \mathcal Y$ is a piecewise (分段) constant function</li>
+<li>For <a href="/2024/06/22/Big-Data-1/index.html#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathcal E(f)&=E_{P(X,Y)}[L(Y,f(X))]=1-P(Y=f(X))\\
+&=1-\int_{\mathcal X}P(Y=f(X)|X=x)p_X(x)\text dx
+\end{align}</script><ul>
+<li>Bayes rule : $f^{∗} (x) = \arg \max_c P(Y = c|X = x)$ , <font color="grey">“the most probable label under the conditional probability on x”</font></li>
+<li>Bayes Error Rate (贝叶斯误差) : $\text{inf}_{f}\varepsilon (f)=$ $\color{red}\mathcal E(f^{\ast})$ $=1-P(Y=f^{\ast}(X))$</li>
+<li><strong>Bayes Decision Boundary</strong> (贝叶斯决策边界) : the boundary separating the <strong>K partition</strong> domains in $\mathcal X$ on each of which $f^{ ∗ }(x) \in Y$ is constant. For binary classiﬁcation, it is the level set on which $P(Y=1|X=x)=P(Y=0|X=x)=0.5$<ul>
+<li><font color="green">Recall : Decision boundary of 15NN is smoother than that of 1NN</font> 
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<font color="red">Analysis of 1NN</font>
+
+<ul>
+<li>1NN error rate is twice the Bayes error rate<ul>
+<li>Bayes error $=1-p_{c^<em>}(x)$ where $c^</em>=\arg\max_{c}p_c(x)$</li>
+<li>Assume the samples are i.i.d. (独立同分布) , for any test sample $x$ and small $\delta$, there is always a training sample $z \in B(x, \delta)$ (the label of $x$ is the same as that of $z$), then 1NN error is</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+\epsilon=\sum_{c=1}^{C}p_c(x)(1-p_c(z))\overset{\delta\to 0}{\longrightarrow}&1-\sum_{c=1}^{C}p_{c}^{2}(x)\\
+\le &1-p_{c^*}^{2}(x)\\
+\le &2(1-p_{c^*}(x))
+\end{align}</script><ul>
+<li><ul>
+<li><font color="green">Remark : In fact,  $\epsilon\le 2(1-p_{c^*}^{2}(x))-\frac{C}{C-1}(1-p_{c^*}^{2}(x))^2$</font>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<font color="blue">Case : Use kNN to diagnose breast cancer (cookdata) </font>
+
+<ul>
+<li>We have to consider its radius, texture (质地) , perimeter, area, smoothness, etc. (n-dimension)</li>
+<li>Data scaling : 0-1 scaling or z-score scaling</li>
+<li>Use code to assist</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">KNeighborsClassifier(n_neighbors = <span class="number">10</span>, metric = <span class="string">&#x27;minkowski&#x27;</span>, p = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>2024 Spring</category>
