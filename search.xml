@@ -373,11 +373,7 @@
 
 ![bd1](bd1.png)
 
-
-
 ---
-
-
 
 ## Data Preprocessing
 
@@ -475,7 +471,7 @@
 <li>For mixed type, use weighed distance (加权) with prescribed weights :</li>
 </ul>
 <script type="math/tex; mode=display">
-\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}</script><h3 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h3><p><img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7"></p>
+\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}</script><h3 id="Data-Preprocessing-Lecture"><a href="#Data-Preprocessing-Lecture" class="headerlink" title="Data Preprocessing (Lecture)"></a>Data Preprocessing (Lecture)</h3><p><img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7"></p>
 <ul>
 <li>Data Scaling (归一化，标准化)<ul>
 <li>Why scaling?<ul>
