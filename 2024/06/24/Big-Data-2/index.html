@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/24/Big-Data-2/bd8.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/24/Big-Data-2/bd9.png">
 <meta property="article:published_time" content="2024-06-24T03:43:04.000Z">
-<meta property="article:modified_time" content="2024-06-24T03:44:38.759Z">
+<meta property="article:modified_time" content="2024-06-24T06:03:54.065Z">
 <meta property="article:author" content="墨独凌">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="CSE Learning">
@@ -209,7 +209,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-06-24 11:43:04 / Modified: 11:44:38" itemprop="dateCreated datePublished" datetime="2024-06-24T11:43:04+08:00">2024-06-24</time>
+      <time title="Created: 2024-06-24 11:43:04 / Modified: 14:03:54" itemprop="dateCreated datePublished" datetime="2024-06-24T11:43:04+08:00">2024-06-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -239,12 +239,11 @@
 </blockquote>
 <h3 id="K-Nearest-Neighbor-KNN"><a href="#K-Nearest-Neighbor-KNN" class="headerlink" title="K-Nearest Neighbor (KNN)"></a>K-Nearest Neighbor (KNN)</h3><blockquote>
 <p>Supervised learning method, especially useful when prior knowledge on the data is very limited.</p>
-<font color="red">Low bias, high variance</font> : <font color="blue">just for small `k`</font> 
-
+<p><font color="red">Low bias, high variance</font> : <font color="blue">just for small</font> <code>k</code> </p>
 <p><strong>Advantages</strong> : not sensitive to outliers (异常值距离一般较远) , easy to implement and parallelize, good for large training set</p>
 <p><strong>Drawbacks</strong> : need to tune (调节) $k$, take large storage, computationally intensive (计算缓慢，算力要求高)</p>
 </blockquote>
-<font size="4">**Algorithm**</font>
+<font size="4"><b>Algorithm</b></font>
 
 <ul>
 <li>Input : training set $D_{train} = \{(x_1, y_1),\cdots,(x_N, y_N)\}$,  a test sample $x$ without label $y$, $k$ and distance metric $d(x, y)$</li>

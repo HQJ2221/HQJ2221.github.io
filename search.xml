@@ -25,12 +25,11 @@
 </blockquote>
 <h3 id="K-Nearest-Neighbor-KNN"><a href="#K-Nearest-Neighbor-KNN" class="headerlink" title="K-Nearest Neighbor (KNN)"></a>K-Nearest Neighbor (KNN)</h3><blockquote>
 <p>Supervised learning method, especially useful when prior knowledge on the data is very limited.</p>
-<font color="red">Low bias, high variance</font> : <font color="blue">just for small `k`</font> 
-
+<p><font color="red">Low bias, high variance</font> : <font color="blue">just for small</font> <code>k</code> </p>
 <p><strong>Advantages</strong> : not sensitive to outliers (异常值距离一般较远) , easy to implement and parallelize, good for large training set</p>
 <p><strong>Drawbacks</strong> : need to tune (调节) $k$, take large storage, computationally intensive (计算缓慢，算力要求高)</p>
 </blockquote>
-<font size="4">**Algorithm**</font>
+<font size="4"><b>Algorithm</b></font>
 
 <ul>
 <li>Input : training set $D_{train} = \{(x_1, y_1),\cdots,(x_N, y_N)\}$,  a test sample $x$ without label $y$, $k$ and distance metric $d(x, y)$</li>
