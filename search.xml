@@ -17,7 +17,7 @@
   <entry>
     <title>Big Data 2</title>
     <url>/2024/06/24/Big-Data-2/</url>
-    <content><![CDATA[<h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><blockquote>
+    <content><![CDATA[<h1 id="Big-Data-II"><a href="#Big-Data-II" class="headerlink" title="Big Data (II)"></a>Big Data (II)</h1><h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><blockquote>
 <p>本章内容较多，先写下本章主要内容：</p>
 <p>本章涉及分类算法，主要会提及 KNN 算法，决策树算法和朴素贝叶斯算法（是分类算法中最基础的几种）<br>其中，每种算法的应用里涵盖了一些多用概念，如剪枝操作、似然函数计算等。</p>
 <p>介绍三种基本算法后，本章还涉及模型评估，讲解如何通过不同问题使用不同的算法以得到最优的结果</p>
@@ -44,13 +44,13 @@
 <p><img src="/2024/06/24/Big-Data-2/bd8.png" alt="bd8"></p>
 <p><strong>Similarity and Divergence</strong></p>
 <ul>
-<li><a href="#cosine distance">Cosine Similarity</a></li>
-<li><a href="#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\frac{|A\cap B|}{|A\cup B|}$ </li>
+<li><a href="/2024/6/22/index.html#cosine distance">Cosine similarity</a></li>
+<li><a href="/2024/6/22/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\frac{|A\cap B|}{|A\cup B|}$ </li>
 <li>Kullback-Leibler (KL) divergence : $d_{KL}(P||Q) = E_P log \frac{P(x)}{Q(x)}$ , measures the distance between two probability <font color="red">distributions</font> $P$ and $Q$ ; in discrete case, $d_{KL}(p||q) = \sum^m_{i=1} p_i log \frac{p_i}{q_i}$ (CDF of $P$ and $Q$)</li>
 </ul>
 <p><strong>Tuning <code>k</code></strong> </p>
 <ul>
-<li>Different <code>k</code> value can lead to totally different results. ( As shown on Pic 9, model overfit the data when <code>k = 1</code>, bad for generalization )</li>
+<li>Different <code>k</code> value can lead to totally different results. ( model overfit the data when <code>k = 1</code>, bad for generalization )</li>
 <li><strong>M-fold Cross-validation (CV)</strong> to tune <code>k</code> : <ul>
 <li>partition the dataset into M parts ( M = 5 or 10 ) , let $\kappa : \{1,\cdots, N\} \to \{1,\cdots, M\}$ be <em>randomized partition index map</em> (随机分布索引映射) . The <em>CV estimate of prediction error</em> (预测误差的CV估计) is<br> $CV(\hat f,k)=\frac{1}{N} \sum_{n=1}^{N}L(y_i,\hat f^{-\kappa(i)}(x_i,k))$</li>
 </ul>
@@ -88,17 +88,17 @@
 <p><a name="Bayes"><strong>Bayes Classifier (Oracle Classifier)</strong></a></p>
 <ul>
 <li>Assume $Y \in \mathcal{Y} = \{1, 2, . . . , C\}$, the classiﬁer $f : \mathcal X → \mathcal Y$ is a piecewise (分段) constant function</li>
-<li><p>For <a href="#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</p>
+<li>For <a href="/2024/6/22/index.html#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</li>
+</ul>
 <script type="math/tex; mode=display">
 \begin{align}
 \mathcal E(f)&=E_{P(X,Y)}[L(Y,f(X))]=1-P(Y=f(X))\\
 &=1-\int_{\mathcal X}P(Y=f(X)|X=x)p_X(x)\text dx
-\end{align}</script></li>
-<li><p>Bayes rule : $f^{∗} (x) = \arg \max_c P(Y = c|X = x)$ , <font color="grey">“the most probable label under the conditional probability on x”</font></p>
-</li>
+\end{align}</script><ul>
+<li>Bayes rule : $f^{∗} (x) = \arg \max_c P(Y = c|X = x)$ , <font color="grey">“the most probable label under the conditional probability on x”</font></li>
 <li>Bayes Error Rate (贝叶斯误差) : $\text{inf}_{f}\varepsilon (f)=$ $\color{red}\mathcal E(f^{\ast})$ $=1-P(Y=f^{\ast}(X))$</li>
 <li><strong>Bayes Decision Boundary</strong> (贝叶斯决策边界) : the boundary separating the <strong>K partition</strong> domains in $\mathcal X$ on each of which $f^{ ∗ }(x) \in Y$ is constant. For binary classiﬁcation, it is the level set on which $P(Y=1|X=x)=P(Y=0|X=x)=0.5$<ul>
-<li><font color="green">Recall : As shown in Pic 9, decision boundary of 15NN is smoother than that of 1NN</font> 
+<li><font color="green">Recall : Decision boundary of 15NN is smoother than that of 1NN</font> 
 
 
 
