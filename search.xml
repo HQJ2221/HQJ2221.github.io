@@ -44,8 +44,8 @@
 <p><img src="/2024/06/24/Big-Data-2/bd8.png" alt="bd8"></p>
 <p><strong>Similarity and Divergence</strong></p>
 <ul>
-<li><a href="/2024/06/22/index.html#cosine distance">Cosine similarity</a></li>
-<li><a href="/2024/06/22/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\frac{|A\cap B|}{|A\cup B|}$ </li>
+<li><a href="/2024/06/22/Big-Data-1/index.html#cosine distance">Cosine similarity</a></li>
+<li><a href="/2024/06/22/Big-Data-1/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\frac{|A\cap B|}{|A\cup B|}$ </li>
 <li>Kullback-Leibler (KL) divergence : $d_{KL}(P||Q) = E_P log \frac{P(x)}{Q(x)}$ , measures the distance between two probability <font color="red">distributions</font> $P$ and $Q$ ; in discrete case, $d_{KL}(p||q) = \sum^m_{i=1} p_i log \frac{p_i}{q_i}$ (CDF of $P$ and $Q$)</li>
 </ul>
 <p><strong>Tuning <code>k</code></strong> </p>
@@ -88,7 +88,7 @@
 <p><a name="Bayes"><strong>Bayes Classifier (Oracle Classifier)</strong></a></p>
 <ul>
 <li>Assume $Y \in \mathcal{Y} = \{1, 2, . . . , C\}$, the classiﬁer $f : \mathcal X → \mathcal Y$ is a piecewise (分段) constant function</li>
-<li>For <a href="/2024/06/22/index.html#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</li>
+<li>For <a href="/2024/06/22/Big-Data-1/index.html#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</li>
 </ul>
 <script type="math/tex; mode=display">
 \begin{align}
