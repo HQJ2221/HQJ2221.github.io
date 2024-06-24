@@ -373,7 +373,11 @@
 
 ![bd1](bd1.png)
 
+
+
 ---
+
+
 
 ## Data Preprocessing
 
@@ -408,8 +412,10 @@
     - Proximity :
         - Similarity : range is $[0, 1]$ 
         - Dissimilarity : range is $[0, \infty]$ , sometimes [distance](#distance) (noted by `d`)
-    - For [nominal data](#nominal), $d(\bold x_i,\bold x_j)=\frac{\sum_{k}\bold l(\bold x_{i,k}\neq\bold x_{j,k})}{p}$ ,or one-hot encoding into Boolean data
-    - For [Boolean data](#boolean), **symmetric distance** (rand disrance) $\text d(\bold x_i,\bold x_j) =\frac {r+s}{q+r+s+t}$ or **Rand index** $\text{Sim}_{\text{Rand}}(\bold x_i,\bold x_j)=\frac{q+t}{q+r+s+t}$ ; **non-symmetric distance** (<a name="Jaccard"><font color="black"> Jaccard distance </font></a>) $\text d(\bold x_i,\bold x_j)=\frac{r+s} {q+r+s}$ or **Jaccard index** $\text{Sim}_{\text{Jaccard}}(\bold x_i,\bold x_j)=\frac {q} {q+r+s}$ 
+    - For [nominal data](#nominal), $d(/textbf{x}_i,/textbf{x}_j)=\frac{\sum_{k}/textbf{l}(/textbf{x}_{i,k}\neq/textbf{x}_{j,k})}{p}$ ,or one-hot encoding into Boolean data
+    - For [Boolean data](#boolean), **symmetric distance** (rand disrance) $\text d(/textbf{x}_i,/textbf{x}_j) =\frac {r+s}{q+r+s+t}$ or **Rand index** $\text{Sim}_{\text{Rand}}(/textbf{x}_i,/textbf{x}_j)=\frac{q+t}{q+r+s+t}$ ; **non-symmetric distance** (<a name="Jaccard"><font color="black"> Jaccard distance </font></a>) $\text d(/textbf{x}_i,/textbf{x}_j)=\frac{r+s} {q+r+s}$ or **Jaccard index** $\text{Sim}_{\text{Jaccard}}(/textbf{x}_i,/textbf{x}_j)=\frac {q} {q+r+s}$ 
+
+
 
 ![bd6](bd6.png)
 
@@ -417,7 +423,11 @@
 
 <a name="distance"><font color="Red">**Distance :**</font></a>
 
+
+
 **Def.** Distance `d` is the difference between two samples.
+
+
 
 - Properties of Distance : 
   - Non-negative: $\text{d}(x,y)\ge 0$
@@ -430,14 +440,16 @@
 
 <font color="blue">以下简单介绍几种距离，更多请参考<a href="https://blog.csdn.net/hy592070616/article/details/121723169?spm=1001.2014.3001.5501">此处 (csdn note)</a></font>
 
+
+
 <font color="blue">1 .  Minkowski distance (闵可夫斯基距离)</font>
-$$
-\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}
-$$
 
-> Parameter `h` is to <font color="blue">emphasize the character of the data</font>. By changing the value of `h` , Minkowski distance can cover many Distance Metrics.
-
+<script type="math/tex; mode=display">
+\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}</script><blockquote>
+<p>Parameter <code>h</code> is to <font color="blue">emphasize the character of the data</font>. By changing the value of <code>h</code> , Minkowski distance can cover many Distance Metrics.</p>
+</blockquote>
 <font color="blue">2 .  Manhattan distance (曼哈顿距离) </font>
+
 
 <blockquote>
 <p>Minkowski distance where $h = 1$</p>
@@ -476,8 +488,7 @@ $$
 <li>Logistic scaling: $x_i^{\ast}=\frac{1}{1+e^{-x_i}}$ , applicable for data concentrating nearby origin (分布太窄)</li>
 </ul>
 </li>
-<li><p>Data Discretization (离散化)</p>
-<ul>
+<li>Data Discretization (离散化)<ul>
 <li>Why discretization?<ul>
 <li>Improve the robustness : removing the outliers by putting them into certain intervals</li>
 <li>For better interpretation</li>
@@ -488,8 +499,7 @@ $$
 <li><strong>Supervised discretization</strong>: information gain based discretization (e.g. 决策树), $\mathcal X^2$-based discretization (Chi-Merge)</li>
 </ul>
 </li>
-<li><p>Data Redundancy </p>
-<ul>
+<li>Data Redundancy <ul>
 <li>Why redundancy exists?<ul>
 <li>Correlations exist among different attributes (E.g. Age, birthday and current time), <font color="green">recalling the linear dependency for vectors</font></li>
 </ul>
@@ -549,7 +559,10 @@ $$
 </ul>
 </li>
 </ul>
-<p><img src="/2024/06/22/Big-Data-1/bd10.png" alt="bd10"></p>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd10.png" alt="bd10" width="65%">
+</div>
+
 <blockquote>
 <font face="华文楷体" size="4">注：</font>$LOF$ <font face="华文楷体" size="4">主要用于检测点</font> $A$ <font face="华文楷体" size="4">的邻近点密度，并由此推测该点是否异常值</font>
 
