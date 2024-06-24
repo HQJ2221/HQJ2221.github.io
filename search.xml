@@ -297,13 +297,7 @@
 <p>with missing data, e.g., EM; self-supervised learning, learn the missing part of images, inpainting.</p>
 <font size="4"><b>Reinforcement learning (强化学习):</b></font>  
 
-<font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.
-
-
-
-
-
-
+<font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.<br>
 
 
 
