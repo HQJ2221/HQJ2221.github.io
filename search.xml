@@ -314,11 +314,11 @@
   - or $\mathcal{F}=\{\mathcal{P_\theta}=\mathcal{P_\theta}(y|x), \theta \in \Theta \}$
 - <font color="red">Loss function :</font> a measure for the “goodness” of the prediction, $L(y, \mathcal{f}(x))$ 
   - <a name="0-1 loss"><i>0-1 loss</i></a>: $L(y, \mathcal{f}(x))=\textbf{l}_{y\not{=}f(x)}=1-\textbf{l}_{y=f(x)}$ （个人理解一般是用于二元项预测的误差判断）
-  - *Square loss*: $L(y, \mathcal{f}(x))=(y-f(x))^2$ （比绝对值误差更泛用）
-  - *Absolute loss*: $L(y, \mathcal{f}(x))={|y-f(x)|}$ 
-  - *Cross-entropy (交叉熵 ) loss*: <br>   $\color{red}L(y, \mathcal{f}(x))=-y\log{f(x)}-(1-y)\log{(1-f(x))}$
-- **Risk** : in average sense,<br>         $\mathcal{R}(f)=E_{\mathcal P} [L(y, f(x))]=\underset{\mathcal X \times \mathcal Y}{\int}L(y, f(x))\mathcal{P}(x,y)\text d x \text d y$ 
-- <font color="Red">**Target of Learning**</font> : minimize $\mathcal R_{exp}(f)$ to get $f^{\ast}$ ( $\text{即} f^{\ast}=\underset{f}{min}\ \mathcal{R}_{exp}(f)$ )
+  - <i>Square loss</i>: $L(y, \mathcal{f}(x))=(y-f(x))^2$ （比绝对值误差更泛用）
+  - <i>Absolute loss</i>: $L(y, \mathcal{f}(x))={|y-f(x)|}$ 
+  - <i>Cross-entropy (交叉熵) loss</i>: <br>   $\color{red}L(y, \mathcal{f}(x))=-y\log{f(x)}-(1-y)\log{(1-f(x))}$
+- **Risk** : in average sense,<br> $\mathcal{R}(f)=E_{\mathcal P} [L(y, f(x))]=\underset{\mathcal X \times \mathcal Y}{\int}L(y, f(x))\mathcal{P}(x,y)\text d x \text d y$ 
+- <font color="Red"><b>Target of Learning</b></font> : minimize $\mathcal R_{exp}(f)$ to get $f^{\ast}$ ( $\text{即} f^{\ast}=\underset{f}{min}\ \mathcal{R}_{exp}(f)$ )
 
 
 
