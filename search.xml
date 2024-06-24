@@ -292,9 +292,12 @@
 <li>Goal : in probabilistic settings, ﬁnd the distribution (PDF) $\mathcal P(\textbf{x})$ of $\textbf{x}$ and approximate it (there is no y)</li>
 <li>Training dataset : $\{(x_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$ , used to learn an approximation $\hat{\mathcal P}(\textbf{x})$ (no test data in general)</li>
 </ul>
-<font size="4">**Semi-supervised learning:**</font> with missing data, e.g., EM; self-supervised learning, learn the missing part of images, inpainting.
+<font size="4"><b>Semi-supervised learning:</b></font> 
 
-<font size="4">**Reinforcement learning (强化学习):**</font>  <font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.
+<p>with missing data, e.g., EM; self-supervised learning, learn the missing part of images, inpainting.</p>
+<font size="4"><b>Reinforcement learning (强化学习):</b></font>  
+
+<font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.
 
 
 
@@ -425,11 +428,11 @@
 
 
 
-<font color="blue">以下简单介绍几种距离，更多请参考[此处 (csdn note)](https://blog.csdn.net/hy592070616/article/details/121723169?spm=1001.2014.3001.5501)</font>
+<font color="blue">以下简单介绍几种距离，更多请参考<a href="https://blog.csdn.net/hy592070616/article/details/121723169?spm=1001.2014.3001.5501">此处 (csdn note)</a></font>
 
 <font color="blue">1 .  Minkowski distance (闵可夫斯基距离)</font>
 $$
-\text d(\bold x_i,\bold x_j)=\sqrt[h]{\sum_{k=1}^{p}\abs{\text x_{ik}-\text x_{jk}}^h}
+\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}
 $$
 
 > Parameter `h` is to <font color="blue">emphasize the character of the data</font>. By changing the value of `h` , Minkowski distance can cover many Distance Metrics.
@@ -440,37 +443,37 @@ $$
 <p>Minkowski distance where $h = 1$</p>
 </blockquote>
 <script type="math/tex; mode=display">
-\text d(\bold x_i,\bold x_j)=\sum_{k=1}^{p}\abs{\text x_{ik}-\text x_{jk}}</script><font color="blue">3 .  Euclidean distance (欧氏距离)</font>
+\text d(\textbf{x}_i,\textbf{x}_j)=\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|</script><font color="blue">3 .  Euclidean distance (欧氏距离)</font>
 
 <blockquote>
 <p>Minkowski distance where $h = 2$ </p>
 </blockquote>
 <script type="math/tex; mode=display">
-\text d(\bold x_i,\bold x_j)=\sqrt{\sum_{k=1}^{p}(\text x_{ik}-\text x_{jk})^2}</script><font color="blue">4 .  Supremum distance (or Chebyshev distance, 切比雪夫距离)</font>
+\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt{\sum_{k=1}^{p}(\text x_{ik}-\text x_{jk})^2}</script><font color="blue">4 .  Supremum distance (or Chebyshev distance, 切比雪夫距离)</font>
 
 <blockquote>
 <p>Minkowski distance where $h \to \infty$ </p>
 </blockquote>
 <script type="math/tex; mode=display">
-\text d(\bold x_i,\bold x_j)=\max_{k=1}^{p}\abs{\text x_{ik}-\text x_{jk}}</script><p><a name="cosine distance"><font color="blue">5 .  Cosine distance (余弦距离)</font></a> </p>
+\text d(\textbf{x}_i,\textbf{x}_j)=\max_{k=1}^{p}|\text x_{ik}-\text x_{jk}|</script><p><a name="cosine distance"><font color="blue">5 .  Cosine distance (余弦距离)</font></a> </p>
 <script type="math/tex; mode=display">
-\cos(\bold x_i,\bold x_j)=\frac{\sum_{k=1}^{p}\text x_{ik}\text x_{jk}}{\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}}=\frac{\bold x_i\cdot\bold x_j}{\left\|\bold x_i\right\|\left\|\bold x_j\right\|}</script><p><strong>Other Distance:</strong></p>
+\cos(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k=1}^{p}\text x_{ik}\text x_{jk}}{\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}}=\frac{\textbf{x}_i\cdot\textbf{x}_j}{\left\|\textbf{x}_i\right\|\left\|\textbf{x}_j\right\|}</script><p><strong>Other Distance:</strong></p>
 <ul>
 <li>For <a href="#ordinal">ordinal data</a>, mapping the data to numerical data : $X=\{x_{(1)}, x_{(2)},…, x_{(n)}\}, x_{(i)} \mapsto \frac{i−1} {n−1}\in [0, 1]$ </li>
 <li>For mixed type, use weighed distance (加权) with prescribed weights :</li>
 </ul>
 <script type="math/tex; mode=display">
-\text d(\bold x_i,\bold x_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}</script><h3 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h3><p><img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7"></p>
+\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}</script><h3 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h3><p><img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7"></p>
 <ul>
 <li>Data Scaling (归一化，标准化)<ul>
 <li>Why scaling?<ul>
 <li>For better performance or normalize diﬀerent dimensions</li>
 </ul>
 </li>
-<li><a name="z-score"><strong>Z-score scaling</strong></a>:   <font size="5">$x_i^*=\frac{x_i-\hat\mu}{\hat\sigma}$ </font> ,<br>applicable when max and min unknown and data distributes well (e.g. normal distribution)</li>
-<li><strong>0-1 scaling</strong> (Min-Max scaling) :   <font size="5">$x_i^*=\frac{x_i-\min_k x_k}{\max_k x_k-\min_k x_k}$ </font> ,<br>applicable for bounded data sets, and need to <font color="red">recompute</font> max and min when new data added</li>
-<li>Decimal scaling: $x_{i}^{*}=\frac{x_i}{10^k}$, applicable for data varying across many magnitudes (分布太广)</li>
-<li>Logistic scaling: $x_i^{*}=\frac{1}{1+e^{-x_i}}$ , applicable for data concentrating nearby origin (分布太窄)</li>
+<li><a name="z-score"><b>Z-score scaling</b></a>:   <font size="5">$x_i^\ast=\frac{x_i-\hat\mu}{\hat\sigma}$ </font> ,<br>applicable when max and min unknown and data distributes well (e.g. normal distribution)</li>
+<li><strong>0-1 scaling</strong> (Min-Max scaling) :   <font size="5">$x_i^\ast=\frac{x_i-\min_k x_k}{\max_k x_k-\min_k x_k}$ </font> ,<br>applicable for bounded data sets, and need to <font color="red">recompute</font> max and min when new data added</li>
+<li>Decimal scaling: $x_{i}^{\ast}=\frac{x_i}{10^k}$, applicable for data varying across many magnitudes (分布太广)</li>
+<li>Logistic scaling: $x_i^{\ast}=\frac{1}{1+e^{-x_i}}$ , applicable for data concentrating nearby origin (分布太窄)</li>
 </ul>
 </li>
 <li><p>Data Discretization (离散化)</p>
@@ -512,7 +515,7 @@ $$
 <ul>
 <li>Random filling : <ul>
 <li>Bayesian Bootstrap : for discrete data with range $\{x_i\}^k_{i=1}$, randomly sample $k − 1$ numbers from $U(0, 1)$ as $\{a_{(i)}\}^k_{i=0}$ with $a_{(0)} = 0$ and $a_{(k)} = 1$ ; then randomly sample from $\{x_i\}^k_{i=1}$ with probability distribution $\{a_{(i)} − a_{(i−1)}\}^k_{i=1} $accordingly to fill in the missing values</li>
-<li>Approximate Bayesian Bootstrap : Sample with replacement from $\{x_i\}^k_{i=1}$ to form new data set $X^∗ = \{x^∗_{i} \}^{k^∗}_{i=1}$ ; then randomly sample $n$ values from $X^∗$ to fill in the missing values, allowing for repeatedly filling missing values</li>
+<li>Approximate Bayesian Bootstrap : Sample with replacement from $\{x_i\}^k_{i=1}$ to form new data set $X^\ast = \{x^\ast_{i} \}^{k^\ast}_{i=1}$ ; then randomly sample $n$ values from $X^\ast$ to fill in the missing values, allowing for repeatedly filling missing values</li>
 </ul>
 </li>
 <li>Model based methods : treat missing variable as <code>y</code>, other variables as <code>x</code> ; take the  data without missing values as out training set to train a <font color="#009100">classification</font> or <font color="#009100">regression</font> model ; take those with missing values as test set to predict the missing values.</li>
@@ -539,7 +542,7 @@ $$
 <ul>
 <li>Local Outlier Factor (Some definition)<ul>
 <li>$lrd_k (A)$ : <font color="red">local reachability density</font> is inversely proportional (成反比) to the average distance</li>
-<li>$lrd_k (A)=1/\left(\frac{ \sum_{O\in N_k (A)} rd_k (A,O) }{ \abs{N_k (A)}}\right)$ <font color="blue">(Definition)</font> </li>
+<li>$lrd_k (A)=1/\left(\frac{ \sum_{O\in N_k (A)} rd_k (A,O) }{| N_k (A)|}\right)$ <font color="blue">(Definition)</font> </li>
 <li>If for most $O\in N_k (A)$ , more than $k$ points are closer to $O$ than $A$ is, then the denominator (分母) is much larger than $d_k(A)$ , and $lrd_k(A)$ is small (e.g. $k=3$ in Pic 8)</li>
 <li><font color="red">Local Outlier Factor</font> : $LOF_k(A)=$<font size="5">$\frac{ \sum_{O\in N_k(A)} \frac{lrd_k(O)}{lrd_k(A)}}{ \abs{N_k(A)}}$</font> </li>
 <li>$LOF_k(A) \ll 1$ , the density of $A$ is locally higher ; $LOF_k(A)\gg 1$ , the density of $A$ is locally lower, probably <font color="#ff359a">outlier</font> </li>
