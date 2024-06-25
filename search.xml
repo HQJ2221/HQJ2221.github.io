@@ -154,138 +154,153 @@
 <li>Clutering : K-Means, SOM (Self-Organizing Map)</li>
 </ul>
 <p><img src="/2024/06/22/Big-Data-1/bd3.png" alt="bd3"></p>
-<p>Maths method about Unsupervised Learning</p>
-<ul>
-<li>Goal : in probabilistic settings, ﬁnd the distribution (PDF) $\mathcal P(\textbf{x})$ of $\textbf{x}$ and approximate it (there is no y)</li>
-<li>Training dataset : $\{(x_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$ , used to learn an approximation $\hat{\mathcal P}(\textbf{x})$ (no test data in general)</li>
+<h3 id="Modeling-and-Analysis"><a href="#Modeling-and-Analysis" class="headerlink" title="Modeling and Analysis"></a>Modeling and Analysis</h3><ul>
+<li>Decision function (hypothesis) space : <ul>
+<li>$\mathcal{F}=\{\mathcal{f_\theta}=\mathcal{f_\theta}(x), \theta \in \Theta \}$ </li>
+<li>or $\mathcal{F}=\{\mathcal{P_\theta}=\mathcal{P_\theta}(y|x), \theta \in \Theta \}$</li>
 </ul>
-<font size="4"><b>Semi-supervised learning:</b></font> 
-
-<p>with missing data, e.g., EM; self-supervised learning, learn the missing part of images, inpainting.</p>
-<font size="4"><b>Reinforcement learning (强化学习):</b></font>  
-
-<font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.
-
-
-
-**Risk Minimize Strategy :** 
-
-- Empirical risk minimization (**ERM**) : 
-    - given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , $R_{emp}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ <font color="grey">(Loss function 的均值定义为预测模型 f 的经验风险)</font> .
-        - By law of large number, $\underset{n\to\infty}{\lim} R_{emp}(f)=R_{exp}(f)$ . <font color="Grey">(即经验风险趋近于预测风险)</font>
-        - Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ 
-        - <font color="Green">Now we only need to know</font>  $\color{green}f$ <font color="Green">and training set</font>  $\color{green}\textbf{x}_i$ 
-- Structural risk minimization (**SRM**) : 
-    - given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , and a complexity function $J=J(f)$ , $R_{SRM}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ 
-      - $J(f)$ measures how complex the model $f$ is, typically the degree of complexity
-      - $λ\ge 0$ is a tradeoff(平衡项) between the empirical risk and model complexity
-      - Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ 
-      - <font color="Green">We need to know</font> $\color{green}f$ <font color="Green">and training set</font> $\color{green}{\textbf{x}_i}$ <font color="Green">, and need to</font> <font color="#00CD00">adjust the parameter</font>  $\color{green}{\lambda}$
-
-> We see that <font color="#c6a300">Optimization Method</font> is essencial in machine learning. Here are some of them: 
->
-> - Gradient descent method (梯度下降), including coordinate descent, sequential minimal optimization (SMO), etc.
-> - Newton’s method and quasi-Newton’s method (拟牛顿法)
-> - Combinatorial optimization (组合优化)
-> - Genetic algorithms (遗传算法)
-> - Monte Carlo methods (随机算法)
-
-
-**Model assessment :**
-
-- Training error: $R_{emp}(\hat f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,\hat f(\textbf{x}_i))$ , tells the diﬃculty of learning problem
-- Test error: $e_{test}(\hat f)=\frac{1}{m}\sum_{j=n+1}^{n+m}L(y_j,\hat f(\textbf{x}_j))$ , tells the capability of prediction ;<br> In particular, if 0-1 loss is used (below)
-    - Error rate : $e_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j\ne\hat f(\textbf{x}_j)}$
-    - Accuracy : $r_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j=\hat f(\textbf{x}_j)}$
-    - $e_{test}+ r_{test} = 1$ 
-- Generalization error (泛化误差——模型对新样本的预测性的度量)
-    - $R_{exp}(\hat f)=E_{\mathcal P}[L(y,\hat f(\textbf{x}))]=\underset{\mathcal X\times\mathcal Y}{\int}L(y,\hat f(\textbf{x}))\mathcal P(\textbf{x},y)\text d\textbf{x} \text d y$ <br>tells the capability for predicting <font color="#9f4d95">unknown data</font> from the same distribution
-    - Its upper bound $M$ deﬁnes the generalization ability (负相关)
-        - As $n\to\infty$, $M\to 0$ (which means almost no error)
-        - As $\mathcal F$ becomes larger, $M$ increases.
-
-- *Overfitting*
-    - Too many model paramters （模型太复杂）
-    - Better for training set, but worse for test set
-- *Underfitting*
-    - Better for test set, but worse for training set
-
-
-
-**Model Selection :** choose the most proper model.
-
-- <a name="cross validation">Cross-validation</a> (交叉验证) : split the training set into training subset and validation subset, use training set to train diﬀerent models repeatedly, use validation set to select the best model with the smallest (validation) error
-    - Simple CV : randomly split the data into two subsets
-    - K-fold CV : randomly split the data into $K$ disjoint subsets with the same size, treat the union of $K − 1$ subsets as training set, the other one as validation set, do this repeatedly and select the best model with smallest mean (validation) error
-    - Leave-one-out CV : $K = n$ in the previous case
-
-
-
+</li>
+<li><font color="red">Loss function :</font> a measure for the “goodness” of the prediction, $L(y, \mathcal{f}(x))$ <ul>
+<li><a name="0-1 loss"><i>0-1 loss</i></a>: $L(y, \mathcal{f}(x))=\textbf{l}_{y\not{=}f(x)}=1-\textbf{l}_{y=f(x)}$ （个人理解一般是用于二元项预测的误差判断）</li>
+<li><i>Square loss</i>: $L(y, \mathcal{f}(x))=(y-f(x))^2$ （比绝对值误差更泛用）</li>
+<li><i>Absolute loss</i>: $L(y, \mathcal{f}(x))={|y-f(x)|}$ </li>
+<li><i>Cross-entropy (交叉熵) loss</i>: <br>   $\color{red}L(y, \mathcal{f}(x))=-y\log{f(x)}-(1-y)\log{(1-f(x))}$</li>
+</ul>
+</li>
+<li><strong>Risk</strong> : in average sense,<br> $\mathcal{R}(f)=E_{\mathcal P} [L(y, f(x))]=\underset{\mathcal X \times \mathcal Y}{\int}L(y, f(x))\mathcal{P}(x,y)\text d x \text d y$ </li>
+<li><font color="Red"><b>Target of Learning</b></font> : minimize $\mathcal R_{exp}(f)$ to get $f^{\ast}$ ( $\text{即} f^{\ast}=\underset{f}{min}\ \mathcal{R}_{exp}(f)$ )</li>
+</ul>
+<p><strong>Risk Minimize Strategy :</strong> </p>
+<ul>
+<li>Empirical risk minimization (<strong>ERM</strong>) : <ul>
+<li>given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , $R_{emp}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ <font color="grey">(Loss function 的均值定义为预测模型 f 的经验风险)</font> .<ul>
+<li>By law of large number, $\underset{n\to\infty}{\lim} R_{emp}(f)=R_{exp}(f)$ . <font color="Grey">(即经验风险趋近于预测风险)</font></li>
+<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ </li>
+<li><font color="Green">Now we only need to know</font>  $\color{green}f$ <font color="Green">and training set</font>  $\color{green}\textbf{x}_i$ </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Structural risk minimization (<strong>SRM</strong>) : <ul>
+<li>given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , and a complexity function $J=J(f)$ , $R_{SRM}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ <ul>
+<li>$J(f)$ measures how complex the model $f$ is, typically the degree of complexity</li>
+<li>$λ\ge 0$ is a tradeoff(平衡项) between the empirical risk and model complexity</li>
+<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ </li>
+<li><font color="Green">We need to know</font> $\color{green}f$ <font color="Green">and training set</font> $\color{green}{\textbf{x}_i}$ <font color="Green">, and need to</font> <font color="#00CD00">adjust the parameter</font>  $\color{green}{\lambda}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>We see that <font color="#c6a300">Optimization Method</font> is essencial in machine learning. Here are some of them: </p>
+<ul>
+<li>Gradient descent method (梯度下降), including coordinate descent, sequential minimal optimization (SMO), etc.</li>
+<li>Newton’s method and quasi-Newton’s method (拟牛顿法)</li>
+<li>Combinatorial optimization (组合优化)</li>
+<li>Genetic algorithms (遗传算法)</li>
+<li>Monte Carlo methods (随机算法)</li>
+</ul>
+</blockquote>
+<p><strong>Model assessment :</strong></p>
+<ul>
+<li>Training error: $R_{emp}(\hat f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,\hat f(\textbf{x}_i))$ , tells the diﬃculty of learning problem</li>
+<li>Test error: $e_{test}(\hat f)=\frac{1}{m}\sum_{j=n+1}^{n+m}L(y_j,\hat f(\textbf{x}_j))$ , tells the capability of prediction ;<br> In particular, if 0-1 loss is used (below)<ul>
+<li>Error rate : $e_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j\ne\hat f(\textbf{x}_j)}$</li>
+<li>Accuracy : $r_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j=\hat f(\textbf{x}_j)}$</li>
+<li>$e_{test}+ r_{test} = 1$ </li>
+</ul>
+</li>
+<li><p>Generalization error (泛化误差——模型对新样本的预测性的度量)</p>
+<ul>
+<li>$R_{exp}(\hat f)=E_{\mathcal P}[L(y,\hat f(\textbf{x}))]=\underset{\mathcal X\times\mathcal Y}{\int}L(y,\hat f(\textbf{x}))\mathcal P(\textbf{x},y)\text d\textbf{x} \text d y$ <br>tells the capability for predicting <font color="#9f4d95">unknown data</font> from the same distribution</li>
+<li>Its upper bound $M$ deﬁnes the generalization ability (负相关)<ul>
+<li>As $n\to\infty$, $M\to 0$ (which means almost no error)</li>
+<li>As $\mathcal F$ becomes larger, $M$ increases.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><em>Overfitting</em></p>
+<ul>
+<li>Too many model paramters （模型太复杂）</li>
+<li>Better for training set, but worse for test set</li>
+</ul>
+</li>
+<li><em>Underfitting</em><ul>
+<li>Better for test set, but worse for training set</li>
+</ul>
+</li>
+</ul>
+<p><strong>Model Selection :</strong> choose the most proper model.</p>
+<ul>
+<li><a name="cross validation">Cross-validation</a> (交叉验证) : split the training set into training subset and validation subset, use training set to train diﬀerent models repeatedly, use validation set to select the best model with the smallest (validation) error<ul>
+<li>Simple CV : randomly split the data into two subsets</li>
+<li>K-fold CV : randomly split the data into $K$ disjoint subsets with the same size, treat the union of $K − 1$ subsets as training set, the other one as validation set, do this repeatedly and select the best model with smallest mean (validation) error</li>
+<li>Leave-one-out CV : $K = n$ in the previous case</li>
+</ul>
+</li>
+</ul>
 <h3>Data Science vs. Other Techniques</h3>
 
-![bd1](bd1.png)
-
----
-
-## Data Preprocessing
-
-### Data Type 
-
-- Types of Attributes  <font size="2">(每门课几乎都离不开这个)</font>
-    - Discrete: $x \in \text{some countable sets}$, e.g., $\mathbb N$ 
-        - <a name="nominal">Nominal (列举名义)</a> 
-        - <a name="boolean">Boolean (0 or 1) </a> 
-        - <a name="ordinal">Ordinal (基数等级, e.g. A+, A-, B+,...) </a> 
-    - Continuous: $x \in \text{some subset in }\mathbb R$ 
-1. **Basic Statistics** (统计量)
-    - Mean
-    - Median (中位数)
-    - extremum (极值)
-    - Quantile (分位数) 
-    - Variance, Standard deviation (标准差)
-    - Mode (众数)
-
-![bd4](bd4.png)
-
-> Empiricism:  Mean − Mode = 3 $\times$ (Mean − Median)
-
-
-- Box Plot (箱线图) —— used to describe statistics
-
-![bd5](bd5.png)
-
-
-
-2. **Metrics** (度量——亦称距离函数，是度量空间中满足特定条件的特殊函数。度量空间由欧几里得空间的距离概念抽象化定义而来。)
-    - Proximity :
-        - Similarity : range is $[0, 1]$ 
-        - Dissimilarity : range is $[0, \infty]$ , sometimes [distance](#distance) (noted by `d`)
-    - For [nominal data](#nominal), $d(/textbf{x}_i,/textbf{x}_j)=\frac{\sum_{k}/textbf{l}(/textbf{x}_{i,k}\neq/textbf{x}_{j,k})}{p}$ ,or one-hot encoding into Boolean data
-    - For [Boolean data](#boolean), **symmetric distance** (rand disrance) $\text d(/textbf{x}_i,/textbf{x}_j) =\frac {r+s}{q+r+s+t}$ or **Rand index** $\text{Sim}_{\text{Rand}}(/textbf{x}_i,/textbf{x}_j)=\frac{q+t}{q+r+s+t}$ ; **non-symmetric distance** (<a name="Jaccard"><font color="black"> Jaccard distance </font></a>) $\text d(/textbf{x}_i,/textbf{x}_j)=\frac{r+s} {q+r+s}$ or **Jaccard index** $\text{Sim}_{\text{Jaccard}}(/textbf{x}_i,/textbf{x}_j)=\frac {q} {q+r+s}$ 
-
-
-
-![bd6](bd6.png)
-
-
-
-<a name="distance"><font color="Red">**Distance :**</font></a>
-
-
-
-**Def.** Distance `d` is the difference between two samples.
-
-
-
-- Properties of Distance : 
-  - Non-negative: $\text{d}(x,y)\ge 0$
-  - Identity: $\text d(x,y)=0\Leftrightarrow x=y$ 
-  - Symmetric: $\text d(x,y)=\text d(y,x)$ 
-  - Basic Vector Attributes : e.g. $\text d(x,y)\le \text d(x,z)+\text d(z,y)$ 
-- 距离度量分为Space Distance (e.g. Euclidean) 、String Distance (e.g. Hamming distance) 、Set Proximity (e.g. Jaccard distance) 和 Distribution Distance (e.g. Chi-square measure)
-
-
-
+<p><img src="/2024/06/22/Big-Data-1/bd1.png" alt="bd1"></p>
+<hr>
+<h2 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h2><h3 id="Data-Type"><a href="#Data-Type" class="headerlink" title="Data Type"></a>Data Type</h3><ul>
+<li>Types of Attributes  <font size="2">(每门课几乎都离不开这个)</font><ul>
+<li>Discrete: $x \in \text{some countable sets}$, e.g., $\mathbb N$ <ul>
+<li><a name="nominal">Nominal (列举名义)</a> </li>
+<li><a name="boolean">Boolean (0 or 1) </a> </li>
+<li><a name="ordinal">Ordinal (基数等级, e.g. A+, A-, B+,…) </a> </li>
+</ul>
+</li>
+<li>Continuous: $x \in \text{some subset in }\mathbb R$ </li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><strong>Basic Statistics</strong> (统计量)<ul>
+<li>Mean</li>
+<li>Median (中位数)</li>
+<li>extremum (极值)</li>
+<li>Quantile (分位数) </li>
+<li>Variance, Standard deviation (标准差)</li>
+<li>Mode (众数)</li>
+</ul>
+</li>
+</ol>
+<p><img src="/2024/06/22/Big-Data-1/bd4.png" alt="bd4"></p>
+<blockquote>
+<p>Empiricism:  Mean − Mode = 3 $\times$ (Mean − Median)</p>
+</blockquote>
+<ul>
+<li>Box Plot (箱线图) —— used to describe statistics</li>
+</ul>
+<p><img src="/2024/06/22/Big-Data-1/bd5.png" alt="bd5"></p>
+<ol>
+<li><strong>Metrics</strong> (度量——亦称距离函数，是度量空间中满足特定条件的特殊函数。度量空间由欧几里得空间的距离概念抽象化定义而来。)<ul>
+<li>Proximity :<ul>
+<li>Similarity : range is $[0, 1]$ </li>
+<li>Dissimilarity : range is $[0, \infty]$ , sometimes <a href="#distance">distance</a> (noted by <code>d</code>)</li>
+</ul>
+</li>
+<li>For <a href="#nominal">nominal data</a>, $d(/textbf{x}_i,/textbf{x}_j)=\frac{\sum_{k}/textbf{l}(/textbf{x}_{i,k}\neq/textbf{x}_{j,k})}{p}$ ,or one-hot encoding into Boolean data</li>
+<li>For <a href="#boolean">Boolean data</a>, <strong>symmetric distance</strong> (rand disrance) $\text d(/textbf{x}_i,/textbf{x}_j) =\frac {r+s}{q+r+s+t}$ or <strong>Rand index</strong> $\text{Sim}_{\text{Rand}}(/textbf{x}_i,/textbf{x}_j)=\frac{q+t}{q+r+s+t}$ ; <strong>non-symmetric distance</strong> (<a name="Jaccard"><font color="black"> Jaccard distance </font></a>) $\text d(/textbf{x}_i,/textbf{x}_j)=\frac{r+s} {q+r+s}$ or <strong>Jaccard index</strong> $\text{Sim}_{\text{Jaccard}}(/textbf{x}_i,/textbf{x}_j)=\frac {q} {q+r+s}$ </li>
+</ul>
+</li>
+</ol>
+<p><img src="/2024/06/22/Big-Data-1/bd6.png" alt="bd6"></p>
+<p><a name="distance"><font color="Red"><strong>Distance :</strong></font></a></p>
+<p><strong>Def.</strong> Distance <code>d</code> is the difference between two samples.</p>
+<ul>
+<li>Properties of Distance : <ul>
+<li>Non-negative: $\text{d}(x,y)\ge 0$</li>
+<li>Identity: $\text d(x,y)=0\Leftrightarrow x=y$ </li>
+<li>Symmetric: $\text d(x,y)=\text d(y,x)$ </li>
+<li>Basic Vector Attributes : e.g. $\text d(x,y)\le \text d(x,z)+\text d(z,y)$ </li>
+</ul>
+</li>
+<li>距离度量分为Space Distance (e.g. Euclidean) 、String Distance (e.g. Hamming distance) 、Set Proximity (e.g. Jaccard distance) 和 Distribution Distance (e.g. Chi-square measure)</li>
+</ul>
 <font color="blue">以下简单介绍几种距离，更多请参考<a href="https://blog.csdn.net/hy592070616/article/details/121723169?spm=1001.2014.3001.5501">此处 (csdn note)</a></font>
 
 
