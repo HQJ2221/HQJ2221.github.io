@@ -432,7 +432,7 @@
 <li>$lrd_k (A)$ : <font color="red">local reachability density</font> is inversely proportional (成反比) to the average distance</li>
 <li>$lrd_k (A)=1/\left(\frac{ \sum_{O\in N_k (A)} rd_k (A,O) }{| N_k (A)|}\right)$ <font color="blue">(Definition)</font> </li>
 <li>If for most $O\in N_k (A)$ , more than $k$ points are closer to $O$ than $A$ is, then the denominator (分母) is much larger than $d_k(A)$ , and $lrd_k(A)$ is small (e.g. $k=3$ in Pic 8)</li>
-<li><font color="red">Local Outlier Factor</font> : $LOF_k(A)=$<font size="5">$\frac{ \sum_{O\in N_k(A)} \frac{lrd_k(O)}{lrd_k(A)}}{ \abs{N_k(A)}}$</font> </li>
+<li><font color="red">Local Outlier Factor</font> : $LOF_k(A)=\frac{ \sum_{O\in N_k(A)} \frac{lrd_k(O)}{lrd_k(A)}}{|N_k(A)|}$ </li>
 <li>$LOF_k(A) \ll 1$ , the density of $A$ is locally higher ; $LOF_k(A)\gg 1$ , the density of $A$ is locally lower, probably <font color="#ff359a">outlier</font> </li>
 </ul>
 </li>
