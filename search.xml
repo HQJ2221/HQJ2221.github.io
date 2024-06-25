@@ -19,7 +19,10 @@
     <url>/2024/06/22/Big-Data-1/</url>
     <content><![CDATA[<h1 id="Big-Data-I"><a href="#Big-Data-I" class="headerlink" title="Big Data (I)"></a>Big Data (I)</h1><h2 id="Pre-Knowledge"><a href="#Pre-Knowledge" class="headerlink" title="Pre-Knowledge"></a>Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
 <p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\textbf{V}$. If any vector from $\textbf{V}$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$ , or $\alpha$ is a Linear Combination of $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$. </p>
+<blockquote class="blockquote-center">
 <p>$<br>\begin{align}<br>&amp;\text{Set }A=\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}\\<br>&amp;V=\text{Span}(A)=\{k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e | k_i\in \mathbb R, 1\le i\le e\}<br>\end{align}<br>$</p>
+
+</blockquote>
 <blockquote>
 <p>In a <strong>matrix</strong> (i.e. $A$), set all rows as a vector group, and it span a space called <strong>Row Space</strong> (Noted: $R(A)$). All columns span a space called <strong>Column Space</strong> (Noted: $\text{Col}(A)$).</p>
 <p>Linear Function $Ax=b$ is solutable <font color="red">if and only if</font> $b$ is a linear combination of $\text{Col}(A)$ (or $b \in \text{Col}(A)$).</p>
