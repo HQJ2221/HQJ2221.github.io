@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data-1/bd7.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data-1/bd10.png">
 <meta property="article:published_time" content="2024-06-22T13:59:45.000Z">
-<meta property="article:modified_time" content="2024-06-25T10:12:53.667Z">
+<meta property="article:modified_time" content="2024-06-25T10:16:46.249Z">
 <meta property="article:author" content="墨独凌">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="CSE Learning">
@@ -221,7 +221,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-25 18:12:53" itemprop="dateModified" datetime="2024-06-25T18:12:53+08:00">2024-06-25</time>
+      <time title="Modified: 2024-06-25 18:16:46" itemprop="dateModified" datetime="2024-06-25T18:16:46+08:00">2024-06-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -245,11 +245,8 @@
     
     <div class="post-body" itemprop="articleBody"><h1 id="Big-Data-I"><a href="#Big-Data-I" class="headerlink" title="Big Data (I)"></a>Big Data (I)</h1><h2 id="Pre-Knowledge"><a href="#Pre-Knowledge" class="headerlink" title="Pre-Knowledge"></a>Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
 <p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\textbf{V}$. If any vector from $\textbf{V}$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$ , or $\alpha$ is a Linear Combination of $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$. </p>
-<script type="math/tex; mode=display">
-\begin{align}
-&\text{Set }A=\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}\\
-&V=\text{Span}(A)=\{k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e | k_i\in \mathbb R, 1\le i\le e\}
-\end{align}</script><blockquote>
+<p>$<br>\begin{equation}<br>\begin{align}<br>&amp;\text{Set }A=\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}\\<br>&amp;V=\text{Span}(A)=\{k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e | k_i\in \mathbb R, 1\le i\le e\}<br>\end{align}<br>\end{equation}<br>$</p>
+<blockquote>
 <p>In a <strong>matrix</strong> (i.e. $A$), set all rows as a vector group, and it span a space called <strong>Row Space</strong> (Noted: $R(A)$). All columns span a space called <strong>Column Space</strong> (Noted: $\text{Col}(A)$).</p>
 <p>Linear Function $Ax=b$ is solutable <font color="red">if and only if</font> $b$ is a linear combination of $\text{Col}(A)$ (or $b \in \text{Col}(A)$).</p>
 <p>Specially, if $b=0$ ($Ax=0$), then all solution of $x$ group as a vector space called <strong>Null Space</strong> (Noted: $\text{Nul}(A)$)</p>
@@ -558,27 +555,27 @@
 <blockquote>
 <p>Minkowski distance where $h = 1$</p>
 </blockquote>
-<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
+<p>$<br>\begin{equation}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>\end{equation}<br>$</p>
 <font color="blue">3 .  Euclidean distance (欧氏距离)</font>
 
 <blockquote>
 <p>Minkowski distance where $h = 2$ </p>
 </blockquote>
-<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt{\sum_{k=1}^{p}(\text x_{ik}-\text x_{jk})^2}<br>$</p>
+<p>$<br>\begin{equation}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt{\sum_{k=1}^{p}(\text x_{ik}-\text x_{jk})^2}<br>\end{equation}<br>$</p>
 <font color="blue">4 .  Supremum distance (or Chebyshev distance, 切比雪夫距离)</font>
 
 <blockquote>
 <p>Minkowski distance where $h \to \infty$ </p>
 </blockquote>
-<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\max_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
+<p>$<br>\begin{equation}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\max_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>\end{equation}<br>$</p>
 <p><a name="cosine distance"><font color="blue">5 .  Cosine distance (余弦距离)</font></a> </p>
-<p>$<br>\cos(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k=1}^{p}\text x_{ik}\text x_{jk}}{\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}}=\frac{\textbf{x}_i\cdot\textbf{x}_j}{\left|\textbf{x}_i\right|\left|\textbf{x}_j\right|}<br>$</p>
+<p>$<br>\begin{equation}<br>\cos(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k=1}^{p}\text x_{ik}\text x_{jk}}{\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}}=\frac{\textbf{x}_i\cdot\textbf{x}_j}{\left|\textbf{x}_i\right|\left|\textbf{x}_j\right|}<br>\end{equation}<br>$</p>
 <p><strong>Other Distance:</strong></p>
 <ul>
 <li>For <a href="#ordinal">ordinal data</a>, mapping the data to numerical data : $X=\{x_{(1)}, x_{(2)},…, x_{(n)}\}, x_{(i)} \mapsto \frac{i−1} {n−1}\in [0, 1]$ </li>
 <li>For mixed type, use weighed distance (加权) with prescribed weights :</li>
 </ul>
-<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}<br>$</p>
+<p>$<br>\begin{equation}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}<br>\end{equation}<br>$</p>
 <h3 id="Data-Preprocessing-Lecture"><a href="#Data-Preprocessing-Lecture" class="headerlink" title="Data Preprocessing (Lecture)"></a>Data Preprocessing (Lecture)</h3><p><img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7"></p>
 <ul>
 <li>Data Scaling (归一化，标准化)<ul>
