@@ -15,7 +15,7 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Big Data 1</title>
+    <title>MA234 大数据导论与实践（一）</title>
     <url>/2024/06/22/Big-Data-1/</url>
     <content><![CDATA[<h1 id="Big-Data-I"><a href="#Big-Data-I" class="headerlink" title="Big Data (I)"></a>Big Data (I)</h1><h2 id="Pre-Knowledge"><a href="#Pre-Knowledge" class="headerlink" title="Pre-Knowledge"></a>Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
 <p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\textbf{V}$. If any vector from $\textbf{V}$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$ , or $\alpha$ is a Linear Combination of $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$. </p>
@@ -453,7 +453,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Big Data 2</title>
+    <title>MA234 大数据导论与实践（二）</title>
     <url>/2024/06/24/Big-Data-2/</url>
     <content><![CDATA[<h1 id="Big-Data-II"><a href="#Big-Data-II" class="headerlink" title="Big Data (II)"></a>Big Data (II)</h1><h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><blockquote>
 <p>本章内容较多，先写下本章主要内容：</p>
@@ -583,6 +583,18 @@
       <tags>
         <tag>Python</tag>
         <tag>CSE Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS202 计算机组成原理</title>
+    <url>/2024/06/25/Computer-Organization/</url>
+    <content><![CDATA[<h1 id="Computer-Organization"><a href="#Computer-Organization" class="headerlink" title="Computer Organization"></a>Computer Organization</h1>]]></content>
+      <categories>
+        <category>2024 Spring</category>
+      </categories>
+      <tags>
+        <tag>CSE Learning</tag>
+        <tag>Verilog</tag>
       </tags>
   </entry>
 </search>
