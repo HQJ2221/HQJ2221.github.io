@@ -319,7 +319,7 @@
 
 <font color="blue">1 .  Minkowski distance (闵可夫斯基距离)</font>
 
-<p>$<br>\begin{center}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}<br>\end{center}<br>$</p>
+<p>$<br>\begin{align}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}<br>\end{align}<br>$</p>
 <blockquote>
 <p>Parameter <code>h</code> is to <font color="blue">emphasize the character of the data</font>. By changing the value of <code>h</code> , Minkowski distance can cover many Distance Metrics.</p>
 </blockquote>
