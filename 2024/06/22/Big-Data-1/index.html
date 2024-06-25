@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data-1/bd7.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data-1/bd10.png">
 <meta property="article:published_time" content="2024-06-22T13:59:45.000Z">
-<meta property="article:modified_time" content="2024-06-25T10:23:13.059Z">
+<meta property="article:modified_time" content="2024-06-25T10:57:37.695Z">
 <meta property="article:author" content="墨独凌">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="CSE Learning">
@@ -64,7 +64,9 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -221,7 +223,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-25 18:23:13" itemprop="dateModified" datetime="2024-06-25T18:23:13+08:00">2024-06-25</time>
+      <time title="Modified: 2024-06-25 18:57:37" itemprop="dateModified" datetime="2024-06-25T18:57:37+08:00">2024-06-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -545,8 +547,8 @@
 
 <font color="blue">1 .  Minkowski distance (闵可夫斯基距离)</font>
 
-<p>$<br>\begin{align}<br>&amp;\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}&amp;\\<br>\end{align}<br>$</p>
-<blockquote>
+<script type="math/tex; mode=display">
+\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}</script><blockquote>
 <p>Parameter <code>h</code> is to <font color="blue">emphasize the character of the data</font>. By changing the value of <code>h</code> , Minkowski distance can cover many Distance Metrics.</p>
 </blockquote>
 <font color="blue">2 .  Manhattan distance (曼哈顿距离) </font>
