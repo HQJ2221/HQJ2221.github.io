@@ -159,6 +159,16 @@
 <li>Goal : in probabilistic settings, ﬁnd the distribution (PDF) $\mathcal P(\textbf{x})$ of $\textbf{x}$ and approximate it (there is no y)</li>
 <li>Training dataset : $\{(x_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$ , used to learn an approximation $\hat{\mathcal P}(\textbf{x})$ (no test data in general)</li>
 </ul>
+<font size="4"><b>Semi-supervised learning:</b></font> 
+
+<ul>
+<li>with missing data, e.g., EM; self-supervised learning, learn the missing part of images, inpainting.</li>
+</ul>
+<font size="4"><b>Reinforcement learning (强化学习):</b></font>  
+
+<ul>
+<li><font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.</li>
+</ul>
 <h3 id="Modeling-and-Analysis"><a href="#Modeling-and-Analysis" class="headerlink" title="Modeling and Analysis"></a>Modeling and Analysis</h3><ul>
 <li>Decision function (hypothesis) space : <ul>
 <li>$\mathcal{F}=\{\mathcal{f_\theta}=\mathcal{f_\theta}(x), \theta \in \Theta \}$ </li>
