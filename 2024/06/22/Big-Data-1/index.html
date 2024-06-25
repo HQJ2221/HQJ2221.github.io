@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data-1/bd7.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/22/Big-Data-1/bd10.png">
 <meta property="article:published_time" content="2024-06-22T13:59:45.000Z">
-<meta property="article:modified_time" content="2024-06-25T09:52:25.612Z">
+<meta property="article:modified_time" content="2024-06-25T09:54:09.601Z">
 <meta property="article:author" content="墨独凌">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="CSE Learning">
@@ -221,7 +221,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-25 17:52:25" itemprop="dateModified" datetime="2024-06-25T17:52:25+08:00">2024-06-25</time>
+      <time title="Modified: 2024-06-25 17:54:09" itemprop="dateModified" datetime="2024-06-25T17:54:09+08:00">2024-06-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -382,7 +382,7 @@
 <p><img src="/2024/06/22/Big-Data-1/bd3.png" alt="bd3"></p>
 <p>Maths method about Unsupervised Learning</p>
 <ul>
-<li>Goal : in probabilistic settings, ﬁnd the distribution (PDF) $\mathcal P(\textbf{x})$ of $\textbf{x}$ and approximate it (there is no y)</li>
+<li>Goal : in probabilistic settings, find the distribution (PDF) $\mathcal P(\textbf{x})$ of $\textbf{x}$ and approximate it (there is no y)</li>
 <li>Training dataset : $\{(x_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$ , used to learn an approximation $\hat{\mathcal P}(\textbf{x})$ (no test data in general)</li>
 </ul>
 <font size="4"><b>Semi-supervised learning:</b></font> 
@@ -524,8 +524,8 @@
 <li>Dissimilarity : range is $[0, \infty]$ , sometimes <a href="#distance">distance</a> (noted by <code>d</code>)</li>
 </ul>
 </li>
-<li>For <a href="#nominal">nominal data</a>, $d(/textbf{x}_i,/textbf{x}_j)=\frac{\sum_{k}/textbf{l}(/textbf{x}_{i,k}\neq/textbf{x}_{j,k})}{p}$ ,or one-hot encoding into Boolean data</li>
-<li>For <a href="#boolean">Boolean data</a>, <strong>symmetric distance</strong> (rand disrance) $\text d(/textbf{x}_i,/textbf{x}_j) =\frac {r+s}{q+r+s+t}$ or <strong>Rand index</strong> $\text{Sim}_{\text{Rand}}(/textbf{x}_i,/textbf{x}_j)=\frac{q+t}{q+r+s+t}$ ; <strong>non-symmetric distance</strong> (<a name="Jaccard"><font color="black"> Jaccard distance </font></a>) $\text d(/textbf{x}_i,/textbf{x}_j)=\frac{r+s} {q+r+s}$ or <strong>Jaccard index</strong> $\text{Sim}_{\text{Jaccard}}(/textbf{x}_i,/textbf{x}_j)=\frac {q} {q+r+s}$ </li>
+<li>For <a href="#nominal">nominal data</a>, $d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k}\textbf{l}(\textbf{x}_{i,k}\neq\textbf{x}_{j,k})}{p}$ ,or one-hot encoding into Boolean data</li>
+<li>For <a href="#boolean">Boolean data</a>, <strong>symmetric distance</strong> (rand disrance) $\text d(\textbf{x}_i,\textbf{x}_j) =\frac {r+s}{q+r+s+t}$ or <strong>Rand index</strong> $\text{Sim}_{\text{Rand}}(\textbf{x}_i,\textbf{x}_j)=\frac{q+t}{q+r+s+t}$ ; <strong>non-symmetric distance</strong> (<a name="Jaccard"><font color="black"> Jaccard distance </font></a>) $\text d(\textbf{x}_i,\textbf{x}_j)=\frac{r+s} {q+r+s}$ or <strong>Jaccard index</strong> $\text{Sim}_{\text{Jaccard}}(\textbf{x}_i,\textbf{x}_j)=\frac {q} {q+r+s}$ </li>
 </ul>
 </li>
 </ol>
