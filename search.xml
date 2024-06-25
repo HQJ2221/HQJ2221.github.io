@@ -316,7 +316,7 @@
 </li>
 <li>距离度量分为Space Distance (e.g. Euclidean) 、String Distance (e.g. Hamming distance) 、Set Proximity (e.g. Jaccard distance) 和 Distribution Distance (e.g. Chi-square measure)</li>
 </ul>
-<font color="blue">以下简单介绍几种距离，更多请参考<a href="https://blog.csdn.net/hy592070616/article/details/121723169?spm=1001.2014.3001.5501">此处 (csdn note)</a></font>
+<font color="blue">以下简单介绍几种距离，更多请参考<a href="https://blog.csdn.net/hy592070616/article/details/121723169?spm=1001.2014.3001.5501">此处 (csdn note)</a></font><br>
 
 
 
