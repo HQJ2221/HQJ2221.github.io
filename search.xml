@@ -19,7 +19,7 @@
     <url>/2024/06/22/Big-Data-1/</url>
     <content><![CDATA[<h1 id="Big-Data-I"><a href="#Big-Data-I" class="headerlink" title="Big Data (I)"></a>Big Data (I)</h1><h2 id="Pre-Knowledge"><a href="#Pre-Knowledge" class="headerlink" title="Pre-Knowledge"></a>Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
 <p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\textbf{V}$. If any vector from $\textbf{V}$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$ , or $\alpha$ is a Linear Combination of $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$. </p>
-<p>$<br>\begin{equation}<br>\begin{align}<br>&amp;\text{Set }A=\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}\\<br>&amp;V=\text{Span}(A)=\{k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e | k_i\in \mathbb R, 1\le i\le e\}<br>\end{align}<br>\end{equation}<br>$</p>
+<p>$<br>\begin{align}<br>&amp;\text{Set }A=\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}\\<br>&amp;V=\text{Span}(A)=\{k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e | k_i\in \mathbb R, 1\le i\le e\}<br>\end{align}<br>$</p>
 <blockquote>
 <p>In a <strong>matrix</strong> (i.e. $A$), set all rows as a vector group, and it span a space called <strong>Row Space</strong> (Noted: $R(A)$). All columns span a space called <strong>Column Space</strong> (Noted: $\text{Col}(A)$).</p>
 <p>Linear Function $Ax=b$ is solutable <font color="red">if and only if</font> $b$ is a linear combination of $\text{Col}(A)$ (or $b \in \text{Col}(A)$).</p>
@@ -319,7 +319,7 @@
 
 <font color="blue">1 .  Minkowski distance (闵可夫斯基距离)</font>
 
-<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}<br>$</p>
+<p>$<br>\begin{center}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}<br>\end{center}<br>$</p>
 <blockquote>
 <p>Parameter <code>h</code> is to <font color="blue">emphasize the character of the data</font>. By changing the value of <code>h</code> , Minkowski distance can cover many Distance Metrics.</p>
 </blockquote>
@@ -329,27 +329,27 @@
 <blockquote>
 <p>Minkowski distance where $h = 1$</p>
 </blockquote>
-<p>$<br>\begin{equation}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>\end{equation}<br>$</p>
+<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
 <font color="blue">3 .  Euclidean distance (欧氏距离)</font>
 
 <blockquote>
 <p>Minkowski distance where $h = 2$ </p>
 </blockquote>
-<p>$<br>\begin{equation}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt{\sum_{k=1}^{p}(\text x_{ik}-\text x_{jk})^2}<br>\end{equation}<br>$</p>
+<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt{\sum_{k=1}^{p}(\text x_{ik}-\text x_{jk})^2}<br>$</p>
 <font color="blue">4 .  Supremum distance (or Chebyshev distance, 切比雪夫距离)</font>
 
 <blockquote>
 <p>Minkowski distance where $h \to \infty$ </p>
 </blockquote>
-<p>$<br>\begin{equation}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\max_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>\end{equation}<br>$</p>
+<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\max_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
 <p><a name="cosine distance"><font color="blue">5 .  Cosine distance (余弦距离)</font></a> </p>
-<p>$<br>\begin{equation}<br>\cos(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k=1}^{p}\text x_{ik}\text x_{jk}}{\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}}=\frac{\textbf{x}_i\cdot\textbf{x}_j}{\left|\textbf{x}_i\right|\left|\textbf{x}_j\right|}<br>\end{equation}<br>$</p>
+<p>$<br>\cos(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k=1}^{p}\text x_{ik}\text x_{jk}}{\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}}=\frac{\textbf{x}_i\cdot\textbf{x}_j}{\left|\textbf{x}_i\right|\left|\textbf{x}_j\right|}<br>$</p>
 <p><strong>Other Distance:</strong></p>
 <ul>
 <li>For <a href="#ordinal">ordinal data</a>, mapping the data to numerical data : $X=\{x_{(1)}, x_{(2)},…, x_{(n)}\}, x_{(i)} \mapsto \frac{i−1} {n−1}\in [0, 1]$ </li>
 <li>For mixed type, use weighed distance (加权) with prescribed weights :</li>
 </ul>
-<p>$<br>\begin{equation}<br>\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}<br>\end{equation}<br>$</p>
+<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}<br>$</p>
 <h3 id="Data-Preprocessing-Lecture"><a href="#Data-Preprocessing-Lecture" class="headerlink" title="Data Preprocessing (Lecture)"></a>Data Preprocessing (Lecture)</h3><p><img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7"></p>
 <ul>
 <li>Data Scaling (归一化，标准化)<ul>
