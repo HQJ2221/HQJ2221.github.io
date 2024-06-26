@@ -570,7 +570,7 @@
 </tbody>
 </table>
 </div>
-<p><a name="Bayes"><strong>Bayes Classifier (Oracle Classifier)</strong></a></p>
+<p><a name="Bayes"><b>Bayes Classifier (Oracle Classifier)</b></a></p>
 <ul>
 <li>Assume $Y \in \mathcal{Y} = \{1, 2, . . . , C\}$, the classiﬁer $f : \mathcal X → \mathcal Y$ is a piecewise (分段) constant function</li>
 <li>For <a href="/2024/06/22/Big-Data-1/index.html#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</li>
@@ -848,33 +848,33 @@
 <script type="math/tex; mode=display">
 (\hat{w}_0,\hat{w}_1)= \arg \min_{w_0,w_1}\sum_{i=1}^{n}(y_i-w_0-w_1x_i)^2</script><p>which means $L(\hat w_0,\hat w_1)$ is minimized (残差最小).</p>
 <ul>
-<li>For <strong>multivariate</strong> linear model, $y=f(\bold x)=w_0+w_1x_1+w_2x_2+\cdots+w_px_p + \epsilon$ <ul>
-<li>where $w_0, w_1,\cdots, w_p$ are <font color="red">regression coefficients</font>, $\bold x = (x_1,\cdots, x_p)^T$ is the input vector whose components are independent variables or attribute values, $\epsilon \thicksim \mathcal N(0, σ^2)$ is the noise.</li>
-<li>For the size n samples $\{(\bold x_i, y_i)\}$, let $\bold y = (y_1, \cdots , y_n)^T$ be the response or dependent variables, $\bold w = (w_0, w_1, \cdots, w_p)^T$,  we construct a matrix $\bold X=[\bold 1_n, (\bold x_1, \cdots,\bold x_n)^T]\in \mathbb R^{n \times(p+1)}$ , and $\bold{\varepsilon}=(\epsilon_1,\cdots,\epsilon_n)^T \thicksim \mathcal N(\bold 0,\sigma^2\bold l_n)$ </li>
+<li>For <strong>multivariate</strong> linear model, $y=f(\textbf{x})=w_0+w_1x_1+w_2x_2+\cdots+w_px_p + \epsilon$ <ul>
+<li>where $w_0, w_1,\cdots, w_p$ are <font color="red">regression coefficients</font>, $\textbf{x} = (x_1,\cdots, x_p)^T$ is the input vector whose components are independent variables or attribute values, $\epsilon \thicksim \mathcal N(0, σ^2)$ is the noise.</li>
+<li>For the size n samples $\{(\textbf{x}_i, y_i)\}$, let $\textbf{y} = (y_1, \cdots , y_n)^T$ be the response or dependent variables, $\textbf{w} = (w_0, w_1, \cdots, w_p)^T$,  we construct a matrix $\textbf{X}=[\textbf{1}_n, (\textbf{x}_1, \cdots,\textbf{x}_n)^T]\in \mathbb R^{n \times(p+1)}$ , and $\textbf{\varepsilon}=(\epsilon_1,\cdots,\epsilon_n)^T \thicksim \mathcal N(\textbf{0},\sigma^2\textbf{l}_n)$ </li>
 </ul>
 </li>
 </ul>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\bold y=\bold X\bold w + \varepsilon\\ \\<br>&amp;\bold X=<br>\begin{pmatrix}<br>1 &amp; x_{11} &amp; \cdots &amp; x_{1p} \\<br>1 &amp; x_{21} &amp; \cdots &amp; x_{2p} \\<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>1 &amp; x_{n1} &amp; \cdots &amp; x_{np}<br>\end{pmatrix}<br>\end{align}<br>$</p>
+<p>$<br>\begin{align}<br>&amp;\textbf{y}=\textbf{X}\textbf{w} + \varepsilon\\ \\<br>&amp;\textbf{X}=<br>\begin{pmatrix}<br>1 &amp; x_{11} &amp; \cdots &amp; x_{1p} \\<br>1 &amp; x_{21} &amp; \cdots &amp; x_{2p} \\<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>1 &amp; x_{n1} &amp; \cdots &amp; x_{np}<br>\end{pmatrix}<br>\end{align}<br>$</p>
 
 </blockquote>
 <p><strong>Least Square (LS)</strong> <font color="grey" size="3">最小二乘法</font></p>
 <div><img src="/2024/06/24/Big-Data-2/bd17.png" style="zoom:60%"></div>
 
 <ul>
-<li>From geometry aspect, we should <strong>minimize the residual sum-of-square (残差平方和)</strong>: <br>$\text{RSS}(\bold w)=\sum_{i=1}^{n} (y_i-w_0-w_1x_1-\cdots-w_px_p)^2=|\bold y - \bold X \bold w|_{2}^2$<ul>
-<li>When $\bold X^T\bold X$ is invertible, the <strong>minimizer</strong> $\hat{\textbf{w}}$ satisfy :  （可证明 $\hat w$ 是无偏估计）</li>
+<li>From geometry aspect, we should <strong>minimize the residual sum-of-square (残差平方和)</strong>: <br>$\text{RSS}(\textbf{w})=\sum_{i=1}^{n} (y_i-w_0-w_1x_1-\cdots-w_px_p)^2=|\textbf{y} - \textbf{X} \textbf{w}|_{2}^2$<ul>
+<li>When $\textbf{X}^T\textbf{X}$ is invertible, the <strong>minimizer</strong> $\hat{\textbf{w}}$ satisfy :  （可证明 $\hat w$ 是无偏估计）</li>
 </ul>
 </li>
 </ul>
 <blockquote class="blockquote-center">
-<p>$<br>\nabla_{\bold w}\text{RSS}(\hat{\bold w})=0 \Rightarrow \hat{\bold w}=(\bold X^T \bold X)^{-1}\bold X^T \bold y<br>$</p>
+<p>$<br>\nabla_{\textbf{w}}\text{RSS}(\hat{\textbf{w}})=0 \Rightarrow \hat{\textbf{w}}=(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T \textbf{y}<br>$</p>
 
 </blockquote>
 <ul>
 <li><ul>
-<li>Then prediction $\hat{\bold y}=\bold X(\bold X^T \bold X)^{-1}\bold X^T \bold y= \bold P \bold y$ is a projection of $\bold y$ onto the linear space spanned by the column vectors of $\bold X$; (As Pic 15 show)<ul>
-<li>$\bold P=\bold X(\bold X^T \bold X)^{-1}\bold X^T$ is the projection matrix satisfying $\bold P^2 = \bold P$ <font color="green">(Recall: Linear Algebra)</font></li>
+<li>Then prediction $\hat{\textbf{y}}=\textbf{X}(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T \textbf{y}= \textbf{P} \textbf{y}$ is a projection of $\textbf{y}$ onto the linear space spanned by the column vectors of $\textbf{X}$; (As Pic 15 show)<ul>
+<li>$\textbf{P}=\textbf{X}(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T$ is the projection matrix satisfying $\textbf{P}^2 = \textbf{P}$ <font color="green">(Recall: Linear Algebra)</font></li>
 </ul>
 </li>
 </ul>
@@ -883,19 +883,19 @@
 <blockquote>
 <p>Optimal Method: Ordinary least square (<strong>OLS</strong>)</p>
 <ol>
-<li>Get mean values from sample set: $\bar y=\frac{1}{n}\sum_{i=1}^{n}y_i$ , $\bar{\bold x}=\frac{1}{n}\sum_{i=1}^{n}{ \bold x_i}$</li>
-<li>Centralize data (minus by $\bar y$ and $\bar{\bold x}$) and calculate $RSS(\tilde{\bold w})$ </li>
-<li>Prediction $\hat{\bold y}=\bold P \bold y$ is the projection (投影) of $\bold y$ on the <em>linear space spanned</em> by the columns of $\bold X$. <br>$\mathcal X= \text{Span}\{ \bold x_{\cdot ,0}, \bold x_{\cdot ,1},\cdots,  \bold x_{\cdot ,p}\}$ , recall that $ \bold x_{\cdot ,0}= \bold{1}_n$</li>
-<li>If $\{ \bold x_{\cdot ,0}, \bold x_{\cdot ,1},\cdots,  \bold x_{\cdot ,p}\}$ forms a set of orthonormal basis (标准正交基) , then $\hat{\bold y}=\sum_{i=0}^{p}&lt;\bold y, \bold x_{\cdot ,i}&gt; \bold x_{\cdot ,i}$</li>
-<li>If not, do orthogonalization by Gram-Schmidt procedure for the set $\{ \bold x_{\cdot ,0}, \bold x_{\cdot ,1},\cdots,  \bold x_{\cdot ,p}\}$ </li>
+<li>Get mean values from sample set: $\bar y=\frac{1}{n}\sum_{i=1}^{n}y_i$ , $\bar{\textbf{x}}=\frac{1}{n}\sum_{i=1}^{n}{ \textbf{x}_i}$</li>
+<li>Centralize data (minus by $\bar y$ and $\bar{\textbf{x}}$) and calculate $RSS(\tilde{\textbf{w}})$ </li>
+<li>Prediction $\hat{\textbf{y}}= \textbf{P} \textbf{y}$ is the projection (投影) of $\textbf{y}$ on the <em>linear space spanned</em> by the columns of $\textbf{X}$. <br>$\mathcal X= \text{Span} \{ \textbf{x}_{\cdot ,0}, \textbf{x}_{\cdot ,1},\cdots,  \textbf{x}_{\cdot ,p}\}$ , recall that $ \textbf{x}_{\cdot ,0}= \textbf{1}_n$</li>
+<li>If $\{ \textbf{x}_{\cdot ,0}, \textbf{x}_{\cdot ,1},\cdots,  \textbf{x}_{\cdot ,p}\}$ forms a set of orthonormal basis (标准正交基) , then $\hat{\textbf{y}}=\sum_{i=0}^{p}&lt;\textbf{y}, \textbf{x}_{\cdot ,i}&gt; \textbf{x}_{\cdot ,i}$</li>
+<li>If not, do orthogonalization by Gram-Schmidt procedure for the set $\{ \textbf{x}_{\cdot ,0}, \textbf{x}_{\cdot ,1},\cdots,  \textbf{x}_{\cdot ,p}\}$ </li>
 </ol>
 </blockquote>
 <ul>
 <li>From mathemetic aspect, it’s about <strong>MLE</strong> (Result the same)<ol>
-<li>Likelihood function: $L((\bold w,\bold X),\bold y)=P(\bold y|(\bold X, \bold w))=\prod_{i=1}^{n}P(y_i|(\bold x_i, \bold w))$ </li>
-<li>Find <strong>MLE</strong>: $\hat{\bold w}=\arg \max_{\bold w} L(\bold w ; \bold X, \bold y)$ (E.g. For $P(y_i|(\bold x_i, \bold w))=\frac{1}{\sqrt{2\pi}\sigma} \Large{e^{-\frac{(y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2}{2\sigma^{2}}}}$)</li>
-<li><font color="blue">(2.) is equivalent to its log-function:</font>  E.g.  $l(\bold w ; \bold X, \bold y)= \log{L(\bold w ; \bold X, \bold y)}=-n\log(\sqrt{2\pi}\sigma)-\frac{1}{2\sigma^{2}} \sum_{i=1}^{n} (y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2)$ </li>
-<li>Then get the same minimizer as <strong>LS</strong> : $\hat{\bold w}=(\bold X^T \bold X)^{-1}\bold X^T \bold y$</li>
+<li>Likelihood function: $L((\textbf{w},\textbf{X}),\textbf{y})=P(\textbf{y}|(\textbf{X}, \textbf{w}))=\prod_{i=1}^{n}P(y_i|(\textbf{x}_i, \textbf{w}))$ </li>
+<li>Find <strong>MLE</strong>: $\hat{\textbf{w}}=\arg \max_{\textbf{w}} L(\textbf{w} ; \textbf{X}, \textbf{y})$ (E.g. For $P(y_i|(\textbf{x}_i, \textbf{w}))=\frac{1}{\sqrt{2\pi}\sigma} \Large{e^{-\frac{(y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2}{2\sigma^{2}}}}$)</li>
+<li><font color="blue">(2.) is equivalent to its log-function:</font>  E.g.  $l(\textbf{w} ; \textbf{X}, \textbf{y})= \log{L(\textbf{w} ; \textbf{X}, \textbf{y})}=-n\log(\sqrt{2\pi}\sigma)-\frac{1}{2\sigma^{2}} \sum_{i=1}^{n} (y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2$ </li>
+<li>Then get the same minimizer as <strong>LS</strong> : $\hat{\textbf{w}}=(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T \textbf{y}$</li>
 </ol>
 </li>
 </ul>
@@ -912,7 +912,7 @@
 </ul>
 </li>
 <li><strong>Multicolinearity</strong> [多重共线性]<ul>
-<li>If the columns of $\bold X$ are almost linearly dependent (multicolinearity), then $\det(\bold X^{T}\bold X)\approx 0$, the diagonal entries in $(\bold X^{T}\bold X)^{-1}$ is quite large, leading to a large variances of $\hat{\bold w}$ (inaccurate).</li>
+<li>If the columns of $\textbf{X}$ are almost linearly dependent (multicolinearity), then $\det(\textbf{X}^{T}\textbf{X})\approx 0$, the diagonal entries in $(\textbf{X}^{T}\textbf{X})^{-1}$ is quite large, leading to a large variances of $\hat{\textbf{w}}$ (inaccurate).</li>
 <li>Remedies (补救措施): ridge regression (岭回归), principal component regression (主属性回归), partial least squares regression (部分最小二乘回归), etc.</li>
 </ul>
 </li>
@@ -924,11 +924,11 @@
 </ul>
 <p><strong>Bias-Variance Decomposition</strong></p>
 <ul>
-<li>Bias (偏差): $\text{Bias}(\hat f(\bold x))=\text{E}_\text{train}\hat f(\bold x)-f(\bold x)$ , average <strong>accuracy</strong> of prediction for the model (deviation from the truth)</li>
-<li>Variance (方差): $\text{Var}(\hat f(\bold x))=\text{E}_\text{train}(\hat f(\bold x)-\text{E}_\text{train}\hat f(\bold x))^2$ , <strong>variability</strong> of the model prediction due to different data set (stability)</li>
+<li>Bias (偏差): $\text{Bias}(\hat f(\textbf{x}))=\text{E}_\text{train}\hat f(\textbf{x})-f(\textbf{x})$ , average <strong>accuracy</strong> of prediction for the model (deviation from the truth)</li>
+<li>Variance (方差): $\text{Var}(\hat f(\textbf{x}))=\text{E}_\text{train}(\hat f(\textbf{x})-\text{E}_\text{train}\hat f(\textbf{x}))^2$ , <strong>variability</strong> of the model prediction due to different data set (stability)</li>
 </ul>
 <blockquote class="blockquote-center">
-<p>$<br>\color{red}<br>\text{E}_\text{train}\text{R}_\text{exp}(\hat f(\bold x))=\text{E}_\text{train}\text{E}_\text{P}[(y-\hat f(\bold x))^2|\bold x] = \underbrace{\text{Var}(\hat f(\bold x))}_{\text{variance}}+\underbrace{\text{Bias}^2(\hat f(\bold x))}_{\text{bias}}+\underbrace{\sigma^2}_{\text{noise}}<br>$</p>
+<p>$<br>\color{red}<br>\text{E}_\text{train}\text{R}_\text{exp}(\hat f(\textbf{x}))=\text{E}_\text{train}\text{E}_\text{P}[(y-\hat f(\textbf{x))^2|\textbf{x}] = \underbrace{\text{Var}(\hat f(\textbf{x}))}_{\text{variance}}+\underbrace{\text{Bias}^2(\hat f(\textbf{x}))}_{\text{bias}}+\underbrace{\sigma^2}_{\text{noise}}<br>$</p>
 
 </blockquote>
 <div><img src="/2024/06/24/Big-Data-2/bd19.png" style="zoom:80%"></div>
@@ -947,7 +947,7 @@
 </ul>
 <div><img src="/2024/06/24/Big-Data-2/bd20.png" style="zoom:80%"></div>
 
-<p>where we have used the fact that $E_{ \text{train}} y_{i} = f(\bold{x}_{i})$ and $\text{Var}(y_i)=\sigma^2$</p>
+<p>where we have used the fact that $E_{ \text{train}} y_{i} = f(\textbf{x}_{i})$ and $\text{Var}(y_i)=\sigma^2$</p>
 <ul>
 <li>For small $k$, overfitting, bias ↓, variance ↑</li>
 <li>For large $k$, underfitting, bias ↑, variance ↓</li>
@@ -965,7 +965,7 @@
 <h4>Best-Subset Selection</h4>
 
 <ul>
-<li>find for each $k ∈ \{0, 1, \cdots , p\}$ the subset $S_k \subset \{1,\cdots, p\}$ of size $k$ that gives the smallest $\text{RSS}(\bold w) = \sum_{i=1}^n (y_i − w_0 − \sum_{j\in S_k} w_j x_{ij})^2$ </li>
+<li>find for each $k ∈ \{0, 1, \cdots , p\}$ the subset $S_k \subset \{1,\cdots, p\}$ of size $k$ that gives the smallest $\text{RSS}(\textbf{w}) = \sum_{i=1}^n (y_i − w_0 − \sum_{j\in S_k} w_j x_{ij})^2$ </li>
 <li>Noted that the best subset of size $k + 1$ may not include the the variables in the best subset of size $k$</li>
 <li>Choose $k$ based on <strong>bias-variance tradeoff</strong>, usually by <strong>AIC</strong> and <strong>BIC</strong>(贝叶斯信息量), or practically by <strong>cross-validation</strong></li>
 </ul>
@@ -989,14 +989,14 @@
 <li>Add a penalty term, in general $l_q$ - norm</li>
 </ul>
 <blockquote class="blockquote-center">
-<p>$<br>\sum_{i=1}^{n}(y_i-w_0-w_1x_1-\cdots-w_px_p)^2+\lambda |\bold w|^q_q=|\bold y-\bold X\bold w|^2+\lambda |\bold w|^q_q<br>$</p>
+<p>$<br>\sum_{i=1}^{n}(y_i-w_0-w_1x_1-\cdots-w_px_p)^2+\lambda |\textbf{w}|^q_q=|\textbf{y}-\textbf{X}\textbf{w}|^2+\lambda |\textbf{w}|^q_q<br>$</p>
 
 </blockquote>
 <ul>
 <li>By arranging $\lambda$ , we can correct the overfitting (bias inc. &amp; var dec.)</li>
 <li><code>q = 2</code> for Ridge Regression &amp; <code>q = 1</code> for LASSO Regression</li>
 </ul>
-<div><img src="/2024/06/24/Big-Data-2/bd26.png" style="zoom:60%"></div>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd26.png" style="zoom:60%"></div>
 
 
 
@@ -1027,7 +1027,7 @@
 <li>Shrinkage (将所有点收缩)</li>
 <li>Selection (将近点归零，远点收缩)</li>
 </ul>
-<p><table>
+<table>
     <tr>
         <td><img align="left" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd24.png" style="zoom:50%"></td>
         <td><img align="left" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd25.png" style="zoom:50%"></td>
@@ -1035,9 +1035,13 @@
     <tr>
         <td colspan="2"><center><font size="2">Pic 18. LASSO Regression</font></center></td>
     </tr>
-</table></p>
-<script type="math/tex; mode=display">
-\hat w_i^{\text{lasso}} = (|\hat w^{OLS}_i| − \lambda)+\text{sign}(\hat w^{OLS}_i)</script><ul>
+</table>
+
+<blockquote class="blockquote-center">
+<p>$<br>\hat w_i^{\text{lasso}} = (|\hat w^{OLS}_i| − \lambda)+\text{sign}(\hat w^{OLS}_i)<br>$</p>
+
+</blockquote>
+<ul>
 <li>Solving LASSO by <strong>LARS</strong> (最小角回归算法)<ol>
 <li>Start with all coefficients $w_i$ equal to zero</li>
 <li>Find the predictor $x_i$ most correlated with $y$ (一般认为夹角最小的即是)</li>
@@ -1054,20 +1058,20 @@
 <blockquote>
 <p>Optional: Maximum A Posteriori (<strong>MAP</strong>) Estimation</p>
 <ul>
-<li><p>Given $\theta$ , the conditional distribution of $\bold y$ is $P(\bold y|\theta)$</p>
+<li><p>Given $\theta$ , the conditional distribution of $\textbf{y}$ is $P(\textbf{y}|\theta)$</p>
 </li>
 <li><p><strong>MAP</strong> choose the point of maximal posterior probability :</p>
-<p> $\hat{\theta}^{MAP}=\arg \underset{\theta}\max{(\log P(\bold y|\theta)+\log P(\theta))}$</p>
+<p> $\hat{\theta}^{MAP}=\arg \underset{\theta}\max{(\log P(\textbf{y}|\theta)+\log P(\theta))}$</p>
 </li>
-<li><p>If $\theta=\bold w$, and we choose the log-prior <font color="grey">[对数先验]</font> (i.e. normal prior  $\mathcal N(0, \frac{\sigma^2}{\lambda} \bold{I})$ ) , we revocer the ridge regression. ==???==</p>
+<li><p>If $\theta=\textbf{w}$, and we choose the log-prior <font color="grey">[对数先验]</font> (i.e. normal prior  $\mathcal N(0, \frac{\sigma^2}{\lambda} \textbf{I})$ ) , we revocer the ridge regression.</p>
 </li>
 <li><p><font color="#ff7575">Different log-prior lead to different penalties</font> (Not general case. Some penalties may not be the logarithms[对数] of probability distributions, some other penalties depend on the data)</p>
 </li>
 </ul>
 <p>Related Regularization Models</p>
 <ul>
-<li>Elastic net (混合回归) : $\hat{\bold w}=\arg\min_w|y-Xw|_2^2+\lambda_1|\bold w|^2_2+\lambda_2|\bold w|_1$ </li>
-<li>Group LASSO (对不同分组进行回归) : $\hat{\bold w}=\arg\min_w|y-Xw|_2^2+\sum_{g=1}^{G}\lambda_{g}|\bold w_{g}|_2$ , where $\bold w=(w_1,\cdots,w_G)$ is the <strong>group partition</strong> of $\bold w$. </li>
+<li>Elastic net (混合回归) : $\hat{\textbf{w}}=\arg\min_w|y-Xw|_2^2+\lambda_1|\textbf{w}|^2_2+\lambda_2|\textbf{w}|_1$ </li>
+<li>Group LASSO (对不同分组进行回归) : $\hat{\textbf{w}}=\arg\min_w|y-Xw|_2^2+\sum_{g=1}^{G}\lambda_{g}|\textbf{w}_{g}|_2$ , where $\textbf{w}=(w_1,\cdots,w_G)$ is the <strong>group partition</strong> of $\textbf{w}$. </li>
 <li>Dantzig Selector : …</li>
 <li>Smoothly clipped absolute deviation (<strong>SCAD</strong>) penalty</li>
 <li>Adaptive LASSO</li>
@@ -1152,16 +1156,16 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 \text{logit}(z)=\log\frac{z}{1-z}</script><p><strong>MLE for Logistic Regression</strong></p>
 <ul>
 <li>The prob. distribution for two-class logistic regression model is <ul>
-<li>$Pr(y=1|X=x)=\frac{\exp(\bold w^T \bold x)}{1+\exp(\bold w^T \bold x)}$</li>
-<li>$Pr(y=0|X=x)=\frac{1}{1+\exp(\bold w^T \bold x)}$</li>
+<li>$Pr(y=1|X=x)=\frac{\exp(\textbf{w}^T \textbf{x})}{1+\exp(\textbf{w}^T \textbf{x})}$</li>
+<li>$Pr(y=0|X=x)=\frac{1}{1+\exp(\textbf{w}^T \textbf{x})}$</li>
 </ul>
 </li>
-<li>Let $P(y=k|X=x)=p_k(\bold x;\bold w)$, $k=0,1$. The <font color="red">likelihood function</font> is $L(\bold w)=\prod_{i=1}^{n} p_{y_i}(\bold x_i;\bold w)$</li>
-<li>MLE of $\bold w$ : $\hat{\bold w}=\arg \underset{\bold w}\max L(\bold w)$</li>
-<li>Solve <font color="red">$\nabla_{\bold w}\log L(\bold w)=0$</font> by Newton-Raphson method</li>
+<li>Let $P(y=k|X=x)=p_k(\textbf{x};\textbf{w})$, $k=0,1$. The <font color="red">likelihood function</font> is $L(\textbf{w})=\prod_{i=1}^{n} p_{y_i}(\textbf{x}_i;\textbf{w})$</li>
+<li>MLE of $\textbf{w}$ : $\hat{\textbf{w}}=\arg \underset{\textbf{w}}\max L(\textbf{w})$</li>
+<li>Solve $\color{red}\nabla_{\textbf{w}}\log L(\textbf{w})=0$ by Newton-Raphson method</li>
 </ul>
 <blockquote>
-<p>用 MLE 计算 $\hat{\bold w}$ ，需要提前知道 $x$ 的分布，所以逻辑回归是一种分类算法。</p>
+<p>用 MLE 计算 $\hat{\textbf{w}}$ ，需要提前知道 $x$ 的分布，所以逻辑回归是一种分类算法。</p>
 </blockquote>
 <h3 id="Linear-Discriminant-Analysis-LDA"><a href="#Linear-Discriminant-Analysis-LDA" class="headerlink" title="Linear Discriminant Analysis (LDA)"></a>Linear Discriminant Analysis (LDA)</h3><blockquote>
 <p>线性判别分析，是一种监督学习的降维方法（无监督学习一般用<strong>PCA</strong>，主成分分析来降维）</p>
@@ -1169,29 +1173,35 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <font color="green">Recall: Naive Bayes</font>
 
 <ul>
-<li>By <strong>Bayes Theorem</strong>: $P(Y|X=x)\propto f_k(\bold x)\pi_{k}$ , where $f_k(\bold x)=P(\bold X=\bold x|Y=k)$ is be the <font color="red">density function</font> of samples in each class $Y=k$, $\pi_k=P(Y=k)$ is the <font color="red">prior probability</font>.</li>
-<li>Assume $f_k (\bold x)$ is multivariate Gaussian (多元高斯分布) : $f_k(x)=$<font size="4">$\frac{1}{(2\pi)^{p/2} \abs{\Sigma_k}^{1/2}}e^{\frac{1}{2}(x-\mu_k)^T\Sigma_k^-1(x-\mu_k)}$</font> , with a common covariance matrix (协方差矩阵) $\bold\Sigma_k$ <font color="grey">(注：多元高斯可以表示为向量和矩阵乘积的形式，如上)</font></li>
+<li>By <strong>Bayes Theorem</strong>: $P(Y|X=x)\propto f_k(\textbf{x})\pi_{k}$ , where $f_k(\textbf{x})=P(\textbf{X}=\textbf{x}|Y=k)$ is be the <font color="red">density function</font> of samples in each class $Y=k$, $\pi_k=P(Y=k)$ is the <font color="red">prior probability</font>.</li>
+<li>Assume $f_k (\textbf{x})$ is multivariate Gaussian (多元高斯分布) : $f_k(x)=$<font size="4">$\frac{1}{(2\pi)^{p/2} \abs{\Sigma_k}^{1/2}}e^{\frac{1}{2}(x-\mu_k)^T\Sigma_k^-1(x-\mu_k)}$</font> , with a common covariance matrix (协方差矩阵) $\textbf{\Sigma}_k$ <font color="grey">(注：多元高斯可以表示为向量和矩阵乘积的形式，如上)</font></li>
 <li>For the decision boundary between class $k$ and $l$, the <strong>log-ratio</strong> of their posteriors (后验) $P(Y|X)$ is</li>
 </ul>
-<script type="math/tex; mode=display">
-\log{\frac{P(Y=k|\bold X=\bold x)}{P(Y=l|\bold X=\bold x)}}=\log{\frac{\pi_k}{\pi_l}}-\frac{1}{2}(\mu_k+\mu_l)^T\bold\Sigma_k^-1(\mu_k-\mu_l)+\bold x^T\bold\Sigma^{-1}(\mu_k-\mu_l)</script><ol>
-<li><p>From log-ratio, we can get <font color="red">Linear discriminant functions</font>(e.g. for class $k$) : $\delta_k(\bold x)=\bold x^T\bold\Sigma^{-1}\mu_k-\frac{1}{2}\mu_k^T\bold\Sigma^{-1}\mu_k+\log\pi_k$ </p>
+<blockquote class="blockquote-center">
+<p>$<br>\log{\frac{P(Y=k|\textbf{X}=\textbf{x})}{P(Y=l|\textbf{X}=\textbf{x})}}=\log{\frac{\pi_k}{\pi_l}}-\frac{1}{2}(\mu_k+\mu_l)^T\textbf{\Sigma}_k^-1(\mu_k-\mu_l)+\textbf{x}^T \textbf{\Sigma}^{-1}(\mu_k-\mu_l)<br>$</p>
+
+</blockquote>
+<ol>
+<li><p>From log-ratio, we can get <font color="red">Linear discriminant functions</font>(e.g. for class $k$) : $\delta_k(\textbf{x})=\textbf{x}^T\textbf{\Sigma}^{-1}\mu_k-\frac{1}{2}\mu_k^T\textbf{\Sigma}^{-1}\mu_k+\log\pi_k$ </p>
 </li>
-<li><p>Then the log-ratio become : $\log{\frac{P(Y=k|\bold X=\bold x)}{P(Y=l|\bold X=\bold x)}}=\delta_k(\bold x)-\delta_l(\bold x)$ </p>
+<li><p>Then the log-ratio become : $\log{\frac{P(Y=k|\textbf{X}=\textbf{x})}{P(Y=l|\textbf{X}=\textbf{x})}}=\delta_k(\textbf{x})-\delta_l(\textbf{x})$ </p>
 <blockquote>
 <p>相减结果是一个一次方程（线性）</p>
 </blockquote>
 </li>
-<li><p>Decision Rule(分类依据) : $k^{*}=\arg\max_k \delta_k(\bold x)$</p>
+<li><p>Decision Rule(分类依据) : $k^{\ast}=\arg\max_k \delta_k(\textbf{x})$</p>
 </li>
 </ol>
 <p><strong>Two-class LDA</strong></p>
 <ul>
 <li>LDA rule classifies to <strong>class 2</strong> if</li>
 </ul>
-<script type="math/tex; mode=display">
-(\bold x-\frac{\hat\mu_1+\hat\mu_2}{2})^T \bold\Sigma^{-1}(\hat\mu_2-\hat\mu_1)+\log{\frac{\hat\pi_2}{\hat\pi_1}}\gt 0</script><ul>
-<li>Discriminant direction : $\beta=\bold\Sigma^{-1}(\hat\mu_2-\hat\mu_1)$ </li>
+<blockquote class="blockquote-center">
+<p>$<br>(\textbf{x}-\frac{\hat\mu_1+\hat\mu_2}{2})^T \textbf{\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)+\log{\frac{\hat\pi_2}{\hat\pi_1}}\gt 0<br>$</p>
+
+</blockquote>
+<ul>
+<li>Discriminant direction : $\beta=\textbf{\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)$ </li>
 </ul>
 <center><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd28.png" style="zoom:50%"><br><font size="2">Pic 20. Two-class LDA</font></center>
 
@@ -1235,16 +1245,15 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <h4>Loss Optimization</h4>
 
 <blockquote>
-<p>Find $\bold W=\{w^{(0)},w^{(1)},…,w^{(n)}\}$ with lowest loss function</p>
+<p>Find $\textbf{W}=\{w^{(0)},w^{(1)},…,w^{(n)}\}$ with lowest loss function</p>
 </blockquote>
-<script type="math/tex; mode=display">
-\bold W^{*}=\underset{\bold W} {\arg\min} \frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\bold W),y^{(i)})=\underset{\bold W} {\arg\min}\ C(\bold W)</script><ul>
-<li>But for most cases, we should calculate <font color="red">gradient</font> to find $\bold W^{*}$ </li>
-<li><font color="red">Use **gradient decent** to solve: $\frac{\partial{C}}{\partial{\bold W}}$</font>
+<blockquote class="blockquote-center">
+<p>$<br>\textbf{W^{*}=\underset{\textbf{W}} {\arg\min} \frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\textbf{W),y^{(i)})=\underset{\textbf{W}} {\arg\min}\ C(\textbf{W})<br>$</p>
 
-
-
-</li>
+</blockquote>
+<ul>
+<li>But for most cases, we should calculate <font color="red">gradient</font> to find $\textbf{W}^{\ast}$ </li>
+<li><font color="red">Use <b>gradient decent</b> to solve:</font> $\frac{\partial{C}}{\partial{\textbf{W}}}$</li>
 </ul>
 <blockquote>
 <p>How to calculate ? (More detail)</p>
@@ -1256,7 +1265,7 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <li>More briefly, <font color="red">$b_{j}^{l}=w_{j0}^l$</font> is the <font color="red">bias</font> of the $j^{th}$ neuron in the $l^{th}$ layer.</li>
 <li><p>$a^l_j$ for the <font color="red">activation</font> of the $j^{th}$ neuron in the $l^{th}$ layer $z_j^l$  : <font color="red">$a^l_j=g(z^l_j)=g(\sum_k w_{jk}^{l}a_k^{l-1} + b_j^l)$</font> </p>
 </li>
-<li><p>We have define $C(\bold W)=\frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\bold W),y^{(i)})$ </p>
+<li><p>We have define $C(\textbf{W})=\frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\textbf{W}),y^{(i)})$ </p>
 </li>
 </ul>
 <center><img align="Left" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd32.png" style="zoom:40%"></center>
@@ -1292,8 +1301,8 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <li>Initialize weights randomly  $\thicksim\mathcal N(0, \sigma^{2})$ </li>
 <li>Loop until convergence : <ol>
 <li>Pick single data point $i$</li>
-<li>Compute <strong>gradient</strong>  $\frac{\partial J_i(\bold W)}{\partial \bold W}$ </li>
-<li>Update weights, $\bold W \leftarrow (\bold W-\eta \frac{\partial J(\bold W)}{\partial \bold W})$ </li>
+<li>Compute <strong>gradient</strong>  $\frac{\partial J_i(\textbf{W})}{\partial \textbf{W}}$ </li>
+<li>Update weights, $\textbf{W \leftarrow (\textbf{W}-\eta \frac{\partial J(\textbf{W})}{\partial \textbf{W}})$ </li>
 </ol>
 </li>
 <li>Return weights</li>
@@ -1310,17 +1319,17 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 <p><strong>How to train</strong></p>
 <ul>
-<li>Training data: $\{(\bold x_1,y_1),(\bold x_2,y_2),…,(\bold x_n, y_n) \}, y_i\in \{-1, 1\}$</li>
-<li>Hyperplane: $S=\bold w^T\bold x + b$ ;     Decision function: $f(\bold x)=\text{sign}(\bold w^T\bold x + b)$</li>
-<li>Geometric <strong>margin</strong> between a point and hyperplane : <font size="4">$r_i=\frac{y_i(\bold w^T\bold x + b)}{|\bold w|_2}$</font></li>
+<li>Training data: $\{(\textbf{x}_1,y_1),(\textbf{x}_2,y_2),…,(\textbf{x}_n, y_n) \}, y_i\in \{-1, 1\}$</li>
+<li>Hyperplane: $S=\textbf{w}^T\textbf{x} + b$ ;     Decision function: $f(\textbf{x})=\text{sign}(\textbf{w^T\textbf{x} + b)$</li>
+<li>Geometric <strong>margin</strong> between a point and hyperplane : $\large{r_i=\frac{y_i(\textbf{w}^T\textbf{x} + b)}{|\textbf{w}|_2}}$</li>
 <li>Margin between dataset and hyperplane : $\underset{i}\min r_i$</li>
-<li>Maximize margin : $\underset{\bold w, b}\max \underset{i}\min r_i$</li>
+<li>Maximize margin : $\underset{\textbf{w}, b}\max \underset{i}\min r_i$</li>
 </ul>
 <p><strong>Optimization</strong></p>
 <ul>
-<li>Without loss of generality, let $\underset{i}\min y_i(\bold w^T\bold x + b)=1$</li>
-<li>Maximize margin is equivalent to $\underset{\bold w, b}\max \frac{1}{|\bold w|_2}$  ,  $s.t.\ y_i(\bold w^T\bold x + b)\ge 1,\ i=1,…,n$</li>
-<li>Further reduce to $\underset{\bold w, b} \min \frac{1}{2}|\bold w|_2^2$  ,  $s.t.\ y_i(\bold w^T\bold x + b)\ge 1,\ i=1,…,n$</li>
+<li>Without loss of generality, let $\underset{i}\min y_i(\textbf{w}^T\textbf{x} + b)=1$</li>
+<li>Maximize margin is equivalent to $\underset{\textbf{w}, b}\max \frac{1}{|\textbf{w}|_2}$  ,  $s.t.\ y_i(\textbf{w}^T\textbf{x} + b)\ge 1,\ i=1,…,n$</li>
+<li>Further reduce to $\underset{\textbf{w}, b} \min \frac{1}{2}|\textbf{w}|_2^2$  ,  $s.t.\ y_i(\textbf{w}^T\textbf{x} + b)\ge 1,\ i=1,…,n$</li>
 <li>This is <strong>primal problem</strong> : quadratical programming with linear constraints, computational complexity is $O(p^3)$ where $p$ is dimension</li>
 </ul>
 <blockquote>
@@ -1328,62 +1337,68 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </blockquote>
 <ul>
 <li>When slater condition is satisfied, $\min \max ⇔ \max \min$</li>
-<li>Dual problem : $\underset{\alpha}\max \underset{\bold w, b}\min L(\bold w,b,\alpha)$ —— $L$ is Lagrange function(拉格朗日函数)</li>
+<li>Dual problem : $\underset{\alpha}\max \underset{\textbf{w}, b}\min L(\textbf{w},b,\alpha)$ —— $L$ is Lagrange function(拉格朗日函数)</li>
 <li><p>Solve for inner minimization problem : </p>
 <ul>
-<li>$\nabla_{\bold w}L=0 \Longrightarrow \bold w^*=\sum_i \alpha_iy_i \bold x_i$</li>
+<li>$\nabla_{\textbf{w}}L=0 \Longrightarrow \textbf{w}^\ast=\sum_i \alpha_iy_i \textbf{x}_i$</li>
 <li>$\frac{\partial L}{\partial b}=0 \Longrightarrow \sum_i\alpha_iy_i=0$</li>
 </ul>
 </li>
-<li><p>Plug into $L$: $L(\bold w^<em>,b^</em>,\alpha)=\sum_i\alpha_i-\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\bold x_i^T \bold x_j)$ </p>
+<li><p>Plug into $L$: $L(\textbf{w}^\ast,b^\ast,\alpha)=\sum_i\alpha_i-\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\textbf{x}_i^T \textbf{x}_j)$ </p>
 </li>
 <li><font color="red">Dual Optimization: </font>
 
 </li>
 </ul>
-<script type="math/tex; mode=display">
-\min_\alpha\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\bold x_i^T \bold x_j)-\sum_i\alpha_i,\\
-\text{s.t. }\alpha_i\ge0,\ i=1,...,n,\ \sum_i\alpha_iy_i=0</script><p><strong>KKT Condition</strong></p>
+<blockquote class="blockquote-center">
+<p>$<br>\min_\alpha\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\textbf{x}_i^T \textbf{x_j)-\sum_i\alpha_i,\\<br>\text{s.t. }\alpha_i\ge0,\ i=1,…,n,\ \sum_i\alpha_iy_i=0<br>$</p>
+
+</blockquote>
+<p><strong>KKT Condition</strong></p>
 <ul>
 <li>Three more conditions from the equivalence of primal and minimax problems</li>
 </ul>
-<script type="math/tex; mode=display">
-\left\{ \begin{array}{l}
-\alpha_i^{*}\ge 0\\
-y_i((\bold w^{*})^T \bold x_i+b^{*})-1 \ge 0\\
-\alpha_i^{*}[y_i((\bold w^{*})^T \bold x_i+b^{*})-1]=0
-\end{array}\right.</script><ul>
+<blockquote class="blockquote-center">
+<p>$<br>\left\{ \begin{array}{l}<br>\alpha_i^{\ast}\ge 0\\<br>y_i((\textbf{w}^{\ast})^T \textbf{x}_i+b^{\ast})-1 \ge 0\\<br>\alpha_i^{\ast}[y_i((\textbf{w}^{\ast})^T \textbf{x}_i+b^{\ast})-1]=0<br>\end{array}\right.<br>$</p>
+
+</blockquote>
+<ul>
 <li>These together with two zero derivative conditions form KKT conditions</li>
-<li>$\alpha_i^{<em>}\gt 0 \Rightarrow y_i((\bold w^{</em>})^T \bold x_i+b^{*})=1$</li>
+<li>$\alpha_i^{\ast}\gt 0 \Rightarrow y_i((\textbf{w}^{\ast})^T \textbf{x}_i+b^{\ast})=1$</li>
 <li>Index set of <font color="red">support vectors</font> : $S=\{i|\ \alpha_i \gt 0\}$</li>
-<li>$b=y_s-\bold w^T\bold x_s=y_s-\sum_{i\in S}\alpha_i y_i \bold x^T_i\bold x_s$</li>
+<li>$b=y_s-\textbf{w}^T\textbf{x}_s=y_s-\sum_{i\in S}\alpha_i y_i \textbf{x}^T_i\textbf{x}_s$</li>
 <li>More stable solution : </li>
 </ul>
-<script type="math/tex; mode=display">
-\color{red} b=\frac{1}{\abs{S}}\sum_{s\in S}\left(y_s-\sum_{i\in S}\alpha_i y_i \bold x^T_i\bold x_s\right)</script><p><strong>Soft Margin</strong></p>
+<blockquote class="blockquote-center">
+<p>$<br>\color{red} b=\frac{1}{\abs{S}}\sum_{s\in S}\left(y_s-\sum_{i\in S}\alpha_i y_i \textbf{x}^T_i\textbf{x}_s\right)<br>$</p>
+
+</blockquote>
+<p><strong>Soft Margin</strong></p>
 <ul>
 <li>When data are not linear separable, introduce slack variables (tolerance control of fault) $\xi_i \gt 0$</li>
-<li>Relax constraint to $y_i(\bold w^T\bold x + b) \ge 1-\xi_i$ </li>
+<li>Relax constraint to $y_i(\textbf{w}^T\textbf{x} + b) \ge 1-\xi_i$ </li>
 <li>Primal problem :</li>
 </ul>
-<script type="math/tex; mode=display">
-\begin{align}
-&\underset{\bold w, b} \min \frac{1}{2}\|\bold w\|_2^2+C\sum_{i=1}^{n}\xi_i\\
-&\text{s.t. }y_i(\bold w^T\bold x + b)\ge 1-\xi_i,\ \xi_i \ge 0,\ i=1,...,n
-\end{align}</script><ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\underset{\textbf{w}, b} \min \frac{1}{2}|\textbf{w}|_2^2+C\sum_{i=1}^{n}\xi_i\\<br>&amp;\text{s.t. }y_i(\textbf{w}^T\textbf{x} + b)\ge 1-\xi_i,\ \xi_i \ge 0,\ i=1,…,n<br>\end{align}<br>$</p>
+
+</blockquote>
+<ul>
 <li>Similar derivation to dual problem : (Difference: add the error coe $C$ as a bound)</li>
 </ul>
-<script type="math/tex; mode=display">
-\min_{\alpha}\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\bold x_i^T \bold x_j)-\sum_i \alpha_i\\
-\text{s.t. }0\le \alpha_i \le C,\ i=1,...,n,\ \sum_i\alpha_iy_i=0</script><h4 id="Nonlinear-SVM"><a href="#Nonlinear-SVM" class="headerlink" title="Nonlinear SVM"></a>Nonlinear SVM</h4><ul>
+<blockquote class="blockquote-center">
+<p>$<br>\min_{\alpha}\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\textbf{x}_i^T \textbf{x}_j)-\sum_i \alpha_i\\<br>\text{s.t. }0\le \alpha_i \le C,\ i=1,…,n,\ \sum_i\alpha_iy_i=0<br>$</p>
+
+</blockquote>
+<h4 id="Nonlinear-SVM"><a href="#Nonlinear-SVM" class="headerlink" title="Nonlinear SVM"></a>Nonlinear SVM</h4><ul>
 <li>Nonlinear decision boundary could be mapped to linear boundary in <font color="red">high-dimensional space</font></li>
 </ul>
 <center><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd34.png" style="zoom:60%"></center>
 
 <ul>
-<li>Modify objective function in dual problem : <font color="red">$\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\phi(\bold x_i)^T \phi(\bold x_j))-\sum_i \alpha_i$</font> </li>
-<li>Kernel function as inner product : $K(\bold x_i, \bold x_j)=\phi(\bold x_i)^T \phi(\bold x_j)$</li>
-<li><font color="grey">Q: How to choose **Kernel Functions** ?</font>      <font color="green">A: Arbitrary</font>
+<li>Modify objective function in dual problem : $\color{red}\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\phi(\textbf{x}_i)^T \phi(\textbf{x}_j))-\sum_i \alpha_i$</li>
+<li>Kernel function as inner product : $K(\textbf{x}_i, \textbf{x}_j)=\phi(\textbf{x}_i)^T \phi(\textbf{x}_j)$</li>
+<li><font color="grey">Q: How to choose <b>Kernel Functions</b> ?</font>      <font color="green">A: Arbitrary</font>
 
 </li>
 </ul>
