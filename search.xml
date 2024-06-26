@@ -331,7 +331,10 @@
 
 <font color="blue">1 .  Minkowski distance (闵可夫斯基距离)</font>
 
+<blockquote class="blockquote-center">
 <p>$<br>\begin{align}<br>&amp;\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}&amp;<br>\end{align}<br>$</p>
+
+</blockquote>
 <blockquote>
 <p>Parameter <code>h</code> is to <font color="blue">emphasize the character of the data</font>. By changing the value of <code>h</code> , Minkowski distance can cover many Distance Metrics.</p>
 </blockquote>
@@ -341,27 +344,42 @@
 <blockquote>
 <p>Minkowski distance where $h = 1$</p>
 </blockquote>
+<blockquote class="blockquote-center">
 <p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
+
+</blockquote>
 <font color="blue">3 .  Euclidean distance (欧氏距离)</font>
 
 <blockquote>
 <p>Minkowski distance where $h = 2$ </p>
 </blockquote>
+<blockquote class="blockquote-center">
 <p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt{\sum_{k=1}^{p}(\text x_{ik}-\text x_{jk})^2}<br>$</p>
+
+</blockquote>
 <font color="blue">4 .  Supremum distance (or Chebyshev distance, 切比雪夫距离)</font>
 
 <blockquote>
 <p>Minkowski distance where $h \to \infty$ </p>
 </blockquote>
+<blockquote class="blockquote-center">
 <p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\max_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
+
+</blockquote>
 <p><a name="cosine distance"><font color="blue">5 .  Cosine distance (余弦距离)</font></a> </p>
+<blockquote class="blockquote-center">
 <p>$<br>\cos(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k=1}^{p}\text x_{ik}\text x_{jk}}{\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}}=\frac{\textbf{x}_i\cdot\textbf{x}_j}{\left|\textbf{x}_i\right|\left|\textbf{x}_j\right|}<br>$</p>
+
+</blockquote>
 <p><strong>Other Distance:</strong></p>
 <ul>
 <li>For <a href="#ordinal">ordinal data</a>, mapping the data to numerical data : $X=\{x_{(1)}, x_{(2)},…, x_{(n)}\}, x_{(i)} \mapsto \frac{i−1} {n−1}\in [0, 1]$ </li>
 <li>For mixed type, use weighed distance (加权) with prescribed weights :</li>
 </ul>
+<blockquote class="blockquote-center">
 <p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}<br>$</p>
+
+</blockquote>
 <h3 id="Data-Preprocessing-Lecture"><a href="#Data-Preprocessing-Lecture" class="headerlink" title="Data Preprocessing (Lecture)"></a>Data Preprocessing (Lecture)</h3><div align="center">
 <img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7" width="90%">
 </div>
@@ -457,7 +475,6 @@
 <font face="华文楷体" size="4">注：</font>$LOF$ <font face="华文楷体" size="4">主要用于检测点</font> $A$ <font face="华文楷体" size="4">的邻近点密度，并由此推测该点是否异常值</font>
 
 </blockquote>
-<h1 style="text-align:center"><font color="green" face="Segoe Print">End</font></h1>
 ]]></content>
       <categories>
         <category>2024 Spring</category>
@@ -506,18 +523,21 @@
 <li>Make majority vote $y_{pred} = \text{Mode}(y_{(1)},\cdots, y_{(k)})$ </li>
 </ol>
 <p>Time Complexity : $O(mndK)$ where $n$ is the number of training samples, $m$ is the number of test samples, $d$ is the dimension, and $K$ is the number of nearest neighbors</p>
-<p><img src="/2024/06/24/Big-Data-2/bd8.png" alt="bd8"></p>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd8.png" alt="bd8" style="zoom:50%"></div>
+
+
+
 <p><strong>Similarity and Divergence</strong></p>
 <ul>
 <li><a href="/2024/06/22/Big-Data-1/index.html#cosine distance">Cosine similarity</a></li>
-<li><a href="/2024/06/22/Big-Data-1/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\frac{|A\cap B|}{|A\cup B|}$ </li>
-<li>Kullback-Leibler (KL) divergence : $d_{KL}(P||Q) = E_P log \frac{P(x)}{Q(x)}$ , measures the distance between two probability <font color="red">distributions</font> $P$ and $Q$ ; in discrete case, $d_{KL}(p||q) = \sum^m_{i=1} p_i log \frac{p_i}{q_i}$ (CDF of $P$ and $Q$)</li>
+<li><a href="/2024/06/22/Big-Data-1/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\Large{\frac{|A\cap B|}{|A\cup B|}}$ </li>
+<li>Kullback-Leibler(KL) divergence : $d_{KL}(P||Q) = E_P log \large{\frac{P(x)}{Q(x)}}$ , measures the distance between two probability <font color="red">distributions</font> $P$ and $Q$ ; in discrete case, $d_{KL}(p||q) = \sum^m_{i=1} p_i log \large{\frac{p_i}{q_i}}$ (CDF of $P$ and $Q$)</li>
 </ul>
 <p><strong>Tuning <code>k</code></strong> </p>
 <ul>
 <li>Different <code>k</code> value can lead to totally different results. ( model overfit the data when <code>k = 1</code>, bad for generalization )</li>
 <li><strong>M-fold Cross-validation (CV)</strong> to tune <code>k</code> : <ul>
-<li>partition the dataset into M parts ( M = 5 or 10 ) , let $\kappa : \{1,\cdots, N\} \to \{1,\cdots, M\}$ be <em>randomized partition index map</em> (随机分布索引映射) . The <em>CV estimate of prediction error</em> (预测误差的CV估计) is<br> $CV(\hat f,k)=\frac{1}{N} \sum_{n=1}^{N}L(y_i,\hat f^{-\kappa(i)}(x_i,k))$</li>
+<li>partition the dataset into M parts ( M = 5 or 10 ) , let $\kappa : \{1,\cdots, N\} \to \{1,\cdots, M\}$ be <em>randomized partition index map</em> (随机分布索引映射) . The <em>CV estimate of prediction error</em> (预测误差的CV估计) is<br> $CV(\hat f,k)=\large{\frac{1}{N}} \sum_{n=1}^{N}L(y_i,\hat f^{-\kappa(i)}(x_i,k))$</li>
 </ul>
 </li>
 </ul>
@@ -575,23 +595,18 @@
 
 <ul>
 <li>1NN error rate is twice the Bayes error rate<ul>
-<li>Bayes error $=1-p_{c^<em>}(x)$ where $c^</em>=\arg\max_{c}p_c(x)$</li>
+<li>Bayes error $=1-p_{c^\ast}(x)$ where $c^\ast=\arg\max_{c}p_c(x)$</li>
 <li>Assume the samples are i.i.d. (独立同分布) , for any test sample $x$ and small $\delta$, there is always a training sample $z \in B(x, \delta)$ (the label of $x$ is the same as that of $z$), then 1NN error is</li>
 </ul>
 </li>
 </ul>
-<script type="math/tex; mode=display">
-\begin{align}
-\epsilon=\sum_{c=1}^{C}p_c(x)(1-p_c(z))\overset{\delta\to 0}{\longrightarrow}&1-\sum_{c=1}^{C}p_{c}^{2}(x)\\
-\le &1-p_{c^*}^{2}(x)\\
-\le &2(1-p_{c^*}(x))
-\end{align}</script><ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>\epsilon=\sum_{c=1}^{C}p_c(x)(1-p_c(z))\overset{\delta\to 0}{\longrightarrow}&amp;1-\sum_{c=1}^{C}p_{c}^{2}(x) \\<br>\le\ &amp;1-p_{c^\ast}^{2}(x) \\<br>\le\ &amp;2(1-p_{c^\ast}(x))<br>\end{align}<br>$</p>
+
+</blockquote>
+<ul>
 <li><ul>
-<li><font color="green">Remark : In fact,  $\epsilon\le 2(1-p_{c^*}^{2}(x))-\frac{C}{C-1}(1-p_{c^*}^{2}(x))^2$</font>
-
-
-
-</li>
+<li><font color="green">Remark : In fact,</font> $\color{green}\epsilon\le 2(1-p_{c^\ast}^{2}(x))-\frac{C}{C-1}(1-p_{c^\ast}^{2}(x))^2$</li>
 </ul>
 </li>
 </ul>
@@ -603,6 +618,778 @@
 <li>Use code to assist</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">KNeighborsClassifier(n_neighbors = <span class="number">10</span>, metric = <span class="string">&#x27;minkowski&#x27;</span>, p = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h3><ul>
+<li>Tree structure : internal nodes indicate features, while leaf nodes represent classes.</li>
+<li>Start from root, choose a suitable feature $x_i$ and its split point $c_i$ at each internal node, split the node to two child nodes depending on whether $x_i \le c_i$ , until the child nodes are pure.</li>
+<li>Equivalent to rectangular partition of the region.</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><img src="/2024/06/24/Big-Data-2/bd11.png" width="60%"></th>
+<th><img src="/2024/06/24/Big-Data-2/bd12.png" width="60%"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p align="center"><a name="tree">Tree structure</a></p></td>
+<td><p align="center">Rectangular partition</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>How to choose <font color="red">features</font> and <font color="red">split points</font> ?<ul>
+<li>Impurity : choose the feature and split point so that after each slit the impurity should decrease the most</li>
+<li>Impurity(M0)-Impurity(M12) &gt; Impurity(M0)-Impurity(M34), choose A as split node ; otherwise choose B</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd13.png" alt="bd13" style="zoom:80%"></div>
+
+<ul>
+<li>Impurity Measures<ol>
+<li>GINI Index<ul>
+<li>Gini index of node $t$ : $Gini(t)=1-\sum_{c=1}^C (p(c|t))^2$ where $p(c|t)$ is the proportion of class-c data in node $t$</li>
+<li>Gini index of a split : $Gini_{split}=\sum_{k=1}^{K}\frac{n_k}{n}Gini(k)$ where $n_k$ is the number of samples in the child node $k$, $n=\sum_{k=1}^{K} n_k$ </li>
+<li>Choose the split so that $Gini(t) − Gini_{split}$ is maximized</li>
+</ul>
+</li>
+<li>Information Gain<ul>
+<li>Entropy at $t$ : $H(t) = −\sum_{c=1}^{C}p(c|t)\log_2 p(c|t)$ , </li>
+<li>where $t$ is the node and $\color{blue}c$ <font color="blue">represents that this node is chosen</font>.</li>
+<li>Maximum at $log_2 C$, when $p(c|t)=\frac{1}{C}$</li>
+<li>Minimum at $0$, when $p(c|t)=1$ for some $c$</li>
+</ul>
+</li>
+<li>Misclassiﬁcation Error<ul>
+<li>Misclassiﬁcation error at t : $\text{Error}(t) = 1 − \max_c p(c|t)$  (use majority vote)</li>
+<li>Maximum at $1−\frac{1}{C}$, when $p(c|t) = \frac{1}{C}$</li>
+<li>Minimum at $0$, when $p(c|t)=1$ for some $c$</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Compare Three Measure<ul>
+<li>Gini index and information gain should be used when growing the tree</li>
+<li>In pruning, all three can be used (typically misclassiﬁcation error)</li>
+</ul>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Algorithm</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">Impurity Measure</th>
+<th style="text-align:center">Child Nodes</th>
+<th style="text-align:center">Target Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ID3</td>
+<td style="text-align:center">Discrete</td>
+<td style="text-align:center">Info Gain</td>
+<td style="text-align:center">$k\ge 2$</td>
+<td style="text-align:center">Discrete</td>
+</tr>
+<tr>
+<td style="text-align:center">C4.5</td>
+<td style="text-align:center">Discrete, Continuous</td>
+<td style="text-align:center">Info Gain</td>
+<td style="text-align:center">$k\ge 2$</td>
+<td style="text-align:center">Discrete</td>
+</tr>
+<tr>
+<td style="text-align:center">C5.0</td>
+<td style="text-align:center">Discrete, Continuous</td>
+<td style="text-align:center">Info Gain</td>
+<td style="text-align:center">$k\ge 2$</td>
+<td style="text-align:center">Discrete</td>
+</tr>
+<tr>
+<td style="text-align:center">CART</td>
+<td style="text-align:center">Discrete, Continuous</td>
+<td style="text-align:center">Gini Index</td>
+<td style="text-align:center">$k=2$</td>
+<td style="text-align:center">Discrete, Continuous</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Tree Pruning (剪枝)<ul>
+<li>Too complex tree structure easily leads to <font color="red">overﬁtting</font> (分类太细，模型太复杂)</li>
+<li>Prepruning : set threshold <font color="grey">(阈值)</font> $\delta$ for impurity decrease <font color="grey">(剔除杂质)</font> in splitting a node ; if $\Delta \text{Impurity}_{split} \gt \delta$, do slitting, otherwise stop</li>
+<li>Postpruning : based on <u>cost function</u> (provided  $|T|$ and $\alpha$)<ul>
+<li>$\color{red}\text{Cost}_{ \alpha}(T)=\sum_{t=1}^{|T|}n_t\ \text{Impurity}(t)+\alpha|T|$</li>
+<li>Input: a complete tree $T$, $\alpha$</li>
+<li>Output: postpruning tree $\text{T}_{\alpha}$ </li>
+</ul>
+<ol>
+<li>Compute $\text{Impurity}(t)$ for $\forall t$</li>
+<li>Iteratively merge child nodes <strong>bottom-up</strong> : Suppose $\text{T}_{A}$ and $\text{T}_{B}$ are the trees before and after merging, do merging if $\text{Cost}_{ \alpha}(\text{T}_{A}) \ge \text{Cost}_{ \alpha}(\text{T}_{B})$   <font color="grey">(剪枝前损失更大)</font></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Pros and Cons<ul>
+<li>Advantage<ul>
+<li>Easy to interpret and visualize : widely used in ﬁnance, medical health, biology, etc.</li>
+<li>Easy to deal with missing values (treat as new data type)</li>
+<li>Could be extended to regression</li>
+</ul>
+</li>
+<li>Disadvantage<ul>
+<li>Easy to be trapped at local minimum because of greedy algorithm (贪心)</li>
+<li>Simple decision boundary : parallel lines to the axes (Recall <a href="#tree">Pic above</a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Naive-Bayes-朴素贝叶斯"><a href="#Naive-Bayes-朴素贝叶斯" class="headerlink" title="Naive Bayes (朴素贝叶斯)"></a>Naive Bayes (朴素贝叶斯)</h3><ul>
+<li>Based on <strong>Bayes Theorem</strong> and conditional independency assumption on features (Recall <a href="#Bayes">Bayes Classifier</a>)</li>
+<li>Bayes Theorem : $\Large{P(Y|X)=\frac{P(X|Y)P(Y)}{P(X)}}$<ul>
+<li>$P(Y)$ is prior prob. distribution (先验概率分布) , $P(X|Y )$ is likelihood function (似然函数) , $P(X)$ is evidence (边际概率) , $P(Y |X)$ is posterior prob. distribution (后验概率分布).</li>
+</ul>
+</li>
+<li>The <font color="red">core problem</font> of machine learning is to estimate $P(Y |X)$ </li>
+</ul>
+<ol>
+<li>Let $X = \{X_1, . . . , X_d \}$, for ﬁxed sample $X = x$, $P(X = x)$ is independent of  $Y$ , by Bayes Theorem, $P(Y|X=x)\propto P(X=x|Y)P(Y)$</li>
+<li>Assume conditional independency of $X_1, \cdots, X_d$ given $Y = c$ : $P(X=x|Y=c)=\prod_{i=1}^{d}P(X_i=x_i|Y=c)$</li>
+<li><font color="red">Naive Bayes Model :</font>
+
+</li>
+</ol>
+<blockquote class="blockquote-center">
+<p>$<br>\color{red}\hat y =\arg \max_c P(Y=c)\prod_{i=1}^{d}P(X_i=x_i|Y=c)<br>$</p>
+
+</blockquote>
+<p><strong>Maximum Likelihood Estimate (MLE)</strong></p>
+<ul>
+<li>Estimate $P(Y = c)$ and $P(X_i = x_i |Y = c)$ from the dataset $D = \{(\textbf{x}_1, y_1), \cdots ,(\textbf{x}_n, y_n)\}$<ol>
+<li><strong>MLE</strong> for $P(Y = c)$ : $P(Y = c) =\Large{\frac{ \sum_{i=1}^{n} I(y_i=c)}{n}}$</li>
+<li>When $X_i$ is discrete variable with range $\{v_1, \cdots , v_K\}$, <strong>MLE</strong> for $P(X_i = v_k |Y = c) =\Large{\frac{ \sum_{i=1}^{n} I(x_i = v_k |y_i = c)}{ \sum_{i=1}^{n} I(y_i = c)}}$ <br> ( if $X_i$ is continuous, just do discretization on it and use this formula )</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="Model-Assessment"><a href="#Model-Assessment" class="headerlink" title="Model Assessment"></a>Model Assessment</h3><p><strong>Confusion Matrix</strong></p>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd14.png" alt="bd14" style="zoom:100%"></div>
+
+
+
+<ul>
+<li>Representation<ul>
+<li>T &amp; F : represents truth of label (标签是否真实)</li>
+<li>P &amp; N : represents aspect of label (标签的两面)</li>
+</ul>
+</li>
+<li><p>Two-class classification: </p>
+<ul>
+<li>$\text{Accuracy} =\large{\frac{\text{TP+TN}}{\text{TN+FN+FP+TP}}}$, not a good index when samples are <font color="red">imbalanced</font></li>
+<li>$\text{Precision}=\large{\frac{\text{TP}}{\text{TP+FP}}}$ </li>
+<li>TPR : $\text{Recall} = \large{\frac{\text{TP}}{\text{TP+FN}}}$ ; important in medical diagnosis (回收)</li>
+<li>F score : $F_{\beta} = \large{\frac{(1+\beta^2)\text{Precision}\times\text{Recall}}{\beta^2 \times \text{Precision}+\text{Recall}}}$ , e.g. $F_1$ score for $\beta=1$</li>
+<li>FPR : $\text{Specifity} = \large{\frac{\text{TN}}{\text{TN+FP}}}$ ; recall for negative samples</li>
+</ul>
+</li>
+<li><p>Receiver Operating Characteristic (ROC, 受试者工作特征) and Area Under ROC (AUC)</p>
+<ul>
+<li>Aim to solve class distribution <font color="red">imbalance problem</font></li>
+<li>Set different threshold (阈值) $t$ for continuous predicted values.</li>
+<li>Compute <strong>TPR</strong> vs. <strong>FPR</strong> for all $t$ and plot ROC curve</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd15.png" style="zoom:120%"></div>
+
+<ul>
+<li>Beware: Don’t view the “curve” as a function, but as a <strong>continuous set of points</strong>.<ul>
+<li>Higher ROC implies better performance (How to measure ? AUC)</li>
+</ul>
+</li>
+<li>AUC: compute the area under ROC curve. The larger the better. Model is good for test set if $AUC \gt 0.75$</li>
+</ul>
+<p><strong>Cohen’s Kappa Coefficient</strong></p>
+<blockquote>
+<p>Since ROC and AUC is complex to be quantified, we need a <code>coe</code> to indicate it.</p>
+<p>We use an example to explain how to quantified it.</p>
+</blockquote>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\text{Cohen’s Kappa Coefficient: }&amp; &amp;\kappa=\frac{p_o-p_e}{1-p_e}=1-\frac{1-p_o}{1-p_e} \\<br>&amp;&amp; &amp;p_e=\sum_{c=1}^{C}\frac{n_c^{pred}}{N}\frac{n_c^{true}}{N}<br>\end{align}<br>$</p>
+
+</blockquote>
+<ul>
+<li>$p_o$ is the accuracy</li>
+<li>$p_e$ is the hypothetical probability of chance agreement</li>
+</ul>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd16.png" alt="bd16" style="zoom:100%"></div>
+
+<p>E.g.  $\large{p_o=\frac{20+15}{50}=0.7}$, $\large{p_e=\frac{25}{50}\times\frac{20}{50}+\frac{25}{50}=0.5}$, then $\large{\kappa=0.4}$</p>
+<ul>
+<li>$\kappa \in [-1,1]$, $\kappa\ge 0.75$ for good performance and $\kappa\lt 0.4$ for bad one.</li>
+</ul>
+<hr>
+<h2 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h2><h3 id="Linear-Model"><a href="#Linear-Model" class="headerlink" title="Linear Model"></a>Linear Model</h3><p><strong>Linear model</strong> : </p>
+<ul>
+<li>For <strong>Univariate</strong> linear model,  $y = w_0 + w_1x + \epsilon$, where $w_0$ and $w_1$ are regression coeﬃcients, $\epsilon$ is the error or noise</li>
+</ul>
+<p>Assume $\epsilon ∼ \mathcal N (0, \sigma^2)$, where $σ^2$ is a ﬁxed but unknown variance; then $y|x ∼ \mathcal N (w_0 + w_1x, σ^2)$</p>
+<script type="math/tex; mode=display">
+(\hat{w}_0,\hat{w}_1)= \arg \min_{w_0,w_1}\sum_{i=1}^{n}(y_i-w_0-w_1x_i)^2</script><p>which means $L(\hat w_0,\hat w_1)$ is minimized (残差最小).</p>
+<ul>
+<li>For <strong>multivariate</strong> linear model, $y=f(\bold x)=w_0+w_1x_1+w_2x_2+\cdots+w_px_p + \epsilon$ <ul>
+<li>where $w_0, w_1,\cdots, w_p$ are <font color="red">regression coefficients</font>, $\bold x = (x_1,\cdots, x_p)^T$ is the input vector whose components are independent variables or attribute values, $\epsilon \thicksim \mathcal N(0, σ^2)$ is the noise.</li>
+<li>For the size n samples $\{(\bold x_i, y_i)\}$, let $\bold y = (y_1, \cdots , y_n)^T$ be the response or dependent variables, $\bold w = (w_0, w_1, \cdots, w_p)^T$,  we construct a matrix $\bold X=[\bold 1_n, (\bold x_1, \cdots,\bold x_n)^T]\in \mathbb R^{n \times(p+1)}$ , and $\bold{\varepsilon}=(\epsilon_1,\cdots,\epsilon_n)^T \thicksim \mathcal N(\bold 0,\sigma^2\bold l_n)$ </li>
+</ul>
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\bold y=\bold X\bold w + \varepsilon\\ \\<br>&amp;\bold X=<br>\begin{pmatrix}<br>1 &amp; x_{11} &amp; \cdots &amp; x_{1p} \\<br>1 &amp; x_{21} &amp; \cdots &amp; x_{2p} \\<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>1 &amp; x_{n1} &amp; \cdots &amp; x_{np}<br>\end{pmatrix}<br>\end{align}<br>$</p>
+
+</blockquote>
+<p><strong>Least Square (LS)</strong> <font color="grey" size="3">最小二乘法</font></p>
+<div><img src="/2024/06/24/Big-Data-2/bd17.png" style="zoom:60%"></div>
+
+<ul>
+<li>From geometry aspect, we should <strong>minimize the residual sum-of-square (残差平方和)</strong>: <br>$\text{RSS}(\bold w)=\sum_{i=1}^{n} (y_i-w_0-w_1x_1-\cdots-w_px_p)^2=|\bold y - \bold X \bold w|_{2}^2$<ul>
+<li>When $\bold X^T\bold X$ is invertible, the <strong>minimizer</strong> $\hat{\textbf{w}}$ satisfy :  （可证明 $\hat w$ 是无偏估计）</li>
+</ul>
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\nabla_{\bold w}\text{RSS}(\hat{\bold w})=0 \Rightarrow \hat{\bold w}=(\bold X^T \bold X)^{-1}\bold X^T \bold y<br>$</p>
+
+</blockquote>
+<ul>
+<li><ul>
+<li>Then prediction $\hat{\bold y}=\bold X(\bold X^T \bold X)^{-1}\bold X^T \bold y= \bold P \bold y$ is a projection of $\bold y$ onto the linear space spanned by the column vectors of $\bold X$; (As Pic 15 show)<ul>
+<li>$\bold P=\bold X(\bold X^T \bold X)^{-1}\bold X^T$ is the projection matrix satisfying $\bold P^2 = \bold P$ <font color="green">(Recall: Linear Algebra)</font></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Optimal Method: Ordinary least square (<strong>OLS</strong>)</p>
+<ol>
+<li>Get mean values from sample set: $\bar y=\frac{1}{n}\sum_{i=1}^{n}y_i$ , $\bar{\bold x}=\frac{1}{n}\sum_{i=1}^{n}{ \bold x_i}$</li>
+<li>Centralize data (minus by $\bar y$ and $\bar{\bold x}$) and calculate $RSS(\tilde{\bold w})$ </li>
+<li>Prediction $\hat{\bold y}=\bold P \bold y$ is the projection (投影) of $\bold y$ on the <em>linear space spanned</em> by the columns of $\bold X$. <br>$\mathcal X= \text{Span}\{ \bold x_{\cdot ,0}, \bold x_{\cdot ,1},\cdots,  \bold x_{\cdot ,p}\}$ , recall that $ \bold x_{\cdot ,0}= \bold{1}_n$</li>
+<li>If $\{ \bold x_{\cdot ,0}, \bold x_{\cdot ,1},\cdots,  \bold x_{\cdot ,p}\}$ forms a set of orthonormal basis (标准正交基) , then $\hat{\bold y}=\sum_{i=0}^{p}&lt;\bold y, \bold x_{\cdot ,i}&gt; \bold x_{\cdot ,i}$</li>
+<li>If not, do orthogonalization by Gram-Schmidt procedure for the set $\{ \bold x_{\cdot ,0}, \bold x_{\cdot ,1},\cdots,  \bold x_{\cdot ,p}\}$ </li>
+</ol>
+</blockquote>
+<ul>
+<li>From mathemetic aspect, it’s about <strong>MLE</strong> (Result the same)<ol>
+<li>Likelihood function: $L((\bold w,\bold X),\bold y)=P(\bold y|(\bold X, \bold w))=\prod_{i=1}^{n}P(y_i|(\bold x_i, \bold w))$ </li>
+<li>Find <strong>MLE</strong>: $\hat{\bold w}=\arg \max_{\bold w} L(\bold w ; \bold X, \bold y)$ (E.g. For $P(y_i|(\bold x_i, \bold w))=\frac{1}{\sqrt{2\pi}\sigma} \Large{e^{-\frac{(y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2}{2\sigma^{2}}}}$)</li>
+<li><font color="blue">(2.) is equivalent to its log-function:</font>  E.g.  $l(\bold w ; \bold X, \bold y)= \log{L(\bold w ; \bold X, \bold y)}=-n\log(\sqrt{2\pi}\sigma)-\frac{1}{2\sigma^{2}} \sum_{i=1}^{n} (y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2)$ </li>
+<li>Then get the same minimizer as <strong>LS</strong> : $\hat{\bold w}=(\bold X^T \bold X)^{-1}\bold X^T \bold y$</li>
+</ol>
+</li>
+</ul>
+<p><strong>Shortcomings of Fitting Nonlinear Data</strong> (上述方法仅适合线性回归)</p>
+<ul>
+<li>Evaluating the model by Coefficient of Determination $R^2$<ul>
+<li>$R^2 := 1-\frac{ \text{SS}_{res}}{ \text{SS}_{tot}}$ ($=\frac{ \text{SS}_{reg}}{ \text{SS}_{tot}}$ only for linear regression), where<ul>
+<li>$ \text{SS}_{tot} = \sum_{i=1}^{n} (y_i-\bar y)^2$ is the total sum of squares</li>
+<li>$ \text{SS}_{reg} = \sum_{i=1}^{n} (\hat y_i-\bar y)^2$ is the regression sum of squares</li>
+<li>$ \text{SS}_{res} = \sum_{i=1}^{n} (y_i-\hat y_i)^2$ is the residual sum of squares.</li>
+</ul>
+</li>
+<li>The larger the $R^2$, the better the model !</li>
+</ul>
+</li>
+<li><strong>Multicolinearity</strong> [多重共线性]<ul>
+<li>If the columns of $\bold X$ are almost linearly dependent (multicolinearity), then $\det(\bold X^{T}\bold X)\approx 0$, the diagonal entries in $(\bold X^{T}\bold X)^{-1}$ is quite large, leading to a large variances of $\hat{\bold w}$ (inaccurate).</li>
+<li>Remedies (补救措施): ridge regression (岭回归), principal component regression (主属性回归), partial least squares regression (部分最小二乘回归), etc.</li>
+</ul>
+</li>
+<li>Overfitting<ul>
+<li>Linear regression easily to be overfitted when introducing more variables.</li>
+<li>Solution: <a href="#regul">Regularization</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>Bias-Variance Decomposition</strong></p>
+<ul>
+<li>Bias (偏差): $\text{Bias}(\hat f(\bold x))=\text{E}_\text{train}\hat f(\bold x)-f(\bold x)$ , average <strong>accuracy</strong> of prediction for the model (deviation from the truth)</li>
+<li>Variance (方差): $\text{Var}(\hat f(\bold x))=\text{E}_\text{train}(\hat f(\bold x)-\text{E}_\text{train}\hat f(\bold x))^2$ , <strong>variability</strong> of the model prediction due to different data set (stability)</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\color{red}<br>\text{E}_\text{train}\text{R}_\text{exp}(\hat f(\bold x))=\text{E}_\text{train}\text{E}_\text{P}[(y-\hat f(\bold x))^2|\bold x] = \underbrace{\text{Var}(\hat f(\bold x))}_{\text{variance}}+\underbrace{\text{Bias}^2(\hat f(\bold x))}_{\text{bias}}+\underbrace{\sigma^2}_{\text{noise}}<br>$</p>
+
+</blockquote>
+<div><img src="/2024/06/24/Big-Data-2/bd19.png" style="zoom:80%"></div>
+
+<ul>
+<li>The more complicated the model, the lower the bias, but the higher the variance.</li>
+</ul>
+<div><img src="/2024/06/24/Big-Data-2/bd18.png" style="zoom:90%"></div>
+
+<ul>
+<li>kNN Regression<ul>
+<li>kNN can be used to do regression if the mode (majority vote) is replaced by mean : $\hat f(x)=\frac{1}{k} \sum_{ x_{(i)} \in N_{k}(x)} y_{(i)}$</li>
+<li>Generalization error of kNN regression is</li>
+</ul>
+</li>
+</ul>
+<div><img src="/2024/06/24/Big-Data-2/bd20.png" style="zoom:80%"></div>
+
+<p>where we have used the fact that $E_{ \text{train}} y_{i} = f(\bold{x}_{i})$ and $\text{Var}(y_i)=\sigma^2$</p>
+<ul>
+<li>For small $k$, overfitting, bias ↓, variance ↑</li>
+<li>For large $k$, underfitting, bias ↑, variance ↓</li>
+</ul>
+<hr>
+<h3 id="Regularization-正则化"><a href="#Regularization-正则化" class="headerlink" title="Regularization (正则化)"></a><a name="regul">Regularization</a> (正则化)</h3><blockquote>
+<p>Why we need Regularization ?</p>
+<ul>
+<li>In <strong>high dimensions</strong>, the more the input attributes, the larger the <strong>variance</strong></li>
+<li>Shrinking some coefficients or setting them to zero can reduce the <strong>overfitting</strong></li>
+<li>Using less input variables also help interpretation with the most important variables</li>
+<li>Subset selectionµretaining only a subset of the variables, while eliminating the rest variables from the model</li>
+</ul>
+</blockquote>
+<h4>Best-Subset Selection</h4>
+
+<ul>
+<li>find for each $k ∈ \{0, 1, \cdots , p\}$ the subset $S_k \subset \{1,\cdots, p\}$ of size $k$ that gives the smallest $\text{RSS}(\bold w) = \sum_{i=1}^n (y_i − w_0 − \sum_{j\in S_k} w_j x_{ij})^2$ </li>
+<li>Noted that the best subset of size $k + 1$ may not include the the variables in the best subset of size $k$</li>
+<li>Choose $k$ based on <strong>bias-variance tradeoff</strong>, usually by <strong>AIC</strong> and <strong>BIC</strong>(贝叶斯信息量), or practically by <strong>cross-validation</strong></li>
+</ul>
+<h5>Forward-stepwise selection</h5>
+
+<ul>
+<li>Start with the intercept (截距?) $\bar y$ , then sequentially add into the model the variables that improve the fit most (reduce RSS most)</li>
+<li><font color="red">QR factorization</font> helps search the candidate variables to add </li>
+<li><font color="red">Greedy algorithm</font> : the solution could be sub-optimal</li>
+</ul>
+<h5>Backward-stepwise selection</h5>
+
+<ul>
+<li>Start with the <font color="red">full model</font>, then sequentially delete from the model the variables that has the least impact on the fit most </li>
+<li>The candidate for dropping is the variable with the smallest <a href="/2024/06/22/Big-Data-1/index.html#z-score">Z-score</a> </li>
+<li>Can only be used when $n &gt; p$ in order to fit the full model by <strong>OLS</strong></li>
+</ul>
+<h5><font color="red">Regularization by Penalties</font></h5>
+
+<ul>
+<li>Add a penalty term, in general $l_q$ - norm</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\sum_{i=1}^{n}(y_i-w_0-w_1x_1-\cdots-w_px_p)^2+\lambda |\bold w|^q_q=|\bold y-\bold X\bold w|^2+\lambda |\bold w|^q_q<br>$</p>
+
+</blockquote>
+<ul>
+<li>By arranging $\lambda$ , we can correct the overfitting (bias inc. &amp; var dec.)</li>
+<li><code>q = 2</code> for Ridge Regression &amp; <code>q = 1</code> for LASSO Regression</li>
+</ul>
+<div><img src="/2024/06/24/Big-Data-2/bd26.png" style="zoom:60%"></div>
+
+
+
+<h4>Ridge Regression</h4>
+
+<font color="#ff44ff">$\hat w=\arg \underset{w}\min {\|y-Xw\|_2^2}+\lambda\|w\|_2^2$</font> 
+
+<p><img align="left" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd21.png" style="zoom:50%"></p>
+<blockquote>
+<p>Solving Ridge Regression</p>
+</blockquote>
+<p><img align="left" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd22.png" style="zoom:50%"></p>
+<blockquote>
+<p>Bayesian Viewpoint of Ridge Regression</p>
+</blockquote>
+<p><img align="left" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd23.png" style="zoom:58%"></p>
+<hr>
+<h4>LASSO Regression</h4>
+
+<blockquote>
+<p>Can be used to estimate the coefficients and select the important variables simultaneously</p>
+<p>Reduce the model complexity, avoid overfitting, and improve the generalization ability</p>
+</blockquote>
+<font color="#ff44ff">$\hat w=\arg \underset{w}\min {\|y-Xw\|_2^2}+\lambda\|w\|_1$</font> 
+
+<p>Two Rpoperties : </p>
+<ul>
+<li>Shrinkage (将所有点收缩)</li>
+<li>Selection (将近点归零，远点收缩)</li>
+</ul>
+<p><table>
+    <tr>
+        <td><img align="left" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd24.png" style="zoom:50%"></td>
+        <td><img align="left" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd25.png" style="zoom:50%"></td>
+    </tr>
+    <tr>
+        <td colspan="2"><center><font size="2">Pic 18. LASSO Regression</font></center></td>
+    </tr>
+</table></p>
+<script type="math/tex; mode=display">
+\hat w_i^{\text{lasso}} = (|\hat w^{OLS}_i| − \lambda)+\text{sign}(\hat w^{OLS}_i)</script><ul>
+<li>Solving LASSO by <strong>LARS</strong> (最小角回归算法)<ol>
+<li>Start with all coefficients $w_i$ equal to zero</li>
+<li>Find the predictor $x_i$ most correlated with $y$ (一般认为夹角最小的即是)</li>
+<li>Increase the coefficient $w_i$ in the direction of the sign of its correlation with $y$. Take residuals $r = y − \hat y$ along the way. Stop when some other predictor $x_k$ has as much correlation with $r$ as $x_i$ has (调整参数 $w$ 直至下一个分量夹角最小)</li>
+<li>Increase $(w_i, w_k)$ in their joint <strong>least squares direction</strong>, until some other predictor $x_m$ has as much correlation with the residual $r$</li>
+<li>Continue until all predictors are in the model</li>
+</ol>
+</li>
+</ul>
+<center><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd27.png" style="zoom:70%"><br><font size="2">Pic 19. LARS</font></center>
+
+
+
+<blockquote>
+<p>Optional: Maximum A Posteriori (<strong>MAP</strong>) Estimation</p>
+<ul>
+<li><p>Given $\theta$ , the conditional distribution of $\bold y$ is $P(\bold y|\theta)$</p>
+</li>
+<li><p><strong>MAP</strong> choose the point of maximal posterior probability :</p>
+<p> $\hat{\theta}^{MAP}=\arg \underset{\theta}\max{(\log P(\bold y|\theta)+\log P(\theta))}$</p>
+</li>
+<li><p>If $\theta=\bold w$, and we choose the log-prior <font color="grey">[对数先验]</font> (i.e. normal prior  $\mathcal N(0, \frac{\sigma^2}{\lambda} \bold{I})$ ) , we revocer the ridge regression. ==???==</p>
+</li>
+<li><p><font color="#ff7575">Different log-prior lead to different penalties</font> (Not general case. Some penalties may not be the logarithms[对数] of probability distributions, some other penalties depend on the data)</p>
+</li>
+</ul>
+<p>Related Regularization Models</p>
+<ul>
+<li>Elastic net (混合回归) : $\hat{\bold w}=\arg\min_w|y-Xw|_2^2+\lambda_1|\bold w|^2_2+\lambda_2|\bold w|_1$ </li>
+<li>Group LASSO (对不同分组进行回归) : $\hat{\bold w}=\arg\min_w|y-Xw|_2^2+\sum_{g=1}^{G}\lambda_{g}|\bold w_{g}|_2$ , where $\bold w=(w_1,\cdots,w_G)$ is the <strong>group partition</strong> of $\bold w$. </li>
+<li>Dantzig Selector : …</li>
+<li>Smoothly clipped absolute deviation (<strong>SCAD</strong>) penalty</li>
+<li>Adaptive LASSO</li>
+</ul>
+</blockquote>
+<h4>ADMM Used in LASSO Problem</h4>
+
+<p><strong>Altinating Direction Method of Multipliers (ADMM)</strong></p>
+<ul>
+<li>ADMM [交替方向乘子法] often used to solve problems with two optimized variables which only has equality constraint. </li>
+<li><p>Normal Form as below :</p>
+<script type="math/tex; mode=display">
+\min_{x,z} f(x)+g(z)\\ s.t.\ Ax+Bz=c</script></li>
+<li><p>where $x\in R^{n}$ and $z\in R^{m}$ are optimized variables, and in the equality constraint, $A\in R^{p\times n}$ , $B\in R^{p\times m}$ , $c\in R^{p}$ , and $f$ and $g$ are <font color="red">convex functions (凸函数)</font></p>
+</li>
+</ul>
+<center>------ Solution ------</center>
+
+<ol>
+<li>Define Augmented Lagrangian (增广拉格朗日函数)</li>
+</ol>
+<script type="math/tex; mode=display">
+L_{\rho}(x,z,u)=f(x)+g(z)+u^{T}(Ax+Bz-c)+\frac{\rho}{2}\|Ax+Bz-c\|^2</script><ul>
+<li>If we let $w=\frac{u}{\rho}$ , then we can get simplified form of Augmented Lagrangian</li>
+</ul>
+<script type="math/tex; mode=display">
+L_{\rho}(x,z,u)=f(x)+g(z)+\frac{\rho}{2}\|Ax+Bz-c+w\|_2^2-\frac{\rho}{2}\|w\|_2^2</script><ol>
+<li>Algorithm : fixed other variables and update only one of them (Here $\rho\gt 0$ is a penalty parameter)</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{align}
+&\text{for }k=1,2,3,...\\
+&\text{step 1: } x^{(k)}=\arg\min_{x}L_{\rho}(x,z^{(k-1)},w^{(k-1)})=\arg\min_{x} f(x)+\frac{\rho}{2}\|Ax+Bz^{(k-1)}-c+w^{(k-1)}\|_2^2 \\
+&\text{step 2: } z^{(k)}=\arg\min_{z}L_{\rho}(x^{(k)},z,w^{(k-1)})=\arg\min_{z} g(z)+\frac{\rho}{2}\|Ax^{(k)}+Bz-c+w^{(k-1)}\|_2^2 \\
+&\text{step 3: } w^{(k)}=w^{(k-1)}+Ax^{(k)}+Bz^{(k)}-c
+\end{align}</script><ol>
+<li><strong>Consider LASSO Problem</strong> <ul>
+<li>To find $\min_{w} \frac{1}{2}|y-Xw|^2_2+\lambda|w|_1$ </li>
+<li>Let $w=\beta$ (the constraint : $w-\beta=0$) and rewrite the Augmented Lagrangian : $L_{\rho}(w,\beta,u)=\frac{1}{2}|y-Xw|^2_2+\lambda|\beta|_1+u^T(w-\beta)+\frac{\rho}{2}|w-\beta|_2^2$</li>
+</ul>
+</li>
+</ol>
+<h3 id="Model-Assessment-1"><a href="#Model-Assessment-1" class="headerlink" title="Model Assessment"></a>Model Assessment</h3><ul>
+<li>Mean absolute error (MAE) : $MAE =\frac{1}{n} \sum_{i=1}^{n} \abs{y_i - \hat y_i}$</li>
+<li>Mean square error (MSE) : $MSE =\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat y_i)^2$ </li>
+<li>Root mean square error (RMSE) : $RMSE = \sqrt{\frac{1}{n} (y_i - \hat y_i)^2}$</li>
+<li><p>Coefficient of Determination [决定系数] <font color="green">(Recall)</font> : $R^2:=1-\frac{\text{SS}_{\text{res}}}{\text{SS}_{\text{tot}}}$ , <br>where $\text{SS}_{\text{tot}}=\sum_{i=1}^n (y_i-\bar y_i)^2$  and  $\text{SS}_{\text{res}}=\sum_{i=1}^n (y_i-\hat y_i)^2$ </p>
+<ul>
+<li>Normally $R^2\in[0,1]$ , but it can be negative (a wrong model making residual too large). </li>
+<li><font color="red">The larger the $R^2$ , the better the model.</font>
+</li>
+</ul>
+</li>
+<li><p>Adjusted Coefficient of Determination</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
+<li>$n$ is  the number of samples, $p$ is the dimensionality (or the number of attributes)</li>
+<li><font color="red">The larger the $\text{R}_{\text{adj}}^2$ value, the better performance the model</font></li>
+<li>When adding important variables into the model, $\text{R}_{\text{adj}}^2$ gets larger and $\text{SS}_{\text{res}}$ is reduced</li>
+</ul>
+<hr>
+<h2 id="V-Classification-2"><a href="#V-Classification-2" class="headerlink" title="V. Classification 2"></a>V. Classification 2</h2><blockquote>
+<p>Why talk about Regression first ?</p>
+<ul>
+<li>Naive Bayes uses Probability and Mathemetic methods, which is the core of Regression</li>
+<li>Regression all apply <strong>MLE</strong>, which is connected with Bayes rules.</li>
+</ul>
+</blockquote>
+<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><blockquote>
+<p>逻辑回归是一种分类方法（不是回归）</p>
+</blockquote>
+<font color="green">Recall: Linear Regression</font>
+
+<ul>
+<li>$E(y|x)=P(y=1|x)=w_0+w_1x$ , but $w_0+w_1x$ may be not probability</li>
+<li>Use <strong>Sigmoid function</strong> to map it to $\left[0,1\right]$ : $g(z)=\frac{1}{1+e^{-z}}$ , where $z=w_0+w_1x_1+\cdots+w_dx_d$</li>
+<li><font color="red">Equivalently</font>, $\log{\frac{P(y=1|x)}{1-P(y=1|x)}}=w_0+w_1x_1+\cdots+w_dx_d$</li>
+</ul>
+<script type="math/tex; mode=display">
+\text{logit}(z)=\log\frac{z}{1-z}</script><p><strong>MLE for Logistic Regression</strong></p>
+<ul>
+<li>The prob. distribution for two-class logistic regression model is <ul>
+<li>$Pr(y=1|X=x)=\frac{\exp(\bold w^T \bold x)}{1+\exp(\bold w^T \bold x)}$</li>
+<li>$Pr(y=0|X=x)=\frac{1}{1+\exp(\bold w^T \bold x)}$</li>
+</ul>
+</li>
+<li>Let $P(y=k|X=x)=p_k(\bold x;\bold w)$, $k=0,1$. The <font color="red">likelihood function</font> is $L(\bold w)=\prod_{i=1}^{n} p_{y_i}(\bold x_i;\bold w)$</li>
+<li>MLE of $\bold w$ : $\hat{\bold w}=\arg \underset{\bold w}\max L(\bold w)$</li>
+<li>Solve <font color="red">$\nabla_{\bold w}\log L(\bold w)=0$</font> by Newton-Raphson method</li>
+</ul>
+<blockquote>
+<p>用 MLE 计算 $\hat{\bold w}$ ，需要提前知道 $x$ 的分布，所以逻辑回归是一种分类算法。</p>
+</blockquote>
+<h3 id="Linear-Discriminant-Analysis-LDA"><a href="#Linear-Discriminant-Analysis-LDA" class="headerlink" title="Linear Discriminant Analysis (LDA)"></a>Linear Discriminant Analysis (LDA)</h3><blockquote>
+<p>线性判别分析，是一种监督学习的降维方法（无监督学习一般用<strong>PCA</strong>，主成分分析来降维）</p>
+</blockquote>
+<font color="green">Recall: Naive Bayes</font>
+
+<ul>
+<li>By <strong>Bayes Theorem</strong>: $P(Y|X=x)\propto f_k(\bold x)\pi_{k}$ , where $f_k(\bold x)=P(\bold X=\bold x|Y=k)$ is be the <font color="red">density function</font> of samples in each class $Y=k$, $\pi_k=P(Y=k)$ is the <font color="red">prior probability</font>.</li>
+<li>Assume $f_k (\bold x)$ is multivariate Gaussian (多元高斯分布) : $f_k(x)=$<font size="4">$\frac{1}{(2\pi)^{p/2} \abs{\Sigma_k}^{1/2}}e^{\frac{1}{2}(x-\mu_k)^T\Sigma_k^-1(x-\mu_k)}$</font> , with a common covariance matrix (协方差矩阵) $\bold\Sigma_k$ <font color="grey">(注：多元高斯可以表示为向量和矩阵乘积的形式，如上)</font></li>
+<li>For the decision boundary between class $k$ and $l$, the <strong>log-ratio</strong> of their posteriors (后验) $P(Y|X)$ is</li>
+</ul>
+<script type="math/tex; mode=display">
+\log{\frac{P(Y=k|\bold X=\bold x)}{P(Y=l|\bold X=\bold x)}}=\log{\frac{\pi_k}{\pi_l}}-\frac{1}{2}(\mu_k+\mu_l)^T\bold\Sigma_k^-1(\mu_k-\mu_l)+\bold x^T\bold\Sigma^{-1}(\mu_k-\mu_l)</script><ol>
+<li><p>From log-ratio, we can get <font color="red">Linear discriminant functions</font>(e.g. for class $k$) : $\delta_k(\bold x)=\bold x^T\bold\Sigma^{-1}\mu_k-\frac{1}{2}\mu_k^T\bold\Sigma^{-1}\mu_k+\log\pi_k$ </p>
+</li>
+<li><p>Then the log-ratio become : $\log{\frac{P(Y=k|\bold X=\bold x)}{P(Y=l|\bold X=\bold x)}}=\delta_k(\bold x)-\delta_l(\bold x)$ </p>
+<blockquote>
+<p>相减结果是一个一次方程（线性）</p>
+</blockquote>
+</li>
+<li><p>Decision Rule(分类依据) : $k^{*}=\arg\max_k \delta_k(\bold x)$</p>
+</li>
+</ol>
+<p><strong>Two-class LDA</strong></p>
+<ul>
+<li>LDA rule classifies to <strong>class 2</strong> if</li>
+</ul>
+<script type="math/tex; mode=display">
+(\bold x-\frac{\hat\mu_1+\hat\mu_2}{2})^T \bold\Sigma^{-1}(\hat\mu_2-\hat\mu_1)+\log{\frac{\hat\pi_2}{\hat\pi_1}}\gt 0</script><ul>
+<li>Discriminant direction : $\beta=\bold\Sigma^{-1}(\hat\mu_2-\hat\mu_1)$ </li>
+</ul>
+<center><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd28.png" style="zoom:50%"><br><font size="2">Pic 20. Two-class LDA</font></center>
+
+<blockquote>
+<p>$\hat\mu$ 看作图中椭圆的中心，图中的 $w$ 为投影方向。由上述公式计算可得到样本在投影基向量上的方向，从而判断其类别</p>
+<p>从定性上看，投影的作用是降维，选择的投影空间应当是能将不同类数据点在映射后尽可能分开（或同类的点尽可能紧凑）。</p>
+</blockquote>
+<h3 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h3><center><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd29.png" style="zoom:70%"><br><font size="2">Pic 21. NN</font></center>
+
+<script type="math/tex; mode=display">
+\hat y=g(w_0+\sum_{i=1}^{m} x_iw_i)</script><ul>
+<li>$\hat y$ is Output</li>
+<li>$g$ is a <font color="red">Non-linear activation function</font> (非线性激活函数)</li>
+<li>$w_0$ is the Bias</li>
+</ul>
+<center><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd30.png" style="zoom:70%"><br><font size="2">Pic 22. Common Activation Functions</font></center>
+
+<center><img align="right" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd31.png" style="zoom:50%"></center>
+
+<ul>
+<li><strong>Single Hidden Layer Neural Network</strong><ul>
+<li><font color="red">$z_i=w_{0,i}^{(1)}+\sum_{j=1}^{m}x_jw_{j,i}^{(1)}$</font> </li>
+<li><font color="red">$\hat y_i=w_{0,i}^{(2)}+\sum_{j=1}^{d_1}g(z_j)w_{j,i}^{(2)}$</font></li>
+<li>$x_i\to z_k\to y_j$ , where $z_k$ is the hidden layer</li>
+<li>Hidden Layer can be <font color="red">multiple</font> </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Thm: Universal Approximation Theorem</strong> —— Any function can be approximated by a <font color="blue">three-layer</font> neural network within sufficiently high accuracy.<ul>
+<li>Why not effective ?</li>
+<li>The <strong>width</strong> of each layer may be too much (Large calculation !!)</li>
+<li><font color="green">Now we’re trying to replace **width** with **depth** and find the same Theorem</font> <font color="grey">(即增加层数，减少每层的神经元)</font>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h4>Loss Optimization</h4>
+
+<blockquote>
+<p>Find $\bold W=\{w^{(0)},w^{(1)},…,w^{(n)}\}$ with lowest loss function</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\bold W^{*}=\underset{\bold W} {\arg\min} \frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\bold W),y^{(i)})=\underset{\bold W} {\arg\min}\ C(\bold W)</script><ul>
+<li>But for most cases, we should calculate <font color="red">gradient</font> to find $\bold W^{*}$ </li>
+<li><font color="red">Use **gradient decent** to solve: $\frac{\partial{C}}{\partial{\bold W}}$</font>
+
+
+
+</li>
+</ul>
+<blockquote>
+<p>How to calculate ? (More detail)</p>
+</blockquote>
+<center><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd33.png" style="zoom:60%"></center>
+
+<ul>
+<li>$w_{jk}^{l}$ is the weight for the connection from the $k^{th}$ neuron in the $(l − 1)^{th}$ layer to the $j^{th}$ neuron in the $l^{th}$ layer.</li>
+<li>More briefly, <font color="red">$b_{j}^{l}=w_{j0}^l$</font> is the <font color="red">bias</font> of the $j^{th}$ neuron in the $l^{th}$ layer.</li>
+<li><p>$a^l_j$ for the <font color="red">activation</font> of the $j^{th}$ neuron in the $l^{th}$ layer $z_j^l$  : <font color="red">$a^l_j=g(z^l_j)=g(\sum_k w_{jk}^{l}a_k^{l-1} + b_j^l)$</font> </p>
+</li>
+<li><p>We have define $C(\bold W)=\frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\bold W),y^{(i)})$ </p>
+</li>
+</ul>
+<center><img align="Left" src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd32.png" style="zoom:40%"></center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote>
+<p>Proof</p>
+</blockquote>
+<p>(补)</p>
+<h4>Gradient Descent</h4>
+
+<p><strong>Algorithm</strong> :</p>
+<ol>
+<li>Initialize weights randomly  $\thicksim\mathcal N(0, \sigma^{2})$ </li>
+<li>Loop until convergence : <ol>
+<li>Pick single data point $i$</li>
+<li>Compute <strong>gradient</strong>  $\frac{\partial J_i(\bold W)}{\partial \bold W}$ </li>
+<li>Update weights, $\bold W \leftarrow (\bold W-\eta \frac{\partial J(\bold W)}{\partial \bold W})$ </li>
+</ol>
+</li>
+<li>Return weights</li>
+</ol>
+<ul>
+<li>Mini-batches lead to fast training ! (need not to calculate all gradient for trainset $x$)</li>
+<li>Can parallelize computation + achieve significant speed increases on GPUs.</li>
+</ul>
+<h3 id="Support-Vector-Machine-SVM"><a href="#Support-Vector-Machine-SVM" class="headerlink" title="Support Vector Machine (SVM)"></a>Support Vector Machine (SVM)</h3><p><strong>About SVM</strong></p>
+<ul>
+<li>Use <strong>hyperplane</strong> [超平面] to separate data : maximize <strong>margin</strong></li>
+<li>Can deal with <font color="red">low-dimensional data</font> that are not linearly separated by using kernel functions</li>
+<li>Decision boundary only depends on some samples (support vectors)</li>
+</ul>
+<p><strong>How to train</strong></p>
+<ul>
+<li>Training data: $\{(\bold x_1,y_1),(\bold x_2,y_2),…,(\bold x_n, y_n) \}, y_i\in \{-1, 1\}$</li>
+<li>Hyperplane: $S=\bold w^T\bold x + b$ ;     Decision function: $f(\bold x)=\text{sign}(\bold w^T\bold x + b)$</li>
+<li>Geometric <strong>margin</strong> between a point and hyperplane : <font size="4">$r_i=\frac{y_i(\bold w^T\bold x + b)}{|\bold w|_2}$</font></li>
+<li>Margin between dataset and hyperplane : $\underset{i}\min r_i$</li>
+<li>Maximize margin : $\underset{\bold w, b}\max \underset{i}\min r_i$</li>
+</ul>
+<p><strong>Optimization</strong></p>
+<ul>
+<li>Without loss of generality, let $\underset{i}\min y_i(\bold w^T\bold x + b)=1$</li>
+<li>Maximize margin is equivalent to $\underset{\bold w, b}\max \frac{1}{|\bold w|_2}$  ,  $s.t.\ y_i(\bold w^T\bold x + b)\ge 1,\ i=1,…,n$</li>
+<li>Further reduce to $\underset{\bold w, b} \min \frac{1}{2}|\bold w|_2^2$  ,  $s.t.\ y_i(\bold w^T\bold x + b)\ge 1,\ i=1,…,n$</li>
+<li>This is <strong>primal problem</strong> : quadratical programming with linear constraints, computational complexity is $O(p^3)$ where $p$ is dimension</li>
+</ul>
+<blockquote>
+<p>But we use <strong>Dual problem optimization</strong>(对偶问题优化) most.</p>
+</blockquote>
+<ul>
+<li>When slater condition is satisfied, $\min \max ⇔ \max \min$</li>
+<li>Dual problem : $\underset{\alpha}\max \underset{\bold w, b}\min L(\bold w,b,\alpha)$ —— $L$ is Lagrange function(拉格朗日函数)</li>
+<li><p>Solve for inner minimization problem : </p>
+<ul>
+<li>$\nabla_{\bold w}L=0 \Longrightarrow \bold w^*=\sum_i \alpha_iy_i \bold x_i$</li>
+<li>$\frac{\partial L}{\partial b}=0 \Longrightarrow \sum_i\alpha_iy_i=0$</li>
+</ul>
+</li>
+<li><p>Plug into $L$: $L(\bold w^<em>,b^</em>,\alpha)=\sum_i\alpha_i-\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\bold x_i^T \bold x_j)$ </p>
+</li>
+<li><font color="red">Dual Optimization: </font>
+
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\min_\alpha\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\bold x_i^T \bold x_j)-\sum_i\alpha_i,\\
+\text{s.t. }\alpha_i\ge0,\ i=1,...,n,\ \sum_i\alpha_iy_i=0</script><p><strong>KKT Condition</strong></p>
+<ul>
+<li>Three more conditions from the equivalence of primal and minimax problems</li>
+</ul>
+<script type="math/tex; mode=display">
+\left\{ \begin{array}{l}
+\alpha_i^{*}\ge 0\\
+y_i((\bold w^{*})^T \bold x_i+b^{*})-1 \ge 0\\
+\alpha_i^{*}[y_i((\bold w^{*})^T \bold x_i+b^{*})-1]=0
+\end{array}\right.</script><ul>
+<li>These together with two zero derivative conditions form KKT conditions</li>
+<li>$\alpha_i^{<em>}\gt 0 \Rightarrow y_i((\bold w^{</em>})^T \bold x_i+b^{*})=1$</li>
+<li>Index set of <font color="red">support vectors</font> : $S=\{i|\ \alpha_i \gt 0\}$</li>
+<li>$b=y_s-\bold w^T\bold x_s=y_s-\sum_{i\in S}\alpha_i y_i \bold x^T_i\bold x_s$</li>
+<li>More stable solution : </li>
+</ul>
+<script type="math/tex; mode=display">
+\color{red} b=\frac{1}{\abs{S}}\sum_{s\in S}\left(y_s-\sum_{i\in S}\alpha_i y_i \bold x^T_i\bold x_s\right)</script><p><strong>Soft Margin</strong></p>
+<ul>
+<li>When data are not linear separable, introduce slack variables (tolerance control of fault) $\xi_i \gt 0$</li>
+<li>Relax constraint to $y_i(\bold w^T\bold x + b) \ge 1-\xi_i$ </li>
+<li>Primal problem :</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+&\underset{\bold w, b} \min \frac{1}{2}\|\bold w\|_2^2+C\sum_{i=1}^{n}\xi_i\\
+&\text{s.t. }y_i(\bold w^T\bold x + b)\ge 1-\xi_i,\ \xi_i \ge 0,\ i=1,...,n
+\end{align}</script><ul>
+<li>Similar derivation to dual problem : (Difference: add the error coe $C$ as a bound)</li>
+</ul>
+<script type="math/tex; mode=display">
+\min_{\alpha}\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\bold x_i^T \bold x_j)-\sum_i \alpha_i\\
+\text{s.t. }0\le \alpha_i \le C,\ i=1,...,n,\ \sum_i\alpha_iy_i=0</script><h4 id="Nonlinear-SVM"><a href="#Nonlinear-SVM" class="headerlink" title="Nonlinear SVM"></a>Nonlinear SVM</h4><ul>
+<li>Nonlinear decision boundary could be mapped to linear boundary in <font color="red">high-dimensional space</font></li>
+</ul>
+<center><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd34.png" style="zoom:60%"></center>
+
+<ul>
+<li>Modify objective function in dual problem : <font color="red">$\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\phi(\bold x_i)^T \phi(\bold x_j))-\sum_i \alpha_i$</font> </li>
+<li>Kernel function as inner product : $K(\bold x_i, \bold x_j)=\phi(\bold x_i)^T \phi(\bold x_j)$</li>
+<li><font color="grey">Q: How to choose **Kernel Functions** ?</font>      <font color="green">A: Arbitrary</font>
+
+</li>
+</ul>
+<center><img src="https://gitee.com/steven-he-7818/pic_-lib/raw/master/picture/2024_Spring/bd35.png" style="zoom:50%"></center>
+
+<hr>
 ]]></content>
       <categories>
         <category>2024 Spring</category>
