@@ -129,7 +129,10 @@
 <li>Training dataset: $\{(\textbf{x}_i, y_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to learn an approximation $\hat{f}(\textbf{x})$ or $\hat{\mathcal P}(y|\textbf{x})$</li>
 <li>Test dataset: $\{(\textbf{x}_j, y_j)\}_{j=n+1}^{n+m} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to test</li>
 </ul>
-<p><img src="/2024/06/22/Big-Data-1/bd2.png" alt="bd2"></p>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd2.png" alt="bd2" width="80%">
+</div>
+
 <blockquote>
 <p>So we can conclude that a predictor must be developed from a Supervised Learning Model.</p>
 </blockquote>
@@ -139,7 +142,11 @@
 <li>Optimize the parameters based on some <font color="#ce0000">natural rules</font>, e.g., cohesion (收敛) or divergence (发散)</li>
 <li>Clutering : K-Means, SOM (Self-Organizing Map)</li>
 </ul>
-<p><img src="/2024/06/22/Big-Data-1/bd3.png" alt="bd3"></p>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd3.png" alt="bd3" width="80%">
+</div>
+
+
 <p>Maths method about Unsupervised Learning</p>
 <ul>
 <li>Goal : in probabilistic settings, find the distribution (PDF) $\mathcal P(\textbf{x})$ of $\textbf{x}$ and approximate it (there is no y)</li>
@@ -244,7 +251,10 @@
 </ul>
 <h3>Data Science vs. Other Techniques</h3>
 
-<p><img src="/2024/06/22/Big-Data-1/bd1.png" alt="bd1"></p>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd1.png" alt="bd1" width="60%">
+</div>
+
 <hr>
 <h2 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h2><h3 id="Data-Type"><a href="#Data-Type" class="headerlink" title="Data Type"></a>Data Type</h3><ul>
 <li>Types of Attributes  <font size="2">(每门课几乎都离不开这个)</font><ul>
@@ -269,14 +279,22 @@
 </ul>
 </li>
 </ol>
-<p><img src="/2024/06/22/Big-Data-1/bd4.png" alt="bd4"></p>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd4.png" alt="bd4" width="90%">
+</div>
+
 <blockquote>
 <p>Empiricism:  Mean − Mode = 3 $\times$ (Mean − Median)</p>
 </blockquote>
 <ul>
 <li>Box Plot (箱线图) —— used to describe statistics</li>
 </ul>
-<p><img src="/2024/06/22/Big-Data-1/bd5.png" alt="bd5"></p>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd5.png" alt="bd5" width="40%">
+</div>
+
+
+
 <ol>
 <li><strong>Metrics</strong> (度量——亦称距离函数，是度量空间中满足特定条件的特殊函数。度量空间由欧几里得空间的距离概念抽象化定义而来。)<ul>
 <li>Proximity :<ul>
@@ -289,7 +307,12 @@
 </ul>
 </li>
 </ol>
-<p><img src="/2024/06/22/Big-Data-1/bd6.png" alt="bd6"></p>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd6.png" alt="bd6" width="40%">
+</div>
+
+
+
 <p><a name="distance"><font color="Red"><strong>Distance :</strong></font></a></p>
 <p><strong>Def.</strong> Distance <code>d</code> is the difference between two samples.</p>
 <ul>
@@ -339,7 +362,10 @@
 <li>For mixed type, use weighed distance (加权) with prescribed weights :</li>
 </ul>
 <p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}<br>$</p>
-<h3 id="Data-Preprocessing-Lecture"><a href="#Data-Preprocessing-Lecture" class="headerlink" title="Data Preprocessing (Lecture)"></a>Data Preprocessing (Lecture)</h3><p><img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7"></p>
+<h3 id="Data-Preprocessing-Lecture"><a href="#Data-Preprocessing-Lecture" class="headerlink" title="Data Preprocessing (Lecture)"></a>Data Preprocessing (Lecture)</h3><div align="center">
+<img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7" width="90%">
+</div>
+
 <ul>
 <li>Data Scaling (归一化，标准化)<ul>
 <li>Why scaling?<ul>
@@ -417,8 +443,8 @@
 <li>Local Outlier Factor (Some definition)<ul>
 <li>$lrd_k (A)$ : <font color="red">local reachability density</font> is inversely proportional (成反比) to the average distance</li>
 <li>$lrd_k (A)=1/\left(\frac{ \sum_{O\in N_k (A)} rd_k (A,O) }{| N_k (A)|}\right)$ <font color="blue">(Definition)</font> </li>
-<li>If for most $O\in N_k (A)$ , more than $k$ points are closer to $O$ than $A$ is, then the denominator (分母) is much larger than $d_k(A)$ , and $lrd_k(A)$ is small (e.g. $k=3$ in Pic 8)</li>
-<li><font color="red">Local Outlier Factor</font> : $LOF_k(A)=\frac{ \sum_{O\in N_k(A)} \frac{lrd_k(O)}{lrd_k(A)}}{|N_k(A)|}$ </li>
+<li>If for most $O\in N_k (A)$ , more than $k$ points are closer to $O$ than $A$ is, then the denominator (分母) is much larger than $d_k(A)$ , and $lrd_k(A)$ is small (e.g. $k=3$ in following Pic)</li>
+<li><font color="red">Local Outlier Factor</font> : $LOF_k(A)=\Large{\frac{ \sum_{O\in N_k(A)} \frac{lrd_k(O)}{lrd_k(A)}}{|N_k(A)|}}$ </li>
 <li>$LOF_k(A) \ll 1$ , the density of $A$ is locally higher ; $LOF_k(A)\gg 1$ , the density of $A$ is locally lower, probably <font color="#ff359a">outlier</font> </li>
 </ul>
 </li>

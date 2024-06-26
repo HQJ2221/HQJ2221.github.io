@@ -207,234 +207,74 @@
   
 
 
-<div class="post-block">
+  <div
+  class="post-block"> 
   
-  
-
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2024/06/24/Big-Data-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/sparkle.gif">
-      <meta itemprop="name" content="墨独凌">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三体文明星系牛马空间站">
-      <meta itemprop="description" content="墨独凌の個人サイト">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="MA234 大数据导论与实践（二） | 三体文明星系牛马空间站">
-      <meta itemprop="description" content="大数据导论与实践（一）的续集">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          MA234 大数据导论与实践（二）
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-06-24 11:43:04" itemprop="dateCreated datePublished" datetime="2024-06-24T11:43:04+08:00">2024-06-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-25 19:53:59" itemprop="dateModified" datetime="2024-06-25T19:53:59+08:00">2024-06-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2024-Spring/" itemprop="url" rel="index"><span itemprop="name">2024 Spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-            <div class="post-description">大数据导论与实践（一）的续集</div>
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody"><h1 id="Big-Data-II"><a href="#Big-Data-II" class="headerlink" title="Big Data (II)"></a>Big Data (II)</h1><h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><blockquote>
-<p>本章内容较多，先写下本章主要内容：</p>
-<p>本章涉及分类算法，主要会提及 KNN 算法，决策树算法和朴素贝叶斯算法（是分类算法中最基础的几种）<br>其中，每种算法的应用里涵盖了一些多用概念，如剪枝操作、似然函数计算等。</p>
-<p>介绍三种基本算法后，本章还涉及模型评估，讲解如何通过不同问题使用不同的算法以得到最优的结果</p>
-<p>注：本章含有不亚于数据预处理章节的数学公式，要求理解公式基本内涵。</p>
-</blockquote>
-<h3 id="K-Nearest-Neighbor-KNN"><a href="#K-Nearest-Neighbor-KNN" class="headerlink" title="K-Nearest Neighbor (KNN)"></a>K-Nearest Neighbor (KNN)</h3><blockquote>
-<p>Supervised learning method, especially useful when prior knowledge on the data is very limited.</p>
-<p><font color="red">Low bias, high variance</font> : <font color="blue">just for small</font> <code>k</code> </p>
-<p><strong>Advantages</strong> : not sensitive to outliers (异常值距离一般较远) , easy to implement and parallelize, good for large training set</p>
-<p><strong>Drawbacks</strong> : need to tune (调节) $k$, take large storage, computationally intensive (计算缓慢，算力要求高)</p>
-</blockquote>
-<font size="4"><b>Algorithm</b></font>
-
-<ul>
-<li>Input : training set $D_{train} = \{(x_1, y_1),\cdots,(x_N, y_N)\}$,  a test sample $x$ without label $y$, $k$ and distance metric $d(x, y)$</li>
-<li>Output : predicted label $y_{pred}$ for $x$ </li>
-</ul>
-<ol>
-<li>Compute $d(x, x_j)$ for each $(x_j , y_j) \in D_{train}$</li>
-<li>Sort the distances in an <font color="Red">ascending</font> order, choose the ﬁrst $k$ samples $(x_{(1)}, y_{(1)}),\cdots,(x_{(k)} , y_{(k)})$ </li>
-<li>Make majority vote $y_{pred} = \text{Mode}(y_{(1)},\cdots, y_{(k)})$ </li>
-</ol>
-<p>Time Complexity : $O(mndK)$ where $n$ is the number of training samples, $m$ is the number of test samples, $d$ is the dimension, and $K$ is the number of nearest neighbors</p>
-<p><img src="/2024/06/24/Big-Data-2/bd8.png" alt="bd8"></p>
-<p><strong>Similarity and Divergence</strong></p>
-<ul>
-<li><a href="/2024/06/22/Big-Data-1/index.html#cosine distance">Cosine similarity</a></li>
-<li><a href="/2024/06/22/Big-Data-1/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\frac{|A\cap B|}{|A\cup B|}$ </li>
-<li>Kullback-Leibler (KL) divergence : $d_{KL}(P||Q) = E_P log \frac{P(x)}{Q(x)}$ , measures the distance between two probability <font color="red">distributions</font> $P$ and $Q$ ; in discrete case, $d_{KL}(p||q) = \sum^m_{i=1} p_i log \frac{p_i}{q_i}$ (CDF of $P$ and $Q$)</li>
-</ul>
-<p><strong>Tuning <code>k</code></strong> </p>
-<ul>
-<li>Different <code>k</code> value can lead to totally different results. ( model overfit the data when <code>k = 1</code>, bad for generalization )</li>
-<li><strong>M-fold Cross-validation (CV)</strong> to tune <code>k</code> : <ul>
-<li>partition the dataset into M parts ( M = 5 or 10 ) , let $\kappa : \{1,\cdots, N\} \to \{1,\cdots, M\}$ be <em>randomized partition index map</em> (随机分布索引映射) . The <em>CV estimate of prediction error</em> (预测误差的CV估计) is<br> $CV(\hat f,k)=\frac{1}{N} \sum_{n=1}^{N}L(y_i,\hat f^{-\kappa(i)}(x_i,k))$</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/06/24/Big-Data-2/bd9.png" alt="bd9"></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">k’s value</th>
-<th style="text-align:center">$k=1$ (complex model)</th>
-<th style="text-align:center">$k=\infty$ (simplier model)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Bias</td>
-<td style="text-align:center">decrease</td>
-<td style="text-align:center">increase</td>
-</tr>
-<tr>
-<td style="text-align:center">Variance</td>
-<td style="text-align:center">increase</td>
-<td style="text-align:center">$0$</td>
-</tr>
-<tr>
-<td style="text-align:center">Generalization</td>
-<td style="text-align:center">overfitting (train-set friendly)</td>
-<td style="text-align:center">underfitting (test-set friendly)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><a name="Bayes"><strong>Bayes Classifier (Oracle Classifier)</strong></a></p>
-<ul>
-<li>Assume $Y \in \mathcal{Y} = \{1, 2, . . . , C\}$, the classiﬁer $f : \mathcal X → \mathcal Y$ is a piecewise (分段) constant function</li>
-<li>For <a href="/2024/06/22/Big-Data-1/index.html#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{align}
-\mathcal E(f)&=E_{P(X,Y)}[L(Y,f(X))]=1-P(Y=f(X))\\
-&=1-\int_{\mathcal X}P(Y=f(X)|X=x)p_X(x)\text dx
-\end{align}</script><ul>
-<li>Bayes rule : $f^{∗} (x) = \arg \max_c P(Y = c|X = x)$ , <font color="grey">“the most probable label under the conditional probability on x”</font></li>
-<li>Bayes Error Rate (贝叶斯误差) : $\text{inf}_{f}\varepsilon (f)=$ $\color{red}\mathcal E(f^{\ast})$ $=1-P(Y=f^{\ast}(X))$</li>
-<li><strong>Bayes Decision Boundary</strong> (贝叶斯决策边界) : the boundary separating the <strong>K partition</strong> domains in $\mathcal X$ on each of which $f^{ ∗ }(x) \in Y$ is constant. For binary classiﬁcation, it is the level set on which $P(Y=1|X=x)=P(Y=0|X=x)=0.5$<ul>
-<li><font color="green">Recall : Decision boundary of 15NN is smoother than that of 1NN</font> 
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<font color="red">Analysis of 1NN</font>
-
-<ul>
-<li>1NN error rate is twice the Bayes error rate<ul>
-<li>Bayes error $=1-p_{c^<em>}(x)$ where $c^</em>=\arg\max_{c}p_c(x)$</li>
-<li>Assume the samples are i.i.d. (独立同分布) , for any test sample $x$ and small $\delta$, there is always a training sample $z \in B(x, \delta)$ (the label of $x$ is the same as that of $z$), then 1NN error is</li>
-</ul>
-</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{align}
-\epsilon=\sum_{c=1}^{C}p_c(x)(1-p_c(z))\overset{\delta\to 0}{\longrightarrow}&1-\sum_{c=1}^{C}p_{c}^{2}(x)\\
-\le &1-p_{c^*}^{2}(x)\\
-\le &2(1-p_{c^*}(x))
-\end{align}</script><ul>
-<li><ul>
-<li><font color="green">Remark : In fact,  $\epsilon\le 2(1-p_{c^*}^{2}(x))-\frac{C}{C-1}(1-p_{c^*}^{2}(x))^2$</font>
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<font color="blue">Case : Use kNN to diagnose breast cancer (cookdata) </font>
-
-<ul>
-<li>We have to consider its radius, texture (质地) , perimeter, area, smoothness, etc. (n-dimension)</li>
-<li>Data scaling : 0-1 scaling or z-score scaling</li>
-<li>Use code to assist</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">KNeighborsClassifier(n_neighbors = <span class="number">10</span>, metric = <span class="string">&#x27;minkowski&#x27;</span>, p = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
-              <a href="/tags/CSE-Learning/" rel="tag"># CSE Learning</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2024/06/22/Big-Data-1/" rel="prev" title="MA234 大数据导论与实践（一）">
-                  <i class="fa fa-angle-left"></i> MA234 大数据导论与实践（一）
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2024/06/25/Computer-Organization/" rel="next" title="CS202 计算机组成原理">
-                  CS202 计算机组成原理 <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-<div>
-    
-    <div>
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="image" content="/images/sparkle.gif">
+          <meta itemprop="name" content="墨独凌"></span>
+          <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+            <meta itemprop="name" content="三体文明星系牛马空间站">
+              <meta itemprop="description" content="墨独凌の個人サイト"></span>
+              <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+                <meta itemprop="name" content="MA234 大数据导论与实践（二） | 三体文明星系牛马空间站">
+                  <meta itemprop="description" content="大数据导论与实践（一）的续集"></span>
+                    <header class="post-header">
+                      <h2
+                        h1> 
+                  
+                  
+                  
+                    <div
+                    class="post-body"
+                    itemprop="articleBody">
+                      0
+                      NaN
+                  </div>
+                  <div>
+                    
+                      <div>
     
         <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>再接再厉-------------</div>
     
 </div>
-    
- </div>
+                    
+                  </div>
+                  
+                  
+                  
+                    <footer class="post-footer">
+                      0
+                        <div class="post-tags">
+                            <a href="/tags/Python/" rel="tag">#
+                              Python</a>
+                            <a href="/tags/CSE-Learning/" rel="tag">#
+                              CSE Learning</a>
+                        </div>
+                      
 
+                        <div class="post-nav">
+                          <div class="post-nav-item">
+                              <a href="/2024/06/22/Big-Data-1/" rel="prev" title="MA234 大数据导论与实践（一）">
+                                <i class="fa fa-angle-left"></i>
+                                MA234 大数据导论与实践（一）
+                              </a>
+                          </div>
+                          <div class="post-nav-item">
+                              <a href="/2024/06/25/Computer-Organization/" rel="next" title="CS202 计算机组成原理">
+                                CS202 计算机组成原理
+                                <i class="fa fa-angle-right"></i>
+                              </a>
+                          </div>
+                        </div>
+                  </footer>
+                </article>
+              </div>
+              
+              
+              
 
 
 </div>
