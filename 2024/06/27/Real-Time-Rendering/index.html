@@ -20,28 +20,35 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="This is an introduction about the basic step to use Hexo">
+    <meta name="description" content="本课程为 NUS Soc 暑期课程，主要学习现实 3D 图形的实时渲染原理以及在 C++ 上的实现（使用 OpenGL ）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Introduction to Hexo and Github Page">
-<meta property="og:url" content="http://hqj2221.github.io/2024/06/07/hello-world/index.html">
+<meta property="og:title" content="NUS Soc SWS3005  实时 3D 图形渲染">
+<meta property="og:url" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/index.html">
 <meta property="og:site_name" content="三体文明星系牛马空间站">
-<meta property="og:description" content="This is an introduction about the basic step to use Hexo">
+<meta property="og:description" content="本课程为 NUS Soc 暑期课程，主要学习现实 3D 图形的实时渲染原理以及在 C++ 上的实现（使用 OpenGL ）。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-06-07T06:36:53.967Z">
-<meta property="article:modified_time" content="2024-06-22T12:04:56.838Z">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr1.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr2.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr4.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr5.png">
+<meta property="article:published_time" content="2024-06-27T06:57:57.000Z">
+<meta property="article:modified_time" content="2024-06-27T13:28:03.877Z">
 <meta property="article:author" content="墨独凌">
-<meta property="article:tag" content="Steven He, 墨独凌, 个人站点, Personal Blog">
+<meta property="article:tag" content="CSE Learning">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr1.png">
 
 
-<link rel="canonical" href="http://hqj2221.github.io/2024/06/07/hello-world/">
+<link rel="canonical" href="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2024/06/07/hello-world/","path":"2024/06/07/hello-world/","title":"Introduction to Hexo and Github Page"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/","path":"2024/06/27/Real-Time-Rendering/","title":"NUS Soc SWS3005  实时 3D 图形渲染"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Introduction to Hexo and Github Page | 三体文明星系牛马空间站</title>
+<title>NUS Soc SWS3005  实时 3D 图形渲染 | 三体文明星系牛马空间站</title>
   
 
 
@@ -143,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre-Knowledge-Phase-1"><span class="nav-number">1.</span> <span class="nav-text">Pre-Knowledge (Phase 1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Formation"><span class="nav-number">1.1.</span> <span class="nav-text">Image Formation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements-of-Image-Formation"><span class="nav-number">1.1.1.</span> <span class="nav-text">Elements of Image Formation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-number">1.1.2.</span> <span class="nav-text">Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphics-System-Design"><span class="nav-number">1.2.</span> <span class="nav-text">Graphics System Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rendering-Approaches"><span class="nav-number">1.2.1.</span> <span class="nav-text">Rendering Approaches</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,7 +215,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2024/06/07/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/sparkle.gif">
@@ -221,12 +228,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Introduction to Hexo and Github Page | 三体文明星系牛马空间站">
-      <meta itemprop="description" content="This is an introduction about the basic step to use Hexo">
+      <meta itemprop="name" content="NUS Soc SWS3005  实时 3D 图形渲染 | 三体文明星系牛马空间站">
+      <meta itemprop="description" content="本课程为 NUS Soc 暑期课程，主要学习现实 3D 图形的实时渲染原理以及在 C++ 上的实现（使用 OpenGL ）。">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Introduction to Hexo and Github Page
+          NUS Soc SWS3005  实时 3D 图形渲染
         </h1>
 
         <div class="post-meta-container">
@@ -236,36 +243,181 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2024-06-07 14:36:53" itemprop="dateCreated datePublished" datetime="2024-06-07T14:36:53+08:00">2024-06-07</time>
+      <time title="Created: 2024-06-27 14:57:57 / Modified: 21:28:03" itemprop="dateCreated datePublished" datetime="2024-06-27T14:57:57+08:00">2024-06-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
+        <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-22 20:04:56" itemprop="dateModified" datetime="2024-06-22T20:04:56+08:00">2024-06-22</time>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2024-Summer/" itemprop="url" rel="index"><span itemprop="name">2024 Summer</span></a>
+        </span>
     </span>
 
   
 </div>
 
-            <div class="post-description">This is an introduction about the basic step to use Hexo</div>
+            <div class="post-description">本课程为 NUS Soc 暑期课程，主要学习现实 3D 图形的实时渲染原理以及在 C++ 上的实现（使用 OpenGL ）。</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is the very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <div class="post-body" itemprop="articleBody"><h1 id="Pre-Knowledge-Phase-1"><a href="#Pre-Knowledge-Phase-1" class="headerlink" title="Pre-Knowledge (Phase 1)"></a>Pre-Knowledge (Phase 1)</h1><h2 id="Image-Formation"><a href="#Image-Formation" class="headerlink" title="Image Formation"></a>Image Formation</h2><blockquote>
+<p>How does a realistic graphic form? </p>
+</blockquote>
+<h3 id="Elements-of-Image-Formation"><a href="#Elements-of-Image-Formation" class="headerlink" title="Elements of Image Formation"></a>Elements of Image Formation</h3><ul>
+<li>Objects</li>
+<li>Viewer</li>
+<li>Light sources</li>
+<li>Materials (材质)<ul>
+<li>Attributes that govern how light interacts with the materials in the scene</li>
+</ul>
+</li>
+</ul>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p><strong>Know about Pinhole Camera</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr1.png" alt="Pinhole Camera" style="zoom:60%"></div>
+
+<p>Use trigonometry(三角几何) to find <strong>projection</strong> of 3D point at $(x, y, z)$</p>
+<blockquote class="blockquote-center">
+<p>$<br>x_p=-dx/z\ \ \ \ y_p=-dy/z\ \ \ \ z_p=-d<br>$</p>
+
+</blockquote>
+<p><strong>Synthetic Camera Model (合成相机模型)</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr2.png" alt="Synthetic Camera Model
+" style="zoom:60%"></div>
+
+<p><strong>Luminance and Color Images (光线与颜色的映射)</strong></p>
+<ul>
+<li>Luminance Image<ul>
+<li>Monochromatic(单色)<ul>
+<li>Values are gray levels</li>
+<li>Analogous to working with black and white film or television</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Color Image<ul>
+<li>Has perceptional attributes of hue(色相), saturation(饱和度), and lightness</li>
+</ul>
+</li>
+</ul>
+<p>↓</p>
+<ul>
+<li>Representation of Color<ul>
+<li><font color="red">Additive color</font>: Form a color by adding amounts of three primaries<font color="grey">(RGB)</font><ul>
+<li>E.g. CRTs, projection systems, positive film</li>
+</ul>
+</li>
+<li><font color="red">Subtractive color</font>: Form a color by filtering white light with <font color="cyan">Cyan (C)</font>, <font color="magenta">Magenta (M)</font>, and <font color="deyellow">Yellow (Y)</font> filters
+  - <font color="blue">Noted: Cyan = –Red; Magenta = –Green; Yellow = –Blue</font>
+
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Graphics-System-Design"><a href="#Graphics-System-Design" class="headerlink" title="Graphics System Design"></a>Graphics System Design</h2><font size="4">A graphics system has two main components</font>
+
+<ol>
+<li>Application Programmer Interface (API)<ul>
+<li>For specifying the <font color="red"><b>scene</b></font><ul>
+<li>objects, materials, viewer, lights</li>
+</ul>
+</li>
+<li>For <font color="red">configuring/controlling</font> the system</li>
+</ul>
+</li>
+<li>Renderer<ul>
+<li>Renders the images<ul>
+<li>Using scene info and system configuration</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Rendering-Approaches"><a href="#Rendering-Approaches" class="headerlink" title="Rendering Approaches"></a>Rendering Approaches</h3><ol>
+<li><strong>Ray tracing:</strong> follow rays of light from center of projection until they are absorbed by objects or go off to infinity<ul>
+<li>符合物理解释，泛用性广；但是速度慢，性能低</li>
+</ul>
+</li>
+<li>Radiosity: Energy based approach<ul>
+<li>非常慢且不泛用</li>
+</ul>
+</li>
+</ol>
+<p><strong>Practical Approach</strong></p>
+<ol>
+<li><font coklor="red"><b>Polygon Rasterization</b></font>(多边形光栅)</li>
+</ol>
+<blockquote>
+<p>3D 物体可以近似地表示为平面多边形刻面 (planar polygonal facets) 的网或网格</p>
+</blockquote>
+<table>
+<tr>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr3.png" alt="polygon rasterization
+" style="zoom:60%"></td>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr4.png" alt="polygon rasterization
+" style="zoom:40%"></td>
+</tr>
+</table>
+
+<font color="blue">Pipeline architecture</font>
+
+<blockquote>
+<p>The pipeline consists of stages that each primitive (e.g. polygon) must go through</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vertices -&gt; |Vertex processor| -&gt; |Clipper and primitive assembler| -&gt; |Rasterizer| -&gt; |Fragment processor| -&gt; Pixels</span><br></pre></td></tr></table></figure>
+<p>(i) Vertex Processing</p>
+<ul>
+<li>Much of the work in the pipeline is in converting object representations from one coordinate system to another<ul>
+<li>Object coordinates</li>
+<li>Camera (eye) coordinates</li>
+<li>Screen coordinates</li>
+</ul>
+</li>
+<li>Also computes vertex colors</li>
+</ul>
+<p>(ii) Projection</p>
+<ul>
+<li>Projection is the process that combines the <strong>3D</strong> viewer with the <strong>3D</strong> objects to produce the <strong>2D</strong> image<ul>
+<li>Perspective projections: all projectors meet at the center of projection</li>
+<li>Parallel projection: projectors are parallel, center of projection is replaced by a direction of projection</li>
+</ul>
+</li>
+</ul>
+<p>(iii) Clipping</p>
+<ul>
+<li>Simulate a <font color="red">virtual camera</font> to clip the images</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr5.png" alt="clip" style="zoom:100%"></div>
+
+
+
+<p>(iv) <font color="red">Rasterization</font></p>
+<ul>
+<li>Rasterizer produces a set of <a href="#fragment">fragments</a> for each object</li>
+<li><a name="fragment">Fragments</a> are “potential pixels”<ul>
+<li>Have a location in frame bufffer</li>
+<li>Color and depth attributes</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Fragment Processing</p>
+<ul>
+<li>Fragments are processed to determine the color of the corresponding pixel in the frame buffer</li>
+<li>Colors can be determined by texture mapping or interpolation(插值) of vertex colors</li>
+<li>Fragments may be blocked/occluded(阻塞) by other fragments closer to the camera<ul>
+<li>Using Hidden-surface removal</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 
     </div>
     
@@ -284,16 +436,20 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSE-Learning/" rel="tag"># CSE Learning</a>
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2024/06/25/Computer-Organization/" rel="prev" title="CS202 计算机组成原理">
+                  <i class="fa fa-angle-left"></i> CS202 计算机组成原理
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/06/22/Big-Data-1/" rel="next" title="MA234 大数据导论与实践（一）">
-                  MA234 大数据导论与实践（一） <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -348,7 +504,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
