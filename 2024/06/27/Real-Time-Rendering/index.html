@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr4.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr5.png">
 <meta property="article:published_time" content="2024-06-27T06:57:57.000Z">
-<meta property="article:modified_time" content="2024-06-27T13:28:03.877Z">
+<meta property="article:modified_time" content="2024-06-28T02:30:16.811Z">
 <meta property="article:author" content="墨独凌">
 <meta property="article:tag" content="CSE Learning">
 <meta property="article:tag" content="C++">
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre-Knowledge-Phase-1"><span class="nav-number">1.</span> <span class="nav-text">Pre-Knowledge (Phase 1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Formation"><span class="nav-number">1.1.</span> <span class="nav-text">Image Formation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements-of-Image-Formation"><span class="nav-number">1.1.1.</span> <span class="nav-text">Elements of Image Formation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-number">1.1.2.</span> <span class="nav-text">Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphics-System-Design"><span class="nav-number">1.2.</span> <span class="nav-text">Graphics System Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rendering-Approaches"><span class="nav-number">1.2.1.</span> <span class="nav-text">Rendering Approaches</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre-Knowledge-Phase-1"><span class="nav-number">1.</span> <span class="nav-text">Pre-Knowledge (Phase 1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Formation"><span class="nav-number">1.1.</span> <span class="nav-text">Image Formation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements-of-Image-Formation"><span class="nav-number">1.1.1.</span> <span class="nav-text">Elements of Image Formation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-number">1.1.2.</span> <span class="nav-text">Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphics-System-Design"><span class="nav-number">1.2.</span> <span class="nav-text">Graphics System Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rendering-Approaches"><span class="nav-number">1.2.1.</span> <span class="nav-text">Rendering Approaches</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Contents"><span class="nav-number">1.3.</span> <span class="nav-text">API Contents</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Specifications"><span class="nav-number">1.3.1.</span> <span class="nav-text">Object Specifications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Camera-Specification"><span class="nav-number">1.3.2.</span> <span class="nav-text">Camera Specification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lights-and-Materials"><span class="nav-number">1.3.3.</span> <span class="nav-text">Lights and Materials</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -243,9 +243,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-06-27 14:57:57 / Modified: 21:28:03" itemprop="dateCreated datePublished" datetime="2024-06-27T14:57:57+08:00">2024-06-27</time>
+      <time title="Created: 2024-06-27 14:57:57" itemprop="dateCreated datePublished" datetime="2024-06-27T14:57:57+08:00">2024-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-06-28 10:30:16" itemprop="dateModified" datetime="2024-06-28T10:30:16+08:00">2024-06-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -371,7 +377,7 @@
 <blockquote>
 <p>The pipeline consists of stages that each primitive (e.g. polygon) must go through</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vertices -&gt; |Vertex processor| -&gt; |Clipper and primitive assembler| -&gt; |Rasterizer| -&gt; |Fragment processor| -&gt; Pixels</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Vertices -&gt; |Vertex processor| -&gt; |Clipper and primitive assembler| -&gt; |Rasterizer| </span><br><span class="line">-&gt; |Fragment processor| -&gt; Pixels</span><br></pre></td></tr></table></figure>
 <p>(i) Vertex Processing</p>
 <ul>
 <li>Much of the work in the pipeline is in converting object representations from one coordinate system to another<ul>
@@ -418,6 +424,60 @@
 </li>
 </ul>
 </blockquote>
+<hr>
+<h2 id="API-Contents"><a href="#API-Contents" class="headerlink" title="API Contents"></a>API Contents</h2><ul>
+<li><font color="green">Recall: Functions that specify what we need to form an image</font><ul>
+<li>Objects</li>
+<li>Viewer</li>
+<li>Light Source(s)</li>
+<li>Materials</li>
+</ul>
+</li>
+</ul>
+<h3 id="Object-Specifications"><a href="#Object-Specifications" class="headerlink" title="Object Specifications"></a>Object Specifications</h3><ul>
+<li>Most APIs support a limited set of primitives including<ul>
+<li>Points (0D object)</li>
+<li>Line segments (1D objects)</li>
+<li>Polygons (2D objects)</li>
+<li>Some curves and surfaces<ul>
+<li>Quadrics</li>
+<li>Parametric polynomials</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>All are defined through locations in space or vertices</li>
+</ul>
+<h3 id="Camera-Specification"><a href="#Camera-Specification" class="headerlink" title="Camera Specification"></a>Camera Specification</h3><ul>
+<li>Six degrees of freedom<ul>
+<li>Position of center of lens</li>
+<li>Orientation</li>
+</ul>
+</li>
+<li>Lens</li>
+<li>Film size</li>
+<li>Orientation of film plane</li>
+</ul>
+<h3 id="Lights-and-Materials"><a href="#Lights-and-Materials" class="headerlink" title="Lights and Materials"></a>Lights and Materials</h3><ul>
+<li>Types of lights<ul>
+<li>Point sources vs distributed sources</li>
+<li>Spot lights</li>
+<li>Near and far sources</li>
+<li>Color properties</li>
+</ul>
+</li>
+<li>Material properties<ul>
+<li>Absorption: color properties</li>
+<li>Scattering<ul>
+<li>Diffuse</li>
+<li>Specular</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div align="center"><font color="grey" size="5">-------------------- <font face="Segoe Script">Let's start Phase 2!</font> --------------------</font></div>
+
 
     </div>
     

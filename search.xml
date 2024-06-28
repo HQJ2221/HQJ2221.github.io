@@ -1521,7 +1521,7 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <blockquote>
 <p>The pipeline consists of stages that each primitive (e.g. polygon) must go through</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Vertices -&gt; |Vertex processor| -&gt; |Clipper and primitive assembler| -&gt; |Rasterizer| -&gt; |Fragment processor| -&gt; Pixels</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Vertices -&gt; |Vertex processor| -&gt; |Clipper and primitive assembler| -&gt; |Rasterizer| </span><br><span class="line">-&gt; |Fragment processor| -&gt; Pixels</span><br></pre></td></tr></table></figure>
 <p>(i) Vertex Processing</p>
 <ul>
 <li>Much of the work in the pipeline is in converting object representations from one coordinate system to another<ul>
@@ -1568,6 +1568,60 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </li>
 </ul>
 </blockquote>
+<hr>
+<h2 id="API-Contents"><a href="#API-Contents" class="headerlink" title="API Contents"></a>API Contents</h2><ul>
+<li><font color="green">Recall: Functions that specify what we need to form an image</font><ul>
+<li>Objects</li>
+<li>Viewer</li>
+<li>Light Source(s)</li>
+<li>Materials</li>
+</ul>
+</li>
+</ul>
+<h3 id="Object-Specifications"><a href="#Object-Specifications" class="headerlink" title="Object Specifications"></a>Object Specifications</h3><ul>
+<li>Most APIs support a limited set of primitives including<ul>
+<li>Points (0D object)</li>
+<li>Line segments (1D objects)</li>
+<li>Polygons (2D objects)</li>
+<li>Some curves and surfaces<ul>
+<li>Quadrics</li>
+<li>Parametric polynomials</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>All are defined through locations in space or vertices</li>
+</ul>
+<h3 id="Camera-Specification"><a href="#Camera-Specification" class="headerlink" title="Camera Specification"></a>Camera Specification</h3><ul>
+<li>Six degrees of freedom<ul>
+<li>Position of center of lens</li>
+<li>Orientation</li>
+</ul>
+</li>
+<li>Lens</li>
+<li>Film size</li>
+<li>Orientation of film plane</li>
+</ul>
+<h3 id="Lights-and-Materials"><a href="#Lights-and-Materials" class="headerlink" title="Lights and Materials"></a>Lights and Materials</h3><ul>
+<li>Types of lights<ul>
+<li>Point sources vs distributed sources</li>
+<li>Spot lights</li>
+<li>Near and far sources</li>
+<li>Color properties</li>
+</ul>
+</li>
+<li>Material properties<ul>
+<li>Absorption: color properties</li>
+<li>Scattering<ul>
+<li>Diffuse</li>
+<li>Specular</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div align="center"><font color="grey" size="5">-------------------- <font face="Segoe Script">Let's start Phase 2!</font> --------------------</font></div>
+
 ]]></content>
       <categories>
         <category>2024 Summer</category>
