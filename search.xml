@@ -1463,9 +1463,9 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <li>E.g. CRTs, projection systems, positive film</li>
 </ul>
 </li>
-<li><font color="red">Subtractive color</font>: Form a color by filtering white light with <font color="cyan">Cyan (C)</font>, <font color="magenta">Magenta (M)</font>, and <font color="deyellow">Yellow (Y)</font> filters
-  - <font color="blue">Noted: Cyan = –Red; Magenta = –Green; Yellow = –Blue</font>
-
+<li><font color="red">Subtractive color</font>: Form a color by filtering white light with <font color="cyan">Cyan (C)</font>, <font color="magenta">Magenta (M)</font>, and <font color="deyellow">Yellow (Y)</font> filters<ul>
+<li><font color="blue">Noted:</font> Cyan = –Red; Magenta = –Green; Yellow = –Blue</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -1544,7 +1544,7 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <ul>
 <li>Simulate a <font color="red">virtual camera</font> to clip the images</li>
 </ul>
-<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr5.png" alt="clip" style="zoom:100%"></div>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr5.png" alt="clip" style="zoom:70%"></div>
 
 
 
