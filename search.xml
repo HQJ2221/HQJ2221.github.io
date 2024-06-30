@@ -3,7 +3,7 @@
   <entry>
     <title>MA234 大数据导论与实践（一）</title>
     <url>/2024/06/22/Big-Data-1/</url>
-    <content><![CDATA[<h1 id="Big-Data-I"><a href="#Big-Data-I" class="headerlink" title="Big Data (I)"></a>Big Data (I)</h1><h2 id="Pre-Knowledge"><a href="#Pre-Knowledge" class="headerlink" title="Pre-Knowledge"></a>Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
+    <content><![CDATA[<h1 id="Big-Data-I"><a href="#Big-Data-I" class="headerlink" title="Big Data (I)"></a>Big Data (I)</h1><h2 id="I-Pre-Knowledge"><a href="#I-Pre-Knowledge" class="headerlink" title="I. Pre-Knowledge"></a>I. Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
 <p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\textbf{V}$. If any vector from $\textbf{V}$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$ , or $\alpha$ is a Linear Combination of $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$. </p>
 <blockquote class="blockquote-center">
 <p>$<br>\begin{align}<br>&amp;\text{Set }A=\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}\\<br>&amp;V=\text{Span}(A)=\{k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e | k_i\in \mathbb R, 1\le i\le e\}<br>\end{align}<br>$</p>
@@ -57,7 +57,7 @@
 <li>$\infty$-Norm(行和范数) : $|A|_\infty=\underset{i}\max \sum_{j=1}^{n}{|a_{i,j}|}$  , maximum among <font color="red">absolute sum of row vector</font>.</li>
 <li>F-Norm(核范数) : $|A|_*=\sum_{i=1}^{n}\lambda_i$  , where $\lambda_i$ is singular value(奇异值) of $A$</li>
 </ul>
-<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><h3 id="About-Big-Data"><a href="#About-Big-Data" class="headerlink" title="About Big Data"></a>About Big Data</h3><ul>
+<h2 id="II-Intro"><a href="#II-Intro" class="headerlink" title="II. Intro"></a>II. Intro</h2><h3 id="About-Big-Data"><a href="#About-Big-Data" class="headerlink" title="About Big Data"></a>About Big Data</h3><ul>
 <li><font color="Red"><strong>4 Big “V”</strong></font> required in Big Data<ul>
 <li><strong>Volume</strong>: KB, MB, GB ($10^9$ bytes), TB, PB, EB ($10^{18}$ bytes), ZB, YB<ul>
 <li>Data of Baidu: several ZB</li>
@@ -256,7 +256,7 @@
 </div>
 
 <hr>
-<h2 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h2><h3 id="Data-Type"><a href="#Data-Type" class="headerlink" title="Data Type"></a>Data Type</h3><ul>
+<h2 id="III-Data-Preprocessing"><a href="#III-Data-Preprocessing" class="headerlink" title="III. Data Preprocessing"></a>III. Data Preprocessing</h2><h3 id="Data-Type"><a href="#Data-Type" class="headerlink" title="Data Type"></a>Data Type</h3><ul>
 <li>Types of Attributes  <font size="2">(每门课几乎都离不开这个)</font><ul>
 <li>Discrete: $x \in \text{some countable sets}$, e.g., $\mathbb N$ <ul>
 <li><a name="nominal">Nominal (列举名义)</a> </li>
@@ -499,7 +499,7 @@
   <entry>
     <title>MA234 大数据导论与实践（二）</title>
     <url>/2024/06/24/Big-Data-2/</url>
-    <content><![CDATA[<h1 id="Big-Data-II"><a href="#Big-Data-II" class="headerlink" title="Big Data (II)"></a>Big Data (II)</h1><h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><blockquote>
+    <content><![CDATA[<h1 id="Big-Data-II"><a href="#Big-Data-II" class="headerlink" title="Big Data (II)"></a>Big Data (II)</h1><h2 id="IV-Classification"><a href="#IV-Classification" class="headerlink" title="IV. Classification"></a>IV. Classification</h2><blockquote>
 <p>本章内容较多，先写下本章主要内容：</p>
 <p>本章涉及分类算法，主要会提及 KNN 算法，决策树算法和朴素贝叶斯算法（是分类算法中最基础的几种）<br>其中，每种算法的应用里涵盖了一些多用概念，如剪枝操作、似然函数计算等。</p>
 <p>介绍三种基本算法后，本章还涉及模型评估，讲解如何通过不同问题使用不同的算法以得到最优的结果</p>
@@ -840,7 +840,7 @@
 <li>$\kappa \in [-1,1]$, $\kappa\ge 0.75$ for good performance and $\kappa\lt 0.4$ for bad one.</li>
 </ul>
 <hr>
-<h2 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h2><h3 id="Linear-Model"><a href="#Linear-Model" class="headerlink" title="Linear Model"></a>Linear Model</h3><p><strong>Linear model</strong> : </p>
+<h2 id="V-Regression"><a href="#V-Regression" class="headerlink" title="V. Regression"></a>V. Regression</h2><h3 id="Linear-Model"><a href="#Linear-Model" class="headerlink" title="Linear Model"></a>Linear Model</h3><p><strong>Linear model</strong> : </p>
 <ul>
 <li>For <strong>Univariate</strong> linear model,  $y = w_0 + w_1x + \epsilon$, where $w_0$ and $w_1$ are regression coeﬃcients, $\epsilon$ is the error or noise</li>
 </ul>
@@ -1140,7 +1140,7 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <li>When adding important variables into the model, $\text{R}_{\text{adj}}^2$ gets larger and $\text{SS}_{\text{res}}$ is reduced</li>
 </ul>
 <hr>
-<h2 id="Classification-II"><a href="#Classification-II" class="headerlink" title="Classification II"></a>Classification II</h2><blockquote>
+<h2 id="VI-Classification-II"><a href="#VI-Classification-II" class="headerlink" title="VI. Classification II"></a>VI. Classification II</h2><blockquote>
 <p>Why talk about Regression first ?</p>
 <ul>
 <li>Naive Bayes uses Probability and Mathemetic methods, which is the core of Regression</li>
@@ -1629,6 +1629,62 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
       <tags>
         <tag>CSE Learning</tag>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NUS 夏令营日记</title>
+    <url>/2024/06/30/Summer-Workshop-Diary/</url>
+    <content><![CDATA[<h1 id="2024-6-29-Sat"><a href="#2024-6-29-Sat" class="headerlink" title="2024-6-29 (Sat.)"></a>2024-6-29 (Sat.)</h1><p>​　　经过 4 小时左右的飞行，我于新加坡当地时间（其实就是北京时间）16:50 左右抵达新加坡的樟宜机场(Changi Airport)。然后第一个难题就来了。</p>
+<p>​　　因为提前在淘宝买了流量网卡，所以我取完行李后还需要先去领取窗口取我的网卡，然后才能在 SG 上网。所以我在这里足足拖了 10-15 分钟。不过好在大部分跟我同一班机的同学都遇到了类似的情况，我们最终在差不多的时间里找到了领队，将我们带回了 NUS。</p>
+<p>​　　比较庆幸的是，这样的开局算是比较一帆风顺，至此唯一的遗憾就是我到达的时间是下午，所以在樟宜机场的商场拍摄到的大喷泉显得嘈杂且无趣。我的另一位同学似乎拍到了夜景，那张照片我没要到，只能暂且拿一张“日中的喷泉”来献丑了。</p>
+<div align="center"><img src="/2024/06/30/Summer-Workshop-Diary/ft.jpg" alt="SG机场喷泉" style="zoom:70%"><br>Fountain in Changi Airport</div>
+
+<p>​　　令我感到无奈的是，开局的一帆风顺并不能掩盖接下来在我身上的种种窘态。目前来看，最令我感到不适应的，反而是我在国内最习以为常甚至感到一丝嫌弃的方面：人口。可能是在大学小区内，也可能是周末的原因，当我收拾好行李打算找个餐厅吃晚饭的时候，就只能看着周围空荡荡的街头，盘算着什么时候来个人问问路。这边的人口（至少在这段时间）实在是少得超出我的想象</p>
+<blockquote>
+<font color="red">为什么不看地图呢？</font>
+
+<font color="green">其实 NUS 校区内是有校巴可以通向大部分校内区域的，甚至还能去到地铁站。</font>
+
+</blockquote>
+<p>​　　但是这又涉及到第二个问题：网络。来到这边后，我才发现 NUS 校内的 WiFi 是很不稳定的。具体表现为坐公交车的时候基本上只有停靠站点的时候才能连上 WiFi（后来我们发现似乎每个公交车站确实装了一台路由器）。</p>
+<p>​　　于是在这种找不到人问路，又只能干等 WiFi 信号的情况下，我终于想办法来到了 University Town（也称 U-Town）。毕竟我也没想到找了好几个教学区的食堂发现都没开放，我真的哭死。</p>
+<div align="center"><img src="/2024/06/30/Summer-Workshop-Diary/night01.jpg" alt="U-Town 夜景" style="zoom:70%"><br>Night Scene of U-Town</div>
+
+<p>​　　大约在晚上 8 点，我终于在 U-Town 吃上了 SG 落地后的第一顿晚饭。我进了 U-Town 的一家韩菜餐馆，点了个不记得叫什么的东西（我一开始以为是炒饭），一共 4.4 SGD，折合人民币大约 23.6 块。然后等端上来了才发现，这就是个加了半熟鸡蛋的方便面。</p>
+<p>​　　Emmm……( ó × ò)</p>
+<p>​　　接下来的一段时间我需要以此为基础重塑我的消费观。我在国内生活在一线城市，自认为消费水平也不算低了，不过 SG 的物价依旧令人震惊。</p>
+<p>​　　上面讲的都是些槽点，但是我对此并不讨厌。所有讲到的槽点几乎都来源于我对于新环境的不适应。包括 NUS 缺少宿舍饮水机和洗衣机，出行不便等等，这些基本都是基于我原来的大学环境作出的直接比较。一方面我的大学我肯定已经熟悉了，另一方面我的大学面积比较小，确实也不存在什么出行问题。</p>
+<p>​　　我希望我能尽快适应，毕竟我还得在这里待一个月。不过像网购，点外卖这种事情，虽然能解决我的用餐问题，但我也不在这里长期居住，我自己感觉不太需要为此特地去搞个 paynow 之类的账号来满足这些需求。再怎么说我来这里的主要任务还是交流学习，如果以后想来这里的话，那线上支付什么的迟早会解决的。</p>
+<p>​　　今天先聊到这，以下奉上一些出到 NUS 的小攻略（仅仅基于我第一天的体验，后面可能会推翻）。</p>
+<blockquote>
+<ol>
+<li><p>必须下载 NUS NextBus app，在 NUS 交流基本可以解决大部分出行问题。</p>
+</li>
+<li><p>网购可选择 Shopee；点外卖可选择 Grab，foodpanda 或 Deliveroo。但网上大部分攻略支持优先选 Grab（功能集成，还能打车）。</p>
+</li>
+<li><p>不太需要担心英语交流问题。这边大部分的餐饮人员只要会说中文的，基本能一眼看出你是中国学生。</p>
+</li>
+<li><p>这边的饭堂不太好找，而且不容易在线上获取开放信息。所以刚到 SG 时不妨大胆一点直接去 U-Town 获取稳定食物来源。</p>
+</li>
+<li><p>SG 的餐饮费用毋庸置疑比国内贵得多，不过也有一些区别。一般性价比较高的大概是在 4.4 - 7 SGD 这个价位上，至少对于我一个成年人来说，这个价位完全能吃饱 + 吃好。</p>
+</li>
+</ol>
+</blockquote>
+<hr>
+<h1 id="2024-6-30-Sun"><a href="#2024-6-30-Sun" class="headerlink" title="2024-6-30 (Sun.)"></a>2024-6-30 (Sun.)</h1><p>​　　不得不说 NUS 的宿舍单人间住的极其舒适，虽然床小了点，只能刚好睡下一个人，但是单人间舒服啊，狠狠地满足了我的私人空间需求。</p>
+<p>​　　中午我的两位朋友也到了。因为这两天都是给我们办入住的，所以我早一天到的相当于多了一天的适应期（适应期指的是晚上玩新加坡服直接当了一回 4 ping 战士 ´｡✪ω✪｡｀）。</p>
+<p>​　　本来打算是在宿舍 PGPR 附近找个餐厅吃的（这个展开简直和昨天一模一样），结果又双叒叕没找到，所以又只能去 U-Town 。不过这回去了个挺不错的餐厅 FineFood ，可以说很符合当代大学生的饭堂风格。</p>
+<div align="center"><img src="/2024/06/30/Summer-Workshop-Diary/FineFood.jpg" alt="FineFood" style="zoom:70%"><br>FineFood Canteen</div>
+
+<p>​　　这里面有自选餐也有套餐，还有饮料，而且总的来说价格也能接受。反正我点了自选餐，一份菜、一份番茄炒蛋（算作肉）、一份黑椒炒牛肉一共 6.2 SGD 。份量是很够的，就算我没吃早饭，午饭也吃得挺饱。</p>
+<p>​　　晚上在我们宿舍区的一个小卖部买了点东西草草了事（居然也花了 4.4 SGD）。今天应该就是最后的比较自由的一天了。明天有助理带队参观学校和欢迎晚宴，可以期待一下。</p>
+]]></content>
+      <categories>
+        <category>Summer Camp</category>
+      </categories>
+      <tags>
+        <tag>Exchange</tag>
+        <tag>Dairy</tag>
       </tags>
   </entry>
 </search>
