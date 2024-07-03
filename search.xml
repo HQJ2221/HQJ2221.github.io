@@ -1417,7 +1417,7 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
   <entry>
     <title>NUS Soc SWS3005  实时 3D 图形渲染</title>
     <url>/2024/06/27/Real-Time-Rendering/</url>
-    <content><![CDATA[<h1 id="Pre-Knowledge-Phase-1"><a href="#Pre-Knowledge-Phase-1" class="headerlink" title="Pre-Knowledge (Phase 1)"></a>Pre-Knowledge (Phase 1)</h1><h2 id="Image-Formation"><a href="#Image-Formation" class="headerlink" title="Image Formation"></a>Image Formation</h2><blockquote>
+    <content><![CDATA[<h1 id="I-Pre-Knowledge-Phase-1"><a href="#I-Pre-Knowledge-Phase-1" class="headerlink" title="I. Pre-Knowledge (Phase 1)"></a>I. Pre-Knowledge (Phase 1)</h1><h2 id="Image-Formation"><a href="#Image-Formation" class="headerlink" title="Image Formation"></a>Image Formation</h2><blockquote>
 <p>How does a realistic graphic form? </p>
 </blockquote>
 <h3 id="Elements-of-Image-Formation"><a href="#Elements-of-Image-Formation" class="headerlink" title="Elements of Image Formation"></a>Elements of Image Formation</h3><ul>
@@ -1620,9 +1620,318 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 </li>
 </ul>
-<div align="center"><font color="grey" size="5">-------------------- <font face="Segoe Script">Let's start Phase 2!</font> --------------------</font></div>
+<div align="center"><font color="grey" size="5">----- <font face="Segoe Script">Let's start Phase 2!</font> -----</font></div>
 
-]]></content>
+<h1 id="II-Elementary-OpenGL-Programming"><a href="#II-Elementary-OpenGL-Programming" class="headerlink" title="II. Elementary OpenGL Programming"></a>II. Elementary OpenGL Programming</h1><h2 id="OpenGL-Libraries"><a href="#OpenGL-Libraries" class="headerlink" title="OpenGL Libraries"></a>OpenGL Libraries</h2><h3 id="Core-Library"><a href="#Core-Library" class="headerlink" title="Core Library"></a>Core Library</h3><ul>
+<li>OpenGL core library<ul>
+<li>OpenGL32 on Windows</li>
+<li>GL on most unix/linux systems ( <code>libGL.a</code> )</li>
+</ul>
+</li>
+<li>OpenGL Utility Library ( GLU )<ul>
+<li>Provides functionality in OpenGL core but avoids having to rewrite code</li>
+</ul>
+</li>
+<li>Links with window system<ul>
+<li><code>GLX</code> for X window systems</li>
+<li><code>WGL</code> for Windows</li>
+<li><code>AGL</code> for Macintosh</li>
+</ul>
+</li>
+</ul>
+<h3 id="GLUT-FreeGLUT-Libraries"><a href="#GLUT-FreeGLUT-Libraries" class="headerlink" title="GLUT / FreeGLUT Libraries"></a>GLUT / FreeGLUT Libraries</h3><ul>
+<li><strong>GLUT = OpenGL Utility Toolkit</strong><ul>
+<li><font color="red"><b>Not</b></font> part of OpenGL</li>
+<li>Provides functionality common to all window systems<ul>
+<li>Open a window</li>
+<li>Get input from mouse and keyboard</li>
+<li>Menus</li>
+<li>Event-driven</li>
+</ul>
+</li>
+<li>Code is portable but GLUT lacks the functionality of a good  toolkit for a specific platform<ul>
+<li>No slide bars</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://freeglut.sourceforge.net/">FreeGLUT</a></li>
+</ul>
+<h3 id="Software-Organization"><a href="#Software-Organization" class="headerlink" title="Software Organization"></a>Software Organization</h3><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr6.png" alt="GL Organ" style="zoom:70%"></div>
+
+
+
+<h2 id="Basic-OpenGL-Rendering-Pipeline"><a href="#Basic-OpenGL-Rendering-Pipeline" class="headerlink" title="Basic OpenGL Rendering Pipeline"></a>Basic OpenGL Rendering Pipeline</h2><ul>
+<li>To render a primitive using OpenGL, the primitive goes through the following main stages: <ul>
+<li><font color="green">Goal:</font> Turning primitive into pixels</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr7.png" alt="stage 1" style="zoom:70%"></div>
+
+
+
+<h3 id="OpenGL-Functions"><a href="#OpenGL-Functions" class="headerlink" title="OpenGL Functions"></a>OpenGL Functions</h3><ul>
+<li>Specify primitives<ul>
+<li>E.g. points, line segments, triangles, quadrilaterals, polygons </li>
+</ul>
+</li>
+<li>Specify vertex attributes<ul>
+<li>E.g. color, normal vector, material, texture coordinates</li>
+</ul>
+</li>
+<li>Specify transformations<ul>
+<li>E.g. modeling, viewing</li>
+</ul>
+</li>
+<li>Control (<code>GLUT</code>)</li>
+<li>Input (<code>GLUT</code>)</li>
+<li>Query: “ask for the state of object” etc.</li>
+</ul>
+<h3 id="OpenGL-State"><a href="#OpenGL-State" class="headerlink" title="OpenGL State"></a>OpenGL State</h3><ul>
+<li><font color="red">OpenGL is a <b>state machine</b></font>
+</li>
+<li><p>OpenGL functions are <font color="red">of two types</font></p>
+<ul>
+<li>Primitive generating<ul>
+<li>Can cause output if primitive is visible</li>
+<li>How vertices are processed and appearance of primitive are controlled by the state</li>
+</ul>
+</li>
+<li>State changing<ul>
+<li>Transformation functions</li>
+<li>Attribute functions</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Simple-Concept"><a href="#Simple-Concept" class="headerlink" title="Simple Concept"></a>Simple Concept</h2><h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GL/glut.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mydisplay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT); </span><br><span class="line">    <span class="built_in">glBegin</span>(GL_POLYGON); </span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">-0.5</span>, <span class="number">-0.5</span>); </span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">-0.5</span>, <span class="number">0.5</span>); </span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">0.5</span>, <span class="number">0.5</span>); </span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">0.5</span>, <span class="number">-0.5</span>); </span><br><span class="line">    <span class="built_in">glEnd</span>();</span><br><span class="line">    <span class="built_in">glFlush</span>(); </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">glutInit</span>(&amp;argc, argv);</span><br><span class="line">    <span class="built_in">glutCreateWindow</span>(<span class="string">&quot;simple&quot;</span>); </span><br><span class="line">    <span class="built_in">glutDisplayFunc</span>(mydisplay); </span><br><span class="line">    <span class="built_in">glutMainLoop</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>This code is to draw a white square in black background.</p>
+</blockquote>
+<h3 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h3><p>Note that the program defines a <font color="red">display callback</font> function named <code>mydisplay</code></p>
+<ul>
+<li>Every GLUT program <font color="red"><b>must</b></font> have a display callback</li>
+<li>The display callback is executed whenever OpenGL decides the display must be refreshed<ul>
+<li>For example, when the window is opened</li>
+</ul>
+</li>
+<li>The <strong>main function ends</strong> with the program entering an event loop</li>
+</ul>
+<h2 id="Program-Structure"><a href="#Program-Structure" class="headerlink" title="Program Structure"></a>Program Structure</h2><ul>
+<li>Most OpenGL programs have a similar structure that consists of the following functions<ul>
+<li><code>main()</code>: <ul>
+<li>defines the callback functions </li>
+<li>opens one or more windows with the required properties</li>
+<li>enters event loop (last executable statement)</li>
+</ul>
+</li>
+<li><code>init()</code>: sets the state variables<ul>
+<li>Viewing</li>
+<li>Attributes</li>
+</ul>
+</li>
+<li>callbacks<ul>
+<li>Display callback function</li>
+<li>Input and window functions</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Then we’re going to see an explicit form of <code>Example</code></p>
+</blockquote>
+<h3 id="main"><a href="#main" class="headerlink" title="main()"></a><code>main()</code></h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GL/glut.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">glutInit</span>(&amp;argc, argv); </span><br><span class="line">	<span class="built_in">glutInitDisplayMode</span>(GLUT_SINGLE | GLUT_RGB); </span><br><span class="line">	<span class="built_in">glutInitWindowSize</span>(<span class="number">500</span>, <span class="number">500</span>); </span><br><span class="line">	<span class="built_in">glutInitWindowPosition</span>(<span class="number">0</span>, <span class="number">0</span>); </span><br><span class="line">	<span class="built_in">glutCreateWindow</span>(<span class="string">&quot;simple2&quot;</span>); </span><br><span class="line">	<span class="built_in">glutDisplayFunc</span>(mydisplay); </span><br><span class="line">	<span class="built_in">init</span>(); </span><br><span class="line">	<span class="built_in">glutMainLoop</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>glutInit</code> —— allows application to get command line arguments and initializes system</li>
+<li><code>gluInitDisplayMode</code> —— requests properties for the window (the rendering context)<ul>
+<li>RGB color</li>
+<li>Single buffering</li>
+<li>Properties logically ORed together</li>
+</ul>
+</li>
+<li><code>glutWindowSize</code> —— in pixels</li>
+<li><code>glutWindowPosition</code> —— from top-left corner of display</li>
+<li><code>glutCreateWindow</code> —— create window with title “simple”</li>
+<li><code>glutDisplayFunc</code> —— display callback</li>
+<li><code>glutMainLoop</code> —— enter infinite event loop</li>
+</ul>
+<h3 id="init"><a href="#init" class="headerlink" title="init()"></a><code>init()</code></h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">glClearColor</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>); </span><br><span class="line">	<span class="comment">// black clear color with opaque window</span></span><br><span class="line">	<span class="built_in">glColor3f</span>(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>); <span class="comment">// white fill color</span></span><br><span class="line">	<span class="built_in">glMatrixMode</span>(GL_PROJECTION); </span><br><span class="line">	<span class="built_in">glLoadIdentity</span>(); </span><br><span class="line">	<span class="built_in">glOrtho</span>(<span class="number">-1.0</span>, <span class="number">1.0</span>, <span class="number">-1.0</span>, <span class="number">1.0</span>, <span class="number">-1.0</span>, <span class="number">1.0</span>); <span class="comment">// viewing volume</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Coordinate Systems (have a rough knowing)<ul>
+<li>object coordinates (3D)</li>
+<li>world coordinates (camera)</li>
+<li>window coordinates</li>
+</ul>
+</li>
+<li>About OpenGL Camera</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr8.png" alt="opengl camera" style="zoom:70%"></div>
+
+<ul>
+<li>Orthographic Viewing and Transformation<ul>
+<li>In the default orthographic view, points are projected forward along the $z$ axis onto the plane $z = 0$</li>
+<li>In OpenGL, projection is carried out by a projection matrix (transformation)</li>
+<li>There is only one set of transformation functions so we must set the matrix mode first<ul>
+<li><code>glMatrixMode(GL_PROJECTION)</code></li>
+</ul>
+</li>
+<li>Transformation functions are incremental so we start with an identity matrix and alter it with a projection matrix that gives the view volume<ul>
+<li><code>glLoadIdentity();</code></li>
+<li><code>glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);</code></li>
+</ul>
+</li>
+<li><code>glOrtho(left, right, bottom, top, near, far)</code> is used to determine the projection area.</li>
+<li>If the application is in 2D, we can use the function <code>gluOrtho2D(left, right, bottom, top)</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Here is an example of how to draw a projection on 2D windows. </p>
+<p>Because a projection from 3D to 2D is in <strong>OpenGL-Primitives</strong> (I show below), so we only need to paint it out.</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mydisplay</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT); </span><br><span class="line">	<span class="built_in">glBegin</span>(GL_POLYGON); </span><br><span class="line">	<span class="comment">// define as polygon</span></span><br><span class="line">	<span class="built_in">glVertex2f</span>(<span class="number">-0.5</span>, <span class="number">-0.5</span>); </span><br><span class="line">	<span class="built_in">glVertex2f</span>(<span class="number">-0.5</span>, <span class="number">0.5</span>); </span><br><span class="line">	<span class="built_in">glVertex2f</span>(<span class="number">0.5</span>, <span class="number">0.5</span>); </span><br><span class="line">	<span class="built_in">glVertex2f</span>(<span class="number">0.5</span>, <span class="number">-0.5</span>); </span><br><span class="line">	<span class="comment">// set 4 vertex to form 4-edges polygon</span></span><br><span class="line">	<span class="built_in">glEnd</span>();</span><br><span class="line">	<span class="built_in">glFlush</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr11.png" alt="opengl primitives" style="zoom:70%"></div>
+
+
+
+<h3 id="Other-methods-of-OpenGL"><a href="#Other-methods-of-OpenGL" class="headerlink" title="Other methods of OpenGL"></a>Other methods of OpenGL</h3><ol>
+<li><code>glShadeModel()</code> to set the color rendering to be <code>GL_SMOOTH</code> (渐变) or <code>GL_FLAT</code> (单色).</li>
+<li><code>glViewport(x, y, w, h)</code> to set the viewport of windows.</li>
+</ol>
+<h2 id="3D-OpenGL"><a href="#3D-OpenGL" class="headerlink" title="3D OpenGL"></a>3D OpenGL</h2><h3 id="Three-Dimensional-Applications"><a href="#Three-Dimensional-Applications" class="headerlink" title="Three-Dimensional Applications"></a>Three-Dimensional Applications</h3><ul>
+<li>In OpenGL, 2D applications are a special case of 3D graphics</li>
+<li>Going to 3D<ul>
+<li>Not much changes</li>
+<li>Use <code>glVertex3*()</code></li>
+<li>Have to worry about the order in which polygons are drawn or use <strong>hidden-surface removal</strong> (occlusion problem)</li>
+<li>Polygons should be simple, convex, flat</li>
+</ul>
+</li>
+</ul>
+<h3 id="Gasket-Program"><a href="#Gasket-Program" class="headerlink" title="Gasket Program"></a>Gasket Program</h3><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr9.png" alt="triangle division" style="zoom:50%"></div>
+
+<ul>
+<li>Consider the filled area (black) and the perimeter (the length of all the lines around the filled triangles)</li>
+<li>As we continue subdividing<ul>
+<li>the area goes to zero (&lt; 2D)</li>
+<li>but the perimeter goes to infinity (&gt; 1D)</li>
+</ul>
+</li>
+<li>This is not an ordinary geometric object<ul>
+<li>It is neither one- nor two-dimensional</li>
+</ul>
+</li>
+<li>It is a fractal (fractional dimension) object<ul>
+<li>Approximately 1.585 D</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<font color="red">How to do in program?</font>
+
+<font color="green">Using algorithm of Recursion!</font>
+
+
+</blockquote>
+<ul>
+<li>Design <code>display()</code> and <code>myinit()</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT);</span><br><span class="line">    <span class="built_in">glBegin</span>(GL_TRIANGLES);</span><br><span class="line">    <span class="built_in">divide_triangle</span>(v[<span class="number">0</span>], v[<span class="number">1</span>], v[<span class="number">2</span>], n);</span><br><span class="line">    <span class="built_in">glEnd</span>();</span><br><span class="line">    <span class="built_in">glFlush</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myinit</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">glMatrixMode</span>(GL_PROJECTION);</span><br><span class="line">    <span class="built_in">glLoadIdentity</span>();</span><br><span class="line">    <span class="built_in">gluOrtho2D</span>(<span class="number">-2.0</span>, <span class="number">2.0</span>, <span class="number">-2.0</span>, <span class="number">2.0</span>);</span><br><span class="line">    <span class="built_in">glMatrixMode</span>(GL_MODELVIEW);</span><br><span class="line">    <span class="built_in">glClearColor</span> (<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>);</span><br><span class="line">    <span class="built_in">glColor3f</span>(<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">0.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Then set parameter and callback function in <code>main()</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    n = <span class="number">4</span>;</span><br><span class="line">    <span class="built_in">glutInit</span>(&amp;argc, argv);</span><br><span class="line">    <span class="built_in">glutInitDisplayMode</span>(GLUT_SINGLE | GLUT_RGB);</span><br><span class="line">    <span class="built_in">glutInitWindowSize</span>(<span class="number">500</span>, <span class="number">500</span>);</span><br><span class="line">    <span class="built_in">glutCreateWindow</span>(<span class="string">&quot;Sierpinski Gasket&quot;</span>);</span><br><span class="line">    <span class="built_in">glutDisplayFunc</span>(display);</span><br><span class="line">    <span class="built_in">myinit</span>();</span><br><span class="line">    <span class="built_in">glutMainLoop</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Move-to-3D-triangle"><a href="#Move-to-3D-triangle" class="headerlink" title="Move to 3D triangle"></a>Move to 3D triangle</h3><ul>
+<li>Add an extra vertex to form tetrahedra</li>
+<li>Then we can do like 2D triangle subdivision</li>
+</ul>
+<font color="red">But we have to deal with <b>Hidden-Surface Removal</b> !!</font>
+
+<ul>
+<li><ul>
+<li>OpenGL uses a hidden-surface removal method called the z-buffer algorithm that saves depth information as objects are rendered so that only the front objects appear in the image.</li>
+</ul>
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p><strong>Using the z-buffer Algorithm</strong></p>
+
+</blockquote>
+<p>Requested in <code>main()</code></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glutInitDisplayMode</span>(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH)</span><br></pre></td></tr></table></figure>
+<p>Enabled in <code>init()</code></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glEnable</span>(GL_DEPTH_TEST)</span><br></pre></td></tr></table></figure>
+<p>Cleared in the display callback</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">
+<p><strong>Surface vs. Volume Subdivision</strong></p>
+
+</blockquote>
+<ul>
+<li>In our example, we subdivided the <strong>surface</strong> of each face</li>
+<li>We could also subdivide the volume using the same midpoints</li>
+<li>The midpoints define four smaller tetrahedrons, one for each vertex</li>
+<li>Keeping only these tetrahedrons removes a volume in the middle</li>
+<li>Good programming exercise</li>
+</ul>
+<hr>
+<h1 id="III-Input-amp-Interaction"><a href="#III-Input-amp-Interaction" class="headerlink" title="III. Input &amp; Interaction"></a>III. Input &amp; Interaction</h1><h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><ul>
+<li>Graphical Input<ul>
+<li>Devices can be described either by<ul>
+<li>Physical properties<ul>
+<li>Mouse, Keyboard, Trackball, etc.</li>
+</ul>
+</li>
+<li>Logical properties: What is returned to program via API<ul>
+<li>A position</li>
+<li>An object identifier</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Trigger and Measure</p>
+<ul>
+<li>Input devices contain a <font color="red">trigger</font> which can be used to send a signal to the operating system<ul>
+<li>Button on mouse</li>
+<li>Pressing or releasing a key</li>
+</ul>
+</li>
+<li>When triggered, input devices return information (their <font color="red">measure</font>) to the system<ul>
+<li>Mouse returns position information</li>
+<li>Keyboard returns ASCII code</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Event Mode</p>
+<ul>
+<li>Each trigger generates an event whose measure is put in an event queue which can be examined by the user program</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr10.png" alt="procedure" style="zoom:70%"></div>
+
+<ul>
+<li>Event Type<ul>
+<li>Window: resize, expose, minimize</li>
+<li>Mouse: click one or more buttons</li>
+<li>Motion: move mouse</li>
+<li>Keyboard: press or release a key</li>
+<li>Idle: non-event (无输入时的活动)<ul>
+<li>Define what should be done if no other event is in queue</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="IV-Geometric-Objects-amp-Transformations"><a href="#IV-Geometric-Objects-amp-Transformations" class="headerlink" title="IV. Geometric Objects &amp; Transformations"></a>IV. Geometric Objects &amp; Transformations</h1>]]></content>
       <categories>
         <category>2024 Summer</category>
       </categories>
