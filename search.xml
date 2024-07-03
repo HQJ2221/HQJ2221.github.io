@@ -1768,7 +1768,7 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </li>
 <li>About OpenGL Camera</li>
 </ul>
-<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr8.png" alt="opengl camera" style="zoom:70%"></div>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr8.png" alt="opengl camera" style="zoom:50%"></div>
 
 <ul>
 <li>Orthographic Viewing and Transformation<ul>
@@ -1918,7 +1918,8 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr10.png" alt="procedure" style="zoom:70%"></div>
 
 <ul>
-<li>Event Type<ul>
+<li><p>Event Type</p>
+<ul>
 <li>Window: resize, expose, minimize</li>
 <li>Mouse: click one or more buttons</li>
 <li>Motion: move mouse</li>
@@ -1929,7 +1930,125 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </li>
 </ul>
 </li>
+<li><p><font color="green">Recall:</font> callbacks</p>
+<ul>
+<li>Define a callback function for <strong>each type of event</strong> the graphics system recognizes</li>
+<li>E.g. <code>glutMouseFunc(mymouse)</code> where <code>mymouse</code> is a mouse callback function.</li>
 </ul>
+</li>
+<li><font color="red">GLUT  recognizes a subset of the events recognized by any particular operation system</font> : <ul>
+<li><code>glutDisplayFunc</code></li>
+<li><code>glutMouseFunc</code></li>
+<li><code>glutReshapeFunc</code></li>
+<li><code>glutKeyboardFunc</code></li>
+<li><code>glutIdleFunc</code></li>
+<li><code>glutMotionFunc</code>, <code>glutPassiveMotionFunc</code> </li>
+</ul>
+</li>
+</ul>
+<h2 id="GLUT-Event-Loop"><a href="#GLUT-Event-Loop" class="headerlink" title="GLUT Event Loop"></a>GLUT Event Loop</h2><ul>
+<li><font color="green">Recall:</font> the last statement in <code>main()</code> for a program using GLUT must be <code>glutMainLoop();</code></li>
+<li>In each pass through the event loop, GLUT <ul>
+<li>looks at the events in the <strong>queue</strong></li>
+<li>execute each event if the corresponding callback function is defined.</li>
+</ul>
+</li>
+</ul>
+<font color="purple">Important before talking about callbacks:</font> 
+
+<ul>
+<li>The form of all GLUT callbacks is fixed</li>
+<li>So we must use <strong>globals</strong> (全局变量) to pass information to callbacks</li>
+</ul>
+<h3 id="Display-Callback"><a href="#Display-Callback" class="headerlink" title="Display Callback"></a>Display Callback</h3><ul>
+<li>When windows are refreshed, apply display callbacks<ul>
+<li><code>glutDisplayFunc(mydisplay)</code> in <code>main()</code></li>
+<li><code>glutPostRedisplay()</code> to <font color="red">avoid multiple display</font> in one single pass through the event loop<ul>
+<li>set a <strong>“flag”</strong> at the end of the event loop.</li>
+<li>GLUT checks it and display callback function is executed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Then what’s inside <code>mydisplay</code>?<ul>
+<li><code>glClear()</code> to clear the window</li>
+<li>Use <font color="red"><b>Double Buffer</b></font> to avoid <font color="blue">partial drawn</font> <ul>
+<li><strong>Front Buffer</strong>: one that is <strong>displayed</strong> but not written to</li>
+<li><strong>Back Buffer</strong>: one that is <strong>written</strong> to but not displayed</li>
+</ul>
+</li>
+<li><code>glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE)</code> declare in <code>main()</code> to request a <font color="red">double buffer</font></li>
+<li>At the end of display callback buffers are swapped.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mydisplay</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT|…)</span><br><span class="line"> ...</span><br><span class="line"> <span class="comment">/* draw graphics here */</span></span><br><span class="line"> ...</span><br><span class="line"> <span class="built_in">glutSwapBuffers</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Idle-Callback"><a href="#Idle-Callback" class="headerlink" title="Idle Callback"></a>Idle Callback</h3><ul>
+<li>The idle callback is executed whenever there are <font color="red">no events</font> in the event queue<ul>
+<li><code>glutIdleFunc(myidle)</code> in <code>main()</code></li>
+<li><font color="blue">Useful for animation</font> 
+
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">myidle</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> <span class="comment">/* change something */</span></span><br><span class="line"> t += dt</span><br><span class="line"> <span class="built_in">glutPostRedisplay</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Mouse-and-Keyboard-Callbacks"><a href="#Mouse-and-Keyboard-Callbacks" class="headerlink" title="Mouse and Keyboard Callbacks"></a>Mouse and Keyboard Callbacks</h3><ul>
+<li><code>glutMouseFunc(mymouse)</code> in <code>main()</code></li>
+<li><code>void mymouse(GLint button, GLint state,  GLint x, GLint y)</code> to define mouse callbacks<ul>
+<li>Buttons: <code>GLUT_LEFT_BUTTON</code>, <code>GLUT_MIDDLE_BUTTON</code> or <code>GLUT_RIGHT_BUTTON</code></li>
+<li>States: <code>GLUT_UP</code> or <code>GLUT_DOWN</code></li>
+<li>Cursor Position: top-left corner is (0,0) <font color="gray">[Others depend on winsize]</font></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr12.png" alt="position" style="zoom:50%"></div>
+
+<blockquote class="blockquote-center">
+<p>$<br>y_{\text{OpenGL}}= h-1-y_{text{win}}<br>$</p>
+
+</blockquote>
+<font color="blue">E.g. To draw a square when mouse click</font>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mymouse</span><span class="params">(<span class="type">int</span> btn, <span class="type">int</span> state, <span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (btn==GLUT_RIGHT_BUTTON &amp;&amp; state==GLUT_DOWN) <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line"> <span class="keyword">if</span> (btn==GLUT_LEFT_BUTTON &amp;&amp; state==GLUT_DOWN) <span class="built_in">drawSquare</span>(x, y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">drawSquare</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> y = w – <span class="number">1</span> - y; <span class="comment">/* invert y position */</span></span><br><span class="line"> <span class="comment">/* a random color */</span></span><br><span class="line"> <span class="built_in">glColor3ub</span>((<span class="type">char</span>)<span class="built_in">rand</span>()%<span class="number">256</span>,(<span class="type">char</span>)<span class="built_in">rand</span>()%<span class="number">256</span>,(<span class="type">char</span>)<span class="built_in">rand</span>()%<span class="number">256</span> );</span><br><span class="line"> <span class="built_in">glBegin</span>(GL_POLYGON);</span><br><span class="line"> <span class="built_in">glVertex2f</span>(x+size, y+size);</span><br><span class="line"> <span class="built_in">glVertex2f</span>(x-size, y+size);</span><br><span class="line"> <span class="built_in">glVertex2f</span>(x-size, y-size);</span><br><span class="line"> <span class="built_in">glVertex2f</span>(x+size, y-size);</span><br><span class="line"> <span class="built_in">glEnd</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>We can draw squares (or anything else) continuously as long as a mouse button is depressed by using the motion callback<ul>
+<li><code>glutMotionFunc(drawSquare)</code></li>
+</ul>
+</li>
+<li><p>We can draw squares without depressing a button using the <font color="red">passive motion</font> callback (用于鼠标没按下但在移动时的操作)</p>
+<ul>
+<li><code>glutPassiveMotionFunc(drawSquare)</code></li>
+</ul>
+</li>
+<li><p><strong>Keyboard is almost the same</strong></p>
+<ul>
+<li><code>glutKeyboardFunc(mykey)</code></li>
+<li><code>void mykey(unsigned char key,  int x, int y)</code></li>
+</ul>
+</li>
+</ul>
+<p>E.g.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mykey</span><span class="params">(<span class="type">unsigned</span> <span class="type">char</span> key, <span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (key == <span class="string">&#x27;Q&#x27;</span> | key == <span class="string">&#x27;q&#x27;</span>) </span><br><span class="line"> <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Others:</strong></p>
+<p>GLUT defines the <strong>special keys</strong> in <code>glut.h</code></p>
+<ul>
+<li>Function key 1: <code>GLUT_KEY_F1</code></li>
+<li>Up arrow key: <code>GLUT_KEY_UP</code></li>
+</ul>
+<p>Also check <strong>modifiers</strong></p>
+<ul>
+<li><code>GLUT_ACTIVE_SHIFT</code>, <code>GLUT_ACTIVE_CTRL</code>, <code>GLUT_ACTIVE_ALT</code> is depressed using <code>glutGetModifiers()</code> </li>
+</ul>
+</blockquote>
+<h3 id="Reshape-Callback"><a href="#Reshape-Callback" class="headerlink" title="Reshape Callback"></a>Reshape Callback</h3><ul>
+<li><code>glutReshapeFunc(myreshape)</code> in <code>main()</code></li>
+<li><code>void myreshape(int w, int h)</code></li>
+</ul>
+<p>E.g.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">myReshape</span><span class="params">(<span class="type">int</span> w, <span class="type">int</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, w, h);</span><br><span class="line"> <span class="built_in">glMatrixMode</span>(GL_PROJECTION); <span class="comment">/* switch matrix mode */</span></span><br><span class="line"> <span class="built_in">glLoadIdentity</span>();</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">if</span> (w &lt;= h)</span><br><span class="line"> <span class="built_in">gluOrtho2D</span>( <span class="number">-2.0</span>, <span class="number">2.0</span>, <span class="number">-2.0</span> * (GLfloat) h / w,</span><br><span class="line"> <span class="number">2.0</span> * (GLfloat) h / w );</span><br><span class="line"> <span class="keyword">else</span> </span><br><span class="line"> <span class="built_in">gluOrtho2D</span>( <span class="number">-2.0</span> * (GLfloat) w / h, </span><br><span class="line"> <span class="number">2.0</span> * (GLfloat) w / h, <span class="number">-2.0</span>, <span class="number">2.0</span> );</span><br><span class="line"> <span class="built_in">glMatrixMode</span>(GL_MODELVIEW); <span class="comment">/* return to modelview mode */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h1 id="IV-Geometric-Objects-amp-Transformations"><a href="#IV-Geometric-Objects-amp-Transformations" class="headerlink" title="IV. Geometric Objects &amp; Transformations"></a>IV. Geometric Objects &amp; Transformations</h1>]]></content>
       <categories>
