@@ -2049,8 +2049,198 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 <p>E.g.</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">myReshape</span><span class="params">(<span class="type">int</span> w, <span class="type">int</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, w, h);</span><br><span class="line"> <span class="built_in">glMatrixMode</span>(GL_PROJECTION); <span class="comment">/* switch matrix mode */</span></span><br><span class="line"> <span class="built_in">glLoadIdentity</span>();</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">if</span> (w &lt;= h)</span><br><span class="line"> <span class="built_in">gluOrtho2D</span>( <span class="number">-2.0</span>, <span class="number">2.0</span>, <span class="number">-2.0</span> * (GLfloat) h / w,</span><br><span class="line"> <span class="number">2.0</span> * (GLfloat) h / w );</span><br><span class="line"> <span class="keyword">else</span> </span><br><span class="line"> <span class="built_in">gluOrtho2D</span>( <span class="number">-2.0</span> * (GLfloat) w / h, </span><br><span class="line"> <span class="number">2.0</span> * (GLfloat) w / h, <span class="number">-2.0</span>, <span class="number">2.0</span> );</span><br><span class="line"> <span class="built_in">glMatrixMode</span>(GL_MODELVIEW); <span class="comment">/* return to modelview mode */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Menu"><a href="#Menu" class="headerlink" title="Menu"></a>Menu</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main()</span></span><br><span class="line">GLint menu_id = <span class="built_in">glutCreateMenu</span>(mymenu);</span><br><span class="line"><span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Clear&quot;</span>, <span class="number">1</span>);</span><br><span class="line"><span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Quit&quot;</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">glutAttachMenu</span>(GLUT_RIGHT_BUTTON);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mymenu</span><span class="params">(<span class="type">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(id == <span class="number">1</span>) <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT);</span><br><span class="line"> <span class="keyword">if</span>(id == <span class="number">2</span>) <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Other-Functions"><a href="#Other-Functions" class="headerlink" title="Other Functions"></a>Other Functions</h3><ul>
+<li>Dynamic Windows<ul>
+<li>Create and destroy during execution</li>
+</ul>
+</li>
+<li>Subwindows</li>
+<li>Multiple Windows</li>
+<li>Changing callbacks during execution</li>
+<li>Timers (look up glutTimerFunc)<ul>
+<li>Useful for controlling speed of animation</li>
+</ul>
+</li>
+<li>Portable fonts<ul>
+<li>glutBitmapCharacter</li>
+<li>glutStrokeCharacter</li>
+</ul>
+</li>
+</ul>
 <hr>
-<h1 id="IV-Geometric-Objects-amp-Transformations"><a href="#IV-Geometric-Objects-amp-Transformations" class="headerlink" title="IV. Geometric Objects &amp; Transformations"></a>IV. Geometric Objects &amp; Transformations</h1>]]></content>
+<h1 id="IV-Geometric-Objects-amp-Transformations"><a href="#IV-Geometric-Objects-amp-Transformations" class="headerlink" title="IV. Geometric Objects &amp; Transformations"></a>IV. Geometric Objects &amp; Transformations</h1><ul>
+<li>Basic elements<ul>
+<li>Scalars</li>
+<li>Vectors</li>
+<li>Points</li>
+</ul>
+</li>
+<li>Basic primitives<ul>
+<li>Line segments</li>
+<li>Polygons</li>
+</ul>
+</li>
+</ul>
+<h2 id="Representation"><a href="#Representation" class="headerlink" title="Representation"></a>Representation</h2><ul>
+<li>Introduce<ul>
+<li><strong>coordinate systems</strong> for representing vector spaces</li>
+<li>frames for representing <strong>affine spaces</strong>(仿射空间)</li>
+</ul>
+</li>
+<li>Discuss change of frames and bases</li>
+<li>Introduce homogeneous coordinates</li>
+</ul>
+<h3 id="Coordinate-Systems"><a href="#Coordinate-Systems" class="headerlink" title="Coordinate Systems"></a>Coordinate Systems</h3><font color="green">Recall: Linear Algebra</font>
+
+<ul>
+<li>basis: $v_1,v_2,…,v_n$</li>
+<li>a vector written as $v=\alpha_1 v_1+\alpha_2 v_2 + \cdots + \alpha_n v_n$</li>
+<li>the <font color="red">coordinate</font> of $v$ in this basis is $\{ \alpha_1,\alpha_2, \cdots , \alpha_n \}$</li>
+</ul>
+<h3 id="Frame"><a href="#Frame" class="headerlink" title="Frame"></a>Frame</h3><p><strong>Def.</strong> A <font color="red">frame</font> is a system with a single point(origin $P_0$) and a basis vector <font color="blue">in an affine space</font>.</p>
+<blockquote class="blockquote-center">
+<p>$<br>P=P_0 + \beta_1 v_1 + \beta_2 v_2 + \cdots + \beta_n v_n<br>$</p>
+
+</blockquote>
+<h3 id="Homogeneous-Coordinates"><a href="#Homogeneous-Coordinates" class="headerlink" title="Homogeneous Coordinates"></a>Homogeneous Coordinates</h3><p>E.g. for a 3 * 3 space, the 3 * 3 matrices cannot used for translation(平移), because vectors have no position.</p>
+<ul>
+<li>We extend the $3\times 3$ point to 4-dimension: $(x,y,z) \rightarrow (x,y,z,1)$</li>
+<li>and a $4\times 4$ matrix can represent translation, rotation and scaling and shear</li>
+<li>using matrix(a template) below, we can maintain $w=0$ for vectors and $w=1$ for points for <font color="red">orthographic viewing</font> .</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\left( \begin{array}{c}<br>a &amp; b &amp; c &amp; tx \\<br>d &amp; e &amp; f &amp; ty \\<br>g &amp; h &amp; i &amp; tz \\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right)<br>$</p>
+
+</blockquote>
+<font color="blue">E.g. For a 3D point $(x,y,z)$ , its homogeneous coordinate is $P_h = (x,y,z,1)$ . To translate it, we define a matrix:</font>
+
+<blockquote class="blockquote-center">
+<p>$<br>\left( \begin{array}{c}<br>1 &amp; 0 &amp; 0 &amp; tx \\<br>0 &amp; 1 &amp; 0 &amp; ty \\<br>0 &amp; 0 &amp; 1 &amp; tz \\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right)<br>\left( \begin{array}{c}<br>x \\ y \\ z \\ 1<br>\end{array}\right) =<br>\left( \begin{array}{c}<br>x+ tx \\ y+ ty \\ z+ tz \\  1<br>\end{array}\right)<br>$</p>
+
+</blockquote>
+<ul>
+<li>More generally, homogeneous coordinates are represented as $p=[ wx,wy,wz,w ]^T$</li>
+</ul>
+<h2 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h2><ul>
+<li>Affine Transformation: Line preserving</li>
+<li>Translation: move points<ul>
+<li>$P’=P+d$ where $d=[d_x, d_y, d_z, 0]^T$</li>
+</ul>
+</li>
+</ul>
+<p><font color="green">Recall for Linear Algebra:</font> Some linear transformation</p>
+<ul>
+<li>Rotation (2D)</li>
+<li>Scaling</li>
+<li>Reflection</li>
+</ul>
+<blockquote>
+<p>try to remember their transformation matrices.</p>
+</blockquote>
+<p><strong>Inverses</strong></p>
+<ul>
+<li>Translation: $\textbf{T}^{-1}=\textbf{T}(-d_x, -d_y, -d_z)$</li>
+<li>Rotation: $\textbf{R}^{-1}(\theta)=\textbf{R}(- \theta)$<ul>
+<li>Noted that only $cos(\theta)$ on orthogonal entry</li>
+</ul>
+</li>
+<li>Scaling: $\textbf{S}^{-1}(s_x, s_y, s_z)=\textbf{S}(1/s_x, 1/s_y, 1/s_z)$</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Rotation About a Fixed Point Other than the Origin:</p>
+<ol>
+<li>Move fixed point to origin</li>
+<li>Rotate</li>
+<li>Move fixed point back</li>
+</ol>
+<blockquote class="blockquote-center">
+<p>$<br>\textbf{M}=\textbf{T}(p_f)\textbf{R}(\theta)\textbf{T}(-p_f)<br>$</p>
+
+</blockquote>
+<p>(bu)</p>
+<h2 id="OpenGL-Transformations"><a href="#OpenGL-Transformations" class="headerlink" title="OpenGL Transformations"></a>OpenGL Transformations</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr13.png" alt="procedure" style="zoom:50%"></div>
+
+<ul>
+<li><p><font color="green">Recall:</font> <code>glMatrixMode(GLenum mode)</code> to change the mode of matrix calculation</p>
+<ul>
+<li>when doing transformation, use <code>GL_MODELVIEW</code> state</li>
+</ul>
+</li>
+<li><p>For all CTM(Current Transformation Matrix) Operations, our CPP Code must load identity matrix first:</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glMatrixMode</span>(GL_MODELVIEW);</span><br><span class="line"><span class="built_in">glLoadIdentity</span>(); <span class="comment">// 重置</span></span><br><span class="line"><span class="built_in">glTranslatef</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">-5.0</span>); <span class="comment">// 平移物体</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Beware of using <strong>post-multiplications</strong> (the later operations should be multipled to result matrix $\textbf{C}$ <font color="red">earlier</font>)</p>
+<ul>
+<li>E.g. Rotation About a Fixed Point: $\textbf{C}=\textbf{T}^{-1}\textbf{R}\textbf{T}$</li>
+</ul>
+</li>
+<li><p>Other Transformation Matrix specifying</p>
+<ul>
+<li>rotation: <code>glRotatef(theta, vx, vy, yz)</code></li>
+<li>translation: <code>glTranslatef(dx, dy, dz)</code></li>
+<li>scale: <code>glScalef(sx, sy, sz)</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="V-Camera-amp-Viewing"><a href="#V-Camera-amp-Viewing" class="headerlink" title="V. Camera &amp; Viewing"></a>V. Camera &amp; Viewing</h1><h2 id="View-Transformation"><a href="#View-Transformation" class="headerlink" title="View Transformation"></a>View Transformation</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glLookAt</span>( eyex, eyey, eyez,</span><br><span class="line">		  atx , aty , atz ,</span><br><span class="line">		  upx , upy , upz )</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过 eye 和 at 求出前向量</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\text{forward}=\frac{\text{at} - \text{eye}}{|\text{at} - \text{eye}|}<br>$</p>
+
+</blockquote>
+<ul>
+<li>通过 forward 和 up 求出右向量</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\text{side}=\frac{\text{forward} \times \text{up}}{|\text{forward} \times \text{up}|}<br>$</p>
+
+</blockquote>
+<ul>
+<li>然后就能得到修正后的上向量</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\text{up’}= \text{forward} \times \text{side}<br>$</p>
+
+</blockquote>
+<ul>
+<li>求出三个向量后就能确定 camera 的位置和 pose 了</li>
+</ul>
+<h2 id="Projection-——-Defining-the-View-Volume"><a href="#Projection-——-Defining-the-View-Volume" class="headerlink" title="Projection —— Defining the View Volume"></a>Projection —— Defining the View Volume</h2><ul>
+<li>For orthographic projection, use <code>glOrtho()</code></li>
+<li>For perspective projection, use <code>glFrustum()</code></li>
+</ul>
+<h3 id="OpenGL-Orthographic-Projection"><a href="#OpenGL-Orthographic-Projection" class="headerlink" title="OpenGL Orthographic Projection"></a>OpenGL Orthographic Projection</h3><ul>
+<li>The glOrtho() function then generates a matrix that linearly maps the view volume to the canonical view volume, where<ul>
+<li>(left, bottom, –near) is mapped to (–1, –1, –1)</li>
+<li>(right, top, – far) is mapped to (1, 1, 1)</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr14.png" alt="ortho-projection" style="zoom:60%"></div>
+
+
+
+<h3 id="OpenGL-Perspective-Projection"><a href="#OpenGL-Perspective-Projection" class="headerlink" title="OpenGL Perspective Projection"></a>OpenGL Perspective Projection</h3><ul>
+<li><code>glFrustum( left, right, bottom, top, near, far )</code><ul>
+<li>The <code>glFrustum()</code> function allows (off-center) non-symmetric view volume</li>
+</ul>
+</li>
+<li>Often, we want a <strong>symmetric view volume</strong>. We can use<ul>
+<li><code>gluPerspective( fovy, aspect, near, far );</code></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr15.png" alt="persp-projection" style="zoom:60%"></div>
+
+
+]]></content>
       <categories>
         <category>2024 Summer</category>
       </categories>
