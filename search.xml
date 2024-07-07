@@ -2187,7 +2187,47 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </li>
 </ul>
 <hr>
-<h1 id="V-Camera-amp-Viewing"><a href="#V-Camera-amp-Viewing" class="headerlink" title="V. Camera &amp; Viewing"></a>V. Camera &amp; Viewing</h1><h2 id="View-Transformation"><a href="#View-Transformation" class="headerlink" title="View Transformation"></a>View Transformation</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glLookAt</span>( eyex, eyey, eyez,</span><br><span class="line">		  atx , aty , atz ,</span><br><span class="line">		  upx , upy , upz )</span><br></pre></td></tr></table></figure>
+<h1 id="V-Camera-amp-Viewing"><a href="#V-Camera-amp-Viewing" class="headerlink" title="V. Camera &amp; Viewing"></a>V. Camera &amp; Viewing</h1><h2 id="Computer-Viewing"><a href="#Computer-Viewing" class="headerlink" title="Computer Viewing"></a>Computer Viewing</h2><ul>
+<li><font color="red">2</font> attributes to define the viewing:<ul>
+<li>Positioning the camera<ul>
+<li><font color="green">Setting the <b>model-view</b> matrix</font> </li>
+</ul>
+</li>
+<li>Selecting a lens<ul>
+<li><font color="green">Setting the <b>projection</b> matrix</font></li>
+<li>Perspective or orthographic / view volume / clipping volume …</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Specify-Different-Space"><a href="#Specify-Different-Space" class="headerlink" title="Specify Different Space"></a>Specify Different Space</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr13.png" style="zoom:60%"></div>
+
+<ul>
+<li>Local / Modeling / Object Space<ul>
+<li>Each object model has its own local coordinate frame</li>
+</ul>
+</li>
+<li>World Space (类似全局空间)<ul>
+<li><font color="blue">Lights and Camera pose</font> are defined in this space</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr17.png" style="zoom:60%"></div>
+
+<ul>
+<li><strong>Camera Space / View Space / Eye Space</strong><ul>
+<li>Camera is located at the origin</li>
+<li>Looking in negative $z$ direction</li>
+<li>$+y$-axis is the “up-vector”</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Initially the <strong>world</strong> and <strong>camera</strong> frames are the same.</p>
+<p>To specify camera pose, we need to specify the camera coordinate frame with respect to the world coordinate frame.</p>
+</blockquote>
+<h2 id="View-Transformation"><a href="#View-Transformation" class="headerlink" title="View Transformation"></a>View Transformation</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glLookAt</span>( eyex, eyey, eyez,</span><br><span class="line">		  atx , aty , atz ,</span><br><span class="line">		  upx , upy , upz )</span><br></pre></td></tr></table></figure>
 <ul>
 <li>通过 eye 和 at 求出前向量</li>
 </ul>
@@ -2212,6 +2252,16 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <ul>
 <li>求出三个向量后就能确定 camera 的位置和 pose 了</li>
 </ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr18.png" alt="view-trans" style="zoom:60%"></div>
+
+<ul>
+<li>Suppose the camera has been moved to the location $[e_x, e_y, e_z]^T$, and its $x_c$, $y_c$, $z_c$ axes are the unit vectors $\textbf{u}$, $\textbf{v}$, $\textbf{n}$, respectively, then</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\textbf{M}_{\text{view}}=<br>\left[ \begin{array}{c}<br>u_x &amp; u_y &amp; u_z &amp; 0 \\<br>v_x &amp; v_y &amp; v_z &amp; 0 \\<br>n_x &amp; n_y &amp; n_z &amp; 0 \\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>\cdot<br>\left[ \begin{array}{c}<br>1 &amp; 0 &amp; 0 &amp; -e_x \\<br>0 &amp; 1 &amp; 0 &amp; -e_y \\<br>0 &amp; 0 &amp; 1 &amp; -e_z \\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$</p>
+
+</blockquote>
+<p>▪ Note that $[e_x, e_y, e_z]^T$ and $\textbf{u}$, $\textbf{v}$, $\textbf{n}$ are all specified with respect to the world frame</p>
 <h2 id="Projection-——-Defining-the-View-Volume"><a href="#Projection-——-Defining-the-View-Volume" class="headerlink" title="Projection —— Defining the View Volume"></a>Projection —— Defining the View Volume</h2><ul>
 <li>For orthographic projection, use <code>glOrtho()</code></li>
 <li>For perspective projection, use <code>glFrustum()</code></li>
@@ -2225,8 +2275,9 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr14.png" alt="ortho-projection" style="zoom:60%"></div>
 
-
-
+<blockquote>
+<p>正投影，能较真实地反映物体大小，物体显示的大小不会因视角变化改变。常用于CAD设计、地图绘制、2D游戏等不需要表现深度感的场景。</p>
+</blockquote>
 <h3 id="OpenGL-Perspective-Projection"><a href="#OpenGL-Perspective-Projection" class="headerlink" title="OpenGL Perspective Projection"></a>OpenGL Perspective Projection</h3><ul>
 <li><code>glFrustum( left, right, bottom, top, near, far )</code><ul>
 <li>The <code>glFrustum()</code> function allows (off-center) non-symmetric view volume</li>
@@ -2239,7 +2290,71 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr15.png" alt="persp-projection" style="zoom:60%"></div>
 
+<blockquote>
+<p>透视投影，有深度感，近大远小。常用于3D游戏、虚拟现实、建筑可视化等需要真实感的场景。</p>
+</blockquote>
+<h4 id="Principle-of-Perspective-Projection"><a href="#Principle-of-Perspective-Projection" class="headerlink" title="Principle of Perspective Projection"></a>Principle of Perspective Projection</h4><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr19.png" alt="persp-projection-d" style="zoom:60%"></div>
 
+<ul>
+<li>Center of projection at the origin</li>
+<li>Projection plane is $z = d$, $d &lt; 0$</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>x_p=\frac{x}{z/d}\ \ \ \ y_p=\frac{y}{z/d}\ \ \ \ z_p=d<br>$</p>
+
+</blockquote>
+<ul>
+<li>Consider $p=Mq$ where</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>p=<br>\left[ \begin{array}{c}<br>x \\ y \\ z \\ z/d<br>\end{array}\right] \ \ \ \ M=<br>\left[ \begin{array}{c}<br>1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 1 &amp; 0 \\<br>0 &amp; 0 &amp; 1/d &amp; 0<br>\end{array}\right] \ \ \ \ q=<br>\left[ \begin{array}{c}<br>x \\ y \\ z \\ 1<br>\end{array}\right]<br>$</p>
+
+</blockquote>
+<ul>
+<li>If we scale $p$ , then we get the projection point on plane $z=d$ .</li>
+</ul>
+<h1 id="VI-Rasterization"><a href="#VI-Rasterization" class="headerlink" title="VI. Rasterization"></a>VI. Rasterization</h1><h2 id="Recall-for-OpenGL-Rendering-Pipeline"><a href="#Recall-for-OpenGL-Rendering-Pipeline" class="headerlink" title="Recall for OpenGL Rendering Pipeline"></a>Recall for OpenGL Rendering Pipeline</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr16.png" alt="Rendering Pipeline" style="zoom:60%"></div>
+
+<h3 id="Primitive-Assembly-etc"><a href="#Primitive-Assembly-etc" class="headerlink" title="Primitive Assembly, etc."></a>Primitive Assembly, etc.</h3><ul>
+<li>Primitive assembly<ul>
+<li>Vertex data is collected into complete primitives</li>
+<li>Necessary for clipping and back-face culling</li>
+</ul>
+</li>
+<li>Clipping</li>
+<li>Perspective division (Object Oriented)<ul>
+<li>To normalized device coordinate (NDC) space</li>
+</ul>
+</li>
+<li>Viewport transformation (Viewer Oriented)<ul>
+<li>To window space</li>
+<li>Include depth range scaling</li>
+</ul>
+</li>
+<li>Back-face culling</li>
+</ul>
+<h3 id="Rasterization-amp-Fragment-Processing"><a href="#Rasterization-amp-Fragment-Processing" class="headerlink" title="Rasterization &amp; Fragment Processing"></a>Rasterization &amp; Fragment Processing</h3><ul>
+<li>Attribute values at fragments are computed by interpolating attribute values assigned to vertices<ul>
+<li>Interpolation is performed in window space (2D)</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr20.png" alt="interpolation" style="zoom:40%"></div>
+
+<ul>
+<li>Each generated fragment is processed to determine the color of the corresponding pixel in the frame buffer</li>
+<li>Fragment color can be modified by <strong>texture mapping</strong> (纹理映射)<ul>
+<li>Texture access (using interpolated texture coordinates)<ul>
+<li>Access texture map using texture coordinates</li>
+</ul>
+</li>
+<li>Texture application<ul>
+<li>Texture color can be combined with the fragment color of the primitive</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>2024 Summer</category>

@@ -40,10 +40,16 @@
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr10.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr12.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr13.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr13.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr17.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr18.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr14.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr15.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr19.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr16.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr20.png">
 <meta property="article:published_time" content="2024-06-27T06:57:57.000Z">
-<meta property="article:modified_time" content="2024-07-04T08:03:08.856Z">
+<meta property="article:modified_time" content="2024-07-07T06:56:25.591Z">
 <meta property="article:author" content="墨独凌">
 <meta property="article:tag" content="CSE Learning">
 <meta property="article:tag" content="C++">
@@ -160,7 +166,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#I-Pre-Knowledge-Phase-1"><span class="nav-text">I. Pre-Knowledge (Phase 1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Formation"><span class="nav-text">Image Formation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements-of-Image-Formation"><span class="nav-text">Elements of Image Formation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-text">Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphics-System-Design"><span class="nav-text">Graphics System Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rendering-Approaches"><span class="nav-text">Rendering Approaches</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Contents"><span class="nav-text">API Contents</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Specifications"><span class="nav-text">Object Specifications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Camera-Specification"><span class="nav-text">Camera Specification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lights-and-Materials"><span class="nav-text">Lights and Materials</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#II-Elementary-OpenGL-Programming"><span class="nav-text">II. Elementary OpenGL Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenGL-Libraries"><span class="nav-text">OpenGL Libraries</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-Library"><span class="nav-text">Core Library</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GLUT-FreeGLUT-Libraries"><span class="nav-text">GLUT &#x2F; FreeGLUT Libraries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Software-Organization"><span class="nav-text">Software Organization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-OpenGL-Rendering-Pipeline"><span class="nav-text">Basic OpenGL Rendering Pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-Functions"><span class="nav-text">OpenGL Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-State"><span class="nav-text">OpenGL State</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-Concept"><span class="nav-text">Simple Concept</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples"><span class="nav-text">Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Loop"><span class="nav-text">Event Loop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Program-Structure"><span class="nav-text">Program Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-text">main()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init"><span class="nav-text">init()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-methods-of-OpenGL"><span class="nav-text">Other methods of OpenGL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D-OpenGL"><span class="nav-text">3D OpenGL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Three-Dimensional-Applications"><span class="nav-text">Three-Dimensional Applications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gasket-Program"><span class="nav-text">Gasket Program</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Move-to-3D-triangle"><span class="nav-text">Move to 3D triangle</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#III-Input-amp-Interaction"><span class="nav-text">III. Input &amp; Interaction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Concept"><span class="nav-text">Concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GLUT-Event-Loop"><span class="nav-text">GLUT Event Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Display-Callback"><span class="nav-text">Display Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idle-Callback"><span class="nav-text">Idle Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mouse-and-Keyboard-Callbacks"><span class="nav-text">Mouse and Keyboard Callbacks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reshape-Callback"><span class="nav-text">Reshape Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Menu"><span class="nav-text">Menu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Functions"><span class="nav-text">Other Functions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IV-Geometric-Objects-amp-Transformations"><span class="nav-text">IV. Geometric Objects &amp; Transformations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Representation"><span class="nav-text">Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Coordinate-Systems"><span class="nav-text">Coordinate Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Frame"><span class="nav-text">Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homogeneous-Coordinates"><span class="nav-text">Homogeneous Coordinates</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformation"><span class="nav-text">Transformation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenGL-Transformations"><span class="nav-text">OpenGL Transformations</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#V-Camera-amp-Viewing"><span class="nav-text">V. Camera &amp; Viewing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#View-Transformation"><span class="nav-text">View Transformation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Projection-%E2%80%94%E2%80%94-Defining-the-View-Volume"><span class="nav-text">Projection —— Defining the View Volume</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-Orthographic-Projection"><span class="nav-text">OpenGL Orthographic Projection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-Perspective-Projection"><span class="nav-text">OpenGL Perspective Projection</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#I-Pre-Knowledge-Phase-1"><span class="nav-text">I. Pre-Knowledge (Phase 1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Formation"><span class="nav-text">Image Formation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements-of-Image-Formation"><span class="nav-text">Elements of Image Formation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-text">Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphics-System-Design"><span class="nav-text">Graphics System Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rendering-Approaches"><span class="nav-text">Rendering Approaches</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Contents"><span class="nav-text">API Contents</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Specifications"><span class="nav-text">Object Specifications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Camera-Specification"><span class="nav-text">Camera Specification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lights-and-Materials"><span class="nav-text">Lights and Materials</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#II-Elementary-OpenGL-Programming"><span class="nav-text">II. Elementary OpenGL Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenGL-Libraries"><span class="nav-text">OpenGL Libraries</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-Library"><span class="nav-text">Core Library</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GLUT-FreeGLUT-Libraries"><span class="nav-text">GLUT &#x2F; FreeGLUT Libraries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Software-Organization"><span class="nav-text">Software Organization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-OpenGL-Rendering-Pipeline"><span class="nav-text">Basic OpenGL Rendering Pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-Functions"><span class="nav-text">OpenGL Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-State"><span class="nav-text">OpenGL State</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-Concept"><span class="nav-text">Simple Concept</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples"><span class="nav-text">Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Loop"><span class="nav-text">Event Loop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Program-Structure"><span class="nav-text">Program Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-text">main()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init"><span class="nav-text">init()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-methods-of-OpenGL"><span class="nav-text">Other methods of OpenGL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D-OpenGL"><span class="nav-text">3D OpenGL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Three-Dimensional-Applications"><span class="nav-text">Three-Dimensional Applications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gasket-Program"><span class="nav-text">Gasket Program</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Move-to-3D-triangle"><span class="nav-text">Move to 3D triangle</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#III-Input-amp-Interaction"><span class="nav-text">III. Input &amp; Interaction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Concept"><span class="nav-text">Concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GLUT-Event-Loop"><span class="nav-text">GLUT Event Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Display-Callback"><span class="nav-text">Display Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idle-Callback"><span class="nav-text">Idle Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mouse-and-Keyboard-Callbacks"><span class="nav-text">Mouse and Keyboard Callbacks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reshape-Callback"><span class="nav-text">Reshape Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Menu"><span class="nav-text">Menu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Functions"><span class="nav-text">Other Functions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IV-Geometric-Objects-amp-Transformations"><span class="nav-text">IV. Geometric Objects &amp; Transformations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Representation"><span class="nav-text">Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Coordinate-Systems"><span class="nav-text">Coordinate Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Frame"><span class="nav-text">Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homogeneous-Coordinates"><span class="nav-text">Homogeneous Coordinates</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformation"><span class="nav-text">Transformation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenGL-Transformations"><span class="nav-text">OpenGL Transformations</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#V-Camera-amp-Viewing"><span class="nav-text">V. Camera &amp; Viewing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Computer-Viewing"><span class="nav-text">Computer Viewing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Specify-Different-Space"><span class="nav-text">Specify Different Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View-Transformation"><span class="nav-text">View Transformation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Projection-%E2%80%94%E2%80%94-Defining-the-View-Volume"><span class="nav-text">Projection —— Defining the View Volume</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-Orthographic-Projection"><span class="nav-text">OpenGL Orthographic Projection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-Perspective-Projection"><span class="nav-text">OpenGL Perspective Projection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Principle-of-Perspective-Projection"><span class="nav-text">Principle of Perspective Projection</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VI-Rasterization"><span class="nav-text">VI. Rasterization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Recall-for-OpenGL-Rendering-Pipeline"><span class="nav-text">Recall for OpenGL Rendering Pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Primitive-Assembly-etc"><span class="nav-text">Primitive Assembly, etc.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rasterization-amp-Fragment-Processing"><span class="nav-text">Rasterization &amp; Fragment Processing</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -261,7 +267,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-07-04 16:03:08" itemprop="dateModified" datetime="2024-07-04T16:03:08+08:00">2024-07-04</time>
+      <time title="Modified: 2024-07-07 14:56:25" itemprop="dateModified" datetime="2024-07-07T14:56:25+08:00">2024-07-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1053,7 +1059,47 @@
 </li>
 </ul>
 <hr>
-<h1 id="V-Camera-amp-Viewing"><a href="#V-Camera-amp-Viewing" class="headerlink" title="V. Camera &amp; Viewing"></a>V. Camera &amp; Viewing</h1><h2 id="View-Transformation"><a href="#View-Transformation" class="headerlink" title="View Transformation"></a>View Transformation</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glLookAt</span>( eyex, eyey, eyez,</span><br><span class="line">		  atx , aty , atz ,</span><br><span class="line">		  upx , upy , upz )</span><br></pre></td></tr></table></figure>
+<h1 id="V-Camera-amp-Viewing"><a href="#V-Camera-amp-Viewing" class="headerlink" title="V. Camera &amp; Viewing"></a>V. Camera &amp; Viewing</h1><h2 id="Computer-Viewing"><a href="#Computer-Viewing" class="headerlink" title="Computer Viewing"></a>Computer Viewing</h2><ul>
+<li><font color="red">2</font> attributes to define the viewing:<ul>
+<li>Positioning the camera<ul>
+<li><font color="green">Setting the <b>model-view</b> matrix</font> </li>
+</ul>
+</li>
+<li>Selecting a lens<ul>
+<li><font color="green">Setting the <b>projection</b> matrix</font></li>
+<li>Perspective or orthographic / view volume / clipping volume …</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Specify-Different-Space"><a href="#Specify-Different-Space" class="headerlink" title="Specify Different Space"></a>Specify Different Space</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr13.png" style="zoom:60%"></div>
+
+<ul>
+<li>Local / Modeling / Object Space<ul>
+<li>Each object model has its own local coordinate frame</li>
+</ul>
+</li>
+<li>World Space (类似全局空间)<ul>
+<li><font color="blue">Lights and Camera pose</font> are defined in this space</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr17.png" style="zoom:60%"></div>
+
+<ul>
+<li><strong>Camera Space / View Space / Eye Space</strong><ul>
+<li>Camera is located at the origin</li>
+<li>Looking in negative $z$ direction</li>
+<li>$+y$-axis is the “up-vector”</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Initially the <strong>world</strong> and <strong>camera</strong> frames are the same.</p>
+<p>To specify camera pose, we need to specify the camera coordinate frame with respect to the world coordinate frame.</p>
+</blockquote>
+<h2 id="View-Transformation"><a href="#View-Transformation" class="headerlink" title="View Transformation"></a>View Transformation</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glLookAt</span>( eyex, eyey, eyez,</span><br><span class="line">		  atx , aty , atz ,</span><br><span class="line">		  upx , upy , upz )</span><br></pre></td></tr></table></figure>
 <ul>
 <li>通过 eye 和 at 求出前向量</li>
 </ul>
@@ -1078,6 +1124,16 @@
 <ul>
 <li>求出三个向量后就能确定 camera 的位置和 pose 了</li>
 </ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr18.png" alt="view-trans" style="zoom:60%"></div>
+
+<ul>
+<li>Suppose the camera has been moved to the location $[e_x, e_y, e_z]^T$, and its $x_c$, $y_c$, $z_c$ axes are the unit vectors $\textbf{u}$, $\textbf{v}$, $\textbf{n}$, respectively, then</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\textbf{M}_{\text{view}}=<br>\left[ \begin{array}{c}<br>u_x &amp; u_y &amp; u_z &amp; 0 \\<br>v_x &amp; v_y &amp; v_z &amp; 0 \\<br>n_x &amp; n_y &amp; n_z &amp; 0 \\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>\cdot<br>\left[ \begin{array}{c}<br>1 &amp; 0 &amp; 0 &amp; -e_x \\<br>0 &amp; 1 &amp; 0 &amp; -e_y \\<br>0 &amp; 0 &amp; 1 &amp; -e_z \\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$</p>
+
+</blockquote>
+<p>▪ Note that $[e_x, e_y, e_z]^T$ and $\textbf{u}$, $\textbf{v}$, $\textbf{n}$ are all specified with respect to the world frame</p>
 <h2 id="Projection-——-Defining-the-View-Volume"><a href="#Projection-——-Defining-the-View-Volume" class="headerlink" title="Projection —— Defining the View Volume"></a>Projection —— Defining the View Volume</h2><ul>
 <li>For orthographic projection, use <code>glOrtho()</code></li>
 <li>For perspective projection, use <code>glFrustum()</code></li>
@@ -1091,8 +1147,9 @@
 </ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr14.png" alt="ortho-projection" style="zoom:60%"></div>
 
-
-
+<blockquote>
+<p>正投影，能较真实地反映物体大小，物体显示的大小不会因视角变化改变。常用于CAD设计、地图绘制、2D游戏等不需要表现深度感的场景。</p>
+</blockquote>
 <h3 id="OpenGL-Perspective-Projection"><a href="#OpenGL-Perspective-Projection" class="headerlink" title="OpenGL Perspective Projection"></a>OpenGL Perspective Projection</h3><ul>
 <li><code>glFrustum( left, right, bottom, top, near, far )</code><ul>
 <li>The <code>glFrustum()</code> function allows (off-center) non-symmetric view volume</li>
@@ -1105,7 +1162,71 @@
 </ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr15.png" alt="persp-projection" style="zoom:60%"></div>
 
+<blockquote>
+<p>透视投影，有深度感，近大远小。常用于3D游戏、虚拟现实、建筑可视化等需要真实感的场景。</p>
+</blockquote>
+<h4 id="Principle-of-Perspective-Projection"><a href="#Principle-of-Perspective-Projection" class="headerlink" title="Principle of Perspective Projection"></a>Principle of Perspective Projection</h4><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr19.png" alt="persp-projection-d" style="zoom:60%"></div>
 
+<ul>
+<li>Center of projection at the origin</li>
+<li>Projection plane is $z = d$, $d &lt; 0$</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>x_p=\frac{x}{z/d}\ \ \ \ y_p=\frac{y}{z/d}\ \ \ \ z_p=d<br>$</p>
+
+</blockquote>
+<ul>
+<li>Consider $p=Mq$ where</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>p=<br>\left[ \begin{array}{c}<br>x \\ y \\ z \\ z/d<br>\end{array}\right] \ \ \ \ M=<br>\left[ \begin{array}{c}<br>1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 1 &amp; 0 \\<br>0 &amp; 0 &amp; 1/d &amp; 0<br>\end{array}\right] \ \ \ \ q=<br>\left[ \begin{array}{c}<br>x \\ y \\ z \\ 1<br>\end{array}\right]<br>$</p>
+
+</blockquote>
+<ul>
+<li>If we scale $p$ , then we get the projection point on plane $z=d$ .</li>
+</ul>
+<h1 id="VI-Rasterization"><a href="#VI-Rasterization" class="headerlink" title="VI. Rasterization"></a>VI. Rasterization</h1><h2 id="Recall-for-OpenGL-Rendering-Pipeline"><a href="#Recall-for-OpenGL-Rendering-Pipeline" class="headerlink" title="Recall for OpenGL Rendering Pipeline"></a>Recall for OpenGL Rendering Pipeline</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr16.png" alt="Rendering Pipeline" style="zoom:60%"></div>
+
+<h3 id="Primitive-Assembly-etc"><a href="#Primitive-Assembly-etc" class="headerlink" title="Primitive Assembly, etc."></a>Primitive Assembly, etc.</h3><ul>
+<li>Primitive assembly<ul>
+<li>Vertex data is collected into complete primitives</li>
+<li>Necessary for clipping and back-face culling</li>
+</ul>
+</li>
+<li>Clipping</li>
+<li>Perspective division (Object Oriented)<ul>
+<li>To normalized device coordinate (NDC) space</li>
+</ul>
+</li>
+<li>Viewport transformation (Viewer Oriented)<ul>
+<li>To window space</li>
+<li>Include depth range scaling</li>
+</ul>
+</li>
+<li>Back-face culling</li>
+</ul>
+<h3 id="Rasterization-amp-Fragment-Processing"><a href="#Rasterization-amp-Fragment-Processing" class="headerlink" title="Rasterization &amp; Fragment Processing"></a>Rasterization &amp; Fragment Processing</h3><ul>
+<li>Attribute values at fragments are computed by interpolating attribute values assigned to vertices<ul>
+<li>Interpolation is performed in window space (2D)</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr20.png" alt="interpolation" style="zoom:40%"></div>
+
+<ul>
+<li>Each generated fragment is processed to determine the color of the corresponding pixel in the frame buffer</li>
+<li>Fragment color can be modified by <strong>texture mapping</strong> (纹理映射)<ul>
+<li>Texture access (using interpolated texture coordinates)<ul>
+<li>Access texture map using texture coordinates</li>
+</ul>
+</li>
+<li>Texture application<ul>
+<li>Texture color can be combined with the fragment color of the primitive</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
     </div>
     
