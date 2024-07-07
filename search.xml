@@ -2339,7 +2339,7 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 </li>
 </ul>
-<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr20.png" alt="interpolation" style="zoom:40%"></div>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr20.png" alt="interpolation" style="zoom:55%"></div>
 
 <ul>
 <li>Each generated fragment is processed to determine the color of the corresponding pixel in the frame buffer</li>
@@ -2352,6 +2352,17 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <li>Texture color can be combined with the fragment color of the primitive</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<p><strong>Per-Fragment Operations</strong></p>
+<ul>
+<li><font color="blue">Fragment is discarded if it is blocked (occluded) by the corresponding pixel already in the frame buffer</font><ul>
+<li>Z-buffer hidden-surface removal</li>
+</ul>
+</li>
+<li><font color="blue">Fragment may be blended with the corresponding pixel already in the frame buffer</font> <ul>
+<li>Blending</li>
 </ul>
 </li>
 </ul>
