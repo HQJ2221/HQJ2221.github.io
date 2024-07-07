@@ -2372,25 +2372,142 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <h2 id="Clipping"><a href="#Clipping" class="headerlink" title="Clipping"></a>Clipping</h2><blockquote>
 <p>To clip out primitives that are outside the view volume</p>
 </blockquote>
-<h3 id="Clipping-2D-Line-Segments"><a href="#Clipping-2D-Line-Segments" class="headerlink" title="Clipping 2D Line Segments"></a>Clipping 2D Line Segments</h3><h4 id="Cohen-Sutherland-Algorithm"><a href="#Cohen-Sutherland-Algorithm" class="headerlink" title="Cohen-Sutherland Algorithm"></a>Cohen-Sutherland Algorithm</h4><table>
+<h3 id="Clipping-2D-Line-Segments"><a href="#Clipping-2D-Line-Segments" class="headerlink" title="Clipping 2D Line Segments"></a>Clipping 2D Line Segments</h3><h4 id="Cohen-Sutherland-Algorithm"><a href="#Cohen-Sutherland-Algorithm" class="headerlink" title="Cohen-Sutherland Algorithm"></a>Cohen-Sutherland Algorithm</h4><ul>
+<li>Using <a name="edge-table">edge table</a></li>
+</ul>
+<table>
 <tr>
-<td><img src="/2024/06/27/Real-Time-Rendering/rtr21.png"></td>
-<td><p>Case 1: Both endpoints inside all four lines
-<br>  Draw (accept) line segment as is
-<br>Case 2: Both endpoints outside same line
-<br>  Discard (reject) the line segment</p></td>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr21.png" style="zoom:50%"></td>
+<td><p><li>Case 1: Both endpoints inside all four lines
+<ul><li>Draw (accept) line segment as is</li></ul></li>
+<li>Case 2: Both endpoints outside same line
+<ul><li>Discard (reject) the line segment</li></ul></li></p></td>
 </tr>
 <tr>
-<td><img src="/2024/06/27/Real-Time-Rendering/rtr22.png"></td>
-<td><p>Case 3: One endpoint inside all lines and one outside
-<br>  Must do at least one intersection
-<br>Case 4: Both outside
-<br>  May have part inside
-<br>  Must do at least one intersection</p></td>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr22.png" style="zoom:50%"></td>
+<td><p><li>Case 3: One endpoint inside all lines and one outside
+<ul><li>Must do at least one intersection</li></ul></li>
+<li>Case 4: Both outside
+<ul><li>May have part inside</li>
+<li>Must do at least one intersection</li></ul></li></p></td>
 </tr>
 </table>
 
-]]></content>
+<p><strong>Using Outcode</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr23.png" alt="outcode" style="zoom:60%"></div>
+
+<p>E.g. Suppose a line $AB$ with endpoints $A$ and $B$ .</p>
+<ul>
+<li>If $\text{outcode}(A)=\text{outcode}(B)=0$ , accept the segment</li>
+<li>If $\text{outcode}(A)=0$ , $\text{outcode}(B)\not= 0$ , <ul>
+<li>Compute intersection</li>
+<li>Location of $1$ in outcode($B$) determines which edge to intersect with</li>
+<li>If outcode($B$) has two $1$’s, then need to do two intersections</li>
+</ul>
+</li>
+<li>If $\text{outcode}(A) &amp; \text{outcode}(B) \not= 0$ , reject the segment</li>
+<li><p>If $\text{outcode}(A) &amp; \text{outcode}(B) = 0$ , but neither of them are $0$ , </p>
+<ul>
+<li>Shorten line segment by intersecting with one of sides of window</li>
+<li>Compute outcode of intersection (new endpoint of shortened line segment)</li>
+<li>Re-execute algorithm</li>
+</ul>
+</li>
+<li><p><strong>When it goes to 3D</strong>, we can use 6-bit outcode to represent 6 faces of the window.</p>
+</li>
+</ul>
+<h3 id="Polygon-Clipping"><a href="#Polygon-Clipping" class="headerlink" title="Polygon Clipping"></a>Polygon Clipping</h3><blockquote>
+<p>Problems of polygon clipping: may generate multiple polygons.</p>
+<p>Solution: For concave polygons, use tessellation function(镶嵌函数) in <code>GLU</code> to change it to multiple convex polygons.</p>
+</blockquote>
+<ul>
+<li>simple way: set axis-aligned bounding box(AABB) for simple calculation.</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr24.png" alt="outcode" style="zoom:50%"></div>
+
+
+
+<h2 id="Rasterization"><a href="#Rasterization" class="headerlink" title="Rasterization"></a>Rasterization</h2><h3 id="Scan-Conversion-of-Line-Segments"><a href="#Scan-Conversion-of-Line-Segments" class="headerlink" title="Scan Conversion of Line Segments"></a>Scan Conversion of Line Segments</h3><p><a name="BA"><b>Bresenham’s Algorithm</b></a></p>
+<ul>
+<li><font color="red">Key thought</font>: A binary decision problem on how the next pixel lies based on the previous pixel.</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr25.png" alt="BA" style="zoom:50%"></div>
+
+<ul>
+<li>On the next point: $y=m(x_k + 1) + b$</li>
+<li>$d_\text{lower} = y-y_k$</li>
+<li>$d_\text{upper}=(y_k+1)-y$</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>p_k&amp;=\Delta x(d_\text{lower} - d_\text{upper}) \\<br>&amp;=2x_k \Delta y - 2y_k \Delta x + c<br>\end{align}<br>$</p>
+
+</blockquote>
+<p>where $c=2\Delta y + \Delta x (2b - 1)$ is an <font color="red">integer constant</font> .</p>
+<ul>
+<li>If $p_k &gt; 0$ , plot upper pixel</li>
+<li><p>If $p_k &lt; 0$ , plot lower pixel</p>
+</li>
+<li><p>We can incrementally compute $p_{k+1}$ from $p_k$</p>
+<ul>
+<li>If $p_k &gt; 0$ ,  $p_{k + 1} = p_k + 2\Delta y – 2\Delta x$</li>
+<li>If $p_k &lt; 0$, $p_{k + 1} = p_k + 2\Delta y$</li>
+<li>where $p_0=2\Delta y - \Delta x$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Scan-Conversion-of-Polygons"><a href="#Scan-Conversion-of-Polygons" class="headerlink" title="Scan Conversion of Polygons"></a>Scan Conversion of Polygons</h3><p><strong>Scan-Line Fill — Interpolation</strong></p>
+<ul>
+<li>$C_1$ $C_2$ $C_3$ specified by glColor or by vertex shading (lighting computation)</li>
+<li>$C_4$ determined by interpolating between $C_1$ and $C_3$</li>
+<li>$C_5$ determined by interpolating between $C_2$ and $C_3$</li>
+<li>Interpolate between $C_4$ and $C_5$ along span</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr26.png" alt="scPolygon" style="zoom:50%"></div>
+
+<blockquote>
+<p>So what we need to do in this algorithm is calculating : </p>
+<ol>
+<li>points intersact with scan-line (Recall <a href="#BA">Bresenham’s Algorithm</a>)</li>
+<li>which polygons lie on this pixel (多边形扫描转换，<a href="#edge-table">边表</a>，活动边表)</li>
+</ol>
+</blockquote>
+<h3 id="Hidden-Surface-Removal"><a href="#Hidden-Surface-Removal" class="headerlink" title="Hidden-Surface Removal"></a>Hidden-Surface Removal</h3><ul>
+<li>Painter’s Algorithm<ul>
+<li>Fill the objects at the back first, then cover with the front objects</li>
+</ul>
+</li>
+<li>Depth Sorting<ul>
+<li>Need $O(n^2)$ at worst</li>
+</ul>
+</li>
+</ul>
+<p><strong>Back-Face Culling</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr27.png" alt="BFC" style="zoom:90%"></div>
+
+<ul>
+<li>Polygons is <font color="red">back-facing</font> if $\textbf{N}_p \cdot \textbf{N} &lt;0$</li>
+<li><font color="blue">In OpenGL, we can simply enable culling</font><ul>
+<li>By default, polygon vertices must be provided in <font color="blue">counter clockwise</font> order</li>
+<li>But may not work correctly for <font color="blue">non-convex</font> polygon</li>
+</ul>
+</li>
+</ul>
+<p><strong>Z-Buffer</strong></p>
+<ul>
+<li>Key thought: Exchange time with space</li>
+<li>Use a <font color="red">z-buffer</font> (depth buffer) to store the depth of the closest object at each pixel found so far</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr16.png" alt="Rendering Pipeline" style="zoom:60%"></div>
+
+<ul>
+<li>Viewing this pipeline again:</li>
+<li>Using back-face culling to remove hidden-surface</li>
+<li>Using scan conversion to do rasterization</li>
+<li>Using z-buffer to test the per-fragment</li>
+<li>At the end, output frame buffer.</li>
+</ul>
+<hr>
+<h1 id="VII"><a href="#VII" class="headerlink" title="VII."></a>VII.</h1>]]></content>
       <categories>
         <category>2024 Summer</category>
       </categories>
