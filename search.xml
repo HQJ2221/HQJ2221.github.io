@@ -2366,6 +2366,30 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>Let’s talk about something important !!!</p>
+</blockquote>
+<h2 id="Clipping"><a href="#Clipping" class="headerlink" title="Clipping"></a>Clipping</h2><blockquote>
+<p>To clip out primitives that are outside the view volume</p>
+</blockquote>
+<h3 id="Clipping-2D-Line-Segments"><a href="#Clipping-2D-Line-Segments" class="headerlink" title="Clipping 2D Line Segments"></a>Clipping 2D Line Segments</h3><h4 id="Cohen-Sutherland-Algorithm"><a href="#Cohen-Sutherland-Algorithm" class="headerlink" title="Cohen-Sutherland Algorithm"></a>Cohen-Sutherland Algorithm</h4><table>
+<tr>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr21.png"></td>
+<td><p>Case 1: Both endpoints inside all four lines
+<br>  Draw (accept) line segment as is
+<br>Case 2: Both endpoints outside same line
+<br>  Discard (reject) the line segment</p></td>
+</tr>
+<tr>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr22.png"></td>
+<td><p>Case 3: One endpoint inside all lines and one outside
+<br>  Must do at least one intersection
+<br>Case 4: Both outside
+<br>  May have part inside
+<br>  Must do at least one intersection</p></td>
+</tr>
+</table>
+
 ]]></content>
       <categories>
         <category>2024 Summer</category>
