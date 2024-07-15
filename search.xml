@@ -2125,250 +2125,256 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 <h2 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h2><ul>
 <li>Affine Transformation: Line preserving</li>
-<li>Translation: move points<ul>
-<li>$P’=P+d$ where $d=[d_x, d_y, d_z, 0]^T$</li>
+<li><p>Translation: move points</p>
+<ul>
+<li>$P’=P+d$ where $d=[d_x, d_y, d_z, 0]^T$ </li>
+</ul>
+</li>
+<li><p><font color="green">Recall for Linear Algebra:</font> Some linear transformation: </p>
+<ul>
+<li>Rotation (2D)</li>
+<li>Scaling</li>
+<li>Reflection</li>
 </ul>
 </li>
 </ul>
-<font color="green">Recall for Linear Algebra:</font> Some linear transformation
-
-- Rotation (2D)
-- Scaling
-- Reflection
-
-> try to remember their transformation matrices.
-
-**Inverses**
-
-- Translation: $\textbf{T}^{-1}=\textbf{T}(-d_x, -d_y, -d_z)$
-- Rotation: $\textbf{R}^{-1}(\theta)=\textbf{R}(- \theta)$
-    - Noted that only $cos(\theta)$ on orthogonal entry
-- Scaling: $\textbf{S}^{-1}(s_x, s_y, s_z)=\textbf{S}(1/s_x, 1/s_y, 1/s_z)$
-
-
-
-**Examples**
-
-Rotation About a Fixed Point Other than the Origin:
-
-1. Move fixed point to origin
-2. Rotate
-3. Move fixed point back
-
+<blockquote>
+<p>try to remember their transformation matrices.</p>
+</blockquote>
+<p><strong>Inverses</strong></p>
+<ul>
+<li>Translation: $\textbf{T}^{-1}=\textbf{T}(-d_x, -d_y, -d_z)$</li>
+<li>Rotation: $\textbf{R}^{-1}(\theta)=\textbf{R}(- \theta)$<ul>
+<li>Noted that only $cos(\theta)$ on orthogonal entry</li>
+</ul>
+</li>
+<li>Scaling: $\textbf{S}^{-1}(s_x, s_y, s_z)=\textbf{S}(1/s_x, 1/s_y, 1/s_z)$ </li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Rotation About a Fixed Point Other than the Origin:</p>
+<ol>
+<li>Move fixed point to origin</li>
+<li>Rotate</li>
+<li>Move fixed point back</li>
+</ol>
 <blockquote class="blockquote-center">
 <p>$<br>\textbf{M}=\textbf{T}(p_f)\textbf{R}(\theta)\textbf{T}(-p_f)<br>$</p>
 
 </blockquote>
+<p>(bu)</p>
+<h2 id="OpenGL-Transformations"><a href="#OpenGL-Transformations" class="headerlink" title="OpenGL Transformations"></a>OpenGL Transformations</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr13.png" alt="procedure" style="zoom:50%"></div>
 
-(bu)
-
-
-
-## OpenGL Transformations
-
-<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr13.png" alt="procedure" style="zoom:50%"></div>
-
-- <font color="green">Recall:</font> `glMatrixMode(GLenum mode)` to change the mode of matrix calculation
-    - when doing transformation, use `GL_MODELVIEW` state
-
-- For all CTM(Current Transformation Matrix) Operations, our CPP Code must load identity matrix first:
-
+<ul>
+<li><p><font color="green">Recall:</font> <code>glMatrixMode(GLenum mode)</code> to change the mode of matrix calculation</p>
+<ul>
+<li>when doing transformation, use <code>GL_MODELVIEW</code> state</li>
+</ul>
+</li>
+<li><p>For all CTM(Current Transformation Matrix) Operations, our CPP Code must load identity matrix first:</p>
+</li>
+</ul>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glMatrixMode</span>(GL_MODELVIEW);</span><br><span class="line"><span class="built_in">glLoadIdentity</span>(); <span class="comment">// 重置</span></span><br><span class="line"><span class="built_in">glTranslatef</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">-5.0</span>); <span class="comment">// 平移物体</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Beware of using <strong>post-multiplications</strong> (the later operations should be multipled to result matrix $\textbf{C}$ <font color="red">earlier</font>)<ul>
+<li>E.g. Rotation About a Fixed Point: $\textbf{C}=\textbf{T}^{-1}\textbf{R}\textbf{T}$</li>
+</ul>
+</li>
+<li>Other Transformation Matrix specifying<ul>
+<li>rotation: <code>glRotatef(theta, vx, vy, yz)</code></li>
+<li>translation: <code>glTranslatef(dx, dy, dz)</code></li>
+<li>scale: <code>glScalef(sx, sy, sz)</code> </li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="V-Camera-amp-Viewing"><a href="#V-Camera-amp-Viewing" class="headerlink" title="V. Camera &amp; Viewing"></a>V. Camera &amp; Viewing</h1><h2 id="Computer-Viewing"><a href="#Computer-Viewing" class="headerlink" title="Computer Viewing"></a>Computer Viewing</h2><ul>
+<li><font color="red">2</font> attributes to define the viewing:<ul>
+<li>Positioning the camera<ul>
+<li><font color="green">Setting the <b>model-view</b> matrix</font> </li>
+</ul>
+</li>
+<li>Selecting a lens<ul>
+<li><font color="green">Setting the <b>projection</b> matrix</font></li>
+<li>Perspective or orthographic / view volume / clipping volume …</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Specify-Different-Space"><a href="#Specify-Different-Space" class="headerlink" title="Specify Different Space"></a>Specify Different Space</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr13.png" style="zoom:60%"></div>
 
-- Beware of using **post-multiplications** (the later operations should be multipled to result matrix $\textbf{C}$ <font color="red">earlier</font>)
-    - E.g. Rotation About a Fixed Point: $\textbf{C}=\textbf{T}^{-1}\textbf{R}\textbf{T}$
-
-- Other Transformation Matrix specifying
-    - rotation: `glRotatef(theta, vx, vy, yz)`
-    - translation: `glTranslatef(dx, dy, dz)`
-    - scale: `glScalef(sx, sy, sz)`
-
-
-
----
-
-# V. Camera & Viewing
-
-## Computer Viewing
-
-- <font color="red">2</font> attributes to define the viewing:
-    - Positioning the camera
-        - <font color="green">Setting the <b>model-view</b> matrix</font> 
-    - Selecting a lens
-        - <font color="green">Setting the <b>projection</b> matrix</font>
-        - Perspective or orthographic / view volume / clipping volume ...
-
-## Specify Different Space
-
-<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr13.png" style="zoom:60%"></div>
-
-- Local / Modeling / Object Space
-    - Each object model has its own local coordinate frame
-- World Space (类似全局空间)
-    - <font color="blue">Lights and Camera pose</font> are defined in this space
-
+<ul>
+<li>Local / Modeling / Object Space<ul>
+<li>Each object model has its own local coordinate frame</li>
+</ul>
+</li>
+<li>World Space (类似全局空间)<ul>
+<li><font color="blue">Lights and Camera pose</font> are defined in this space</li>
+</ul>
+</li>
+</ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr17.png" style="zoom:60%"></div>
 
-- **Camera Space / View Space / Eye Space**
-    - Camera is located at the origin
-    - Looking in negative $z$ direction
-    - $+y$-axis is the “up-vector”
-
-> Initially the **world** and **camera** frames are the same.
-> 
-> To specify camera pose, we need to specify the camera coordinate frame with respect to the world coordinate frame.
-
-
-
-## View Transformation
-
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glLookAt</span>( eyex, eyey, eyez,</span><br><span class="line">		  atx , aty , atz ,</span><br><span class="line">		  upx , upy , upz )</span><br></pre></td></tr></table></figure>
-
-- 通过 eye 和 at 求出前向量
-
+<ul>
+<li><strong>Camera Space / View Space / Eye Space</strong><ul>
+<li>Camera is located at the origin</li>
+<li>Looking in negative $z$ direction</li>
+<li>$+y$-axis is the “up-vector”</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Initially the <strong>world</strong> and <strong>camera</strong> frames are the same.</p>
+<p>To specify camera pose, we need to specify the camera coordinate frame with respect to the world coordinate frame.</p>
+</blockquote>
+<h2 id="View-Transformation"><a href="#View-Transformation" class="headerlink" title="View Transformation"></a>View Transformation</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">glLookAt</span>( eyex, eyey, eyez,</span><br><span class="line">		  atx , aty , atz ,</span><br><span class="line">		  upx , upy , upz )</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过 eye 和 at 求出前向量</li>
+</ul>
 <blockquote class="blockquote-center">
 <p>$<br>\text{forward}=\frac{\text{at} - \text{eye}}{|\text{at} - \text{eye}|}<br>$</p>
 
 </blockquote>
-
-- 通过 forward 和 up 求出右向量
-
+<ul>
+<li>通过 forward 和 up 求出右向量</li>
+</ul>
 <blockquote class="blockquote-center">
 <p>$<br>\text{side}=\frac{\text{forward} \times \text{up}}{|\text{forward} \times \text{up}|}<br>$</p>
 
 </blockquote>
-
-- 然后就能得到修正后的上向量
-
+<ul>
+<li>然后就能得到修正后的上向量</li>
+</ul>
 <blockquote class="blockquote-center">
 <p>$<br>\text{up’}= \text{forward} \times \text{side}<br>$</p>
 
 </blockquote>
-
-- 求出三个向量后就能确定 camera 的位置和 pose 了
-
+<ul>
+<li>求出三个向量后就能确定 camera 的位置和 pose 了</li>
+</ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr18.png" alt="view-trans" style="zoom:60%"></div>
 
-- Suppose the camera has been moved to the location $[e_x, e_y, e_z]^T$, and its $x_c$, $y_c$, $z_c$ axes are the unit vectors $\textbf{u}$, $\textbf{v}$, $\textbf{n}$, respectively, then
-
+<ul>
+<li>Suppose the camera has been moved to the location $[e_x, e_y, e_z]^T$, and its $x_c$, $y_c$, $z_c$ axes are the unit vectors $\textbf{u}$, $\textbf{v}$, $\textbf{n}$, respectively, then</li>
+</ul>
 <blockquote class="blockquote-center">
 <p>$<br>\textbf{M}_{\text{view}}=<br>\left[ \begin{array}{c}<br>u_x &amp; u_y &amp; u_z &amp; 0 \\<br>v_x &amp; v_y &amp; v_z &amp; 0 \\<br>n_x &amp; n_y &amp; n_z &amp; 0 \\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>\cdot<br>\left[ \begin{array}{c}<br>1 &amp; 0 &amp; 0 &amp; -e_x \\<br>0 &amp; 1 &amp; 0 &amp; -e_y \\<br>0 &amp; 0 &amp; 1 &amp; -e_z \\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$</p>
 
 </blockquote>
-
-▪ Note that $[e_x, e_y, e_z]^T$ and $\textbf{u}$, $\textbf{v}$, $\textbf{n}$ are all specified with respect to the world frame
-
-
-
-## Projection —— Defining the View Volume
-
-
-- For orthographic projection, use `glOrtho()`
-- For perspective projection, use `glFrustum()`
-
-### OpenGL Orthographic Projection
-
-- The glOrtho() function then generates a matrix that linearly maps the view volume to the canonical view volume, where
-    - (left, bottom, –near) is mapped to (–1, –1, –1)
-    - (right, top, – far) is mapped to (1, 1, 1)
-
+<p>▪ Note that $[e_x, e_y, e_z]^T$ and $\textbf{u}$, $\textbf{v}$, $\textbf{n}$ are all specified with respect to the world frame</p>
+<h2 id="Projection-——-Defining-the-View-Volume"><a href="#Projection-——-Defining-the-View-Volume" class="headerlink" title="Projection —— Defining the View Volume"></a>Projection —— Defining the View Volume</h2><ul>
+<li>For orthographic projection, use <code>glOrtho()</code></li>
+<li>For perspective projection, use <code>glFrustum()</code></li>
+</ul>
+<h3 id="OpenGL-Orthographic-Projection"><a href="#OpenGL-Orthographic-Projection" class="headerlink" title="OpenGL Orthographic Projection"></a>OpenGL Orthographic Projection</h3><ul>
+<li>The glOrtho() function then generates a matrix that linearly maps the view volume to the canonical view volume, where<ul>
+<li>(left, bottom, –near) is mapped to (–1, –1, –1)</li>
+<li>(right, top, – far) is mapped to (1, 1, 1)</li>
+</ul>
+</li>
+</ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr14.png" alt="ortho-projection" style="zoom:60%"></div>
 
-> 正投影，能较真实地反映物体大小，物体显示的大小不会因视角变化改变。常用于CAD设计、地图绘制、2D游戏等不需要表现深度感的场景。
-
-
-
-### OpenGL Perspective Projection
-
-- `glFrustum( left, right, bottom, top, near, far )`
-    - The `glFrustum()` function allows (off-center) non-symmetric view volume
-- Often, we want a **symmetric view volume**. We can use
-    - `gluPerspective( fovy, aspect, near, far );`
-
+<blockquote>
+<p>正投影，能较真实地反映物体大小，物体显示的大小不会因视角变化改变。常用于CAD设计、地图绘制、2D游戏等不需要表现深度感的场景。</p>
+</blockquote>
+<h3 id="OpenGL-Perspective-Projection"><a href="#OpenGL-Perspective-Projection" class="headerlink" title="OpenGL Perspective Projection"></a>OpenGL Perspective Projection</h3><ul>
+<li><code>glFrustum( left, right, bottom, top, near, far )</code><ul>
+<li>The <code>glFrustum()</code> function allows (off-center) non-symmetric view volume</li>
+</ul>
+</li>
+<li>Often, we want a <strong>symmetric view volume</strong>. We can use<ul>
+<li><code>gluPerspective( fovy, aspect, near, far );</code></li>
+</ul>
+</li>
+</ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr15.png" alt="persp-projection" style="zoom:60%"></div>
 
-> 透视投影，有深度感，近大远小。常用于3D游戏、虚拟现实、建筑可视化等需要真实感的场景。
+<blockquote>
+<p>透视投影，有深度感，近大远小。常用于3D游戏、虚拟现实、建筑可视化等需要真实感的场景。</p>
+</blockquote>
+<h4 id="Principle-of-Perspective-Projection"><a href="#Principle-of-Perspective-Projection" class="headerlink" title="Principle of Perspective Projection"></a>Principle of Perspective Projection</h4><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr19.png" alt="persp-projection-d" style="zoom:60%"></div>
 
-
-#### Principle of Perspective Projection
-
-<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr19.png" alt="persp-projection-d" style="zoom:60%"></div>
-
-- Center of projection at the origin
-- Projection plane is $z = d$, $d < 0$
-
+<ul>
+<li>Center of projection at the origin</li>
+<li>Projection plane is $z = d$, $d &lt; 0$</li>
+</ul>
 <blockquote class="blockquote-center">
 <p>$<br>x_p=\frac{x}{z/d}\ \ \ \ y_p=\frac{y}{z/d}\ \ \ \ z_p=d<br>$</p>
 
 </blockquote>
-
-- Consider $p=Mq$ where
-
+<ul>
+<li>Consider $p=Mq$ where</li>
+</ul>
 <blockquote class="blockquote-center">
 <p>$<br>p=<br>\left[ \begin{array}{c}<br>x \\ y \\ z \\ z/d<br>\end{array}\right] \ \ \ \ M=<br>\left[ \begin{array}{c}<br>1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 1 &amp; 0 \\<br>0 &amp; 0 &amp; 1/d &amp; 0<br>\end{array}\right] \ \ \ \ q=<br>\left[ \begin{array}{c}<br>x \\ y \\ z \\ 1<br>\end{array}\right]<br>$</p>
 
 </blockquote>
+<ul>
+<li>If we scale $p$ , then we get the projection point on plane $z=d$ .</li>
+</ul>
+<h1 id="VI-Rasterization"><a href="#VI-Rasterization" class="headerlink" title="VI. Rasterization"></a>VI. Rasterization</h1><h2 id="Recall-for-OpenGL-Rendering-Pipeline"><a href="#Recall-for-OpenGL-Rendering-Pipeline" class="headerlink" title="Recall for OpenGL Rendering Pipeline"></a>Recall for OpenGL Rendering Pipeline</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr16.png" alt="Rendering Pipeline" style="zoom:60%"></div>
 
-- If we scale $p$ , then we get the projection point on plane $z=d$ .
-
-
-
-# VI. Rasterization
-
-## Recall for OpenGL Rendering Pipeline
-
-<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr16.png" alt="Rendering Pipeline" style="zoom:60%"></div>
-
-### Primitive Assembly, etc.
-
-- Primitive assembly
-    - Vertex data is collected into complete primitives
-    - Necessary for clipping and back-face culling
-- Clipping
-- Perspective division (Object Oriented)
-    - To normalized device coordinate (NDC) space
-- Viewport transformation (Viewer Oriented)
-    - To window space
-    - Include depth range scaling
-- Back-face culling
-
-
-
-### Rasterization & Fragment Processing
-
-- Attribute values at fragments are computed by interpolating attribute values assigned to vertices
-    - Interpolation is performed in window space (2D)
-
+<h3 id="Primitive-Assembly-etc"><a href="#Primitive-Assembly-etc" class="headerlink" title="Primitive Assembly, etc."></a>Primitive Assembly, etc.</h3><ul>
+<li>Primitive assembly<ul>
+<li>Vertex data is collected into complete primitives</li>
+<li>Necessary for clipping and back-face culling</li>
+</ul>
+</li>
+<li>Clipping</li>
+<li>Perspective division (Object Oriented)<ul>
+<li>To normalized device coordinate (NDC) space</li>
+</ul>
+</li>
+<li>Viewport transformation (Viewer Oriented)<ul>
+<li>To window space</li>
+<li>Include depth range scaling</li>
+</ul>
+</li>
+<li>Back-face culling</li>
+</ul>
+<h3 id="Rasterization-amp-Fragment-Processing"><a href="#Rasterization-amp-Fragment-Processing" class="headerlink" title="Rasterization &amp; Fragment Processing"></a>Rasterization &amp; Fragment Processing</h3><ul>
+<li>Attribute values at fragments are computed by interpolating attribute values assigned to vertices<ul>
+<li>Interpolation is performed in window space (2D)</li>
+</ul>
+</li>
+</ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr20.png" alt="interpolation" style="zoom:55%"></div>
 
-- Each generated fragment is processed to determine the color of the corresponding pixel in the frame buffer
-- Fragment color can be modified by **texture mapping** (纹理映射)
-    - Texture access (using interpolated texture coordinates)
-        - Access texture map using texture coordinates
-    - Texture application
-        - Texture color can be combined with the fragment color of the primitive
-
-**Per-Fragment Operations**
-
-- <font color="blue">Fragment is discarded if it is blocked (occluded) by the corresponding pixel already in the frame buffer</font>
-    - Z-buffer hidden-surface removal
-- <font color="blue">Fragment may be blended with the corresponding pixel already in the frame buffer</font> 
-    - Blending
-
-> Let's talk about something important !!!
-
-
-
-## Clipping
-
-> To clip out primitives that are outside the view volume
-
-### Clipping 2D Line Segments
-
-#### Cohen-Sutherland Algorithm
-
-- Using <a name="edge-table">edge table</a>
-
+<ul>
+<li>Each generated fragment is processed to determine the color of the corresponding pixel in the frame buffer</li>
+<li>Fragment color can be modified by <strong>texture mapping</strong> (纹理映射)<ul>
+<li>Texture access (using interpolated texture coordinates)<ul>
+<li>Access texture map using texture coordinates</li>
+</ul>
+</li>
+<li>Texture application<ul>
+<li>Texture color can be combined with the fragment color of the primitive</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Per-Fragment Operations</strong></p>
+<ul>
+<li><font color="blue">Fragment is discarded if it is blocked (occluded) by the corresponding pixel already in the frame buffer</font><ul>
+<li>Z-buffer hidden-surface removal</li>
+</ul>
+</li>
+<li><font color="blue">Fragment may be blended with the corresponding pixel already in the frame buffer</font> <ul>
+<li>Blending</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Let’s talk about something important !!!</p>
+</blockquote>
+<h2 id="Clipping"><a href="#Clipping" class="headerlink" title="Clipping"></a>Clipping</h2><blockquote>
+<p>To clip out primitives that are outside the view volume</p>
+</blockquote>
+<h3 id="Clipping-2D-Line-Segments"><a href="#Clipping-2D-Line-Segments" class="headerlink" title="Clipping 2D Line Segments"></a>Clipping 2D Line Segments</h3><h4 id="Cohen-Sutherland-Algorithm"><a href="#Cohen-Sutherland-Algorithm" class="headerlink" title="Cohen-Sutherland Algorithm"></a>Cohen-Sutherland Algorithm</h4><ul>
+<li>Using <a name="edge-table">edge table</a></li>
+</ul>
 <table>
 <tr>
 <td><img src="/2024/06/27/Real-Time-Rendering/rtr21.png" style="zoom:50%"></td>
@@ -2387,221 +2393,236 @@ Rotation About a Fixed Point Other than the Origin:
 </tr>
 </table>
 
-**Using Outcode**
-
+<p><strong>Using Outcode</strong></p>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr23.png" alt="outcode" style="zoom:60%"></div>
 
-E.g. Suppose a line $AB$ with endpoints $A$ and $B$ .
-
-- If $\text{outcode}(A)=\text{outcode}(B)=0$ , accept the segment
-- If $\text{outcode}(A)=0$ , $\text{outcode}(B)\not= 0$ , 
-    - Compute intersection
-    - Location of $1$ in outcode($B$) determines which edge to intersect with
-    - If outcode($B$) has two $1$'s, then need to do two intersections
-- If $\text{outcode}(A) & \text{outcode}(B) \not= 0$ , reject the segment
-- If $\text{outcode}(A) & \text{outcode}(B) = 0$ , but neither of them are $0$ , 
-    - Shorten line segment by intersecting with one of sides of window
-    - Compute outcode of intersection (new endpoint of shortened line segment)
-    - Re-execute algorithm
-
-- **When it goes to 3D**, we can use 6-bit outcode to represent 6 faces of the window.
-
-
-
-### Polygon Clipping
-
-> Problems of polygon clipping: may generate multiple polygons.
-> 
-> Solution: For concave polygons, use tessellation function(镶嵌函数) in `GLU` to change it to multiple convex polygons.
-
-
-- simple way: set axis-aligned bounding box(AABB) for simple calculation.
-
+<p>E.g. Suppose a line $AB$ with endpoints $A$ and $B$ .</p>
+<ul>
+<li>If $\text{outcode}(A)=\text{outcode}(B)=0$ , accept the segment</li>
+<li>If $\text{outcode}(A)=0$ , $\text{outcode}(B)\not= 0$ , <ul>
+<li>Compute intersection</li>
+<li>Location of $1$ in outcode($B$) determines which edge to intersect with</li>
+<li>If outcode($B$) has two $1$’s, then need to do two intersections</li>
+</ul>
+</li>
+<li>If $\text{outcode}(A)$ &amp; $\text{outcode}(B) \not= 0$ , reject the segment</li>
+<li><p>If $\text{outcode}(A)$ &amp; $\text{outcode}(B) = 0$ , but neither of them are $0$ , </p>
+<ul>
+<li>Shorten line segment by intersecting with one of sides of window</li>
+<li>Compute outcode of intersection (new endpoint of shortened line segment)</li>
+<li>Re-execute algorithm</li>
+</ul>
+</li>
+<li><p><strong>When it goes to 3D</strong>, we can use 6-bit outcode to represent 6 faces of the window.</p>
+</li>
+</ul>
+<h3 id="Polygon-Clipping"><a href="#Polygon-Clipping" class="headerlink" title="Polygon Clipping"></a>Polygon Clipping</h3><blockquote>
+<p>Problems of polygon clipping: may generate multiple polygons.</p>
+<p>Solution: For concave polygons, use tessellation function(镶嵌函数) in <code>GLU</code> to change it to multiple convex polygons.</p>
+</blockquote>
+<ul>
+<li>simple way: set axis-aligned bounding box(AABB) for simple calculation.</li>
+</ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr24.png" alt="outcode" style="zoom:50%"></div>
 
 
 
-## Rasterization
-
-### Scan Conversion of Line Segments
-
-<a name="BA"><b>Bresenham’s Algorithm</b></a>
-
-- <font color="red">Key thought</font>: A binary decision problem on how the next pixel lies based on the previous pixel.
-
+<h2 id="Rasterization"><a href="#Rasterization" class="headerlink" title="Rasterization"></a>Rasterization</h2><h3 id="Scan-Conversion-of-Line-Segments"><a href="#Scan-Conversion-of-Line-Segments" class="headerlink" title="Scan Conversion of Line Segments"></a>Scan Conversion of Line Segments</h3><p><a name="BA"><b>Bresenham’s Algorithm</b></a></p>
+<ul>
+<li><font color="red">Key thought</font>: A binary decision problem on how the next pixel lies based on the previous pixel.</li>
+</ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr25.png" alt="BA" style="zoom:50%"></div>
 
-- On the next point: $y=m(x_k + 1) + b$
-- $d_\text{lower} = y-y_k$
-- $d_\text{upper}=(y_k+1)-y$
-
+<ul>
+<li>On the next point: $y=m(x_k + 1) + b$</li>
+<li>$d_\text{lower} = y-y_k$</li>
+<li>$d_\text{upper}=(y_k+1)-y$</li>
+</ul>
 <blockquote class="blockquote-center">
 <p>$<br>\begin{align}<br>p_k&amp;=\Delta x(d_\text{lower} - d_\text{upper}) \\<br>&amp;=2x_k \Delta y - 2y_k \Delta x + c<br>\end{align}<br>$</p>
 
 </blockquote>
-
-where $c=2\Delta y + \Delta x (2b - 1)$ is an <font color="red">integer constant</font> .
-
-- If $p_k > 0$ , plot upper pixel
-- If $p_k < 0$ , plot lower pixel
-
-- We can incrementally compute $p_{k+1}$ from $p_k$
-    - If $p_k > 0$ ,  $p_{k + 1} = p_k + 2\Delta y – 2\Delta x$
-    - If $p_k < 0$, $p_{k + 1} = p_k + 2\Delta y$
-    - where $p_0=2\Delta y - \Delta x$
-
-
-
-### Scan Conversion of Polygons
-
-**Scan-Line Fill — Interpolation**
-
-- $C_1$ $C_2$ $C_3$ specified by glColor or by vertex shading (lighting computation)
-- $C_4$ determined by interpolating between $C_1$ and $C_3$
-- $C_5$ determined by interpolating between $C_2$ and $C_3$
-- Interpolate between $C_4$ and $C_5$ along span
-
+<p>where $c=2\Delta y + \Delta x (2b - 1)$ is an <font color="red">integer constant</font> .</p>
+<ul>
+<li>If $p_k &gt; 0$ , plot upper pixel</li>
+<li><p>If $p_k &lt; 0$ , plot lower pixel</p>
+</li>
+<li><p>We can incrementally compute $p_{k+1}$ from $p_k$</p>
+<ul>
+<li>If $p_k &gt; 0$ ,  $p_{k + 1} = p_k + 2\Delta y – 2\Delta x$</li>
+<li>If $p_k &lt; 0$, $p_{k + 1} = p_k + 2\Delta y$</li>
+<li>where $p_0=2\Delta y - \Delta x$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Scan-Conversion-of-Polygons"><a href="#Scan-Conversion-of-Polygons" class="headerlink" title="Scan Conversion of Polygons"></a>Scan Conversion of Polygons</h3><p><strong>Scan-Line Fill — Interpolation</strong></p>
+<ul>
+<li>$C_1$ $C_2$ $C_3$ specified by glColor or by vertex shading (lighting computation)</li>
+<li>$C_4$ determined by interpolating between $C_1$ and $C_3$</li>
+<li>$C_5$ determined by interpolating between $C_2$ and $C_3$</li>
+<li>Interpolate between $C_4$ and $C_5$ along span</li>
+</ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr26.png" alt="scPolygon" style="zoom:50%"></div>
 
-> So what we need to do in this algorithm is calculating : 
-> 
-> 1. points intersact with scan-line (Recall [Bresenham’s Algorithm](#BA))
-> 2. which polygons lie on this pixel (多边形扫描转换，[边表](#edge-table)，活动边表)
-
-
-
-### Hidden-Surface Removal
-
-- Painter's Algorithm
-    - Fill the objects at the back first, then cover with the front objects
-- Depth Sorting
-    - Need $O(n^2)$ at worst
-
-**Back-Face Culling**
-
+<blockquote>
+<p>So what we need to do in this algorithm is calculating : </p>
+<ol>
+<li>points intersact with scan-line (Recall <a href="#BA">Bresenham’s Algorithm</a>)</li>
+<li>which polygons lie on this pixel (多边形扫描转换，<a href="#edge-table">边表</a>，活动边表)</li>
+</ol>
+</blockquote>
+<h3 id="Hidden-Surface-Removal"><a href="#Hidden-Surface-Removal" class="headerlink" title="Hidden-Surface Removal"></a>Hidden-Surface Removal</h3><ul>
+<li>Painter’s Algorithm<ul>
+<li>Fill the objects at the back first, then cover with the front objects</li>
+</ul>
+</li>
+<li>Depth Sorting<ul>
+<li>Need $O(n^2)$ at worst</li>
+</ul>
+</li>
+</ul>
+<p><strong>Back-Face Culling</strong></p>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr27.png" alt="BFC" style="zoom:90%"></div>
 
-- Polygons is <font color="red">back-facing</font> if $\textbf{N}_p \cdot \textbf{N} <0$ - <font color="blue">In OpenGL, we can simply enable culling
-    - By default, polygon vertices must be provided in <font color="blue">counter clockwise</font> order
-    - But may not work correctly for <font color="blue">non-convex</font> polygon
+<ul>
+<li>Polygons is <font color="red">back-facing</font> if $\textbf{N}_p \cdot \textbf{N} &lt;0$</li>
+<li><font color="blue">In OpenGL, we can simply enable culling</font><ul>
+<li>By default, polygon vertices must be provided in <font color="blue">counter clockwise</font> order</li>
+<li>But may not work correctly for <font color="blue">non-convex</font> polygon</li>
+</ul>
+</li>
+</ul>
+<p><strong>Z-Buffer</strong></p>
+<ul>
+<li>Key thought: Exchange time with space</li>
+<li>Use a <font color="red">z-buffer</font> (depth buffer) to store the depth of the closest object at each pixel found so far</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr16.png" alt="Rendering Pipeline" style="zoom:60%"></div>
 
-**Z-Buffer**
-
-- Key thought: Exchange time with space
-- Use a <font color="red">z-buffer</font> (depth buffer) to store the depth of the closest object at each pixel found so far
-
-## Summary
-
-<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr16.png" alt="Rendering Pipeline" style="zoom:60%"></div>
-
-- Viewing this pipeline again:
-- Using back-face culling to remove hidden-surface
-- Using scan conversion to do rasterization
-- Using z-buffer to test the per-fragment
-- At the end, output frame buffer.
-
----
-
-# VII. Illumination
-
-**Local Reflection vs Global Illumination**
-
-- Local reflection
-    - Considers relationship between a light source, a single surface point, and a view point
-    - No interaction with other objects
-- Global illumination
-    - Considers all light sources and surfaces
-    - Inter-reflections and shadows
-
-## Phong Illumination Equation
-
-<blockquote class="blockquote-center">
+<ul>
+<li>Viewing this pipeline again:</li>
+<li>Using back-face culling to remove hidden-surface</li>
+<li>Using scan conversion to do rasterization</li>
+<li>Using z-buffer to test the per-fragment</li>
+<li>At the end, output frame buffer.</li>
+</ul>
+<hr>
+<h1 id="VII-Illumination"><a href="#VII-Illumination" class="headerlink" title="VII. Illumination"></a>VII. Illumination</h1><p><strong>Local Reflection vs Global Illumination</strong></p>
+<ul>
+<li>Local reflection<ul>
+<li>Considers relationship between a light source, a single surface point, and a view point</li>
+<li>No interaction with other objects</li>
+</ul>
+</li>
+<li>Global illumination<ul>
+<li>Considers all light sources and surfaces</li>
+<li>Inter-reflections and shadows</li>
+</ul>
+</li>
+</ul>
+<h2 id="Phong-Illumination-Equation"><a href="#Phong-Illumination-Equation" class="headerlink" title="Phong Illumination Equation"></a>Phong Illumination Equation</h2><blockquote class="blockquote-center">
 <p>$<br>I_{\text{Phong}}=k_a i_a + \sum_{m \in \text{lights}} \left(k_d (\textbf{L}_m \cdot \textbf{N}) i_{m,d} + k_s (\textbf{R}_m \cdot \textbf{V})^{\alpha} i_{m,s}  \right)<br>$</p>
 
 </blockquote>
-
-where :
-
-- $k_a$ 表示环境光反射系数，常数
-- $k_d$ 表示漫反射系数，常数
-- $k_s$ 表示镜面高光反射系数，常数
-- $\alpha$ 表示物体材质光滑程度，由材质决定（材质越光滑系数越大），常量
-- $\textbf{L}_m$ 表示相对于 $L$ 的反射光线方向
-- $\textbf{N}$ 表示该点的法线 [Normal Vector]
-- $\textbf{R}_m$ 表示反射光的方向
-- $\textbf{V}$ 表示摄像机的方向
-- $i_{m,d}$ 表示光源$m$的漫反射反射光照，RGB
-- $i_{m,s}$ 表示光源$m$的高光反射光照，RGB
-- $i_a$ 表示环境光的光照，RGB
-- $I_p$ 表示 $p$ 的总光照，RGB
-- $m$ 表示其中一个光源
-
-> Sum 中的两项分别对应下图的两步（Diffuse【漫反射】是 $L \cdot N$ ，Specular 【镜面】是 $R \cdot V$），ambient 对应 $k_a \times i_a$ ，表示局部的环境色渲染。
-
+<p>where :</p>
+<ul>
+<li>$k_a$ 表示环境光反射系数，常数</li>
+<li>$k_d$ 表示漫反射系数，常数</li>
+<li>$k_s$ 表示镜面高光反射系数，常数</li>
+<li>$\alpha$ 表示物体材质光滑程度，由材质决定（材质越光滑系数越大），常量</li>
+<li>$\textbf{L}_m$ 表示相对于 $L$ 的反射光线方向</li>
+<li>$\textbf{N}$ 表示该点的法线 [Normal Vector]</li>
+<li>$\textbf{R}_m$ 表示反射光的方向</li>
+<li>$\textbf{V}$ 表示摄像机的方向</li>
+<li>$i_{m,d}$ 表示光源$m$的漫反射反射光照，RGB</li>
+<li>$i_{m,s}$ 表示光源$m$的高光反射光照，RGB</li>
+<li>$i_a$ 表示环境光的光照，RGB</li>
+<li>$I_p$ 表示 $p$ 的总光照，RGB</li>
+<li>$m$ 表示其中一个光源</li>
+</ul>
+<blockquote>
+<p>Sum 中的两项分别对应下图的两步（Diffuse【漫反射】是 $L \cdot N$ ，Specular 【镜面】是 $R \cdot V$），ambient 对应 $k_a \times i_a$ ，表示局部的环境色渲染。</p>
+</blockquote>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr28.png" alt="PIE" style="zoom:70%"></div>
 
 
-- Diffuse Reflection: **Lambert's Cosine Law**
-    - diffuse reflection $\propto \cos{\theta} = \textbf{N} \cdot \textbf{L}$
-
-## Illumination in OpenGL
-
-- Lighting Computation at **Vertex Processing** stage.
-- Specifying Vertex Normal Vectors
-    - Set by `glNormal*()`
-        - `glNormal3f(x, y, z)`
-        - `glNormal3fv(p)`
-    - `glEnable(GL_NORMALIZE)` allows for auto-normalization at a performance penalty
-- Enabling Lighting Computation
-    - Shading calculations are enabled by
-        - `glEnable(GL_LIGHTING)`
-        - Once lighting is enabled, `glColor()` is <font color="red">ignored</font>
-    - Must enable each light source individually
-        - `glEnable(GL_LIGHTi)` $i = 0, 1, 2, \cdots $
-    - Can choose light model parameters
-        - `glLightModeli(parameter, GL_TRUE)`
-            - `GL_LIGHT_MODEL_LOCAL_VIEWER` do not use simplifying distant viewer assumption in calculation
-            - `GL_LIGHT_MODEL_TWO_SIDED` shades both sides of polygons independently
-    - <font color="red">An example code of using light</font>:
-
+<ul>
+<li>Diffuse Reflection: <strong>Lambert’s Cosine Law</strong><ul>
+<li>diffuse reflection $\propto \cos{\theta} = \textbf{N} \cdot \textbf{L}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Illumination-in-OpenGL"><a href="#Illumination-in-OpenGL" class="headerlink" title="Illumination in OpenGL"></a>Illumination in OpenGL</h2><ul>
+<li>Lighting Computation at <strong>Vertex Processing</strong> stage.</li>
+<li>Specifying Vertex Normal Vectors<ul>
+<li>Set by <code>glNormal*()</code><ul>
+<li><code>glNormal3f(x, y, z)</code></li>
+<li><code>glNormal3fv(p)</code></li>
+</ul>
+</li>
+<li><code>glEnable(GL_NORMALIZE)</code> allows for auto-normalization at a performance penalty</li>
+</ul>
+</li>
+<li>Enabling Lighting Computation<ul>
+<li>Shading calculations are enabled by<ul>
+<li><code>glEnable(GL_LIGHTING)</code></li>
+<li>Once lighting is enabled, <code>glColor()</code> is <font color="red">ignored</font></li>
+</ul>
+</li>
+<li>Must enable each light source individually<ul>
+<li><code>glEnable(GL_LIGHTi)</code> $i = 0, 1, 2, \cdots $</li>
+</ul>
+</li>
+<li>Can choose light model parameters<ul>
+<li><code>glLightModeli(parameter, GL_TRUE)</code><ul>
+<li><code>GL_LIGHT_MODEL_LOCAL_VIEWER</code> do not use simplifying distant viewer assumption in calculation</li>
+<li><code>GL_LIGHT_MODEL_TWO_SIDED</code> shades both sides of polygons independently</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><font color="red">An example code of using light</font>:</li>
+</ul>
+</li>
+</ul>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">GLfloat diffuse0[] = &#123;<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>&#125;;</span><br><span class="line">GLfloat ambient0[] = &#123;<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>&#125;;</span><br><span class="line">GLfloat specular0[] = &#123;<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>&#125;;</span><br><span class="line">GLfloat light0_pos[] = &#123;<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3</span>,<span class="number">0</span>, <span class="number">1.0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">glEnable</span>(GL_LIGHTING);</span><br><span class="line"><span class="built_in">glEnable</span>(GL_LIGHT0);</span><br><span class="line"><span class="built_in">glLightfv</span>(GL_LIGHT0, GL_POSITION, light0_pos);</span><br><span class="line"><span class="built_in">glLightfv</span>(GL_LIGHT0, GL_AMBIENT, ambient0);		<span class="comment">// def ambient</span></span><br><span class="line"><span class="built_in">glLightfv</span>(GL_LIGHT0, GL_DIFFUSE, diffuse0);		<span class="comment">// def diffuse</span></span><br><span class="line"><span class="built_in">glLightfv</span>(GL_LIGHT0, GL_SPECULAR, specular0);	<span class="comment">// def spec</span></span><br></pre></td></tr></table></figure>
-
-- Or using **Global Ambient Light** : `glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient)`
-
-> 设置材质和设置光源的参数很像，用 `glMaterialfv()` 函数，第一个参数改成 `GL_FRONT, GL_BACK, GL_FRONT_AND_BACK` 表示内外渲染
-
-
-
-
-
-## Shading
-
-### Gouraud Shading vs. Phong Shading
-
-- Flat shading is "bad"
-- Gouraud Shading
-    1. For each vertex, compute the <font color="red">average normal vector</font> of the polygons that share the vertex
-    2. Apply <font color="red">PIE</font> at the vertex using its <font color="blue">average normal vector</font>
-    3. Smoothly interpolate the computed colors at the vertices of the polygon to the interior of the polygon
-- Using <font color="red">Gouraud Shading</font> in OpenGL: `glShadeModel(GL_SMOOTH)` (No Phong Shading use directly)
-
-
-
-- Phong Shading
-    1. In Phong Shading, we do not compute the colors of the vertices for interpolation. Instead, for each fragment in the polygon, we interpolate the normal vectors from the vertices
-    2. Then, at each fragment, we apply PIE on the interpolated normal vector to compute a color for the fragment
-
+<ul>
+<li>Or using <strong>Global Ambient Light</strong> : <code>glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient)</code></li>
+</ul>
+<blockquote>
+<p>设置材质和设置光源的参数很像，用 <code>glMaterialfv()</code> 函数，第一个参数改成 <code>GL_FRONT, GL_BACK, GL_FRONT_AND_BACK</code> 表示内外渲染</p>
+</blockquote>
+<h2 id="Shading"><a href="#Shading" class="headerlink" title="Shading"></a>Shading</h2><h3 id="Gouraud-Shading-vs-Phong-Shading"><a href="#Gouraud-Shading-vs-Phong-Shading" class="headerlink" title="Gouraud Shading vs. Phong Shading"></a>Gouraud Shading vs. Phong Shading</h3><ul>
+<li>Flat shading is “bad”</li>
+<li>Gouraud Shading<ol>
+<li>For each vertex, compute the <font color="red">average normal vector</font> of the polygons that share the vertex</li>
+<li>Apply <font color="red">PIE</font> at the vertex using its <font color="blue">average normal vector</font></li>
+<li>Smoothly interpolate the computed colors at the vertices of the polygon to the interior of the polygon</li>
+</ol>
+</li>
+<li>Using <font color="red">Gouraud Shading</font> in OpenGL: <code>glShadeModel(GL_SMOOTH)</code> (No Phong Shading use directly)</li>
+</ul>
+<ul>
+<li>Phong Shading<ol>
+<li>In Phong Shading, we do not compute the colors of the vertices for interpolation. Instead, for each fragment in the polygon, we interpolate the normal vectors from the vertices</li>
+<li>Then, at each fragment, we apply PIE on the interpolated normal vector to compute a color for the fragment</li>
+</ol>
+</li>
+</ul>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr30.png" alt="Gouraud-and-Phong" style="zoom:70%"></div>
 
-- Differences
-    - Highlights are produced more faithfully with Phong shading
-    - Gouraud shading produces only “linear interpolation” of colors
-    - Gouraud shading may even miss the highlight
-- OpenGL does not support Phong Shading
-    - But can be done by reprogramming the rendering pipeline <font color="red">using shaders</font>
-
-
-
+<ul>
+<li>Differences<ul>
+<li>Highlights are produced more faithfully with Phong shading</li>
+<li>Gouraud shading produces only “linear interpolation” of colors</li>
+<li>Gouraud shading may even miss the highlight</li>
+</ul>
+</li>
+<li>OpenGL does not support Phong Shading<ul>
+<li>But can be done by reprogramming the rendering pipeline <font color="red">using shaders</font></li>
+</ul>
+</li>
+</ul>
 <h1 id="VIII-Modern-OpenGL-Intro"><a href="#VIII-Modern-OpenGL-Intro" class="headerlink" title="VIII. Modern OpenGL (Intro)"></a>VIII. Modern OpenGL (Intro)</h1><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr29.png" alt="modern-opengl" style="zoom:60%"></div>
 
 <h2 id="Example-OpenGL-Programs-The-Modern-Way"><a href="#Example-OpenGL-Programs-The-Modern-Way" class="headerlink" title="Example OpenGL Programs: The Modern Way"></a>Example OpenGL Programs: The Modern Way</h2><h3 id="New-Lib"><a href="#New-Lib" class="headerlink" title="New Lib"></a>New Lib</h3><ul>
@@ -2620,13 +2641,80 @@ where :
 </ul>
 </li>
 </ul>
-<h3 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h3><p>(1)</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GL/glew.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GL/freeglut.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;glm/glm.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;glm/gtc/matrix_transform.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Shaders&#x27; filenames.</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> vertShaderFilename[] = <span class="string">&quot;shader.vert&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span> fragShaderFilename[] = <span class="string">&quot;shader.frag&quot;</span>;</span><br><span class="line"></span><br><span class="line">GLuint shaderProgObj; <span class="comment">// The shader program object.</span></span><br><span class="line">GLuint VAO; 		  <span class="comment">// The vertex array object.</span></span><br></pre></td></tr></table></figure>
-<p>(2)</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> numVerts = <span class="number">6</span>; <span class="comment">// Total number of vertices.</span></span><br><span class="line"></span><br><span class="line">GLfloat vertPos[numVerts][<span class="number">3</span>] = </span><br><span class="line"> &#123; &#123; <span class="number">0.0f</span>, <span class="number">8.0f</span>, <span class="number">5.0f</span> &#125;, &#123; <span class="number">-8.0f</span>, <span class="number">0.0f</span>, <span class="number">5.0f</span> &#125;, </span><br><span class="line"> &#123; <span class="number">8.0f</span>, <span class="number">0.0f</span>, <span class="number">5.0f</span> &#125;, &#123; <span class="number">0.0f</span>, <span class="number">-5.0f</span>, <span class="number">2.0f</span> &#125;, </span><br><span class="line"> &#123; <span class="number">10.0f</span>, <span class="number">5.0f</span>, <span class="number">2.0f</span> &#125;, &#123; <span class="number">-10.0f</span>, <span class="number">5.0f</span>, <span class="number">2.0f</span> &#125; &#125;;</span><br><span class="line">GLfloat vertColor[numVerts][<span class="number">3</span>] = </span><br><span class="line"> &#123; &#123; <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span> &#125;, &#123; <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span> &#125;, </span><br><span class="line"> &#123; <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span> &#125;, &#123; <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span> &#125;, </span><br><span class="line"> &#123; <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span> &#125;, &#123; <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span> &#125; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> winWidth = <span class="number">800</span>;  <span class="comment">// Window width in pixels.</span></span><br><span class="line"><span class="type">int</span> winHeight = <span class="number">600</span>; <span class="comment">// Window height in pixels.</span></span><br></pre></td></tr></table></figure>
-<p>(3)</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyInit</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="comment">// Create shader program object.</span></span><br><span class="line"> shaderProgObj = <span class="built_in">makeShaderProgramFromFiles</span>(vertShaderFilename, fragShaderFilename);</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">glUseProgram</span>(shaderProgObj);</span><br><span class="line"> </span><br><span class="line"> <span class="comment">/* Two separate vertex buffer objects are created: one for vertex positions, and the other for vertex colors. */</span></span><br><span class="line"> GLuint vertPosBufferObj;</span><br><span class="line"> <span class="built_in">glGenBuffers</span>(<span class="number">1</span>, &amp;vertPosBufferObj);</span><br><span class="line"> <span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, vertPosBufferObj);</span><br><span class="line"> <span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertPos), &amp;vertPos[<span class="number">0</span>][<span class="number">0</span>], GL_STATIC_DRAW);</span><br><span class="line"> </span><br><span class="line"> GLuint vertColorBufferObj;</span><br><span class="line"> <span class="built_in">glGenBuffers</span>(<span class="number">1</span>, &amp;vertColorBufferObj);</span><br><span class="line"> <span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, vertColorBufferObj);</span><br><span class="line"> <span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertColor), &amp;vertColor[<span class="number">0</span>][<span class="number">0</span>], GL_STATIC_DRAW);</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">glGenVertexArrays</span>(<span class="number">1</span>, &amp;VAO);</span><br><span class="line"> <span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, vertPosBufferObj);</span><br><span class="line"> <span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, vertColorBufferObj);</span><br><span class="line"> <span class="built_in">glVertexAttribPointer</span>(<span class="number">1</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line"> </span><br><span class="line"> <span class="comment">/* The 2 vertex buffers are separately hooked to the 2 attribute indices of the VAO. */</span></span><br><span class="line"> <span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">glEnableVertexAttribArray</span>(<span class="number">1</span>);</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">glClearColor</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>); <span class="comment">// Set black background color.</span></span><br><span class="line"> <span class="built_in">glEnable</span>(GL_DEPTH_TEST); <span class="comment">// Use depth-buffer.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</0$>]]></content>
+<h3 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h3><blockquote>
+<p>注意：由于课程上给出的示例代码过长，这里只总结一些重要部分，不展示示例代码。OpenGL 的相关教程网上不会缺，可以自行获取。</p>
+</blockquote>
+<h1 id="IX-Shading-Language"><a href="#IX-Shading-Language" class="headerlink" title="IX. Shading Language"></a>IX. Shading Language</h1><blockquote>
+<p>This section is all about coding.</p>
+<p>Some basis(Data Type, Data Structure, etc.) is ignored.</p>
+</blockquote>
+<p><strong>Storage Quantifiers</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr31.png" style="zoom:60%"></div>
+
+<p><strong>Function Parameter Qualifiers</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr32.png" style="zoom:60%"></div>
+
+<ul>
+<li>GLSL has no concepts of pointer or reference</li>
+<li>Functions are called by <font color="red">value-return</font></li>
+</ul>
+<p><strong>Vertex and Fragment Built-in Variables</strong></p>
+<table>
+<tr>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr33.png"></td>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr34.png"></td>
+</tr>
+</table>
+
+
+
+<ul>
+<li><code>gl_FragCoord</code> contains window relative coordinates $(x, y, z, 1/w)$<ul>
+<li>$z$ is the depth value (after depth range scaling)</li>
+<li>$w$ is $–z_e$ where $z_e$ is the $z$-coordinate of the fragment in the eye space</li>
+</ul>
+</li>
+<li>If <code>gl_FragDepth</code> is not written to, <code>gl_FragCoord.z</code> is used as fragment’s depth</li>
+</ul>
+<ul>
+<li>A fragment’s 2D position is the window-relative coordinates of the fragment’s center<ul>
+<li>By default, for the <font color="red">bottom-left-most</font> pixel in the window<ul>
+<li><code>gl_FragCoord.x == 0.5</code></li>
+<li><code>gl_FragCoord.y == 0.5</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Modern OpenGL uses <code>.vert</code> and <code>.frag</code> to describe the vertex and fragment rendering.</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// A simple pseudo-code</span></span><br><span class="line">GLuint ShaderProjObj;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span> vert[] = <span class="string">&quot;exmaple.vert&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span> frag[] = <span class="string">&quot;example.frag&quot;</span>;</span><br><span class="line"><span class="type">const</span> GLfloat lightAmbient[] = &#123; <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">MyInit</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Create Gouraud Shading shader program object.</span></span><br><span class="line">  ShaderProjObj = <span class="built_in">makeShaderProgramFromFiles</span>(vert, frag, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="comment">// Install Gauraud Shading shader program to the rendering pipeline first.</span></span><br><span class="line">  <span class="built_in">glUseProgram</span>(ShaderProjObj);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">MyDrawFunc</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Query locations of uniform variables.(exmaple)</span></span><br><span class="line">  GLint la = <span class="built_in">glGetUniformLocation</span>(ShaderProjObj, <span class="string">&quot;LightAmbient&quot;</span>);</span><br><span class="line">  <span class="comment">// Set Uniform variable</span></span><br><span class="line">  <span class="built_in">glUniform4fv</span>(la, <span class="number">1</span>, lightAmbient);</span><br><span class="line">  </span><br><span class="line">  objModel3D-&gt;<span class="built_in">render</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="X-Texture-Mapping-amp-Applications"><a href="#X-Texture-Mapping-amp-Applications" class="headerlink" title="X. Texture Mapping &amp; Applications"></a>X. Texture Mapping &amp; Applications</h1><h2 id="Surface-Parameterization"><a href="#Surface-Parameterization" class="headerlink" title="Surface Parameterization"></a>Surface Parameterization</h2><ul>
+<li>Defines a mapping between the 3D surfaces and the 2D texture map<ul>
+<li>Defines the mapping $(x_w, y_w, z_w) \leftrightarrow (s,t)$<ul>
+<li>$(x_w, y_w, z_w)$ is the 3D coordinates of surface point</li>
+<li>$(s, t )$ is the 2D texture coordinates (limited to $[0,1]^2$)</li>
+</ul>
+</li>
+<li>Defines which <strong>“texel”</strong> maps to each surface point</li>
+</ul>
+</li>
+<li>Difficulty<ul>
+<li>Non-trivial surface topology causes severe distortion of textures (有些不正常的表面拓扑后会产生纹理混乱)</li>
+</ul>
+</li>
+</ul>
+<h1 id="XI-FBO-amp-Shadow-Mapping"><a href="#XI-FBO-amp-Shadow-Mapping" class="headerlink" title="XI. FBO &amp; Shadow Mapping"></a>XI. FBO &amp; Shadow Mapping</h1><h1 id="XII-Image-Processing"><a href="#XII-Image-Processing" class="headerlink" title="XII. Image Processing"></a>XII. Image Processing</h1><h1 id="XIII-Ray-Tracing"><a href="#XIII-Ray-Tracing" class="headerlink" title="XIII. Ray Tracing"></a>XIII. Ray Tracing</h1><h2 id="Basic-Ray-Casting"><a href="#Basic-Ray-Casting" class="headerlink" title="Basic Ray Casting"></a>Basic Ray <font color="red">Casting</font></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For every pixel</span><br><span class="line"> Construct a ray from the eye</span><br><span class="line"> For every object in the scene</span><br><span class="line">  Find intersection with the ray </span><br><span class="line">  Keep if closest</span><br><span class="line"> Shade depending on light and normal vector(using Phong reflection)</span><br></pre></td></tr></table></figure>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr35.png" style="zoom:50%"></div>
+
+
+
+
+
+
+]]></content>
       <categories>
         <category>2024 Summer</category>
       </categories>
