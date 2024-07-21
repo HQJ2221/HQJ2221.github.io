@@ -2706,14 +2706,90 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 </li>
 </ul>
-<h1 id="XI-FBO-amp-Shadow-Mapping"><a href="#XI-FBO-amp-Shadow-Mapping" class="headerlink" title="XI. FBO &amp; Shadow Mapping"></a>XI. FBO &amp; Shadow Mapping</h1><h1 id="XII-Image-Processing"><a href="#XII-Image-Processing" class="headerlink" title="XII. Image Processing"></a>XII. Image Processing</h1><h1 id="XIII-Ray-Tracing"><a href="#XIII-Ray-Tracing" class="headerlink" title="XIII. Ray Tracing"></a>XIII. Ray Tracing</h1><h2 id="Basic-Ray-Casting"><a href="#Basic-Ray-Casting" class="headerlink" title="Basic Ray Casting"></a>Basic Ray <font color="red">Casting</font></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For every pixel</span><br><span class="line"> Construct a ray from the eye</span><br><span class="line"> For every object in the scene</span><br><span class="line">  Find intersection with the ray </span><br><span class="line">  Keep if closest</span><br><span class="line"> Shade depending on light and normal vector(using Phong reflection)</span><br></pre></td></tr></table></figure>
+<h1 id="XI-FBO-amp-Shadow-Mapping"><a href="#XI-FBO-amp-Shadow-Mapping" class="headerlink" title="XI. FBO &amp; Shadow Mapping"></a>XI. FBO &amp; Shadow Mapping</h1><h1 id="XII-Image-Processing"><a href="#XII-Image-Processing" class="headerlink" title="XII. Image Processing"></a>XII. Image Processing</h1><h1 id="XIII-Ray-Tracing"><a href="#XIII-Ray-Tracing" class="headerlink" title="XIII. Ray Tracing"></a>XIII. Ray Tracing</h1><h2 id="Basic-Ray-Casting"><a href="#Basic-Ray-Casting" class="headerlink" title="Basic Ray Casting"></a>Basic Ray <font color="red">Casting</font></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For every pixel</span><br><span class="line">  Construct a ray from the eye</span><br><span class="line">  For every object in the scene</span><br><span class="line">    Find intersection with the ray </span><br><span class="line">    Keep if closest</span><br><span class="line">  Shade depending on light and normal vector(using Phong reflection)</span><br></pre></td></tr></table></figure>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr35.png" style="zoom:50%"></div>
 
 
 
+<p><strong>Rasterization vs. Ray Casting</strong></p>
+<ul>
+<li>Rasterization<ul>
+<li>Given a primitive in 3D space, determine which pixels are covered by the primitive</li>
+</ul>
+</li>
+<li>Ray Casting<ul>
+<li>At each pixel, determine which primitive covers it</li>
+</ul>
+</li>
+</ul>
+<h2 id="Ray-Tracing"><a href="#Ray-Tracing" class="headerlink" title="Ray Tracing"></a>Ray <font color="red">Tracing</font></h2><ul>
+<li>From the closest intersection point, secondary rays are shot out<ul>
+<li>Reflection ray</li>
+<li>Refraction ray</li>
+<li>Shadow rays</li>
+</ul>
+</li>
+</ul>
+<h3 id="Whitted-style-Recursive-Ray-Tracing"><a href="#Whitted-style-Recursive-Ray-Tracing" class="headerlink" title="Whitted-style(Recursive) Ray Tracing"></a>Whitted-style(Recursive) Ray Tracing</h3><blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\textbf{I}= \textbf{I}_{\text{local}}+k_{\text{rg}} \textbf{I}_{\text{reflected}}+k_{\text{tg}} \textbf{I}_{\text{transmitted}} \\<br>\text{where }&amp;\textbf{I}_{\text{local}}= \textbf{I}_{a}k_a+ \color{red}k_{\text{shadow}}\color{black}\textbf{I}_{\text{source}}\left[ k_d(\textbf{N} \cdot \textbf{L}) + k_r (\textbf{R} \cdot \textbf{V})^n + k_t (\textbf{T} \cdot \textbf{V})^m \right]<br>\end{align}<br>$</p>
 
+</blockquote>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr36.png" style="zoom:50%"></div>
 
-
+<ul>
+<li>So if the material is opaque, the $k_t (\textbf{T} \cdot \textbf{V})^m$ can be omitted.</li>
+<li>Also consider <font color="red">Shadow Rays</font>.</li>
+</ul>
+<p><strong>Scene Description</strong></p>
+<ul>
+<li>Camera view &amp; image resolution<ul>
+<li>Camera position and orientation in world coordinate frame<ul>
+<li>Similar to <code>gluLookAt()</code></li>
+</ul>
+</li>
+<li>Field of view<ul>
+<li>Similar to <code>gluPerspective()</code>, but <font color="red">no need</font> near &amp; far plane</li>
+</ul>
+</li>
+<li>Image resolution<ul>
+<li>Number of pixels in each dimension</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Each point light source<ul>
+<li>Position</li>
+<li>Brightness and color ($\text{I}_{source}$)</li>
+<li>A global ambient ($\text{I}_{a}$)</li>
+<li>Spotlight is also possible</li>
+</ul>
+</li>
+<li>Each object surface material<ul>
+<li>$k$ (each is a RGB vector)</li>
+<li>$n$, $m$</li>
+<li>Refractive index $\mu$ if $k_{tg} \not= 0$ or $k_{t} \not= 0$</li>
+</ul>
+</li>
+<li>Objects<ul>
+<li>Implicit representations (e.g. plane, sphere, quadrics)</li>
+<li>Polygon</li>
+<li>Parametric (e.g. bicubic Bezier patches)</li>
+<li>Volumetric</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Q: When to stop recursion?</p>
+</blockquote>
+<ul>
+<li>When the surface is totally diffuse (and opaque)</li>
+<li>When reflected/refracted ray hits nothing</li>
+<li>When maximum recursion depth is reached</li>
+<li>When the contribution of the reflected/refracted ray to the color at the top level is too small<ul>
+<li>$(k_{rg1} | k_{tg1}) \times … \times (k_{rg(n−1)} | k_{tg(n−1)}) &lt; \text{threshold}$ </li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>2024 Summer</category>
@@ -2783,6 +2859,17 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 <div align="center"><img src="/2024/06/30/Summer-Workshop-Diary/fruit.jpg" alt="fruit" style="width:700px">Fruit in Fair Price</div>
 
 <p>　　以上就是今天的一些感受。从明天开始就是正式上课和写项目了，日记应该也不会天天写，可能隔一段时间写一次学习心得吧（学习笔记另外写）。回见！</p>
+<h1 id="2024-7-2-Tue"><a href="#2024-7-2-Tue" class="headerlink" title="2024-7-2 (Tue.)"></a>2024-7-2 (Tue.)</h1><p>　　今天早上开课了，基本上我就要开始习惯课程安排的时间。像一些 deep learning 之类的课程是早上和下午都有课的，一般早上 9 点半到 12 点半，下午两点到五点上课，强度比较高，项目比较难也比较累。像我的课程是实时 3D 渲染的话只有下午有课，从下午一点上到下午四点，剩下的时间自由安排。先对来说我的课程是非常轻松的，而且课程难度本身不高（前提是很多老师上课不讲的代码内容要自己学会）。这样宽裕的时间安排也给了刚来新加坡的我不少到处走的机会。比如今晚就去了新加坡的夜间动物园———— Night Safari。</p>
+<p>　　我是和几位朋友一起去的 Night Safari，有一些是老朋友了，还有一些刚认识不久，不过我们之间氛围还算挺好。夜间动物园带来的体验与其他动物园有很大不同。我们先是坐游行电瓶车绕了动物园一圈，看到了不少夜间生活的动物如猫头鹰、豹猫、一些大象等，后来觉得意犹未尽又从步行道走了一段路。一边夜间散步一边还能和朋友们闲聊，这对我这个 i 人来说也是一种奇妙的体验（和外向的人交流真的完全没有心理负担！）。</p>
+<div align="center"><img src="/2024/06/30/Summer-Workshop-Diary/nightzoo.jpg" alt="zoo" style="width:700px">Night Safari</div>
+
+<p>　　总的来说我已经开始适应这边的生活了。虽然这两天可能因为水土不服（新加坡饮食类型多样，我吃的也基本是中国菜，完全不应该拉肚子）让我会有些难受，不过调养一段时间就会好很多。我听一些老家在重庆，浙江的同学都说新加坡这边的环境和条件比国内好，可能是我住一线城市的原因吧，我还是比较喜欢我的家乡，不过新加坡环境好确实是客观的，至少这边平均绿植覆盖面广，街道干净。该说不说小国家有小国家的优势，像这种问题治理起来确实方便（我怎么开始突发感慨了？）。</p>
+<h1 id="2024-7-5-（Fri-）"><a href="#2024-7-5-（Fri-）" class="headerlink" title="2024-7-5 （Fri.）"></a>2024-7-5 （Fri.）</h1><p>　　今天是第一周上课的最后一天，关于课程的时间安排已经完全适应。我和我的队友基本上在早上九点到十点醒，吃点东西补充下然后去教室预习或复习上课内容，下午四点上完课去 Kent Ridge MRT(肯特岗) 吃晚饭，有时买点夜宵带回宿舍。晚上如果没有小组作业基本就是各自在宿舍干活或放松。</p>
+<p>　　今天我们去了肯特的一家餐厅，吃到了我来新加坡这么多天以来最好吃的一顿饭（但是爆了 9.9 SGD 的金币）。真的非常推荐去试试！他们那家的炸鸡，鸡肉真的特别多，而且不柴，9.9 SGD 一顿管饱而且好吃，血赚！</p>
+<p>　　By the way，刚进肯特岗地铁站左手边的食阁，两边有两家面包店。两家面包店做的华夫饼也是超级好吃！现做现卖，有蘸酱的一个 2.3 SGD，还算是比较合适的价格了（已经逐渐适应新加坡的物价）。</p>
+<p>　　个人感觉除了这两点以外，肯特岗的食阁就没什么推荐的了，基本比不上国内的餐饮，不过这两家真的是，绝了。</p>
+<div align="center"><img src="/2024/06/30/Summer-Workshop-Diary/fried-chi.jpg" alt="fried-chicken" style="width:700px">Food in Kent Ridge MRT</div>
+
 ]]></content>
       <categories>
         <category>Summer Camp</category>
