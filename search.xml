@@ -2856,6 +2856,9 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 </li>
 </ul>
+<h1 id="Appendices-Reference"><a href="#Appendices-Reference" class="headerlink" title="Appendices (Reference)"></a>Appendices (Reference)</h1><p>If you want to search the reference pages of OpenGL Programming on <code>C++</code> , or use real-time 3D rendering in other field using OpenGL API, please refer to the <a href="https://registry.khronos.org/OpenGL-Refpages/gl4/">OpenGL® 4.5 Reference Pages</a> .</p>
+<p>If you are just interesting in shader rendering (like only do fragment shaders), you can go to <a href="https://www.shadertoy.com/">shadertoy</a> to take a look at others’ work or create your own.</p>
+<p>One of the contributor of “shadertoy”, Inigo Quilez, has published a tutorial of the skills of shadertoy, and you can learn it here → <a href="https://iquilezles.org/articles/">https://iquilezles.org/articles/</a></p>
 ]]></content>
       <categories>
         <category>2024 Summer</category>
