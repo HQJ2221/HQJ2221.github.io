@@ -2706,7 +2706,73 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
 </ul>
 </li>
 </ul>
-<h1 id="XI-FBO-amp-Shadow-Mapping"><a href="#XI-FBO-amp-Shadow-Mapping" class="headerlink" title="XI. FBO &amp; Shadow Mapping"></a>XI. FBO &amp; Shadow Mapping</h1><h1 id="XII-Image-Processing"><a href="#XII-Image-Processing" class="headerlink" title="XII. Image Processing"></a>XII. Image Processing</h1><h1 id="XIII-Ray-Tracing"><a href="#XIII-Ray-Tracing" class="headerlink" title="XIII. Ray Tracing"></a>XIII. Ray Tracing</h1><h2 id="Basic-Ray-Casting"><a href="#Basic-Ray-Casting" class="headerlink" title="Basic Ray Casting"></a>Basic Ray <font color="red">Casting</font></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For every pixel</span><br><span class="line">  Construct a ray from the eye</span><br><span class="line">  For every object in the scene</span><br><span class="line">    Find intersection with the ray </span><br><span class="line">    Keep if closest</span><br><span class="line">  Shade depending on light and normal vector(using Phong reflection)</span><br></pre></td></tr></table></figure>
+<h1 id="XI-FBO-amp-Shadow-Mapping"><a href="#XI-FBO-amp-Shadow-Mapping" class="headerlink" title="XI. FBO &amp; Shadow Mapping"></a>XI. FBO &amp; Shadow Mapping</h1><h2 id="Framebuffer-Objects-FBO"><a href="#Framebuffer-Objects-FBO" class="headerlink" title="Framebuffer Objects(FBO)"></a>Framebuffer Objects(FBO)</h2><h3 id="Multi-Pass-Rendering"><a href="#Multi-Pass-Rendering" class="headerlink" title="Multi-Pass Rendering"></a>Multi-Pass Rendering</h3><p><strong>Def.</strong> Render 3D scene multiple times (passes), and “combine” the multiple rendered images to synthesize final frame</p>
+<ul>
+<li>Allows creation of non-displayable framebuffers</li>
+<li>OpenGL can redirect rendering output to FBO</li>
+<li>Each FBO contains a collection of rendering destinations</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr37.png" style="zoom:50%"></div>
+
+
+
+<ul>
+<li>Two types of framebuffer-attachable images<ul>
+<li>Texture images<ul>
+<li>Render to texture</li>
+</ul>
+</li>
+<li>Renderbuffer images<ul>
+<li>Offscreen rendering</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Many color attachment points allow multiple render targets (MRT)<ul>
+<li>Can query the maximum number of color attachment points with <code>GL_MAX_COLOR_ATTACHMENTS</code> (usually 8)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// cpp file</span></span><br><span class="line"><span class="comment">// set up FBO</span></span><br><span class="line">GLuint fboHandle; <span class="comment">// The handle to the FBO</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Generate and bind the framebuffer</span></span><br><span class="line"><span class="built_in">glGenFramebuffers</span>(<span class="number">1</span>, &amp;fboHandle);</span><br><span class="line"><span class="built_in">glBindFramebuffer</span>(GL_FRAMEBUFFER, fboHandle);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create first texture object</span></span><br><span class="line">GLuint renderTexA;</span><br><span class="line"><span class="built_in">glGenTextures</span>(<span class="number">1</span>, &amp;renderTexA);</span><br><span class="line"><span class="built_in">glActiveTexture</span>(GL_TEXTURE0); <span class="comment">// Use texture unit 0</span></span><br><span class="line"><span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, renderTexA);</span><br><span class="line"><span class="built_in">glTexImage2D</span>(GL_TEXTURE_2D, <span class="number">0</span>, GL_RGBA8, fboWidth, fboHeight, <span class="number">0</span>,</span><br><span class="line">  GL_RGBA, GL_UNSIGNED_BYTE, <span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Attach first texture to FBO</span></span><br><span class="line"><span class="built_in">glFramebufferTexture2D</span>(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2,</span><br><span class="line">  GL_TEXTURE_2D, renderTexA, <span class="number">0</span>);</span><br><span class="line">  </span><br><span class="line"><span class="comment">// ... second texture object as above</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Create the depth buffer</span></span><br><span class="line">GLuint depthBuf;</span><br><span class="line"><span class="built_in">glGenRenderbuffers</span>(<span class="number">1</span>, &amp;depthBuf);</span><br><span class="line"><span class="built_in">glBindRenderbuffer</span>(GL_RENDERBUFFER, depthBuf);</span><br><span class="line"><span class="built_in">glRenderbufferStorage</span>(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, </span><br><span class="line">  fboWidth, fboHeight);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Bind the depth buffer to the FBO</span></span><br><span class="line"><span class="built_in">glFramebufferRenderbuffer</span>(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,</span><br><span class="line">  GL_RENDERBUFFER, depthBuf);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set the target for the fragment shader outputs</span></span><br><span class="line">GLenum drawBufs[] = &#123; GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3 &#125;;</span><br><span class="line"><span class="built_in">glDrawBuffers</span>(<span class="number">2</span>, drawBufs);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Unbind the framebuffer, and revert to default</span></span><br><span class="line"><span class="built_in">glBindFramebuffer</span>(GL_FRAMEBUFFER, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// often in other functions</span></span><br><span class="line"><span class="comment">// DRAW TO TEXTURES</span></span><br><span class="line"><span class="comment">// Bind to texture&#x27;s FBO</span></span><br><span class="line"><span class="built_in">glBindFramebuffer</span>(GL_FRAMEBUFFER, fboHandle);</span><br><span class="line"></span><br><span class="line"><span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, fboWidth, fboHeight); <span class="comment">// Viewport for the texture</span></span><br><span class="line"><span class="built_in">glClear</span>(GL_DEPTH_BUFFER_BIT);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use glClearBufferfv() to individually clear color buffers</span></span><br><span class="line"><span class="type">const</span> GLfloat lightGreen[<span class="number">4</span>] = &#123; <span class="number">0.5f</span>, <span class="number">1.0f</span>, <span class="number">0.5f</span>, <span class="number">1.0f</span> &#125;;</span><br><span class="line"><span class="type">const</span> GLfloat lightRed[<span class="number">4</span>] = &#123; <span class="number">1.0f</span>, <span class="number">0.5f</span>, <span class="number">0.5f</span>, <span class="number">1.0f</span> &#125;;</span><br><span class="line"><span class="built_in">glClearBufferfv</span>(GL_COLOR, <span class="number">0</span>, lightGreen);</span><br><span class="line"><span class="built_in">glClearBufferfv</span>(GL_COLOR, <span class="number">1</span>, lightRed);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Setup the projection matrix and view matrix</span></span><br><span class="line"><span class="comment">// for the scene to be rendered to the texture here.</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">renderTextureScene</span>();</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DRAW FINAL FRAME</span></span><br><span class="line"><span class="comment">// Unbind texture&#x27;s FBO (back to default FB)</span></span><br><span class="line"><span class="built_in">glBindFramebuffer</span>(GL_FRAMEBUFFER, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, winWidth, winHeight); <span class="comment">// Viewport for main window</span></span><br><span class="line"><span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Setup the projection matrix and view matrix.</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="built_in">renderScene</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="Shadow-Mapping"><a href="#Shadow-Mapping" class="headerlink" title="Shadow Mapping"></a>Shadow Mapping</h2><table>
+<tr align="center">
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr38.png"></td>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr39.png"></td>
+</tr>
+</table>
+
+
+
+<h3 id="Algorithm-Overview"><a href="#Algorithm-Overview" class="headerlink" title="Algorithm Overview"></a>Algorithm Overview</h3><ol>
+<li>Render the scene using the light source as viewpoint</li>
+<li>Save the depth buffer <font color="blue">(a.k.a. shadow map)</font></li>
+<li>Clear the framebuffer</li>
+<li>Render the scene from camera’s viewpoint<ul>
+<li>For each fragment, transform it to the “light space” and compare its “light space” $z$ value with the corresponding $z$ value in the shadow map<ul>
+<li>If “light space” z value is larger, the fragment is in shadow and it is lit with only ambient light</li>
+<li>Otherwise, the fragment is <font color="red">not</font> in shadow and is <font color="red">fully lit</font></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Shadow-Map-Coordinates"><a href="#Shadow-Map-Coordinates" class="headerlink" title="Shadow Map Coordinates"></a>Shadow Map Coordinates</h3><ul>
+<li>Any 3D point in the view frustum(视图) of the light source must be transformed to the shadow map coordinates $[s, t, p]$ where $s$, $t$, $p$ are in the range $[0,1]$</li>
+<li>Given a 3D point $p_M$ in modeling coordinates, its shadow map coordinates $p_L$ is</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>p_L=B \cdot P_L \cdot V_L \cdot M \cdot p_M<br>$</p>
+
+</blockquote>
+<ul>
+<li>$M$ is the modeling matrix</li>
+<li>$V_L$ is the light’s view transformation matrix</li>
+<li>$P_L$ is the light’s projection matrix</li>
+<li>and $B=\left[ \begin{array} \\<br>0.5&amp;0&amp;0&amp;0.5 \\<br>0&amp;0.5&amp;0&amp;0.5 \\<br>0&amp;0&amp;0.5&amp;0.5 \\<br>0&amp;0&amp;0&amp;1 \\<br>\end{array}\right]$</li>
+</ul>
+<h1 id="XII-Image-Processing"><a href="#XII-Image-Processing" class="headerlink" title="XII. Image Processing"></a>XII. Image Processing</h1><h1 id="XIII-Ray-Tracing"><a href="#XIII-Ray-Tracing" class="headerlink" title="XIII. Ray Tracing"></a>XIII. Ray Tracing</h1><h2 id="Basic-Ray-Casting"><a href="#Basic-Ray-Casting" class="headerlink" title="Basic Ray Casting"></a>Basic Ray <font color="red">Casting</font></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For every pixel</span><br><span class="line">  Construct a ray from the eye</span><br><span class="line">  For every object in the scene</span><br><span class="line">    Find intersection with the ray </span><br><span class="line">    Keep if closest</span><br><span class="line">  Shade depending on light and normal vector(using Phong reflection)</span><br></pre></td></tr></table></figure>
 <div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr35.png" style="zoom:50%"></div>
 
 
