@@ -1,6 +1,1420 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MA234 大数据导论与实践（一）</title>
+    <url>/2024/06/22/Big-Data-1/</url>
+    <content><![CDATA[<h1 id="Big-Data-I"><a href="#Big-Data-I" class="headerlink" title="Big Data (I)"></a>Big Data (I)</h1><h2 id="I-Pre-Knowledge"><a href="#I-Pre-Knowledge" class="headerlink" title="I. Pre-Knowledge"></a>I. Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
+<p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\textbf{V}$. If any vector from $\textbf{V}$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$ , or $\alpha$ is a Linear Combination of $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$. </p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\text{Set }A=\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}\\<br>&amp;V=\text{Span}(A)=\{k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e | k_i\in \mathbb R, 1\le i\le e\}<br>\end{align}<br>$</p>
+
+</blockquote>
+<blockquote>
+<p>In a <strong>matrix</strong> (i.e. $A$), set all rows as a vector group, and it span a space called <strong>Row Space</strong> (Noted: $R(A)$). All columns span a space called <strong>Column Space</strong> (Noted: $\text{Col}(A)$).</p>
+<p>Linear Function $Ax=b$ is solutable <font color="red">if and only if</font> $b$ is a linear combination of $\text{Col}(A)$ (or $b \in \text{Col}(A)$).</p>
+<p>Specially, if $b=0$ ($Ax=0$), then all solution of $x$ group as a vector space called <strong>Null Space</strong> (Noted: $\text{Nul}(A)$)</p>
+</blockquote>
+<hr>
+<p><strong>2. Basis and Orthogonal</strong></p>
+<ul>
+<li>About <strong>Rank</strong><ul>
+<li><font color="green">Recall: </font>$\color{green}LU$ <font color="green">factorization</font><ul>
+<li>$\color{green}PA=LDU$, where $P$ is row exchange matrix (避免 A 主元为 0), $L$ is lower-triangle matrix with diagonal is all 1, $D$ is the coefficient matrix and $U$ is upper-triangle matrix.</li>
+</ul>
+</li>
+<li>For a $m\times n$ matrix ranked $r$, there are $(n-r)$ particular solution of $Ax=b$ in the solution space of $A$ ($\text{Nul}(A)$).</li>
+<li>For $Ax=b$ , $Ux=c$ or $Rx=d$ , there must be $\color{red}(m-r)$ <font color="red">conditions</font> for formula to be solutable.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>About <strong>Linear Independent</strong><ul>
+<li><strong>Def.</strong> Suppose $A=\{v_1,v_2,\cdots, v_n\}$ is vector set of $\mathbb R^n$. If $\exists v_i \in A, v_i=\sum_{j\neq i} \lambda_j v_j, \lambda_j \in \mathcal R$ , then we say $A$ is <strong>linear dependent</strong>. <font color="red">If not, we say it’s <strong>Linear Independent</strong>.</font></li>
+<li><strong>Thm.</strong> $A$ is linear independent <font color="red">if and only if</font> $\lambda_1 \vec{v_1}+\lambda_2\vec{v_2}+\cdots +\lambda_k\vec{v_k}=0$ only holds when $\lambda_1=\lambda_2=\cdots =\lambda_k=0$</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Then we can talk about <strong>Basis</strong>(基)</p>
+</blockquote>
+<p><strong>Def.</strong> For vector space $V$ , if vector group $A=\{v_1,v_2,\cdots, v_k\}$ satisfies that $V=\text{Span}(A)$ , and $A$ is <font color="red">linear independent</font> , then we say that $\color{red}A$ <font color="red">is one of the <strong>basis</strong> of</font> $\color{red}V$.</p>
+<ul>
+<li>If $A$ is a basis of $V$ , then $\forall \vec{w} \in V$ , there must be unique array $[a_1, a_2,\cdots,a_k]$ such that $\vec{w}=a_1v_1+a_2v_2+\cdots +a_kv_k$ . Then we call this array a <font color="red">coordinate</font> of $\vec w$ in $A$ , noted $[\vec w]_{A}$</li>
+</ul>
+<h3 id="Recall-for-Calculus"><a href="#Recall-for-Calculus" class="headerlink" title="Recall for Calculus"></a>Recall for Calculus</h3><p><strong>1. Langrange Multiplier</strong> [拉格朗日乘数法]</p>
+<h3 id="Other-Prepared-Knowledge"><a href="#Other-Prepared-Knowledge" class="headerlink" title="Other Prepared Knowledge"></a>Other Prepared Knowledge</h3><p><strong>1. Norm</strong></p>
+<p>On vectors :</p>
+<ul>
+<li>1-Norm: $|x|_1 = \sum_{i=1}^{N}{|x_i|}$</li>
+<li>2-Norm: $|\textbf{x}|_2= \sqrt{\sum_{i=1}^{N} x_i^2}$</li>
+<li>$\pm\infty$-Norm: $|\textbf{x}|_{\infty}=\underset{i}\max{|x_i|}$  ;  $|\textbf{x}|_{-\infty}=\underset{i}\min{|x_i|}$</li>
+<li>p-Norm: $|\textbf{x}|_p=(\sum_{i=1}^{N}{|x_i|}^p)^{\frac{1}{p}}$</li>
+</ul>
+<p>On matrix :</p>
+<ul>
+<li>1-Norm(列和范数) : $|A|_1=\underset{j}\max \sum_{i=1}^{m}{|a_{i,j}|}$  , maximum among <font color="red">absolute sum of column vector</font>.</li>
+<li>2-Norm: $|A|_2=\sqrt{\lambda_1}$  , where $\lambda_1$ is the maximum eigenvalue(特征值) of $A^TA$</li>
+<li>$\infty$-Norm(行和范数) : $|A|_\infty=\underset{i}\max \sum_{j=1}^{n}{|a_{i,j}|}$  , maximum among <font color="red">absolute sum of row vector</font>.</li>
+<li>F-Norm(核范数) : $|A|_*=\sum_{i=1}^{n}\lambda_i$  , where $\lambda_i$ is singular value(奇异值) of $A$</li>
+</ul>
+<h2 id="II-Intro"><a href="#II-Intro" class="headerlink" title="II. Intro"></a>II. Intro</h2><h3 id="About-Big-Data"><a href="#About-Big-Data" class="headerlink" title="About Big Data"></a>About Big Data</h3><ul>
+<li><font color="Red"><strong>4 Big “V”</strong></font> required in Big Data<ul>
+<li><strong>Volume</strong>: KB, MB, GB ($10^9$ bytes), TB, PB, EB ($10^{18}$ bytes), ZB, YB<ul>
+<li>Data of Baidu: several ZB</li>
+</ul>
+</li>
+<li><strong>Variety</strong>: diﬀerent sources from business to industry, diﬀerent types</li>
+<li><strong>Value</strong>: redundant information contained in the data, need to retrieve useful information</li>
+<li><strong>Velocity</strong> (速度): fast speed for information transfer</li>
+</ul>
+</li>
+<li><em>Two perspectives of data sciences</em> :<ul>
+<li>Study science with the help of data : bioinformatics, astrophysics, geosciences, etc.</li>
+<li>Use scientiﬁc methods to exploit (利用) data : statistics, machine learning, data mining, pattern recognition, data base, etc.</li>
+</ul>
+</li>
+<li><em>Data Analysis</em><ul>
+<li>Ordinary data types :<ul>
+<li>Table : classical data (could be treated as matrix)</li>
+<li>Set of points : mathematical description</li>
+<li>Time series : text, audio, stock prices, DNA sequences, etc.</li>
+<li>Image : 2D signal (or matrix equivalently, e.g., pixels), MRI, CT, supersonic imaging</li>
+<li>Video : Totally 3D, with 2D in space and 1D in time (another kind of time series)</li>
+<li>Webpage and newspaper : time series with spacial structure</li>
+<li>Network : relational data, graph (nodes and edges)</li>
+</ul>
+</li>
+<li>Basic assumption : the data are generated from an underlying model, which is unknown in practice<ul>
+<li>Set of points : probability distribution</li>
+<li>Time series : stochastic processes, e.g., Hidden Markov Model (HMM)</li>
+<li>Image : random ﬁelds, e.g., Gibbs random ﬁelds</li>
+<li>Network : graphical models, Beyesian models</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Difficulties of Data Analysis</strong></p>
+<ul>
+<li>Huge <font color="#921aff">volume</font> of data</li>
+<li>Extremely high dimensions<ul>
+<li>Solutions: <ul>
+<li>Make use of prior information</li>
+<li>Restrict to simple models</li>
+<li>Make use of special structures, e.g., sparsity, low rank, smoothness</li>
+<li>Dimensionality reduction, e.g., PCA, LDA, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Complex <font color="#921aff">variety</font> of data</li>
+<li>Large noise (噪点, <font color="#921aff">values</font>) : data are always contaminated with noises</li>
+</ul>
+<h3 id="Representation-of-Data"><a href="#Representation-of-Data" class="headerlink" title="Representation of Data"></a>Representation of Data</h3><ul>
+<li>Input space $\mathcal X = \{\text{All possible samples}\}$ ; $\textbf{x} \in \mathcal{X}$ is an input vector, also called feature, predictor, independent variable, etc; <strong>typically multi-dimension</strong>. For multi-dimension, $\textbf{x} \in \mathbb R^p$ is a weight vector (权重向量，每一维度所占权重可调整) or coding vector (编码向量，e.g. 矢量图).</li>
+<li>Output space $\mathcal{Y} = \{\text{All possible results}\}$ ; $y \in \mathcal{Y}$ is an output vector, also called response, dependent variable, etc; <strong>typically one dimension</strong>. E.g. $y = 0\ \text{or}\ 1$ for classiﬁcation problems, $y \in \mathbb{R}$ for regression problems.</li>
+<li>For supervised learning, assume that $(\textbf{x},y)\sim \mathcal P$, a joint distribution on the sample space $\mathcal X \times \mathcal Y$</li>
+</ul>
+<hr>
+<font size="4"><b>Supervised Learning (监督学习) —— <font color="Grey">given labels of data</font></b></font>
+
+<ul>
+<li>Training : ﬁnd the optimal parameters (or model) to minimize the error between the prediction and target</li>
+<li>Classiﬁcation <font color="Grey">(if output is discrete)</font>: SVM (支持向量机), KNN (K-Nearest Neighbor), Desicion tree, etc.</li>
+<li>Regression <font color="Grey">(if output is continuous)</font>: linear regression, CART, etc.</li>
+</ul>
+<p>Maths method about Supervised Learning </p>
+<ul>
+<li>Goal: Find the conditional distribution $\mathcal P(y|\textbf{x})$ of $y$ given $\textbf{x}$ </li>
+<li>Training dataset: $\{(\textbf{x}_i, y_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to learn an approximation $\hat{f}(\textbf{x})$ or $\hat{\mathcal P}(y|\textbf{x})$</li>
+<li>Test dataset: $\{(\textbf{x}_j, y_j)\}_{j=n+1}^{n+m} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to test</li>
+</ul>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd2.png" alt="bd2" width="80%">
+</div>
+
+<blockquote>
+<p>So we can conclude that a predictor must be developed from a Supervised Learning Model.</p>
+</blockquote>
+<font size="4"><b>Unsupervised Learning (无监督学习) —— <font color="Grey">no labels</font></b></font>
+
+<ul>
+<li>Optimize the parameters based on some <font color="#ce0000">natural rules</font>, e.g., cohesion (收敛) or divergence (发散)</li>
+<li>Clutering : K-Means, SOM (Self-Organizing Map)</li>
+</ul>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd3.png" alt="bd3" width="80%">
+</div>
+
+
+<p>Maths method about Unsupervised Learning</p>
+<ul>
+<li>Goal : in probabilistic settings, find the distribution (PDF) $\mathcal P(\textbf{x})$ of $\textbf{x}$ and approximate it (there is no y)</li>
+<li>Training dataset : $\{(x_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$ , used to learn an approximation $\hat{\mathcal P}(\textbf{x})$ (no test data in general)</li>
+</ul>
+<font size="4"><b>Semi-supervised learning:</b></font> 
+
+<ul>
+<li>with missing data, e.g., EM; self-supervised learning, learn the missing part of images, inpainting.</li>
+</ul>
+<font size="4"><b>Reinforcement learning (强化学习):</b></font>  
+
+<ul>
+<li><font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.</li>
+</ul>
+<h3 id="Modeling-and-Analysis"><a href="#Modeling-and-Analysis" class="headerlink" title="Modeling and Analysis"></a>Modeling and Analysis</h3><ul>
+<li>Decision function (hypothesis) space : <ul>
+<li>$\mathcal{F}=\{\mathcal{f_\theta}=\mathcal{f_\theta}(x), \theta \in \Theta \}$ </li>
+<li>or $\mathcal{F}=\{\mathcal{P_\theta}=\mathcal{P_\theta}(y|x), \theta \in \Theta \}$</li>
+</ul>
+</li>
+<li><font color="red">Loss function :</font> a measure for the “goodness” of the prediction, $L(y, \mathcal{f}(x))$ <ul>
+<li><a name="0-1 loss"><i>0-1 loss</i></a>: $L(y, \mathcal{f}(x))=\textbf{l}_{y\not{=}f(x)}=1-\textbf{l}_{y=f(x)}$ （个人理解一般是用于二元项预测的误差判断）</li>
+<li><i>Square loss</i>: $L(y, \mathcal{f}(x))=(y-f(x))^2$ （比绝对值误差更泛用）</li>
+<li><i>Absolute loss</i>: $L(y, \mathcal{f}(x))={|y-f(x)|}$ </li>
+<li><i>Cross-entropy (交叉熵) loss</i>: <br>   $\color{red}L(y, \mathcal{f}(x))=-y\log{f(x)}-(1-y)\log{(1-f(x))}$</li>
+</ul>
+</li>
+<li><strong>Risk</strong> : in average sense,<br> $\mathcal{R}(f)=E_{\mathcal P} [L(y, f(x))]=\underset{\mathcal X \times \mathcal Y}{\int}L(y, f(x))\mathcal{P}(x,y)\text d x \text d y$ </li>
+<li><font color="Red"><b>Target of Learning</b></font> : minimize $\mathcal R_{exp}(f)$ to get $f^{\ast}$ ( $\text{即} f^{\ast}=\underset{f}{min}\ \mathcal{R}_{exp}(f)$ )</li>
+</ul>
+<p><strong>Risk Minimize Strategy :</strong> </p>
+<ul>
+<li>Empirical risk minimization (<strong>ERM</strong>) : <ul>
+<li>given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , $R_{emp}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ <font color="grey">(Loss function 的均值定义为预测模型 f 的经验风险)</font> .<ul>
+<li>By law of large number, $\underset{n\to\infty}{\lim} R_{emp}(f)=R_{exp}(f)$ . <font color="Grey">(即经验风险趋近于预测风险)</font></li>
+<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ </li>
+<li><font color="Green">Now we only need to know</font>  $\color{green}f$ <font color="Green">and training set</font>  $\color{green}\textbf{x}_i$ </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Structural risk minimization (<strong>SRM</strong>) : <ul>
+<li>given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , and a complexity function $J=J(f)$ , $R_{SRM}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ <ul>
+<li>$J(f)$ measures how complex the model $f$ is, typically the degree of complexity</li>
+<li>$λ\ge 0$ is a tradeoff(平衡项) between the empirical risk and model complexity</li>
+<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ </li>
+<li><font color="Green">We need to know</font> $\color{green}f$ <font color="Green">and training set</font> $\color{green}{\textbf{x}_i}$ <font color="Green">, and need to</font> <font color="#00CD00">adjust the parameter</font>  $\color{green}{\lambda}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>We see that <font color="#c6a300">Optimization Method</font> is essencial in machine learning. Here are some of them: </p>
+<ul>
+<li>Gradient descent method (梯度下降), including coordinate descent, sequential minimal optimization (SMO), etc.</li>
+<li>Newton’s method and quasi-Newton’s method (拟牛顿法)</li>
+<li>Combinatorial optimization (组合优化)</li>
+<li>Genetic algorithms (遗传算法)</li>
+<li>Monte Carlo methods (随机算法)</li>
+</ul>
+</blockquote>
+<p><strong>Model assessment :</strong></p>
+<ul>
+<li>Training error: $R_{emp}(\hat f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,\hat f(\textbf{x}_i))$ , tells the diﬃculty of learning problem</li>
+<li>Test error: $e_{test}(\hat f)=\frac{1}{m}\sum_{j=n+1}^{n+m}L(y_j,\hat f(\textbf{x}_j))$ , tells the capability of prediction ;<br> In particular, if 0-1 loss is used (below)<ul>
+<li>Error rate : $e_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j\ne\hat f(\textbf{x}_j)}$</li>
+<li>Accuracy : $r_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j=\hat f(\textbf{x}_j)}$</li>
+<li>$e_{test}+ r_{test} = 1$ </li>
+</ul>
+</li>
+<li><p>Generalization error (泛化误差——模型对新样本的预测性的度量)</p>
+<ul>
+<li>$R_{exp}(\hat f)=E_{\mathcal P}[L(y,\hat f(\textbf{x}))]=\underset{\mathcal X\times\mathcal Y}{\int}L(y,\hat f(\textbf{x}))\mathcal P(\textbf{x},y)\text d\textbf{x} \text d y$ <br>tells the capability for predicting <font color="#9f4d95">unknown data</font> from the same distribution</li>
+<li>Its upper bound $M$ deﬁnes the generalization ability (负相关)<ul>
+<li>As $n\to\infty$, $M\to 0$ (which means almost no error)</li>
+<li>As $\mathcal F$ becomes larger, $M$ increases.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><em>Overfitting</em></p>
+<ul>
+<li>Too many model paramters （模型太复杂）</li>
+<li>Better for training set, but worse for test set</li>
+</ul>
+</li>
+<li><em>Underfitting</em><ul>
+<li>Better for test set, but worse for training set</li>
+</ul>
+</li>
+</ul>
+<p><strong>Model Selection :</strong> choose the most proper model.</p>
+<ul>
+<li><a name="cross validation">Cross-validation</a> (交叉验证) : split the training set into training subset and validation subset, use training set to train diﬀerent models repeatedly, use validation set to select the best model with the smallest (validation) error<ul>
+<li>Simple CV : randomly split the data into two subsets</li>
+<li>K-fold CV : randomly split the data into $K$ disjoint subsets with the same size, treat the union of $K − 1$ subsets as training set, the other one as validation set, do this repeatedly and select the best model with smallest mean (validation) error</li>
+<li>Leave-one-out CV : $K = n$ in the previous case</li>
+</ul>
+</li>
+</ul>
+<h3>Data Science vs. Other Techniques</h3>
+
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd1.png" alt="bd1" width="60%">
+</div>
+
+<hr>
+<h2 id="III-Data-Preprocessing"><a href="#III-Data-Preprocessing" class="headerlink" title="III. Data Preprocessing"></a>III. Data Preprocessing</h2><h3 id="Data-Type"><a href="#Data-Type" class="headerlink" title="Data Type"></a>Data Type</h3><ul>
+<li>Types of Attributes  <font size="2">(每门课几乎都离不开这个)</font><ul>
+<li>Discrete: $x \in \text{some countable sets}$, e.g., $\mathbb N$ <ul>
+<li><a name="nominal">Nominal (列举名义)</a> </li>
+<li><a name="boolean">Boolean (0 or 1) </a> </li>
+<li><a name="ordinal">Ordinal (基数等级, e.g. A+, A-, B+,…) </a> </li>
+</ul>
+</li>
+<li>Continuous: $x \in \text{some subset in }\mathbb R$ </li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><strong>Basic Statistics</strong> (统计量)<ul>
+<li>Mean</li>
+<li>Median (中位数)</li>
+<li>extremum (极值)</li>
+<li>Quantile (分位数) </li>
+<li>Variance, Standard deviation (标准差)</li>
+<li>Mode (众数)</li>
+</ul>
+</li>
+</ol>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd4.png" alt="bd4" width="90%">
+</div>
+
+<blockquote>
+<p>Empiricism:  Mean − Mode = 3 $\times$ (Mean − Median)</p>
+</blockquote>
+<ul>
+<li>Box Plot (箱线图) —— used to describe statistics</li>
+</ul>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd5.png" alt="bd5" width="40%">
+</div>
+
+
+
+<ol>
+<li><strong>Metrics</strong> (度量——亦称距离函数，是度量空间中满足特定条件的特殊函数。度量空间由欧几里得空间的距离概念抽象化定义而来。)<ul>
+<li>Proximity :<ul>
+<li>Similarity : range is $[0, 1]$ </li>
+<li>Dissimilarity : range is $[0, \infty]$ , sometimes <a href="#distance">distance</a> (noted by <code>d</code>)</li>
+</ul>
+</li>
+<li>For <a href="#nominal">nominal data</a>, $d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k}\textbf{l}(\textbf{x}_{i,k}\neq\textbf{x}_{j,k})}{p}$ ,or one-hot encoding into Boolean data</li>
+<li>For <a href="#boolean">Boolean data</a>, <strong>symmetric distance</strong> (rand disrance) $\text d(\textbf{x}_i,\textbf{x}_j) =\frac {r+s}{q+r+s+t}$ or <strong>Rand index</strong> $\text{Sim}_{\text{Rand}}(\textbf{x}_i,\textbf{x}_j)=\frac{q+t}{q+r+s+t}$ ; <strong>non-symmetric distance</strong> (<a name="Jaccard"><font color="black"> Jaccard distance </font></a>) $\text d(\textbf{x}_i,\textbf{x}_j)=\frac{r+s} {q+r+s}$ or <strong>Jaccard index</strong> $\text{Sim}_{\text{Jaccard}}(\textbf{x}_i,\textbf{x}_j)=\frac {q} {q+r+s}$ </li>
+</ul>
+</li>
+</ol>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd6.png" alt="bd6" width="40%">
+</div>
+
+
+
+<p><a name="distance"><font color="Red"><strong>Distance :</strong></font></a></p>
+<p><strong>Def.</strong> Distance <code>d</code> is the difference between two samples.</p>
+<ul>
+<li>Properties of Distance : <ul>
+<li>Non-negative: $\text{d}(x,y)\ge 0$</li>
+<li>Identity: $\text d(x,y)=0\Leftrightarrow x=y$ </li>
+<li>Symmetric: $\text d(x,y)=\text d(y,x)$ </li>
+<li>Basic Vector Attributes : e.g. $\text d(x,y)\le \text d(x,z)+\text d(z,y)$ </li>
+</ul>
+</li>
+<li>距离度量分为Space Distance (e.g. Euclidean) 、String Distance (e.g. Hamming distance) 、Set Proximity (e.g. Jaccard distance) 和 Distribution Distance (e.g. Chi-square measure)</li>
+</ul>
+<font color="blue">以下简单介绍几种距离，更多请参考<a href="https://blog.csdn.net/hy592070616/article/details/121723169?spm=1001.2014.3001.5501">此处 (csdn note)</a></font><br>
+
+
+
+<font color="blue">1 .  Minkowski distance (闵可夫斯基距离)</font>
+
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}&amp;<br>\end{align}<br>$</p>
+
+</blockquote>
+<blockquote>
+<p>Parameter <code>h</code> is to <font color="blue">emphasize the character of the data</font>. By changing the value of <code>h</code> , Minkowski distance can cover many Distance Metrics.</p>
+</blockquote>
+<font color="blue">2 .  Manhattan distance (曼哈顿距离) </font>
+
+
+<blockquote>
+<p>Minkowski distance where $h = 1$</p>
+</blockquote>
+<blockquote class="blockquote-center">
+<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
+
+</blockquote>
+<font color="blue">3 .  Euclidean distance (欧氏距离)</font>
+
+<blockquote>
+<p>Minkowski distance where $h = 2$ </p>
+</blockquote>
+<blockquote class="blockquote-center">
+<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt{\sum_{k=1}^{p}(\text x_{ik}-\text x_{jk})^2}<br>$</p>
+
+</blockquote>
+<font color="blue">4 .  Supremum distance (or Chebyshev distance, 切比雪夫距离)</font>
+
+<blockquote>
+<p>Minkowski distance where $h \to \infty$ </p>
+</blockquote>
+<blockquote class="blockquote-center">
+<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\max_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
+
+</blockquote>
+<p><a name="cosine distance"><font color="blue">5 .  Cosine distance (余弦距离)</font></a> </p>
+<blockquote class="blockquote-center">
+<p>$<br>\cos(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k=1}^{p}\text x_{ik}\text x_{jk}}{\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}}=\frac{\textbf{x}_i\cdot\textbf{x}_j}{\left|\textbf{x}_i\right|\left|\textbf{x}_j\right|}<br>$</p>
+
+</blockquote>
+<p><strong>Other Distance:</strong></p>
+<ul>
+<li>For <a href="#ordinal">ordinal data</a>, mapping the data to numerical data : $X=\{x_{(1)}, x_{(2)},…, x_{(n)}\}, x_{(i)} \mapsto \frac{i−1} {n−1}\in [0, 1]$ </li>
+<li>For mixed type, use weighed distance (加权) with prescribed weights :</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}<br>$</p>
+
+</blockquote>
+<h3 id="Data-Preprocessing-Lecture"><a href="#Data-Preprocessing-Lecture" class="headerlink" title="Data Preprocessing (Lecture)"></a>Data Preprocessing (Lecture)</h3><div align="center">
+<img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7" width="90%">
+</div>
+
+<ul>
+<li>Data Scaling (归一化，标准化)<ul>
+<li>Why scaling?<ul>
+<li>For better performance or normalize diﬀerent dimensions</li>
+</ul>
+</li>
+<li><a name="z-score"><b>Z-score scaling</b></a>:   <font size="5">$x_i^\ast=\frac{x_i-\hat\mu}{\hat\sigma}$ </font> ,<br>applicable when max and min unknown and data distributes well (e.g. normal distribution)</li>
+<li><strong>0-1 scaling</strong> (Min-Max scaling) :   <font size="5">$x_i^\ast=\frac{x_i-\min_k x_k}{\max_k x_k-\min_k x_k}$ </font> ,<br>applicable for bounded data sets, and need to <font color="red">recompute</font> max and min when new data added</li>
+<li>Decimal scaling: $x_{i}^{\ast}=\frac{x_i}{10^k}$, applicable for data varying across many magnitudes (分布太广)</li>
+<li>Logistic scaling: $x_i^{\ast}=\frac{1}{1+e^{-x_i}}$ , applicable for data concentrating nearby origin (分布太窄)</li>
+</ul>
+</li>
+<li>Data Discretization (离散化)<ul>
+<li>Why discretization?<ul>
+<li>Improve the robustness : removing the outliers by putting them into certain intervals</li>
+<li>For better interpretation</li>
+<li>Reduce the storage and computational power</li>
+</ul>
+</li>
+<li><strong>Unsupervised discretization</strong>: equal-distance discretization (等距，数据分布可能不均), equal-frequency discretization, clustering-based discretization (聚类), 3$\sigma$-based discretization</li>
+<li><strong>Supervised discretization</strong>: information gain based discretization (e.g. 决策树), $\mathcal X^2$-based discretization (Chi-Merge)</li>
+</ul>
+</li>
+<li>Data Redundancy <ul>
+<li>Why redundancy exists?<ul>
+<li>Correlations exist among different attributes (E.g. Age, birthday and current time), <font color="green">recalling the linear dependency for vectors</font></li>
+</ul>
+</li>
+<li><strong>Continuous variables:</strong> compute the correlation coefficient (相关系数) <font size="4">$\rho_{A,B}=\frac{\sum_{i=1}^{k}{(a_i-\bar A)(b_i-\bar B)}}{k\hat\sigma_{A}\hat\sigma_{B}}\in[-1,1]$ </font></li>
+<li><strong>Discrete variables:</strong> compute the $\mathcal X^{2}$ statistics : large $\hat{\mathcal{X}^{2}}$ value implies small correlation.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>About missing data: (<code>NA</code>, \<Empty>, <code>NaN</code>)</Empty></p>
+<p>Delete or Pad </p>
+<ul>
+<li>Pad (or filling)<ul>
+<li>fill with <font color="blue">0</font>, with <font color="blue">mean value</font>, with <font color="blue">similar variables</font> (auto-correlation is introduced), with <font color="blue">past data</font>, with <font color="blue">Expectation-Maximization</font> or by K-Means</li>
+</ul>
+</li>
+</ul>
+<p>In Python, <code>NaN</code> means missing values (Not a Number, missing float values)</p>
+<p><code>None</code> is a Python object, representing missing values of the object type</p>
+<p>For some multi-classifications (e.g. “Male” and “Female”) model, we should refer to <strong>Dummy Variables</strong> to describe. (We usually set “Unknown” as reference variable <code>00</code>, and describe “Male” and “Female” as <code>01</code> &amp; <code>10</code>)</p>
+</blockquote>
+<ul>
+<li>Random filling : <ul>
+<li>Bayesian Bootstrap : for discrete data with range $\{x_i\}^k_{i=1}$, randomly sample $k − 1$ numbers from $U(0, 1)$ as $\{a_{(i)}\}^k_{i=0}$ with $a_{(0)} = 0$ and $a_{(k)} = 1$ ; then randomly sample from $\{x_i\}^k_{i=1}$ with probability distribution $\{a_{(i)} − a_{(i−1)}\}^k_{i=1} $accordingly to fill in the missing values</li>
+<li>Approximate Bayesian Bootstrap : Sample with replacement from $\{x_i\}^k_{i=1}$ to form new data set $X^\ast = \{x^\ast_{i} \}^{k^\ast}_{i=1}$ ; then randomly sample $n$ values from $X^\ast$ to fill in the missing values, allowing for repeatedly filling missing values</li>
+</ul>
+</li>
+<li>Model based methods : treat missing variable as <code>y</code>, other variables as <code>x</code> ; take the  data without missing values as out training set to train a <font color="#009100">classification</font> or <font color="#009100">regression</font> model ; take those with missing values as test set to predict the missing values.</li>
+</ul>
+<h3 id="Outlier-异常值"><a href="#Outlier-异常值" class="headerlink" title="Outlier (异常值)"></a>Outlier (异常值)</h3><ul>
+<li><p>Outlier Detection</p>
+<ul>
+<li>Statistics Based Methods</li>
+<li>Local Outlier Factor</li>
+</ul>
+</li>
+<li><p>Computing Density by Distance</p>
+<ul>
+<li>$d(A, B)$ : distance between $A$ and $B$ </li>
+<li>$d_k (A)$ : k-distance of $A$, or the distance between $A$ and the <font color="red">k-th nearest point</font> from $A$ ;</li>
+<li>$N_k (A)$ : Set of k-distance neighborhood of $A$, or the points within $d_k (A)$ from $A$ ;</li>
+<li>$rd_k (B, A)$ : k-reach distance from $A$ to $B$, the repulsive distance from $A$ to $B$ as if $A$ has a hard-core with radius $d_k (A)$, $rd_k (B, A) = max\{d_k (A), d(A, B)\}$ ; k-reach-distance is not symmetric. [ $rd_k (B, A)\neq rd_k(A,B)$ ]  <br><font color="Grey">Personal understanding: It’s like adding a weight at two edge between two nodes in a directed graph.</font></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如果 $B$ 在 $A$ 的 $k$ 邻近点以外，则取 $A$, $B$ 距离，如果 $B$ 在 $A$ 的 $k$ 邻近点以内，则取 $A$ 与其 $k$ 邻近点的距离</p>
+</blockquote>
+<ul>
+<li>Local Outlier Factor (Some definition)<ul>
+<li>$lrd_k (A)$ : <font color="red">local reachability density</font> is inversely proportional (成反比) to the average distance</li>
+<li>$lrd_k (A)=1/\left(\frac{ \sum_{O\in N_k (A)} rd_k (A,O) }{| N_k (A)|}\right)$ <font color="blue">(Definition)</font> </li>
+<li>If for most $O\in N_k (A)$ , more than $k$ points are closer to $O$ than $A$ is, then the denominator (分母) is much larger than $d_k(A)$ , and $lrd_k(A)$ is small (e.g. $k=3$ in following Pic)</li>
+<li><font color="red">Local Outlier Factor</font> : $LOF_k(A)=\Large{\frac{ \sum_{O\in N_k(A)} \frac{lrd_k(O)}{lrd_k(A)}}{|N_k(A)|}}$ </li>
+<li>$LOF_k(A) \ll 1$ , the density of $A$ is locally higher ; $LOF_k(A)\gg 1$ , the density of $A$ is locally lower, probably <font color="#ff359a">outlier</font> </li>
+</ul>
+</li>
+</ul>
+<div align="center">
+<img src="/2024/06/22/Big-Data-1/bd10.png" alt="bd10" width="40%">
+</div>
+
+<blockquote>
+<font face="华文楷体" size="4">注：</font>$LOF$ <font face="华文楷体" size="4">主要用于检测点</font> $A$ <font face="华文楷体" size="4">的邻近点密度，并由此推测该点是否异常值</font>
+
+</blockquote>
+]]></content>
+      <categories>
+        <category>2024 Spring</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>CSE Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS202 计算机组成原理</title>
+    <url>/2024/06/25/Computer-Organization/</url>
+    <content><![CDATA[<h1 id="Computer-Organization"><a href="#Computer-Organization" class="headerlink" title="Computer Organization"></a>Computer Organization</h1>]]></content>
+      <categories>
+        <category>2024 Spring</category>
+      </categories>
+      <tags>
+        <tag>CSE Learning</tag>
+        <tag>Verilog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MA234 大数据导论与实践（二）</title>
+    <url>/2024/06/24/Big-Data-2/</url>
+    <content><![CDATA[<h1 id="Big-Data-II"><a href="#Big-Data-II" class="headerlink" title="Big Data (II)"></a>Big Data (II)</h1><h2 id="IV-Classification"><a href="#IV-Classification" class="headerlink" title="IV. Classification"></a>IV. Classification</h2><blockquote>
+<p>本章内容较多，先写下本章主要内容：</p>
+<p>本章涉及分类算法，主要会提及 KNN 算法，决策树算法和朴素贝叶斯算法（是分类算法中最基础的几种）<br>其中，每种算法的应用里涵盖了一些多用概念，如剪枝操作、似然函数计算等。</p>
+<p>介绍三种基本算法后，本章还涉及模型评估，讲解如何通过不同问题使用不同的算法以得到最优的结果</p>
+<p>注：本章含有不亚于数据预处理章节的数学公式，要求理解公式基本内涵。</p>
+</blockquote>
+<h3 id="K-Nearest-Neighbor-KNN"><a href="#K-Nearest-Neighbor-KNN" class="headerlink" title="K-Nearest Neighbor (KNN)"></a>K-Nearest Neighbor (KNN)</h3><blockquote>
+<p>Supervised learning method, especially useful when prior knowledge on the data is very limited.</p>
+<p><font color="red">Low bias, high variance</font> : <font color="blue">just for small</font> <code>k</code> </p>
+<p><strong>Advantages</strong> : not sensitive to outliers (异常值距离一般较远) , easy to implement and parallelize, good for large training set</p>
+<p><strong>Drawbacks</strong> : need to tune (调节) $k$, take large storage, computationally intensive (计算缓慢，算力要求高)</p>
+</blockquote>
+<font size="4"><b>Algorithm</b></font>
+
+<ul>
+<li>Input : training set $D_{train} = \{(x_1, y_1),\cdots,(x_N, y_N)\}$,  a test sample $x$ without label $y$, $k$ and distance metric $d(x, y)$</li>
+<li>Output : predicted label $y_{pred}$ for $x$ </li>
+</ul>
+<ol>
+<li>Compute $d(x, x_j)$ for each $(x_j , y_j) \in D_{train}$</li>
+<li>Sort the distances in an <font color="Red">ascending</font> order, choose the ﬁrst $k$ samples $(x_{(1)}, y_{(1)}),\cdots,(x_{(k)} , y_{(k)})$ </li>
+<li>Make majority vote $y_{pred} = \text{Mode}(y_{(1)},\cdots, y_{(k)})$ </li>
+</ol>
+<p>Time Complexity : $O(mndK)$ where $n$ is the number of training samples, $m$ is the number of test samples, $d$ is the dimension, and $K$ is the number of nearest neighbors</p>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd8.png" alt="bd8" style="zoom:50%"></div>
+
+
+
+<p><strong>Similarity and Divergence</strong></p>
+<ul>
+<li><a href="/2024/06/22/Big-Data-1/index.html#cosine distance">Cosine similarity</a></li>
+<li><a href="/2024/06/22/Big-Data-1/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\Large{\frac{|A\cap B|}{|A\cup B|}}$ </li>
+<li>Kullback-Leibler(KL) divergence : $d_{KL}(P||Q) = E_P log \large{\frac{P(x)}{Q(x)}}$ , measures the distance between two probability <font color="red">distributions</font> $P$ and $Q$ ; in discrete case, $d_{KL}(p||q) = \sum^m_{i=1} p_i log \large{\frac{p_i}{q_i}}$ (CDF of $P$ and $Q$)</li>
+</ul>
+<p><strong>Tuning <code>k</code></strong> </p>
+<ul>
+<li>Different <code>k</code> value can lead to totally different results. ( model overfit the data when <code>k = 1</code>, bad for generalization )</li>
+<li><strong>M-fold Cross-validation (CV)</strong> to tune <code>k</code> : <ul>
+<li>partition the dataset into M parts ( M = 5 or 10 ) , let $\kappa : \{1,\cdots, N\} \to \{1,\cdots, M\}$ be <em>randomized partition index map</em> (随机分布索引映射) . The <em>CV estimate of prediction error</em> (预测误差的CV估计) is<br> $CV(\hat f,k)=\large{\frac{1}{N}} \sum_{n=1}^{N}L(y_i,\hat f^{-\kappa(i)}(x_i,k))$</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/06/24/Big-Data-2/bd9.png" alt="bd9"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">k’s value</th>
+<th style="text-align:center">$k=1$ (complex model)</th>
+<th style="text-align:center">$k=\infty$ (simplier model)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Bias</td>
+<td style="text-align:center">decrease</td>
+<td style="text-align:center">increase</td>
+</tr>
+<tr>
+<td style="text-align:center">Variance</td>
+<td style="text-align:center">increase</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">Generalization</td>
+<td style="text-align:center">overfitting (train-set friendly)</td>
+<td style="text-align:center">underfitting (test-set friendly)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a name="Bayes"><b>Bayes Classifier (Oracle Classifier)</b></a></p>
+<ul>
+<li>Assume $Y \in \mathcal{Y} = \{1, 2, . . . , C\}$, the classiﬁer $f : \mathcal X → \mathcal Y$ is a piecewise (分段) constant function</li>
+<li>For <a href="/2024/06/22/Big-Data-1/index.html#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathcal E(f)&=E_{P(X,Y)}[L(Y,f(X))]=1-P(Y=f(X))\\
+&=1-\int_{\mathcal X}P(Y=f(X)|X=x)p_X(x)\text dx
+\end{align}</script><ul>
+<li>Bayes rule : $f^{∗} (x) = \arg \max_c P(Y = c|X = x)$ , <font color="grey">“the most probable label under the conditional probability on x”</font></li>
+<li>Bayes Error Rate (贝叶斯误差) : $\text{inf}_{f}\varepsilon (f)=$ $\color{red}\mathcal E(f^{\ast})$ $=1-P(Y=f^{\ast}(X))$</li>
+<li><strong>Bayes Decision Boundary</strong> (贝叶斯决策边界) : the boundary separating the <strong>K partition</strong> domains in $\mathcal X$ on each of which $f^{ ∗ }(x) \in Y$ is constant. For binary classiﬁcation, it is the level set on which $P(Y=1|X=x)=P(Y=0|X=x)=0.5$<ul>
+<li><font color="green">Recall : Decision boundary of 15NN is smoother than that of 1NN</font> 
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<font color="red">Analysis of 1NN</font>
+
+<ul>
+<li>1NN error rate is twice the Bayes error rate<ul>
+<li>Bayes error $=1-p_{c^\ast}(x)$ where $c^\ast=\arg\max_{c}p_c(x)$</li>
+<li>Assume the samples are i.i.d. (独立同分布) , for any test sample $x$ and small $\delta$, there is always a training sample $z \in B(x, \delta)$ (the label of $x$ is the same as that of $z$), then 1NN error is</li>
+</ul>
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>\epsilon=\sum_{c=1}^{C}p_c(x)(1-p_c(z))\overset{\delta\to 0}{\longrightarrow}&amp;1-\sum_{c=1}^{C}p_{c}^{2}(x) \\<br>\le\ &amp;1-p_{c^\ast}^{2}(x) \\<br>\le\ &amp;2(1-p_{c^\ast}(x))<br>\end{align}<br>$</p>
+
+</blockquote>
+<ul>
+<li><ul>
+<li><font color="green">Remark : In fact,</font> $\color{green}\epsilon\le 2(1-p_{c^\ast}^{2}(x))-\frac{C}{C-1}(1-p_{c^\ast}^{2}(x))^2$</li>
+</ul>
+</li>
+</ul>
+<font color="blue">Case : Use kNN to diagnose breast cancer (cookdata) </font>
+
+<ul>
+<li>We have to consider its radius, texture (质地) , perimeter, area, smoothness, etc. (n-dimension)</li>
+<li>Data scaling : 0-1 scaling or z-score scaling</li>
+<li>Use code to assist</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">KNeighborsClassifier(n_neighbors = <span class="number">10</span>, metric = <span class="string">&#x27;minkowski&#x27;</span>, p = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h3><ul>
+<li>Tree structure : internal nodes indicate features, while leaf nodes represent classes.</li>
+<li>Start from root, choose a suitable feature $x_i$ and its split point $c_i$ at each internal node, split the node to two child nodes depending on whether $x_i \le c_i$ , until the child nodes are pure.</li>
+<li>Equivalent to rectangular partition of the region.</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><img src="/2024/06/24/Big-Data-2/bd11.png" width="60%"></th>
+<th><img src="/2024/06/24/Big-Data-2/bd12.png" width="60%"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p align="center"><a name="tree">Tree structure</a></p></td>
+<td><p align="center">Rectangular partition</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>How to choose <font color="red">features</font> and <font color="red">split points</font> ?<ul>
+<li>Impurity : choose the feature and split point so that after each slit the impurity should decrease the most</li>
+<li>Impurity(M0)-Impurity(M12) &gt; Impurity(M0)-Impurity(M34), choose A as split node ; otherwise choose B</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd13.png" alt="bd13" style="zoom:80%"></div>
+
+<ul>
+<li>Impurity Measures<ol>
+<li>GINI Index<ul>
+<li>Gini index of node $t$ : $Gini(t)=1-\sum_{c=1}^C (p(c|t))^2$ where $p(c|t)$ is the proportion of class-c data in node $t$</li>
+<li>Gini index of a split : $Gini_{split}=\sum_{k=1}^{K}\frac{n_k}{n}Gini(k)$ where $n_k$ is the number of samples in the child node $k$, $n=\sum_{k=1}^{K} n_k$ </li>
+<li>Choose the split so that $Gini(t) − Gini_{split}$ is maximized</li>
+</ul>
+</li>
+<li>Information Gain<ul>
+<li>Entropy at $t$ : $H(t) = −\sum_{c=1}^{C}p(c|t)\log_2 p(c|t)$ , </li>
+<li>where $t$ is the node and $\color{blue}c$ <font color="blue">represents that this node is chosen</font>.</li>
+<li>Maximum at $log_2 C$, when $p(c|t)=\frac{1}{C}$</li>
+<li>Minimum at $0$, when $p(c|t)=1$ for some $c$</li>
+</ul>
+</li>
+<li>Misclassiﬁcation Error<ul>
+<li>Misclassiﬁcation error at t : $\text{Error}(t) = 1 − \max_c p(c|t)$  (use majority vote)</li>
+<li>Maximum at $1−\frac{1}{C}$, when $p(c|t) = \frac{1}{C}$</li>
+<li>Minimum at $0$, when $p(c|t)=1$ for some $c$</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Compare Three Measure<ul>
+<li>Gini index and information gain should be used when growing the tree</li>
+<li>In pruning, all three can be used (typically misclassiﬁcation error)</li>
+</ul>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Algorithm</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">Impurity Measure</th>
+<th style="text-align:center">Child Nodes</th>
+<th style="text-align:center">Target Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ID3</td>
+<td style="text-align:center">Discrete</td>
+<td style="text-align:center">Info Gain</td>
+<td style="text-align:center">$k\ge 2$</td>
+<td style="text-align:center">Discrete</td>
+</tr>
+<tr>
+<td style="text-align:center">C4.5</td>
+<td style="text-align:center">Discrete, Continuous</td>
+<td style="text-align:center">Info Gain</td>
+<td style="text-align:center">$k\ge 2$</td>
+<td style="text-align:center">Discrete</td>
+</tr>
+<tr>
+<td style="text-align:center">C5.0</td>
+<td style="text-align:center">Discrete, Continuous</td>
+<td style="text-align:center">Info Gain</td>
+<td style="text-align:center">$k\ge 2$</td>
+<td style="text-align:center">Discrete</td>
+</tr>
+<tr>
+<td style="text-align:center">CART</td>
+<td style="text-align:center">Discrete, Continuous</td>
+<td style="text-align:center">Gini Index</td>
+<td style="text-align:center">$k=2$</td>
+<td style="text-align:center">Discrete, Continuous</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Tree Pruning (剪枝)<ul>
+<li>Too complex tree structure easily leads to <font color="red">overﬁtting</font> (分类太细，模型太复杂)</li>
+<li>Prepruning : set threshold <font color="grey">(阈值)</font> $\delta$ for impurity decrease <font color="grey">(剔除杂质)</font> in splitting a node ; if $\Delta \text{Impurity}_{split} \gt \delta$, do slitting, otherwise stop</li>
+<li>Postpruning : based on <u>cost function</u> (provided  $|T|$ and $\alpha$)<ul>
+<li>$\color{red}\text{Cost}_{ \alpha}(T)=\sum_{t=1}^{|T|}n_t\ \text{Impurity}(t)+\alpha|T|$</li>
+<li>Input: a complete tree $T$, $\alpha$</li>
+<li>Output: postpruning tree $\text{T}_{\alpha}$ </li>
+</ul>
+<ol>
+<li>Compute $\text{Impurity}(t)$ for $\forall t$</li>
+<li>Iteratively merge child nodes <strong>bottom-up</strong> : Suppose $\text{T}_{A}$ and $\text{T}_{B}$ are the trees before and after merging, do merging if $\text{Cost}_{ \alpha}(\text{T}_{A}) \ge \text{Cost}_{ \alpha}(\text{T}_{B})$   <font color="grey">(剪枝前损失更大)</font></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Pros and Cons<ul>
+<li>Advantage<ul>
+<li>Easy to interpret and visualize : widely used in ﬁnance, medical health, biology, etc.</li>
+<li>Easy to deal with missing values (treat as new data type)</li>
+<li>Could be extended to regression</li>
+</ul>
+</li>
+<li>Disadvantage<ul>
+<li>Easy to be trapped at local minimum because of greedy algorithm (贪心)</li>
+<li>Simple decision boundary : parallel lines to the axes (Recall <a href="#tree">Pic above</a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Naive-Bayes-朴素贝叶斯"><a href="#Naive-Bayes-朴素贝叶斯" class="headerlink" title="Naive Bayes (朴素贝叶斯)"></a>Naive Bayes (朴素贝叶斯)</h3><ul>
+<li>Based on <strong>Bayes Theorem</strong> and conditional independency assumption on features (Recall <a href="#Bayes">Bayes Classifier</a>)</li>
+<li>Bayes Theorem : $\Large{P(Y|X)=\frac{P(X|Y)P(Y)}{P(X)}}$<ul>
+<li>$P(Y)$ is prior prob. distribution (先验概率分布) , $P(X|Y )$ is likelihood function (似然函数) , $P(X)$ is evidence (边际概率) , $P(Y |X)$ is posterior prob. distribution (后验概率分布).</li>
+</ul>
+</li>
+<li>The <font color="red">core problem</font> of machine learning is to estimate $P(Y |X)$ </li>
+</ul>
+<ol>
+<li>Let $X = \{X_1, . . . , X_d \}$, for ﬁxed sample $X = x$, $P(X = x)$ is independent of  $Y$ , by Bayes Theorem, $P(Y|X=x)\propto P(X=x|Y)P(Y)$</li>
+<li>Assume conditional independency of $X_1, \cdots, X_d$ given $Y = c$ : $P(X=x|Y=c)=\prod_{i=1}^{d}P(X_i=x_i|Y=c)$</li>
+<li><font color="red">Naive Bayes Model :</font>
+
+</li>
+</ol>
+<blockquote class="blockquote-center">
+<p>$<br>\color{red}\hat y =\arg \max_c P(Y=c)\prod_{i=1}^{d}P(X_i=x_i|Y=c)<br>$</p>
+
+</blockquote>
+<p><strong>Maximum Likelihood Estimate (MLE)</strong></p>
+<ul>
+<li>Estimate $P(Y = c)$ and $P(X_i = x_i |Y = c)$ from the dataset $D = \{(\textbf{x}_1, y_1), \cdots ,(\textbf{x}_n, y_n)\}$<ol>
+<li><strong>MLE</strong> for $P(Y = c)$ : $P(Y = c) =\Large{\frac{ \sum_{i=1}^{n} I(y_i=c)}{n}}$</li>
+<li>When $X_i$ is discrete variable with range $\{v_1, \cdots , v_K\}$, <strong>MLE</strong> for $P(X_i = v_k |Y = c) =\Large{\frac{ \sum_{i=1}^{n} I(x_i = v_k |y_i = c)}{ \sum_{i=1}^{n} I(y_i = c)}}$ <br> ( if $X_i$ is continuous, just do discretization on it and use this formula )</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="Model-Assessment"><a href="#Model-Assessment" class="headerlink" title="Model Assessment"></a>Model Assessment</h3><p><strong>Confusion Matrix</strong></p>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd14.png" alt="bd14" style="zoom:100%"></div>
+
+
+
+<ul>
+<li>Representation<ul>
+<li>T &amp; F : represents truth of label (标签是否真实)</li>
+<li>P &amp; N : represents aspect of label (标签的两面)</li>
+</ul>
+</li>
+<li><p>Two-class classification: </p>
+<ul>
+<li>$\text{Accuracy} =\large{\frac{\text{TP+TN}}{\text{TN+FN+FP+TP}}}$, not a good index when samples are <font color="red">imbalanced</font></li>
+<li>$\text{Precision}=\large{\frac{\text{TP}}{\text{TP+FP}}}$ </li>
+<li>TPR : $\text{Recall} = \large{\frac{\text{TP}}{\text{TP+FN}}}$ ; important in medical diagnosis (回收)</li>
+<li>F score : $F_{\beta} = \large{\frac{(1+\beta^2)\text{Precision}\times\text{Recall}}{\beta^2 \times \text{Precision}+\text{Recall}}}$ , e.g. $F_1$ score for $\beta=1$</li>
+<li>FPR : $\text{Specifity} = \large{\frac{\text{TN}}{\text{TN+FP}}}$ ; recall for negative samples</li>
+</ul>
+</li>
+<li><p>Receiver Operating Characteristic (ROC, 受试者工作特征) and Area Under ROC (AUC)</p>
+<ul>
+<li>Aim to solve class distribution <font color="red">imbalance problem</font></li>
+<li>Set different threshold (阈值) $t$ for continuous predicted values.</li>
+<li>Compute <strong>TPR</strong> vs. <strong>FPR</strong> for all $t$ and plot ROC curve</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd15.png" style="zoom:120%"></div>
+
+<ul>
+<li>Beware: Don’t view the “curve” as a function, but as a <strong>continuous set of points</strong>.<ul>
+<li>Higher ROC implies better performance (How to measure ? AUC)</li>
+</ul>
+</li>
+<li>AUC: compute the area under ROC curve. The larger the better. Model is good for test set if $AUC \gt 0.75$</li>
+</ul>
+<p><strong>Cohen’s Kappa Coefficient</strong></p>
+<blockquote>
+<p>Since ROC and AUC is complex to be quantified, we need a <code>coe</code> to indicate it.</p>
+<p>We use an example to explain how to quantified it.</p>
+</blockquote>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\text{Cohen’s Kappa Coefficient: }&amp; &amp;\kappa=\frac{p_o-p_e}{1-p_e}=1-\frac{1-p_o}{1-p_e} \\<br>&amp;&amp; &amp;p_e=\sum_{c=1}^{C}\frac{n_c^{pred}}{N}\frac{n_c^{true}}{N}<br>\end{align}<br>$</p>
+
+</blockquote>
+<ul>
+<li>$p_o$ is the accuracy</li>
+<li>$p_e$ is the hypothetical probability of chance agreement</li>
+</ul>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd16.png" alt="bd16" style="zoom:100%"></div>
+
+<p>E.g.  $\large{p_o=\frac{20+15}{50}=0.7}$, $\large{p_e=\frac{25}{50}\times\frac{20}{50}+\frac{25}{50}=0.5}$, then $\large{\kappa=0.4}$</p>
+<ul>
+<li>$\kappa \in [-1,1]$, $\kappa\ge 0.75$ for good performance and $\kappa\lt 0.4$ for bad one.</li>
+</ul>
+<hr>
+<h2 id="V-Regression"><a href="#V-Regression" class="headerlink" title="V. Regression"></a>V. Regression</h2><h3 id="Linear-Model"><a href="#Linear-Model" class="headerlink" title="Linear Model"></a>Linear Model</h3><p><strong>Linear model</strong> : </p>
+<ul>
+<li>For <strong>Univariate</strong> linear model,  $y = w_0 + w_1x + \epsilon$, where $w_0$ and $w_1$ are regression coeﬃcients, $\epsilon$ is the error or noise</li>
+</ul>
+<p>Assume $\epsilon ∼ \mathcal N (0, \sigma^2)$, where $σ^2$ is a ﬁxed but unknown variance; then $y|x ∼ \mathcal N (w_0 + w_1x, σ^2)$</p>
+<script type="math/tex; mode=display">
+(\hat{w}_0,\hat{w}_1)= \arg \min_{w_0,w_1}\sum_{i=1}^{n}(y_i-w_0-w_1x_i)^2</script><p>which means $L(\hat w_0,\hat w_1)$ is minimized (残差最小).</p>
+<ul>
+<li>For <strong>multivariate</strong> linear model, $y=f(\textbf{x})=w_0+w_1x_1+w_2x_2+\cdots+w_px_p + \epsilon$ <ul>
+<li>where $w_0, w_1,\cdots, w_p$ are <font color="red">regression coefficients</font>, $\textbf{x} = (x_1,\cdots, x_p)^T$ is the input vector whose components are independent variables or attribute values, $\epsilon \thicksim \mathcal N(0, σ^2)$ is the noise.</li>
+<li>For the size n samples $\{(\textbf{x}_i, y_i)\}$, let $\textbf{y} = (y_1, \cdots , y_n)^T$ be the response or dependent variables, $\textbf{w} = (w_0, w_1, \cdots, w_p)^T$,  we construct a matrix $\textbf{X}=[\textbf{1}_n, (\textbf{x}_1, \cdots,\textbf{x}_n)^T]\in \mathbb R^{n \times(p+1)}$ , and $\textbf{\varepsilon}=(\epsilon_1,\cdots,\epsilon_n)^T \thicksim \mathcal N(\textbf{0},\sigma^2\textbf{l}_n)$ </li>
+</ul>
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\textbf{y}=\textbf{X}\textbf{w} + \varepsilon\\ \\<br>&amp;\textbf{X}=<br>\begin{pmatrix}<br>1 &amp; x_{11} &amp; \cdots &amp; x_{1p} \\<br>1 &amp; x_{21} &amp; \cdots &amp; x_{2p} \\<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>1 &amp; x_{n1} &amp; \cdots &amp; x_{np}<br>\end{pmatrix}<br>\end{align}<br>$</p>
+
+</blockquote>
+<p><strong>Least Square (LS)</strong> <font color="grey" size="3">最小二乘法</font></p>
+<div><img src="/2024/06/24/Big-Data-2/bd17.png" style="zoom:60%"></div>
+
+<ul>
+<li>From geometry aspect, we should <strong>minimize the residual sum-of-square (残差平方和)</strong>: <br>$\text{RSS}(\textbf{w})=\sum_{i=1}^{n} (y_i-w_0-w_1x_1-\cdots-w_px_p)^2=|\textbf{y} - \textbf{X} \textbf{w}|_{2}^2$<ul>
+<li>When $\textbf{X}^T\textbf{X}$ is invertible, the <strong>minimizer</strong> $\hat{\textbf{w}}$ satisfy :  （可证明 $\hat w$ 是无偏估计）</li>
+</ul>
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\nabla_{\textbf{w}}\text{RSS}(\hat{\textbf{w}})=0 \Rightarrow \hat{\textbf{w}}=(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T \textbf{y}<br>$</p>
+
+</blockquote>
+<ul>
+<li><ul>
+<li>Then prediction $\hat{\textbf{y}}=\textbf{X}(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T \textbf{y}= \textbf{P} \textbf{y}$ is a projection of $\textbf{y}$ onto the linear space spanned by the column vectors of $\textbf{X}$; (As Pic 15 show)<ul>
+<li>$\textbf{P}=\textbf{X}(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T$ is the projection matrix satisfying $\textbf{P}^2 = \textbf{P}$ <font color="green">(Recall: Linear Algebra)</font></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Optimal Method: Ordinary least square (<strong>OLS</strong>)</p>
+<ol>
+<li>Get mean values from sample set: $\bar y=\frac{1}{n}\sum_{i=1}^{n}y_i$ , $\bar{\textbf{x}}=\frac{1}{n}\sum_{i=1}^{n}{ \textbf{x}_i}$</li>
+<li>Centralize data (minus by $\bar y$ and $\bar{\textbf{x}}$) and calculate $RSS(\tilde{\textbf{w}})$ </li>
+<li>Prediction $\hat{\textbf{y}}= \textbf{P} \textbf{y}$ is the projection (投影) of $\textbf{y}$ on the <em>linear space spanned</em> by the columns of $\textbf{X}$. <br>$\mathcal X= \text{Span} \{ \textbf{x}_{\cdot ,0}, \textbf{x}_{\cdot ,1},\cdots,  \textbf{x}_{\cdot ,p}\}$ , recall that $ \textbf{x}_{\cdot ,0}= \textbf{1}_n$</li>
+<li>If $\{ \textbf{x}_{\cdot ,0}, \textbf{x}_{\cdot ,1},\cdots,  \textbf{x}_{\cdot ,p}\}$ forms a set of orthonormal basis (标准正交基) , then $\hat{\textbf{y}}=\sum_{i=0}^{p}&lt;\textbf{y}, \textbf{x}_{\cdot ,i}&gt; \textbf{x}_{\cdot ,i}$</li>
+<li>If not, do orthogonalization by Gram-Schmidt procedure for the set $\{ \textbf{x}_{\cdot ,0}, \textbf{x}_{\cdot ,1},\cdots,  \textbf{x}_{\cdot ,p}\}$ </li>
+</ol>
+</blockquote>
+<ul>
+<li>From mathemetic aspect, it’s about <strong>MLE</strong> (Result the same)<ol>
+<li>Likelihood function: $L((\textbf{w},\textbf{X}),\textbf{y})=P(\textbf{y}|(\textbf{X}, \textbf{w}))=\prod_{i=1}^{n}P(y_i|(\textbf{x}_i, \textbf{w}))$ </li>
+<li>Find <strong>MLE</strong>: $\hat{\textbf{w}}=\arg \max_{\textbf{w}} L(\textbf{w} ; \textbf{X}, \textbf{y})$ (E.g. For $P(y_i|(\textbf{x}_i, \textbf{w}))=\frac{1}{\sqrt{2\pi}\sigma} \Large{e^{-\frac{(y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2}{2\sigma^{2}}}}$)</li>
+<li><font color="blue">(2.) is equivalent to its log-function:</font><br> E.g.  $l(\textbf{w} ; \textbf{X}, \textbf{y})= \log{L(\textbf{w} ; \textbf{X}, \textbf{y})}=-n\log(\sqrt{2\pi}\sigma)-\frac{1}{2\sigma^{2}} \sum_{i=1}^{n} (y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2$ </li>
+<li>Then get the same minimizer as <strong>LS</strong> : $\hat{\textbf{w}}=(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T \textbf{y}$</li>
+</ol>
+</li>
+</ul>
+<p><strong>Shortcomings of Fitting Nonlinear Data</strong> (上述方法仅适合线性回归)</p>
+<ul>
+<li>Evaluating the model by Coefficient of Determination $R^2$<ul>
+<li>$R^2 := 1-\frac{ \text{SS}_{res}}{ \text{SS}_{tot}}$ ($=\frac{ \text{SS}_{reg}}{ \text{SS}_{tot}}$ only for linear regression), where<ul>
+<li>$ \text{SS}_{tot} = \sum_{i=1}^{n} (y_i-\bar y)^2$ is the total sum of squares</li>
+<li>$ \text{SS}_{reg} = \sum_{i=1}^{n} (\hat y_i-\bar y)^2$ is the regression sum of squares</li>
+<li>$ \text{SS}_{res} = \sum_{i=1}^{n} (y_i-\hat y_i)^2$ is the residual sum of squares.</li>
+</ul>
+</li>
+<li>The larger the $R^2$, the better the model !</li>
+</ul>
+</li>
+<li><strong>Multicolinearity</strong> [多重共线性]<ul>
+<li>If the columns of $\textbf{X}$ are almost linearly dependent (multicolinearity), then $\det(\textbf{X}^{T}\textbf{X})\approx 0$, the diagonal entries in $(\textbf{X}^{T}\textbf{X})^{-1}$ is quite large, leading to a large variances of $\hat{\textbf{w}}$ (inaccurate).</li>
+<li>Remedies (补救措施): ridge regression (岭回归), principal component regression (主属性回归), partial least squares regression (部分最小二乘回归), etc.</li>
+</ul>
+</li>
+<li>Overfitting<ul>
+<li>Linear regression easily to be overfitted when introducing more variables.</li>
+<li>Solution: <a href="#regul">Regularization</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>Bias-Variance Decomposition</strong></p>
+<ul>
+<li>Bias (偏差): $\text{Bias}(\hat f(\textbf{x}))=\text{E}_\text{train}\hat f(\textbf{x})-f(\textbf{x})$ , average <strong>accuracy</strong> of prediction for the model (deviation from the truth)</li>
+<li>Variance (方差): $\text{Var}(\hat f(\textbf{x}))=\text{E}_\text{train}(\hat f(\textbf{x})-\text{E}_\text{train}\hat f(\textbf{x}))^2$ , <strong>variability</strong> of the model prediction due to different data set (stability)</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\color{red}<br>\text{E}_\text{train}\text{R}_\text{exp}(\hat f(\textbf{x}))=\text{E}_\text{train}\text{E}_\text{P}[(y-\hat f(\textbf{x}))^2|\textbf{x}] = \underbrace{\text{Var}(\hat f(\textbf{x}))}_{\text{variance}}+\underbrace{\text{Bias}^2(\hat f(\textbf{x}))}_{\text{bias}}+\underbrace{\sigma^2}_{\text{noise}}<br>$</p>
+
+</blockquote>
+<div><img src="/2024/06/24/Big-Data-2/bd19.png" style="zoom:80%"></div>
+
+<ul>
+<li>The more complicated the model, the lower the bias, but the higher the variance.</li>
+</ul>
+<div><img src="/2024/06/24/Big-Data-2/bd18.png" style="zoom:90%"></div>
+
+<ul>
+<li>kNN Regression<ul>
+<li>kNN can be used to do regression if the mode (majority vote) is replaced by mean : $\hat f(x)=\frac{1}{k} \sum_{ x_{(i)} \in N_{k}(x)} y_{(i)}$</li>
+<li>Generalization error of kNN regression is</li>
+</ul>
+</li>
+</ul>
+<div><img src="/2024/06/24/Big-Data-2/bd20.png" style="zoom:80%"></div>
+
+<p>where we have used the fact that $E_{ \text{train}} y_{i} = f(\textbf{x}_{i})$ and $\text{Var}(y_i)=\sigma^2$</p>
+<ul>
+<li>For small $k$, overfitting, bias ↓, variance ↑</li>
+<li>For large $k$, underfitting, bias ↑, variance ↓</li>
+</ul>
+<hr>
+<h3 id="Regularization-正则化"><a href="#Regularization-正则化" class="headerlink" title="Regularization (正则化)"></a><a name="regul">Regularization</a> (正则化)</h3><blockquote>
+<p>Why we need Regularization ?</p>
+<ul>
+<li>In <strong>high dimensions</strong>, the more the input attributes, the larger the <strong>variance</strong></li>
+<li>Shrinking some coefficients or setting them to zero can reduce the <strong>overfitting</strong></li>
+<li>Using less input variables also help interpretation with the most important variables</li>
+<li>Subset selectionµretaining only a subset of the variables, while eliminating the rest variables from the model</li>
+</ul>
+</blockquote>
+<h4>Best-Subset Selection</h4>
+
+<ul>
+<li>find for each $k ∈ \{0, 1, \cdots , p\}$ the subset $S_k \subset \{1,\cdots, p\}$ of size $k$ that gives the smallest $\text{RSS}(\textbf{w}) = \sum_{i=1}^n (y_i − w_0 − \sum_{j\in S_k} w_j x_{ij})^2$ </li>
+<li>Noted that the best subset of size $k + 1$ may not include the the variables in the best subset of size $k$</li>
+<li>Choose $k$ based on <strong>bias-variance tradeoff</strong>, usually by <strong>AIC</strong> and <strong>BIC</strong>(贝叶斯信息量), or practically by <strong>cross-validation</strong></li>
+</ul>
+<h5>Forward-stepwise selection</h5>
+
+<ul>
+<li>Start with the intercept (截距?) $\bar y$ , then sequentially add into the model the variables that improve the fit most (reduce RSS most)</li>
+<li><font color="red">QR factorization</font> helps search the candidate variables to add </li>
+<li><font color="red">Greedy algorithm</font> : the solution could be sub-optimal</li>
+</ul>
+<h5>Backward-stepwise selection</h5>
+
+<ul>
+<li>Start with the <font color="red">full model</font>, then sequentially delete from the model the variables that has the least impact on the fit most </li>
+<li>The candidate for dropping is the variable with the smallest <a href="/2024/06/22/Big-Data-1/index.html#z-score">Z-score</a> </li>
+<li>Can only be used when $n &gt; p$ in order to fit the full model by <strong>OLS</strong></li>
+</ul>
+<h5><font color="red">Regularization by Penalties</font></h5>
+
+<ul>
+<li>Add a penalty term, in general $l_q$ - norm</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\sum_{i=1}^{n}(y_i-w_0-w_1x_1-\cdots-w_px_p)^2+\lambda |\textbf{w}|^q_q=|\textbf{y}-\textbf{X}\textbf{w}|^2+\lambda |\textbf{w}|^q_q<br>$</p>
+
+</blockquote>
+<ul>
+<li>By arranging $\lambda$ , we can correct the overfitting (bias inc. &amp; var dec.)</li>
+<li><code>q = 2</code> for Ridge Regression &amp; <code>q = 1</code> for LASSO Regression</li>
+</ul>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd26.png" style="zoom:60%"></div>
+
+
+
+<h4>Ridge Regression</h4>
+
+<font color="#ff44ff">$\hat w=\arg \underset{w}\min {\|y-Xw\|_2^2}+\lambda\|w\|_2^2$</font> 
+
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd21.png" style="zoom:50%"></div>
+
+<blockquote>
+<p>Solving Ridge Regression</p>
+</blockquote>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd22.png" style="zoom:50%"></div>
+
+
+
+<blockquote>
+<p>Bayesian Viewpoint of Ridge Regression</p>
+</blockquote>
+<div align="center"><img src="/2024/06/24/Big-Data-2/bd23.png" style="zoom:60%"></div>
+
+<hr>
+<h4>LASSO Regression</h4>
+
+<blockquote>
+<p>Can be used to estimate the coefficients and select the important variables simultaneously</p>
+<p>Reduce the model complexity, avoid overfitting, and improve the generalization ability</p>
+</blockquote>
+<font color="#ff44ff">$\hat w=\arg \underset{w}\min {\|y-Xw\|_2^2}+\lambda\|w\|_1$</font> 
+
+<p>Two Rpoperties : </p>
+<ul>
+<li>Shrinkage (将所有点收缩)</li>
+<li>Selection (将近点归零，远点收缩)</li>
+</ul>
+<table>
+    <tr>
+        <td><img align="center" src="/2024/06/24/Big-Data-2/bd24.png" style="zoom:50%"></td>
+        <td><img align="center" src="/2024/06/24/Big-Data-2/bd25.png" style="zoom:50%"></td>
+    </tr>
+    <tr>
+        <td colspan="2"><center><font size="2">LASSO Regression</font></center></td>
+    </tr>
+</table>
+
+<blockquote class="blockquote-center">
+<p>$<br>\hat w_i^{\text{lasso}} = (|\hat w^{OLS}_i| − \lambda)+\text{sign}(\hat w^{OLS}_i)<br>$</p>
+
+</blockquote>
+<ul>
+<li>Solving LASSO by <strong>LARS</strong> (最小角回归算法)<ol>
+<li>Start with all coefficients $w_i$ equal to zero</li>
+<li>Find the predictor $x_i$ most correlated with $y$ (一般认为夹角最小的即是)</li>
+<li>Increase the coefficient $w_i$ in the direction of the sign of its correlation with $y$. Take residuals $r = y − \hat y$ along the way. Stop when some other predictor $x_k$ has as much correlation with $r$ as $x_i$ has (调整参数 $w$ 直至下一个分量夹角最小)</li>
+<li>Increase $(w_i, w_k)$ in their joint <strong>least squares direction</strong>, until some other predictor $x_m$ has as much correlation with the residual $r$</li>
+<li>Continue until all predictors are in the model</li>
+</ol>
+</li>
+</ul>
+<center><img src="/2024/06/24/Big-Data-2/bd27.png" style="zoom:70%"><font size="2">Pic 19. LARS</font></center>
+
+
+
+<blockquote>
+<p>Optional: Maximum A Posteriori (<strong>MAP</strong>) Estimation</p>
+<ul>
+<li><p>Given $\theta$ , the conditional distribution of $\textbf{y}$ is $P(\textbf{y}|\theta)$</p>
+</li>
+<li><p><strong>MAP</strong> choose the point of maximal posterior probability :</p>
+<p> $\hat{\theta}^{MAP}=\arg \underset{\theta}\max{(\log P(\textbf{y}|\theta)+\log P(\theta))}$</p>
+</li>
+<li><p>If $\theta=\textbf{w}$, and we choose the log-prior <font color="grey">[对数先验]</font> (i.e. normal prior  $\mathcal N(0, \frac{\sigma^2}{\lambda} \textbf{I})$ ) , we revocer the ridge regression.</p>
+</li>
+<li><p><font color="#ff7575">Different log-prior lead to different penalties</font> (Not general case. Some penalties may not be the logarithms[对数] of probability distributions, some other penalties depend on the data)</p>
+</li>
+</ul>
+<p>Related Regularization Models</p>
+<ul>
+<li>Elastic net (混合回归) : $\hat{\textbf{w}}=\arg\min_w|y-Xw|_2^2+\lambda_1|\textbf{w}|^2_2+\lambda_2|\textbf{w}|_1$ </li>
+<li>Group LASSO (对不同分组进行回归) : $\hat{\textbf{w}}=\arg\min_w|y-Xw|_2^2+\sum_{g=1}^{G}\lambda_{g}|\textbf{w}_{g}|_2$ , where $\textbf{w}=(w_1,\cdots,w_G)$ is the <strong>group partition</strong> of $\textbf{w}$. </li>
+<li>Dantzig Selector : …</li>
+<li>Smoothly clipped absolute deviation (<strong>SCAD</strong>) penalty</li>
+<li>Adaptive LASSO</li>
+</ul>
+</blockquote>
+<h4>ADMM Used in LASSO Problem</h4>
+
+<p><strong>Altinating Direction Method of Multipliers (ADMM)</strong></p>
+<ul>
+<li>ADMM [交替方向乘子法] often used to solve problems with two optimized variables which only has equality constraint. </li>
+<li><p>Normal Form as below :</p>
+<script type="math/tex; mode=display">
+\min_{x,z} f(x)+g(z)\\ s.t.\ Ax+Bz=c</script></li>
+<li><p>where $x\in R^{n}$ and $z\in R^{m}$ are optimized variables, and in the equality constraint, $A\in R^{p\times n}$ , $B\in R^{p\times m}$ , $c\in R^{p}$ , and $f$ and $g$ are <font color="red">convex functions (凸函数)</font></p>
+</li>
+</ul>
+<center>------ Solution ------</center>
+
+<ol>
+<li>Define Augmented Lagrangian (增广拉格朗日函数)</li>
+</ol>
+<script type="math/tex; mode=display">
+L_{\rho}(x,z,u)=f(x)+g(z)+u^{T}(Ax+Bz-c)+\frac{\rho}{2}\|Ax+Bz-c\|^2</script><ul>
+<li>If we let $w=\frac{u}{\rho}$ , then we can get simplified form of Augmented Lagrangian</li>
+</ul>
+<script type="math/tex; mode=display">
+L_{\rho}(x,z,u)=f(x)+g(z)+\frac{\rho}{2}\|Ax+Bz-c+w\|_2^2-\frac{\rho}{2}\|w\|_2^2</script><ol>
+<li>Algorithm : fixed other variables and update only one of them (Here $\rho\gt 0$ is a penalty parameter)</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{align}
+&\text{for }k=1,2,3,...\\
+&\text{step 1: } x^{(k)}=\arg\min_{x}L_{\rho}(x,z^{(k-1)},w^{(k-1)})=\arg\min_{x} f(x)+\frac{\rho}{2}\|Ax+Bz^{(k-1)}-c+w^{(k-1)}\|_2^2 \\
+&\text{step 2: } z^{(k)}=\arg\min_{z}L_{\rho}(x^{(k)},z,w^{(k-1)})=\arg\min_{z} g(z)+\frac{\rho}{2}\|Ax^{(k)}+Bz-c+w^{(k-1)}\|_2^2 \\
+&\text{step 3: } w^{(k)}=w^{(k-1)}+Ax^{(k)}+Bz^{(k)}-c
+\end{align}</script><ol>
+<li><strong>Consider LASSO Problem</strong> <ul>
+<li>To find $\min_{w} \frac{1}{2}|y-Xw|^2_2+\lambda|w|_1$ </li>
+<li>Let $w=\beta$ (the constraint : $w-\beta=0$) and rewrite the Augmented Lagrangian : $L_{\rho}(w,\beta,u)=\frac{1}{2}|y-Xw|^2_2+\lambda|\beta|_1+u^T(w-\beta)+\frac{\rho}{2}|w-\beta|_2^2$</li>
+</ul>
+</li>
+</ol>
+<h3 id="Model-Assessment-1"><a href="#Model-Assessment-1" class="headerlink" title="Model Assessment"></a>Model Assessment</h3><ul>
+<li>Mean absolute error (MAE) : $MAE =\frac{1}{n} \sum_{i=1}^{n} |y_i - \hat y_i|$</li>
+<li>Mean square error (MSE) : $MSE =\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat y_i)^2$ </li>
+<li>Root mean square error (RMSE) : $RMSE = \sqrt{\frac{1}{n} (y_i - \hat y_i)^2}$</li>
+<li><p>Coefficient of Determination [决定系数] <font color="green">(Recall)</font> : $R^2:=1-\frac{\text{SS}_{\text{res}}}{\text{SS}_{\text{tot}}}$ , <br>where $\text{SS}_{\text{tot}}=\sum_{i=1}^n (y_i-\bar y_i)^2$  and  $\text{SS}_{\text{res}}=\sum_{i=1}^n (y_i-\hat y_i)^2$ </p>
+<ul>
+<li>Normally $R^2\in[0,1]$ , but it can be negative (a wrong model making residual too large). </li>
+<li><font color="red">The larger the $R^2$ , the better the model.</font>
+</li>
+</ul>
+</li>
+<li><p>Adjusted Coefficient of Determination</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
+<li>$n$ is  the number of samples, $p$ is the dimensionality (or the number of attributes)</li>
+<li><font color="red">The larger the $\text{R}_{\text{adj}}^2$ value, the better performance the model</font></li>
+<li>When adding important variables into the model, $\text{R}_{\text{adj}}^2$ gets larger and $\text{SS}_{\text{res}}$ is reduced</li>
+</ul>
+<hr>
+<h2 id="VI-Classification-II"><a href="#VI-Classification-II" class="headerlink" title="VI. Classification II"></a>VI. Classification II</h2><blockquote>
+<p>Why talk about Regression first ?</p>
+<ul>
+<li>Naive Bayes uses Probability and Mathemetic methods, which is the core of Regression</li>
+<li>Regression all apply <strong>MLE</strong>, which is connected with Bayes rules.</li>
+</ul>
+</blockquote>
+<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><blockquote>
+<p>逻辑回归是一种分类方法（不是回归）</p>
+</blockquote>
+<font color="green">Recall: Linear Regression</font>
+
+<ul>
+<li>$E(y|x)=P(y=1|x)=w_0+w_1x$ , but $w_0+w_1x$ may be not probability</li>
+<li>Use <strong>Sigmoid function</strong> to map it to $\left[0,1\right]$ : $g(z)=\frac{1}{1+e^{-z}}$ , where $z=w_0+w_1x_1+\cdots+w_dx_d$</li>
+<li><font color="red">Equivalently</font>, $\log{\frac{P(y=1|x)}{1-P(y=1|x)}}=w_0+w_1x_1+\cdots+w_dx_d$</li>
+</ul>
+<script type="math/tex; mode=display">
+\text{logit}(z)=\log\frac{z}{1-z}</script><p><strong>MLE for Logistic Regression</strong></p>
+<ul>
+<li>The prob. distribution for two-class logistic regression model is <ul>
+<li>$Pr(y=1|X=x)=\frac{\exp(\textbf{w}^T \textbf{x})}{1+\exp(\textbf{w}^T \textbf{x})}$</li>
+<li>$Pr(y=0|X=x)=\frac{1}{1+\exp(\textbf{w}^T \textbf{x})}$</li>
+</ul>
+</li>
+<li>Let $P(y=k|X=x)=p_k(\textbf{x};\textbf{w})$, $k=0,1$. The <font color="red">likelihood function</font> is $L(\textbf{w})=\prod_{i=1}^{n} p_{y_i}(\textbf{x}_i;\textbf{w})$</li>
+<li>MLE of $\textbf{w}$ : $\hat{\textbf{w}}=\arg \underset{\textbf{w}}\max L(\textbf{w})$</li>
+<li>Solve $\color{red}\nabla_{\textbf{w}}\log L(\textbf{w})=0$ by Newton-Raphson method</li>
+</ul>
+<blockquote>
+<p>用 MLE 计算 $\hat{\textbf{w}}$ ，需要提前知道 $x$ 的分布，所以逻辑回归是一种分类算法。</p>
+</blockquote>
+<h3 id="Linear-Discriminant-Analysis-LDA"><a href="#Linear-Discriminant-Analysis-LDA" class="headerlink" title="Linear Discriminant Analysis (LDA)"></a>Linear Discriminant Analysis (LDA)</h3><blockquote>
+<p>线性判别分析，是一种监督学习的降维方法（无监督学习一般用<strong>PCA</strong>，主成分分析来降维）</p>
+</blockquote>
+<font color="green">Recall: Naive Bayes</font>
+
+<ul>
+<li>By <strong>Bayes Theorem</strong>: $P(Y|X=x)\propto f_k(\textbf{x})\pi_{k}$ , where $f_k(\textbf{x})=P(\textbf{X}=\textbf{x}|Y=k)$ is be the <font color="red">density function</font> of samples in each class $Y=k$, $\pi_k=P(Y=k)$ is the <font color="red">prior probability</font>.</li>
+<li>Assume $f_k (\textbf{x})$ is multivariate Gaussian (多元高斯分布) : $f_k(x)=\large{\frac{1}{(2\pi)^{p/2} |\Sigma_k}^{1/2}|e^{\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)}}$ , with a common covariance matrix (协方差矩阵) $\Sigma_k$ <font color="grey">(注：多元高斯可以表示为向量和矩阵乘积的形式，如上)</font></li>
+<li>For the decision boundary between class $k$ and $l$, the <strong>log-ratio</strong> of their posteriors (后验) $P(Y|X)$ is</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\log{\frac{P(Y=k|\textbf{X}=\textbf{x})}{P(Y=l|\textbf{X}=\textbf{x})}}=\log{\frac{\pi_k}{\pi_l}}-\frac{1}{2}(\mu_k+\mu_l)^T\Sigma_k^{-1}(\mu_k-\mu_l)+\textbf{x}^T \Sigma^{-1}(\mu_k-\mu_l)<br>$</p>
+
+</blockquote>
+<ol>
+<li><p>From log-ratio, we can get <font color="red">Linear discriminant functions</font>(e.g. for class $k$) : $\delta_k(\textbf{x})=\textbf{x}^T\Sigma^{-1}\mu_k-\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k+\log\pi_k$ </p>
+</li>
+<li><p>Then the log-ratio become : $\log{\frac{P(Y=k|\textbf{X}=\textbf{x})}{P(Y=l|\textbf{X}=\textbf{x})}}=\delta_k(\textbf{x})-\delta_l(\textbf{x})$ </p>
+<blockquote>
+<p>相减结果是一个一次方程（线性）</p>
+</blockquote>
+</li>
+<li><p>Decision Rule(分类依据) : $k^{\ast}=\arg\max_k \delta_k(\textbf{x})$</p>
+</li>
+</ol>
+<p><strong>Two-class LDA</strong></p>
+<ul>
+<li>LDA rule classifies to <strong>class 2</strong> if</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>(\textbf{x}-\frac{\hat\mu_1+\hat\mu_2}{2})^T \Sigma^{-1}(\hat\mu_2-\hat\mu_1)+\log{\frac{\hat\pi_2}{\hat\pi_1}}\gt 0<br>$</p>
+
+</blockquote>
+<ul>
+<li>Discriminant direction : $\beta=\Sigma^{-1}(\hat\mu_2-\hat\mu_1)$ </li>
+</ul>
+<center><img src="/2024/06/24/Big-Data-2/bd28.png" style="zoom:50%"><font size="2">Pic 20. Two-class LDA</font></center>
+
+<blockquote>
+<p>$\hat\mu$ 看作图中椭圆的中心，图中的 $w$ 为投影方向。由上述公式计算可得到样本在投影基向量上的方向，从而判断其类别</p>
+<p>从定性上看，投影的作用是降维，选择的投影空间应当是能将不同类数据点在映射后尽可能分开（或同类的点尽可能紧凑）。</p>
+</blockquote>
+<h3 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h3><center><img src="/2024/06/24/Big-Data-2/bd29.png" style="zoom:70%"><font size="2">Pic 21. NN</font></center>
+
+<script type="math/tex; mode=display">
+\hat y=g(w_0+\sum_{i=1}^{m} x_iw_i)</script><ul>
+<li>$\hat y$ is Output</li>
+<li>$g$ is a <font color="red">Non-linear activation function</font> (非线性激活函数)</li>
+<li>$w_0$ is the Bias</li>
+</ul>
+<center><img src="/2024/06/24/Big-Data-2/bd30.png" style="zoom:70%"><font size="2">Pic 22. Common Activation Functions</font></center>
+
+<ul>
+<li><strong>Single Hidden Layer Neural Network</strong><ul>
+<li><font color="red">$z_i=w_{0,i}^{(1)}+\sum_{j=1}^{m}x_jw_{j,i}^{(1)}$</font> </li>
+<li><font color="red">$\hat y_i=w_{0,i}^{(2)}+\sum_{j=1}^{d_1}g(z_j)w_{j,i}^{(2)}$</font></li>
+<li>$x_i\to z_k\to y_j$ , where $z_k$ is the hidden layer</li>
+<li>Hidden Layer can be <font color="red">multiple</font> </li>
+</ul>
+</li>
+</ul>
+<center><img src="/2024/06/24/Big-Data-2/bd31.png" style="zoom:50%"></center>
+
+
+
+<ul>
+<li><strong>Thm: Universal Approximation Theorem</strong> —— Any function can be approximated by a <font color="blue">three-layer</font> neural network within sufficiently high accuracy.<ul>
+<li>Why not effective ?</li>
+<li>The <strong>width</strong> of each layer may be too much (Large calculation !!)</li>
+<li><font color="green">Now we’re trying to replace <b>width</b> with <b>depth</b> and find the same Theorem</font> <font color="grey">(即增加层数，减少每层的神经元)</font>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h4>Loss Optimization</h4>
+
+<blockquote>
+<p>Find $\textbf{W}=\{w^{(0)},w^{(1)},…,w^{(n)}\}$ with lowest loss function</p>
+</blockquote>
+<blockquote class="blockquote-center">
+<p>$<br>\textbf{W}^{\ast}=\underset{\textbf{W}} {\arg\min} \frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\textbf{W}),y^{(i)})=\underset{\textbf{W}} {\arg\min}\ C(\textbf{W})<br>$</p>
+
+</blockquote>
+<ul>
+<li>But for most cases, we should calculate <font color="red">gradient</font> to find $\textbf{W}^{\ast}$ </li>
+<li><font color="red">Use <b>gradient decent</b> to solve:</font> $\frac{\partial{C}}{\partial{\textbf{W}}}$</li>
+</ul>
+<blockquote>
+<p>How to calculate ? (More detail)</p>
+</blockquote>
+<center><img src="/2024/06/24/Big-Data-2/bd33.png" style="zoom:60%"></center>
+
+<ul>
+<li>$w_{jk}^{l}$ is the weight for the connection from the $k^{th}$ neuron in the $(l − 1)^{th}$ layer to the $j^{th}$ neuron in the $l^{th}$ layer.</li>
+<li>More briefly, <font color="red">$b_{j}^{l}=w_{j0}^l$</font> is the <font color="red">bias</font> of the $j^{th}$ neuron in the $l^{th}$ layer.</li>
+<li><p>$a^l_j$ for the <font color="red">activation</font> of the $j^{th}$ neuron in the $l^{th}$ layer $z_j^l$  : <font color="red">$a^l_j=g(z^l_j)=g(\sum_k w_{jk}^{l}a_k^{l-1} + b_j^l)$</font> </p>
+</li>
+<li><p>We have define $C(\textbf{W})=\frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\textbf{W}),y^{(i)})$ </p>
+</li>
+</ul>
+<center><img src="/2024/06/24/Big-Data-2/bd32.png" style="zoom:40%"></center>
+
+<blockquote>
+<p>Proof (暂略)</p>
+</blockquote>
+<h4>Gradient Descent</h4>
+
+<p><strong>Algorithm</strong> :</p>
+<ol>
+<li>Initialize weights randomly  $\thicksim\mathcal N(0, \sigma^{2})$ </li>
+<li>Loop until convergence : <ol>
+<li>Pick single data point $i$</li>
+<li>Compute <strong>gradient</strong>  $\frac{\partial J_i(\textbf{W})}{\partial \textbf{W}}$ </li>
+<li>Update weights, $\textbf{W} \leftarrow (\textbf{W}-\eta \frac{\partial J(\textbf{W})}{\partial \textbf{W}})$ </li>
+</ol>
+</li>
+<li>Return weights</li>
+</ol>
+<ul>
+<li>Mini-batches lead to fast training ! (need not to calculate all gradient for trainset $x$)</li>
+<li>Can parallelize computation + achieve significant speed increases on GPUs.</li>
+</ul>
+<h3 id="Support-Vector-Machine-SVM"><a href="#Support-Vector-Machine-SVM" class="headerlink" title="Support Vector Machine (SVM)"></a>Support Vector Machine (SVM)</h3><p><strong>About SVM</strong></p>
+<ul>
+<li>Use <strong>hyperplane</strong> [超平面] to separate data : maximize <strong>margin</strong></li>
+<li>Can deal with <font color="red">low-dimensional data</font> that are not linearly separated by using kernel functions</li>
+<li>Decision boundary only depends on some samples (support vectors)</li>
+</ul>
+<p><strong>How to train</strong></p>
+<ul>
+<li>Training data: $\{(\textbf{x}_1,y_1),(\textbf{x}_2,y_2),…,(\textbf{x}_n, y_n) \}, y_i\in \{-1, 1\}$</li>
+<li>Hyperplane: $S=\textbf{w}^T\textbf{x} + b$ ;     Decision function: $f(\textbf{x})=\text{sign}(\textbf{w}^T\textbf{x} + b)$</li>
+<li>Geometric <strong>margin</strong> between a point and hyperplane : $\large{r_i=\frac{y_i(\textbf{w}^T\textbf{x} + b)}{|\textbf{w}|_2}}$</li>
+<li>Margin between dataset and hyperplane : $\underset{i}\min r_i$</li>
+<li>Maximize margin : $\underset{\textbf{w}, b}\max \underset{i}\min r_i$</li>
+</ul>
+<p><strong>Optimization</strong></p>
+<ul>
+<li>Without loss of generality, let $\underset{i}\min y_i(\textbf{w}^T\textbf{x} + b)=1$</li>
+<li>Maximize margin is equivalent to $\underset{\textbf{w}, b}\max \frac{1}{|\textbf{w}|_2}$  ,  $s.t.\ y_i(\textbf{w}^T\textbf{x} + b)\ge 1,\ i=1,…,n$</li>
+<li>Further reduce to $\underset{\textbf{w}, b} \min \frac{1}{2}|\textbf{w}|_2^2$  ,  $s.t.\ y_i(\textbf{w}^T\textbf{x} + b)\ge 1,\ i=1,…,n$</li>
+<li>This is <strong>primal problem</strong> : quadratical programming with linear constraints, computational complexity is $O(p^3)$ where $p$ is dimension</li>
+</ul>
+<blockquote>
+<p>But we use <strong>Dual problem optimization</strong>(对偶问题优化) most.</p>
+</blockquote>
+<ul>
+<li>When slater condition is satisfied, $\min \max ⇔ \max \min$</li>
+<li>Dual problem : $\underset{\alpha}\max \underset{\textbf{w}, b}\min L(\textbf{w},b,\alpha)$ —— $L$ is Lagrange function(拉格朗日函数)</li>
+<li><p>Solve for inner minimization problem : </p>
+<ul>
+<li>$\nabla_{\textbf{w}}L=0 \Longrightarrow \textbf{w}^\ast=\sum_i \alpha_iy_i \textbf{x}_i$</li>
+<li>$\frac{\partial L}{\partial b}=0 \Longrightarrow \sum_i\alpha_iy_i=0$</li>
+</ul>
+</li>
+<li><p>Plug into $L$: $L(\textbf{w}^\ast,b^\ast,\alpha)=\sum_i\alpha_i-\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\textbf{x}_i^T \textbf{x}_j)$ </p>
+</li>
+<li><font color="red">Dual Optimization: </font>
+
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\min_\alpha\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\textbf{x}_i^T \textbf{x}_j)-\sum_i\alpha_i, \\<br>&amp;\text{s.t. }\alpha_i\ge0,\ i=1,…,n,\ \sum_i\alpha_iy_i=0<br>\end{align}<br>$</p>
+
+</blockquote>
+<p><strong>KKT Condition</strong></p>
+<ul>
+<li>Three more conditions from the equivalence of primal and minimax problems</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\left\{ \begin{array}{l}<br>\alpha_i^{\ast}\ge 0\\<br>y_i((\textbf{w}^{\ast})^T \textbf{x}_i+b^{\ast})-1 \ge 0\\<br>\alpha_i^{\ast}[y_i((\textbf{w}^{\ast})^T \textbf{x}_i+b^{\ast})-1]=0<br>\end{array}\right.<br>$</p>
+
+</blockquote>
+<ul>
+<li>These together with two zero derivative conditions form KKT conditions</li>
+<li>$\alpha_i^{\ast}\gt 0 \Rightarrow y_i((\textbf{w}^{\ast})^T \textbf{x}_i+b^{\ast})=1$</li>
+<li>Index set of <font color="red">support vectors</font> : $S=\{i|\ \alpha_i \gt 0\}$</li>
+<li>$b=y_s-\textbf{w}^T\textbf{x}_s=y_s-\sum_{i\in S}\alpha_i y_i \textbf{x}^T_i\textbf{x}_s$</li>
+<li>More stable solution : </li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\color{red} b=\frac{1}{|S|}\sum_{s\in S}\left(y_s-\sum_{i\in S}\alpha_i y_i \textbf{x}^T_i\textbf{x}_s\right)<br>$</p>
+
+</blockquote>
+<p><strong>Soft Margin</strong></p>
+<ul>
+<li>When data are not linear separable, introduce slack variables (tolerance control of fault) $\xi_i \gt 0$</li>
+<li>Relax constraint to $y_i(\textbf{w}^T\textbf{x} + b) \ge 1-\xi_i$ </li>
+<li>Primal problem :</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\underset{\textbf{w}, b} \min \frac{1}{2}|\textbf{w}|_2^2+C\sum_{i=1}^{n}\xi_i\\<br>&amp;\text{s.t. }y_i(\textbf{w}^T\textbf{x} + b)\ge 1-\xi_i,\ \xi_i \ge 0,\ i=1,…,n<br>\end{align}<br>$</p>
+
+</blockquote>
+<ul>
+<li>Similar derivation to dual problem : (Difference: add the error coe $C$ as a bound)</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\min_{\alpha}\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\textbf{x}_i^T \textbf{x}_j)-\sum_i \alpha_i \\<br>&amp;\text{s.t. }0\le \alpha_i \le C,\ i=1,…,n,\ \sum_i\alpha_iy_i=0<br>\end{align}<br>$</p>
+
+</blockquote>
+<h4 id="Nonlinear-SVM"><a href="#Nonlinear-SVM" class="headerlink" title="Nonlinear SVM"></a>Nonlinear SVM</h4><ul>
+<li>Nonlinear decision boundary could be mapped to linear boundary in <font color="red">high-dimensional space</font></li>
+</ul>
+<center><img src="/2024/06/24/Big-Data-2/bd34.png" style="zoom:60%"></center>
+
+<ul>
+<li>Modify objective function in dual problem : $\color{red}\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\phi(\textbf{x}_i)^T \phi(\textbf{x}_j))-\sum_i \alpha_i$</li>
+<li>Kernel function as inner product : $K(\textbf{x}_i, \textbf{x}_j)=\phi(\textbf{x}_i)^T \phi(\textbf{x}_j)$</li>
+<li><font color="grey">Q: How to choose <b>Kernel Functions</b> ?</font>      <font color="green">A: Arbitrary</font>
+
+</li>
+</ul>
+<center><img src="/2024/06/24/Big-Data-2/bd35.png" style="zoom:50%"></center>
+
+<hr>
+]]></content>
+      <categories>
+        <category>2024 Spring</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>CSE Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction to Hexo and Github Page</title>
+    <url>/2024/06/07/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is the very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>NUS Soc SWS3005  实时 3D 图形渲染</title>
     <url>/2024/06/27/Real-Time-Rendering/</url>
     <content><![CDATA[<h1 id="I-Pre-Knowledge-Phase-1"><a href="#I-Pre-Knowledge-Phase-1" class="headerlink" title="I. Pre-Knowledge (Phase 1)"></a>I. Pre-Knowledge (Phase 1)</h1><h2 id="Image-Formation"><a href="#Image-Formation" class="headerlink" title="Image Formation"></a>Image Formation</h2><blockquote>
@@ -1549,1419 +2963,5 @@
         <tag>Exchange</tag>
         <tag>Dairy</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>MA234 大数据导论与实践（二）</title>
-    <url>/2024/06/24/Big-Data-2/</url>
-    <content><![CDATA[<h1 id="Big-Data-II"><a href="#Big-Data-II" class="headerlink" title="Big Data (II)"></a>Big Data (II)</h1><h2 id="IV-Classification"><a href="#IV-Classification" class="headerlink" title="IV. Classification"></a>IV. Classification</h2><blockquote>
-<p>本章内容较多，先写下本章主要内容：</p>
-<p>本章涉及分类算法，主要会提及 KNN 算法，决策树算法和朴素贝叶斯算法（是分类算法中最基础的几种）<br>其中，每种算法的应用里涵盖了一些多用概念，如剪枝操作、似然函数计算等。</p>
-<p>介绍三种基本算法后，本章还涉及模型评估，讲解如何通过不同问题使用不同的算法以得到最优的结果</p>
-<p>注：本章含有不亚于数据预处理章节的数学公式，要求理解公式基本内涵。</p>
-</blockquote>
-<h3 id="K-Nearest-Neighbor-KNN"><a href="#K-Nearest-Neighbor-KNN" class="headerlink" title="K-Nearest Neighbor (KNN)"></a>K-Nearest Neighbor (KNN)</h3><blockquote>
-<p>Supervised learning method, especially useful when prior knowledge on the data is very limited.</p>
-<p><font color="red">Low bias, high variance</font> : <font color="blue">just for small</font> <code>k</code> </p>
-<p><strong>Advantages</strong> : not sensitive to outliers (异常值距离一般较远) , easy to implement and parallelize, good for large training set</p>
-<p><strong>Drawbacks</strong> : need to tune (调节) $k$, take large storage, computationally intensive (计算缓慢，算力要求高)</p>
-</blockquote>
-<font size="4"><b>Algorithm</b></font>
-
-<ul>
-<li>Input : training set $D_{train} = \{(x_1, y_1),\cdots,(x_N, y_N)\}$,  a test sample $x$ without label $y$, $k$ and distance metric $d(x, y)$</li>
-<li>Output : predicted label $y_{pred}$ for $x$ </li>
-</ul>
-<ol>
-<li>Compute $d(x, x_j)$ for each $(x_j , y_j) \in D_{train}$</li>
-<li>Sort the distances in an <font color="Red">ascending</font> order, choose the ﬁrst $k$ samples $(x_{(1)}, y_{(1)}),\cdots,(x_{(k)} , y_{(k)})$ </li>
-<li>Make majority vote $y_{pred} = \text{Mode}(y_{(1)},\cdots, y_{(k)})$ </li>
-</ol>
-<p>Time Complexity : $O(mndK)$ where $n$ is the number of training samples, $m$ is the number of test samples, $d$ is the dimension, and $K$ is the number of nearest neighbors</p>
-<div align="center"><img src="/2024/06/24/Big-Data-2/bd8.png" alt="bd8" style="zoom:50%"></div>
-
-
-
-<p><strong>Similarity and Divergence</strong></p>
-<ul>
-<li><a href="/2024/06/22/Big-Data-1/index.html#cosine distance">Cosine similarity</a></li>
-<li><a href="/2024/06/22/Big-Data-1/index.html#Jaccard">Jaccard similarity</a> for sets $A$ and $B$ : $Jaccard(A,B)=\Large{\frac{|A\cap B|}{|A\cup B|}}$ </li>
-<li>Kullback-Leibler(KL) divergence : $d_{KL}(P||Q) = E_P log \large{\frac{P(x)}{Q(x)}}$ , measures the distance between two probability <font color="red">distributions</font> $P$ and $Q$ ; in discrete case, $d_{KL}(p||q) = \sum^m_{i=1} p_i log \large{\frac{p_i}{q_i}}$ (CDF of $P$ and $Q$)</li>
-</ul>
-<p><strong>Tuning <code>k</code></strong> </p>
-<ul>
-<li>Different <code>k</code> value can lead to totally different results. ( model overfit the data when <code>k = 1</code>, bad for generalization )</li>
-<li><strong>M-fold Cross-validation (CV)</strong> to tune <code>k</code> : <ul>
-<li>partition the dataset into M parts ( M = 5 or 10 ) , let $\kappa : \{1,\cdots, N\} \to \{1,\cdots, M\}$ be <em>randomized partition index map</em> (随机分布索引映射) . The <em>CV estimate of prediction error</em> (预测误差的CV估计) is<br> $CV(\hat f,k)=\large{\frac{1}{N}} \sum_{n=1}^{N}L(y_i,\hat f^{-\kappa(i)}(x_i,k))$</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/06/24/Big-Data-2/bd9.png" alt="bd9"></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">k’s value</th>
-<th style="text-align:center">$k=1$ (complex model)</th>
-<th style="text-align:center">$k=\infty$ (simplier model)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Bias</td>
-<td style="text-align:center">decrease</td>
-<td style="text-align:center">increase</td>
-</tr>
-<tr>
-<td style="text-align:center">Variance</td>
-<td style="text-align:center">increase</td>
-<td style="text-align:center">$0$</td>
-</tr>
-<tr>
-<td style="text-align:center">Generalization</td>
-<td style="text-align:center">overfitting (train-set friendly)</td>
-<td style="text-align:center">underfitting (test-set friendly)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><a name="Bayes"><b>Bayes Classifier (Oracle Classifier)</b></a></p>
-<ul>
-<li>Assume $Y \in \mathcal{Y} = \{1, 2, . . . , C\}$, the classiﬁer $f : \mathcal X → \mathcal Y$ is a piecewise (分段) constant function</li>
-<li>For <a href="/2024/06/22/Big-Data-1/index.html#0-1 loss">0-1 loss</a> $L(y, f )$, the learning problem is to minimize</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{align}
-\mathcal E(f)&=E_{P(X,Y)}[L(Y,f(X))]=1-P(Y=f(X))\\
-&=1-\int_{\mathcal X}P(Y=f(X)|X=x)p_X(x)\text dx
-\end{align}</script><ul>
-<li>Bayes rule : $f^{∗} (x) = \arg \max_c P(Y = c|X = x)$ , <font color="grey">“the most probable label under the conditional probability on x”</font></li>
-<li>Bayes Error Rate (贝叶斯误差) : $\text{inf}_{f}\varepsilon (f)=$ $\color{red}\mathcal E(f^{\ast})$ $=1-P(Y=f^{\ast}(X))$</li>
-<li><strong>Bayes Decision Boundary</strong> (贝叶斯决策边界) : the boundary separating the <strong>K partition</strong> domains in $\mathcal X$ on each of which $f^{ ∗ }(x) \in Y$ is constant. For binary classiﬁcation, it is the level set on which $P(Y=1|X=x)=P(Y=0|X=x)=0.5$<ul>
-<li><font color="green">Recall : Decision boundary of 15NN is smoother than that of 1NN</font> 
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<font color="red">Analysis of 1NN</font>
-
-<ul>
-<li>1NN error rate is twice the Bayes error rate<ul>
-<li>Bayes error $=1-p_{c^\ast}(x)$ where $c^\ast=\arg\max_{c}p_c(x)$</li>
-<li>Assume the samples are i.i.d. (独立同分布) , for any test sample $x$ and small $\delta$, there is always a training sample $z \in B(x, \delta)$ (the label of $x$ is the same as that of $z$), then 1NN error is</li>
-</ul>
-</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>\epsilon=\sum_{c=1}^{C}p_c(x)(1-p_c(z))\overset{\delta\to 0}{\longrightarrow}&amp;1-\sum_{c=1}^{C}p_{c}^{2}(x) \\<br>\le\ &amp;1-p_{c^\ast}^{2}(x) \\<br>\le\ &amp;2(1-p_{c^\ast}(x))<br>\end{align}<br>$</p>
-
-</blockquote>
-<ul>
-<li><ul>
-<li><font color="green">Remark : In fact,</font> $\color{green}\epsilon\le 2(1-p_{c^\ast}^{2}(x))-\frac{C}{C-1}(1-p_{c^\ast}^{2}(x))^2$</li>
-</ul>
-</li>
-</ul>
-<font color="blue">Case : Use kNN to diagnose breast cancer (cookdata) </font>
-
-<ul>
-<li>We have to consider its radius, texture (质地) , perimeter, area, smoothness, etc. (n-dimension)</li>
-<li>Data scaling : 0-1 scaling or z-score scaling</li>
-<li>Use code to assist</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">KNeighborsClassifier(n_neighbors = <span class="number">10</span>, metric = <span class="string">&#x27;minkowski&#x27;</span>, p = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h3><ul>
-<li>Tree structure : internal nodes indicate features, while leaf nodes represent classes.</li>
-<li>Start from root, choose a suitable feature $x_i$ and its split point $c_i$ at each internal node, split the node to two child nodes depending on whether $x_i \le c_i$ , until the child nodes are pure.</li>
-<li>Equivalent to rectangular partition of the region.</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th><img src="/2024/06/24/Big-Data-2/bd11.png" width="60%"></th>
-<th><img src="/2024/06/24/Big-Data-2/bd12.png" width="60%"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><p align="center"><a name="tree">Tree structure</a></p></td>
-<td><p align="center">Rectangular partition</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li>How to choose <font color="red">features</font> and <font color="red">split points</font> ?<ul>
-<li>Impurity : choose the feature and split point so that after each slit the impurity should decrease the most</li>
-<li>Impurity(M0)-Impurity(M12) &gt; Impurity(M0)-Impurity(M34), choose A as split node ; otherwise choose B</li>
-</ul>
-</li>
-</ul>
-<div align="center"><img src="/2024/06/24/Big-Data-2/bd13.png" alt="bd13" style="zoom:80%"></div>
-
-<ul>
-<li>Impurity Measures<ol>
-<li>GINI Index<ul>
-<li>Gini index of node $t$ : $Gini(t)=1-\sum_{c=1}^C (p(c|t))^2$ where $p(c|t)$ is the proportion of class-c data in node $t$</li>
-<li>Gini index of a split : $Gini_{split}=\sum_{k=1}^{K}\frac{n_k}{n}Gini(k)$ where $n_k$ is the number of samples in the child node $k$, $n=\sum_{k=1}^{K} n_k$ </li>
-<li>Choose the split so that $Gini(t) − Gini_{split}$ is maximized</li>
-</ul>
-</li>
-<li>Information Gain<ul>
-<li>Entropy at $t$ : $H(t) = −\sum_{c=1}^{C}p(c|t)\log_2 p(c|t)$ , </li>
-<li>where $t$ is the node and $\color{blue}c$ <font color="blue">represents that this node is chosen</font>.</li>
-<li>Maximum at $log_2 C$, when $p(c|t)=\frac{1}{C}$</li>
-<li>Minimum at $0$, when $p(c|t)=1$ for some $c$</li>
-</ul>
-</li>
-<li>Misclassiﬁcation Error<ul>
-<li>Misclassiﬁcation error at t : $\text{Error}(t) = 1 − \max_c p(c|t)$  (use majority vote)</li>
-<li>Maximum at $1−\frac{1}{C}$, when $p(c|t) = \frac{1}{C}$</li>
-<li>Minimum at $0$, when $p(c|t)=1$ for some $c$</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>Compare Three Measure<ul>
-<li>Gini index and information gain should be used when growing the tree</li>
-<li>In pruning, all three can be used (typically misclassiﬁcation error)</li>
-</ul>
-</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Algorithm</th>
-<th style="text-align:center">Type</th>
-<th style="text-align:center">Impurity Measure</th>
-<th style="text-align:center">Child Nodes</th>
-<th style="text-align:center">Target Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">ID3</td>
-<td style="text-align:center">Discrete</td>
-<td style="text-align:center">Info Gain</td>
-<td style="text-align:center">$k\ge 2$</td>
-<td style="text-align:center">Discrete</td>
-</tr>
-<tr>
-<td style="text-align:center">C4.5</td>
-<td style="text-align:center">Discrete, Continuous</td>
-<td style="text-align:center">Info Gain</td>
-<td style="text-align:center">$k\ge 2$</td>
-<td style="text-align:center">Discrete</td>
-</tr>
-<tr>
-<td style="text-align:center">C5.0</td>
-<td style="text-align:center">Discrete, Continuous</td>
-<td style="text-align:center">Info Gain</td>
-<td style="text-align:center">$k\ge 2$</td>
-<td style="text-align:center">Discrete</td>
-</tr>
-<tr>
-<td style="text-align:center">CART</td>
-<td style="text-align:center">Discrete, Continuous</td>
-<td style="text-align:center">Gini Index</td>
-<td style="text-align:center">$k=2$</td>
-<td style="text-align:center">Discrete, Continuous</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li>Tree Pruning (剪枝)<ul>
-<li>Too complex tree structure easily leads to <font color="red">overﬁtting</font> (分类太细，模型太复杂)</li>
-<li>Prepruning : set threshold <font color="grey">(阈值)</font> $\delta$ for impurity decrease <font color="grey">(剔除杂质)</font> in splitting a node ; if $\Delta \text{Impurity}_{split} \gt \delta$, do slitting, otherwise stop</li>
-<li>Postpruning : based on <u>cost function</u> (provided  $|T|$ and $\alpha$)<ul>
-<li>$\color{red}\text{Cost}_{ \alpha}(T)=\sum_{t=1}^{|T|}n_t\ \text{Impurity}(t)+\alpha|T|$</li>
-<li>Input: a complete tree $T$, $\alpha$</li>
-<li>Output: postpruning tree $\text{T}_{\alpha}$ </li>
-</ul>
-<ol>
-<li>Compute $\text{Impurity}(t)$ for $\forall t$</li>
-<li>Iteratively merge child nodes <strong>bottom-up</strong> : Suppose $\text{T}_{A}$ and $\text{T}_{B}$ are the trees before and after merging, do merging if $\text{Cost}_{ \alpha}(\text{T}_{A}) \ge \text{Cost}_{ \alpha}(\text{T}_{B})$   <font color="grey">(剪枝前损失更大)</font></li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Pros and Cons<ul>
-<li>Advantage<ul>
-<li>Easy to interpret and visualize : widely used in ﬁnance, medical health, biology, etc.</li>
-<li>Easy to deal with missing values (treat as new data type)</li>
-<li>Could be extended to regression</li>
-</ul>
-</li>
-<li>Disadvantage<ul>
-<li>Easy to be trapped at local minimum because of greedy algorithm (贪心)</li>
-<li>Simple decision boundary : parallel lines to the axes (Recall <a href="#tree">Pic above</a>)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="Naive-Bayes-朴素贝叶斯"><a href="#Naive-Bayes-朴素贝叶斯" class="headerlink" title="Naive Bayes (朴素贝叶斯)"></a>Naive Bayes (朴素贝叶斯)</h3><ul>
-<li>Based on <strong>Bayes Theorem</strong> and conditional independency assumption on features (Recall <a href="#Bayes">Bayes Classifier</a>)</li>
-<li>Bayes Theorem : $\Large{P(Y|X)=\frac{P(X|Y)P(Y)}{P(X)}}$<ul>
-<li>$P(Y)$ is prior prob. distribution (先验概率分布) , $P(X|Y )$ is likelihood function (似然函数) , $P(X)$ is evidence (边际概率) , $P(Y |X)$ is posterior prob. distribution (后验概率分布).</li>
-</ul>
-</li>
-<li>The <font color="red">core problem</font> of machine learning is to estimate $P(Y |X)$ </li>
-</ul>
-<ol>
-<li>Let $X = \{X_1, . . . , X_d \}$, for ﬁxed sample $X = x$, $P(X = x)$ is independent of  $Y$ , by Bayes Theorem, $P(Y|X=x)\propto P(X=x|Y)P(Y)$</li>
-<li>Assume conditional independency of $X_1, \cdots, X_d$ given $Y = c$ : $P(X=x|Y=c)=\prod_{i=1}^{d}P(X_i=x_i|Y=c)$</li>
-<li><font color="red">Naive Bayes Model :</font>
-
-</li>
-</ol>
-<blockquote class="blockquote-center">
-<p>$<br>\color{red}\hat y =\arg \max_c P(Y=c)\prod_{i=1}^{d}P(X_i=x_i|Y=c)<br>$</p>
-
-</blockquote>
-<p><strong>Maximum Likelihood Estimate (MLE)</strong></p>
-<ul>
-<li>Estimate $P(Y = c)$ and $P(X_i = x_i |Y = c)$ from the dataset $D = \{(\textbf{x}_1, y_1), \cdots ,(\textbf{x}_n, y_n)\}$<ol>
-<li><strong>MLE</strong> for $P(Y = c)$ : $P(Y = c) =\Large{\frac{ \sum_{i=1}^{n} I(y_i=c)}{n}}$</li>
-<li>When $X_i$ is discrete variable with range $\{v_1, \cdots , v_K\}$, <strong>MLE</strong> for $P(X_i = v_k |Y = c) =\Large{\frac{ \sum_{i=1}^{n} I(x_i = v_k |y_i = c)}{ \sum_{i=1}^{n} I(y_i = c)}}$ <br> ( if $X_i$ is continuous, just do discretization on it and use this formula )</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h3 id="Model-Assessment"><a href="#Model-Assessment" class="headerlink" title="Model Assessment"></a>Model Assessment</h3><p><strong>Confusion Matrix</strong></p>
-<div align="center"><img src="/2024/06/24/Big-Data-2/bd14.png" alt="bd14" style="zoom:100%"></div>
-
-
-
-<ul>
-<li>Representation<ul>
-<li>T &amp; F : represents truth of label (标签是否真实)</li>
-<li>P &amp; N : represents aspect of label (标签的两面)</li>
-</ul>
-</li>
-<li><p>Two-class classification: </p>
-<ul>
-<li>$\text{Accuracy} =\large{\frac{\text{TP+TN}}{\text{TN+FN+FP+TP}}}$, not a good index when samples are <font color="red">imbalanced</font></li>
-<li>$\text{Precision}=\large{\frac{\text{TP}}{\text{TP+FP}}}$ </li>
-<li>TPR : $\text{Recall} = \large{\frac{\text{TP}}{\text{TP+FN}}}$ ; important in medical diagnosis (回收)</li>
-<li>F score : $F_{\beta} = \large{\frac{(1+\beta^2)\text{Precision}\times\text{Recall}}{\beta^2 \times \text{Precision}+\text{Recall}}}$ , e.g. $F_1$ score for $\beta=1$</li>
-<li>FPR : $\text{Specifity} = \large{\frac{\text{TN}}{\text{TN+FP}}}$ ; recall for negative samples</li>
-</ul>
-</li>
-<li><p>Receiver Operating Characteristic (ROC, 受试者工作特征) and Area Under ROC (AUC)</p>
-<ul>
-<li>Aim to solve class distribution <font color="red">imbalance problem</font></li>
-<li>Set different threshold (阈值) $t$ for continuous predicted values.</li>
-<li>Compute <strong>TPR</strong> vs. <strong>FPR</strong> for all $t$ and plot ROC curve</li>
-</ul>
-</li>
-</ul>
-<div align="center"><img src="/2024/06/24/Big-Data-2/bd15.png" style="zoom:120%"></div>
-
-<ul>
-<li>Beware: Don’t view the “curve” as a function, but as a <strong>continuous set of points</strong>.<ul>
-<li>Higher ROC implies better performance (How to measure ? AUC)</li>
-</ul>
-</li>
-<li>AUC: compute the area under ROC curve. The larger the better. Model is good for test set if $AUC \gt 0.75$</li>
-</ul>
-<p><strong>Cohen’s Kappa Coefficient</strong></p>
-<blockquote>
-<p>Since ROC and AUC is complex to be quantified, we need a <code>coe</code> to indicate it.</p>
-<p>We use an example to explain how to quantified it.</p>
-</blockquote>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\text{Cohen’s Kappa Coefficient: }&amp; &amp;\kappa=\frac{p_o-p_e}{1-p_e}=1-\frac{1-p_o}{1-p_e} \\<br>&amp;&amp; &amp;p_e=\sum_{c=1}^{C}\frac{n_c^{pred}}{N}\frac{n_c^{true}}{N}<br>\end{align}<br>$</p>
-
-</blockquote>
-<ul>
-<li>$p_o$ is the accuracy</li>
-<li>$p_e$ is the hypothetical probability of chance agreement</li>
-</ul>
-<div align="center"><img src="/2024/06/24/Big-Data-2/bd16.png" alt="bd16" style="zoom:100%"></div>
-
-<p>E.g.  $\large{p_o=\frac{20+15}{50}=0.7}$, $\large{p_e=\frac{25}{50}\times\frac{20}{50}+\frac{25}{50}=0.5}$, then $\large{\kappa=0.4}$</p>
-<ul>
-<li>$\kappa \in [-1,1]$, $\kappa\ge 0.75$ for good performance and $\kappa\lt 0.4$ for bad one.</li>
-</ul>
-<hr>
-<h2 id="V-Regression"><a href="#V-Regression" class="headerlink" title="V. Regression"></a>V. Regression</h2><h3 id="Linear-Model"><a href="#Linear-Model" class="headerlink" title="Linear Model"></a>Linear Model</h3><p><strong>Linear model</strong> : </p>
-<ul>
-<li>For <strong>Univariate</strong> linear model,  $y = w_0 + w_1x + \epsilon$, where $w_0$ and $w_1$ are regression coeﬃcients, $\epsilon$ is the error or noise</li>
-</ul>
-<p>Assume $\epsilon ∼ \mathcal N (0, \sigma^2)$, where $σ^2$ is a ﬁxed but unknown variance; then $y|x ∼ \mathcal N (w_0 + w_1x, σ^2)$</p>
-<script type="math/tex; mode=display">
-(\hat{w}_0,\hat{w}_1)= \arg \min_{w_0,w_1}\sum_{i=1}^{n}(y_i-w_0-w_1x_i)^2</script><p>which means $L(\hat w_0,\hat w_1)$ is minimized (残差最小).</p>
-<ul>
-<li>For <strong>multivariate</strong> linear model, $y=f(\textbf{x})=w_0+w_1x_1+w_2x_2+\cdots+w_px_p + \epsilon$ <ul>
-<li>where $w_0, w_1,\cdots, w_p$ are <font color="red">regression coefficients</font>, $\textbf{x} = (x_1,\cdots, x_p)^T$ is the input vector whose components are independent variables or attribute values, $\epsilon \thicksim \mathcal N(0, σ^2)$ is the noise.</li>
-<li>For the size n samples $\{(\textbf{x}_i, y_i)\}$, let $\textbf{y} = (y_1, \cdots , y_n)^T$ be the response or dependent variables, $\textbf{w} = (w_0, w_1, \cdots, w_p)^T$,  we construct a matrix $\textbf{X}=[\textbf{1}_n, (\textbf{x}_1, \cdots,\textbf{x}_n)^T]\in \mathbb R^{n \times(p+1)}$ , and $\textbf{\varepsilon}=(\epsilon_1,\cdots,\epsilon_n)^T \thicksim \mathcal N(\textbf{0},\sigma^2\textbf{l}_n)$ </li>
-</ul>
-</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\textbf{y}=\textbf{X}\textbf{w} + \varepsilon\\ \\<br>&amp;\textbf{X}=<br>\begin{pmatrix}<br>1 &amp; x_{11} &amp; \cdots &amp; x_{1p} \\<br>1 &amp; x_{21} &amp; \cdots &amp; x_{2p} \\<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>1 &amp; x_{n1} &amp; \cdots &amp; x_{np}<br>\end{pmatrix}<br>\end{align}<br>$</p>
-
-</blockquote>
-<p><strong>Least Square (LS)</strong> <font color="grey" size="3">最小二乘法</font></p>
-<div><img src="/2024/06/24/Big-Data-2/bd17.png" style="zoom:60%"></div>
-
-<ul>
-<li>From geometry aspect, we should <strong>minimize the residual sum-of-square (残差平方和)</strong>: <br>$\text{RSS}(\textbf{w})=\sum_{i=1}^{n} (y_i-w_0-w_1x_1-\cdots-w_px_p)^2=|\textbf{y} - \textbf{X} \textbf{w}|_{2}^2$<ul>
-<li>When $\textbf{X}^T\textbf{X}$ is invertible, the <strong>minimizer</strong> $\hat{\textbf{w}}$ satisfy :  （可证明 $\hat w$ 是无偏估计）</li>
-</ul>
-</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\nabla_{\textbf{w}}\text{RSS}(\hat{\textbf{w}})=0 \Rightarrow \hat{\textbf{w}}=(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T \textbf{y}<br>$</p>
-
-</blockquote>
-<ul>
-<li><ul>
-<li>Then prediction $\hat{\textbf{y}}=\textbf{X}(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T \textbf{y}= \textbf{P} \textbf{y}$ is a projection of $\textbf{y}$ onto the linear space spanned by the column vectors of $\textbf{X}$; (As Pic 15 show)<ul>
-<li>$\textbf{P}=\textbf{X}(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T$ is the projection matrix satisfying $\textbf{P}^2 = \textbf{P}$ <font color="green">(Recall: Linear Algebra)</font></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Optimal Method: Ordinary least square (<strong>OLS</strong>)</p>
-<ol>
-<li>Get mean values from sample set: $\bar y=\frac{1}{n}\sum_{i=1}^{n}y_i$ , $\bar{\textbf{x}}=\frac{1}{n}\sum_{i=1}^{n}{ \textbf{x}_i}$</li>
-<li>Centralize data (minus by $\bar y$ and $\bar{\textbf{x}}$) and calculate $RSS(\tilde{\textbf{w}})$ </li>
-<li>Prediction $\hat{\textbf{y}}= \textbf{P} \textbf{y}$ is the projection (投影) of $\textbf{y}$ on the <em>linear space spanned</em> by the columns of $\textbf{X}$. <br>$\mathcal X= \text{Span} \{ \textbf{x}_{\cdot ,0}, \textbf{x}_{\cdot ,1},\cdots,  \textbf{x}_{\cdot ,p}\}$ , recall that $ \textbf{x}_{\cdot ,0}= \textbf{1}_n$</li>
-<li>If $\{ \textbf{x}_{\cdot ,0}, \textbf{x}_{\cdot ,1},\cdots,  \textbf{x}_{\cdot ,p}\}$ forms a set of orthonormal basis (标准正交基) , then $\hat{\textbf{y}}=\sum_{i=0}^{p}&lt;\textbf{y}, \textbf{x}_{\cdot ,i}&gt; \textbf{x}_{\cdot ,i}$</li>
-<li>If not, do orthogonalization by Gram-Schmidt procedure for the set $\{ \textbf{x}_{\cdot ,0}, \textbf{x}_{\cdot ,1},\cdots,  \textbf{x}_{\cdot ,p}\}$ </li>
-</ol>
-</blockquote>
-<ul>
-<li>From mathemetic aspect, it’s about <strong>MLE</strong> (Result the same)<ol>
-<li>Likelihood function: $L((\textbf{w},\textbf{X}),\textbf{y})=P(\textbf{y}|(\textbf{X}, \textbf{w}))=\prod_{i=1}^{n}P(y_i|(\textbf{x}_i, \textbf{w}))$ </li>
-<li>Find <strong>MLE</strong>: $\hat{\textbf{w}}=\arg \max_{\textbf{w}} L(\textbf{w} ; \textbf{X}, \textbf{y})$ (E.g. For $P(y_i|(\textbf{x}_i, \textbf{w}))=\frac{1}{\sqrt{2\pi}\sigma} \Large{e^{-\frac{(y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2}{2\sigma^{2}}}}$)</li>
-<li><font color="blue">(2.) is equivalent to its log-function:</font><br> E.g.  $l(\textbf{w} ; \textbf{X}, \textbf{y})= \log{L(\textbf{w} ; \textbf{X}, \textbf{y})}=-n\log(\sqrt{2\pi}\sigma)-\frac{1}{2\sigma^{2}} \sum_{i=1}^{n} (y_i-w_0-w_1x_{i1}-\cdots-w_px_{ip})^2$ </li>
-<li>Then get the same minimizer as <strong>LS</strong> : $\hat{\textbf{w}}=(\textbf{X}^T \textbf{X})^{-1}\textbf{X}^T \textbf{y}$</li>
-</ol>
-</li>
-</ul>
-<p><strong>Shortcomings of Fitting Nonlinear Data</strong> (上述方法仅适合线性回归)</p>
-<ul>
-<li>Evaluating the model by Coefficient of Determination $R^2$<ul>
-<li>$R^2 := 1-\frac{ \text{SS}_{res}}{ \text{SS}_{tot}}$ ($=\frac{ \text{SS}_{reg}}{ \text{SS}_{tot}}$ only for linear regression), where<ul>
-<li>$ \text{SS}_{tot} = \sum_{i=1}^{n} (y_i-\bar y)^2$ is the total sum of squares</li>
-<li>$ \text{SS}_{reg} = \sum_{i=1}^{n} (\hat y_i-\bar y)^2$ is the regression sum of squares</li>
-<li>$ \text{SS}_{res} = \sum_{i=1}^{n} (y_i-\hat y_i)^2$ is the residual sum of squares.</li>
-</ul>
-</li>
-<li>The larger the $R^2$, the better the model !</li>
-</ul>
-</li>
-<li><strong>Multicolinearity</strong> [多重共线性]<ul>
-<li>If the columns of $\textbf{X}$ are almost linearly dependent (multicolinearity), then $\det(\textbf{X}^{T}\textbf{X})\approx 0$, the diagonal entries in $(\textbf{X}^{T}\textbf{X})^{-1}$ is quite large, leading to a large variances of $\hat{\textbf{w}}$ (inaccurate).</li>
-<li>Remedies (补救措施): ridge regression (岭回归), principal component regression (主属性回归), partial least squares regression (部分最小二乘回归), etc.</li>
-</ul>
-</li>
-<li>Overfitting<ul>
-<li>Linear regression easily to be overfitted when introducing more variables.</li>
-<li>Solution: <a href="#regul">Regularization</a></li>
-</ul>
-</li>
-</ul>
-<p><strong>Bias-Variance Decomposition</strong></p>
-<ul>
-<li>Bias (偏差): $\text{Bias}(\hat f(\textbf{x}))=\text{E}_\text{train}\hat f(\textbf{x})-f(\textbf{x})$ , average <strong>accuracy</strong> of prediction for the model (deviation from the truth)</li>
-<li>Variance (方差): $\text{Var}(\hat f(\textbf{x}))=\text{E}_\text{train}(\hat f(\textbf{x})-\text{E}_\text{train}\hat f(\textbf{x}))^2$ , <strong>variability</strong> of the model prediction due to different data set (stability)</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\color{red}<br>\text{E}_\text{train}\text{R}_\text{exp}(\hat f(\textbf{x}))=\text{E}_\text{train}\text{E}_\text{P}[(y-\hat f(\textbf{x}))^2|\textbf{x}] = \underbrace{\text{Var}(\hat f(\textbf{x}))}_{\text{variance}}+\underbrace{\text{Bias}^2(\hat f(\textbf{x}))}_{\text{bias}}+\underbrace{\sigma^2}_{\text{noise}}<br>$</p>
-
-</blockquote>
-<div><img src="/2024/06/24/Big-Data-2/bd19.png" style="zoom:80%"></div>
-
-<ul>
-<li>The more complicated the model, the lower the bias, but the higher the variance.</li>
-</ul>
-<div><img src="/2024/06/24/Big-Data-2/bd18.png" style="zoom:90%"></div>
-
-<ul>
-<li>kNN Regression<ul>
-<li>kNN can be used to do regression if the mode (majority vote) is replaced by mean : $\hat f(x)=\frac{1}{k} \sum_{ x_{(i)} \in N_{k}(x)} y_{(i)}$</li>
-<li>Generalization error of kNN regression is</li>
-</ul>
-</li>
-</ul>
-<div><img src="/2024/06/24/Big-Data-2/bd20.png" style="zoom:80%"></div>
-
-<p>where we have used the fact that $E_{ \text{train}} y_{i} = f(\textbf{x}_{i})$ and $\text{Var}(y_i)=\sigma^2$</p>
-<ul>
-<li>For small $k$, overfitting, bias ↓, variance ↑</li>
-<li>For large $k$, underfitting, bias ↑, variance ↓</li>
-</ul>
-<hr>
-<h3 id="Regularization-正则化"><a href="#Regularization-正则化" class="headerlink" title="Regularization (正则化)"></a><a name="regul">Regularization</a> (正则化)</h3><blockquote>
-<p>Why we need Regularization ?</p>
-<ul>
-<li>In <strong>high dimensions</strong>, the more the input attributes, the larger the <strong>variance</strong></li>
-<li>Shrinking some coefficients or setting them to zero can reduce the <strong>overfitting</strong></li>
-<li>Using less input variables also help interpretation with the most important variables</li>
-<li>Subset selectionµretaining only a subset of the variables, while eliminating the rest variables from the model</li>
-</ul>
-</blockquote>
-<h4>Best-Subset Selection</h4>
-
-<ul>
-<li>find for each $k ∈ \{0, 1, \cdots , p\}$ the subset $S_k \subset \{1,\cdots, p\}$ of size $k$ that gives the smallest $\text{RSS}(\textbf{w}) = \sum_{i=1}^n (y_i − w_0 − \sum_{j\in S_k} w_j x_{ij})^2$ </li>
-<li>Noted that the best subset of size $k + 1$ may not include the the variables in the best subset of size $k$</li>
-<li>Choose $k$ based on <strong>bias-variance tradeoff</strong>, usually by <strong>AIC</strong> and <strong>BIC</strong>(贝叶斯信息量), or practically by <strong>cross-validation</strong></li>
-</ul>
-<h5>Forward-stepwise selection</h5>
-
-<ul>
-<li>Start with the intercept (截距?) $\bar y$ , then sequentially add into the model the variables that improve the fit most (reduce RSS most)</li>
-<li><font color="red">QR factorization</font> helps search the candidate variables to add </li>
-<li><font color="red">Greedy algorithm</font> : the solution could be sub-optimal</li>
-</ul>
-<h5>Backward-stepwise selection</h5>
-
-<ul>
-<li>Start with the <font color="red">full model</font>, then sequentially delete from the model the variables that has the least impact on the fit most </li>
-<li>The candidate for dropping is the variable with the smallest <a href="/2024/06/22/Big-Data-1/index.html#z-score">Z-score</a> </li>
-<li>Can only be used when $n &gt; p$ in order to fit the full model by <strong>OLS</strong></li>
-</ul>
-<h5><font color="red">Regularization by Penalties</font></h5>
-
-<ul>
-<li>Add a penalty term, in general $l_q$ - norm</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\sum_{i=1}^{n}(y_i-w_0-w_1x_1-\cdots-w_px_p)^2+\lambda |\textbf{w}|^q_q=|\textbf{y}-\textbf{X}\textbf{w}|^2+\lambda |\textbf{w}|^q_q<br>$</p>
-
-</blockquote>
-<ul>
-<li>By arranging $\lambda$ , we can correct the overfitting (bias inc. &amp; var dec.)</li>
-<li><code>q = 2</code> for Ridge Regression &amp; <code>q = 1</code> for LASSO Regression</li>
-</ul>
-<div align="center"><img src="/2024/06/24/Big-Data-2/bd26.png" style="zoom:60%"></div>
-
-
-
-<h4>Ridge Regression</h4>
-
-<font color="#ff44ff">$\hat w=\arg \underset{w}\min {\|y-Xw\|_2^2}+\lambda\|w\|_2^2$</font> 
-
-<div align="center"><img src="/2024/06/24/Big-Data-2/bd21.png" style="zoom:50%"></div>
-
-<blockquote>
-<p>Solving Ridge Regression</p>
-</blockquote>
-<div align="center"><img src="/2024/06/24/Big-Data-2/bd22.png" style="zoom:50%"></div>
-
-
-
-<blockquote>
-<p>Bayesian Viewpoint of Ridge Regression</p>
-</blockquote>
-<div align="center"><img src="/2024/06/24/Big-Data-2/bd23.png" style="zoom:60%"></div>
-
-<hr>
-<h4>LASSO Regression</h4>
-
-<blockquote>
-<p>Can be used to estimate the coefficients and select the important variables simultaneously</p>
-<p>Reduce the model complexity, avoid overfitting, and improve the generalization ability</p>
-</blockquote>
-<font color="#ff44ff">$\hat w=\arg \underset{w}\min {\|y-Xw\|_2^2}+\lambda\|w\|_1$</font> 
-
-<p>Two Rpoperties : </p>
-<ul>
-<li>Shrinkage (将所有点收缩)</li>
-<li>Selection (将近点归零，远点收缩)</li>
-</ul>
-<table>
-    <tr>
-        <td><img align="center" src="/2024/06/24/Big-Data-2/bd24.png" style="zoom:50%"></td>
-        <td><img align="center" src="/2024/06/24/Big-Data-2/bd25.png" style="zoom:50%"></td>
-    </tr>
-    <tr>
-        <td colspan="2"><center><font size="2">LASSO Regression</font></center></td>
-    </tr>
-</table>
-
-<blockquote class="blockquote-center">
-<p>$<br>\hat w_i^{\text{lasso}} = (|\hat w^{OLS}_i| − \lambda)+\text{sign}(\hat w^{OLS}_i)<br>$</p>
-
-</blockquote>
-<ul>
-<li>Solving LASSO by <strong>LARS</strong> (最小角回归算法)<ol>
-<li>Start with all coefficients $w_i$ equal to zero</li>
-<li>Find the predictor $x_i$ most correlated with $y$ (一般认为夹角最小的即是)</li>
-<li>Increase the coefficient $w_i$ in the direction of the sign of its correlation with $y$. Take residuals $r = y − \hat y$ along the way. Stop when some other predictor $x_k$ has as much correlation with $r$ as $x_i$ has (调整参数 $w$ 直至下一个分量夹角最小)</li>
-<li>Increase $(w_i, w_k)$ in their joint <strong>least squares direction</strong>, until some other predictor $x_m$ has as much correlation with the residual $r$</li>
-<li>Continue until all predictors are in the model</li>
-</ol>
-</li>
-</ul>
-<center><img src="/2024/06/24/Big-Data-2/bd27.png" style="zoom:70%"><font size="2">Pic 19. LARS</font></center>
-
-
-
-<blockquote>
-<p>Optional: Maximum A Posteriori (<strong>MAP</strong>) Estimation</p>
-<ul>
-<li><p>Given $\theta$ , the conditional distribution of $\textbf{y}$ is $P(\textbf{y}|\theta)$</p>
-</li>
-<li><p><strong>MAP</strong> choose the point of maximal posterior probability :</p>
-<p> $\hat{\theta}^{MAP}=\arg \underset{\theta}\max{(\log P(\textbf{y}|\theta)+\log P(\theta))}$</p>
-</li>
-<li><p>If $\theta=\textbf{w}$, and we choose the log-prior <font color="grey">[对数先验]</font> (i.e. normal prior  $\mathcal N(0, \frac{\sigma^2}{\lambda} \textbf{I})$ ) , we revocer the ridge regression.</p>
-</li>
-<li><p><font color="#ff7575">Different log-prior lead to different penalties</font> (Not general case. Some penalties may not be the logarithms[对数] of probability distributions, some other penalties depend on the data)</p>
-</li>
-</ul>
-<p>Related Regularization Models</p>
-<ul>
-<li>Elastic net (混合回归) : $\hat{\textbf{w}}=\arg\min_w|y-Xw|_2^2+\lambda_1|\textbf{w}|^2_2+\lambda_2|\textbf{w}|_1$ </li>
-<li>Group LASSO (对不同分组进行回归) : $\hat{\textbf{w}}=\arg\min_w|y-Xw|_2^2+\sum_{g=1}^{G}\lambda_{g}|\textbf{w}_{g}|_2$ , where $\textbf{w}=(w_1,\cdots,w_G)$ is the <strong>group partition</strong> of $\textbf{w}$. </li>
-<li>Dantzig Selector : …</li>
-<li>Smoothly clipped absolute deviation (<strong>SCAD</strong>) penalty</li>
-<li>Adaptive LASSO</li>
-</ul>
-</blockquote>
-<h4>ADMM Used in LASSO Problem</h4>
-
-<p><strong>Altinating Direction Method of Multipliers (ADMM)</strong></p>
-<ul>
-<li>ADMM [交替方向乘子法] often used to solve problems with two optimized variables which only has equality constraint. </li>
-<li><p>Normal Form as below :</p>
-<script type="math/tex; mode=display">
-\min_{x,z} f(x)+g(z)\\ s.t.\ Ax+Bz=c</script></li>
-<li><p>where $x\in R^{n}$ and $z\in R^{m}$ are optimized variables, and in the equality constraint, $A\in R^{p\times n}$ , $B\in R^{p\times m}$ , $c\in R^{p}$ , and $f$ and $g$ are <font color="red">convex functions (凸函数)</font></p>
-</li>
-</ul>
-<center>------ Solution ------</center>
-
-<ol>
-<li>Define Augmented Lagrangian (增广拉格朗日函数)</li>
-</ol>
-<script type="math/tex; mode=display">
-L_{\rho}(x,z,u)=f(x)+g(z)+u^{T}(Ax+Bz-c)+\frac{\rho}{2}\|Ax+Bz-c\|^2</script><ul>
-<li>If we let $w=\frac{u}{\rho}$ , then we can get simplified form of Augmented Lagrangian</li>
-</ul>
-<script type="math/tex; mode=display">
-L_{\rho}(x,z,u)=f(x)+g(z)+\frac{\rho}{2}\|Ax+Bz-c+w\|_2^2-\frac{\rho}{2}\|w\|_2^2</script><ol>
-<li>Algorithm : fixed other variables and update only one of them (Here $\rho\gt 0$ is a penalty parameter)</li>
-</ol>
-<script type="math/tex; mode=display">
-\begin{align}
-&\text{for }k=1,2,3,...\\
-&\text{step 1: } x^{(k)}=\arg\min_{x}L_{\rho}(x,z^{(k-1)},w^{(k-1)})=\arg\min_{x} f(x)+\frac{\rho}{2}\|Ax+Bz^{(k-1)}-c+w^{(k-1)}\|_2^2 \\
-&\text{step 2: } z^{(k)}=\arg\min_{z}L_{\rho}(x^{(k)},z,w^{(k-1)})=\arg\min_{z} g(z)+\frac{\rho}{2}\|Ax^{(k)}+Bz-c+w^{(k-1)}\|_2^2 \\
-&\text{step 3: } w^{(k)}=w^{(k-1)}+Ax^{(k)}+Bz^{(k)}-c
-\end{align}</script><ol>
-<li><strong>Consider LASSO Problem</strong> <ul>
-<li>To find $\min_{w} \frac{1}{2}|y-Xw|^2_2+\lambda|w|_1$ </li>
-<li>Let $w=\beta$ (the constraint : $w-\beta=0$) and rewrite the Augmented Lagrangian : $L_{\rho}(w,\beta,u)=\frac{1}{2}|y-Xw|^2_2+\lambda|\beta|_1+u^T(w-\beta)+\frac{\rho}{2}|w-\beta|_2^2$</li>
-</ul>
-</li>
-</ol>
-<h3 id="Model-Assessment-1"><a href="#Model-Assessment-1" class="headerlink" title="Model Assessment"></a>Model Assessment</h3><ul>
-<li>Mean absolute error (MAE) : $MAE =\frac{1}{n} \sum_{i=1}^{n} |y_i - \hat y_i|$</li>
-<li>Mean square error (MSE) : $MSE =\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat y_i)^2$ </li>
-<li>Root mean square error (RMSE) : $RMSE = \sqrt{\frac{1}{n} (y_i - \hat y_i)^2}$</li>
-<li><p>Coefficient of Determination [决定系数] <font color="green">(Recall)</font> : $R^2:=1-\frac{\text{SS}_{\text{res}}}{\text{SS}_{\text{tot}}}$ , <br>where $\text{SS}_{\text{tot}}=\sum_{i=1}^n (y_i-\bar y_i)^2$  and  $\text{SS}_{\text{res}}=\sum_{i=1}^n (y_i-\hat y_i)^2$ </p>
-<ul>
-<li>Normally $R^2\in[0,1]$ , but it can be negative (a wrong model making residual too large). </li>
-<li><font color="red">The larger the $R^2$ , the better the model.</font>
-</li>
-</ul>
-</li>
-<li><p>Adjusted Coefficient of Determination</p>
-</li>
-</ul>
-<script type="math/tex; mode=display">
-R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
-<li>$n$ is  the number of samples, $p$ is the dimensionality (or the number of attributes)</li>
-<li><font color="red">The larger the $\text{R}_{\text{adj}}^2$ value, the better performance the model</font></li>
-<li>When adding important variables into the model, $\text{R}_{\text{adj}}^2$ gets larger and $\text{SS}_{\text{res}}$ is reduced</li>
-</ul>
-<hr>
-<h2 id="VI-Classification-II"><a href="#VI-Classification-II" class="headerlink" title="VI. Classification II"></a>VI. Classification II</h2><blockquote>
-<p>Why talk about Regression first ?</p>
-<ul>
-<li>Naive Bayes uses Probability and Mathemetic methods, which is the core of Regression</li>
-<li>Regression all apply <strong>MLE</strong>, which is connected with Bayes rules.</li>
-</ul>
-</blockquote>
-<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><blockquote>
-<p>逻辑回归是一种分类方法（不是回归）</p>
-</blockquote>
-<font color="green">Recall: Linear Regression</font>
-
-<ul>
-<li>$E(y|x)=P(y=1|x)=w_0+w_1x$ , but $w_0+w_1x$ may be not probability</li>
-<li>Use <strong>Sigmoid function</strong> to map it to $\left[0,1\right]$ : $g(z)=\frac{1}{1+e^{-z}}$ , where $z=w_0+w_1x_1+\cdots+w_dx_d$</li>
-<li><font color="red">Equivalently</font>, $\log{\frac{P(y=1|x)}{1-P(y=1|x)}}=w_0+w_1x_1+\cdots+w_dx_d$</li>
-</ul>
-<script type="math/tex; mode=display">
-\text{logit}(z)=\log\frac{z}{1-z}</script><p><strong>MLE for Logistic Regression</strong></p>
-<ul>
-<li>The prob. distribution for two-class logistic regression model is <ul>
-<li>$Pr(y=1|X=x)=\frac{\exp(\textbf{w}^T \textbf{x})}{1+\exp(\textbf{w}^T \textbf{x})}$</li>
-<li>$Pr(y=0|X=x)=\frac{1}{1+\exp(\textbf{w}^T \textbf{x})}$</li>
-</ul>
-</li>
-<li>Let $P(y=k|X=x)=p_k(\textbf{x};\textbf{w})$, $k=0,1$. The <font color="red">likelihood function</font> is $L(\textbf{w})=\prod_{i=1}^{n} p_{y_i}(\textbf{x}_i;\textbf{w})$</li>
-<li>MLE of $\textbf{w}$ : $\hat{\textbf{w}}=\arg \underset{\textbf{w}}\max L(\textbf{w})$</li>
-<li>Solve $\color{red}\nabla_{\textbf{w}}\log L(\textbf{w})=0$ by Newton-Raphson method</li>
-</ul>
-<blockquote>
-<p>用 MLE 计算 $\hat{\textbf{w}}$ ，需要提前知道 $x$ 的分布，所以逻辑回归是一种分类算法。</p>
-</blockquote>
-<h3 id="Linear-Discriminant-Analysis-LDA"><a href="#Linear-Discriminant-Analysis-LDA" class="headerlink" title="Linear Discriminant Analysis (LDA)"></a>Linear Discriminant Analysis (LDA)</h3><blockquote>
-<p>线性判别分析，是一种监督学习的降维方法（无监督学习一般用<strong>PCA</strong>，主成分分析来降维）</p>
-</blockquote>
-<font color="green">Recall: Naive Bayes</font>
-
-<ul>
-<li>By <strong>Bayes Theorem</strong>: $P(Y|X=x)\propto f_k(\textbf{x})\pi_{k}$ , where $f_k(\textbf{x})=P(\textbf{X}=\textbf{x}|Y=k)$ is be the <font color="red">density function</font> of samples in each class $Y=k$, $\pi_k=P(Y=k)$ is the <font color="red">prior probability</font>.</li>
-<li>Assume $f_k (\textbf{x})$ is multivariate Gaussian (多元高斯分布) : $f_k(x)=\large{\frac{1}{(2\pi)^{p/2} |\Sigma_k}^{1/2}|e^{\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)}}$ , with a common covariance matrix (协方差矩阵) $\Sigma_k$ <font color="grey">(注：多元高斯可以表示为向量和矩阵乘积的形式，如上)</font></li>
-<li>For the decision boundary between class $k$ and $l$, the <strong>log-ratio</strong> of their posteriors (后验) $P(Y|X)$ is</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\log{\frac{P(Y=k|\textbf{X}=\textbf{x})}{P(Y=l|\textbf{X}=\textbf{x})}}=\log{\frac{\pi_k}{\pi_l}}-\frac{1}{2}(\mu_k+\mu_l)^T\Sigma_k^{-1}(\mu_k-\mu_l)+\textbf{x}^T \Sigma^{-1}(\mu_k-\mu_l)<br>$</p>
-
-</blockquote>
-<ol>
-<li><p>From log-ratio, we can get <font color="red">Linear discriminant functions</font>(e.g. for class $k$) : $\delta_k(\textbf{x})=\textbf{x}^T\Sigma^{-1}\mu_k-\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k+\log\pi_k$ </p>
-</li>
-<li><p>Then the log-ratio become : $\log{\frac{P(Y=k|\textbf{X}=\textbf{x})}{P(Y=l|\textbf{X}=\textbf{x})}}=\delta_k(\textbf{x})-\delta_l(\textbf{x})$ </p>
-<blockquote>
-<p>相减结果是一个一次方程（线性）</p>
-</blockquote>
-</li>
-<li><p>Decision Rule(分类依据) : $k^{\ast}=\arg\max_k \delta_k(\textbf{x})$</p>
-</li>
-</ol>
-<p><strong>Two-class LDA</strong></p>
-<ul>
-<li>LDA rule classifies to <strong>class 2</strong> if</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>(\textbf{x}-\frac{\hat\mu_1+\hat\mu_2}{2})^T \Sigma^{-1}(\hat\mu_2-\hat\mu_1)+\log{\frac{\hat\pi_2}{\hat\pi_1}}\gt 0<br>$</p>
-
-</blockquote>
-<ul>
-<li>Discriminant direction : $\beta=\Sigma^{-1}(\hat\mu_2-\hat\mu_1)$ </li>
-</ul>
-<center><img src="/2024/06/24/Big-Data-2/bd28.png" style="zoom:50%"><font size="2">Pic 20. Two-class LDA</font></center>
-
-<blockquote>
-<p>$\hat\mu$ 看作图中椭圆的中心，图中的 $w$ 为投影方向。由上述公式计算可得到样本在投影基向量上的方向，从而判断其类别</p>
-<p>从定性上看，投影的作用是降维，选择的投影空间应当是能将不同类数据点在映射后尽可能分开（或同类的点尽可能紧凑）。</p>
-</blockquote>
-<h3 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h3><center><img src="/2024/06/24/Big-Data-2/bd29.png" style="zoom:70%"><font size="2">Pic 21. NN</font></center>
-
-<script type="math/tex; mode=display">
-\hat y=g(w_0+\sum_{i=1}^{m} x_iw_i)</script><ul>
-<li>$\hat y$ is Output</li>
-<li>$g$ is a <font color="red">Non-linear activation function</font> (非线性激活函数)</li>
-<li>$w_0$ is the Bias</li>
-</ul>
-<center><img src="/2024/06/24/Big-Data-2/bd30.png" style="zoom:70%"><font size="2">Pic 22. Common Activation Functions</font></center>
-
-<ul>
-<li><strong>Single Hidden Layer Neural Network</strong><ul>
-<li><font color="red">$z_i=w_{0,i}^{(1)}+\sum_{j=1}^{m}x_jw_{j,i}^{(1)}$</font> </li>
-<li><font color="red">$\hat y_i=w_{0,i}^{(2)}+\sum_{j=1}^{d_1}g(z_j)w_{j,i}^{(2)}$</font></li>
-<li>$x_i\to z_k\to y_j$ , where $z_k$ is the hidden layer</li>
-<li>Hidden Layer can be <font color="red">multiple</font> </li>
-</ul>
-</li>
-</ul>
-<center><img src="/2024/06/24/Big-Data-2/bd31.png" style="zoom:50%"></center>
-
-
-
-<ul>
-<li><strong>Thm: Universal Approximation Theorem</strong> —— Any function can be approximated by a <font color="blue">three-layer</font> neural network within sufficiently high accuracy.<ul>
-<li>Why not effective ?</li>
-<li>The <strong>width</strong> of each layer may be too much (Large calculation !!)</li>
-<li><font color="green">Now we’re trying to replace <b>width</b> with <b>depth</b> and find the same Theorem</font> <font color="grey">(即增加层数，减少每层的神经元)</font>
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h4>Loss Optimization</h4>
-
-<blockquote>
-<p>Find $\textbf{W}=\{w^{(0)},w^{(1)},…,w^{(n)}\}$ with lowest loss function</p>
-</blockquote>
-<blockquote class="blockquote-center">
-<p>$<br>\textbf{W}^{\ast}=\underset{\textbf{W}} {\arg\min} \frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\textbf{W}),y^{(i)})=\underset{\textbf{W}} {\arg\min}\ C(\textbf{W})<br>$</p>
-
-</blockquote>
-<ul>
-<li>But for most cases, we should calculate <font color="red">gradient</font> to find $\textbf{W}^{\ast}$ </li>
-<li><font color="red">Use <b>gradient decent</b> to solve:</font> $\frac{\partial{C}}{\partial{\textbf{W}}}$</li>
-</ul>
-<blockquote>
-<p>How to calculate ? (More detail)</p>
-</blockquote>
-<center><img src="/2024/06/24/Big-Data-2/bd33.png" style="zoom:60%"></center>
-
-<ul>
-<li>$w_{jk}^{l}$ is the weight for the connection from the $k^{th}$ neuron in the $(l − 1)^{th}$ layer to the $j^{th}$ neuron in the $l^{th}$ layer.</li>
-<li>More briefly, <font color="red">$b_{j}^{l}=w_{j0}^l$</font> is the <font color="red">bias</font> of the $j^{th}$ neuron in the $l^{th}$ layer.</li>
-<li><p>$a^l_j$ for the <font color="red">activation</font> of the $j^{th}$ neuron in the $l^{th}$ layer $z_j^l$  : <font color="red">$a^l_j=g(z^l_j)=g(\sum_k w_{jk}^{l}a_k^{l-1} + b_j^l)$</font> </p>
-</li>
-<li><p>We have define $C(\textbf{W})=\frac{1}{n}\sum_{i=1}^{n}L(f(x^{(i)};\textbf{W}),y^{(i)})$ </p>
-</li>
-</ul>
-<center><img src="/2024/06/24/Big-Data-2/bd32.png" style="zoom:40%"></center>
-
-<blockquote>
-<p>Proof (暂略)</p>
-</blockquote>
-<h4>Gradient Descent</h4>
-
-<p><strong>Algorithm</strong> :</p>
-<ol>
-<li>Initialize weights randomly  $\thicksim\mathcal N(0, \sigma^{2})$ </li>
-<li>Loop until convergence : <ol>
-<li>Pick single data point $i$</li>
-<li>Compute <strong>gradient</strong>  $\frac{\partial J_i(\textbf{W})}{\partial \textbf{W}}$ </li>
-<li>Update weights, $\textbf{W} \leftarrow (\textbf{W}-\eta \frac{\partial J(\textbf{W})}{\partial \textbf{W}})$ </li>
-</ol>
-</li>
-<li>Return weights</li>
-</ol>
-<ul>
-<li>Mini-batches lead to fast training ! (need not to calculate all gradient for trainset $x$)</li>
-<li>Can parallelize computation + achieve significant speed increases on GPUs.</li>
-</ul>
-<h3 id="Support-Vector-Machine-SVM"><a href="#Support-Vector-Machine-SVM" class="headerlink" title="Support Vector Machine (SVM)"></a>Support Vector Machine (SVM)</h3><p><strong>About SVM</strong></p>
-<ul>
-<li>Use <strong>hyperplane</strong> [超平面] to separate data : maximize <strong>margin</strong></li>
-<li>Can deal with <font color="red">low-dimensional data</font> that are not linearly separated by using kernel functions</li>
-<li>Decision boundary only depends on some samples (support vectors)</li>
-</ul>
-<p><strong>How to train</strong></p>
-<ul>
-<li>Training data: $\{(\textbf{x}_1,y_1),(\textbf{x}_2,y_2),…,(\textbf{x}_n, y_n) \}, y_i\in \{-1, 1\}$</li>
-<li>Hyperplane: $S=\textbf{w}^T\textbf{x} + b$ ;     Decision function: $f(\textbf{x})=\text{sign}(\textbf{w}^T\textbf{x} + b)$</li>
-<li>Geometric <strong>margin</strong> between a point and hyperplane : $\large{r_i=\frac{y_i(\textbf{w}^T\textbf{x} + b)}{|\textbf{w}|_2}}$</li>
-<li>Margin between dataset and hyperplane : $\underset{i}\min r_i$</li>
-<li>Maximize margin : $\underset{\textbf{w}, b}\max \underset{i}\min r_i$</li>
-</ul>
-<p><strong>Optimization</strong></p>
-<ul>
-<li>Without loss of generality, let $\underset{i}\min y_i(\textbf{w}^T\textbf{x} + b)=1$</li>
-<li>Maximize margin is equivalent to $\underset{\textbf{w}, b}\max \frac{1}{|\textbf{w}|_2}$  ,  $s.t.\ y_i(\textbf{w}^T\textbf{x} + b)\ge 1,\ i=1,…,n$</li>
-<li>Further reduce to $\underset{\textbf{w}, b} \min \frac{1}{2}|\textbf{w}|_2^2$  ,  $s.t.\ y_i(\textbf{w}^T\textbf{x} + b)\ge 1,\ i=1,…,n$</li>
-<li>This is <strong>primal problem</strong> : quadratical programming with linear constraints, computational complexity is $O(p^3)$ where $p$ is dimension</li>
-</ul>
-<blockquote>
-<p>But we use <strong>Dual problem optimization</strong>(对偶问题优化) most.</p>
-</blockquote>
-<ul>
-<li>When slater condition is satisfied, $\min \max ⇔ \max \min$</li>
-<li>Dual problem : $\underset{\alpha}\max \underset{\textbf{w}, b}\min L(\textbf{w},b,\alpha)$ —— $L$ is Lagrange function(拉格朗日函数)</li>
-<li><p>Solve for inner minimization problem : </p>
-<ul>
-<li>$\nabla_{\textbf{w}}L=0 \Longrightarrow \textbf{w}^\ast=\sum_i \alpha_iy_i \textbf{x}_i$</li>
-<li>$\frac{\partial L}{\partial b}=0 \Longrightarrow \sum_i\alpha_iy_i=0$</li>
-</ul>
-</li>
-<li><p>Plug into $L$: $L(\textbf{w}^\ast,b^\ast,\alpha)=\sum_i\alpha_i-\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\textbf{x}_i^T \textbf{x}_j)$ </p>
-</li>
-<li><font color="red">Dual Optimization: </font>
-
-</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\min_\alpha\frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(\textbf{x}_i^T \textbf{x}_j)-\sum_i\alpha_i, \\<br>&amp;\text{s.t. }\alpha_i\ge0,\ i=1,…,n,\ \sum_i\alpha_iy_i=0<br>\end{align}<br>$</p>
-
-</blockquote>
-<p><strong>KKT Condition</strong></p>
-<ul>
-<li>Three more conditions from the equivalence of primal and minimax problems</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\left\{ \begin{array}{l}<br>\alpha_i^{\ast}\ge 0\\<br>y_i((\textbf{w}^{\ast})^T \textbf{x}_i+b^{\ast})-1 \ge 0\\<br>\alpha_i^{\ast}[y_i((\textbf{w}^{\ast})^T \textbf{x}_i+b^{\ast})-1]=0<br>\end{array}\right.<br>$</p>
-
-</blockquote>
-<ul>
-<li>These together with two zero derivative conditions form KKT conditions</li>
-<li>$\alpha_i^{\ast}\gt 0 \Rightarrow y_i((\textbf{w}^{\ast})^T \textbf{x}_i+b^{\ast})=1$</li>
-<li>Index set of <font color="red">support vectors</font> : $S=\{i|\ \alpha_i \gt 0\}$</li>
-<li>$b=y_s-\textbf{w}^T\textbf{x}_s=y_s-\sum_{i\in S}\alpha_i y_i \textbf{x}^T_i\textbf{x}_s$</li>
-<li>More stable solution : </li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\color{red} b=\frac{1}{|S|}\sum_{s\in S}\left(y_s-\sum_{i\in S}\alpha_i y_i \textbf{x}^T_i\textbf{x}_s\right)<br>$</p>
-
-</blockquote>
-<p><strong>Soft Margin</strong></p>
-<ul>
-<li>When data are not linear separable, introduce slack variables (tolerance control of fault) $\xi_i \gt 0$</li>
-<li>Relax constraint to $y_i(\textbf{w}^T\textbf{x} + b) \ge 1-\xi_i$ </li>
-<li>Primal problem :</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\underset{\textbf{w}, b} \min \frac{1}{2}|\textbf{w}|_2^2+C\sum_{i=1}^{n}\xi_i\\<br>&amp;\text{s.t. }y_i(\textbf{w}^T\textbf{x} + b)\ge 1-\xi_i,\ \xi_i \ge 0,\ i=1,…,n<br>\end{align}<br>$</p>
-
-</blockquote>
-<ul>
-<li>Similar derivation to dual problem : (Difference: add the error coe $C$ as a bound)</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\min_{\alpha}\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\textbf{x}_i^T \textbf{x}_j)-\sum_i \alpha_i \\<br>&amp;\text{s.t. }0\le \alpha_i \le C,\ i=1,…,n,\ \sum_i\alpha_iy_i=0<br>\end{align}<br>$</p>
-
-</blockquote>
-<h4 id="Nonlinear-SVM"><a href="#Nonlinear-SVM" class="headerlink" title="Nonlinear SVM"></a>Nonlinear SVM</h4><ul>
-<li>Nonlinear decision boundary could be mapped to linear boundary in <font color="red">high-dimensional space</font></li>
-</ul>
-<center><img src="/2024/06/24/Big-Data-2/bd34.png" style="zoom:60%"></center>
-
-<ul>
-<li>Modify objective function in dual problem : $\color{red}\frac{1}{2}\sum_i \sum_j \alpha_i \alpha_j y_i y_j (\phi(\textbf{x}_i)^T \phi(\textbf{x}_j))-\sum_i \alpha_i$</li>
-<li>Kernel function as inner product : $K(\textbf{x}_i, \textbf{x}_j)=\phi(\textbf{x}_i)^T \phi(\textbf{x}_j)$</li>
-<li><font color="grey">Q: How to choose <b>Kernel Functions</b> ?</font>      <font color="green">A: Arbitrary</font>
-
-</li>
-</ul>
-<center><img src="/2024/06/24/Big-Data-2/bd35.png" style="zoom:50%"></center>
-
-<hr>
-]]></content>
-      <categories>
-        <category>2024 Spring</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>CSE Learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MA234 大数据导论与实践（一）</title>
-    <url>/2024/06/22/Big-Data-1/</url>
-    <content><![CDATA[<h1 id="Big-Data-I"><a href="#Big-Data-I" class="headerlink" title="Big Data (I)"></a>Big Data (I)</h1><h2 id="I-Pre-Knowledge"><a href="#I-Pre-Knowledge" class="headerlink" title="I. Pre-Knowledge"></a>I. Pre-Knowledge</h2><h3 id="Recall-for-Linear-Algebra"><a href="#Recall-for-Linear-Algebra" class="headerlink" title="Recall for Linear Algebra"></a>Recall for Linear Algebra</h3><p><strong>1. Linear Combination and Linear Function</strong></p>
-<p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\textbf{V}$. If any vector from $\textbf{V}$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$ , or $\alpha$ is a Linear Combination of $\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}$. </p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\text{Set }A=\{\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e\}\\<br>&amp;V=\text{Span}(A)=\{k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e | k_i\in \mathbb R, 1\le i\le e\}<br>\end{align}<br>$</p>
-
-</blockquote>
-<blockquote>
-<p>In a <strong>matrix</strong> (i.e. $A$), set all rows as a vector group, and it span a space called <strong>Row Space</strong> (Noted: $R(A)$). All columns span a space called <strong>Column Space</strong> (Noted: $\text{Col}(A)$).</p>
-<p>Linear Function $Ax=b$ is solutable <font color="red">if and only if</font> $b$ is a linear combination of $\text{Col}(A)$ (or $b \in \text{Col}(A)$).</p>
-<p>Specially, if $b=0$ ($Ax=0$), then all solution of $x$ group as a vector space called <strong>Null Space</strong> (Noted: $\text{Nul}(A)$)</p>
-</blockquote>
-<hr>
-<p><strong>2. Basis and Orthogonal</strong></p>
-<ul>
-<li>About <strong>Rank</strong><ul>
-<li><font color="green">Recall: </font>$\color{green}LU$ <font color="green">factorization</font><ul>
-<li>$\color{green}PA=LDU$, where $P$ is row exchange matrix (避免 A 主元为 0), $L$ is lower-triangle matrix with diagonal is all 1, $D$ is the coefficient matrix and $U$ is upper-triangle matrix.</li>
-</ul>
-</li>
-<li>For a $m\times n$ matrix ranked $r$, there are $(n-r)$ particular solution of $Ax=b$ in the solution space of $A$ ($\text{Nul}(A)$).</li>
-<li>For $Ax=b$ , $Ux=c$ or $Rx=d$ , there must be $\color{red}(m-r)$ <font color="red">conditions</font> for formula to be solutable.</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>About <strong>Linear Independent</strong><ul>
-<li><strong>Def.</strong> Suppose $A=\{v_1,v_2,\cdots, v_n\}$ is vector set of $\mathbb R^n$. If $\exists v_i \in A, v_i=\sum_{j\neq i} \lambda_j v_j, \lambda_j \in \mathcal R$ , then we say $A$ is <strong>linear dependent</strong>. <font color="red">If not, we say it’s <strong>Linear Independent</strong>.</font></li>
-<li><strong>Thm.</strong> $A$ is linear independent <font color="red">if and only if</font> $\lambda_1 \vec{v_1}+\lambda_2\vec{v_2}+\cdots +\lambda_k\vec{v_k}=0$ only holds when $\lambda_1=\lambda_2=\cdots =\lambda_k=0$</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Then we can talk about <strong>Basis</strong>(基)</p>
-</blockquote>
-<p><strong>Def.</strong> For vector space $V$ , if vector group $A=\{v_1,v_2,\cdots, v_k\}$ satisfies that $V=\text{Span}(A)$ , and $A$ is <font color="red">linear independent</font> , then we say that $\color{red}A$ <font color="red">is one of the <strong>basis</strong> of</font> $\color{red}V$.</p>
-<ul>
-<li>If $A$ is a basis of $V$ , then $\forall \vec{w} \in V$ , there must be unique array $[a_1, a_2,\cdots,a_k]$ such that $\vec{w}=a_1v_1+a_2v_2+\cdots +a_kv_k$ . Then we call this array a <font color="red">coordinate</font> of $\vec w$ in $A$ , noted $[\vec w]_{A}$</li>
-</ul>
-<h3 id="Recall-for-Calculus"><a href="#Recall-for-Calculus" class="headerlink" title="Recall for Calculus"></a>Recall for Calculus</h3><p><strong>1. Langrange Multiplier</strong> [拉格朗日乘数法]</p>
-<h3 id="Other-Prepared-Knowledge"><a href="#Other-Prepared-Knowledge" class="headerlink" title="Other Prepared Knowledge"></a>Other Prepared Knowledge</h3><p><strong>1. Norm</strong></p>
-<p>On vectors :</p>
-<ul>
-<li>1-Norm: $|x|_1 = \sum_{i=1}^{N}{|x_i|}$</li>
-<li>2-Norm: $|\textbf{x}|_2= \sqrt{\sum_{i=1}^{N} x_i^2}$</li>
-<li>$\pm\infty$-Norm: $|\textbf{x}|_{\infty}=\underset{i}\max{|x_i|}$  ;  $|\textbf{x}|_{-\infty}=\underset{i}\min{|x_i|}$</li>
-<li>p-Norm: $|\textbf{x}|_p=(\sum_{i=1}^{N}{|x_i|}^p)^{\frac{1}{p}}$</li>
-</ul>
-<p>On matrix :</p>
-<ul>
-<li>1-Norm(列和范数) : $|A|_1=\underset{j}\max \sum_{i=1}^{m}{|a_{i,j}|}$  , maximum among <font color="red">absolute sum of column vector</font>.</li>
-<li>2-Norm: $|A|_2=\sqrt{\lambda_1}$  , where $\lambda_1$ is the maximum eigenvalue(特征值) of $A^TA$</li>
-<li>$\infty$-Norm(行和范数) : $|A|_\infty=\underset{i}\max \sum_{j=1}^{n}{|a_{i,j}|}$  , maximum among <font color="red">absolute sum of row vector</font>.</li>
-<li>F-Norm(核范数) : $|A|_*=\sum_{i=1}^{n}\lambda_i$  , where $\lambda_i$ is singular value(奇异值) of $A$</li>
-</ul>
-<h2 id="II-Intro"><a href="#II-Intro" class="headerlink" title="II. Intro"></a>II. Intro</h2><h3 id="About-Big-Data"><a href="#About-Big-Data" class="headerlink" title="About Big Data"></a>About Big Data</h3><ul>
-<li><font color="Red"><strong>4 Big “V”</strong></font> required in Big Data<ul>
-<li><strong>Volume</strong>: KB, MB, GB ($10^9$ bytes), TB, PB, EB ($10^{18}$ bytes), ZB, YB<ul>
-<li>Data of Baidu: several ZB</li>
-</ul>
-</li>
-<li><strong>Variety</strong>: diﬀerent sources from business to industry, diﬀerent types</li>
-<li><strong>Value</strong>: redundant information contained in the data, need to retrieve useful information</li>
-<li><strong>Velocity</strong> (速度): fast speed for information transfer</li>
-</ul>
-</li>
-<li><em>Two perspectives of data sciences</em> :<ul>
-<li>Study science with the help of data : bioinformatics, astrophysics, geosciences, etc.</li>
-<li>Use scientiﬁc methods to exploit (利用) data : statistics, machine learning, data mining, pattern recognition, data base, etc.</li>
-</ul>
-</li>
-<li><em>Data Analysis</em><ul>
-<li>Ordinary data types :<ul>
-<li>Table : classical data (could be treated as matrix)</li>
-<li>Set of points : mathematical description</li>
-<li>Time series : text, audio, stock prices, DNA sequences, etc.</li>
-<li>Image : 2D signal (or matrix equivalently, e.g., pixels), MRI, CT, supersonic imaging</li>
-<li>Video : Totally 3D, with 2D in space and 1D in time (another kind of time series)</li>
-<li>Webpage and newspaper : time series with spacial structure</li>
-<li>Network : relational data, graph (nodes and edges)</li>
-</ul>
-</li>
-<li>Basic assumption : the data are generated from an underlying model, which is unknown in practice<ul>
-<li>Set of points : probability distribution</li>
-<li>Time series : stochastic processes, e.g., Hidden Markov Model (HMM)</li>
-<li>Image : random ﬁelds, e.g., Gibbs random ﬁelds</li>
-<li>Network : graphical models, Beyesian models</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>Difficulties of Data Analysis</strong></p>
-<ul>
-<li>Huge <font color="#921aff">volume</font> of data</li>
-<li>Extremely high dimensions<ul>
-<li>Solutions: <ul>
-<li>Make use of prior information</li>
-<li>Restrict to simple models</li>
-<li>Make use of special structures, e.g., sparsity, low rank, smoothness</li>
-<li>Dimensionality reduction, e.g., PCA, LDA, etc.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Complex <font color="#921aff">variety</font> of data</li>
-<li>Large noise (噪点, <font color="#921aff">values</font>) : data are always contaminated with noises</li>
-</ul>
-<h3 id="Representation-of-Data"><a href="#Representation-of-Data" class="headerlink" title="Representation of Data"></a>Representation of Data</h3><ul>
-<li>Input space $\mathcal X = \{\text{All possible samples}\}$ ; $\textbf{x} \in \mathcal{X}$ is an input vector, also called feature, predictor, independent variable, etc; <strong>typically multi-dimension</strong>. For multi-dimension, $\textbf{x} \in \mathbb R^p$ is a weight vector (权重向量，每一维度所占权重可调整) or coding vector (编码向量，e.g. 矢量图).</li>
-<li>Output space $\mathcal{Y} = \{\text{All possible results}\}$ ; $y \in \mathcal{Y}$ is an output vector, also called response, dependent variable, etc; <strong>typically one dimension</strong>. E.g. $y = 0\ \text{or}\ 1$ for classiﬁcation problems, $y \in \mathbb{R}$ for regression problems.</li>
-<li>For supervised learning, assume that $(\textbf{x},y)\sim \mathcal P$, a joint distribution on the sample space $\mathcal X \times \mathcal Y$</li>
-</ul>
-<hr>
-<font size="4"><b>Supervised Learning (监督学习) —— <font color="Grey">given labels of data</font></b></font>
-
-<ul>
-<li>Training : ﬁnd the optimal parameters (or model) to minimize the error between the prediction and target</li>
-<li>Classiﬁcation <font color="Grey">(if output is discrete)</font>: SVM (支持向量机), KNN (K-Nearest Neighbor), Desicion tree, etc.</li>
-<li>Regression <font color="Grey">(if output is continuous)</font>: linear regression, CART, etc.</li>
-</ul>
-<p>Maths method about Supervised Learning </p>
-<ul>
-<li>Goal: Find the conditional distribution $\mathcal P(y|\textbf{x})$ of $y$ given $\textbf{x}$ </li>
-<li>Training dataset: $\{(\textbf{x}_i, y_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to learn an approximation $\hat{f}(\textbf{x})$ or $\hat{\mathcal P}(y|\textbf{x})$</li>
-<li>Test dataset: $\{(\textbf{x}_j, y_j)\}_{j=n+1}^{n+m} \overset{\text{i.i.d}}{\sim} \mathcal P$, used to test</li>
-</ul>
-<div align="center">
-<img src="/2024/06/22/Big-Data-1/bd2.png" alt="bd2" width="80%">
-</div>
-
-<blockquote>
-<p>So we can conclude that a predictor must be developed from a Supervised Learning Model.</p>
-</blockquote>
-<font size="4"><b>Unsupervised Learning (无监督学习) —— <font color="Grey">no labels</font></b></font>
-
-<ul>
-<li>Optimize the parameters based on some <font color="#ce0000">natural rules</font>, e.g., cohesion (收敛) or divergence (发散)</li>
-<li>Clutering : K-Means, SOM (Self-Organizing Map)</li>
-</ul>
-<div align="center">
-<img src="/2024/06/22/Big-Data-1/bd3.png" alt="bd3" width="80%">
-</div>
-
-
-<p>Maths method about Unsupervised Learning</p>
-<ul>
-<li>Goal : in probabilistic settings, find the distribution (PDF) $\mathcal P(\textbf{x})$ of $\textbf{x}$ and approximate it (there is no y)</li>
-<li>Training dataset : $\{(x_i)\}_{i=1}^{n} \overset{\text{i.i.d}}{\sim} \mathcal P$ , used to learn an approximation $\hat{\mathcal P}(\textbf{x})$ (no test data in general)</li>
-</ul>
-<font size="4"><b>Semi-supervised learning:</b></font> 
-
-<ul>
-<li>with missing data, e.g., EM; self-supervised learning, learn the missing part of images, inpainting.</li>
-</ul>
-<font size="4"><b>Reinforcement learning (强化学习):</b></font>  
-
-<ul>
-<li><font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.</li>
-</ul>
-<h3 id="Modeling-and-Analysis"><a href="#Modeling-and-Analysis" class="headerlink" title="Modeling and Analysis"></a>Modeling and Analysis</h3><ul>
-<li>Decision function (hypothesis) space : <ul>
-<li>$\mathcal{F}=\{\mathcal{f_\theta}=\mathcal{f_\theta}(x), \theta \in \Theta \}$ </li>
-<li>or $\mathcal{F}=\{\mathcal{P_\theta}=\mathcal{P_\theta}(y|x), \theta \in \Theta \}$</li>
-</ul>
-</li>
-<li><font color="red">Loss function :</font> a measure for the “goodness” of the prediction, $L(y, \mathcal{f}(x))$ <ul>
-<li><a name="0-1 loss"><i>0-1 loss</i></a>: $L(y, \mathcal{f}(x))=\textbf{l}_{y\not{=}f(x)}=1-\textbf{l}_{y=f(x)}$ （个人理解一般是用于二元项预测的误差判断）</li>
-<li><i>Square loss</i>: $L(y, \mathcal{f}(x))=(y-f(x))^2$ （比绝对值误差更泛用）</li>
-<li><i>Absolute loss</i>: $L(y, \mathcal{f}(x))={|y-f(x)|}$ </li>
-<li><i>Cross-entropy (交叉熵) loss</i>: <br>   $\color{red}L(y, \mathcal{f}(x))=-y\log{f(x)}-(1-y)\log{(1-f(x))}$</li>
-</ul>
-</li>
-<li><strong>Risk</strong> : in average sense,<br> $\mathcal{R}(f)=E_{\mathcal P} [L(y, f(x))]=\underset{\mathcal X \times \mathcal Y}{\int}L(y, f(x))\mathcal{P}(x,y)\text d x \text d y$ </li>
-<li><font color="Red"><b>Target of Learning</b></font> : minimize $\mathcal R_{exp}(f)$ to get $f^{\ast}$ ( $\text{即} f^{\ast}=\underset{f}{min}\ \mathcal{R}_{exp}(f)$ )</li>
-</ul>
-<p><strong>Risk Minimize Strategy :</strong> </p>
-<ul>
-<li>Empirical risk minimization (<strong>ERM</strong>) : <ul>
-<li>given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , $R_{emp}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ <font color="grey">(Loss function 的均值定义为预测模型 f 的经验风险)</font> .<ul>
-<li>By law of large number, $\underset{n\to\infty}{\lim} R_{emp}(f)=R_{exp}(f)$ . <font color="Grey">(即经验风险趋近于预测风险)</font></li>
-<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))$ </li>
-<li><font color="Green">Now we only need to know</font>  $\color{green}f$ <font color="Green">and training set</font>  $\color{green}\textbf{x}_i$ </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Structural risk minimization (<strong>SRM</strong>) : <ul>
-<li>given training set $\{(\textbf{x}_i,y_i)\}_{i=1}^{n}$ , and a complexity function $J=J(f)$ , $R_{SRM}(f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ <ul>
-<li>$J(f)$ measures how complex the model $f$ is, typically the degree of complexity</li>
-<li>$λ\ge 0$ is a tradeoff(平衡项) between the empirical risk and model complexity</li>
-<li>Optimization problem <font color="red">(What Machine Learning truly do)</font> : $\underset{f\in\mathcal F}{\min}\frac{1}{n}\sum_{i=1}^{n}L(y_i,f(\textbf{x}_i))+\lambda J(f)$ </li>
-<li><font color="Green">We need to know</font> $\color{green}f$ <font color="Green">and training set</font> $\color{green}{\textbf{x}_i}$ <font color="Green">, and need to</font> <font color="#00CD00">adjust the parameter</font>  $\color{green}{\lambda}$</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>We see that <font color="#c6a300">Optimization Method</font> is essencial in machine learning. Here are some of them: </p>
-<ul>
-<li>Gradient descent method (梯度下降), including coordinate descent, sequential minimal optimization (SMO), etc.</li>
-<li>Newton’s method and quasi-Newton’s method (拟牛顿法)</li>
-<li>Combinatorial optimization (组合优化)</li>
-<li>Genetic algorithms (遗传算法)</li>
-<li>Monte Carlo methods (随机算法)</li>
-</ul>
-</blockquote>
-<p><strong>Model assessment :</strong></p>
-<ul>
-<li>Training error: $R_{emp}(\hat f)=\frac{1}{n}\sum_{i=1}^{n}L(y_i,\hat f(\textbf{x}_i))$ , tells the diﬃculty of learning problem</li>
-<li>Test error: $e_{test}(\hat f)=\frac{1}{m}\sum_{j=n+1}^{n+m}L(y_j,\hat f(\textbf{x}_j))$ , tells the capability of prediction ;<br> In particular, if 0-1 loss is used (below)<ul>
-<li>Error rate : $e_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j\ne\hat f(\textbf{x}_j)}$</li>
-<li>Accuracy : $r_{test}(\hat f) = \frac{1}{m}\sum_{j=n+1}^{n+m}\textbf{l}_{y_j=\hat f(\textbf{x}_j)}$</li>
-<li>$e_{test}+ r_{test} = 1$ </li>
-</ul>
-</li>
-<li><p>Generalization error (泛化误差——模型对新样本的预测性的度量)</p>
-<ul>
-<li>$R_{exp}(\hat f)=E_{\mathcal P}[L(y,\hat f(\textbf{x}))]=\underset{\mathcal X\times\mathcal Y}{\int}L(y,\hat f(\textbf{x}))\mathcal P(\textbf{x},y)\text d\textbf{x} \text d y$ <br>tells the capability for predicting <font color="#9f4d95">unknown data</font> from the same distribution</li>
-<li>Its upper bound $M$ deﬁnes the generalization ability (负相关)<ul>
-<li>As $n\to\infty$, $M\to 0$ (which means almost no error)</li>
-<li>As $\mathcal F$ becomes larger, $M$ increases.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><em>Overfitting</em></p>
-<ul>
-<li>Too many model paramters （模型太复杂）</li>
-<li>Better for training set, but worse for test set</li>
-</ul>
-</li>
-<li><em>Underfitting</em><ul>
-<li>Better for test set, but worse for training set</li>
-</ul>
-</li>
-</ul>
-<p><strong>Model Selection :</strong> choose the most proper model.</p>
-<ul>
-<li><a name="cross validation">Cross-validation</a> (交叉验证) : split the training set into training subset and validation subset, use training set to train diﬀerent models repeatedly, use validation set to select the best model with the smallest (validation) error<ul>
-<li>Simple CV : randomly split the data into two subsets</li>
-<li>K-fold CV : randomly split the data into $K$ disjoint subsets with the same size, treat the union of $K − 1$ subsets as training set, the other one as validation set, do this repeatedly and select the best model with smallest mean (validation) error</li>
-<li>Leave-one-out CV : $K = n$ in the previous case</li>
-</ul>
-</li>
-</ul>
-<h3>Data Science vs. Other Techniques</h3>
-
-<div align="center">
-<img src="/2024/06/22/Big-Data-1/bd1.png" alt="bd1" width="60%">
-</div>
-
-<hr>
-<h2 id="III-Data-Preprocessing"><a href="#III-Data-Preprocessing" class="headerlink" title="III. Data Preprocessing"></a>III. Data Preprocessing</h2><h3 id="Data-Type"><a href="#Data-Type" class="headerlink" title="Data Type"></a>Data Type</h3><ul>
-<li>Types of Attributes  <font size="2">(每门课几乎都离不开这个)</font><ul>
-<li>Discrete: $x \in \text{some countable sets}$, e.g., $\mathbb N$ <ul>
-<li><a name="nominal">Nominal (列举名义)</a> </li>
-<li><a name="boolean">Boolean (0 or 1) </a> </li>
-<li><a name="ordinal">Ordinal (基数等级, e.g. A+, A-, B+,…) </a> </li>
-</ul>
-</li>
-<li>Continuous: $x \in \text{some subset in }\mathbb R$ </li>
-</ul>
-</li>
-</ul>
-<ol>
-<li><strong>Basic Statistics</strong> (统计量)<ul>
-<li>Mean</li>
-<li>Median (中位数)</li>
-<li>extremum (极值)</li>
-<li>Quantile (分位数) </li>
-<li>Variance, Standard deviation (标准差)</li>
-<li>Mode (众数)</li>
-</ul>
-</li>
-</ol>
-<div align="center">
-<img src="/2024/06/22/Big-Data-1/bd4.png" alt="bd4" width="90%">
-</div>
-
-<blockquote>
-<p>Empiricism:  Mean − Mode = 3 $\times$ (Mean − Median)</p>
-</blockquote>
-<ul>
-<li>Box Plot (箱线图) —— used to describe statistics</li>
-</ul>
-<div align="center">
-<img src="/2024/06/22/Big-Data-1/bd5.png" alt="bd5" width="40%">
-</div>
-
-
-
-<ol>
-<li><strong>Metrics</strong> (度量——亦称距离函数，是度量空间中满足特定条件的特殊函数。度量空间由欧几里得空间的距离概念抽象化定义而来。)<ul>
-<li>Proximity :<ul>
-<li>Similarity : range is $[0, 1]$ </li>
-<li>Dissimilarity : range is $[0, \infty]$ , sometimes <a href="#distance">distance</a> (noted by <code>d</code>)</li>
-</ul>
-</li>
-<li>For <a href="#nominal">nominal data</a>, $d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k}\textbf{l}(\textbf{x}_{i,k}\neq\textbf{x}_{j,k})}{p}$ ,or one-hot encoding into Boolean data</li>
-<li>For <a href="#boolean">Boolean data</a>, <strong>symmetric distance</strong> (rand disrance) $\text d(\textbf{x}_i,\textbf{x}_j) =\frac {r+s}{q+r+s+t}$ or <strong>Rand index</strong> $\text{Sim}_{\text{Rand}}(\textbf{x}_i,\textbf{x}_j)=\frac{q+t}{q+r+s+t}$ ; <strong>non-symmetric distance</strong> (<a name="Jaccard"><font color="black"> Jaccard distance </font></a>) $\text d(\textbf{x}_i,\textbf{x}_j)=\frac{r+s} {q+r+s}$ or <strong>Jaccard index</strong> $\text{Sim}_{\text{Jaccard}}(\textbf{x}_i,\textbf{x}_j)=\frac {q} {q+r+s}$ </li>
-</ul>
-</li>
-</ol>
-<div align="center">
-<img src="/2024/06/22/Big-Data-1/bd6.png" alt="bd6" width="40%">
-</div>
-
-
-
-<p><a name="distance"><font color="Red"><strong>Distance :</strong></font></a></p>
-<p><strong>Def.</strong> Distance <code>d</code> is the difference between two samples.</p>
-<ul>
-<li>Properties of Distance : <ul>
-<li>Non-negative: $\text{d}(x,y)\ge 0$</li>
-<li>Identity: $\text d(x,y)=0\Leftrightarrow x=y$ </li>
-<li>Symmetric: $\text d(x,y)=\text d(y,x)$ </li>
-<li>Basic Vector Attributes : e.g. $\text d(x,y)\le \text d(x,z)+\text d(z,y)$ </li>
-</ul>
-</li>
-<li>距离度量分为Space Distance (e.g. Euclidean) 、String Distance (e.g. Hamming distance) 、Set Proximity (e.g. Jaccard distance) 和 Distribution Distance (e.g. Chi-square measure)</li>
-</ul>
-<font color="blue">以下简单介绍几种距离，更多请参考<a href="https://blog.csdn.net/hy592070616/article/details/121723169?spm=1001.2014.3001.5501">此处 (csdn note)</a></font><br>
-
-
-
-<font color="blue">1 .  Minkowski distance (闵可夫斯基距离)</font>
-
-<blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt[h]{\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|^h}&amp;<br>\end{align}<br>$</p>
-
-</blockquote>
-<blockquote>
-<p>Parameter <code>h</code> is to <font color="blue">emphasize the character of the data</font>. By changing the value of <code>h</code> , Minkowski distance can cover many Distance Metrics.</p>
-</blockquote>
-<font color="blue">2 .  Manhattan distance (曼哈顿距离) </font>
-
-
-<blockquote>
-<p>Minkowski distance where $h = 1$</p>
-</blockquote>
-<blockquote class="blockquote-center">
-<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sum_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
-
-</blockquote>
-<font color="blue">3 .  Euclidean distance (欧氏距离)</font>
-
-<blockquote>
-<p>Minkowski distance where $h = 2$ </p>
-</blockquote>
-<blockquote class="blockquote-center">
-<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\sqrt{\sum_{k=1}^{p}(\text x_{ik}-\text x_{jk})^2}<br>$</p>
-
-</blockquote>
-<font color="blue">4 .  Supremum distance (or Chebyshev distance, 切比雪夫距离)</font>
-
-<blockquote>
-<p>Minkowski distance where $h \to \infty$ </p>
-</blockquote>
-<blockquote class="blockquote-center">
-<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\max_{k=1}^{p}|\text x_{ik}-\text x_{jk}|<br>$</p>
-
-</blockquote>
-<p><a name="cosine distance"><font color="blue">5 .  Cosine distance (余弦距离)</font></a> </p>
-<blockquote class="blockquote-center">
-<p>$<br>\cos(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{k=1}^{p}\text x_{ik}\text x_{jk}}{\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}\sqrt{\sum_{k=1}^{p}\text x_{ik}^2}}=\frac{\textbf{x}_i\cdot\textbf{x}_j}{\left|\textbf{x}_i\right|\left|\textbf{x}_j\right|}<br>$</p>
-
-</blockquote>
-<p><strong>Other Distance:</strong></p>
-<ul>
-<li>For <a href="#ordinal">ordinal data</a>, mapping the data to numerical data : $X=\{x_{(1)}, x_{(2)},…, x_{(n)}\}, x_{(i)} \mapsto \frac{i−1} {n−1}\in [0, 1]$ </li>
-<li>For mixed type, use weighed distance (加权) with prescribed weights :</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\text d(\textbf{x}_i,\textbf{x}_j)=\frac{\sum_{g=1}^{G}w_{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}<br>$</p>
-
-</blockquote>
-<h3 id="Data-Preprocessing-Lecture"><a href="#Data-Preprocessing-Lecture" class="headerlink" title="Data Preprocessing (Lecture)"></a>Data Preprocessing (Lecture)</h3><div align="center">
-<img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7" width="90%">
-</div>
-
-<ul>
-<li>Data Scaling (归一化，标准化)<ul>
-<li>Why scaling?<ul>
-<li>For better performance or normalize diﬀerent dimensions</li>
-</ul>
-</li>
-<li><a name="z-score"><b>Z-score scaling</b></a>:   <font size="5">$x_i^\ast=\frac{x_i-\hat\mu}{\hat\sigma}$ </font> ,<br>applicable when max and min unknown and data distributes well (e.g. normal distribution)</li>
-<li><strong>0-1 scaling</strong> (Min-Max scaling) :   <font size="5">$x_i^\ast=\frac{x_i-\min_k x_k}{\max_k x_k-\min_k x_k}$ </font> ,<br>applicable for bounded data sets, and need to <font color="red">recompute</font> max and min when new data added</li>
-<li>Decimal scaling: $x_{i}^{\ast}=\frac{x_i}{10^k}$, applicable for data varying across many magnitudes (分布太广)</li>
-<li>Logistic scaling: $x_i^{\ast}=\frac{1}{1+e^{-x_i}}$ , applicable for data concentrating nearby origin (分布太窄)</li>
-</ul>
-</li>
-<li>Data Discretization (离散化)<ul>
-<li>Why discretization?<ul>
-<li>Improve the robustness : removing the outliers by putting them into certain intervals</li>
-<li>For better interpretation</li>
-<li>Reduce the storage and computational power</li>
-</ul>
-</li>
-<li><strong>Unsupervised discretization</strong>: equal-distance discretization (等距，数据分布可能不均), equal-frequency discretization, clustering-based discretization (聚类), 3$\sigma$-based discretization</li>
-<li><strong>Supervised discretization</strong>: information gain based discretization (e.g. 决策树), $\mathcal X^2$-based discretization (Chi-Merge)</li>
-</ul>
-</li>
-<li>Data Redundancy <ul>
-<li>Why redundancy exists?<ul>
-<li>Correlations exist among different attributes (E.g. Age, birthday and current time), <font color="green">recalling the linear dependency for vectors</font></li>
-</ul>
-</li>
-<li><strong>Continuous variables:</strong> compute the correlation coefficient (相关系数) <font size="4">$\rho_{A,B}=\frac{\sum_{i=1}^{k}{(a_i-\bar A)(b_i-\bar B)}}{k\hat\sigma_{A}\hat\sigma_{B}}\in[-1,1]$ </font></li>
-<li><strong>Discrete variables:</strong> compute the $\mathcal X^{2}$ statistics : large $\hat{\mathcal{X}^{2}}$ value implies small correlation.</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>About missing data: (<code>NA</code>, \<Empty>, <code>NaN</code>)</Empty></p>
-<p>Delete or Pad </p>
-<ul>
-<li>Pad (or filling)<ul>
-<li>fill with <font color="blue">0</font>, with <font color="blue">mean value</font>, with <font color="blue">similar variables</font> (auto-correlation is introduced), with <font color="blue">past data</font>, with <font color="blue">Expectation-Maximization</font> or by K-Means</li>
-</ul>
-</li>
-</ul>
-<p>In Python, <code>NaN</code> means missing values (Not a Number, missing float values)</p>
-<p><code>None</code> is a Python object, representing missing values of the object type</p>
-<p>For some multi-classifications (e.g. “Male” and “Female”) model, we should refer to <strong>Dummy Variables</strong> to describe. (We usually set “Unknown” as reference variable <code>00</code>, and describe “Male” and “Female” as <code>01</code> &amp; <code>10</code>)</p>
-</blockquote>
-<ul>
-<li>Random filling : <ul>
-<li>Bayesian Bootstrap : for discrete data with range $\{x_i\}^k_{i=1}$, randomly sample $k − 1$ numbers from $U(0, 1)$ as $\{a_{(i)}\}^k_{i=0}$ with $a_{(0)} = 0$ and $a_{(k)} = 1$ ; then randomly sample from $\{x_i\}^k_{i=1}$ with probability distribution $\{a_{(i)} − a_{(i−1)}\}^k_{i=1} $accordingly to fill in the missing values</li>
-<li>Approximate Bayesian Bootstrap : Sample with replacement from $\{x_i\}^k_{i=1}$ to form new data set $X^\ast = \{x^\ast_{i} \}^{k^\ast}_{i=1}$ ; then randomly sample $n$ values from $X^\ast$ to fill in the missing values, allowing for repeatedly filling missing values</li>
-</ul>
-</li>
-<li>Model based methods : treat missing variable as <code>y</code>, other variables as <code>x</code> ; take the  data without missing values as out training set to train a <font color="#009100">classification</font> or <font color="#009100">regression</font> model ; take those with missing values as test set to predict the missing values.</li>
-</ul>
-<h3 id="Outlier-异常值"><a href="#Outlier-异常值" class="headerlink" title="Outlier (异常值)"></a>Outlier (异常值)</h3><ul>
-<li><p>Outlier Detection</p>
-<ul>
-<li>Statistics Based Methods</li>
-<li>Local Outlier Factor</li>
-</ul>
-</li>
-<li><p>Computing Density by Distance</p>
-<ul>
-<li>$d(A, B)$ : distance between $A$ and $B$ </li>
-<li>$d_k (A)$ : k-distance of $A$, or the distance between $A$ and the <font color="red">k-th nearest point</font> from $A$ ;</li>
-<li>$N_k (A)$ : Set of k-distance neighborhood of $A$, or the points within $d_k (A)$ from $A$ ;</li>
-<li>$rd_k (B, A)$ : k-reach distance from $A$ to $B$, the repulsive distance from $A$ to $B$ as if $A$ has a hard-core with radius $d_k (A)$, $rd_k (B, A) = max\{d_k (A), d(A, B)\}$ ; k-reach-distance is not symmetric. [ $rd_k (B, A)\neq rd_k(A,B)$ ]  <br><font color="Grey">Personal understanding: It’s like adding a weight at two edge between two nodes in a directed graph.</font></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>如果 $B$ 在 $A$ 的 $k$ 邻近点以外，则取 $A$, $B$ 距离，如果 $B$ 在 $A$ 的 $k$ 邻近点以内，则取 $A$ 与其 $k$ 邻近点的距离</p>
-</blockquote>
-<ul>
-<li>Local Outlier Factor (Some definition)<ul>
-<li>$lrd_k (A)$ : <font color="red">local reachability density</font> is inversely proportional (成反比) to the average distance</li>
-<li>$lrd_k (A)=1/\left(\frac{ \sum_{O\in N_k (A)} rd_k (A,O) }{| N_k (A)|}\right)$ <font color="blue">(Definition)</font> </li>
-<li>If for most $O\in N_k (A)$ , more than $k$ points are closer to $O$ than $A$ is, then the denominator (分母) is much larger than $d_k(A)$ , and $lrd_k(A)$ is small (e.g. $k=3$ in following Pic)</li>
-<li><font color="red">Local Outlier Factor</font> : $LOF_k(A)=\Large{\frac{ \sum_{O\in N_k(A)} \frac{lrd_k(O)}{lrd_k(A)}}{|N_k(A)|}}$ </li>
-<li>$LOF_k(A) \ll 1$ , the density of $A$ is locally higher ; $LOF_k(A)\gg 1$ , the density of $A$ is locally lower, probably <font color="#ff359a">outlier</font> </li>
-</ul>
-</li>
-</ul>
-<div align="center">
-<img src="/2024/06/22/Big-Data-1/bd10.png" alt="bd10" width="40%">
-</div>
-
-<blockquote>
-<font face="华文楷体" size="4">注：</font>$LOF$ <font face="华文楷体" size="4">主要用于检测点</font> $A$ <font face="华文楷体" size="4">的邻近点密度，并由此推测该点是否异常值</font>
-
-</blockquote>
-]]></content>
-      <categories>
-        <category>2024 Spring</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>CSE Learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CS202 计算机组成原理</title>
-    <url>/2024/06/25/Computer-Organization/</url>
-    <content><![CDATA[<h1 id="Computer-Organization"><a href="#Computer-Organization" class="headerlink" title="Computer Organization"></a>Computer Organization</h1>]]></content>
-      <categories>
-        <category>2024 Spring</category>
-      </categories>
-      <tags>
-        <tag>CSE Learning</tag>
-        <tag>Verilog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Introduction to Hexo and Github Page</title>
-    <url>/2024/06/07/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is the very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
