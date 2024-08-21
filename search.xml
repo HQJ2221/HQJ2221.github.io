@@ -1,6 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>概率论与数理统计</title>
+    <url>/2024/08/19/Probability-Theory-and-Mathematical-Statistics/</url>
+    <content><![CDATA[<h1 id="第一章-概率"><a href="#第一章-概率" class="headerlink" title="第一章 概率"></a>第一章 概率</h1><h2 id="记数方法"><a href="#记数方法" class="headerlink" title="记数方法"></a>记数方法</h2><ul>
+<li>古典概型<ul>
+<li>$\Omega$ 只含有限个样本点</li>
+<li>每个样本点出现是等可能的</li>
+</ul>
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>P(A)=\frac{A \text{的有利场合数}}{\text{样本点总数}}=\frac{k}{n}<br>$</p>
+
+</blockquote>
+<ul>
+<li>几何概型<ul>
+<li>对比古典概型有无限个样本点</li>
+</ul>
+</li>
+</ul>
+<h2 id="全概率定律"><a href="#全概率定律" class="headerlink" title="全概率定律"></a>全概率定律</h2><p><strong>Def.</strong> 设 $\Omega$ 为样本空间，若事件 $B_1,B_2,\cdots ,B_n$ 满足：</p>
+<ol>
+<li>$B_1,B_2,\cdots ,B_n$ 两两不相容</li>
+<li>$B_1 \cup B_2 \cup \cdots \cup B_n = \Omega$</li>
+</ol>
+<p>则称 $B_1,B_2,\cdots ,B_n$ 为样本空间的一个<font color="red">划分</font>。</p>
+<p>由此推出全概率公式：</p>
+<blockquote class="blockquote-center">
+<p>$<br>P(A)=\sum_{i=1}^{n} P(A|B_i) \cdot P(B_i)<br>$</p>
+
+</blockquote>
+<p>由全概率公式和条件概率的乘法公式推导出 <font color="red">Bayes 公式</font>：</p>
+<blockquote class="blockquote-center">
+<p>$<br>P(B_i|A)=\frac{P(A|B_i)P(B_i)}{\sum_{j=1}^{n} P(A|B_j)P(B_j)}<br>$</p>
+
+</blockquote>
+<p>Bayes 公式的实际意义：</p>
+<p>假定 $B_1,B_2,\cdots ,B_n$ 为导致实验结果的“原因”，称 $P(B_i) (i=1,2,\cdots ,n)$ 为<font color="red">先验概率</font>。</p>
+<p>若试验产生事件 A ，则要探讨事件发生的“原因”：称 $P(B_i|A)$ 为<font color="red">后验概率</font>，称 $P(A|B_i)$ 为<font color="red">原因概率</font></p>
+<h1 id="第二章-随机变量"><a href="#第二章-随机变量" class="headerlink" title="第二章 随机变量"></a>第二章 随机变量</h1><h2 id="离散随机变量"><a href="#离散随机变量" class="headerlink" title="离散随机变量"></a>离散随机变量</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>P\{ X=x_k \}= p(x_k),\ \ (k=1,2,3,\cdots)<br>$</p>
+
+</blockquote>
+<p>为离散型 r.v. X 的概率质量函数 (PMF)</p>
+<blockquote class="blockquote-center">
+<p>$<br>F(x)=P\{ X \le x \}, -\infty \lt x \lt \infty<br>$</p>
+
+</blockquote>
+<p>为离散型 r.v. X 的累计分布函数 (CDF)</p>
+<p><strong>泊松定理</strong></p>
+<p>设 $\lambda \gt 0$，$n$ 为正整数，$\lim_{n \to \infty} np_n=\lambda$，则有</p>
+<blockquote class="blockquote-center">
+<p>$<br>\lim_{n\to \infty} C^k_n p^k_n(1-p_n)^{n-k}=\frac{\lambda^{k}e^{-\lambda}}{k!}<br>$</p>
+
+</blockquote>
+<h2 id="连续随机变量"><a href="#连续随机变量" class="headerlink" title="连续随机变量"></a>连续随机变量</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>F(x)=\int_{-\infty}^{x} f(t)\text{d}t,\ -\infty \lt x \lt \infty<br>$</p>
+
+</blockquote>
+<p>其中 $f(t)$ 为连续型 r.v. X 的概率密度函数 (PDF)</p>
+<p><strong>标准正态分布</strong></p>
+<blockquote class="blockquote-center">
+<p>$<br>\Phi(x)=\int_{-\infty}^{x} \psi(x)\text{d}x \\<br>\psi(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \\<br>s.t.\ \mu=0,\ \sigma^2=1<br>$</p>
+
+</blockquote>
+<h2 id="随机变量的函数"><a href="#随机变量的函数" class="headerlink" title="随机变量的函数"></a>随机变量的函数</h2><p>例：设随机变量 $X$，$Y$，满足 $Y=aX+b$，如何通过 $X$ 的概率密度分布求出 $Y$ 的 PDF？</p>
+<p>解：令 $x=g(y)=\frac{y-b}{a}$，可得 $F_Y(y)=P\{ Y\le y \}=P\{ X\le\frac{y-b}{a} \}=F_X(\frac{y-b}{a})$。</p>
+<p>化简得：$f_Y(y)=F_{X}’(g(y))=(g(y))’f_X(g(y))$</p>
+<p>如正态分布 $X\sim N(\mu,\sigma^2)$ 的线性函数 $aX+b \sim N(a\mu +b,(a\sigma)^2)$ 也是正态分布</p>
+<h1 id="第三章-联合分布"><a href="#第三章-联合分布" class="headerlink" title="第三章 联合分布"></a>第三章 联合分布</h1><h2 id="联合随机变量"><a href="#联合随机变量" class="headerlink" title="联合随机变量"></a>联合随机变量</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>F(X,Y)\triangleq P\{ X\le x,Y\le y \}\ \ s.t.\ \{x,y\}\in \mathbb{R}<br>$</p>
+
+</blockquote>
+<p>为 $X$ 与 $Y$ 的联合累积分布函数。</p>
+<blockquote class="blockquote-center">
+<p>$<br>F_X(x)= P\{ X\le x,Y\le \infty \}\ \ s.t.\ x\in \mathbb{R}<br>$</p>
+
+</blockquote>
+<p>称为 $X$ 的边际分布，$Y$ 同理。</p>
+<p><strong>概率密度函数</strong></p>
+<blockquote class="blockquote-center">
+<p>$<br>F(x,y)=\int_{-\infty}^{x} \int_{-\infty}^{y} f(u,v)\text{d}u\text{d}v,\ s.t.\ \{ x,y\}\in\mathbb{R}<br>$</p>
+
+</blockquote>
+<p>则 $f(x,y)$ 为 $X$，$Y$ 的概率密度函数(joint PDF)</p>
+<p><strong>边际密度</strong></p>
+<blockquote class="blockquote-center">
+<p>$<br>f_X(u)=\int_{-\infty}^{\infty} f(u,y)\text{d}y<br>$</p>
+
+</blockquote>
+<p>称为 $X$ 的边际密度，$Y$ 同理。</p>
+<h2 id="独立随机变量"><a href="#独立随机变量" class="headerlink" title="独立随机变量"></a>独立随机变量</h2>]]></content>
+      <categories>
+        <category>2023 Fall</category>
+      </categories>
+      <tags>
+        <tag>CSE Learning</tag>
+        <tag>Maths</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NUS 夏令营日记</title>
     <url>/2024/06/30/Summer-Workshop-Diary/</url>
     <content><![CDATA[<h1 id="2024-6-29-Sat"><a href="#2024-6-29-Sat" class="headerlink" title="2024-6-29 (Sat.)"></a>2024-6-29 (Sat.)</h1><p>　　经过 4 小时左右的飞行，我于新加坡当地时间（其实就是北京时间）16:50 左右抵达新加坡的樟宜机场(Changi Airport)。然后第一个难题就来了。</p>
