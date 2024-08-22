@@ -94,7 +94,34 @@
 
 </blockquote>
 <p>称为 $X$ 的边际密度，$Y$ 同理。</p>
-<h2 id="独立随机变量"><a href="#独立随机变量" class="headerlink" title="独立随机变量"></a>独立随机变量</h2>]]></content>
+<h2 id="独立随机变量"><a href="#独立随机变量" class="headerlink" title="独立随机变量"></a>独立随机变量</h2><blockquote class="blockquote-center">
+<p>$<br>f(x,y)=f_X(x)\cdot f_Y(y)<br>$</p>
+
+</blockquote>
+<p>当上式成立时，$X$，$Y$ 相互独立，即相关系数 $\rho=0$。</p>
+<h2 id="条件分布"><a href="#条件分布" class="headerlink" title="条件分布"></a>条件分布</h2><p>（只看连续，离散情况容易推导）</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>P(X\le x|y\le Y\le y+\epsilon) &amp;=\frac{P\{X\le x,y\le Y\le y+\epsilon\}}{P\{ y\le Y\le y+\epsilon\ \}} \\<br>&amp;=\frac{\int_{-\infty}^{x}\int_{y}^{y+\epsilon} f(u,v)\text{d}u\text{d}v}{\int_{y}^{y+\epsilon} f_Y(v)\text{d}v} \\<br>&amp;=\frac{\epsilon\int_{-\infty}^{x}f(u,y_\epsilon)\text{d}u}{\epsilon f_Y(\tilde{y}_{\epsilon})} \\<br>&amp;= \int_{-\infty}^{x}\frac{f(u,y)}{f_Y(y)} \text{d}u\ \ (\epsilon\to 0)<br>\end{align}<br>$</p>
+
+</blockquote>
+<p>定义 $\frac{f(u,y)}{f_Y(y)} \triangleq f_{X|Y}(x|y)$ 为 $Y=y$ 下 $X$ 的<font color="red">条件密度</font></p>
+<h2 id="联合分布随机变量的函数"><a href="#联合分布随机变量的函数" class="headerlink" title="联合分布随机变量的函数"></a>联合分布随机变量的函数</h2><ol>
+<li>$Z=X+Y$</li>
+</ol>
+<p>利用卷积公式 (可写作 $f_X * f_Y$)：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)\text{d}y \\<br>\text{or } &amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\text{d}x<br>\end{align}<br>$</p>
+
+</blockquote>
+<p><font color="red">前提：</font>$X$，$Y$ 相互独立（如不独立，可利用联合分布、条件分布求得，或变换成独立变量再求解）</p>
+<ol>
+<li>$Z=\frac{X}{Y}$</li>
+</ol>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;\text{由于 }F_Z(z)=P\{ X/Y\le z \}=\underset{\frac{x}{y}\le z}{\int\int} f(x,y)\text{d}x \text{d}y \text{ 积分区域可能不是矩形} \\<br>&amp;\text{为简化积分计算，使用 }\textbf{J}=\frac{\partial{(x,y)}}{\partial{(u, v)}}= \Large{\left| \begin{array}{c} \frac{\partial{x}}{\partial{u}} &amp; \frac{\partial{x}}{\partial{v}} \\ \frac{\partial{y}}{\partial{u}} &amp; \frac{\partial{y}}{\partial{v}} \end{array} \right|} \\<br>&amp;\text{得 }F_Z(z)=\underset{\Omega}{\int\int} f[x(u,v),y(u,v)] |\textbf{J}|\text{d}u \text{d}v<br>\end{align}<br>$</p>
+
+</blockquote>
+]]></content>
       <categories>
         <category>2023 Fall</category>
       </categories>
