@@ -121,6 +121,31 @@
 <p>$<br>\begin{align}<br>&amp;\text{由于 }F_Z(z)=P\{ X/Y\le z \}=\underset{\frac{x}{y}\le z}{\int\int} f(x,y)\text{d}x \text{d}y \text{ 积分区域可能不是矩形} \\<br>&amp;\text{为简化积分计算，使用 }\textbf{J}=\frac{\partial{(x,y)}}{\partial{(u, v)}}= \Large{\left| \begin{array}{c} \frac{\partial{x}}{\partial{u}} &amp; \frac{\partial{x}}{\partial{v}} \\ \frac{\partial{y}}{\partial{u}} &amp; \frac{\partial{y}}{\partial{v}} \end{array} \right|} \\<br>&amp;\text{得 }F_Z(z)=\underset{\Omega}{\int\int} f[x(u,v),y(u,v)] |\textbf{J}|\text{d}u \text{d}v<br>\end{align}<br>$</p>
 
 </blockquote>
+<h2 id="顺序统计量"><a href="#顺序统计量" class="headerlink" title="顺序统计量"></a>顺序统计量</h2><p>设 $X_i\sim f(x)$ 是独立同分布的连续型 r.v.，则对于顺序统计量 $X_{(1)}(\min),\cdots ,X_{(n)}(\max)$ ，如何求 $X_{(k)}$ 的密度？</p>
+<p>解：对于充分小的空间 $[x,x+\text{d}x]$，有</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;P\{ x\lt X_{(k)} \lt x+\text{d}x \}=\left(\begin{array}{c}n \\ k-1 \end{array} \right) F(x)^{k-1} \left(\begin{array}{c}n-k+1 \\ 1 \end{array} \right) [F(x+\text{d}x)-F(x)] \left(\begin{array}{c}n-k \\ n-k  \end{array} \right) [1-F(x+\text{d}x)^{n-k}] \\<br>\therefore\ \ &amp;f_k(x)=\frac{\text{d}P\{ x\lt X_{(k)} \lt x+\text{d}x \}}{\text{d}x}=\frac{n!}{(k-1)!(n-k)!}F(x)^{k-1} f(x)[1-F(x)]^{n-k}<br>\end{align}<br>$</p>
+
+</blockquote>
+<p>称此为 Veta 分布，记为 $X\sim Beta(k, n-k+1)$</p>
+<p>Beta 密度用于刻画 [0, 1] 上的随机变量：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;f(u)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}u^{a-1}(1-u)^{b-1} \\<br>s.t.\ &amp;\Gamma(x)=(x-1)! ,\ 0\le u\le 1<br>\end{align}<br>$</p>
+
+</blockquote>
+<h1 id="第四章-随机变量的数字特征"><a href="#第四章-随机变量的数字特征" class="headerlink" title="第四章 随机变量的数字特征"></a>第四章 随机变量的数字特征</h1><h2 id="协方差"><a href="#协方差" class="headerlink" title="协方差"></a>协方差</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>&amp;Cov(X,Y)\triangleq E[(X-E(X))\cdot (Y-E(Y))]<br>\end{align}<br>$</p>
+
+</blockquote>
+<p>称为 X，Y 的协方差，其相关系数表示为：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{align}<br>\rho_{XY}\triangleq Cov(X^<em>,Y^</em>)=\frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{E(Y)}}<br>\end{align}<br>$</p>
+
+</blockquote>
+<p>利用这个属性进行 X，Y 线性拟合的计算：</p>
+<p>记均方误差为 $e=E[(Y-\hat{Y})^2]=E[(Y-(aX+b))^2]$</p>
+<p>令 $\left{ \begin{array} yes \\ no \end{array} \right.$</p>
 ]]></content>
       <categories>
         <category>2023 Fall</category>
