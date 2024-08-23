@@ -113,39 +113,169 @@
 <p>$<br>\begin{align}<br>&amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)\text{d}y \\<br>\text{or } &amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\text{d}x<br>\end{align}<br>$</p>
 
 </blockquote>
-<p><font color="red">前提：</font>$X$，$Y$ 相互独立（如不独立，可利用联合分布、条件分布求得，或变换成独立变量再求解）</p>
-<ol>
-<li>$Z=\frac{X}{Y}$</li>
-</ol>
+<font color="red">前提：</font>$X$，$Y$ 相互独立（如不独立，可利用联合分布、条件分布求得，或变换成独立变量再求解）
+
+
+
+2. $Z=\frac{X}{Y}$
+
 <blockquote class="blockquote-center">
 <p>$<br>\begin{align}<br>&amp;\text{由于 }F_Z(z)=P\{ X/Y\le z \}=\underset{\frac{x}{y}\le z}{\int\int} f(x,y)\text{d}x \text{d}y \text{ 积分区域可能不是矩形} \\<br>&amp;\text{为简化积分计算，使用 }\textbf{J}=\frac{\partial{(x,y)}}{\partial{(u, v)}}= \Large{\left| \begin{array}{c} \frac{\partial{x}}{\partial{u}} &amp; \frac{\partial{x}}{\partial{v}} \\ \frac{\partial{y}}{\partial{u}} &amp; \frac{\partial{y}}{\partial{v}} \end{array} \right|} \\<br>&amp;\text{得 }F_Z(z)=\underset{\Omega}{\int\int} f[x(u,v),y(u,v)] |\textbf{J}|\text{d}u \text{d}v<br>\end{align}<br>$</p>
 
 </blockquote>
-<h2 id="顺序统计量"><a href="#顺序统计量" class="headerlink" title="顺序统计量"></a>顺序统计量</h2><p>设 $X_i\sim f(x)$ 是独立同分布的连续型 r.v.，则对于顺序统计量 $X_{(1)}(\min),\cdots ,X_{(n)}(\max)$ ，如何求 $X_{(k)}$ 的密度？</p>
-<p>解：对于充分小的空间 $[x,x+\text{d}x]$，有</p>
+
+
+
+## 顺序统计量
+
+设 $X_i\sim f(x)$ 是独立同分布的连续型 r.v.，则对于顺序统计量 $X_{(1)}(\min),\cdots ,X_{(n)}(\max)$ ，如何求 $X_{(k)}$ 的密度？
+
+解：对于充分小的空间 $[x,x+\text{d}x]$，有
+
 <blockquote class="blockquote-center">
 <p>$<br>\begin{align}<br>&amp;P\{ x\lt X_{(k)} \lt x+\text{d}x \}=\left(\begin{array}{c}n \\ k-1 \end{array} \right) F(x)^{k-1} \left(\begin{array}{c}n-k+1 \\ 1 \end{array} \right) [F(x+\text{d}x)-F(x)] \left(\begin{array}{c}n-k \\ n-k  \end{array} \right) [1-F(x+\text{d}x)^{n-k}] \\<br>\therefore\ \ &amp;f_k(x)=\frac{\text{d}P\{ x\lt X_{(k)} \lt x+\text{d}x \}}{\text{d}x}=\frac{n!}{(k-1)!(n-k)!}F(x)^{k-1} f(x)[1-F(x)]^{n-k}<br>\end{align}<br>$</p>
 
 </blockquote>
-<p>称此为 Veta 分布，记为 $X\sim Beta(k, n-k+1)$</p>
-<p>Beta 密度用于刻画 [0, 1] 上的随机变量：</p>
+
+称此为 Veta 分布，记为 $X\sim Beta(k, n-k+1)$
+
+Beta 密度用于刻画 [0, 1] 上的随机变量：
+
 <blockquote class="blockquote-center">
 <p>$<br>\begin{align}<br>&amp;f(u)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}u^{a-1}(1-u)^{b-1} \\<br>s.t.\ &amp;\Gamma(x)=(x-1)! ,\ 0\le u\le 1<br>\end{align}<br>$</p>
 
 </blockquote>
-<h1 id="第四章-随机变量的数字特征"><a href="#第四章-随机变量的数字特征" class="headerlink" title="第四章 随机变量的数字特征"></a>第四章 随机变量的数字特征</h1><h2 id="协方差"><a href="#协方差" class="headerlink" title="协方差"></a>协方差</h2><p>定义：</p>
+
+
+
+# 第四章 随机变量的数字特征
+
+## 协方差
+
+定义：
+
 <blockquote class="blockquote-center">
 <p>$<br>\begin{align}<br>&amp;Cov(X,Y)\triangleq E[(X-E(X))\cdot (Y-E(Y))]<br>\end{align}<br>$</p>
 
 </blockquote>
-<p>称为 X，Y 的协方差，其相关系数表示为：</p>
+
+称为 X，Y 的协方差，其相关系数表示为：
+
 <blockquote class="blockquote-center">
 <p>$<br>\begin{align}<br>\rho_{XY}\triangleq Cov(X^<em>,Y^</em>)=\frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{E(Y)}}<br>\end{align}<br>$</p>
 
 </blockquote>
-<p>利用这个属性进行 X，Y 线性拟合的计算：</p>
-<p>记均方误差为 $e=E[(Y-\hat{Y})^2]=E[(Y-(aX+b))^2]$</p>
-<p>令 $\left{ \begin{array} yes \\ no \end{array} \right.$</p>
+
+
+
+利用这个属性进行 X，Y 线性拟合的计算：
+
+记均方误差为 $e=E[(Y-\hat{Y})^2]=E[(Y-(aX+b))^2]$
+
+令 $\left\{ \begin{array}{l} &\frac{\partial{e}}{\partial{b}}=2b+2aE(X)-2E(Y)=0 \\ &\frac{\partial{e}}{\partial{a}}=2aE(X^2)-2E(XY)+2bE(X)=0 \end{array} \right.$
+
+解得 $\left\{ \begin{array}{l} &b_0=\frac{Cov(X,Y)}{D(X)} \\ &a_0=E(Y)-E(X)\cdot b_0 \end{array} \right.$
+
+进一步得 $\underset{a,b}{\min e}=D(Y)(1-\frac{Cov^2(X,Y)}{D(X)D(Y)})=D(Y)(1-\rho^2_{XY})$
+
+<font color="red">注意：</font>$\rho_{XY}=0$ 并不意味着 X，Y 相互独立！（但正态分布能证明 不相关 = 独立）
+
+
+
+定义：
+
+对 r.v. X，Y，
+
+$E(X^k)\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶原点矩</font>
+
+<p>$E[(X-E(X))^k]\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶中心矩</font></p>
+<p>$E[(X-E(X))^k(Y-E(Y))^l]\ \ \ (k,l=1,2,\cdots)$ 为 <font color="red">k+l 阶混合中心矩</font></p>
+<blockquote>
+<p>因此，r.v. 的期望是一阶原点矩，方差是2阶中心矩，协方差是2阶混合中心矩。</p>
+</blockquote>
+<h2 id="条件期望"><a href="#条件期望" class="headerlink" title="条件期望"></a>条件期望</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\left\{\begin{array}{rl}<br>&amp;E(h(Y)|X=x)=\sum_{y}h(y)p_{Y|X}(y|x) &amp;\text{（离散）} \\<br>&amp;E(h(Y)|X=x)=\int_{y}h(y)f_{Y|X}(y|x)\text{d}y &amp;\text{（连续）}<br>\end{array}\right.<br>$</p>
+
+</blockquote>
+<blockquote>
+<p>特殊情况下，$h(y)=y$</p>
+</blockquote>
+<p><font color="green">回顾泊松分布：</font> $X\sim P(\lambda t)$</p>
+<p>$P(X=k)=\frac{(\lambda t)^k}{k!}e^{-\lambda t}\ \ \ k\in\mathbb{N}$  称为泊松强度。</p>
+<p>例：考虑 [0, 1] 区间上均值为 $\lambda$ 的泊松流，令 N 是 [0, 1] 上点的个数。对于 $p\lt 1$，令 X 是 [0, p] 上点的个数。计算给定 N = n 的情况下，X 的条件分布和条件期望。</p>
+<p>解：联合分布</p>
+<p>$P\{X=x,N=n \}=\frac{(p\lambda)^xe^{-p\lambda}}{x!}\cdot \frac{((1-p)\lambda)^{(n-x)}e^{-(1-p)\lambda}}{(n-x)!}$</p>
+<p>而 $N\sim P(\lambda)$</p>
+<p>因此 $P\{X=x|N=n \}=\frac{n!}{x!(n-x)!}p^x(1-p)^{(n-x)}\sim b(n,p)$</p>
+<p>从而 $X$ 的条件期望为 $np$。</p>
+<h1 id="第五章-数理统计（入门）"><a href="#第五章-数理统计（入门）" class="headerlink" title="第五章 数理统计（入门）"></a>第五章 数理统计（入门）</h1><h2 id="大数定律"><a href="#大数定律" class="headerlink" title="大数定律"></a>大数定律</h2><p>（伯努利版）设 $P(A)=p$，则对任意 $\epsilon\gt 0$，有 $\color{red} \underset{n\to \infty}{\lim}=P\{|\frac{n_A}{n}-p|\ge \epsilon \}=0$</p>
+<p>（切比雪夫版）$\{X_n\}$ 为独立随机变量列，且期望方差相同，则对任意 $\epsilon\gt 0$，有 $\color{red} \underset{n\to \infty}{\lim}=P\{|\frac{1}{n}\sum_{i=1}^{n}X_i-\mu|\ge \epsilon \}=0$</p>
+<p>（这意味着样本量足够大时，期望可被样本的算术均值替代）</p>
+<h2 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h2><p>若 $X_n$ 的分布 $F_n(x)$ 对任意 $x$ 满足</p>
+<blockquote class="blockquote-center">
+<p>$<br>\color{red}<br>\begin{array}{l}<br>&amp;\underset{n\to \infty}{\lim} F_n(x)=\underset{n\to \infty}{\lim}P\{ \frac{\sum_{i=1}^{n}(X_i-\mu_i)}{\sqrt{\sum_{i=1}^{n}\sigma_i^2}}\le x \}=\psi(x)<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>则称 $\{X_n \}$ 服从中心极限定理（$\psi(x)$ 为标准正态）</p>
+<p>特别当 $X_n$ 独立同分布，则有 $\underset{n\to \infty}{\lim}P\{ \frac{\sum_{i=1}^{n}X_i-n\mu_i}{\sqrt{n}\sigma_i}\le x \}=\psi(x)$</p>
+<blockquote>
+<p>德莫夫-拉普拉斯中心极限定理：对 $\eta_n\sim b(n,p)$</p>
+<p>$\frac{\eta_n-np}{\sqrt{np(1-p)}}\sim N(0,1)$</p>
+<p>参考高尔顿钉板</p>
+</blockquote>
+<h1 id="第六章-数理统计（基础）"><a href="#第六章-数理统计（基础）" class="headerlink" title="第六章 数理统计（基础）"></a>第六章 数理统计（基础）</h1><h2 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h2><ol>
+<li>$\chi^2$ - 分布</li>
+</ol>
+<p>设 $X_1-X_n$ 是来自总体 $X\sim N(0,1)$ 的样本，令</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>\chi^2=X_1^2+X_2^2+\cdots +X_n^2<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>称 $\chi^2$ 服从自由度为 $n$ 的 $\chi^2$ - 分布（也称卡方分布），记为 $\chi^2(n)$。</p>
+<blockquote>
+<p><font color="blue">自由度：</font>自由度是二次型 $\chi^2=X_1^2+X_2^2+\cdots +X_n^2$ 的秩，即可独立变化的变量个数。</p>
+</blockquote>
+<p>数字特征：</p>
+<ul>
+<li>$E(\chi^2)=n$</li>
+<li>$D(\chi^2)=2n$</li>
+</ul>
+<ol>
+<li>t - 分布</li>
+</ol>
+<p>设 $X\sim N(0,1)$，$Y\sim \chi^2(n)$，且 $X$，$Y$ 独立，令</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>t=X/\sqrt{Y/n}<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>称 $t$ 为服从自由度为 n 的 t - 分布，记为 $t(n)$。</p>
+<p>性质：</p>
+<ul>
+<li>数字特征<ul>
+<li>$E(t)=0$</li>
+<li>$D(t)=\frac{n}{n+2}$</li>
+</ul>
+</li>
+<li>当 n 充分大时，T 近似服从 N(0, 1)，即趋近标准正态分布<ul>
+<li>可证明 $\underset{n\to\infty}{\lim}f(x)=(2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}$</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>F - 分布</li>
+</ol>
+<p>设 $U\sim \chi^2(n_1)$，$V\sim \chi^2(n_2)$，且 $U$，$V$ 独立，令</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>F=\frac{U/n_1}{V/n_2}<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>称 F 为服从自由度为 $(n_1,n_2)$ 的 F - 分布，记为 $F(n_1,n_2)$。</p>
+<p>二级结论：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;T\sim t(n) \Rightarrow T^2\sim F(1,n) \\<br>\text{证：} &amp;T=\frac{X}{\sqrt{Y/n}} \Rightarrow T^2=\frac{X^2/1}{Y/n}, \\<br>\text{ 且 }&amp;X^2,Y\text{ 仍相互独立}<br>\end{array}<br>$</p>
+
+</blockquote>
 ]]></content>
       <categories>
         <category>2023 Fall</category>
