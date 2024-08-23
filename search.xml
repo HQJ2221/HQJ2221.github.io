@@ -64,7 +64,7 @@
 <p>其中 $f(t)$ 为连续型 r.v. X 的概率密度函数 (PDF)</p>
 <p><strong>标准正态分布</strong></p>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\Phi(x)=\int_{-\infty}^{x} \psi(x)\text{d}x \\<br>&amp;\psi(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \\<br>&amp;s.t.\ \mu=0,\ \sigma^2=1<br>\end{align}<br>$</p>
+<p>$<br>\begin{array}{l}<br>&amp;\Phi(x)=\int_{-\infty}^{x} \psi(x)\text{d}x \\<br>&amp;\psi(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \\<br>&amp;s.t.\ \mu=0,\ \sigma^2=1<br>\end{array}<br>$</p>
 
 </blockquote>
 <h2 id="随机变量的函数"><a href="#随机变量的函数" class="headerlink" title="随机变量的函数"></a>随机变量的函数</h2><p>例：设随机变量 $X$，$Y$，满足 $Y=aX+b$，如何通过 $X$ 的概率密度分布求出 $Y$ 的 PDF？</p>
@@ -101,83 +101,51 @@
 <p>当上式成立时，$X$，$Y$ 相互独立，即相关系数 $\rho=0$。</p>
 <h2 id="条件分布"><a href="#条件分布" class="headerlink" title="条件分布"></a>条件分布</h2><p>（只看连续，离散情况容易推导）</p>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>P(X\le x|y\le Y\le y+\epsilon) &amp;=\frac{P\{X\le x,y\le Y\le y+\epsilon\}}{P\{ y\le Y\le y+\epsilon\ \}} \\<br>&amp;=\frac{\int_{-\infty}^{x}\int_{y}^{y+\epsilon} f(u,v)\text{d}u\text{d}v}{\int_{y}^{y+\epsilon} f_Y(v)\text{d}v} \\<br>&amp;=\frac{\epsilon\int_{-\infty}^{x}f(u,y_\epsilon)\text{d}u}{\epsilon f_Y(\tilde{y}_{\epsilon})} \\<br>&amp;= \int_{-\infty}^{x}\frac{f(u,y)}{f_Y(y)} \text{d}u\ \ (\epsilon\to 0)<br>\end{align}<br>$</p>
+<p>$<br>\begin{array}{l}<br>P(X\le x|y\le Y\le y+\epsilon) &amp;=\frac{P\{X\le x,y\le Y\le y+\epsilon\}}{P\{ y\le Y\le y+\epsilon\ \}} \\<br>&amp;=\frac{\int_{-\infty}^{x}\int_{y}^{y+\epsilon} f(u,v)\text{d}u\text{d}v}{\int_{y}^{y+\epsilon} f_Y(v)\text{d}v} \\<br>&amp;=\frac{\epsilon\int_{-\infty}^{x}f(u,y_\epsilon)\text{d}u}{\epsilon f_Y(\tilde{y}_{\epsilon})} \\<br>&amp;= \int_{-\infty}^{x}\frac{f(u,y)}{f_Y(y)} \text{d}u\ \ (\epsilon\to 0)<br>\end{array}<br>$</p>
 
 </blockquote>
 <p>定义 $\frac{f(u,y)}{f_Y(y)} \triangleq f_{X|Y}(x|y)$ 为 $Y=y$ 下 $X$ 的<font color="red">条件密度</font></p>
-<h2 id="联合分布随机变量的函数"><a href="#联合分布随机变量的函数" class="headerlink" title="联合分布随机变量的函数"></a>联合分布随机变量的函数</h2><ol>
-<li>$Z=X+Y$</li>
-</ol>
+<h2 id="联合分布随机变量的函数"><a href="#联合分布随机变量的函数" class="headerlink" title="联合分布随机变量的函数"></a>联合分布随机变量的函数</h2><p>1 . $Z=X+Y$</p>
 <p>利用卷积公式 (可写作 $f_X * f_Y$)：</p>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)\text{d}y \\<br>\text{or } &amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\text{d}x<br>\end{align}<br>$</p>
+<p>$<br>\begin{array}{l}<br>&amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)\text{d}y \\<br>\text{or } &amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\text{d}x<br>\end{array}<br>$</p>
 
 </blockquote>
-<font color="red">前提：</font>$X$，$Y$ 相互独立（如不独立，可利用联合分布、条件分布求得，或变换成独立变量再求解）
+<font color="red">前提：</font> 
 
-
-
-2. $Z=\frac{X}{Y}$
-
+<p>$X$，$Y$ 相互独立（如不独立，可利用联合分布、条件分布求得，或变换成独立变量再求解）。</p>
+<p>2 . $Z=\frac{X}{Y}$</p>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;\text{由于 }F_Z(z)=P\{ X/Y\le z \}=\underset{\frac{x}{y}\le z}{\int\int} f(x,y)\text{d}x \text{d}y \text{ 积分区域可能不是矩形} \\<br>&amp;\text{为简化积分计算，使用 }\textbf{J}=\frac{\partial{(x,y)}}{\partial{(u, v)}}= \Large{\left| \begin{array}{c} \frac{\partial{x}}{\partial{u}} &amp; \frac{\partial{x}}{\partial{v}} \\ \frac{\partial{y}}{\partial{u}} &amp; \frac{\partial{y}}{\partial{v}} \end{array} \right|} \\<br>&amp;\text{得 }F_Z(z)=\underset{\Omega}{\int\int} f[x(u,v),y(u,v)] |\textbf{J}|\text{d}u \text{d}v<br>\end{align}<br>$</p>
+<p>$<br>\begin{array}{l}<br>&amp;\text{由于 }F_Z(z)=P\{ X/Y\le z \}=\underset{\frac{x}{y}\le z}{\int\int} f(x,y)\text{d}x \text{d}y \text{ 积分区域可能不是矩形} \\<br>&amp;\text{为简化积分计算，使用 }\textbf{J}=\frac{\partial{(x,y)}}{\partial{(u, v)}}= \Large{\left| \begin{array}{c} \frac{\partial{x}}{\partial{u}} &amp; \frac{\partial{x}}{\partial{v}} \\ \frac{\partial{y}}{\partial{u}} &amp; \frac{\partial{y}}{\partial{v}} \end{array} \right|} \\<br>&amp;\text{得 }F_Z(z)=\underset{\Omega}{\int\int} f[x(u,v),y(u,v)] |\textbf{J}|\text{d}u \text{d}v<br>\end{array}<br>$</p>
 
 </blockquote>
-
-
-
-## 顺序统计量
-
-设 $X_i\sim f(x)$ 是独立同分布的连续型 r.v.，则对于顺序统计量 $X_{(1)}(\min),\cdots ,X_{(n)}(\max)$ ，如何求 $X_{(k)}$ 的密度？
-
-解：对于充分小的空间 $[x,x+\text{d}x]$，有
-
+<h2 id="顺序统计量"><a href="#顺序统计量" class="headerlink" title="顺序统计量"></a>顺序统计量</h2><p>设 $X_i\sim f(x)$ 是独立同分布的连续型 r.v.，则对于顺序统计量 $X_{(1)}(\min),\cdots ,X_{(n)}(\max)$ ，如何求 $X_{(k)}$ 的密度？</p>
+<p>解：对于充分小的空间 $[x,x+\text{d}x]$，有</p>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;P\{ x\lt X_{(k)} \lt x+\text{d}x \}=\left(\begin{array}{c}n \\ k-1 \end{array} \right) F(x)^{k-1} \left(\begin{array}{c}n-k+1 \\ 1 \end{array} \right) [F(x+\text{d}x)-F(x)] \left(\begin{array}{c}n-k \\ n-k  \end{array} \right) [1-F(x+\text{d}x)^{n-k}] \\<br>\therefore\ \ &amp;f_k(x)=\frac{\text{d}P\{ x\lt X_{(k)} \lt x+\text{d}x \}}{\text{d}x}=\frac{n!}{(k-1)!(n-k)!}F(x)^{k-1} f(x)[1-F(x)]^{n-k}<br>\end{align}<br>$</p>
+<p>$<br>\begin{array}{l}<br>&amp;P\{ x\lt X_{(k)} \lt x+\text{d}x \}=\left(\begin{array}{c}n \\ k-1 \end{array} \right) F(x)^{k-1} \left(\begin{array}{c}n-k+1 \\ 1 \end{array} \right) [F(x+\text{d}x)-F(x)] \left(\begin{array}{c}n-k \\ n-k  \end{array} \right) [1-F(x+\text{d}x)^{n-k}] \\<br>\therefore\ \ &amp;f_k(x)=\frac{\text{d}P\{ x\lt X_{(k)} \lt x+\text{d}x \}}{\text{d}x}=\frac{n!}{(k-1)!(n-k)!}F(x)^{k-1} f(x)[1-F(x)]^{n-k}<br>\end{array}<br>$</p>
 
 </blockquote>
-
-称此为 Veta 分布，记为 $X\sim Beta(k, n-k+1)$
-
-Beta 密度用于刻画 [0, 1] 上的随机变量：
-
+<p>称此为 Veta 分布，记为 $X\sim Beta(k, n-k+1)$</p>
+<p>Beta 密度用于刻画 [0, 1] 上的随机变量：</p>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;f(u)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}u^{a-1}(1-u)^{b-1} \\<br>s.t.\ &amp;\Gamma(x)=(x-1)! ,\ 0\le u\le 1<br>\end{align}<br>$</p>
+<p>$<br>\begin{array}{l}<br>&amp;f(u)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}u^{a-1}(1-u)^{b-1} \\<br>s.t.\ &amp;\Gamma(x)=(x-1)! ,\ 0\le u\le 1<br>\end{array}<br>$</p>
 
 </blockquote>
-
-
-
-# 第四章 随机变量的数字特征
-
-## 协方差
-
-定义：
-
+<h1 id="第四章-随机变量的数字特征"><a href="#第四章-随机变量的数字特征" class="headerlink" title="第四章 随机变量的数字特征"></a>第四章 随机变量的数字特征</h1><h2 id="协方差"><a href="#协方差" class="headerlink" title="协方差"></a>协方差</h2><p>定义：</p>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>&amp;Cov(X,Y)\triangleq E[(X-E(X))\cdot (Y-E(Y))]<br>\end{align}<br>$</p>
+<p>$<br>\begin{array}{l}<br>&amp;Cov(X,Y)\triangleq E[(X-E(X))\cdot (Y-E(Y))]<br>\end{array}<br>$</p>
 
 </blockquote>
-
-称为 X，Y 的协方差，其相关系数表示为：
-
+<p>称为 X，Y 的协方差，其相关系数表示为：</p>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{align}<br>\rho_{XY}\triangleq Cov(X^<em>,Y^</em>)=\frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{E(Y)}}<br>\end{align}<br>$</p>
+<p>$<br>\begin{array}{l}<br>&amp;\rho_{XY}\triangleq Cov(X^{*},Y^{*})=\frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{E(Y)}}<br>\end{array}<br>$</p>
 
 </blockquote>
-
-
-
-利用这个属性进行 X，Y 线性拟合的计算：
-
-记均方误差为 $e=E[(Y-\hat{Y})^2]=E[(Y-(aX+b))^2]$
-
-令 $\left\{ \begin{array}{l} &\frac{\partial{e}}{\partial{b}}=2b+2aE(X)-2E(Y)=0 \\ &\frac{\partial{e}}{\partial{a}}=2aE(X^2)-2E(XY)+2bE(X)=0 \end{array} \right.$
-
-解得 $\left\{ \begin{array}{l} &b_0=\frac{Cov(X,Y)}{D(X)} \\ &a_0=E(Y)-E(X)\cdot b_0 \end{array} \right.$
-
-进一步得 $\underset{a,b}{\min e}=D(Y)(1-\frac{Cov^2(X,Y)}{D(X)D(Y)})=D(Y)(1-\rho^2_{XY})$
-
+<p>利用这个属性进行 X，Y 线性拟合的计算：</p>
+<p>记均方误差为 $e=E[(Y-\hat{Y})^2]=E[(Y-(aX+b))^2]$</p>
+<p>令 $\left\{ \begin{array}{l} &amp;\frac{\partial{e}}{\partial{b}}=2b+2aE(X)-2E(Y)=0 \\ &amp;\frac{\partial{e}}{\partial{a}}=2aE(X^2)-2E(XY)+2bE(X)=0 \end{array} \right.$</p>
+<p>解得 $\left\{ \begin{array}{l} &amp;b_0=\frac{Cov(X,Y)}{D(X)} \\ &amp;a_0=E(Y)-E(X)\cdot b_0 \end{array} \right.$</p>
+<p>进一步得 $\underset{a,b}{\min e}=D(Y)(1-\frac{Cov^2(X,Y)}{D(X)D(Y)})=D(Y)(1-\rho^2_{XY})$</p>
 <font color="red">注意：</font>$\rho_{XY}=0$ 并不意味着 X，Y 相互独立！（但正态分布能证明 不相关 = 独立）
 
 
@@ -224,9 +192,7 @@ $E(X^k)\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶原点矩</font>
 <p>$\frac{\eta_n-np}{\sqrt{np(1-p)}}\sim N(0,1)$</p>
 <p>参考高尔顿钉板</p>
 </blockquote>
-<h1 id="第六章-数理统计（基础）"><a href="#第六章-数理统计（基础）" class="headerlink" title="第六章 数理统计（基础）"></a>第六章 数理统计（基础）</h1><h2 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h2><ol>
-<li>$\chi^2$ - 分布</li>
-</ol>
+<h1 id="第六章-数理统计（基础）"><a href="#第六章-数理统计（基础）" class="headerlink" title="第六章 数理统计（基础）"></a>第六章 数理统计（基础）</h1><h2 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h2><p>1 . $\chi^2$ - 分布</p>
 <p>设 $X_1-X_n$ 是来自总体 $X\sim N(0,1)$ 的样本，令</p>
 <blockquote class="blockquote-center">
 <p>$<br>\begin{array}{l}<br>\chi^2=X_1^2+X_2^2+\cdots +X_n^2<br>\end{array}<br>$</p>
@@ -241,9 +207,7 @@ $E(X^k)\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶原点矩</font>
 <li>$E(\chi^2)=n$</li>
 <li>$D(\chi^2)=2n$</li>
 </ul>
-<ol>
-<li>t - 分布</li>
-</ol>
+<p>2 . t - 分布</p>
 <p>设 $X\sim N(0,1)$，$Y\sim \chi^2(n)$，且 $X$，$Y$ 独立，令</p>
 <blockquote class="blockquote-center">
 <p>$<br>\begin{array}{l}<br>t=X/\sqrt{Y/n}<br>\end{array}<br>$</p>
@@ -262,18 +226,87 @@ $E(X^k)\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶原点矩</font>
 </ul>
 </li>
 </ul>
-<ol>
-<li>F - 分布</li>
-</ol>
+<p>3 . F - 分布</p>
 <p>设 $U\sim \chi^2(n_1)$，$V\sim \chi^2(n_2)$，且 $U$，$V$ 独立，令</p>
 <blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>F=\frac{U/n_1}{V/n_2}<br>\end{array}<br>$</p>
+<p>$<br>\begin{array}{l}<br>F=\Large\frac{U/n_1}{V/n_2}<br>\end{array}<br>$</p>
 
 </blockquote>
 <p>称 F 为服从自由度为 $(n_1,n_2)$ 的 F - 分布，记为 $F(n_1,n_2)$。</p>
 <p>二级结论：</p>
 <blockquote class="blockquote-center">
 <p>$<br>\begin{array}{l}<br>&amp;T\sim t(n) \Rightarrow T^2\sim F(1,n) \\<br>\text{证：} &amp;T=\frac{X}{\sqrt{Y/n}} \Rightarrow T^2=\frac{X^2/1}{Y/n}, \\<br>\text{ 且 }&amp;X^2,Y\text{ 仍相互独立}<br>\end{array}<br>$</p>
+
+</blockquote>
+<h2 id="抽样分布定理"><a href="#抽样分布定理" class="headerlink" title="抽样分布定理"></a>抽样分布定理</h2><p>1 . 设 $X_1\sim X_n$ 是来自总体 $X\sim N(\mu,\sigma^2)$ 的样本，则</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>\bar{X}\sim N(\mu,\frac{\sigma^2}{n})<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>因为 $\bar{X}=(X_1+\cdots +X_n)/n$ ，而线性组合仍服从正态分布。</p>
+<p>因此，$E(\bar{X})=\mu$，$D(\bar{X})=\frac{\sigma^2}{n}$</p>
+<p>2 . 设 $X_1\sim X_n$ 是来自总体 $X\sim N(\mu,\sigma^2)$ 的样本，$\bar{X}$ 、$S^2$ 分别是样本均值和样本方差，则有</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{lr}<br>&amp;\frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1) &amp;(1) \\<br>&amp;\bar{X},S^2\text{ 相互独立} &amp;(2)<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>3 . waiting…</p>
+<p>4 . </p>
+<p>5 . </p>
+<h1 id="第七章-参数估计"><a href="#第七章-参数估计" class="headerlink" title="第七章 参数估计"></a>第七章 参数估计</h1><h2 id="点估计"><a href="#点估计" class="headerlink" title="点估计"></a>点估计</h2><p>定义：设总体分布函数 $F(x,\theta)$ ， $X_1\sim X_n$ 为样本，构造一个统计量 $\theta=\theta(X_1,\cdots ,X_n)$ 来估计参数 $\theta$ ，则称为参数 $\theta$ 的<strong>估计量</strong>。</p>
+<p>将观测值 $x_1,\cdots ,x_n$ 带入 $\theta(X_1,\cdots ,X_n)$ ，得到的 $\theta(x_1,\cdots ,x_n)$ 称为参数 $\theta$ 的<strong>估计值</strong>。</p>
+<p>常用点估计法：</p>
+<ul>
+<li>矩估计：设总体 $X\sim F(x;\theta)$ ，$\theta_1\sim \theta_m$ 未知，设对 n 个样本，总体矩都存在（即 $\alpha_k \triangleq E(X^k),(k=1,2,\cdots,m)$ ），由辛钦大数定律得</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;A_k=\frac{1}{n}\sum_{i=1}^{n}X^k_i \overset{P}{\longrightarrow}E(X^k)=\alpha_k\ \ (n\to\infty,k=1,2,\cdots,m) \\<br>\text{可认为 }&amp;A_k\approx E(X^k)=\int{x^k}\text{d}F \triangleq \alpha_k(\theta_1,\cdots, \theta_m) &amp; \\<br>\therefore &amp; \left\{\begin{array}{l}<br>&amp;\alpha_1(\theta_1,\cdots, \theta_m)=E(X) \approx A_1 \\<br>&amp;\alpha_2(\theta_1,\cdots, \theta_m)=E(X^2) \approx A_2 \\<br>&amp;\vdots \\<br>&amp;\alpha_m(\theta_1,\cdots, \theta_m)=E(X^m) \approx A_m<br>\end{array}\right.<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>解上述方程组得：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\left\{<br>\begin{array}{l}<br>&amp;\hat{\theta}_1=\hat{\theta}_1(A_1,A_2,\cdots,A_m) \\<br>&amp;\vdots \\<br>&amp;\hat{\theta}_m=\hat{\theta}_m(A_1,A_2,\cdots,A_m) \\<br>\end{array}<br>\right.<br>$</p>
+
+</blockquote>
+<ul>
+<li>最大似然估计：构造似然函数 $L(\theta)$ ，通过求极大值点得到参数值</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>L(\theta)=<br>\left\{<br>\begin{array}{lr}<br>&amp;p(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta) &amp;(\text{离散}) \\<br>&amp;f(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta) &amp;(\text{连续}) \\<br>\end{array}<br>\right.<br>$</p>
+
+</blockquote>
+<p>取对数便于求偏导（对每个参数 $\theta_i$ 求偏导）：$\large\frac{\partial{\ln{L}}}{\partial{\theta_i}}=0$</p>
+<p><strong>参数评价标准</strong></p>
+<ul>
+<li>无偏性：$E(\hat\theta)=\theta$</li>
+<li>有效性：$E(\hat\theta_1)=E(\hat\theta_2)=\theta$ 且 $D(\hat\theta_1)\le D(\hat\theta_2)$，则称 $\hat\theta_1$ 较 $\hat\theta_2$ 有效。</li>
+<li>相合性（一致性）：设 $\hat\theta_n=\hat\theta(X_1,X_2,\cdots,X_n)$ 是 $\theta$ 的点估计，若 $\forall \theta\in\Theta$ 满足对 $\forall\epsilon\gt 0$ 有 $\color{red}\underset{n\to\infty}{\lim}P\{|\hat\theta_n -\theta|\ge \epsilon \}=0$ ，则称 $\hat\theta_n$ 是 $\theta$ 的<font color="red">相合估计</font>，记作 $\hat\theta_n\overset{P}{\longrightarrow}\theta(n\to\infty)$ 。</li>
+</ul>
+<h2 id="区间估计"><a href="#区间估计" class="headerlink" title="区间估计"></a>区间估计</h2><blockquote>
+<p>区别：点估计构造一个参数统计量，而区间估计构造两个并将 $(\theta_1,\theta_2)$ 以一定的置信度作为 $\theta$ 的估算区间。</p>
+</blockquote>
+<p>定义：设总体 $X\sim F(x;\theta)$ ，若存在 2 个统计量</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{lr}<br>&amp;\underline{\theta}=\underline{\theta}(X_1,\cdots,X_n),\ \ \ \overline{\theta}=\overline{\theta}(X_1,\cdots,X_n) &amp;(\underline{\theta}\lt\overline{\theta})<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>使得 $\forall\theta\in\Theta$ 有 $P\{\underline{\theta}\le\theta\le\overline{\theta}\}\ge 1-\alpha$ ，则称随机区间 $(\underline{\theta},\overline{\theta})$ 为 $\theta$ 的<font color="red">置信水平</font>为 $1-\alpha$ 的<font color="red">置信区间</font>，$\underline{\theta}$ 和 $\overline{\theta}$ 分别称为置信下限和置信上限。</p>
+<ul>
+<li>区间估计一般方法<ul>
+<li>枢轴法（对应 t-分布的应用）</li>
+<li>波动理论（对应卡方分布的应用）</li>
+</ul>
+</li>
+</ul>
+<p><strong>二级结论总结</strong></p>
+<ol>
+<li>$\sigma^2$ 已知，对 $\mu$ 估计：$\color{red}(\bar{X}-u_{1-\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}},\bar{X}+u_{1-\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}})$</li>
+<li>$\sigma^2$ 未知，对 $\mu$ 估计：$\color{red}(\bar{X}-\frac{S}{\sqrt{n}}t_{1-\frac{\alpha}{2}}(n-1),\bar{X}+\frac{S}{\sqrt{n}}t_{1-\frac{\alpha}{2}}(n-1))$</li>
+<li>$\mu$ 未知，对 $\sigma^2$ 估计：$\large\color{red}(\frac{(n-1)S^2}{\chi^2_{1-\frac{\alpha}{2}}(n-1)}, \frac{(n-1)S^2}{\chi^2_{\frac{\alpha}{2}}(n-1)})$</li>
+</ol>
+<p><em>后两条的推导式：</em></p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{c}<br>&amp;P\left\{ \frac{|\bar{X}-\mu|}{S/\sqrt{n}}\lt t_{1-\frac{\alpha}{2}}(n-1) \right\}=1-\alpha \\<br>&amp;P\left\{\chi^2_{\frac{\alpha}{2}}(n-1)\lt \frac{(n-1)S^2}{\sigma^2}\lt\chi^2_{1-\frac{\alpha}{2}}(n-1) \right\}=1-\alpha<br>\end{array}<br>$</p>
 
 </blockquote>
 ]]></content>
