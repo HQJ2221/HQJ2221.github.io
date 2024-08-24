@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linear Algebra</title>
+    <url>/2024/08/25/Linear-Algebra/</url>
+    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><p>由于篇仅用于某些计算机相关课程的复习，所以某些“不太重要”的知识点要么默认已知，要么不会提及（如转置的概念和二级结论，行列式的概念等）。</p>
+<p>由于教材不同或版本原因，对于一些符号可能有差异（如表示单位方阵有 $I/E$，以下统一使用本人学习的教材所用符号）</p>
+<h1 id="第一张-矩阵（入门）"><a href="#第一张-矩阵（入门）" class="headerlink" title="第一张 矩阵（入门）"></a>第一张 矩阵（入门）</h1><h2 id="矩阵的逆"><a href="#矩阵的逆" class="headerlink" title="矩阵的逆"></a>矩阵的逆</h2><p>定义：$AC=CA=I\Longleftrightarrow$ $C$ 是 $A$ 的逆，记作 $A^{-1}$。</p>
+<blockquote>
+<p>不是所有方阵都有逆，不可逆<font color="red">方阵</font>称为<font color="red">奇异矩阵</font>。</p>
+</blockquote>
+<h2 id="矩阵的-LDU-分解"><a href="#矩阵的-LDU-分解" class="headerlink" title="矩阵的 LDU 分解"></a>矩阵的 LDU 分解</h2><p>定义：$\color{red}PA=LDU$，其中 $L$ 是下三角矩阵，$D$ 是对角矩阵，$U$ 是主对角元为 1 的上三角矩阵。($P$ 仅用作行交换)</p>
+<h1 id="第二章-向量空间"><a href="#第二章-向量空间" class="headerlink" title="第二章 向量空间"></a>第二章 向量空间</h1>]]></content>
+      <categories>
+        <category>2022 Fall</category>
+      </categories>
+      <tags>
+        <tag>Maths</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>概率论与数理统计</title>
     <url>/2024/08/19/Probability-Theory-and-Mathematical-Statistics/</url>
     <content><![CDATA[<h1 id="第一章-概率"><a href="#第一章-概率" class="headerlink" title="第一章 概率"></a>第一章 概率</h1><h2 id="记数方法"><a href="#记数方法" class="headerlink" title="记数方法"></a>记数方法</h2><ul>
@@ -309,6 +327,28 @@ $E(X^k)\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶原点矩</font>
 <p>$<br>\begin{array}{c}<br>&amp;P\left\{ \frac{|\bar{X}-\mu|}{S/\sqrt{n}}\lt t_{1-\frac{\alpha}{2}}(n-1) \right\}=1-\alpha \\<br>&amp;P\left\{\chi^2_{\frac{\alpha}{2}}(n-1)\lt \frac{(n-1)S^2}{\sigma^2}\lt\chi^2_{1-\frac{\alpha}{2}}(n-1) \right\}=1-\alpha<br>\end{array}<br>$</p>
 
 </blockquote>
+<h1 id="第八章-假设检验"><a href="#第八章-假设检验" class="headerlink" title="第八章 假设检验"></a>第八章 假设检验</h1><h2 id="一、建立对立的假设："><a href="#一、建立对立的假设：" class="headerlink" title="一、建立对立的假设："></a>一、建立对立的假设：</h2><p>原假设（零假设）$H_0$ 和备择假设（对立假设）$H_1$</p>
+<ol>
+<li>保护原假设：原假设错误的“代价”必须小于备择假设（如原假设新药物有副作用）</li>
+<li>原假设趋于维持现状</li>
+<li>原假设取简单假设</li>
+</ol>
+<h2 id="二、给出检验统计量，确定拒绝域形式"><a href="#二、给出检验统计量，确定拒绝域形式" class="headerlink" title="二、给出检验统计量，确定拒绝域形式"></a>二、给出检验统计量，确定拒绝域形式</h2><p>拒绝域是拒绝原假设的样本值范围，其补集为接受域。</p>
+<p>设置合理的 $C$ 值（待定常数），使得 $\bar{X}$ 大于/小于该常数时，拒绝原假设。</p>
+<p><strong>I 类错误与 II 类错误</strong></p>
+<p>I 类错误指拒绝原假设但是原假设为真的情况，用 $\alpha$ 表示犯错概率，一般控制在 $(0.01,0.1)$ 范围内。(也称<font color="red">显著水平</font>)</p>
+<p>II 类错误指接受原假设但原假设为假的情况，用 $\beta$ 表示。</p>
+<h2 id="三、根据显著水平和统计量的分布确定临界值"><a href="#三、根据显著水平和统计量的分布确定临界值" class="headerlink" title="三、根据显著水平和统计量的分布确定临界值"></a>三、根据显著水平和统计量的分布确定临界值</h2><p>根据 NP 原则，先保证犯 I 类错误的概率不超过 $\alpha$，再令犯 II 类错误的概率尽可能小。</p>
+<p>例：取 $\alpha=0.05$ ，当 $H_0:\mu=0$ 成立时，$\frac{\bar{X}}{0.6/\sqrt{9}}\sim N(0,1)$。（统计量分布）则可进行如下计算：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>P\{\bar{X}\ge C|\mu=0 \}&amp;=P\left\{\frac{\bar{X}}{\sigma/\sqrt{n}}\ge\frac{C}{\sigma/\sqrt{n}}|\mu=0 \right\} \\<br>&amp;=1-\psi\left(\frac{C}{\sigma/\sqrt{n}}\right)\le\alpha=0.05\ \ (0.05=\psi(-\textbf{z}_{0.05})) \\<br>&amp;\Rightarrow \frac{C}{0.6/\sqrt{9}}\ge \textbf{z}_{0.05}=1.645 \Rightarrow C\ge0.329<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>因此取 $C=0.329$ 以减小 II 类错误！</p>
+<h2 id="四、根据样本数据判断是否要拒绝假设"><a href="#四、根据样本数据判断是否要拒绝假设" class="headerlink" title="四、根据样本数据判断是否要拒绝假设"></a>四、根据样本数据判断是否要拒绝假设</h2><blockquote>
+<p>例：如 $\bar{x}=0.522\gt 0.329$，则拒绝原假设。</p>
+</blockquote>
+<h2 id="正态总体参数的假设检验样例"><a href="#正态总体参数的假设检验样例" class="headerlink" title="正态总体参数的假设检验样例"></a>正态总体参数的假设检验样例</h2><p>In development…</p>
 ]]></content>
       <categories>
         <category>2023 Fall</category>

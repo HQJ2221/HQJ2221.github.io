@@ -20,26 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="キゲンの個人サイト">
-<meta property="og:type" content="website">
-<meta property="og:title" content="牛马农田">
-<meta property="og:url" content="http://hqj2221.github.io/archives/2024/06/index.html">
+    <meta name="description" content="仅作为其他课程复习用，不记录全部知识点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linear Algebra">
+<meta property="og:url" content="http://hqj2221.github.io/2024/08/25/Linear-Algebra/index.html">
 <meta property="og:site_name" content="牛马农田">
-<meta property="og:description" content="キゲンの個人サイト">
+<meta property="og:description" content="仅作为其他课程复习用，不记录全部知识点。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-24T16:11:24.000Z">
+<meta property="article:modified_time" content="2024-08-24T16:38:00.699Z">
 <meta property="article:author" content="Kigen">
-<meta property="article:tag" content="Steven He, 何, 个人站点, Personal Blog">
+<meta property="article:tag" content="Maths">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://hqj2221.github.io/archives/2024/06/">
+<link rel="canonical" href="http://hqj2221.github.io/2024/08/25/Linear-Algebra/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"archives/2024/06/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2024/08/25/Linear-Algebra/","path":"2024/08/25/Linear-Algebra/","title":"Linear Algebra"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Archive | 牛马农田</title>
+<title>Linear Algebra | 牛马农田</title>
   
 
 
@@ -74,7 +76,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">牛马农田</h1>
+      <p class="site-title">牛马农田</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">没在21世纪的互联网留下赛博案底的人,</br> 只会度过一个相对失败的人生。</p>
@@ -128,7 +130,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -141,6 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About"><span class="nav-text">About</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%BC%A0-%E7%9F%A9%E9%98%B5%EF%BC%88%E5%85%A5%E9%97%A8%EF%BC%89"><span class="nav-text">第一张 矩阵（入门）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E9%80%86"><span class="nav-text">矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84-LDU-%E5%88%86%E8%A7%A3"><span class="nav-text">矩阵的 LDU 分解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-text">第二章 向量空间</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -194,149 +197,116 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 8 posts in total. Keep on posting.</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2024/08/25/Linear-Algebra/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/sparkle.gif">
+      <meta itemprop="name" content="Kigen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="牛马农田">
+      <meta itemprop="description" content="キゲンの個人サイト">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linear Algebra | 牛马农田">
+      <meta itemprop="description" content="仅作为其他课程复习用，不记录全部知识点。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linear Algebra
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024<span class="collection-year-count">8</span></span>
+
+      <time title="Created: 2024-08-25 00:11:24 / Modified: 00:38:00" itemprop="dateCreated datePublished" datetime="2024-08-25T00:11:24+08:00">2024-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2022-Fall/" itemprop="url" rel="index"><span itemprop="name">2022 Fall</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">仅作为其他课程复习用，不记录全部知识点。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><p>由于篇仅用于某些计算机相关课程的复习，所以某些“不太重要”的知识点要么默认已知，要么不会提及（如转置的概念和二级结论，行列式的概念等）。</p>
+<p>由于教材不同或版本原因，对于一些符号可能有差异（如表示单位方阵有 $I/E$，以下统一使用本人学习的教材所用符号）</p>
+<h1 id="第一张-矩阵（入门）"><a href="#第一张-矩阵（入门）" class="headerlink" title="第一张 矩阵（入门）"></a>第一张 矩阵（入门）</h1><h2 id="矩阵的逆"><a href="#矩阵的逆" class="headerlink" title="矩阵的逆"></a>矩阵的逆</h2><p>定义：$AC=CA=I\Longleftrightarrow$ $C$ 是 $A$ 的逆，记作 $A^{-1}$。</p>
+<blockquote>
+<p>不是所有方阵都有逆，不可逆<font color="red">方阵</font>称为<font color="red">奇异矩阵</font>。</p>
+</blockquote>
+<h2 id="矩阵的-LDU-分解"><a href="#矩阵的-LDU-分解" class="headerlink" title="矩阵的 LDU 分解"></a>矩阵的 LDU 分解</h2><p>定义：$\color{red}PA=LDU$，其中 $L$ 是下三角矩阵，$D$ 是对角矩阵，$U$ 是主对角元为 1 的上三角矩阵。($P$ 仅用作行交换)</p>
+<h1 id="第二章-向量空间"><a href="#第二章-向量空间" class="headerlink" title="第二章 向量空间"></a>第二章 向量空间</h1>
+    </div>
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #9d9d9d;font-size:18px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-06-30T23:07:24+08:00"
-              content="2024-06-30">
-          06-30
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/06/30/Summer-Workshop-Diary/" itemprop="url">
-            <span itemprop="name">NUS 夏令营日记</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Maths/" rel="tag"># Maths</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/08/19/Probability-Theory-and-Mathematical-Statistics/" rel="prev" title="概率论与数理统计">
+                  <i class="fa fa-angle-left"></i> 概率论与数理统计
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-06-27T14:57:57+08:00"
-              content="2024-06-27">
-          06-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/06/27/Real-Time-Rendering/" itemprop="url">
-            <span itemprop="name">NUS Soc SWS3005  实时 3D 图形渲染</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-06-25T19:47:04+08:00"
-              content="2024-06-25">
-          06-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/06/25/Computer-Organization/" itemprop="url">
-            <span itemprop="name">CS202 计算机组成原理</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-06-24T11:43:04+08:00"
-              content="2024-06-24">
-          06-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/06/24/Big-Data-2/" itemprop="url">
-            <span itemprop="name">MA234 大数据导论与实践（二）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-06-22T21:59:45+08:00"
-              content="2024-06-22">
-          06-22
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/06/22/Big-Data-1/" itemprop="url">
-            <span itemprop="name">MA234 大数据导论与实践（一）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-06-07T14:36:53+08:00"
-              content="2024-06-07">
-          06-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/06/07/hello-world/" itemprop="url">
-            <span itemprop="name">Introduction to Hexo and Github Page</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
 
 </div>
   </main>
@@ -382,7 +352,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
