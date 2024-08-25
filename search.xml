@@ -5,7 +5,7 @@
     <url>/2024/08/25/Linear-Algebra/</url>
     <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><p>由于篇仅用于某些计算机相关课程的复习，所以某些“不太重要”的知识点要么默认已知，要么不会提及（如转置的概念和二级结论，行列式的概念等）。</p>
 <p>由于教材不同或版本原因，对于一些符号可能有差异（如表示单位方阵有 $I/E$，以下统一使用本人学习的教材所用符号）</p>
-<h1 id="第一张-矩阵（入门）"><a href="#第一张-矩阵（入门）" class="headerlink" title="第一张 矩阵（入门）"></a>第一张 矩阵（入门）</h1><h2 id="矩阵的逆"><a href="#矩阵的逆" class="headerlink" title="矩阵的逆"></a>矩阵的逆</h2><p>定义：$AC=CA=I\Longleftrightarrow$ $C$ 是 $A$ 的逆，记作 $A^{-1}$。</p>
+<h1 id="第一章-矩阵（入门）"><a href="#第一章-矩阵（入门）" class="headerlink" title="第一章 矩阵（入门）"></a>第一章 矩阵（入门）</h1><h2 id="矩阵的逆"><a href="#矩阵的逆" class="headerlink" title="矩阵的逆"></a>矩阵的逆</h2><p>定义：$AC=CA=I\Longleftrightarrow$ $C$ 是 $A$ 的逆，记作 $A^{-1}$。</p>
 <blockquote>
 <p>不是所有方阵都有逆，不可逆<font color="red">方阵</font>称为<font color="red">奇异矩阵</font>。</p>
 </blockquote>
