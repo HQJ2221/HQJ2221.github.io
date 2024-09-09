@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>计算机网络</title>
+    <url>/2024/09/09/Computer-Networks/</url>
+    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><blockquote>
+<p>Learning top-down, we have 5 layer about computer network</p>
+</blockquote>
+<ul>
+<li>Application: supporting network applications<ul>
+<li>IMAP, SMTP, HTTP</li>
+</ul>
+</li>
+<li>Transport: process-process data transfer<ul>
+<li>TCP, UDP</li>
+</ul>
+</li>
+<li>Network: routing of datagrams from source to destination<ul>
+<li>IP, routing protocols</li>
+</ul>
+</li>
+<li>Link: data transfer between neighboring  network elements</li>
+<li>Ethernet, 802.11 (WiFi), PPP<ul>
+<li>Physical: bits “on the wire”</li>
+</ul>
+</li>
+</ul>
+<h2 id="Structure-of-Internet"><a href="#Structure-of-Internet" class="headerlink" title="Structure of Internet"></a>Structure of Internet</h2><table><tr>
+<td><img src="/2024/09/09/Computer-Networks/cn1.png" style="zoom:100%"></td>
+<td></td><img src="/2024/09/09/Computer-Networks/cn2.png" style="zoom:100%">
+</tr></table>
+
+
+
+<h3 id="Network-edge"><a href="#Network-edge" class="headerlink" title="Network edge"></a>Network edge</h3><ul>
+<li>end systems (hosts):<ul>
+<li>run application programs</li>
+<li>e.g. Web, email</li>
+<li>at “edge of network”</li>
+</ul>
+</li>
+<li>client/server model<ul>
+<li>client host requests, receives service from always-on server</li>
+<li>e.g., Web browser/server; email </li>
+</ul>
+</li>
+<li>client/server<ul>
+<li>peer-peer model:</li>
+<li>minimal (or no) use of dedicated servers</li>
+<li>e.g. Skype,  BitTorrent</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>2024 Fall</category>
+      </categories>
+      <tags>
+        <tag>CSE Learning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大数据导论与实践（三）</title>
     <url>/2024/08/29/Big-Data-3/</url>
     <content><![CDATA[<h1 id="Big-Data-III"><a href="#Big-Data-III" class="headerlink" title="Big Data (III)"></a>Big Data (III)</h1><h2 id="VI-Ensemble-Methods-集成方法"><a href="#VI-Ensemble-Methods-集成方法" class="headerlink" title="VI. Ensemble Methods (集成方法)"></a>VI. Ensemble Methods (集成方法)</h2><ul>
