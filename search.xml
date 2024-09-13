@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>操作系统</title>
+    <url>/2024/09/13/Operation-System/</url>
+    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1>]]></content>
+      <categories>
+        <category>2024 Fall</category>
+      </categories>
+      <tags>
+        <tag>CSE Learning</tag>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机网络</title>
     <url>/2024/09/09/Computer-Networks/</url>
     <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><blockquote>
@@ -57,6 +69,11 @@
 <p>Introduce to Lab 01:</p>
 <ul>
 <li><code>ipconfig</code></li>
+<li><code>arp</code></li>
+<li><code>nslookup</code></li>
+<li><code>ping</code></li>
+<li><code>tracert</code></li>
+<li><code>netstat</code></li>
 </ul>
 </blockquote>
 <ul>
@@ -119,7 +136,138 @@
 <li>Try <code>ipconfig -displaydns</code>: looking for info about network(DNS) cache</li>
 <li>Use <code>ipconfig -flushdns</code> to clear and refresh the DNS cache</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>ARP (地址解析协议)</strong></p>
+<ul>
+<li><code>arp -a</code><ul>
+<li>Display all ARP information, that is, the corresponding relationship between all activated IP addresses and physical<br>addresses</li>
+</ul>
+</li>
+<li><code>arp -d</code><ul>
+<li>Delete all ARP cache contents. </li>
+<li>If the IP address is specified in the command, only the ARP cache information of the IP address is deleted.</li>
+</ul>
+</li>
+<li><code>arp -s</code><ul>
+<li>Adding the corresponding relationship between IP address and physical address to ARP cache</li>
+<li>e.g. <code>arp -s 172.16.0.19 00-10-5C-BE-11-CC</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">缩写</th>
+<th style="text-align:center">释义</th>
+<th style="text-align:center">缩写</th>
+<th style="text-align:center">释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">LAN</td>
+<td style="text-align:center">局域网</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">WLAN</td>
+<td style="text-align:center">无线局域网</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">WAN</td>
+<td style="text-align:center">广域网</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">ARP</td>
+<td style="text-align:center">地址解析协议</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
 ]]></content>
       <categories>
         <category>2024 Fall</category>
