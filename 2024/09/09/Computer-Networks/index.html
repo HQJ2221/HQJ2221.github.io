@@ -11,7 +11,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=LXGW+WenKai+Mono+TC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
@@ -29,8 +29,15 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn1.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn2.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn4.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn5.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn6.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn7.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn8.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn9.png">
 <meta property="article:published_time" content="2024-09-09T06:08:56.000Z">
-<meta property="article:modified_time" content="2024-09-10T14:31:05.608Z">
+<meta property="article:modified_time" content="2024-09-17T08:05:21.866Z">
 <meta property="article:author" content="Kigen">
 <meta property="article:tag" content="CSE Learning">
 <meta name="twitter:card" content="summary">
@@ -146,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About"><span class="nav-text">About</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-of-Internet"><span class="nav-text">Structure of Internet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Network-edge"><span class="nav-text">Network edge</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Labs"><span class="nav-text">Labs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-1"><span class="nav-text">Week 1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Appendix"><span class="nav-text">Appendix</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About"><span class="nav-text">About</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-of-Internet"><span class="nav-text">Structure of Internet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Network-edge"><span class="nav-text">Network edge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Networks-%E6%8E%A5%E5%85%A5%E7%BD%91"><span class="nav-text">Access Networks(接入网)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Network-Core-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83"><span class="nav-text">Network Core(网络核心)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Packet-switching-vs-Circuit-switching"><span class="nav-text">Packet switching vs. Circuit switching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Network-Structure"><span class="nav-text">Network Structure</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance-Metric"><span class="nav-text">Performance Metric</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Throughput-%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-text">Throughput(吞吐量)</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Labs"><span class="nav-text">Labs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-1"><span class="nav-text">Week 1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Appendix"><span class="nav-text">Appendix</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -247,7 +254,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-09-10 22:31:05" itemprop="dateModified" datetime="2024-09-10T22:31:05+08:00">2024-09-10</time>
+      <time title="Modified: 2024-09-17 16:05:21" itemprop="dateModified" datetime="2024-09-17T16:05:21+08:00">2024-09-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -285,11 +292,11 @@
 <li>IP, routing protocols</li>
 </ul>
 </li>
-<li>Link: data transfer between neighboring  network elements</li>
-<li>Ethernet, 802.11 (WiFi), PPP<ul>
-<li>Physical: bits “on the wire”</li>
+<li>Link: data transfer between neighboring  network elements<ul>
+<li>Ethernet, 802.11 (WiFi), P2P</li>
 </ul>
 </li>
+<li>Physical: bits “on the wire”</li>
 </ul>
 <h2 id="Structure-of-Internet"><a href="#Structure-of-Internet" class="headerlink" title="Structure of Internet"></a>Structure of Internet</h2><table>
 <tr>
@@ -319,6 +326,274 @@
 </ul>
 </li>
 </ul>
+<p><strong>Hosts: sends packets of data</strong></p>
+<p>Host sending function:</p>
+<ul>
+<li>takes application message</li>
+<li>breaks into smaller chunks, known as packets, of length $L$ bits</li>
+<li>transmits packet into access network at transmission rate $R$<ul>
+<li>aka link capacity, bandwidth (即链路容量或带宽)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn3.png" style="zoom:80%"></p>
+<blockquote class="blockquote-center">
+<p>$<br>\text{packet transmission delay}=\frac{L\text{(bits)}}{R\text{(bits/sec)}}<br>$</p>
+
+</blockquote>
+<h3 id="Access-Networks-接入网"><a href="#Access-Networks-接入网" class="headerlink" title="Access Networks(接入网)"></a>Access Networks(接入网)</h3><p><strong>Def.</strong> The network that physically connects an <font color="red">end system</font> to the <font color="red">first router (edge router)</font> on a path from the end system to any other distant end system.</p>
+<p>Different kinds of access networks:</p>
+<ul>
+<li>Cable network</li>
+<li>Digital subscriber line (DSL)</li>
+<li>Home network</li>
+<li>Wireless access network</li>
+<li>Enterprise access network</li>
+</ul>
+<p><strong>Cable network</strong></p>
+<p><img src="/2024/09/09/Computer-Networks/cn4.png" style="zoom:60%"></p>
+<ul>
+<li>Cable Internet access makes use of the cable television company’s existing <font color="blue">cable television infrastructure</font>.</li>
+<li>Shared broadcast medium<ul>
+<li>Shared downstream and upstream</li>
+<li>Distributed multiple access control: avoid collision (分频段控制)</li>
+</ul>
+</li>
+<li>Applying Frequency division multiplexing (频分复用)</li>
+<li>Hybrid fiber coax (HFC): fiber + coaxial cable (光纤+同轴电缆)<ul>
+<li>asymmetric: up to 30 Mbps downstream transmission rate(下行传输效率), 2 Mbps upstream transmission rate</li>
+</ul>
+</li>
+<li>network of cable, fiber attaches homes to ISP router<ul>
+<li>homes share access network to cable headend(多家庭网络接入同一电缆头部)</li>
+</ul>
+</li>
+</ul>
+<p><strong>DSL(digital subscriber line)</strong></p>
+<ul>
+<li>Digital subscriber line (DSL) makes use of the its wired local phone(有线本地电话) access of local telephone company (telco).</li>
+<li>Use existing telephone line to central office DSLAM<ul>
+<li>data over DSL phone line goes to Internet</li>
+<li>voice over DSL phone line goes to telephone net</li>
+</ul>
+</li>
+<li>&lt; 2.5 Mbps upstream transmission rate (typically &lt; 1 Mbps)</li>
+<li>&lt; 24 Mbps downstream transmission rate (typically &lt; 10 Mbps)</li>
+</ul>
+<p><strong>Wireless Access Network</strong></p>
+<ul>
+<li>Shared wireless access network connects end systems to router<ul>
+<li>via base station aka “access point”</li>
+</ul>
+</li>
+<li>Wireless LANs(WLAN):<ul>
+<li>within building (100 ft)</li>
+<li>802.11b/g/n/ac (WiFi): 11, 54, 800, 1733 Mbps transmission rate</li>
+</ul>
+</li>
+<li>Wide-area wireless access<ul>
+<li>provide by telco (cellular) operator</li>
+<li>10 Mbps, 100Mbps, 10Gbps </li>
+<li>3G, 4G, 5G</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>补充：信号传输物理介质</p>
+<ul>
+<li>单位：bit</li>
+<li>有向介质<ul>
+<li>固体介质如铜，光纤和同轴缆线</li>
+</ul>
+</li>
+<li>无向介质<ul>
+<li>无线电</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="Network-Core-网络核心"><a href="#Network-Core-网络核心" class="headerlink" title="Network Core(网络核心)"></a>Network Core(网络核心)</h3><p><strong>Def.</strong>  The mesh(链路网格) of packet switches and links that interconnects the Internet’s end systems.</p>
+<h4 id="Packet-switching-vs-Circuit-switching"><a href="#Packet-switching-vs-Circuit-switching" class="headerlink" title="Packet switching vs. Circuit switching"></a>Packet switching vs. Circuit switching</h4><p><strong>Packet Switching</strong></p>
+<p>Basic thought: Hosts break long messages into packets and each packet is forwarded independently.</p>
+<p><img src="/2024/09/09/Computer-Networks/cn5.png" style="zoom:60%"></p>
+<ul>
+<li><font color="red">store-and-forward</font></li>
+<li>each packet is transmitted at <font color="red">full link capacity</font></li>
+<li><font color="red">not reserved</font> → queueing delay and packet loss<ul>
+<li>queuing delay: packets will queue, wait to be transmitted on link</li>
+<li>packet loss(丢包): packets can be dropped (lost) if memory (buffer) fills up</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Make it clear: what’s routing ? what’s forwarding ?</p>
+<p><font color="red">Routing</font> is global actions: determine source-destination paths taken by packets, and need routing algorithm</p>
+<p><font color="red">Forwarding</font> is local actions (inside 1 router): move arriving packets from router’s input link to appropriate router output link</p>
+</blockquote>
+<p><strong>Circuit Switching: FDM vs. TDM</strong></p>
+<p>Basic thought: Determine path before the message being transmitted (called).</p>
+<ul>
+<li>Advantage: Guaranteed constant rate</li>
+<li>Reserved (dedicated resources): buffer, link</li>
+<li>Limitation: Circuit idle（空闲）if not used by call (no sharing)</li>
+</ul>
+<ul>
+<li>About <strong>FDM</strong>(频分复用) and <strong>TDM</strong>(时分复用)<ul>
+<li>FDM divides frequencies into (narrow) frequency bands → bandwidth<ul>
+<li>transmit at max rate of that narrow band</li>
+</ul>
+</li>
+<li>TDM divides time into slots<ul>
+<li>at maximum rate of (wider) frequency band, but only during its time slot(s)</li>
+<li>have T virtual links in each frame (graph below)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn6.png" style="zoom:60%"></p>
+<p>An example to calculate delay in <strong>Circuit Switching</strong>: </p>
+<p><img src="/2024/09/09/Computer-Networks/cn7.png" style="zoom:60%"></p>
+<hr>
+<p align="center">----- COMPARISON -----</p>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Packet Switching</th>
+<th style="text-align:center">Circuit Switching</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">not reserved</td>
+<td style="text-align:center">reserved (dedicated resources):<br>buffer, link, transmission rate</td>
+</tr>
+<tr>
+<td style="text-align:center">packet forwarded independently(每步独立)</td>
+<td style="text-align:center">establish an end-to-end link</td>
+</tr>
+<tr>
+<td style="text-align:center">at full link capacity</td>
+<td style="text-align:center">a fraction of each link’s capacity</td>
+</tr>
+<tr>
+<td style="text-align:center">queuing delay</td>
+<td style="text-align:center">guaranteed constant rate</td>
+</tr>
+<tr>
+<td style="text-align:center">packet loss</td>
+<td style="text-align:center">circuit segment idle</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<blockquote>
+<p>Therefore, Packet Switching is more used in network(more users but have low prob to online at the same time), Circuit Switching is more used in telephone call(assuring rate and connection).</p>
+</blockquote>
+<h4 id="Network-Structure"><a href="#Network-Structure" class="headerlink" title="Network Structure"></a>Network Structure</h4><p><img src="/2024/09/09/Computer-Networks/cn8.png" style="zoom:60%"></p>
+<ul>
+<li>Different ISPs from different business</li>
+<li><font color="red">Internet exchange point(IXP)</font> as a connection between ISPs, or direct linking by <font color="red">peering links</font></li>
+<li>Regional network may arise to connect access nets to ISPs</li>
+<li><font color="red">Content provider networks</font>(e.g. Google, Microsoft) may run their own network, to bring services, content close to end users.</li>
+</ul>
+<h3 id="Performance-Metric"><a href="#Performance-Metric" class="headerlink" title="Performance Metric"></a>Performance Metric</h3><ul>
+<li>Delay<ul>
+<li>Nodal delay &amp; end-to-end delay</li>
+</ul>
+</li>
+<li>Packet Loss</li>
+<li>Throughput<ul>
+<li>the amount of data per second that can be transferred between end systems</li>
+</ul>
+</li>
+</ul>
+<font color="green">Recall:</font> Packet Switching would make packets queuing at each router(delay), if a router is full, the new packet would be dropped(loss).
+
+
+
+#### Delay: Nodal vs. End-to-end
+
+**Nodal Delay**
+
+<blockquote class="blockquote-center">
+<p>$<br>d_{\text{nodal}}=d_{\text{proc}}+d_{\text{queue}}+d_{\text{trans}}+d_{\text{prop}}<br>$</p>
+
+</blockquote>
+
+- $d_{\text{proc}}$ : nodal processing
+    - check bit errors
+    - determine output link
+    - typically < 1 msec
+- $d_{\text{queue}}$ : 
+    - time waiting at output link for transmission 
+    - depends on congestion(拥堵) level of router
+- $d_{\text{trans}}$ : 传输时延
+    - $L$: packet length (bits) 
+    - $R$: transmission rate (bps)
+    - $d_{\text{trans}} = L/R$
+- $d_{\text{prop}}$ : 传播时延
+    - $d$: length of physical link
+    - $s$: propagation speed in medium (~2x108 m/sec)
+    - $d_{\text{prop}} = d/s$
+
+> Easy way to understand $d_{\text{trans}}$ and $d_{\text{prop}}$
+>
+> Assume that a ten-car caravan(packets) is moving through tollbooth (end/routers). Think of a car as a bit data.
+> Suppose that the Tollbooth takes 12 sec to service one car (transmission time) and cars runs at a speed of 100 km/hr (propagation speed).
+> <font color="red">Q: How long does it take the <b>last car</b> to arrive at the 2nd tollbooth?</font>
+>
+> Now the time to "push" entire caravan through tollbooth onto highway = 12 * 10 = 120 sec, known as <font color="blue">Transmission Delay</font>;
+> 
+> The time for last car to propagate from 1st to 2nd tollbooth: 100km / (100km/hr) = 1 hr, known as <font color="blue">Propagation Delay</font>.
+>
+> <font color="green">A: 62 mins</font>
+
+
+
+<ul>
+<li>Special: Queuing Delay — Vary from packet to packet<ul>
+<li>When characterizing queuing delay, statistical measures:<ul>
+<li>average queuing delay</li>
+<li>variance of queuing delay</li>
+<li>the probability that the queuing delay exceeds some specified value</li>
+</ul>
+</li>
+<li>Use Traffic intensity $=\lambda L / R$ to measure avg queuing delay.<ul>
+<li>$\lambda$ : average packet arrival rate (packets per sec)</li>
+<li>$\lambda L / R \to 0$: avg. queueing delay small</li>
+<li>$\lambda L / R \to 1$: avg. queueing delay $\to \infty$ (queuing theory)</li>
+<li>$\lambda L / R \lt 1$: more “work” arriving than can be serviced, average delay infinite!</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>End-to-end Delay</strong></p>
+<blockquote class="blockquote-center">
+<p>$<br>d_{\text{end-end}}=N(d_{\text{proc}}+d_{\text{trans}}+d_{\text{prop}})<br>$</p>
+
+</blockquote>
+<p align="center">What do "real" Internet delay & loss look like?</p>
+
+<blockquote>
+<p>Refer to Lab 1</p>
+</blockquote>
+<h4 id="Throughput-吞吐量"><a href="#Throughput-吞吐量" class="headerlink" title="Throughput(吞吐量)"></a>Throughput(吞吐量)</h4><p><strong>Def.</strong> rate (bits/time unit) at which bits transferred between sender/receiver.</p>
+<blockquote>
+<p>Throughput is decided by the pipe with minimum fluid-carry-rate.</p>
+</blockquote>
+<ul>
+<li>More complex condition: 10 connections (fairly) share backbone bottleneck link R bits/sec<ul>
+<li>Per-connection end-end throughput: $\min{\{R_c, R_s, R/10\}}$</li>
+<li>In practice: $R_c$ or $R_s$ is often bottleneck</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn9.png" style="zoom:60%"></p>
 <h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h2><blockquote>
 <p>Introduce to Lab 01:</p>
 <ul>
@@ -407,6 +682,36 @@
 </ul>
 </li>
 </ul>
+<ul>
+<li><code>nslookup</code> to find the corresponding IP through the host name, or find the corresponding host by specifying the IP.<ul>
+<li>e.g. <code>nslookup www.baidu.com</code> or <code>nslookup 140.207.198.6</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Ping</strong></p>
+<ul>
+<li>Use <code>ping</code> to check network connectivity<ul>
+<li><code>ping /?</code> : look up usage</li>
+<li><code>ping -t</code> : ping the specific host ‘til stopped</li>
+<li><code>ping -i</code> : Time to live(TTL)</li>
+<li><code>ping -n &lt;count&gt;</code> : set echo requests number</li>
+</ul>
+</li>
+</ul>
+<p><strong>Tracert: trace route</strong></p>
+<ul>
+<li>Use <code>tracert</code> to track the routing to check the connectivity of the network.</li>
+<li>An example of this(address is fake):</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\xxx&gt; tracert www.baidu.com</span><br><span class="line"></span><br><span class="line">Tracing route to www.a.shifen.com [240e:ff:e020:966:0:ff:b042:f296]</span><br><span class="line">over a maximum of 30 hops:</span><br><span class="line"></span><br><span class="line">  1    14 ms    31 ms    14 ms  3010:dc5:207e:1107::6</span><br><span class="line">  2     7 ms     3 ms     3 ms  3010:dc5:207e:1:1::2</span><br><span class="line">  3     2 ms     2 ms     3 ms  3010:dc5:207e:1::1:1</span><br><span class="line">  4     4 ms     6 ms     3 ms  3010:250:3c02::d:1</span><br><span class="line">  5     2 ms     7 ms     2 ms  cernet2.net [3010:dc5:a2:4400::1101]</span><br><span class="line">  6     4 ms     4 ms     3 ms  3010:dc5:2:121::1</span><br><span class="line">  7     7 ms     7 ms     6 ms  3010:dc5:2:18::1</span><br><span class="line">  8     *        8 ms     6 ms  3010:dc5:2:704::2</span><br><span class="line">  9     9 ms     *        *     240e::e:3:2008:402</span><br><span class="line"> 10     6 ms     7 ms     7 ms  240e::c:3:5200:902</span><br><span class="line"> 11     8 ms     6 ms     7 ms  240e:1f:5000:64::3</span><br><span class="line"> 12   171 ms     *      150 ms  240e:1f:5800:35::3</span><br><span class="line"> 13     9 ms    10 ms     8 ms  240e:ff:e020:8ff::73</span><br><span class="line"> 14    44 ms    44 ms    44 ms  240c:4001:3170::ec2:eb2:3</span><br><span class="line"> 15    42 ms    44 ms    43 ms  240c:4001:3170::eb1:eb2:2</span><br><span class="line"> 16    44 ms    43 ms    43 ms  240c:4051:1317:2eb:1eaf:4:eb01:2</span><br><span class="line"> 17    46 ms    45 ms    44 ms  240c:4051:1317:205:1eaf:4:1b05:5</span><br><span class="line"> 18     8 ms     8 ms     8 ms  240e:ff:e020:966:0:ff:b042:f296</span><br><span class="line"></span><br><span class="line">Trace complete.</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Traceroute program:</strong> provides delay measurement from source to router along end-end Internet path towards destination. For $i$ in $N$ node($N-1$ routers and 1 end):<ul>
+<li>sends three packets (as probes) with a time-to-live (TTL) of $i$; will reach router $i$ on path towards destination</li>
+<li>router $i$ will return packets to sender</li>
+<li>sender times interval between transmission and reply.</li>
+</ul>
+</li>
+</ul>
 <h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><div class="table-container">
 <table>
 <thead>
@@ -419,26 +724,32 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align:center">DSL</td>
+<td style="text-align:center">数字用户线</td>
 <td style="text-align:center">LAN</td>
 <td style="text-align:center">局域网</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
 </tr>
 <tr>
+<td style="text-align:center">DSLAM</td>
+<td style="text-align:center">数字用户线接入复用器</td>
 <td style="text-align:center">WLAN</td>
 <td style="text-align:center">无线局域网</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
 </tr>
 <tr>
+<td style="text-align:center">HFC(Hybrid fiber coax)</td>
+<td style="text-align:center">混合光纤同轴电缆</td>
 <td style="text-align:center">WAN</td>
-<td style="text-align:center">广域网</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center">广域网(无线接入网)</td>
 </tr>
 <tr>
+<td style="text-align:center">ISP</td>
+<td style="text-align:center">网络服务提供商</td>
 <td style="text-align:center">ARP</td>
 <td style="text-align:center">地址解析协议</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 </tr>
