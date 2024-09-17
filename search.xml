@@ -238,49 +238,52 @@
 </ul>
 </li>
 </ul>
-<font color="green">Recall:</font> Packet Switching would make packets queuing at each router(delay), if a router is full, the new packet would be dropped(loss).
+<font color="green">Recall: Packet Switching would make packets queuing at each router(delay), if a router is full, the new packet would be dropped(loss).</font>
 
 
 
-#### Delay: Nodal vs. End-to-end
-
-**Nodal Delay**
-
+<h4 id="Delay-Nodal-vs-End-to-end"><a href="#Delay-Nodal-vs-End-to-end" class="headerlink" title="Delay: Nodal vs. End-to-end"></a>Delay: Nodal vs. End-to-end</h4><p><strong>Nodal Delay</strong></p>
 <blockquote class="blockquote-center">
 <p>$<br>d_{\text{nodal}}=d_{\text{proc}}+d_{\text{queue}}+d_{\text{trans}}+d_{\text{prop}}<br>$</p>
 
 </blockquote>
+<ul>
+<li>$d_{\text{proc}}$ : nodal processing<ul>
+<li>check bit errors</li>
+<li>determine output link</li>
+<li>typically &lt; 1 msec</li>
+</ul>
+</li>
+<li>$d_{\text{queue}}$ : <ul>
+<li>time waiting at output link for transmission </li>
+<li>depends on congestion(拥堵) level of router</li>
+</ul>
+</li>
+<li>$d_{\text{trans}}$ : 传输时延<ul>
+<li>$L$: packet length (bits) </li>
+<li>$R$: transmission rate (bps)</li>
+<li>$d_{\text{trans}} = L/R$</li>
+</ul>
+</li>
+<li>$d_{\text{prop}}$ : 传播时延<ul>
+<li>$d$: length of physical link</li>
+<li>$s$: propagation speed in medium (~2x108 m/sec)</li>
+<li>$d_{\text{prop}} = d/s$</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Easy way to understand $d_{\text{trans}}$ and $d_{\text{prop}}$</p>
+<p>Assume that a ten-car caravan(packets) is moving through tollbooth (end/routers). Think of a car as a bit data.<br>Suppose that the Tollbooth takes 12 sec to service one car (transmission time) and cars runs at a speed of 100 km/hr (propagation speed).</p>
+<font color="red">Q: How long does it take the <b>last car</b> to arrive at the 2nd tollbooth?</font>
 
-- $d_{\text{proc}}$ : nodal processing
-    - check bit errors
-    - determine output link
-    - typically < 1 msec
-- $d_{\text{queue}}$ : 
-    - time waiting at output link for transmission 
-    - depends on congestion(拥堵) level of router
-- $d_{\text{trans}}$ : 传输时延
-    - $L$: packet length (bits) 
-    - $R$: transmission rate (bps)
-    - $d_{\text{trans}} = L/R$
-- $d_{\text{prop}}$ : 传播时延
-    - $d$: length of physical link
-    - $s$: propagation speed in medium (~2x108 m/sec)
-    - $d_{\text{prop}} = d/s$
-
-> Easy way to understand $d_{\text{trans}}$ and $d_{\text{prop}}$
->
-> Assume that a ten-car caravan(packets) is moving through tollbooth (end/routers). Think of a car as a bit data.
-> Suppose that the Tollbooth takes 12 sec to service one car (transmission time) and cars runs at a speed of 100 km/hr (propagation speed).
-> <font color="red">Q: How long does it take the <b>last car</b> to arrive at the 2nd tollbooth?</font>
->
-> Now the time to "push" entire caravan through tollbooth onto highway = 12 * 10 = 120 sec, known as <font color="blue">Transmission Delay</font>;
-> 
-> The time for last car to propagate from 1st to 2nd tollbooth: 100km / (100km/hr) = 1 hr, known as <font color="blue">Propagation Delay</font>.
->
-> <font color="green">A: 62 mins</font>
+<p>Now the time to “push” entire caravan through tollbooth onto highway = 12 * 10 = 120 sec, known as <font color="blue">Transmission Delay</font>;</p>
+<p>The time for last car to propagate from 1st to 2nd tollbooth: 100km / (100km/hr) = 1 hr, known as <font color="blue">Propagation Delay</font>.</p>
+<font color="green">A: 62 mins</font>
 
 
 
+</blockquote>
 <ul>
 <li>Special: Queuing Delay — Vary from packet to packet<ul>
 <li>When characterizing queuing delay, statistical measures:<ul>
@@ -320,7 +323,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2024/09/09/Computer-Networks/cn9.png" style="zoom:60%"></p>
+<p><img src="/2024/09/09/Computer-Networks/cn9.png" style="zoom:40%"></p>
 <h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h2><blockquote>
 <p>Introduce to Lab 01:</p>
 <ul>
