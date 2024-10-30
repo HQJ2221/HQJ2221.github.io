@@ -3,7 +3,23 @@
   <entry>
     <title>计算机网络</title>
     <url>/2024/09/09/Computer-Networks/</url>
-    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><blockquote>
+    <content><![CDATA[<h1 id="Chapter-1-Introduction"><a href="#Chapter-1-Introduction" class="headerlink" title="Chapter 1. Introduction"></a>Chapter 1. Introduction</h1><hr>
+<center><font face="STXinwei" size="5">Layout</font></center>
+
+<p><strong>1.1</strong> what is the Internet?</p>
+<p><strong>1.2</strong> network edge</p>
+<ul>
+<li>end systems, access networks, links</li>
+</ul>
+<p><strong>1.3</strong> network core</p>
+<ul>
+<li>packet switching, circuit switching, network, structure</li>
+</ul>
+<p><strong>1.4</strong> delay, loss, throughput in networks</p>
+<p><strong>1.5</strong> protocol layers, service models</p>
+<p><strong>1.6</strong> networks under attack: security</p>
+<hr>
+<blockquote>
 <p>Learning top-down, we have 5 layer about computer network</p>
 </blockquote>
 <ul>
@@ -216,10 +232,10 @@
 </tbody>
 </table>
 </div>
-<hr>
 <blockquote>
 <p>Therefore, Packet Switching is more used in network(more users but have low prob to online at the same time), Circuit Switching is more used in telephone call(assuring rate and connection).</p>
 </blockquote>
+<hr>
 <h4 id="Network-Structure"><a href="#Network-Structure" class="headerlink" title="Network Structure"></a>Network Structure</h4><p><img src="/2024/09/09/Computer-Networks/cn8.png" style="zoom:60%"></p>
 <ul>
 <li>Different ISPs from different business</li>
@@ -388,15 +404,100 @@
 </ul>
 </li>
 </ul>
+<h1 id="Chapter-2-Application-Layer"><a href="#Chapter-2-Application-Layer" class="headerlink" title="Chapter 2. Application Layer"></a>Chapter 2. Application Layer</h1><hr>
+<center><font face="STXinwei" size="5">Layout</font></center>
+
+<p><strong>2.1</strong> principles of network applications</p>
+<p><strong>2.2</strong> Web and HTTP</p>
+<p><strong>2.3</strong> Electronic mail</p>
+<ul>
+<li>SMTP, POP3, IMAP</li>
+</ul>
+<p><strong>2.4</strong> DNS</p>
+<p><strong>2.5</strong> P2P applications</p>
+<p><strong>2.6</strong> video streaming and content distribution networks</p>
+<p><strong>2.7</strong> socket programming with UDP and TCP</p>
+<hr>
+<blockquote>
+<p>Learning Goals: </p>
+<p>有关网络应用协议的概念与实现：包括用户-服务端架构，peer-to-peer 架构和传输层服务模型</p>
+<p>学习一些广泛使用的应用层协议：如HTTP，POP3，DNS等</p>
+<p>学习如何搭建简单网络应用：assignment 1 相关，用 python 建立用户-服务端之间的相互通信</p>
+</blockquote>
+<h2 id="Principles-of-network-applications"><a href="#Principles-of-network-applications" class="headerlink" title="Principles of network applications"></a>Principles of network applications</h2><ul>
+<li>Consider building a network application :<ul>
+<li><font color="red">Q1: Which architecture?</font> client-server or peer-to-peer?</li>
+<li><font color="red">Q2: Which transport layer protocol to choose?</font> TCP? UDP?</li>
+<li><font color="red">Q3: Which protocol to follow?</font> HTTP for Web? SMTP for email? Customized?</li>
+</ul>
+</li>
+</ul>
+<h3 id="Architecture-of-network"><a href="#Architecture-of-network" class="headerlink" title="Architecture of network"></a>Architecture of network</h3><p><strong>Client-Server Architecture</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Server</th>
+<th style="text-align:center">Client</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">always-on host</td>
+<td style="text-align:center">communicate with server(can shutdown)</td>
+</tr>
+<tr>
+<td style="text-align:center">permanent(fixed, well-known) IP address</td>
+<td style="text-align:center">may have dynamic IP addresses</td>
+</tr>
+<tr>
+<td style="text-align:center">data centers for scaling</td>
+<td style="text-align:center">no direct communication with each other</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>P2P Architecture</strong></p>
+<ul>
+<li><em>no</em> always-in server, directly communicate</li>
+<li>peers <em>request</em> service from other peers, <em>provide</em> service in return to otehr peers<ul>
+<li><font color="red">self scalability:</font> new peers bring new service capacity and new service demands</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Hybrid arch: client-server + P2P</p>
+</blockquote>
+<h3 id="Transport-layer-protocol"><a href="#Transport-layer-protocol" class="headerlink" title="Transport layer protocol"></a>Transport layer protocol</h3><blockquote>
+<p>Q: How do apps (at end systems) exchange messages? (E.g. how does a browser exchange message with a server?)</p>
+<p>A: Split to 2 questions:</p>
+<ul>
+<li><font color="red">Who send/recv msg to/from network?</font> <font color="green">Process(进程)</font></li>
+<li><font color="red">Where does process send/recv msg to/from?</font> <font color="green">Sockets(套接字)</font>
+
+
+
+
+
+</li>
+</ul>
+</blockquote>
 <h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h2><blockquote>
 <p>Introduce to Lab 01:</p>
+<p>应用层（Application）</p>
 <ul>
 <li><code>ipconfig</code></li>
-<li><code>arp</code></li>
 <li><code>nslookup</code></li>
+</ul>
+<p>网络层（Network）</p>
+<ul>
 <li><code>ping</code></li>
 <li><code>tracert</code></li>
 <li><code>netstat</code></li>
+</ul>
+<p>链路层（Link）</p>
+<ul>
+<li><code>arp</code></li>
 </ul>
 </blockquote>
 <ul>
@@ -412,7 +513,7 @@
 <ul>
 <li>Domain name(App Layer)<ul>
 <li>www.sustech.edu.cn</li>
-<li>www.baidu</li>
+<li>www.baidu.com</li>
 </ul>
 </li>
 <li>IP address(Network Layer)<ul>
@@ -506,7 +607,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><div class="table-container">
+<h2 id="Week-2"><a href="#Week-2" class="headerlink" title="Week 2"></a>Week 2</h2><h3 id="Wireshark-使用"><a href="#Wireshark-使用" class="headerlink" title="Wireshark 使用"></a>Wireshark 使用</h3><h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><div class="table-container">
 <table>
 <thead>
 <tr>
