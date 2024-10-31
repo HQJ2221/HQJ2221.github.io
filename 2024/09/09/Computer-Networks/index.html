@@ -40,8 +40,12 @@
 <meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn11.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn12.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn13.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn14.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn15.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn16.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/09/Computer-Networks/cn17.png">
 <meta property="article:published_time" content="2024-09-09T06:08:56.000Z">
-<meta property="article:modified_time" content="2024-10-30T16:43:02.663Z">
+<meta property="article:modified_time" content="2024-10-31T01:51:49.195Z">
 <meta property="article:author" content="Kigen">
 <meta property="article:tag" content="CSE Learning">
 <meta name="twitter:card" content="summary">
@@ -157,7 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-Introduction"><span class="nav-text">Chapter 1. Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-of-Internet"><span class="nav-text">Structure of Internet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Network-edge"><span class="nav-text">Network edge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Networks-%E6%8E%A5%E5%85%A5%E7%BD%91"><span class="nav-text">Access Networks(接入网)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Network-Core-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83"><span class="nav-text">Network Core(网络核心)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Packet-switching-vs-Circuit-switching"><span class="nav-text">Packet switching vs. Circuit switching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Network-Structure"><span class="nav-text">Network Structure</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Performance-Metric"><span class="nav-text">Performance Metric</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Delay-Nodal-vs-End-to-end"><span class="nav-text">Delay: Nodal vs. End-to-end</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Throughput-%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-text">Throughput(吞吐量)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocol-layers-amp-Service-models"><span class="nav-text">Protocol layers &amp; Service models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Security"><span class="nav-text">Security</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-Application-Layer"><span class="nav-text">Chapter 2. Application Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Principles-of-network-applications"><span class="nav-text">Principles of network applications</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture-of-network"><span class="nav-text">Architecture of network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transport-layer-protocol"><span class="nav-text">Transport layer protocol</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Labs"><span class="nav-text">Labs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-1"><span class="nav-text">Week 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-2"><span class="nav-text">Week 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Wireshark-%E4%BD%BF%E7%94%A8"><span class="nav-text">Wireshark 使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Appendix"><span class="nav-text">Appendix</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-Introduction"><span class="nav-text">Chapter 1. Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Structure-of-Internet"><span class="nav-text">1.1 Structure of Internet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Network-edge"><span class="nav-text">1.2 Network edge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plus-Access-Networks-%E6%8E%A5%E5%85%A5%E7%BD%91"><span class="nav-text">Plus: Access Networks(接入网)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Network-Core-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83"><span class="nav-text">1.3 Network Core(网络核心)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Packet-switching-vs-Circuit-switching"><span class="nav-text">Packet switching vs. Circuit switching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Network-Structure"><span class="nav-text">Network Structure</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Performance-Metric"><span class="nav-text">1.4 Performance Metric</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Delay-Nodal-vs-End-to-end"><span class="nav-text">Delay: Nodal vs. End-to-end</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Throughput-%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-text">Throughput(吞吐量)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-Protocol-layers-amp-Service-models"><span class="nav-text">1.5 Protocol layers &amp; Service models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-Security"><span class="nav-text">1.6 Security</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-Application-Layer"><span class="nav-text">Chapter 2. Application Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Principles-of-network-applications"><span class="nav-text">2.1 Principles of network applications</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture-of-network"><span class="nav-text">Architecture of network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transport-layer-protocol"><span class="nav-text">Transport layer protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Interface-between-Process-and-Computer-Networks-Sockets"><span class="nav-text">Interface between Process and Computer Networks: Sockets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Brief-looking-on-transport-protocols"><span class="nav-text">Brief looking on transport protocols</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-level-protocols-Brief"><span class="nav-text">Application-level protocols (Brief)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Web-and-HTTP"><span class="nav-text">2.2 Web and HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-overview-TCP"><span class="nav-text">HTTP overview: TCP</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Labs"><span class="nav-text">Labs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-1"><span class="nav-text">Week 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-2"><span class="nav-text">Week 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Wireshark-%E4%BD%BF%E7%94%A8"><span class="nav-text">Wireshark 使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Appendix"><span class="nav-text">Appendix</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -258,7 +262,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-10-31 00:43:02" itemprop="dateModified" datetime="2024-10-31T00:43:02+08:00">2024-10-31</time>
+      <time title="Modified: 2024-10-31 09:51:49" itemprop="dateModified" datetime="2024-10-31T09:51:49+08:00">2024-10-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -318,7 +322,7 @@
 </li>
 <li>Physical: bits “on the wire”</li>
 </ul>
-<h2 id="Structure-of-Internet"><a href="#Structure-of-Internet" class="headerlink" title="Structure of Internet"></a>Structure of Internet</h2><table>
+<h2 id="1-1-Structure-of-Internet"><a href="#1-1-Structure-of-Internet" class="headerlink" title="1.1 Structure of Internet"></a>1.1 Structure of Internet</h2><table>
 <tr>
 <td><img src="/2024/09/09/Computer-Networks/cn1.png" style="zoom:60%"></td>
 <td><img src="/2024/09/09/Computer-Networks/cn2.png" style="zoom:60%"></td>
@@ -327,7 +331,7 @@
 
 
 
-<h3 id="Network-edge"><a href="#Network-edge" class="headerlink" title="Network edge"></a>Network edge</h3><ul>
+<h2 id="1-2-Network-edge"><a href="#1-2-Network-edge" class="headerlink" title="1.2 Network edge"></a>1.2 Network edge</h2><ul>
 <li>end systems (hosts):<ul>
 <li>run application programs</li>
 <li>e.g. Web, email</li>
@@ -361,7 +365,7 @@
 <p>$<br>\text{packet transmission delay}=\frac{L\text{(bits)}}{R\text{(bits/sec)}}<br>$</p>
 
 </blockquote>
-<h3 id="Access-Networks-接入网"><a href="#Access-Networks-接入网" class="headerlink" title="Access Networks(接入网)"></a>Access Networks(接入网)</h3><p><strong>Def.</strong> The network that physically connects an <font color="red">end system</font> to the <font color="red">first router (edge router)</font> on a path from the end system to any other distant end system.</p>
+<h2 id="Plus-Access-Networks-接入网"><a href="#Plus-Access-Networks-接入网" class="headerlink" title="Plus: Access Networks(接入网)"></a>Plus: Access Networks(接入网)</h2><p><strong>Def.</strong> The network that physically connects an <font color="red">end system</font> to the <font color="red">first router (edge router)</font> on a path from the end system to any other distant end system.</p>
 <p>Different kinds of access networks:</p>
 <ul>
 <li>Cable network</li>
@@ -432,7 +436,7 @@
 </li>
 </ul>
 </blockquote>
-<h3 id="Network-Core-网络核心"><a href="#Network-Core-网络核心" class="headerlink" title="Network Core(网络核心)"></a>Network Core(网络核心)</h3><p><strong>Def.</strong>  The mesh(链路网格) of packet switches and links that interconnects the Internet’s end systems.</p>
+<h2 id="1-3-Network-Core-网络核心"><a href="#1-3-Network-Core-网络核心" class="headerlink" title="1.3 Network Core(网络核心)"></a>1.3 Network Core(网络核心)</h2><p><strong>Def.</strong>  The mesh(链路网格) of packet switches and links that interconnects the Internet’s end systems.</p>
 <h4 id="Packet-switching-vs-Circuit-switching"><a href="#Packet-switching-vs-Circuit-switching" class="headerlink" title="Packet switching vs. Circuit switching"></a>Packet switching vs. Circuit switching</h4><p><strong>Packet Switching</strong></p>
 <p>Basic thought: Hosts break long messages into packets and each packet is forwarded independently.</p>
 <p><img src="/2024/09/09/Computer-Networks/cn5.png" style="zoom:60%"></p>
@@ -520,7 +524,7 @@
 <li>Regional network may arise to connect access nets to ISPs</li>
 <li><font color="red">Content provider networks</font>(e.g. Google, Microsoft) may run their own network, to bring services, content close to end users.</li>
 </ul>
-<h2 id="Performance-Metric"><a href="#Performance-Metric" class="headerlink" title="Performance Metric"></a>Performance Metric</h2><ul>
+<h2 id="1-4-Performance-Metric"><a href="#1-4-Performance-Metric" class="headerlink" title="1.4 Performance Metric"></a>1.4 Performance Metric</h2><ul>
 <li>Delay<ul>
 <li>Nodal delay &amp; end-to-end delay</li>
 </ul>
@@ -617,7 +621,7 @@
 </li>
 </ul>
 <p><img src="/2024/09/09/Computer-Networks/cn9.png" style="zoom:40%"></p>
-<h2 id="Protocol-layers-amp-Service-models"><a href="#Protocol-layers-amp-Service-models" class="headerlink" title="Protocol layers &amp; Service models"></a>Protocol layers &amp; Service models</h2><blockquote>
+<h2 id="1-5-Protocol-layers-amp-Service-models"><a href="#1-5-Protocol-layers-amp-Service-models" class="headerlink" title="1.5 Protocol layers &amp; Service models"></a>1.5 Protocol layers &amp; Service models</h2><blockquote>
 <font color="red">Q: Why layering?</font>
 
 <p>To deal with complex systems: </p>
@@ -648,7 +652,7 @@
 <li>Used to keep content of data safe and assure the layer below to acquire enough info to transmit.</li>
 </ul>
 <p><img src="/2024/09/09/Computer-Networks/cn11.png" style="zoom:40%"></p>
-<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><p><strong>Attack Type</strong></p>
+<h2 id="1-6-Security"><a href="#1-6-Security" class="headerlink" title="1.6 Security"></a>1.6 Security</h2><p><strong>Attack Type</strong></p>
 <ol>
 <li>Malware(恶意软件) into hosts via Internet<ul>
 <li>virus</li>
@@ -701,7 +705,7 @@
 <p>学习一些广泛使用的应用层协议：如HTTP，POP3，DNS等</p>
 <p>学习如何搭建简单网络应用：assignment 1 相关，用 python 建立用户-服务端之间的相互通信</p>
 </blockquote>
-<h2 id="Principles-of-network-applications"><a href="#Principles-of-network-applications" class="headerlink" title="Principles of network applications"></a>Principles of network applications</h2><ul>
+<h2 id="2-1-Principles-of-network-applications"><a href="#2-1-Principles-of-network-applications" class="headerlink" title="2.1 Principles of network applications"></a>2.1 Principles of network applications</h2><ul>
 <li>Consider building a network application :<ul>
 <li><font color="red">Q1: Which architecture?</font> client-server or peer-to-peer?</li>
 <li><font color="red">Q2: Which transport layer protocol to choose?</font> TCP? UDP?</li>
@@ -777,8 +781,7 @@
 </ul>
 </li>
 </ol>
-<p><strong>Interface between Process and Computer Networks: Sockets</strong></p>
-<p><img src="/2024/09/09/Computer-Networks/cn12.png"></p>
+<h4 id="Interface-between-Process-and-Computer-Networks-Sockets"><a href="#Interface-between-Process-and-Computer-Networks-Sockets" class="headerlink" title="Interface between Process and Computer Networks: Sockets"></a>Interface between Process and Computer Networks: Sockets</h4><p><img src="/2024/09/09/Computer-Networks/cn12.png"></p>
 <ul>
 <li><p>Process sends/receives messages to/from the network through socket</p>
 <ul>
@@ -790,7 +793,7 @@
 <li><p>To receive messages, sockets must be identified by</p>
 <ul>
 <li>The address of the host: <font color="red">IP address</font></li>
-<li>An identifier that specifies the receiving process/socket: <font color="red">port numbers</font></li>
+<li>An identifier that specifies the receiving process/socket: <font color="red">port numbers</font> (标识进程)</li>
 <li>Some default port number:<ul>
 <li>HTTP server: 80</li>
 <li>HTTPS server: 433</li>
@@ -801,8 +804,10 @@
 </li>
 </ul>
 <blockquote>
-<p>Q: How to choose transport service?</p>
-<p>A: choose one of the available transport-layer protocols (e.g., UDP, TCP)</p>
+<font color="red">Q: How to choose transport service?</font>
+
+<font color="green">A: choose one of the available transport-layer protocols (e.g., UDP, TCP)</font>
+
 </blockquote>
 <ul>
 <li>Measurements for transport service choosing:<ul>
@@ -813,6 +818,113 @@
 </li>
 </ul>
 <p><img src="/2024/09/09/Computer-Networks/cn13.png"></p>
+<ul>
+<li>以上是部分应用的需求，下面我们可以看到这些应用选择了哪项传输服务。</li>
+</ul>
+<h4 id="Brief-looking-on-transport-protocols"><a href="#Brief-looking-on-transport-protocols" class="headerlink" title="Brief looking on transport protocols"></a>Brief looking on transport protocols</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TCP Service</th>
+<th style="text-align:center">UDP Service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><font color="red">connection-oriented:</font> setup required between client and server processes (TCP connection/full-duplex)</td>
+<td style="text-align:center"><font color="red">connectionless</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="red">reliable transport</font> between sending and receiving process</td>
+<td style="text-align:center"><font color="red">unreliable data transfer</font> between sending and receiving process</td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="red">congestion(阻塞) control</font>: throttle(阻断) sender when network overloaded</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="red">no provide</font>: timing, minimum throughput guarantee, security</td>
+<td style="text-align:center"><font color="red">no provide</font>: reliability, congestion control, timing, throughput guarantee, security, or connection setup</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>注意！TCP 和 UDP 都不直接保证安全性。TCP 保证连接稳定，UDP 保证传输效率。</p>
+<p>UDP 适用于时间敏感的通信中。当遇到丢包比延迟要好的情况时，就使用 UDP 传输。</p>
+</blockquote>
+<p><img src="/2024/09/09/Computer-Networks/cn14.png"></p>
+<h3 id="Application-level-protocols-Brief"><a href="#Application-level-protocols-Brief" class="headerlink" title="Application-level protocols (Brief)"></a>Application-level protocols (Brief)</h3><ul>
+<li>App-layer protocol defines<ul>
+<li><font color="red">types of messages exchanged</font><ul>
+<li>e.g., request, response </li>
+</ul>
+</li>
+<li><font color="red">message syntax (语法)</font><ul>
+<li>what fields in messages &amp; how fields are delineated</li>
+</ul>
+</li>
+<li><font color="red">message semantics (语义)</font> <ul>
+<li>meaning of information in fields</li>
+</ul>
+</li>
+<li><font color="red">rules</font> for when and how processes send &amp; respond to messages</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>应用层协议只是应用的一部分：</p>
+<p>以 Web 为例：Web 是一个服务端-客户端应用，允许用户从 Web 服务器获取文档，其组成有</p>
+<ul>
+<li>一个文档标准格式（HTML）</li>
+<li>Web 浏览器（Browsers）</li>
+<li>Web 服务器</li>
+<li>应用层协议</li>
+</ul>
+</blockquote>
+<h2 id="2-2-Web-and-HTTP"><a href="#2-2-Web-and-HTTP" class="headerlink" title="2.2 Web and HTTP"></a>2.2 Web and HTTP</h2><ul>
+<li><font color="red">Web page</font> consists of <font color="red">base HTML-file</font> which includes <font color="red">several referenced objects</font></li>
+<li>each object is addressable by a <font color="red">URL</font></li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn15.png"></p>
+<ul>
+<li>Web<ul>
+<li>client-server architecture</li>
+<li>use HTTP as its application layer protocol</li>
+</ul>
+</li>
+<li>HTTP (hypertext transfer protocol) defines <ul>
+<li>HTTP request: how <font colo="red">Web clients request</font> Web pages from Web servers</li>
+<li>HTTP response: how <font color="red">servers transfer</font> Web pages to clients</li>
+</ul>
+</li>
+</ul>
+<table>
+    <tr>
+        <td><p>Client-server architecture:</p><p><font color="red">client</font>: browser that requests, receives, (using HTTP protocol) and “displays” Web objects</p><p><font color="red">server</font>: Web server sends (using HTTP protocol) objects in response to  requests</p></td>
+        <td><img src="/2024/09/09/Computer-Networks/cn16.png"></td>
+    </tr>
+</table>
+
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p><strong>Outline</strong></p>
+<ul>
+<li>HTTP Overview<ul>
+<li>HTTP runs over TCP</li>
+<li>HTTP is stateless</li>
+<li>Persistent and non-persistent connection</li>
+</ul>
+</li>
+<li>Request and response messages</li>
+<li>Cookies</li>
+<li>Web caching</li>
+</ul>
+<h4 id="HTTP-overview-TCP"><a href="#HTTP-overview-TCP" class="headerlink" title="HTTP overview: TCP"></a>HTTP overview: TCP</h4><ul>
+<li>client initiates TCP connection (creates socket) to server,  port 80</li>
+<li>server accepts TCP connection from client</li>
+<li>HTTP messages (application-layer protocol messages) exchanged between browser (HTTP client) and Web server (HTTP server)</li>
+<li>TCP connection closed</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn17.png"></p>
 <h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h2><blockquote>
 <p>Introduce to Lab 01:</p>
 <p>应用层（Application）</p>
@@ -974,10 +1086,10 @@
 <td style="text-align:center">地址解析协议</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center">HTML</td>
+<td style="text-align:center">超文本标记语言</td>
+<td style="text-align:center">HTTP(S)</td>
+<td style="text-align:center">超文本传输（安全）协议</td>
 </tr>
 <tr>
 <td style="text-align:center"></td>
