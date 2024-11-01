@@ -41,7 +41,7 @@
 </li>
 <li>Physical: bits “on the wire”</li>
 </ul>
-<h2 id="1-1-Structure-of-Internet"><a href="#1-1-Structure-of-Internet" class="headerlink" title="1.1 Structure of Internet"></a>1.1 Structure of Internet</h2><table>
+<h2 id="1-1-Structure-of-Internet"><a href="#1-1-Structure-of-Internet" class="headerlink" title="1.1. Structure of Internet"></a>1.1. Structure of Internet</h2><table>
 <tr>
 <td><img src="/2024/09/09/Computer-Networks/cn1.png" style="zoom:60%"></td>
 <td><img src="/2024/09/09/Computer-Networks/cn2.png" style="zoom:60%"></td>
@@ -50,7 +50,7 @@
 
 
 
-<h2 id="1-2-Network-edge"><a href="#1-2-Network-edge" class="headerlink" title="1.2 Network edge"></a>1.2 Network edge</h2><ul>
+<h2 id="1-2-Network-edge"><a href="#1-2-Network-edge" class="headerlink" title="1.2. Network edge"></a>1.2. Network edge</h2><ul>
 <li>end systems (hosts):<ul>
 <li>run application programs</li>
 <li>e.g. Web, email</li>
@@ -155,7 +155,7 @@
 </li>
 </ul>
 </blockquote>
-<h2 id="1-3-Network-Core-网络核心"><a href="#1-3-Network-Core-网络核心" class="headerlink" title="1.3 Network Core(网络核心)"></a>1.3 Network Core(网络核心)</h2><p><strong>Def.</strong>  The mesh(链路网格) of packet switches and links that interconnects the Internet’s end systems.</p>
+<h2 id="1-3-Network-Core-网络核心"><a href="#1-3-Network-Core-网络核心" class="headerlink" title="1.3. Network Core(网络核心)"></a>1.3. Network Core(网络核心)</h2><p><strong>Def.</strong>  The mesh(链路网格) of packet switches and links that interconnects the Internet’s end systems.</p>
 <h4 id="Packet-switching-vs-Circuit-switching"><a href="#Packet-switching-vs-Circuit-switching" class="headerlink" title="Packet switching vs. Circuit switching"></a>Packet switching vs. Circuit switching</h4><p><strong>Packet Switching</strong></p>
 <p>Basic thought: Hosts break long messages into packets and each packet is forwarded independently.</p>
 <p><img src="/2024/09/09/Computer-Networks/cn5.png" style="zoom:60%"></p>
@@ -243,7 +243,7 @@
 <li>Regional network may arise to connect access nets to ISPs</li>
 <li><font color="red">Content provider networks</font>(e.g. Google, Microsoft) may run their own network, to bring services, content close to end users.</li>
 </ul>
-<h2 id="1-4-Performance-Metric"><a href="#1-4-Performance-Metric" class="headerlink" title="1.4 Performance Metric"></a>1.4 Performance Metric</h2><ul>
+<h2 id="1-4-Performance-Metric"><a href="#1-4-Performance-Metric" class="headerlink" title="1.4. Performance Metric"></a>1.4. Performance Metric</h2><ul>
 <li>Delay<ul>
 <li>Nodal delay &amp; end-to-end delay</li>
 </ul>
@@ -340,7 +340,7 @@
 </li>
 </ul>
 <p><img src="/2024/09/09/Computer-Networks/cn9.png" style="zoom:40%"></p>
-<h2 id="1-5-Protocol-layers-amp-Service-models"><a href="#1-5-Protocol-layers-amp-Service-models" class="headerlink" title="1.5 Protocol layers &amp; Service models"></a>1.5 Protocol layers &amp; Service models</h2><blockquote>
+<h2 id="1-5-Protocol-layers-amp-Service-models"><a href="#1-5-Protocol-layers-amp-Service-models" class="headerlink" title="1.5. Protocol layers &amp; Service models"></a>1.5. Protocol layers &amp; Service models</h2><blockquote>
 <font color="red">Q: Why layering?</font>
 
 <p>To deal with complex systems: </p>
@@ -371,7 +371,7 @@
 <li>Used to keep content of data safe and assure the layer below to acquire enough info to transmit.</li>
 </ul>
 <p><img src="/2024/09/09/Computer-Networks/cn11.png" style="zoom:40%"></p>
-<h2 id="1-6-Security"><a href="#1-6-Security" class="headerlink" title="1.6 Security"></a>1.6 Security</h2><p><strong>Attack Type</strong></p>
+<h2 id="1-6-Security"><a href="#1-6-Security" class="headerlink" title="1.6. Security"></a>1.6. Security</h2><p><strong>Attack Type</strong></p>
 <ol>
 <li>Malware(恶意软件) into hosts via Internet<ul>
 <li>virus</li>
@@ -424,7 +424,7 @@
 <p>学习一些广泛使用的应用层协议：如HTTP，POP3，DNS等</p>
 <p>学习如何搭建简单网络应用：assignment 1 相关，用 python 建立用户-服务端之间的相互通信</p>
 </blockquote>
-<h2 id="2-1-Principles-of-network-applications"><a href="#2-1-Principles-of-network-applications" class="headerlink" title="2.1 Principles of network applications"></a>2.1 Principles of network applications</h2><ul>
+<h2 id="2-1-Principles-of-network-applications"><a href="#2-1-Principles-of-network-applications" class="headerlink" title="2.1. Principles of network applications"></a>2.1. Principles of network applications</h2><ul>
 <li>Consider building a network application :<ul>
 <li><font color="red">Q1: Which architecture?</font> client-server or peer-to-peer?</li>
 <li><font color="red">Q2: Which transport layer protocol to choose?</font> TCP? UDP?</li>
@@ -601,7 +601,7 @@
 <li>应用层协议</li>
 </ul>
 </blockquote>
-<h2 id="2-2-Web-and-HTTP"><a href="#2-2-Web-and-HTTP" class="headerlink" title="2.2 Web and HTTP"></a>2.2 Web and HTTP</h2><ul>
+<h2 id="2-2-Web-and-HTTP"><a href="#2-2-Web-and-HTTP" class="headerlink" title="2.2. Web and HTTP"></a>2.2. Web and HTTP</h2><ul>
 <li><font color="red">Web page</font> consists of <font color="red">base HTML-file</font> which includes <font color="red">several referenced objects</font></li>
 <li>each object is addressable by a <font color="red">URL</font></li>
 </ul>
@@ -820,7 +820,7 @@
 <li>Server: response contains no object if cached copy is up-to-date: <code>HTTP/1.0 304 Not Modified</code> or <code>HTTP /1.0 200 OK</code> if modified</li>
 </ul>
 <p><img src="/2024/09/09/Computer-Networks/cn27.png"></p>
-<h2 id="2-3-Electronic-Mail"><a href="#2-3-Electronic-Mail" class="headerlink" title="2.3 Electronic Mail"></a>2.3 Electronic Mail</h2><ul>
+<h2 id="2-3-Electronic-Mail"><a href="#2-3-Electronic-Mail" class="headerlink" title="2.3. Electronic Mail"></a>2.3. Electronic Mail</h2><ul>
 <li>Overview<ul>
 <li>Main components</li>
 <li>Alice sends an email to Bob</li>
@@ -994,7 +994,7 @@
 </tbody>
 </table>
 </div>
-<h2 id="2-4-DNS-重点"><a href="#2-4-DNS-重点" class="headerlink" title="2.4 DNS [重点!]"></a>2.4 DNS [重点!]</h2><ul>
+<h2 id="2-4-DNS-重点"><a href="#2-4-DNS-重点" class="headerlink" title="2.4. DNS [重点!]"></a>2.4. DNS [重点!]</h2><ul>
 <li>DNS Services</li>
 <li>DNS Structure<ul>
 <li>Hierarchical structure</li>
