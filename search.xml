@@ -838,10 +838,204 @@
 <h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p><img src="/2024/09/09/Computer-Networks/cn28.png"></p>
 <p>3 major components:</p>
 <ul>
-<li>user agents</li>
-<li>mail servers</li>
+<li>User agents<ul>
+<li>Allow users to read, reply to, forward, save and compose messages</li>
+<li>e.g. Outlook, iPhone mail client</li>
+</ul>
+</li>
+<li>Mail servers<ul>
+<li>Always-on hosts</li>
+<li><font color="red">User mailbox</font> contains outgoing, incoming messages</li>
+<li><font color="red">Message queue</font> of outgoing (to be sent) mail messages</li>
+<li><font color="red">Simple Mail Transfer Protocol (SMTP)</font> between mail servers to send email messages (见上图)</li>
+<li>Both client and server sides of SMTP run on mail server.<ul>
+<li>client process: sending mail server</li>
+<li>server  process: receiving mail server</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><font color="red">simple mail transfer protocol</font> (SMTP): use TCP</li>
 </ul>
+<p><strong>Learning by scenario: Alice sends message to Bob</strong></p>
+<p><img src="/2024/09/09/Computer-Networks/cn29.png"></p>
+<ol>
+<li>Alice uses user agent to compose message “to” <code>bob@hamburger.edu</code></li>
+<li>Alice’s user agent sends message to her mail server; message placed in message queue</li>
+<li>client side of SMTP opens TCP connection with Bob’s mail server</li>
+<li>SMTP client sends Alice’s message over the TCP connection</li>
+<li>Bob’s mail server places the message in Bob’s mailbox</li>
+<li>Bob invokes his user agent to read message</li>
+</ol>
+<h3 id="Simple-Mail-Transfer-Protocol-SMTP"><a href="#Simple-Mail-Transfer-Protocol-SMTP" class="headerlink" title="Simple Mail Transfer Protocol(SMTP)"></a>Simple Mail Transfer Protocol(SMTP)</h3><table><tr>
+    <td><ul><li>Uses TCP to reliably transfer email message from client to server, port 25</li><li>Direct transfer: sending server to receiving server (no intermediate server)</li><li>Three phases of transfer</li><ul><li>handshaking (greeting): indicate email address</li><li>transfer of messages: persistent connection</li><li>closure</li></ul><li>Two types of messages (like HTTP)</li><ul><li>commands: text</li><li>response: status code and phrase</li></ul></ul></td>
+    <td><img src="/2024/09/09/Computer-Networks/cn30.png"></td>
+</tr></table>
+
+
+
+<font color="red">Properties of SMTP :</font>
+
+
+<ul>
+<li>SMTP uses persistent connections</li>
+<li>SMTP requires message (header &amp; body) to be in  ASCII</li>
+<li>SMTP server uses <font color="red">CRLF</font>(回车换行符) to determine end of message</li>
+</ul>
+<p>Comparison with HTTP :</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">HTTP</th>
+<th style="text-align:center">SMTP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">pull</td>
+<td style="text-align:center">push //TODO</td>
+</tr>
+<tr>
+<td style="text-align:center">ASCII in header</td>
+<td style="text-align:center">ASCII in header and body</td>
+</tr>
+<tr>
+<td style="text-align:center">each object encapsulated in its own response message</td>
+<td style="text-align:center">multiple objects sent in one message</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2024/09/09/Computer-Networks/cn31.png"></p>
+<blockquote>
+<font color="red">Q: Why not having mail servers directly on user’s local PC?</font>
+
+<font color="green">A: Mail server manages mailboxes and runs the client and server sides of SMTP. (Bob's PC have to remain always on in order to receive new mail)</font>
+
+</blockquote>
+<p><img src="/2024/09/09/Computer-Networks/cn32.png"></p>
+<blockquote>
+<font color="red">Q: Why not letting Alice send to Bob’s mail server directly?</font>
+
+<p><font color="green">A: Bob’s mail server may fail; need to repeatedly send the message until success.</font> // TODO</p>
+</blockquote>
+<h3 id="Mail-Message-Format"><a href="#Mail-Message-Format" class="headerlink" title="Mail Message Format"></a>Mail Message Format</h3><blockquote>
+<p>How do you write an e-mail …</p>
+<p>Header lines, e.g., <code>To:</code>, <code>From:</code>, <code>Subject:</code>, etc.<br>Body, the messages</p>
+</blockquote>
+<h3 id="Mail-Access-Protocol"><a href="#Mail-Access-Protocol" class="headerlink" title="Mail Access Protocol"></a>Mail Access Protocol</h3><blockquote>
+<p>Well, <code>SMTP</code> is used to delivery mail to receiver’s server (a push operation), but how does Bob obtain the mail ?</p>
+</blockquote>
+<p><img src="/2024/09/09/Computer-Networks/cn33.png"></p>
+<ul>
+<li><strong>POP3</strong>: Post Office Protocol 3: authorization, download <ul>
+<li><font color="blue">TCP, port 110(未加密) or 995(加密)</font></li>
+</ul>
+</li>
+<li><strong>IMAP</strong>: Internet Mail Access Protocol: more features, including maintain folders, keep user state</li>
+<li><strong>HTTP</strong>: gmail, Hotmail, Yahoo! Mail, etc. [Web-based Email]</li>
+</ul>
+<ul>
+<li>More about <code>POP3</code> ——</li>
+<li>Authorization phase<ul>
+<li>client commands: <ul>
+<li><code>user</code>: declare username</li>
+<li><code>pass</code>: password</li>
+</ul>
+</li>
+<li>server responses<ul>
+<li><code>+OK</code></li>
+<li><code>-ERR</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Transaction phase<ul>
+<li>client:<ul>
+<li><code>list</code>: list message numbers</li>
+<li><code>retr</code>: retrieve message by number</li>
+<li><code>dele</code>: delete</li>
+<li><code>quit</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Update phase (After <code>Quit</code>, the mail server deletes the messages marked as deletion)</p>
+</li>
+<li><p>比较 POP3 和 IMAP</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">POP3</th>
+<th style="text-align:center">IMAP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">邮件下载到本地设备，通常在下载后会从服务器上删除</td>
+<td style="text-align:center">邮件保留在服务器上，用户可以在多个设备上访问同一封邮件</td>
+</tr>
+<tr>
+<td style="text-align:center">不支持在多个设备之间同步邮件</td>
+<td style="text-align:center">能够保持所有设备之间的邮件（状态）一致性</td>
+</tr>
+<tr>
+<td style="text-align:center">通常不支持文件夹管理</td>
+<td style="text-align:center">支持文件夹管理</td>
+</tr>
+<tr>
+<td style="text-align:center">下载后可以在没有互联网的情况下查看邮件</td>
+<td style="text-align:center">设计用于在线访问，包括搜索、标记等操作</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-4-DNS-重点"><a href="#2-4-DNS-重点" class="headerlink" title="2.4 DNS [重点!]"></a>2.4 DNS [重点!]</h2><ul>
+<li>DNS Services</li>
+<li>DNS Structure<ul>
+<li>Hierarchical structure</li>
+<li>Iterated and recursive query</li>
+</ul>
+</li>
+<li>DNS protocol<ul>
+<li>DNS Records</li>
+<li>Query and reply messages</li>
+</ul>
+</li>
+<li>Inserting records into DNS</li>
+</ul>
+<h3 id="DNS-Services"><a href="#DNS-Services" class="headerlink" title="DNS Services"></a>DNS Services</h3><p><strong>Def.</strong> hostname to IP address translation</p>
+<ul>
+<li>Host aliasing<ul>
+<li><code>www.ibm.com</code> (alias) is really <code>servereast.backup2.ibm.com</code> (canonical 本名)</li>
+</ul>
+</li>
+<li>load distribution<ul>
+<li>replicated Web servers: many IP addresses correspond to one name (多个 IP 共享一个名字)</li>
+<li>rotation distributes the traffic (作用是减轻负担)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>How does APPs invoke DNS Service?</p>
+</blockquote>
+<ol>
+<li>An application invokes the client side of DNS<ul>
+<li>specifying the hostname that needs to be translated</li>
+</ul>
+</li>
+<li>DNS in the user’s host takes over, sending a query message into the network. <ul>
+<li>DNS query and reply messages </li>
+<li><font color="blue">UDP datagrams to port 53.</font> </li>
+</ul>
+</li>
+<li>After a delay, ranging from milliseconds to seconds, DNS in the user’s host receives a DNS reply message that provides the desired mapping.</li>
+<li>The <font color="red">mapping (hostname - IP)</font> is then passed to the invoking application.</li>
+</ol>
 <h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h2><blockquote>
 <p>Introduce to Lab 01:</p>
 <p>应用层（Application）</p>
