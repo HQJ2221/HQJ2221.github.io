@@ -3,7 +3,8 @@
   <entry>
     <title>计算机网络</title>
     <url>/2024/09/09/Computer-Networks/</url>
-    <content><![CDATA[<h1 id="Chapter-1-Introduction"><a href="#Chapter-1-Introduction" class="headerlink" title="Chapter 1. Introduction"></a>Chapter 1. Introduction</h1><hr>
+    <content><![CDATA[<h1 id="Chapter-1-Introduction"><a href="#Chapter-1-Introduction" class="headerlink" title="Chapter 1. Introduction"></a>Chapter 1. Introduction</h1><HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
+
 <center><font face="STXinwei" size="5">Layout</font></center>
 
 <p><strong>1.1</strong> what is the Internet?</p>
@@ -18,7 +19,10 @@
 <p><strong>1.4</strong> delay, loss, throughput in networks</p>
 <p><strong>1.5</strong> protocol layers, service models</p>
 <p><strong>1.6</strong> networks under attack: security</p>
-<hr>
+<HR style="FILTER: alpha(opacity=0,finishopacity=100,style=1)" width="100%" color="black" size="2">
+
+
+
 <blockquote>
 <p>Learning top-down, we have 5 layer about computer network</p>
 </blockquote>
@@ -197,7 +201,6 @@
 <p><img src="/2024/09/09/Computer-Networks/cn6.png" style="zoom:60%"></p>
 <p>An example to calculate delay in <strong>Circuit Switching</strong>: </p>
 <p><img src="/2024/09/09/Computer-Networks/cn7.png" style="zoom:60%"></p>
-<hr>
 <p align="center">----- COMPARISON -----</p>
 
 <div class="table-container">
@@ -235,7 +238,6 @@
 <blockquote>
 <p>Therefore, Packet Switching is more used in network(more users but have low prob to online at the same time), Circuit Switching is more used in telephone call(assuring rate and connection).</p>
 </blockquote>
-<hr>
 <h4 id="Network-Structure"><a href="#Network-Structure" class="headerlink" title="Network Structure"></a>Network Structure</h4><p><img src="/2024/09/09/Computer-Networks/cn8.png" style="zoom:60%"></p>
 <ul>
 <li>Different ISPs from different business</li>
@@ -404,7 +406,8 @@
 </ul>
 </li>
 </ul>
-<h1 id="Chapter-2-Application-Layer"><a href="#Chapter-2-Application-Layer" class="headerlink" title="Chapter 2. Application Layer"></a>Chapter 2. Application Layer</h1><hr>
+<h1 id="Chapter-2-Application-Layer"><a href="#Chapter-2-Application-Layer" class="headerlink" title="Chapter 2. Application Layer"></a>Chapter 2. Application Layer</h1><HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
+
 <center><font face="STXinwei" size="5">Layout</font></center>
 
 <p><strong>2.1</strong> principles of network applications</p>
@@ -417,7 +420,8 @@
 <p><strong>2.5</strong> P2P applications</p>
 <p><strong>2.6</strong> video streaming and content distribution networks</p>
 <p><strong>2.7</strong> socket programming with UDP and TCP</p>
-<hr>
+<HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
+
 <blockquote>
 <p>Learning Goals: </p>
 <p>有关网络应用协议的概念与实现：包括用户-服务端架构，peer-to-peer 架构和传输层服务模型</p>
@@ -558,7 +562,7 @@
 <td style="text-align:center"><font color="red">unreliable data transfer</font> between sending and receiving process</td>
 </tr>
 <tr>
-<td style="text-align:center"><font color="red">congestion(阻塞) control</font>: throttle(阻断) sender when network overloaded</td>
+<td style="text-align:center"><font color="red">congestion(拥堵) control</font>: throttle(阻断) sender when network overloaded</td>
 <td style="text-align:center">-</td>
 </tr>
 <tr>
@@ -994,7 +998,7 @@
 </tbody>
 </table>
 </div>
-<h2 id="2-4-DNS-重点"><a href="#2-4-DNS-重点" class="headerlink" title="2.4. DNS [重点!]"></a>2.4. DNS [重点!]</h2><ul>
+<h2 id="2-4-Domain-Name-System-DNS-重点"><a href="#2-4-Domain-Name-System-DNS-重点" class="headerlink" title="2.4. Domain Name System(DNS) [重点!]"></a>2.4. Domain Name System(DNS) [重点!]</h2><ul>
 <li>DNS Services</li>
 <li>DNS Structure<ul>
 <li>Hierarchical structure</li>
@@ -1030,12 +1034,562 @@
 </li>
 <li>DNS in the user’s host takes over, sending a query message into the network. <ul>
 <li>DNS query and reply messages </li>
-<li><font color="blue">UDP datagrams to port 53.</font> </li>
+<li><font color="blue">UDP datagrams to port 53.</font> (faster)</li>
 </ul>
 </li>
 <li>After a delay, ranging from milliseconds to seconds, DNS in the user’s host receives a DNS reply message that provides the desired mapping.</li>
 <li>The <font color="red">mapping (hostname - IP)</font> is then passed to the invoking application.</li>
 </ol>
+<h3 id="DNS-Structure"><a href="#DNS-Structure" class="headerlink" title="DNS Structure"></a>DNS Structure</h3><blockquote>
+<p>为何分层级？</p>
+<p>考虑到容错率（单点报错），速度或地区访问差异等。</p>
+</blockquote>
+<p><img src="/2024/09/09/Computer-Networks/cn34.png"></p>
+<p><strong>Properties.</strong> DNS is a distributed, hierarchical database.</p>
+<ul>
+<li><font color="red">Root DNS Servers:</font>  find IP address of the <code>.com</code> <font color="red">TLD DNS server</font> (网址越靠后的部分越在顶层)<ul>
+<li>Provide the IP addresses of the TLD servers</li>
+</ul>
+</li>
+<li><font color="red">Top-Level Domain (TLD) DNS:</font> client queries <code>.com</code> DNS server to get <code>google.com</code> <font color="red">authoritative DNS server</font><ul>
+<li>Top-level domains: com, org, net, edu, aero, jobs, museums; </li>
+<li>Top-level country domains: uk, fr, cn, jp;</li>
+</ul>
+</li>
+<li>Authoritative <font color="red">DNS servers:</font> client queries  <code>google.com</code>  DNS server to get  IP address for  <code>www.google.com / scholar.google.com</code><ul>
+<li>organization’s own DNS server(s), providing authoritative hostname to IP mappings for organization’s named hosts </li>
+<li>can be maintained by <font color="blue">organization</font> or <font color="blue">service provider</font></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Local DNS Server</p>
+<ul>
+<li>Does not strictly belong to hierarchy</li>
+<li>Each ISP (residential ISP, company, university) has one<ul>
+<li>also called “default name server”</li>
+</ul>
+</li>
+</ul>
+<p>When a host connects to an ISP, the ISP provides the <font color="red">IP addresses</font> of one or more of local DNS servers</p>
+<p>When host makes DNS query, query is sent to <font color="red">local DNS server</font></p>
+<ul>
+<li>acts as <font color="blue">proxy</font>, forwards query into hierarchy</li>
+<li>has <font color="blue">local cache</font> of recent name-to-address translation pairs (but may be out of date!)</li>
+</ul>
+</blockquote>
+<table>
+    <tr>
+    <td><img src="/2024/09/09/Computer-Networks/cn35.png"></td>
+    <td><img src="/2024/09/09/Computer-Networks/cn36.png"></td>
+    </tr><tr>
+    <td><center>Iterated query</center></td>
+    <td><center>Recursive query</center></td>
+    </tr>
+</table>
+
+<blockquote>
+<p>补充：关于如何解决本地 DNS 缓存过期的问题，目前主流的方法是通过设置合理的 TTL (Time to live) 值。时间到了就会重新查询上游 DNS 服务器。</p>
+</blockquote>
+<h3 id="DNS-Protocol"><a href="#DNS-Protocol" class="headerlink" title="DNS Protocol"></a>DNS Protocol</h3><p><strong>Properties.</strong> DNS is a distributed database storing <font color="red">resource records</font> (RR).</p>
+<blockquote class="blockquote-center">
+<p>$<br>\text{RR format}=\text{(name, value, type, TTL)}<br>$</p>
+
+</blockquote>
+<ul>
+<li><font color="red">type = A</font><ul>
+<li><code>name</code> is hostname</li>
+<li><code>value</code> is IP address</li>
+</ul>
+</li>
+<li><font color="red">type = NS</font><ul>
+<li><code>name</code> is domain (e.g., <code>foo.com</code>)</li>
+<li><code>value</code> is hostname of authoritative server for this domain (e.g., <code>dns.foo.com</code>)</li>
+</ul>
+</li>
+<li>type = CNAME<ul>
+<li><code>name</code> is alias name for some “canonical” (the real) name</li>
+<li><code>www.ibm.com</code> is really <code>servereast.backup2.ibm.com</code></li>
+<li><code>value</code> is canonical name</li>
+</ul>
+</li>
+<li><p>type = MX</p>
+<ul>
+<li><code>value</code> is canonical name(真名) of the mailserver with <code>name</code> (alias name)</li>
+</ul>
+</li>
+<li><p>If a DNS server is <font color="red">authoritative</font> for a particular hostname</p>
+<ul>
+<li>the DNS server will contain a <u>Type A record</u> for the hostname</li>
+<li>(Even if the DNS server is not authoritative, it may contain a Type A record in its cache.) </li>
+</ul>
+</li>
+<li>If a server is <font color="red">not authoritative</font> for a hostname<ul>
+<li>the server will contain a <u>Type NS record</u> for the domain that includes the hostname</li>
+<li>it will also contain a <u>Type A record</u> that provides the IP address of the DNS server in the <code>value</code> field of the NS record.</li>
+</ul>
+</li>
+<li>Example: an <code>.edu</code> TLD server is not authoritative for <code>gaia.cs.umass.edu</code><ul>
+<li><code>(umass.edu, dns.umass.edu, NS)  // NS record</code></li>
+<li><code>(dns.umass.edu, 128.119.40.111, A)  // A record</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>DNS 协议支持查询（Query）和回复（Reply）两种操作，且消息的格式相同。</p>
+</blockquote>
+<p><img src="/2024/09/09/Computer-Networks/cn37.png"></p>
+<p><img src="/2024/09/09/Computer-Networks/cn38.png"></p>
+<ul>
+<li><p>Example: a reply to an MX query</p>
+</li>
+<li><p><u>Answer section</u>: Type MX</p>
+<ul>
+<li>an RR providing the canonical hostname (at <code>value</code>) of a mail server. </li>
+</ul>
+</li>
+<li><u>Additional section</u>: Type A<ul>
+<li>the IP address (at <code>value</code>) for the canonical hostname (at <code>name</code>) of the mail server.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Inserting-records-into-DNS"><a href="#Inserting-records-into-DNS" class="headerlink" title="Inserting records into DNS"></a>Inserting records into DNS</h3><p><strong>Example</strong></p>
+<ul>
+<li>New startup “Network Utopia”</li>
+<li>Register name <code>networkuptopia.com</code> at <font color="red">DNS register</font> (e.g., Network Solutions)<ul>
+<li>provide <font color="red">names, IP addresses</font> of authoritative DNS server (primary and secondary)</li>
+<li>registrar inserts two RRs into <code>.com</code> TLD server :<ul>
+<li><code>(networkutopia.com, dns1.networkutopia.com, NS)</code></li>
+<li><code>(dns1.networkutopia.com, 212.212.212.1, A)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Then users can access by recursive query in the ways shown 👇</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn39.png"></p>
+<blockquote>
+<p>Attack DNS (略)</p>
+</blockquote>
+<h2 id="2-5-P2P-applications"><a href="#2-5-P2P-applications" class="headerlink" title="2.5. P2P applications"></a>2.5. P2P applications</h2><ul>
+<li>Properties<ul>
+<li>no always-on server</li>
+<li>arbitrary end systems directly communicate</li>
+<li>peers are intermittently connected and change IP addresses (IP 可变)</li>
+</ul>
+</li>
+<li>Example<ul>
+<li>file distribution (BitTorrent)</li>
+<li>Streaming (KanKan)</li>
+<li>VoIP (Skype)</li>
+</ul>
+</li>
+</ul>
+<h3 id="P2P-vs-Client-Server"><a href="#P2P-vs-Client-Server" class="headerlink" title="P2P vs. Client-Server"></a>P2P vs. Client-Server</h3><p>Question: How much time to distribute file (size F) from one server to N peers?</p>
+<ul>
+<li>Suppose $u_s$ is server upload capacity, $d_i$ is download capacity of peer $i$</li>
+<li>Time to distribute file to all peers $D_{C-S}$ is :</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>D_{C-S}\ge \max{NF/u_s, F/d_{\text{min}}}<br>$</p>
+
+</blockquote>
+<ul>
+<li>So the $D$ increases linearly in $N$</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn40.png"></p>
+<ul>
+<li>As each host provide $u_i$ for uploading capacity</li>
+<li>Server must upload at least one copy ($F/u_s$)</li>
+<li>time $D_{P2P}$ is :</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>D_{P2P}\ge \max{F/d_{min}, F/u_s, NF/(u_s+\sum{u_i})}<br>$</p>
+
+</blockquote>
+<h3 id="P2P-file-distribution-BitTorrent"><a href="#P2P-file-distribution-BitTorrent" class="headerlink" title="P2P file distribution: BitTorrent"></a>P2P file distribution: BitTorrent</h3><blockquote>
+<p>How P2P works 👇</p>
+</blockquote>
+<p><img src="/2024/09/09/Computer-Networks/cn41.png"></p>
+<ul>
+<li>Some points:<ul>
+<li><font color="red">TCP connection</font> with other peers</li>
+<li>Once get entire file, one will leave or remain in BitTorrent</li>
+</ul>
+</li>
+</ul>
+<center>Machanism about BitTorrent</center>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><font color="red">requesting</font> chunks</th>
+<th style="text-align:center"><font color="red">sending</font> chunks: tit-for-tat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">at any time, different peers have different subsets of file chunks</td>
+<td style="text-align:center">maintain a priority list of top-N peers</td>
+</tr>
+<tr>
+<td style="text-align:center">periodically, asks each “neighbor” for list of chunks</td>
+<td style="text-align:center">periodically, select one additional peer(“optimistically unchoke”) to start sending chunks, and chokes others</td>
+</tr>
+<tr>
+<td style="text-align:center">request missing chunks, rarest first</td>
+<td style="text-align:center">sends chunks to those who sending me chunks at highest rate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>通俗解释：请求发包优先找请求得最少的，发包优先发请求最多的。(符合常理)</p>
+</blockquote>
+<p><strong>tit-for-tat</strong></p>
+<ul>
+<li>(1) Alice “optimistically unchokes” Bob</li>
+<li>(2) Alice becomes one of Bob’s top-four providers; Bob reciprocates</li>
+<li>(3) Bob becomes one of Alice’s top-four providers</li>
+</ul>
+<h2 id="2-6-video-streaming-and-content-distribution-networks"><a href="#2-6-video-streaming-and-content-distribution-networks" class="headerlink" title="2.6. video streaming and content distribution networks"></a>2.6. video streaming and content distribution networks</h2><ul>
+<li>Challenge<ul>
+<li>scale —— how to reach ~1B users?</li>
+<li>heterogeneity (异质性) —— different users have different capabilities</li>
+<li>video traffic (视频流量) —— major consumer of Internet bandwidth</li>
+</ul>
+</li>
+<li>Solution<ul>
+<li>distributed, application-level infrastructure</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Video has demand of multiple images per sec (e.g. 60 FPS needs 60 img/sec)</p>
+<p>Use redundancy within and between images to decrease # bits used to encode image (前后帧图像分块，同色的块不再传输)</p>
+<p>A more efficient way below 👇</p>
+</blockquote>
+<h3 id="Streaming-multimedia-DASH"><a href="#Streaming-multimedia-DASH" class="headerlink" title="Streaming multimedia: DASH"></a>Streaming multimedia: DASH</h3><ul>
+<li>DASH: Dynamic, Adaptive Streaming over HTTP</li>
+<li>Server:<ul>
+<li>divides video file into <font color="red">multiple chunks</font></li>
+<li>each chunk stored, encoded at different rates </li>
+<li>manifest file: provides URLs for different chunks encoded at different rates </li>
+</ul>
+</li>
+<li>Client:<ul>
+<li>periodically measures server-to-client bandwidth</li>
+<li>consulting manifest, requests one chunk at a time <ul>
+<li>chooses maximum coding rate sustainable given current bandwidth</li>
+<li>can choose different coding rates at different points in time (depending on available bandwidth at time)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在这里 client 是自由的。何时请求数据块，用哪种编码速率，向哪个地址请求数据块，都由 client 自己决定。</p>
+</blockquote>
+<h3 id="Content-Distribution-Network-CDN"><a href="#Content-Distribution-Network-CDN" class="headerlink" title="Content Distribution Network(CDN)"></a>Content Distribution Network(CDN)</h3><blockquote>
+<p>Why not using “mega-server” ?</p>
+<p>单点错误（容错率低），巨大负载，对远距离用户不友好等</p>
+</blockquote>
+<p><img src="/2024/09/09/Computer-Networks/cn42.png"></p>
+<p><strong>Solution.</strong> CDN store/serve multiple copies of videos at multiple geographically distributed sites</p>
+<ul>
+<li>In practice, push CDN servers deep into many access networks; (inside ISPs)</li>
+<li>Or smaller number (10’s) of larger clusters in Internet Exchange Point (IXP); (outside ISPs)</li>
+</ul>
+<p><strong>E.g.</strong> See how Bob request video by CDN : </p>
+<p><img src="/2024/09/09/Computer-Networks/cn43.png"></p>
+<blockquote>
+<p>用户查找“最近” CDN 服务器的两种策略：地理距离最短或实时计算最短延迟</p>
+</blockquote>
+<h2 id="2-7-Socket-programming-with-UDP-and-TCP"><a href="#2-7-Socket-programming-with-UDP-and-TCP" class="headerlink" title="2.7. Socket programming with UDP and TCP"></a>2.7. Socket programming with UDP and TCP</h2><p><strong>Goal:</strong> learn how to build client/server applications that communicate using sockets.</p>
+<p><strong>Socket:</strong> door between application process and end-end-transport protocol</p>
+<h3 id="Socket-programming-with-UDP"><a href="#Socket-programming-with-UDP" class="headerlink" title="Socket programming with UDP"></a>Socket programming with UDP</h3><ul>
+<li>No “connections”</li>
+<li>Transmitted data may be lost or received out-of-order</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn44.png"></p>
+<ul>
+<li>Implementation 【server】</li>
+</ul>
+<figure class="highlight python"><figcaption><span>server.py</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">serverPort = <span class="number">12000</span></span><br><span class="line">serverSocket = socket(AF_INET, SOCK_DGRAM)  <span class="comment"># create socket</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;UDP socket is identified by destination IP address and port number&#x27;&#x27;&#x27;</span></span><br><span class="line">serverSocket.bind((<span class="string">&#x27;&#x27;</span>, serverPort))</span><br><span class="line"><span class="built_in">print</span> (“The server <span class="keyword">is</span> ready to receive”)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;clientAddress = IP + port&#x27;&#x27;&#x27;</span></span><br><span class="line">    message, clientAddress = serverSocket.recvfrom(<span class="number">2048</span>)</span><br><span class="line">    modifiedMessage = message.decode().upper()  <span class="comment"># what server do</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;response to client&#x27;&#x27;&#x27;</span></span><br><span class="line">    serverSocket.sendto(modifiedMessage.encode(), clientAddress)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Implemetation 【client】</li>
+</ul>
+<figure class="highlight python"><figcaption><span>client.py</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;Client do not need to specify port-num&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">serverName = <span class="string">&#x27;hostname&#x27;</span>  <span class="comment"># either IP address or hostname</span></span><br><span class="line">serverPort = <span class="number">12000</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;AF_INET -&gt; IPv4, SOCK_DGRAM -&gt; UDP&#x27;&#x27;&#x27;</span></span><br><span class="line">clientSocket = socket(AF_INET, SOCK_DGRAM)</span><br><span class="line">message = raw_input(<span class="string">&#x27;Input lowercase sentence:&#x27;</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;Direct send, no connection&#x27;&#x27;&#x27;</span></span><br><span class="line">clientSocket.sendto(message.encode(), (serverName, serverPort))</span><br><span class="line">modifiedMessage, serverAddress = clientSocket.recvfrom(<span class="number">2048</span>)</span><br><span class="line"><span class="built_in">print</span>(modifiedMessage.decode())</span><br><span class="line">clientSocket.close()  <span class="comment"># client leave</span></span><br></pre></td></tr></table></figure>
+<h3 id="Socket-programming-with-TCP"><a href="#Socket-programming-with-TCP" class="headerlink" title="Socket programming with TCP"></a>Socket programming with TCP</h3><ul>
+<li>Client must contact server<ul>
+<li>server process must first be running</li>
+<li>server must have created socket (door) that welcomes client’s contact (<font color="blue">welcome socket</font>)</li>
+</ul>
+</li>
+<li>Client contacts server by: <ul>
+<li>Creating TCP socket, specifying IP address, port number of server process</li>
+<li>Client TCP establishes connection to server TCP</li>
+<li>when contacted by client, <font color="red">server TCP creates new socket</font> for server process to communicate with that particular client (允许服务端与多个客户连接)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Identifications difference between UDP and TCP socket (对应到同一个套接字所需参数): </p>
+<p>UDP = dst.IP + dst.port</p>
+<p>TCP = dst.IP + dst.port + src.IP + src.port</p>
+</blockquote>
+<p><img src="/2024/09/09/Computer-Networks/cn45.png"></p>
+<ul>
+<li>Implementation 【server】</li>
+</ul>
+<figure class="highlight python"><figcaption><span>server.py</span></figcaption><table><tr><td class="code"><pre><span class="line">serverPort = <span class="number">12000</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;SOCK_STREAM -&gt; TCP&#x27;&#x27;&#x27;</span></span><br><span class="line">serverSocket = socket(AF_INET,SOCK_STREAM)</span><br><span class="line">serverSocket.bind((<span class="string">&#x27;&#x27;</span>,serverPort))</span><br><span class="line">serverSocket.listen(<span class="number">1</span>)  <span class="comment"># Times to listening, must before client</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;The server is ready to receive&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    connectionSocket, addr = serverSocket.accept()</span><br><span class="line">     </span><br><span class="line">    sentence = connectionSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line">    capitalizedSentence = sentence.upper()  <span class="comment"># what server do</span></span><br><span class="line">    connectionSocket.send(capitalizedSentence.encode())</span><br><span class="line">    connectionSocket.close()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Implementation 【client】</li>
+</ul>
+<figure class="highlight python"><figcaption><span>client.py</span></figcaption><table><tr><td class="code"><pre><span class="line">serverName = <span class="string">&#x27;servername&#x27;</span></span><br><span class="line">serverPort = <span class="number">12000</span></span><br><span class="line">clientSocket = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">clientSocket.connect((serverName,serverPort))  <span class="comment"># set up connection(SYN)</span></span><br><span class="line">sentence = raw_input(<span class="string">&#x27;Input lowercase sentence:&#x27;</span>)</span><br><span class="line">clientSocket.send(sentence.encode())  <span class="comment"># &quot;3rd hand-shaking&quot;</span></span><br><span class="line">modifiedSentence = clientSocket.recv(<span class="number">1024</span>)</span><br><span class="line"><span class="built_in">print</span> (‘From Server:’, modifiedSentence.decode())</span><br><span class="line">clientSocket.close()  <span class="comment"># client leave first</span></span><br></pre></td></tr></table></figure>
+<h1 id="Chapter-3-Transport-Layer"><a href="#Chapter-3-Transport-Layer" class="headerlink" title="Chapter 3. Transport Layer"></a>Chapter 3. Transport Layer</h1><HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
+
+<center><font face="STXinwei" size="5">Layout</font></center>
+
+<p><strong>3.1</strong> transport-layer services</p>
+<p><strong>3.2</strong> multiplexing and demultiplexing</p>
+<p><strong>3.3</strong> connectionless transport: UDP</p>
+<p><strong>3.4</strong> principles of reliable data transfer</p>
+<p><strong>3.5</strong> connection-oriented transport: TCP</p>
+<ul>
+<li>segment structure</li>
+<li>reliable data transfer</li>
+<li>flow control</li>
+<li>connection management</li>
+</ul>
+<p><strong>3.6</strong> principles of congestion control</p>
+<p><strong>3.7</strong> TCP congestion control</p>
+<HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
+
+<h2 id="3-1-Transport-Layer-Services"><a href="#3-1-Transport-Layer-Services" class="headerlink" title="3.1. Transport Layer Services"></a>3.1. Transport Layer Services</h2><ul>
+<li><strong>Transport vs. App</strong><ul>
+<li>logical communication between <font color="blue">app processes</font> running on different <font color="red">hosts</font></li>
+<li>Transport protocols run in <font color="red">end systems</font><ul>
+<li>send side: breaks app messages into segments, passes to network layer</li>
+<li>rcv side: reassembles segments into messages, passes to app layer (<font color="green">Recall encapsulations</font>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Transport vs. Network</strong></li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn46.png"></p>
+<ul>
+<li>hosts = houses</li>
+<li>processes = kids</li>
+<li>app messages = letters in envelopes</li>
+<li><font color="red">transport protocol = Ann and Bill</font></li>
+<li><font color="red">network-layer protocol = postal service</font>
+
+</li>
+</ul>
+<blockquote>
+<p>大部分传输层的服务包含在网络层中（如确保延迟时间和带宽的服务，因此 UDP 和 TCP 都不包含此服务），但仍有一些是网络层不提供的（如安全保障，rdt等）。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TCP</th>
+<th style="text-align:center">UDP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">reliable, in-order delivery</td>
+<td style="text-align:center">unreliable, unordered delivery</td>
+</tr>
+<tr>
+<td style="text-align:center">connection setup</td>
+<td style="text-align:center">no-frills(简洁的) extension</td>
+</tr>
+<tr>
+<td style="text-align:center">congestion control and flow control</td>
+<td style="text-align:center">process-to-process data delivery and error checking</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="3-2-Multiplexing-Demultiplexing"><a href="#3-2-Multiplexing-Demultiplexing" class="headerlink" title="3.2. Multiplexing / Demultiplexing"></a>3.2. Multiplexing / Demultiplexing</h2><p><strong>Def.</strong> extending the host-to-host delivery service to a process-to-process delivery service for applications running on the hosts.</p>
+<p><img src="/2024/09/09/Computer-Networks/cn47.png"></p>
+<blockquote>
+<p>在 Ann and Bill 的例子里，这就像每个小朋友（进程）都有对应的名字和 ID，通过对此进行标识，可以让通信双方的 Socket 知道如何进行下一步传输。</p>
+</blockquote>
+<ul>
+<li>Sending host： Host uses <font color="red">IP addresses &amp; port numbers</font> to direct segment to appropriate socket</li>
+<li>Receiving host：Host receives IP datagrams from network layer<ul>
+<li>each datagram has source IP address, destination IP address</li>
+<li>each datagram carries one transport-layer segment</li>
+</ul>
+</li>
+</ul>
+<h3 id="UDP-Connectionless-demux"><a href="#UDP-Connectionless-demux" class="headerlink" title="UDP: Connectionless demux"></a>UDP: Connectionless demux</h3><p><img src="/2024/09/09/Computer-Networks/cn48.png"></p>
+<ul>
+<li>IP datagrams with same <code>dst.port</code> #, but <font color="red">different source IP addresses</font> and/or source port numbers will be directed to <font color="red">same</font> socket at destination.</li>
+</ul>
+<h3 id="TCP-Connection-oriented-demux"><a href="#TCP-Connection-oriented-demux" class="headerlink" title="TCP: Connection-oriented demux"></a>TCP: Connection-oriented demux</h3><p><img src="/2024/09/09/Computer-Networks/cn49.png"></p>
+<blockquote>
+<p>图中的 Socket 不再对应于进程，而是对应线程</p>
+</blockquote>
+<ul>
+<li>Web servers have different sockets for each connecting client<ul>
+<li>Both the initial connection-establishment segments and the segments carrying HTTP requests will have destination <strong>port 80</strong>.</li>
+<li>non-persistent HTTP will have different socket for each request</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-3-Connectionless-transport-UDP"><a href="#3-3-Connectionless-transport-UDP" class="headerlink" title="3.3. Connectionless transport: UDP"></a>3.3. Connectionless transport: UDP</h2><ul>
+<li>UDP is used in:<ul>
+<li>streaming multimedia apps (loss tolerant, rate sensitive)</li>
+<li>DNS</li>
+</ul>
+</li>
+<li>reliable transfer over UDP: (都是在其他层解决的，所以说 UDP 是不可靠的传输)<ul>
+<li>add reliability at application layer</li>
+<li>application-specific error recovery!</li>
+</ul>
+</li>
+</ul>
+<h3 id="UDP-Checksum"><a href="#UDP-Checksum" class="headerlink" title="UDP Checksum"></a>UDP Checksum</h3><p><strong>Goal:</strong> detect “errors” (e.g., flipped bits) in transmitted segment (from source to destination)</p>
+<ul>
+<li>Q: Why UDP using checksum?</li>
+<li>A: <ul>
+<li>no guarantee that all the links provide error checking</li>
+<li>bit errors could be introduced when segments are in memory</li>
+<li>Lower cost comparing to checking in app-level.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn50.png"></p>
+<ul>
+<li>Sender:<ul>
+<li>treat segment contents, including header fields,  as sequence of 16-bit integers</li>
+<li>checksum: 1s complement of the sum of segment contents</li>
+<li>sender puts checksum value into UDP checksum field</li>
+</ul>
+</li>
+<li>Receiver:<ul>
+<li>check the sum of the segment<ul>
+<li>All bits are equal to 1 - no error detected. But maybe errors nonetheless? More later…</li>
+<li>Otherwise: error detected</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<p><img src="/2024/09/09/Computer-Networks/cn51.png" style="zoom:60%"></p>
+<p><img src="/2024/09/09/Computer-Networks/cn52.png" style="zoom:60%"></p>
+<blockquote>
+<p>一个更简单的证明例子：</p>
+<p>设三个加数为 <code>0101</code>, <code>1101</code>, <code>1011</code></p>
+<p>$0101+1101=10010 \rightarrow +1011=11101$ ，补位得 <code>1110</code>，取反得 <code>0001</code></p>
+<p>接收方计算：$0101+1101=10010 \rightarrow +1011=11101 \rightarrow + 0001=11110$，补位得 <code>1111</code></p>
+<p>全 1 符合条件，暂时检测不出错误。</p>
+</blockquote>
+<h2 id="3-4-Principles-of-Reliable-Data-Transfer-rdt"><a href="#3-4-Principles-of-Reliable-Data-Transfer-rdt" class="headerlink" title="3.4. Principles of Reliable Data Transfer (rdt)"></a>3.4. Principles of Reliable Data Transfer (rdt)</h2><h3 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h3><p><img src="/2024/09/09/Computer-Networks/cn53.png"></p>
+<blockquote>
+<p>We mainly use FSM to describe rdt clearly. Template as pic above.</p>
+</blockquote>
+<ul>
+<li>Perfectly reliable channel: <code>rdt1.0</code></li>
+<li>Channel with bit error: <ul>
+<li>bit error in packet: <code>rdt 2.0</code></li>
+<li>bit error in ACK: <code>2.1</code></li>
+<li>NAK-free: <code>2.2</code></li>
+</ul>
+</li>
+<li>Lossy channel: <code>rdt 3.0</code></li>
+</ul>
+<h3 id="rdt-1-0"><a href="#rdt-1-0" class="headerlink" title="rdt 1.0"></a>rdt 1.0</h3><ul>
+<li>Underlying channel “perfectly reliable”<ul>
+<li>no bit error</li>
+<li>no loss of packet</li>
+</ul>
+</li>
+<li>Therefore, no control for feedback</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn54.png" style="zoom:50%"></p>
+<h3 id="rdt-2-0"><a href="#rdt-2-0" class="headerlink" title="rdt 2.0"></a>rdt 2.0</h3><ul>
+<li>Underlying channel may <font color="blue">flip bits</font> (0 → 1) in packet</li>
+<li><font color="red">Q: how to recover from errors?</font><ul>
+<li>acknowledgements (ACKs): receiver explicitly tells sender that pkt received OK</li>
+<li>negative acknowledgements (NAKs): receiver explicitly tells sender that pkt had errors</li>
+<li>sender retransmits pkt on receipt of NAK</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>New Machanism in <code>rdt 2.0</code><ul>
+<li>Error detection: checksum</li>
+<li>Receiver feedback: control msgs (ACK,NAK) <code>rcvr-&gt;sender</code></li>
+<li>Retransmission</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn55.png" style="zoom:50%"></p>
+<ul>
+<li><code>rdt 2.0</code> has a <font color="red">fatal flaw</font> !</li>
+<li><font color="red">What if ACK / NAK packet is corrupted?</font></li>
+<li>Handling corrupted ACKs or NAKs:<ul>
+<li>Op1. Keep asking until get answer ( foolish ! )</li>
+<li>Op2. add enough checksum to recover</li>
+<li>Op3. when garbled ACK or NAK, retransmit (👈seems better, but still some probs)</li>
+</ul>
+</li>
+</ul>
+<h3 id="rdt-2-1"><a href="#rdt-2-1" class="headerlink" title="rdt 2.1"></a>rdt 2.1</h3><p><img src="/2024/09/09/Computer-Networks/cn56.png" style="zoom:50%"></p>
+<p><img src="/2024/09/09/Computer-Networks/cn57.png" style="zoom:50%"></p>
+<ul>
+<li>Recv maintain seq # as Sender do (正常情况下持有相同状态值)</li>
+<li>Sender check if received ACK/NAK corrupted</li>
+<li>Recv check if received packet is duplicate</li>
+</ul>
+<blockquote>
+<p>例：sender 在状态 0，receiver 在状态 0</p>
+<p>此时 sender 发送一个 seq0 的包，recv 正常收到，解包并发送 ACK，然后转向状态 1。</p>
+<p>但是 sender 没收到 ACK，重发 seq0。recv 则会再发 ACK（根据 FSM），如此到 sender 收到 ACK，然后转向状态 1。然后 sender 发送 seq1 的包。如此循环。</p>
+</blockquote>
+<h3 id="rdt-2-2"><a href="#rdt-2-2" class="headerlink" title="rdt 2.2"></a>rdt 2.2</h3><p><img src="/2024/09/09/Computer-Networks/cn58.png" style="zoom:50%"></p>
+<ul>
+<li>Optimization<ul>
+<li>using ACKs only (sends ACK for last pkt received OK)</li>
+<li>must send ACK with seq #</li>
+</ul>
+</li>
+</ul>
+<h3 id="rdt-3-0"><a href="#rdt-3-0" class="headerlink" title="rdt 3.0"></a>rdt 3.0</h3><ul>
+<li><font color="red">New Assumption:</font> underlying channel can also lose packets (data, ACKs)</li>
+<li>Approach: sender waits “reasonable” amount of time for ACK </li>
+<li>retransmits if no ACK received in this time</li>
+<li>if pkt (or ACK) just delayed (not lost):<ul>
+<li>retransmission will be duplicate, but seq. #’s already handles this</li>
+<li>receiver must specify seq # of pkt being ACKed</li>
+</ul>
+</li>
+<li>requires countdown timer<ul>
+<li>start timer, timer interrupt, stop timer</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Sender in <code>rdt 3.0</code></li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn59.png" style="zoom:50%"></p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p><strong>Key techniques</strong></p>
+<ul>
+<li>Checksum (2.0)</li>
+<li>ACK packet (2.0)</li>
+<li>Retransmission (2.0)</li>
+<li>Sequence number (2.1)</li>
+<li>Timeout (3.0)</li>
+</ul>
 <h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h2><blockquote>
 <p>Introduce to Lab 01:</p>
 <p>应用层（Application）</p>
@@ -1203,10 +1757,10 @@
 <td style="text-align:center">超文本传输（安全）协议</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center">DNS</td>
+<td style="text-align:center">域名系统</td>
+<td style="text-align:center">CDN</td>
+<td style="text-align:center">内容分发网络</td>
 </tr>
 <tr>
 <td style="text-align:center"></td>
@@ -1282,7 +1836,7 @@
 </tbody>
 </table>
 </div>
-]]></content>
+</HR></HR></HR></HR></HR></HR>]]></content>
       <categories>
         <category>2024 Fall</category>
       </categories>
