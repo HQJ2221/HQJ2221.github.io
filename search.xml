@@ -63,11 +63,10 @@
 </li>
 <li>client/server model<ul>
 <li>client host requests, receives service from always-on server</li>
-<li>e.g., Web browser/server; email </li>
+<li>e.g., Web browser/server; email client/server</li>
 </ul>
 </li>
-<li>client/server<ul>
-<li>peer-peer model:</li>
+<li>peer-peer model:<ul>
 <li>minimal (or no) use of dedicated servers</li>
 <li>e.g. Skype,  BitTorrent</li>
 </ul>
@@ -285,7 +284,7 @@
 </li>
 <li>$d_{\text{prop}}$ : 传播时延<ul>
 <li>$d$: length of physical link</li>
-<li>$s$: propagation speed in medium (~2x108 m/sec)</li>
+<li>$s$: propagation speed in medium (~$2x10^8$ m/sec)</li>
 <li>$d_{\text{prop}} = d/s$</li>
 </ul>
 </li>
@@ -314,7 +313,7 @@
 <li>$\lambda$ : average packet arrival rate (packets per sec)</li>
 <li>$\lambda L / R \to 0$: avg. queueing delay small</li>
 <li>$\lambda L / R \to 1$: avg. queueing delay $\to \infty$ (queuing theory)</li>
-<li>$\lambda L / R \lt 1$: more “work” arriving than can be serviced, average delay infinite!</li>
+<li>$\lambda L / R \gt 1$: more “work” arriving than can be serviced, average delay infinite!</li>
 </ul>
 </li>
 </ul>
@@ -406,6 +405,7 @@
 </ul>
 </li>
 </ul>
+<hr>
 <h1 id="Chapter-2-Application-Layer"><a href="#Chapter-2-Application-Layer" class="headerlink" title="Chapter 2. Application Layer"></a>Chapter 2. Application Layer</h1><HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
 
 <center><font face="STXinwei" size="5">Layout</font></center>
@@ -485,17 +485,13 @@
 <p>Comparison:</p>
 <ol>
 <li><ul>
-<li>Processes within same host communicate using  <font color="red">inter-process communication</font> (defined by OS)<ul>
+<li>Processes within same host communicate using  <font color="red">inter-process communication</font> (defined by OS)</li>
 <li>Processes in different hosts communicate by exchanging messages across the <font color="red">computer network</font></li>
 </ul>
 </li>
-</ul>
-</li>
 <li><ul>
-<li><strong>client process:</strong> process that initiates communication (发送方轮询)<ul>
+<li><strong>client process:</strong> process that initiates communication (发送方轮询)</li>
 <li><strong>server process:</strong> process that waits to be contacted (接收方阻塞)</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>(2) is compatible in :<ul>
@@ -684,7 +680,7 @@
 <p><strong>Conception.</strong> RTT(round-trip-time) is time for a small packet to travel from client to server and back (一个来回)</p>
 </blockquote>
 <ul>
-<li>For persistent HTTP, time from init TCP conn to, e.g., $n$ files received is : <blockquote class="blockquote-center">
+<li>For persistent HTTP, time from init TCP conn to, e.g., $n$ times files received is : <blockquote class="blockquote-center">
 <p>$<br>\text{Time}=1\text{RTT}+n\times\text{RTT}<br>$</p>
 
 </blockquote></li>
@@ -754,13 +750,15 @@
 </ul>
 </li>
 <li>typically cache is <font color="red">installed by ISP</font> (university, company, residential ISP)</li>
-<li><font color="red">Why Web caching?</font>
-  - <font color="green">reduce <u>response time</u> for client request (bottleneck bandwidth)</font>
-  - <font color="green"><u>reduce traffic</u> on an institution’s access link</font>
-  - <font color="green">Internet dense with caches: enables “poor” content providers to <u>effectively deliver content</u> (so does P2P file sharing)</font>
+<li>Why Web caching?<ul>
+<li><font color="green">reduce <u>response time</u> for client request (bottleneck bandwidth)</font></li>
+<li><font color="green"><u>reduce traffic</u> on an institution’s access link</font></li>
+<li><font color="green">Internet dense with caches: enables “poor” content providers to <u>effectively deliver content</u> (so does P2P file sharing)</font>
 
 
 
+</li>
+</ul>
 </li>
 </ul>
 <center>-----        Calculation        -----</center>
@@ -1348,6 +1346,7 @@
 <li>Implementation 【client】</li>
 </ul>
 <figure class="highlight python"><figcaption><span>client.py</span></figcaption><table><tr><td class="code"><pre><span class="line">serverName = <span class="string">&#x27;servername&#x27;</span></span><br><span class="line">serverPort = <span class="number">12000</span></span><br><span class="line">clientSocket = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">clientSocket.connect((serverName,serverPort))  <span class="comment"># set up connection(SYN)</span></span><br><span class="line">sentence = raw_input(<span class="string">&#x27;Input lowercase sentence:&#x27;</span>)</span><br><span class="line">clientSocket.send(sentence.encode())  <span class="comment"># &quot;3rd hand-shaking&quot;</span></span><br><span class="line">modifiedSentence = clientSocket.recv(<span class="number">1024</span>)</span><br><span class="line"><span class="built_in">print</span> (‘From Server:’, modifiedSentence.decode())</span><br><span class="line">clientSocket.close()  <span class="comment"># client leave first</span></span><br></pre></td></tr></table></figure>
+<hr>
 <h1 id="Chapter-3-Transport-Layer"><a href="#Chapter-3-Transport-Layer" class="headerlink" title="Chapter 3. Transport Layer"></a>Chapter 3. Transport Layer</h1><HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
 
 <center><font face="STXinwei" size="5">Layout</font></center>
@@ -1582,6 +1581,12 @@
 <li>Sender in <code>rdt 3.0</code></li>
 </ul>
 <p><img src="/2024/09/09/Computer-Networks/cn59.png" style="zoom:50%"></p>
+<blockquote>
+<p>Some calculations: </p>
+<p>How to calc the utilization of sender ($U_{\text{sender}}$) ? Suppose that $RTT = 30 msec$, $R = 1 Gbps$, $L = 8000 bits$</p>
+<p>$U_{\text{sender}}=\frac{L/R}{RTT + L/R}=\frac{.008}{30.008}=0.00027$</p>
+<p>Utilization 可以理解成某个终端的有效工作时间占比</p>
+</blockquote>
 <h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p><strong>Key techniques</strong></p>
 <ul>
 <li>Checksum (2.0)</li>
@@ -1589,6 +1594,46 @@
 <li>Retransmission (2.0)</li>
 <li>Sequence number (2.1)</li>
 <li>Timeout (3.0)</li>
+</ul>
+<h3 id="Pipelined-Protocols"><a href="#Pipelined-Protocols" class="headerlink" title="Pipelined Protocols"></a>Pipelined Protocols</h3><ul>
+<li>Go-Back-N<ul>
+<li>Timer for the oldest unACKed packet</li>
+<li>Cumulative ACK</li>
+<li>Retransmit all packets in the window </li>
+</ul>
+</li>
+<li>Selective repeat<ul>
+<li>Timer for each packet in window</li>
+<li>Individual ACK for each correctly received packets</li>
+<li>Retransmit only those packets that might be lost or corrupted</li>
+</ul>
+</li>
+</ul>
+<h4 id="Go-Back-N"><a href="#Go-Back-N" class="headerlink" title="Go-Back-N"></a>Go-Back-N</h4><p><img src="/2024/09/09/Computer-Networks/cn60.png" style="zoom:70%"></p>
+<ul>
+<li>$k$-bits seq # in pkt header: range $[0, 2^k -1]$</li>
+<li>At most $N$ pkts in flight(in the “window”) are allowed</li>
+</ul>
+<ul>
+<li><font color="blue">Sender:</font> When <code>rdt_send()</code> is called from above, <ul>
+<li>window is not full: a packet is sent, variables are updated. </li>
+<li>window is full: simply returns the data back to the upper laye</li>
+<li>A timer for the <font color="red">oldest</font> transmitted but not yet ACKed packet<ul>
+<li>timeout occurs: resends all packets in the window;</li>
+<li><code>ACK(n)</code>: slide window; restart timer </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><font color="blue">Receiver:</font> Receipt of an ACK.<ul>
+<li><font color="red">Cumulative acknowledgment (ACK)</font></li>
+<li><code>ACK(n)</code>: all packets with a sequence # <font color="red">up to and including</font> $n$ have been correctly received at the receiver<ul>
+<li>Expect $n$ and receive $n$: <code>ACK(n)</code></li>
+<li>Expect $n$ and receive others: previous <code>ACK</code>; discard packet</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h2><blockquote>
 <p>Introduce to Lab 01:</p>
@@ -1763,8 +1808,8 @@
 <td style="text-align:center">内容分发网络</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center">URL</td>
+<td style="text-align:center">统一资源定位</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 </tr>
