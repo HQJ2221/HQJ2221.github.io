@@ -1891,7 +1891,38 @@
 </ul>
 </li>
 </ul>
-<h2 id="Week-2"><a href="#Week-2" class="headerlink" title="Week 2"></a>Week 2</h2><h3 id="Wireshark-使用"><a href="#Wireshark-使用" class="headerlink" title="Wireshark 使用"></a>Wireshark 使用</h3><h2 id="Week-8"><a href="#Week-8" class="headerlink" title="Week 8"></a><a name="lab08">Week 8</a></h2><h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><div class="table-container">
+<h2 id="Week-2"><a href="#Week-2" class="headerlink" title="Week 2"></a>Week 2</h2><h3 id="Wireshark-使用"><a href="#Wireshark-使用" class="headerlink" title="Wireshark 使用"></a>Wireshark 使用</h3><h2 id="Week-8"><a href="#Week-8" class="headerlink" title="Week 8"></a><a name="lab08">Week 8</a></h2><h3 id="SACK"><a href="#SACK" class="headerlink" title="SACK"></a>SACK</h3><font color="green">Review:</font>
+
+<ul>
+<li>SACK<ul>
+<li>Sliding Window</li>
+<li>Retransmission</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/lab1.png" style="zoom:60%"></p>
+<ul>
+<li>In practice, while applying SACK, the message often containing “edge” to help clarify the state of pkts<ul>
+<li><code>SLE</code>: Left Edge of Block is the first sequence number of this block.</li>
+<li><code>SRE</code>: Right Edge of Block is the sequence number immediately following the last sequence number of this block.</li>
+<li>Each block represents <font color="red">received bytes</font> of data that are <font color="red">contiguous and isolated</font>; that is, the bytes just below the block, (Left Edge of Block - 1), and just above the block, (Right Edge of Block), have <font color="red">NOT</font> been received.</li>
+</ul>
+</li>
+<li>E.g. If <code>Ack = 1461</code>, <code>SLE = 4381, SRE = 5841</code>, it means packet [4381 - 5840] in bytes has been received, the waiting packets is/are [1461 - 4380] in bytes.</li>
+<li>E.g. If there is no <code>SLE</code> or <code>SRE</code>, that means <code>Ack</code> is the lowest bytes unreceived.</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/lab2.png"></p>
+<ul>
+<li>Retransmission:</li>
+<li>Receiver send immediately <code>Dup Ack</code> when receiving out-of-order pkt. Receiver “wants to tell” sender there is something out-of-order and what it expect (ACK #)</li>
+<li>But sender doesn’t know whether the <code>Dup Ack</code> is caused by pkt loss or reordering of pkts. (Shown above)<ul>
+<li>Assume it’s reordering pkts, then <code>Dup Ack #</code> is few (1 or 2), then receiver will generate a new <code>ACK</code></li>
+<li>If it’s pkt loss, then there’re moer than 3 <code>Dup Ack</code>, and sender should retransmit the <code>ACK #</code> pkt</li>
+</ul>
+</li>
+</ul>
+<h3 id="QUIC-Quick-UDP-Internet-Connections"><a href="#QUIC-Quick-UDP-Internet-Connections" class="headerlink" title="QUIC: Quick UDP Internet Connections"></a>QUIC: Quick UDP Internet Connections</h3><p><strong>Def.</strong> A UDP-Based Multiplexed and Secure Transport</p>
+<h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><div class="table-container">
 <table>
 <thead>
 <tr>
