@@ -1,6 +1,577 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>操作系统</title>
+    <url>/2024/09/13/Operation-System/</url>
+    <content><![CDATA[<h1 id="Lec01-Intro"><a href="#Lec01-Intro" class="headerlink" title="Lec01. Intro"></a>Lec01. Intro</h1><h2 id="Before-this-course-about"><a href="#Before-this-course-about" class="headerlink" title="Before this course (about)"></a>Before this course (about)</h2><ul>
+<li>Have basic concept about Computer Organization</li>
+<li>Be familiar to at least one programming language (better be <code>C / C++</code>)</li>
+<li>We use <code>Rust</code> as example code in this course<ul>
+<li>Learning Rust : <a href="https://doc.rust-lang.org/stable/book/">https://doc.rust-lang.org/stable/book</a></li>
+<li>Search for OSTD <code>lib</code> and <code>mod</code> : <a href="https://docs.rs/ostd/latest/ostd/">https://docs.rs/ostd/latest/ostd/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Definitions-of-OS"><a href="#Definitions-of-OS" class="headerlink" title="Definitions of OS"></a>Definitions of OS</h2><blockquote>
+<p>What is a computer ?</p>
+<p>How does a modern computer work ?</p>
+<p>What is operating systems ?</p>
+</blockquote>
+<ul>
+<li>Structure of a Computer System (4 parts)<ul>
+<li>Hardware<ul>
+<li>Provides basic computing resources</li>
+<li>CPU, memory, I/O devices</li>
+</ul>
+</li>
+<li>Operating system<ul>
+<li>Controls and coordinates use of hardware among various applications and users</li>
+</ul>
+</li>
+<li>Application programs<ul>
+<li>Define the ways in which the system resources are used to solve the computing problems of the users</li>
+<li>Word processors, compilers, web browsers, database systems, video games</li>
+</ul>
+</li>
+<li>Users<ul>
+<li>People, machines, other computers</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Def.</strong> OS is a group of software that makes the computer operate <font color="red">correctly and efficiently</font> in an easy-to-use manner.</p>
+<ul>
+<li>Execute user programs and make solving user problems easier</li>
+<li>Make the computer system convenient to use</li>
+<li>Use the computer hardware in an efficient manner (hardware abstraction)</li>
+</ul>
+<blockquote>
+<p>ask again: what is an OS ?</p>
+</blockquote>
+<ul>
+<li>It includes a software program called <fong color="red">kernel&lt;/font&gt;<ul>
+<li>manages all the physical devices (e.g., CPU, RAM and hard disk)</li>
+<li>exposes some functions such as <font color="red">system calls</font> for others to configure the kernel or build software (e.g., C library)  on top</li>
+</ul>
+</fong></li>
+<li>It includes other ”helper” programs<ul>
+<li>Such as a <fong color="red">shell&lt;/font&gt;, which renders a simple command-line user interface with a full set of commands</fong></li>
+<li>Such as a <fong color="red">GUI&lt;/font&gt; (graphic user interface), which renders a user friendly interface with icons representing files and folders</fong></li>
+<li>Such as a <fong color="red">Browser&lt;/font&gt;, which helps the user to visit websites</fong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>ask again and again: what is an OS ?</p>
+</blockquote>
+<ul>
+<li>An OS is a <fong color="red">resource manager&lt;/font&gt;<ul>
+<li>Managing CPUs, memory, disks, I/O devices (keyboards, USB drive, sensors, …)</li>
+<li>Arbitrator of conflicting requests for efficient and fair resource use</li>
+</ul>
+</fong></li>
+<li>An OS is a <fong color="red">control program&lt;/font&gt;<ul>
+<li>Controls execution of programs to prevent errors and improper use of the computer</li>
+</ul>
+</fong></li>
+</ul>
+<blockquote>
+<font face="Segoe Script" size="5">SHORT SUMMARY</font>
+
+<p>There is no exact definition about Operating System. It can have so many functions and computer depends on it so much.<br>It’s like a bridge between users and hardware, between applications and hardware. All of the modern computer cannot live without Operating Systems.</p>
+<p>But what an OS actually do ?</p>
+</blockquote>
+<h2 id="What-does-an-Operating-Systems-do"><a href="#What-does-an-Operating-Systems-do" class="headerlink" title="What does an Operating Systems do ?"></a>What does an Operating Systems do ?</h2><ul>
+<li>Virtualization (虚拟化)<ul>
+<li>Virtualize CPU: Run multiple programs on a single CPU (as if there are many CPUs)</li>
+<li>Virtualize memory: Give each process (or programs if you will) the illusion of running in its own memory address space</li>
+</ul>
+</li>
+<li>Concurrency (并发性)<ul>
+<li>Run multi-threaded programs and make sure they execute correctly</li>
+</ul>
+</li>
+<li>Persistence (持久性)<ul>
+<li>Write data (from volatile SRAM/DRAM) into persistent storage</li>
+<li>Performance, crash-resilience</li>
+</ul>
+</li>
+<li>etc.</li>
+</ul>
+<p><em>Organzied by the functionalities of OS (<strong>three easy pieces</strong>)</em></p>
+<ul>
+<li>Virtualization (Process, scheduling, memory address space, swapping)</li>
+<li>Concurrency (Threads, locks, semaphores)</li>
+<li>Persistence (I/O, storage, file systems)</li>
+</ul>
+<h2 id="OS-Concepts"><a href="#OS-Concepts" class="headerlink" title="OS Concepts"></a>OS Concepts</h2><h3 id="Process-进程"><a href="#Process-进程" class="headerlink" title="Process (进程)"></a>Process (进程)</h3><p><strong>Def.</strong> A process is a program in execution. (Program is a passive entity and process is an active entity.)</p>
+<p><strong>Properties</strong></p>
+<ul>
+<li>Process needs resources to accomplish its task<ul>
+<li>CPU, memory, I/O, files</li>
+<li>Process termination requires reclaim of any reusable resources</li>
+</ul>
+</li>
+<li>Process executes instructions sequentially, one at a time, until completion<ul>
+<li>Single-threaded process has one program counter specifying location of next instruction to execute</li>
+<li>Multi-threaded process has one program counter per thread</li>
+</ul>
+</li>
+<li>Typically, system has many processes, some user, some operating system running concurrently on one or more CPUs<ul>
+<li>Concurrency by multiplexing the CPUs among the processes / threads</li>
+</ul>
+</li>
+</ul>
+<h3 id="Process-Management"><a href="#Process-Management" class="headerlink" title="Process Management"></a>Process Management</h3><ul>
+<li>Creating and deleting both user and system processes</li>
+<li>Suspending and resuming processes</li>
+<li>Providing mechanisms for process synchronization</li>
+<li>Providing mechanisms for process communication</li>
+<li>Providing mechanisms for deadlock handling</li>
+</ul>
+<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><ul>
+<li>DRAM (Dynamic Random Access Memory) is the main memory used for all desktop, laptops, servers, and mobile devices</li>
+<li>CPU only directly interacts with the main memory during execution<ul>
+<li>All data in memory before and after processing</li>
+<li>All instructions in memory in order to execute</li>
+</ul>
+</li>
+<li>OS manages the main memory for kernel and processes<ul>
+<li>OS dictates which process can access which memory regio</li>
+</ul>
+</li>
+</ul>
+<h3 id="Memory-Management"><a href="#Memory-Management" class="headerlink" title="Memory Management"></a>Memory Management</h3><ul>
+<li>Memory management determines what is in memory when<ul>
+<li>Optimizing CPU utilization and computer response to users</li>
+</ul>
+</li>
+<li>Memory management activities<ul>
+<li>Keeping track of which parts of memory are currently being used and by whom</li>
+<li>Deciding which processes (or parts thereof) and data to move into and out of memory</li>
+<li>Allocating and deallocating memory space as needed</li>
+</ul>
+</li>
+</ul>
+<h3 id="File-System-amp-I-O"><a href="#File-System-amp-I-O" class="headerlink" title="File System &amp; I/O"></a>File System &amp; I/O</h3><ul>
+<li>File-System management<ul>
+<li>Files usually organized into directories</li>
+<li>Access control on most systems to determine who can access what</li>
+<li>OS activities include<ul>
+<li>Creating and deleting files and directories</li>
+<li>Primitives to manipulate files and dirs</li>
+<li>Mapping files onto secondary storage</li>
+<li>Backup files onto stable (non-volatile) storage media</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>I/O Subsystem<ul>
+<li>One purpose of OS is to hide peculiarities of hardware devices from the user</li>
+<li>I/O subsystem responsible for<ul>
+<li>Memory management of I/O including <ul>
+<li>buffering (storing data temporarily while it is being transferred)</li>
+<li>caching (storing parts of data in faster storage for performance)</li>
+</ul>
+</li>
+<li>General device-driver interface</li>
+<li>Drivers for specific hardware devices</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Protection-and-Security"><a href="#Protection-and-Security" class="headerlink" title="Protection and Security"></a>Protection and Security</h3><ul>
+<li>Protection 👉 any mechanism for controlling access of processes or users to resources defined by the OS</li>
+<li>Security 👉 defense of the system against internal and external attacks<ul>
+<li>Huge range, including denial-of-service (DoS), worms (蠕虫), viruses, identity theft, theft of service</li>
+</ul>
+</li>
+</ul>
+<h1 id="Lec02-OS-Basics"><a href="#Lec02-OS-Basics" class="headerlink" title="Lec02. OS Basics"></a>Lec02. OS Basics</h1><h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Dual-mode operations</li>
+<li>Kernel structure</li>
+<li>Operating system services</li>
+</ul>
+<h2 id="Dual-Mode-Operations"><a href="#Dual-Mode-Operations" class="headerlink" title="Dual-Mode Operations"></a>Dual-Mode Operations</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><ul>
+<li>Evolution of OS<ul>
+<li>A library to handle low-level I/O<ul>
+<li>Issue: Fault and security isolation</li>
+</ul>
+</li>
+<li>Kernel: A bigger “library” to handle low-level I/O<ul>
+<li>Kernel needs to be protected from faulty/malicious apps</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/13/Operation-System/os201.png"></p>
+<ul>
+<li>Application code runs in <font color="red">User mode</font></li>
+<li>Kernel code runs in <font color="red">Kernel mode</font><ul>
+<li>Dual-mode operation allows OS to protect itself and other system components (attack from app can be handle by kernel)</li>
+</ul>
+</li>
+<li><font color="red">Question:</font> What is needed in the hardware to support “dual mode” operation?<ul>
+<li>A bit for representing current mode (user/kernel mode bit)</li>
+<li>Certain operations / actions only permitted in kernel mode (in user mode they fail or trap)</li>
+<li>{ User :arrow_right: Kernel } transition sets kernel mode AND saves the user PC<ul>
+<li>Operating system code carefully puts aside user state then performs the necessary operations</li>
+</ul>
+</li>
+<li>{ Kernel :arrow_right: User } transition clears kernel mode AND restores appropriate user PC</li>
+</ul>
+</li>
+</ul>
+<p>Mode bits on different architectures :point_down:</p>
+<table><tr>
+    <td><img src="/2024/09/13/Operation-System/os202.png"></td>
+    <td><img src="/2024/09/13/Operation-System/os203.png"></td>
+</tr></table>
+
+
+
+<h3 id="Mode-Transitions"><a href="#Mode-Transitions" class="headerlink" title="Mode Transitions"></a>Mode Transitions</h3><p>Three types :</p>
+<ul>
+<li>System call <ul>
+<li>Process requests a system service, e.g., <code>exit</code></li>
+<li>Like a function call, but <fotn color="blue">“outside” the process&lt;/font&gt;</fotn></li>
+<li>Does not have the address of the system function to call</li>
+<li>Marshall (排序？) the syscall id and args in registers and exec syscall</li>
+</ul>
+</li>
+<li>Interrupt<ul>
+<li>External asynchronous event <font color="red">triggers context switch</font></li>
+<li>e. g., Timer, I/O device</li>
+<li>Independent of user process</li>
+</ul>
+</li>
+<li>Trap or Exception<ul>
+<li>Internal synchronous event in process triggers context switch</li>
+<li>e.g., Protection violation (segmentation fault), Divide by zero, …</li>
+</ul>
+</li>
+</ul>
+<h4 id="System-Calls"><a href="#System-Calls" class="headerlink" title="System Calls"></a>System Calls</h4><p><strong>Def.</strong> Programming interface to the services provided by the OS, typically written in a high-level language (C or C++).</p>
+<blockquote>
+<p>中文解释：系统调用是一个用高级程序语言定义的，调用操作系统提供的服务的程序接口。</p>
+</blockquote>
+<p><strong>Implementation</strong></p>
+<ul>
+<li>Typically, a number associated with each system call<ul>
+<li>System-call interface maintains a table indexed according to these numbers</li>
+</ul>
+</li>
+<li>The system call interface invokes intended system call in OS kernel and returns status of the system call and any return values <font color="blue">(a basic example below)</font></li>
+<li>The caller needs to know nothing about how the system call is implemented<ul>
+<li>Just needs to obey calling convention and understand what OS will do </li>
+<li>Most details of OS interface hidden from programmer by library API<ul>
+<li>Managed by run-time support library (set of functions built into libraries included with compiler)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[allow(dead_code)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">handle_syscall</span>(user_context: &amp;<span class="keyword">mut</span> UserContext, user_space: &amp;UserSpace) &#123;</span><br><span class="line">	<span class="keyword">const</span> SYS_EXIT: <span class="type">usize</span> = <span class="number">93</span>;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">args</span> = [</span><br><span class="line">        user_context.<span class="title function_ invoke__">a0</span>(),</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    ];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">ret</span>: <span class="type">Result</span>&lt;SyscallReturn&gt; = <span class="keyword">match</span> user_context.<span class="title function_ invoke__">a7</span>() &#123;</span><br><span class="line">		SYS_EXIT =&gt; &#123;</span><br><span class="line">			<span class="comment">// operations</span></span><br><span class="line">			<span class="title function_ invoke__">Ok</span>(SyscallReturn::NoReturn)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// Other syscalls</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">match</span> ret &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(val) =&gt; <span class="keyword">match</span> val &#123;</span><br><span class="line">            SyscallReturn::<span class="title function_ invoke__">Return</span>(val) =&gt; user_context.<span class="title function_ invoke__">set_a0</span>(val <span class="keyword">as</span> <span class="type">usize</span>),</span><br><span class="line">            SyscallReturn::NoReturn =&gt; &#123;&#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(err) =&gt; user_context.<span class="title function_ invoke__">set_a0</span>(-(err.<span class="title function_ invoke__">error</span>() <span class="keyword">as</span> <span class="type">i32</span> <span class="keyword">as</span> <span class="type">isize</span>) <span class="keyword">as</span> <span class="type">usize</span>),</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Types of Syscalls</li>
+</ul>
+<p><img src="/2024/09/13/Operation-System/os204.png"></p>
+<h4 id="Exception-and-Interrupt"><a href="#Exception-and-Interrupt" class="headerlink" title="Exception and Interrupt"></a>Exception and Interrupt</h4><h1 id="Lec03-Process"><a href="#Lec03-Process" class="headerlink" title="Lec03. Process"></a>Lec03. Process</h1><h2 id="Outline-1"><a href="#Outline-1" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Process and system calls</li>
+<li>Process creation</li>
+<li>Kernel view of processes</li>
+<li>Kernel view of fork(), exec(), and wait()</li>
+<li>More about processes</li>
+</ul>
+<h1 id="Lec04-CPU-Scheduler"><a href="#Lec04-CPU-Scheduler" class="headerlink" title="Lec04. CPU Scheduler"></a>Lec04. CPU Scheduler</h1><h2 id="Outline-2"><a href="#Outline-2" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Scheduler Concept</li>
+<li>Different Scheduling Algorithm</li>
+<li>Optimization</li>
+</ul>
+<h1 id="Lec05-Synchronization"><a href="#Lec05-Synchronization" class="headerlink" title="Lec05. Synchronization"></a>Lec05. Synchronization</h1><h2 id="Outline-3"><a href="#Outline-3" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Process Communications: Race Condition and Mutual Exclusion</li>
+<li>Critical Section Solutions</li>
+<li>Spin-based Lock</li>
+<li>Sleep-based Lock</li>
+</ul>
+<h1 id="Lec06-Address-Translation"><a href="#Lec06-Address-Translation" class="headerlink" title="Lec06. Address Translation"></a>Lec06. Address Translation</h1><h2 id="Outline-4"><a href="#Outline-4" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Memory Virtualization</li>
+<li>Abstraction of Address</li>
+<li>Base &amp; Bounds</li>
+<li>Segmentation</li>
+<li>Trade-off with Best / Worst / First Fit</li>
+</ul>
+<h2 id="Segmentation"><a href="#Segmentation" class="headerlink" title="Segmentation"></a>Segmentation</h2><p><strong>Problems with Segmentation</strong></p>
+<ul>
+<li>OS context switch must also save and restore all pairs of segment registers</li>
+<li>A segment may grow, which may or may not be possible</li>
+<li>Management of free spaces of physical memory with variable sized segments</li>
+<li>External fragmentation: gaps between allocated segments<ul>
+<li>Segmentation may also have internal fragmentation if more space allocated than needed.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Lec07-Paging"><a href="#Lec07-Paging" class="headerlink" title="Lec07. Paging"></a>Lec07. Paging</h1><h2 id="Outline-5"><a href="#Outline-5" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Introduction to paging</li>
+<li>Multi-level page tables</li>
+<li>Other page table structures</li>
+<li>Real-world paging schemes</li>
+<li>Translation lookaside buffer (<strong>TLB</strong>)</li>
+</ul>
+<h2 id="Intro-to-Paging"><a href="#Intro-to-Paging" class="headerlink" title="Intro to Paging"></a>Intro to Paging</h2><blockquote>
+<p><font color="green">Recall:</font> Solutions on segmentation</p>
+</blockquote>
+<ul>
+<li>Physical memory conceptually divided into <font color="red">fixed size</font><ul>
+<li>Each is a <font color="red">page frame</font><ul>
+<li>Too big → internal fragmentation</li>
+<li>Too small → page table too big</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Virtual address space conceptually divided into the same size<ul>
+<li>Each is a <font color="red">page</font></li>
+</ul>
+</li>
+<li>Page mapped to page frame<ul>
+<li>One-to-one mapping</li>
+<li>Many-to-one mapping 👉 memory sharing</li>
+</ul>
+</li>
+<li>One page table per process<ul>
+<li>Resides in physical memory<ul>
+<li>One entry for one virtual $\to$ physical translation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table><tr>
+<td><img src="/2024/09/13/Operation-System/os701.png" style="zoom:60%"></td>
+<td><img src="/2024/09/13/Operation-System/os702.png" style="zoom:60%"></td></tr>
+<tr><td><img src="/2024/09/13/Operation-System/os703.png" style="zoom:60%"></td>
+<td><img src="/2024/09/13/Operation-System/os704.png" style="zoom:60%"></td>
+</tr></table>
+
+<ul>
+<li><strong>Virtual Address and Paging</strong><ul>
+<li>Length of virtual address determines size of address space </li>
+<li>Length of offset determines size of a page / page frame</li>
+<li>In case of m-bit virtual address and k-bit offset<ul>
+<li>Size of address space: $2^m$ </li>
+<li>Size of a page: $2^k$</li>
+<li>e.g., 32-bit virtual address, 4KB page: $m = 32$, $k = 12$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Page Table Entry</strong><ul>
+<li>An entry in the page table is called a page table entry (<strong>PTE</strong>).</li>
+<li>Besides <strong>PFN</strong> (Page Frame Number), <strong>PTE</strong> also contains a <font color="red">valid bit</font><ul>
+<li>Virtual pages with no valid mapping: valid bit = 0</li>
+<li>Important for sparse address space (e.g., $2^{64}$ bytes)</li>
+</ul>
+</li>
+<li>PTE also contains <font color="red">protection bits</font><ul>
+<li>Permission to read from or write, or execute code on this page</li>
+</ul>
+</li>
+<li>PTE also contains <font color="red">an access bit, a dirty bit, a present bit</font><ul>
+<li>Present bit: whether this page is in physical memory or on disk</li>
+<li>Dirty bit: whether the page has been modified since it was brought into memory</li>
+<li>Access bit: whether a page has been accessed</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table><tr>
+<td><img src="/2024/09/13/Operation-System/os705.png" style="zoom:60%"></td>
+<td><img src="/2024/09/13/Operation-System/os706.png" style="zoom:60%"></td>
+</tr></table>
+
+
+
+<h2 id="Multi-level-page-tables"><a href="#Multi-level-page-tables" class="headerlink" title="Multi-level page tables"></a>Multi-level page tables</h2><ul>
+<li>Two level Page Tables<ul>
+<li>in order to save space</li>
+<li>using “Tree” instead of “List” to improve performance</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/13/Operation-System/os707.png" style="zoom:60%"></p>
+<blockquote>
+<p>More detail about …</p>
+</blockquote>
+<p><img src="/2024/09/13/Operation-System/os708.png" style="zoom:60%"></p>
+<h2 id="Other-Page-Table-Strctures"><a href="#Other-Page-Table-Strctures" class="headerlink" title="Other Page Table Strctures"></a>Other Page Table Strctures</h2><ul>
+<li>Hierarchical page tables <ul>
+<li>2-level page tables</li>
+<li>3-level page tables</li>
+<li>4-level page tables</li>
+</ul>
+</li>
+<li>Hashed Page Tables </li>
+<li>Inverted Page Tables</li>
+</ul>
+<h2 id="Read-world-Paging-Scheme"><a href="#Read-world-Paging-Scheme" class="headerlink" title="Read-world Paging Scheme"></a>Read-world Paging Scheme</h2><p><strong>I.</strong> RISC-V support multiple MMU</p>
+<ul>
+<li><code>RV32</code> : SV32</li>
+<li><code>RV64</code> : SV32 &amp; SV48</li>
+</ul>
+<p><img src="/2024/09/13/Operation-System/os709.png"></p>
+<p><strong>II.</strong> IA-32 (Intel’s 32-bit CPU) uses two stage address translation: segmentation + paging</p>
+<p><strong>Issues of Paging</strong></p>
+<ul>
+<li>Time Complexity<ul>
+<li>Extra memory references during address translation</li>
+<li>Three-level page tables requires 3 additional memory reads</li>
+</ul>
+</li>
+</ul>
+<h2 id="Translation-Lookaside-Buffer"><a href="#Translation-Lookaside-Buffer" class="headerlink" title="Translation Lookaside Buffer"></a>Translation Lookaside Buffer</h2><ul>
+<li>A <fotn color="red">translation lookaside buffer (TLB)&lt;/font&gt; is a hardware cache that is part of the MMU (Memory Management Unit)<ul>
+<li>A cache for the PTEs: holding a translation likely to be <strong>re-used</strong><ul>
+<li>Replacement policy: <strong>LRU</strong> (Recall for “Computer Organization”), FIFO, random</li>
+</ul>
+</li>
+<li>Each entry holds mapping of a virtual address to a physical address</li>
+</ul>
+</fotn></li>
+<li>Before a virtual-to-physical address translation is to be performed, TLB is looked up using VPN<ul>
+<li>TLB hit: VPN is found, and the PFN of the same entry used</li>
+<li>TLB miss: VPN not found, page table walk</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/13/Operation-System/os710.png" style="zoom:60%"></p>
+<center>TLB hit</center>
+
+<p><img src="/2024/09/13/Operation-System/os711.png" style="zoom:60%"></p>
+<center>TLB miss</center>
+
+
+
+<blockquote>
+<p>Thought: can TLB be big?</p>
+<p>No. If it’s too big, it cannot function as speed-up.</p>
+</blockquote>
+<ul>
+<li><strong>Issues with Context Switch</strong><ul>
+<li>Two process may use the same virtual address<ul>
+<li>e.g. <code>P1: 100-&gt;170</code>, <code>P2: 100-&gt;110</code></li>
+</ul>
+</li>
+<li>Solutions: <ul>
+<li>Flush TLB upon context switch (Invalidate all entries: <code>V-&gt;I</code>)</li>
+<li>Extending TLB with address space ID (No need to flush TLB)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Lec08-Demand-Paging"><a href="#Lec08-Demand-Paging" class="headerlink" title="Lec08. Demand Paging"></a>Lec08. Demand Paging</h1><h2 id="Outline-6"><a href="#Outline-6" class="headerlink" title="Outline"></a>Outline</h2><h2 id="Swap-Space"><a href="#Swap-Space" class="headerlink" title="Swap Space"></a>Swap Space</h2><blockquote>
+<p>Who is responsible for moving data?</p>
+<p>For applications, it’s <strong>memory overlay</strong></p>
+<ul>
+<li>Application in charge of moving data between memory and disk</li>
+<li>e.g., calling a function needs to make sure the code is in memory!</li>
+</ul>
+<p>For OS, it’s <strong>demand paging</strong></p>
+<ul>
+<li>OS configures page table entries</li>
+<li>Virtual page maps to physical memory or files in disk</li>
+<li>Process sees an abstraction of address space</li>
+<li>OS determines where the data is stored</li>
+</ul>
+</blockquote>
+<ul>
+<li>Swap space is a partition or a file stored on the disk<ul>
+<li>OS swaps pages out of memory to it </li>
+</ul>
+</li>
+<li>OS swaps pages from it into memory<ul>
+<li>Swap space conceptually divided into page-sized units</li>
+<li>OS maintains a disk address of each page-sized unit</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/13/Operation-System/os801.png" style="zoom:60%"></p>
+<h2 id="Demand-Paging"><a href="#Demand-Paging" class="headerlink" title="Demand Paging"></a>Demand Paging</h2><ul>
+<li>Load pages from disk to memory only as they are needed <ul>
+<li>Pages are loaded “on demand”</li>
+</ul>
+</li>
+<li>Data transferred in the unit of pages</li>
+<li>Two possible on-disk locations <ul>
+<li>Swap space: <ul>
+<li>created by OS for temporary storage of pages on disk</li>
+<li>e.g., pages for stack and heap</li>
+</ul>
+</li>
+<li>Program binary files:<ul>
+<li>The code pages from this binary are only loaded into memory when they are executed</li>
+<li>Read-only, thus never write back</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Physical Memory as a Cache</strong></p>
+<h1 id="Lec09-Linux-Memory-Management"><a href="#Lec09-Linux-Memory-Management" class="headerlink" title="Lec09. Linux Memory Management"></a>Lec09. Linux Memory Management</h1><h2 id="Outline-7"><a href="#Outline-7" class="headerlink" title="Outline"></a>Outline</h2><h2 id="Address-Space-in-Linux"><a href="#Address-Space-in-Linux" class="headerlink" title="Address Space in Linux"></a>Address Space in Linux</h2><p><img src="/2024/09/13/Operation-System/os901.png"></p>
+<ul>
+<li>Each page split into 3:1 (alike) portions, e.g., 3/4 for user mode and 1/4 for kernel space.</li>
+</ul>
+<blockquote>
+<p>Q: Why is kernel memory mapped into the address space of each process?</p>
+<ul>
+<li>No need to change page table (i.e., switch CR3) when trapped into the kernel (no TLB flush)</li>
+<li>Kernel code may access user memory when needed</li>
+</ul>
+</blockquote>
+<p>Aware! —— The kernel memory in each address space is <font color="red">the same</font></p>
+<p><img src="/2024/09/13/Operation-System/os902.png" style="zoom:70%"></p>
+<h2 id="Slab-Allocator"><a href="#Slab-Allocator" class="headerlink" title="Slab Allocator"></a>Slab Allocator</h2><h2 id="Buddy-System"><a href="#Buddy-System" class="headerlink" title="Buddy System"></a>Buddy System</h2><ul>
+<li>Free physical memory is considered big space of size $2^N$ pages</li>
+<li><strong>Allocation:</strong> the free space is divided by two until a block that is big enough to accommodate the request is found<ul>
+<li>a further split would result in a space that is too small</li>
+</ul>
+</li>
+<li><strong>Free:</strong> the freed block is recursively merged with its buddy<ul>
+<li>Two <strong>buddy blocks</strong> have physical addresses that differ only in <strong>1 bit</strong></li>
+</ul>
+</li>
+</ul>
+<table>
+<tr>
+    <td><img src="/2024/09/13/Operation-System/os903.png"></td>
+    <td><img src="/2024/09/13/Operation-System/os904.png"></td>
+    <td><img src="/2024/09/13/Operation-System/os905.png"></td>
+</tr>
+<tr>
+    <td><img src="/2024/09/13/Operation-System/os906.png"></td>
+    <td><img src="/2024/09/13/Operation-System/os907.png"></td>
+    <td>Note that two <b>buddy system</b><br>differ at bit i (where they separate,<br>e.g., A and B at the lowest bit)<br>on their <b>PFN</b></td>
+</tr>
+</table>
+
+
+
+
+]]></content>
+      <categories>
+        <category>2024 Fall</category>
+      </categories>
+      <tags>
+        <tag>CSE Learning</tag>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机网络</title>
     <url>/2024/09/09/Computer-Networks/</url>
     <content><![CDATA[<h1 id="Chapter-1-Introduction"><a href="#Chapter-1-Introduction" class="headerlink" title="Chapter 1. Introduction"></a>Chapter 1. Introduction</h1><HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
@@ -1766,7 +2337,185 @@
 <p>$<br>\text{DevRTT}=(1-\beta)<em>\text{DevRTT}+\alpha </em> | \text{SampleRTT} - \text{EstimatedRTT} | \\<br>\text{TimeoutInterval}=\text{EstimatedRTT} + 4 * \text{DevRTT}<br>$</p>
 
 </blockquote>
-<h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a><a name="lab01">Week 1</a></h2><blockquote>
+<h4 id="Reliable-Data-Transfer"><a href="#Reliable-Data-Transfer" class="headerlink" title="Reliable Data Transfer"></a>Reliable Data Transfer</h4><blockquote>
+<p>TCP thinks that IP below itself as unreliable, so it provide reliable data transfer</p>
+</blockquote>
+<ul>
+<li>Sender Events<ul>
+<li>data received from app:<ul>
+<li>create segment with <font color="red">seq num</font> (which is byte-stream number of first data byte in  segment)</li>
+<li>start timer if not already running</li>
+</ul>
+</li>
+<li>timeout: <ul>
+<li>retransmit the timeout segment</li>
+<li>restart timer</li>
+</ul>
+</li>
+<li>ack received: <ul>
+<li>if ack num from previously unacked segments, update that segments (unACKed 👉 ACKed)</li>
+<li>if there are still unACKed segments, <font color="blue">start timer</font></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Receiver Events</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn70.png" style="zoom:60%"></p>
+<p><strong>Double Timeout</strong></p>
+<ul>
+<li>Each time TCP retransmits, it sets the <font color="red">next timeout interval to twice</font> the previous value</li>
+</ul>
+<p><strong>Fast retransmission</strong></p>
+<p>…</p>
+<h4 id="Flow-Control"><a href="#Flow-Control" class="headerlink" title="Flow Control"></a>Flow Control</h4><p><strong>Def.</strong>  Receiver controls sender, so sender won’t <font color="red">overflowz</font> receiver’s buffer by transmitting too much, too fast.</p>
+<p><img src="/2024/09/09/Computer-Networks/cn71.png" style="zoom:60%"></p>
+<ul>
+<li>And sender will try to limit the unACKed data to receiver’s <code>rwnd</code> value</li>
+</ul>
+<h4 id="Control-Managment"><a href="#Control-Managment" class="headerlink" title="Control Managment"></a>Control Managment</h4><ul>
+<li>Before data transfer, “Alice” and “Bob” (using TCP) will have a <font color="red">three-way handshakes</font> to guarantee connection.</li>
+<li>Three flags to convey the info about connection: <code>RST</code>, <code>SYN</code>, <code>FIN</code></li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn72.png" style="zoom:60%"></p>
+<ul>
+<li>Once three handshakes finish, the server and client can start data transfer.</li>
+<li>In the future sements, <code>SYNbit</code> = 0.</li>
+<li>After all segments ACKed, the sender closes the connection 👇</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn73.png" style="zoom:60%"></p>
+<h2 id="3-6-Principles-of-Congestion-Control"><a href="#3-6-Principles-of-Congestion-Control" class="headerlink" title="3.6. Principles of Congestion Control"></a>3.6. Principles of Congestion Control</h2><p><strong>Def.</strong> <font color="red">Congestion</font> is too many sources sending too much data too fast for <font color="red">network</font> to handle.</p>
+<h3 id="Causes-Costs-of-congestion"><a href="#Causes-Costs-of-congestion" class="headerlink" title="Causes / Costs of congestion"></a>Causes / Costs of congestion</h3><p>(1) 2 senders ＜(＾－＾)＞ 2 receivers; <font color="red">one router</font> with infinite buffer but output link capacity is $R$ ; <font color="red">No retransmission</font></p>
+<p>(2) Consider retransmission</p>
+<p>(3) More than one router</p>
+<p><strong>Summary</strong></p>
+<ul>
+<li>Cause<ul>
+<li>Shared link; limited link capacity</li>
+<li>Sending at a high rate</li>
+</ul>
+</li>
+<li>Cost of Congestion<ul>
+<li>Delay</li>
+<li>Packet lost  and retransmission</li>
+<li>Unneeded retransmission: waste</li>
+<li>“upstream” transmission capacity was wasted</li>
+</ul>
+</li>
+<li>Approaches to Congestion Control<ul>
+<li>End-to-end<ul>
+<li>TCP segment loss or round-trip segment delay </li>
+<li>TCP decreases its window size accordingly</li>
+</ul>
+</li>
+<li>Network-assisted congestion control:<ul>
+<li>routers provide feedback to the sender and/or receiver</li>
+<li>a single bit indicating congestion at a link; the maximum host sending rate the router can support</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-7-TCP-Congestion-Control"><a href="#3-7-TCP-Congestion-Control" class="headerlink" title="3.7. TCP Congestion Control"></a>3.7. TCP Congestion Control</h2><ul>
+<li><font color="red">Q1:</font> How does a TCP sender limit the rate at which it sends traffic into its connection? <ul>
+<li>Congestion window</li>
+<li>LastByteSend - LastByteAcked $\le$ min {cwnd, rwnd}</li>
+</ul>
+</li>
+<li><font color="red">Q2:</font> How does a TCP sender perceive that there is congestion on the path between itself and the destination? <ul>
+<li>timeout</li>
+<li>three duplicate ACKs</li>
+</ul>
+</li>
+<li><font color="red">Q3:</font> What algorithm should the sender use to change its send rate as a function of perceived end-to-end congestion?</li>
+</ul>
+<h3 id="Congestion-Control-Details"><a href="#Congestion-Control-Details" class="headerlink" title="Congestion Control: Details"></a>Congestion Control: Details</h3><ul>
+<li>Three components:<ul>
+<li>Slow start：exponentially increase</li>
+<li>Congestion avoidance: linearly increase</li>
+<li>Fast recovery(as shown below) :</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn74.png" style="zoom:60%"></p>
+<ul>
+<li>TCP congestion control: additive increase multiplicative decrease<ul>
+<li><font color="red">additive increase:</font> increase cwnd by 1 MSS every RTT until loss detected</li>
+<li><font color="red">multiplicative decrease:</font> cut cwnd in half after loss </li>
+</ul>
+</li>
+<li>TCP throughput<ul>
+<li>ignore slow start, assume always data to send</li>
+<li>$W$: window size (measured in bytes) where loss occurs</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn75.png" style="zoom:80%"></p>
+<h3 id="TCP-Fairness"><a href="#TCP-Fairness" class="headerlink" title="TCP Fairness"></a>TCP Fairness</h3><h1 id="Chapter-4-Network-Layer"><a href="#Chapter-4-Network-Layer" class="headerlink" title="Chapter 4. Network Layer"></a>Chapter 4. Network Layer</h1><HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
+
+<center><font face="STXinwei" size="5">Layout</font></center>
+
+<p><strong>4.1.</strong> Overview of Network layer</p>
+<ul>
+<li>data plane</li>
+<li>control plane</li>
+</ul>
+<p><strong>4.2.</strong> What’s inside a router</p>
+<p><strong>4.3.</strong> IP: Internet Protocol</p>
+<ul>
+<li>datagram format</li>
+<li>fragmentation</li>
+<li>IPv4 addressing</li>
+<li>network address translation</li>
+<li>IPv6</li>
+</ul>
+<p><strong>4.4.</strong> Generalized Forward and SDN</p>
+<ul>
+<li>match</li>
+<li>action</li>
+<li>OpenFlow  examples of match-plus-action in action</li>
+</ul>
+<HR style="FILTER: alpha(opacity=0,finishopacity=100,style=1)" width="100%" color="black" size="2">
+
+
+
+<h2 id="4-1-Overview-of-Network-Layer"><a href="#4-1-Overview-of-Network-Layer" class="headerlink" title="4.1. Overview of Network Layer"></a>4.1. Overview of Network Layer</h2><ul>
+<li>transport segment from sending to receiving host </li>
+<li>on sending side encapsulates segments into datagrams</li>
+<li>on receiving side, delivers segments to transport layer</li>
+<li>network layer protocols in every host, router</li>
+<li>router examines header fields in all IP datagrams passing through it</li>
+</ul>
+<p><strong>Two key network-core functions</strong></p>
+<ul>
+<li>Forwarding: move packets from router’s input to appropriate router output <ul>
+<li><font color="red">Data Plane</font></li>
+</ul>
+</li>
+<li>Routing: determine route taken by packets from source to destination<ul>
+<li>routing algorithm</li>
+<li><font color="red">Control Plane</font>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-2-What’s-inside-a-router"><a href="#4-2-What’s-inside-a-router" class="headerlink" title="4.2. What’s inside a router"></a>4.2. What’s inside a router</h2><p><img src="/2024/09/09/Computer-Networks/cn76.png"></p>
+<h3 id="Router-Overview"><a href="#Router-Overview" class="headerlink" title="Router Overview"></a>Router Overview</h3><ul>
+<li>Input port</li>
+<li>Switch fabrics</li>
+<li>Output port</li>
+<li>Queuing<ul>
+<li>Input port queue</li>
+<li>Output port queue</li>
+<li>Scheduling</li>
+</ul>
+</li>
+</ul>
+<h3 id="Input-port-function"><a href="#Input-port-function" class="headerlink" title="Input port function"></a>Input port function</h3><h3 id="Switching-Fabrics"><a href="#Switching-Fabrics" class="headerlink" title="Switching Fabrics"></a>Switching Fabrics</h3><p><img src="/2024/09/09/Computer-Networks/cn77.png" style="zoom:70%"></p>
+<h2 id="4-3-IP-Internet-Protocol"><a href="#4-3-IP-Internet-Protocol" class="headerlink" title="4.3. IP: Internet Protocol"></a>4.3. IP: Internet Protocol</h2><h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a><a name="lab01">Week 1</a></h2><blockquote>
 <p>Introduce to Lab 01:</p>
 <p>应用层（Application）</p>
 <ul>
@@ -2043,24 +2792,12 @@
 </tbody>
 </table>
 </div>
-</HR></HR></HR></HR></HR></HR>]]></content>
+</HR></HR></HR></HR></HR></HR></HR></HR>]]></content>
       <categories>
         <category>2024 Fall</category>
       </categories>
       <tags>
         <tag>CSE Learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统</title>
-    <url>/2024/09/13/Operation-System/</url>
-    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1>]]></content>
-      <categories>
-        <category>2024 Fall</category>
-      </categories>
-      <tags>
-        <tag>CSE Learning</tag>
-        <tag>Rust</tag>
       </tags>
   </entry>
   <entry>
