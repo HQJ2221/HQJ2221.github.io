@@ -2217,9 +2217,129 @@
     <td><img src="/2024/09/09/Computer-Networks/cn88.png"></td>
 </tr></table>
 
-<p>（补笔记。。。）</p>
-<h2 id="5-3-intra-AS-routing-in-the-Internet-OSPF"><a href="#5-3-intra-AS-routing-in-the-Internet-OSPF" class="headerlink" title="5.3. intra-AS routing in the Internet: OSPF"></a>5.3. intra-AS routing in the Internet: OSPF</h2><p>(bu bi ji ……)</p>
-<h2 id="5-4-routing-among-the-ISPs-BGP"><a href="#5-4-routing-among-the-ISPs-BGP" class="headerlink" title="5.4. routing among the ISPs: BGP"></a>5.4. routing among the ISPs: BGP</h2><blockquote>
+<blockquote>
+<p>Problems: In “good news” (some link cost decrease), the update of forwarding table converge fast (with fewer iterations). But in “bad news” (cost increase), it require more iters to converge the forwarding table!</p>
+</blockquote>
+<p><strong>Solution: Poisoned reverse</strong></p>
+<ul>
+<li>(Example above.) If $Z$ routes through $Y$ to get to $X$ :<ul>
+<li>$Z$ tells $Y$ its ($Z$’s) distance to $X$ is infinite (so $Y$ won’t route to $X$ via $Z$)</li>
+</ul>
+</li>
+<li>However, when there are <font color="red">more than one loop</font>, this method doesn’t work!</li>
+</ul>
+<h3 id="Comparison-of-LS-and-DV"><a href="#Comparison-of-LS-and-DV" class="headerlink" title="Comparison of LS and DV"></a>Comparison of LS and DV</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Link State</th>
+<th style="text-align:center">Distance Vector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">message complexity</td>
+<td style="text-align:center">with $n$ nodes, $E$ links, $O(nE)$ msgs sent</td>
+<td style="text-align:center">exchange between neighbors only</td>
+</tr>
+<tr>
+<td style="text-align:center">Speed of convergence</td>
+<td style="text-align:center">$O(n^2)$ algorithm</td>
+<td style="text-align:center">time varies(count-to-infinite problem)</td>
+</tr>
+<tr>
+<td style="text-align:center">Robustness</td>
+<td style="text-align:center">node can advertise incorrect link cost, each node computes only its own table</td>
+<td style="text-align:center">DV node can advertise incorrect path cost, each node’s table used by others</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="5-3-intra-AS-routing-in-the-Internet-OSPF"><a href="#5-3-intra-AS-routing-in-the-Internet-OSPF" class="headerlink" title="5.3. intra-AS routing in the Internet: OSPF"></a>5.3. intra-AS routing in the Internet: OSPF</h2><blockquote>
+<p>Both LS and DV have problems in practice</p>
+<p>We want to make routing scalable</p>
+</blockquote>
+<ul>
+<li>Solution: aggregate routers into regions known as “autonomous systems” (AS) (a.k.a. “domains”)<ul>
+<li>Gateway router: at “edge” of its own AS, has link(s) to router(s) in other AS</li>
+<li>Interior router: no link to other AS</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn101.png" style="zoom:60%"></p>
+<ul>
+<li>intra-AS routing<ul>
+<li>routing among hosts, routers in <fotn color="red">same AS&lt;/font&gt; (“network”)</fotn></li>
+<li>all routers in AS must run same intra-domain protocol</li>
+<li>routers in different AS can run different intra-AS routing protocol</li>
+</ul>
+</li>
+<li>inter-AS routing<ul>
+<li>routing among AS’es</li>
+<li>gateways perform interAS routing (as well as intra-AS routing)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Q: How does it function in practice?</p>
+<p>A: forwarding table  configured by both intra- and inter-AS routing algorithm</p>
+</blockquote>
+<h3 id="Intra-AS-Routing"><a href="#Intra-AS-Routing" class="headerlink" title="Intra-AS Routing"></a>Intra-AS Routing</h3><ul>
+<li>also known as interior gateway protocols (IGP)</li>
+<li>most common intra-AS routing protocols:<ul>
+<li>RIP: Routing Information Protocol (distance vector-based)</li>
+<li>OSPF: Open Shortest Path First (link statebased)</li>
+<li>IS-IS protocol essentially same as OSPF</li>
+<li>IGRP: Interior Gateway Routing Protocol (Cisco proprietary for decades, until 2016)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Inter-AS Routing will be talked in 5.4</p>
+</blockquote>
+<h3 id="OSPF-Open-Shortest-Path-First"><a href="#OSPF-Open-Shortest-Path-First" class="headerlink" title="OSPF (Open Shortest Path First)"></a>OSPF (Open Shortest Path First)</h3><ul>
+<li>“open”: publicly available<ul>
+<li>Message format, routing algorithms, link-state broadcast, etc.</li>
+</ul>
+</li>
+<li>uses link-state algorithm <ul>
+<li>link state packet dissemination</li>
+<li>topology map at each node</li>
+<li>route computation using Dijkstra’s algorithm</li>
+</ul>
+</li>
+<li>router floods OSPF link-state advertisements to all other routers in entire AS<ul>
+<li>carried in OSPF messages directly over IP (rather than TCP or UDP)</li>
+<li>Reliable message transfer, link-state broadcast</li>
+</ul>
+</li>
+</ul>
+<p><strong>OSPF “advanced” features</strong></p>
+<ul>
+<li><font color="red">security:</font> all OSPF messages authenticated (to prevent malicious intrusion) <ul>
+<li>Password; private and public key </li>
+</ul>
+</li>
+<li><font color="red">multiple same-cost paths</font> allowed (only one path in RIP)</li>
+<li>integrated uni- and <font color="red">multi-cast</font> support: <ul>
+<li>Multicast OSPF (MOSPF) uses same topology data base as OSPF</li>
+</ul>
+</li>
+<li><font color="red">hierarchical</font> OSPF in large domains.<ul>
+<li><font color="red">Two-level hierarchy:</font> local area, backbone.<ul>
+<li>link-state advertisements only in area </li>
+<li>each nodes has detailed area topology; only know direction (shortest path) to nets in other areas.</li>
+</ul>
+</li>
+<li><font color="red">Area border routers:</font> routing packets outside the area.</li>
+<li><font color="red">Backbone routers:</font> run OSPF routing limited to backbone.</li>
+<li><font color="red">Boundary (gateway) routers:</font> connect to other AS’es.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn102.png"></p>
+<h2 id="5-4-Routing-among-the-ISPs-BGP"><a href="#5-4-Routing-among-the-ISPs-BGP" class="headerlink" title="5.4. Routing among the ISPs: BGP"></a>5.4. Routing among the ISPs: BGP</h2><blockquote>
 <p>5.3 is about intra-AS routing (inside 1 AS), while 5.4 will talk about <strong>inter-AS</strong> routing (between 2 or more AS)</p>
 </blockquote>
 <h3 id="Overview-3"><a href="#Overview-3" class="headerlink" title="Overview"></a>Overview</h3><ul>
