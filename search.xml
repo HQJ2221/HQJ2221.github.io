@@ -50,15 +50,15 @@
 <p>ask again: what is an OS ?</p>
 </blockquote>
 <ul>
-<li>It includes a software program called <fong color="red">kernel&lt;/font&gt;<ul>
+<li>It includes a software program called <font color="red">kernel</font><ul>
 <li>manages all the physical devices (e.g., CPU, RAM and hard disk)</li>
 <li>exposes some functions such as <font color="red">system calls</font> for others to configure the kernel or build software (e.g., C library)  on top</li>
 </ul>
-</fong></li>
+</li>
 <li>It includes other ”helper” programs<ul>
-<li>Such as a <fong color="red">shell&lt;/font&gt;, which renders a simple command-line user interface with a full set of commands</fong></li>
-<li>Such as a <fong color="red">GUI&lt;/font&gt; (graphic user interface), which renders a user friendly interface with icons representing files and folders</fong></li>
-<li>Such as a <fong color="red">Browser&lt;/font&gt;, which helps the user to visit websites</fong></li>
+<li>Such as a <font color="red">shell</font>, which renders a simple command-line user interface with a full set of commands</li>
+<li>Such as a <font color="red">GUI</font> (graphic user interface), which renders a user friendly interface with icons representing files and folders</li>
+<li>Such as a <font color="red">Browser</font>, which helps the user to visit websites</li>
 </ul>
 </li>
 </ul>
@@ -66,15 +66,15 @@
 <p>ask again and again: what is an OS ?</p>
 </blockquote>
 <ul>
-<li>An OS is a <fong color="red">resource manager&lt;/font&gt;<ul>
+<li>An OS is a <font color="red">resource manager</font><ul>
 <li>Managing CPUs, memory, disks, I/O devices (keyboards, USB drive, sensors, …)</li>
 <li>Arbitrator of conflicting requests for efficient and fair resource use</li>
 </ul>
-</fong></li>
-<li>An OS is a <fong color="red">control program&lt;/font&gt;<ul>
+</li>
+<li>An OS is a <font color="red">control program</font><ul>
 <li>Controls execution of programs to prevent errors and improper use of the computer</li>
 </ul>
-</fong></li>
+</li>
 </ul>
 <blockquote>
 <font face="Segoe Script" size="5">SHORT SUMMARY</font>
