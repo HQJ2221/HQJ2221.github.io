@@ -2661,7 +2661,305 @@
 </ul>
 </li>
 </ul>
-<h2 id="Two-ways-to-handle-deadlock"><a href="#Two-ways-to-handle-deadlock" class="headerlink" title="Two ways to handle deadlock"></a>Two ways to handle deadlock</h2><h3 id="Deadlock-detection-with-Resource-Allocation-Graphs"><a href="#Deadlock-detection-with-Resource-Allocation-Graphs" class="headerlink" title="Deadlock detection with Resource Allocation Graphs"></a>Deadlock detection with Resource Allocation Graphs</h3>]]></content>
+<h2 id="Two-ways-to-handle-deadlock"><a href="#Two-ways-to-handle-deadlock" class="headerlink" title="Two ways to handle deadlock"></a>Two ways to handle deadlock</h2><blockquote>
+<p>Of course you can directly ignore it (like UNIX), but we are going to talk about 2 methods which truly handle it.</p>
+</blockquote>
+<h3 id="Deadlock-detection-with-Resource-Allocation-Graphs"><a href="#Deadlock-detection-with-Resource-Allocation-Graphs" class="headerlink" title="Deadlock detection with Resource Allocation Graphs"></a>Deadlock detection with Resource Allocation Graphs</h3><ol>
+<li>If there is only one type of resource, go searching for cycle.</li>
+<li>If there are multiple types of resource, we have to firstly represent the resource:<ul>
+<li><strong>Available</strong>: A vector of length $m$ indicates the number of available resources of each type.</li>
+<li><strong>Allocation</strong>: An $n \times m$ matrix defines the number of resources of each type currently allocated to each process.</li>
+<li><strong>Request</strong>: An $n \times m$ matrix indicates the current request  of each process.  If Request $[i_j] = k$, then process $P_i$ is requesting $k$ more instances of resource type $R_j$. (Request-based)</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Suppose m and n are number of resources and processes</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/* Step 1 */</span><br><span class="line">init Work[m], Finish[n]</span><br><span class="line">init Work &lt;- Available</span><br><span class="line">for 1..n:</span><br><span class="line">  if Alloc[i] != 0: Finish[i] = false</span><br><span class="line">  else Finish[i] = true</span><br><span class="line"></span><br><span class="line">/* Step 2 */</span><br><span class="line">find i where</span><br><span class="line">  Finish[i] == false and Request[i] &lt;= Work[i]</span><br><span class="line">  jump Step 4</span><br><span class="line">else: jump Step 3</span><br><span class="line"></span><br><span class="line">/* Step 3 */</span><br><span class="line">Work = Work + Allocation[i]</span><br><span class="line">Finish[i] = true</span><br><span class="line">jump Step 2</span><br><span class="line"></span><br><span class="line">/* Step 4 */</span><br><span class="line">if Finish[i] == false:</span><br><span class="line">  P[i] is in deadlock /* process i&#x27;s deadlock detected */</span><br></pre></td></tr></table></figure>
+<table>
+<tr>
+    <td><img src="/2024/09/13/Operating-Systems/os1302.png"></td>
+    <td><img src="/2024/09/13/Operating-Systems/os1303.png"></td>
+</tr>
+</table>
+
+<blockquote>
+<p>Explanation: 经过进程 0，0 完成并释放一个资源 B，然而其他进程都无法得到相应资源，进入死锁</p>
+</blockquote>
+<p><strong>What if Deadlock Detected?</strong></p>
+<ul>
+<li>Terminate process, force it to give up resources<ul>
+<li>Shoot a dining philosopher !?</li>
+<li>But, not always possible</li>
+</ul>
+</li>
+<li>Preempt resources without killing off process <ul>
+<li>Take away resources from process temporarily</li>
+<li>Does not always fit with semantics of computation</li>
+</ul>
+</li>
+<li>Roll back actions of deadlocked process <ul>
+<li>Common technique in databases (transactions)</li>
+<li>Of course, deadlock may happen once again</li>
+</ul>
+</li>
+</ul>
+<h3 id="Deadlock-Prevention"><a href="#Deadlock-Prevention" class="headerlink" title="Deadlock Prevention"></a>Deadlock Prevention</h3><blockquote>
+<p>Try to ensure at least one of the requirements of deadlock cannot hold</p>
+</blockquote>
+<ul>
+<li>Remove “Mutual Exclusion” ? impossible for non-sharable resource.</li>
+<li>Remove “Hold and Wait” ? low resource utilization or starvation</li>
+<li>Remove “Preemption” ?<ul>
+<li>If a process that is holding some resources requests another resource that cannot be immediately allocated to it, then all resources currently being held are released 👉 may cause starvation</li>
+<li>Process will be restarted only when it can regain its old resources, as well as the new ones that it is requesting</li>
+</ul>
+</li>
+<li>Remove “Circular Wait”<ul>
+<li>impose a total ordering of all resource types, and require that each process requests resources in an increasing order of enumeration: $R= \{ R_1, R_2, \cdots , R_m \}$</li>
+<li>One to one function $F:R\to N$</li>
+<li>If a process request a resource $R_i$, it can request another resource $R_j$ if and only if $F(R_i) \lt F(R_j)$</li>
+<li>Or, it must first release all resource $R_i$ such that $F(R_i) \ge F(R_j)$ </li>
+</ul>
+</li>
+</ul>
+<p><strong>Some concept go first</strong></p>
+<ul>
+<li>Deadlock Avoidance<ul>
+<li>The deadlock-avoidance algorithm dynamically examines the resource-allocation state to ensure that there can never be a <strong>circular-wait condition</strong></li>
+<li>Resource-allocation state is defined by the number of available and allocated resources, and the maximum demands of the processes</li>
+</ul>
+</li>
+<li>Safe State<ul>
+<li>System is in safe state if there exists a sequence $<P_1, p_2, \cdots , p_n>$ of <strong>ALL</strong> the processes in the systems such that for each $P_i$, the resources that $P_i$ can still request can be satisfied by currently available resources + resources held by all the $P_j$, with $j &lt; i$</P_1,></li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/13/Operating-Systems/os1304.png"></p>
+<h4 id="Bankerʼs-Algorithm"><a href="#Bankerʼs-Algorithm" class="headerlink" title="Bankerʼs Algorithm"></a>Bankerʼs Algorithm</h4><p><strong>Idea</strong></p>
+<ul>
+<li>Multiple instances of each resource type</li>
+<li>Each process must a priori claim maximum use</li>
+<li>When a process requests a resource it may have to wait </li>
+<li>When a process gets all its resources it must return them in a finite amount of time</li>
+</ul>
+<p><strong>Setting</strong></p>
+<ul>
+<li><strong>Available</strong>: Vector of length m.</li>
+<li><strong>Max</strong>: $n \times m$ matrix. (<code>Max[i, j] = k</code> represent process i can request at most k instances of resource j)</li>
+<li><strong>Allocation</strong>: $n \times m$ matrix.</li>
+<li><strong>Need</strong>: $n \times m$ matrix.<ul>
+<li><code>Need[i,j] = Max[i,j] - Alloc[i,j]</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Pseudo code</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/* Check safe function */</span><br><span class="line">/* 1 */</span><br><span class="line">Init Work = Available, Finish[i] = false for 0..(n-1)</span><br><span class="line">/* 2 */</span><br><span class="line">find i where (Finish[i] is false) and (Need[i][k] &lt;= Work[k] for all k)</span><br><span class="line">if no such i, goto 4</span><br><span class="line">/* 3 */</span><br><span class="line">Work = Work + Alloc[i]</span><br><span class="line">Finish[i] = true</span><br><span class="line">/* 4 */</span><br><span class="line">If Finish[i] == true for all i, then system is in safe state</span><br></pre></td></tr></table></figure>
+<p><strong>Resource-Request Algorithm</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/* Request Resource of Process[i] */</span><br><span class="line">/* 1 */</span><br><span class="line">if Request[j] &lt;= Need[j] for all j then goto 2</span><br><span class="line">else raise exception /* process has exceeded its maximum claim */</span><br><span class="line">/* 2 */</span><br><span class="line">if Request[j] &lt;= Avail[j] for all j then goto 3</span><br><span class="line">else wait() /* Process i cannot get enough resource */</span><br><span class="line">/* 3 */</span><br><span class="line">&#123; /* state update */</span><br><span class="line">  Avail = Avail - Request</span><br><span class="line">  Alloc[i] = Alloc[i] + Request</span><br><span class="line">  Need = Need - Request</span><br><span class="line">  if checksafe():  /* define above */</span><br><span class="line">    update()       /* truly alloc  */</span><br><span class="line">  else:</span><br><span class="line">    rollback()     /* undo update  */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Lec14-Security-and-Protection"><a href="#Lec14-Security-and-Protection" class="headerlink" title="Lec14. Security and Protection"></a>Lec14. Security and Protection</h1><h2 id="Outline-12"><a href="#Outline-12" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Access Matrix</li>
+<li>Security</li>
+<li>Cryptography</li>
+</ul>
+<h2 id="Access-Matrix"><a href="#Access-Matrix" class="headerlink" title="Access Matrix"></a>Access Matrix</h2><h3 id="Principles-of-Protection"><a href="#Principles-of-Protection" class="headerlink" title="Principles of Protection"></a>Principles of Protection</h3><ul>
+<li>Programs, users and systems should be given <strong>just enough</strong> privileges to perform their tasks</li>
+<li>Limits damage if entity has a bug, gets abused</li>
+<li>Can be static (during life of system, during life of process)</li>
+<li>Or dynamic (changed by process as needed)</li>
+</ul>
+<h3 id="Access-Matrix-1"><a href="#Access-Matrix-1" class="headerlink" title="Access Matrix"></a>Access Matrix</h3><ul>
+<li>View protection as a matrix (access matrix)</li>
+<li>Rows represent domains (e.g. users or processes)</li>
+<li>Columns represent objects</li>
+<li><code>Access(i, j)</code> is the set of operations that a process executing in Domain i can invoke on Object j (as the following pic shown)</li>
+</ul>
+<p><img src="/2024/09/13/Operating-Systems/os1305.png"></p>
+<ul>
+<li><strong>Access matrix</strong> design separates mechanism from policy<ul>
+<li>Mechanism <ul>
+<li>Operating system provides access-matrix + rules</li>
+<li>It ensures that the matrix is only manipulated by authorized agents and that rules are strictly enforced</li>
+</ul>
+</li>
+<li>Policy<ul>
+<li>User dictates policy</li>
+<li>Who can access what object and in what mode</li>
+<li><font color="red">User who creates object can define access column for that object</font>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Implementation-of-Access-Matrix"><a href="#Implementation-of-Access-Matrix" class="headerlink" title="Implementation of Access Matrix"></a>Implementation of Access Matrix</h3><p>Option 1 —— Global table</p>
+<ul>
+<li>Store ordered triples <code>&lt;domain, object, rights-set&gt;</code> in table</li>
+<li>Problems<ul>
+<li>too large to fit in main memory</li>
+<li>difficult to group objects (consider an object that all domains can read)</li>
+</ul>
+</li>
+</ul>
+<p>Option 2 —— Access-control lists for objects</p>
+<ul>
+<li>per-object list consists of ordered pairs <code>&lt;domain, rights-set&gt;</code> defining all domains with non-empty set of access rights for the object</li>
+</ul>
+<p>Option 3 —— Capability list for domains</p>
+<ul>
+<li>Domain based lists</li>
+<li><font color="blue">Capability list</font> for domain is list of objects together with operations allows on them</li>
+<li>Object represented by its name or address, called a <font color="blue">capability</font>.</li>
+</ul>
+<p><strong>Last Solution: Combine Access-control lists and Capability lists.</strong></p>
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><ul>
+<li>Concept<ul>
+<li>Threat is potential security violation<ul>
+<li>Breach of confidentiality: Unauthorized reading of data</li>
+<li>Breach of integrity: Unauthorized modification of data</li>
+<li>Breach of availability: Unauthorized destruction of data</li>
+<li>Theft of service: Unauthorized use of resources</li>
+<li>Denial of service (DoS): Prevention of legitimate use</li>
+</ul>
+</li>
+<li>Attack is attempt to breach security</li>
+</ul>
+</li>
+<li>Security must occur at four levels to be effective:<ul>
+<li>Physical<ul>
+<li>Data centers, servers, connected terminals</li>
+</ul>
+</li>
+<li>Human<ul>
+<li>Avoid social engineering, phishing, dumpster diving</li>
+</ul>
+</li>
+<li>Operating System<ul>
+<li>Protection mechanisms, debugging</li>
+</ul>
+</li>
+<li>Network<ul>
+<li>Intercepted communications, interruption, DoS</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Implementation-of-Security-Defenses"><a href="#Implementation-of-Security-Defenses" class="headerlink" title="Implementation of Security Defenses"></a>Implementation of Security Defenses</h3><ul>
+<li>Intrusion detection endeavors to detect attempted or successful intrusions<ul>
+<li>Signature-based detection spots known bad patterns</li>
+<li>Anomaly detection spots differences from normal behavior</li>
+<li>Can detect zero-day attacks</li>
+<li>False-positives and false-negatives a problem</li>
+</ul>
+</li>
+<li>Virus protection<ul>
+<li>Searching all programs or programs at execution for known virus patterns</li>
+<li>Or run in sandbox so can’t damage system</li>
+</ul>
+</li>
+</ul>
+<h3 id="Firewalling-to-Protect-Systems-and-Networks"><a href="#Firewalling-to-Protect-Systems-and-Networks" class="headerlink" title="Firewalling to Protect Systems and Networks"></a>Firewalling to Protect Systems and Networks</h3><ul>
+<li>A network firewall is placed between trusted and untrusted hosts<ul>
+<li>The firewall limits network access between these two security domains</li>
+</ul>
+</li>
+<li>Can be tunneled or spoofed<ul>
+<li>Tunneling allows disallowed protocol to travel within allowed protocol (i.e., telnet inside of HTTP)</li>
+<li>Firewall rules typically based on host name or IP address which can be spoofed</li>
+</ul>
+</li>
+<li>Personal firewall is software layer on given host<ul>
+<li>Can monitor / limit traffic to and from the host</li>
+</ul>
+</li>
+<li>Application proxy firewall understands application protocol and can control them (i.e., SMTP)</li>
+<li>System-call firewall monitors all important system calls and apply rules to them (i.e., this program can execute that system call)</li>
+</ul>
+<p>…</p>
+<h2 id="Cryptography"><a href="#Cryptography" class="headerlink" title="Cryptography"></a>Cryptography</h2><h3 id="Encryption"><a href="#Encryption" class="headerlink" title="Encryption"></a>Encryption</h3><ul>
+<li>Set $K$ as keys</li>
+<li>Set $M$ as messages</li>
+<li>Set $C$ as ciphertexts</li>
+<li>A function $E:K\to (M\to C)$, where for $k\in K$, $E_k$ is function for generating ciphertexts from messages</li>
+<li>A function $D:K\to (C\to M)$, where for $k\in K$, $D_k$ is function for generating ciphertexts from messages</li>
+</ul>
+<blockquote>
+<p>Users who get the <strong>keys</strong> are able to decrypte the ciphertext</p>
+</blockquote>
+<ul>
+<li>Symmetric Encryption vs. Asymmetric Encryption</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Symmetric</th>
+<th style="text-align:center">Asymmetric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Same key for encrypt and decrypt</td>
+<td style="text-align:center">public key for encrypt but private key for decrypt</td>
+</tr>
+<tr>
+<td style="text-align:center">Block cipher / Stream cipher</td>
+<td style="text-align:center">Using an reliable encryption scheme</td>
+</tr>
+<tr>
+<td style="text-align:center">DES, Advanced Encryption Standard (AES), RC4(Stream)</td>
+<td style="text-align:center">RSA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h3><blockquote>
+<p>Algorithm alike encrypt, but no decrypt 👉 function $K \to (M\times A\to \{ true,false \})$ to verify auth</p>
+</blockquote>
+<ul>
+<li>Usage<ul>
+<li>Message-authentication code (MAC) authentication algorithm<ul>
+<li>symm based</li>
+</ul>
+</li>
+<li>Digital signatures authentication algorithm<ul>
+<li>asym based</li>
+<li><strong>anyone</strong> can verify authenticity of a message using the public key</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Key Distribution<ul>
+<li>Delivery of symmetric key is huge challenge<ul>
+<li>Sometimes done out-of-band (?)</li>
+</ul>
+</li>
+<li>Asymmetric keys distribution – public key<ul>
+<li>Even asymmetric key distribution needs care – man-in-the-middle attack</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Certification-in-Network"><a href="#Certification-in-Network" class="headerlink" title="Certification in Network"></a>Certification in Network</h3><ul>
+<li>Used between web servers and browsers for secure communication (credit card numbers)</li>
+<li>The server is verified with a <strong>certificate</strong> assuring client is talking to correct server</li>
+<li>Asymmetric cryptography used to establish a secure <strong>session key</strong> (symmetric encryption) for bulk of communication during session</li>
+<li>Communication between each computer then uses symmetric key cryptography</li>
+</ul>
+<h1 id="Lec15-Virtualization"><a href="#Lec15-Virtualization" class="headerlink" title="Lec15. Virtualization"></a>Lec15. Virtualization</h1><h2 id="Outline-13"><a href="#Outline-13" class="headerlink" title="Outline"></a>Outline</h2><h2 id="About-Virtualization"><a href="#About-Virtualization" class="headerlink" title="About Virtualization"></a>About Virtualization</h2><ul>
+<li>Virtualization leverages a software component (i.e., the hypervisor) and some hardware support to create an abstraction layer over computer hardware </li>
+<li>It enables the hardware resources of a single computer (processors, memory, storage) to be multiplexed by multiple virtual machines (VMs). </li>
+<li>VMs run their own operating systems (OS) and operate as if they are independent computers, though they are using only a portion of the underlying computer hardware. </li>
+</ul>
+<p><strong>Types of Virtualization</strong></p>
+<ul>
+<li>Type-I hypervisor: run directly on the host’s physical hardware</li>
+<li>Type-II hypervisor: installed on existing OSs, and rely on them for virtualization and resource managemen</li>
+</ul>
+<p>…</p>
+]]></content>
       <categories>
         <category>2024 Fall</category>
       </categories>
@@ -5090,7 +5388,39 @@
 <li>open (non-proprietary) implementation of control plane</li>
 </ul>
 <p>(bu bi ji ……)</p>
-<h2 id="5-6-ICMP-The-Internet-Control-Message-Protocol"><a href="#5-6-ICMP-The-Internet-Control-Message-Protocol" class="headerlink" title="5.6. ICMP: The Internet Control Message Protocol"></a>5.6. ICMP: The Internet Control Message Protocol</h2><h2 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h2><blockquote>
+<h2 id="5-6-ICMP-The-Internet-Control-Message-Protocol"><a href="#5-6-ICMP-The-Internet-Control-Message-Protocol" class="headerlink" title="5.6. ICMP: The Internet Control Message Protocol"></a>5.6. ICMP: The Internet Control Message Protocol</h2><ul>
+<li>used by hosts &amp; routers to communicate network level information<ul>
+<li>error reporting: unreachable host, network, port, protocol</li>
+<li>echo request/reply (used by ping)</li>
+</ul>
+</li>
+<li>network-layer “above” IP:<ul>
+<li>ICMP msgs carried in IP datagrams</li>
+</ul>
+</li>
+<li>ICMP message: <ul>
+<li>Type + code + the header and the first 8 bytes of IP datagram causing error</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn103.png" style="zoom:60%"></p>
+<h3 id="Traceroute-and-ICMP"><a href="#Traceroute-and-ICMP" class="headerlink" title="Traceroute and ICMP"></a>Traceroute and ICMP</h3><ul>
+<li>source sends series of UDP segments to destination<ul>
+<li>first set has <code>TTL = 1</code></li>
+<li>second set has <code>TTL = 2</code>, etc.</li>
+<li>unlike port number</li>
+</ul>
+</li>
+<li>when datagram in nth set arrives to nth router:<ul>
+<li>router discards datagram and sends source ICMP message (type 11, code 0)</li>
+<li>ICMP message include name of router &amp; IP address</li>
+</ul>
+</li>
+<li>when ICMP message arrives, source records RTTs</li>
+<li><strong>OR</strong> traceroute fail: the destination return ICMP “post unreachable” message (type 3, code 3), and source stops.</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn104.png"></p>
+<h2 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h2><blockquote>
 <p>What we learn in network layer</p>
 </blockquote>
 <ul>
@@ -5131,7 +5461,143 @@
 
 
 
-<h2 id="6-1-Introduction-amp-Services"><a href="#6-1-Introduction-amp-Services" class="headerlink" title="6.1. Introduction &amp; Services"></a>6.1. Introduction &amp; Services</h2><h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a><a name="lab01">Week 1</a></h2><blockquote>
+<h2 id="6-1-Introduction-amp-Services"><a href="#6-1-Introduction-amp-Services" class="headerlink" title="6.1. Introduction &amp; Services"></a>6.1. Introduction &amp; Services</h2><p><img src="/2024/09/09/Computer-Networks/cn105.png" style="zoom:80%"></p>
+<p><strong>Link layer services</strong></p>
+<ul>
+<li><font color="red">framing, link access</font>: <ul>
+<li>encapsulate datagram into frame, adding header, trailer</li>
+<li>channel access if shared medium</li>
+<li>“MAC” addresses used in frame headers to identify source, destination  <ul>
+<li>different from IP address!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><font color="red">reliable delivery between adjacent nodes</font>:<ul>
+<li>seldom used on low bit-error link (fiber, some twisted pair)</li>
+<li>wireless links: high error rates<ul>
+<li>Q: why both link-level and end-end reliability?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><font color="red">flow control</font>: <ul>
+<li>pacing between adjacent sending and receiving nodes</li>
+</ul>
+</li>
+<li><font color="red">error detection</font>: <ul>
+<li>errors caused by signal attenuation, noise. </li>
+<li>receiver detects presence of errors: <ul>
+<li>signals sender for retransmission or drops frame </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><font color="red">error correction</font>: <ul>
+<li>receiver identifies and corrects bit error(s) without resorting to retransmission</li>
+</ul>
+</li>
+<li><font color="red">half-duplex and full-duplex</font>:<ul>
+<li>with half duplex, nodes at both ends of link can transmit, but not at same time</li>
+</ul>
+</li>
+</ul>
+<p><strong>Adaptors Communicating</strong></p>
+<p><img src="/2024/09/09/Computer-Networks/cn106.png"></p>
+<ul>
+<li>Sending side:<ul>
+<li>encapsulates datagrams in frame</li>
+<li>adds error checking bits, rdt, flow control, etc.</li>
+</ul>
+</li>
+<li>Receiving side:<ul>
+<li>looks for errors, rdt, flow control, etc.</li>
+<li>extracts datagram, passes to upper layer at receiving side</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-2-Error-detection-amp-correction"><a href="#6-2-Error-detection-amp-correction" class="headerlink" title="6.2. Error detection &amp; correction"></a>6.2. Error detection &amp; correction</h2><p>EDC = Error Detection and Correction bits</p>
+<p>D = Data protected by error checking, may include header fields</p>
+<p><img src="/2024/09/09/Computer-Networks/cn107.png"></p>
+<ul>
+<li>Parity check</li>
+<li>Check-sum methods (<font color="green">Recall internet checksum</font>)</li>
+<li>Cyclic-redundancy check</li>
+</ul>
+<h3 id="Parity-Check"><a href="#Parity-Check" class="headerlink" title="Parity Check"></a>Parity Check</h3><p><img src="/2024/09/09/Computer-Networks/cn108.png"></p>
+<p>Case 1: one-bit error 👉 good performance;</p>
+<p>Case 2: multiple-bits error, but in different lines 👉 some correct bits may be detected as incorrect</p>
+<p>Case 3: multiple-bits error in one line 👉 may fail to detect</p>
+<h3 id="Cyclic-redundancy-check"><a href="#Cyclic-redundancy-check" class="headerlink" title="Cyclic redundancy check"></a>Cyclic redundancy check</h3><p><img src="/2024/09/09/Computer-Networks/cn109.png"></p>
+<ul>
+<li>view <code>D</code>, and choose (r + 1) bit pattern (generator), <code>G</code></li>
+<li>goal: choose r CRC bits, R, such that<ul>
+<li>\<D, r> exactly divisible by G (modulo 2)</D,></li>
+<li>receiver knows G, divides \<D, r> by G. If non-zero remainder: error detected!</D,></li>
+<li>can detect all consecutive bit errors of r bits or less</li>
+</ul>
+</li>
+<li>E.g. 👇</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn110.png"></p>
+<h2 id="6-3-Multiple-Access-Protocol"><a href="#6-3-Multiple-Access-Protocol" class="headerlink" title="6.3. Multiple Access Protocol"></a>6.3. Multiple Access Protocol</h2><p><strong>2 types of “links”</strong></p>
+<ul>
+<li>point-to-point<ul>
+<li>PPP for dial-up access</li>
+<li>point-to-point link between Ethernet switch, host</li>
+</ul>
+</li>
+<li><font color="red">broadcast (shared wire or medium)</font>:<ul>
+<li>old-fashioned Ethernet</li>
+<li>802.11 wireless LAN (WLAN)</li>
+</ul>
+</li>
+</ul>
+<h3 id="multiple-access-protocol"><a href="#multiple-access-protocol" class="headerlink" title="multiple access protocol"></a>multiple access protocol</h3><ul>
+<li>distributed algorithm that determines how nodes share channel, i.e., determine which and when node can transmit</li>
+<li>communication about channel sharing must use channel itself! <ul>
+<li>no out-of-band channel for coordination</li>
+</ul>
+</li>
+</ul>
+<p><strong>Ideal MAC</strong></p>
+<ol>
+<li>Given channel of rate $R$ bps, $M$ nodes wanted to transmit can send at rate $R/M$</li>
+<li>Fully decentralized<ul>
+<li>no special node to coordinate transmissions</li>
+<li>no synchronization of clocks, slots</li>
+</ul>
+</li>
+<li>simple</li>
+</ol>
+<p><strong>Three broad classes</strong></p>
+<ul>
+<li><font color="red">channel partitioning</font>:<ul>
+<li>divide channel into smaller “pieces” (time slots, frequency, code)</li>
+<li>allocate piece to node for exclusive use</li>
+</ul>
+</li>
+<li><font color="red">random access</font>:<ul>
+<li>channel not divided, allow collisions</li>
+<li>“recover” from collisions</li>
+</ul>
+</li>
+<li><font color="red">“taking turns”</font>:<ul>
+<li>nodes take turns, but nodes with more to send can take longer turns</li>
+</ul>
+</li>
+</ul>
+<h4 id="Channel-partitioning-MAC-protocols"><a href="#Channel-partitioning-MAC-protocols" class="headerlink" title="Channel partitioning MAC protocols"></a>Channel partitioning MAC protocols</h4><ul>
+<li>TDMA (Time Division Multiple Access)<ul>
+<li>access to channel in “rounds” </li>
+<li>each station gets fixed length slot (length = packet transmission time) in each round </li>
+<li>unused slots go idle </li>
+<li>example: 6-station LAN, 1,3,4 have packets to send, slots 2,5,6 idle</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/09/Computer-Networks/cn111.png"></p>
+<h1 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h1><h2 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a><a name="lab01">Week 1</a></h2><blockquote>
 <p>Introduce to Lab 01:</p>
 <p>应用层（Application）</p>
 <ul>

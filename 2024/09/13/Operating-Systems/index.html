@@ -149,8 +149,12 @@
 <meta property="og:image" content="http://hqj2221.github.io/2024/09/13/Operating-Systems/os1220.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/09/13/Operating-Systems/os1221.png">
 <meta property="og:image" content="http://hqj2221.github.io/2024/09/13/Operating-Systems/os1301.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/13/Operating-Systems/os1302.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/13/Operating-Systems/os1303.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/13/Operating-Systems/os1304.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/09/13/Operating-Systems/os1305.png">
 <meta property="article:published_time" content="2024-09-13T15:27:27.000Z">
-<meta property="article:modified_time" content="2024-12-15T16:06:48.231Z">
+<meta property="article:modified_time" content="2024-12-17T16:57:45.009Z">
 <meta property="article:author" content="Bionic l&#39;Hôpital">
 <meta property="article:tag" content="CSE Learning">
 <meta property="article:tag" content="Rust">
@@ -267,7 +271,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec01-Intro"><span class="nav-text">Lec01. Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Before-this-course-about"><span class="nav-text">Before this course (about)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Definitions-of-OS"><span class="nav-text">Definitions of OS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-does-an-Operating-Systems-do"><span class="nav-text">What does an Operating Systems do ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS-Concepts"><span class="nav-text">OS Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-%E8%BF%9B%E7%A8%8B"><span class="nav-text">Process (进程)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-Management"><span class="nav-text">Process Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory"><span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Management"><span class="nav-text">Memory Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File-System-amp-I-O"><span class="nav-text">File System &amp; I&#x2F;O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protection-and-Security"><span class="nav-text">Protection and Security</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec02-OS-Basics"><span class="nav-text">Lec02. OS Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dual-Mode-Operations"><span class="nav-text">Dual-Mode Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mode-Transitions"><span class="nav-text">Mode Transitions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#System-Calls"><span class="nav-text">System Calls</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exception-and-Interrupt"><span class="nav-text">Exception and Interrupt</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-Structure"><span class="nav-text">Kernel Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intro"><span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OS-Design-Principles"><span class="nav-text">OS Design Principles</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operating-System-Services"><span class="nav-text">Operating System Services</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec03-Process"><span class="nav-text">Lec03. Process</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-1"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-and-System-Calls"><span class="nav-text">Process and System Calls</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What%E2%80%99s-a-process"><span class="nav-text">What’s a process ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-Life-Cycle"><span class="nav-text">Process Life Cycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What%E2%80%99s-System-calls"><span class="nav-text">What’s System calls ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#System-Call-v-s-Library-API-Call"><span class="nav-text">System Call v.s. Library API Call</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-Creation"><span class="nav-text">Process Creation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fork"><span class="nav-text">fork()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exec"><span class="nav-text">exec()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait"><span class="nav-text">wait()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-view-of-processes"><span class="nav-text">Kernel view of processes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCB"><span class="nav-text">PCB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-and-Thread"><span class="nav-text">Process and Thread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Context-Switch"><span class="nav-text">Context Switch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-view-of-fork-exec-and-wait-%E2%9D%97Important"><span class="nav-text">Kernel view of fork(), exec(), and wait() (❗Important)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-1"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fork-Kernel-View"><span class="nav-text">fork(): Kernel View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exec-Kernel-View"><span class="nav-text">exec(): Kernel View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-and-exit-Kernel-View"><span class="nav-text">wait() and exit(): Kernel View</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-about-processes"><span class="nav-text">More about processes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-First-Process"><span class="nav-text">The First Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Measure-Process-Time"><span class="nav-text">Measure Process Time</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec04-CPU-Scheduler"><span class="nav-text">Lec04. CPU Scheduler</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-2"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scheduler-Concept"><span class="nav-text">Scheduler Concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Different-Algorithm"><span class="nav-text">Different Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shortest-Job-First-SJF"><span class="nav-text">Shortest Job First (SJF)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Round-robin-RR"><span class="nav-text">Round-robin (RR)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Priority-scheduling"><span class="nav-text">Priority scheduling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization-Completely-Fair-Scheduler"><span class="nav-text">Optimization: Completely Fair Scheduler</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec05-Synchronization"><span class="nav-text">Lec05. Synchronization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-3"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-Communications"><span class="nav-text">Process Communications</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems-Synchronization-of-Threads-Processes"><span class="nav-text">Problems: Synchronization of Threads&#x2F;Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Race-Condition"><span class="nav-text">Race Condition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Critical-Section"><span class="nav-text">Solution: Critical Section</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-Disabling-Interrupts"><span class="nav-text">Solution: Disabling Interrupts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Spin-based-Locks"><span class="nav-text">Solution: Spin-based Locks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-about-Locks"><span class="nav-text">Overview about Locks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spin-based-lock"><span class="nav-text">Spin-based lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improvement-Peterson%E2%80%99s-Solution"><span class="nav-text">Improvement: Peterson’s Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-Process-Mutual-Exclusion"><span class="nav-text">Multi-Process Mutual Exclusion</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Priority-Inversion"><span class="nav-text">Priority Inversion</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Sleep-based-Locks"><span class="nav-text">Solution: Sleep-based Locks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems-solved-by-semaphore"><span class="nav-text">Problems solved by semaphore</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Producer-Consumer-Problem"><span class="nav-text">Producer-Consumer Problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dining-Philosopher-Problem"><span class="nav-text">Dining Philosopher Problem</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec06-Address-Translation"><span class="nav-text">Lec06. Address Translation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-4"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Virtualization"><span class="nav-text">Memory Virtualization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Address-Space"><span class="nav-text">Address Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Address-Translation"><span class="nav-text">Address Translation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Base-amp-Bound"><span class="nav-text">Base &amp; Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Limitation"><span class="nav-text">Limitation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segmentation-Generalized-Base-Bounds"><span class="nav-text">Segmentation: Generalized Base&#x2F;Bounds</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation"><span class="nav-text">Implementation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Allocation"><span class="nav-text">Memory Allocation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Some-Strategies"><span class="nav-text">Some Strategies</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec07-Paging"><span class="nav-text">Lec07. Paging</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-5"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro-to-Paging"><span class="nav-text">Intro to Paging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-level-page-tables"><span class="nav-text">Multi-level page tables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other-Page-Table-Strctures"><span class="nav-text">Other Page Table Strctures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Real-world-Paging-Scheme"><span class="nav-text">Real-world Paging Scheme</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Translation-Lookaside-Buffer"><span class="nav-text">Translation Lookaside Buffer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec08-Demand-Paging"><span class="nav-text">Lec08. Demand Paging</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-6"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demand-Paging-Mechanisms"><span class="nav-text">Demand Paging Mechanisms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swap-Space"><span class="nav-text">Swap Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demand-Paging"><span class="nav-text">Demand Paging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Page-Fault"><span class="nav-text">Page Fault</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Replacement-Policy"><span class="nav-text">Page Replacement Policy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Effective-Access-Time-EAT"><span class="nav-text">Effective Access Time (EAT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Page-Replacement-Policies"><span class="nav-text">Page Replacement Policies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LRU-Impl"><span class="nav-text">LRU Impl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clock-Algorithm"><span class="nav-text">Clock Algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Frame-Allocation"><span class="nav-text">Page Frame Allocation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Allocation-Algorithms"><span class="nav-text">Allocation Algorithms</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec09-Linux-Memory-Management"><span class="nav-text">Lec09. Linux Memory Management</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-7"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Address-Space-in-Linux"><span class="nav-text">Address Space in Linux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Slab-Allocator"><span class="nav-text">Slab Allocator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buddy-System"><span class="nav-text">Buddy System</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec10-I-O"><span class="nav-text">Lec10. I&#x2F;O</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-8"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O-Management-amp-View-of-Device"><span class="nav-text">I&#x2F;O Management &amp; View of Device</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-I-O-Polling"><span class="nav-text">Basic I&#x2F;O: Polling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Efficient-I-O-Interrupts"><span class="nav-text">Efficient I&#x2F;O: Interrupts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Movement"><span class="nav-text">Data Movement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Programmed-I-O"><span class="nav-text">Programmed I&#x2F;O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA"><span class="nav-text">DMA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Device-Driver"><span class="nav-text">Device Driver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Life-Cycle-of-an-I-O-Request"><span class="nav-text">Life Cycle of an I&#x2F;O Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Different-types-of-device"><span class="nav-text">Different types of device</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec11-Storage"><span class="nav-text">Lec11. Storage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-9"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storage-Devices"><span class="nav-text">Storage Devices</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Concepts-for-Magnetic-Disk"><span class="nav-text">Concepts for Magnetic Disk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calculation-Time-of-read-write"><span class="nav-text">Calculation: Time of read&#x2F;write</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disk-Scheduling"><span class="nav-text">Disk Scheduling</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec12-File-System"><span class="nav-text">Lec12. File System</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-10"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-System-Basic"><span class="nav-text">File System Basic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contiguous-Allocation"><span class="nav-text">Contiguous Allocation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linked-Allocation"><span class="nav-text">Linked Allocation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison-to-contiguous-allocation"><span class="nav-text">Comparison to contiguous allocation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FAT"><span class="nav-text">FAT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Header-of-file-name"><span class="nav-text">Header of file name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#About-FAT-reading-appending-and-deleting-files"><span class="nav-text">About FAT reading, appending and deleting files</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iNode"><span class="nav-text">iNode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ext-2-3-4"><span class="nav-text">Ext 2 &#x2F; 3 &#x2F; 4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ext-2-3"><span class="nav-text">Ext 2&#x2F;3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hard-amp-Soft-link"><span class="nav-text">Hard &amp; Soft link</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec13-Deadlock"><span class="nav-text">Lec13. Deadlock</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-11"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deadlock-Basic"><span class="nav-text">Deadlock Basic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-ways-to-handle-deadlock"><span class="nav-text">Two ways to handle deadlock</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Deadlock-detection-with-Resource-Allocation-Graphs"><span class="nav-text">Deadlock detection with Resource Allocation Graphs</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec01-Intro"><span class="nav-text">Lec01. Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Before-this-course-about"><span class="nav-text">Before this course (about)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Definitions-of-OS"><span class="nav-text">Definitions of OS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-does-an-Operating-Systems-do"><span class="nav-text">What does an Operating Systems do ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS-Concepts"><span class="nav-text">OS Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-%E8%BF%9B%E7%A8%8B"><span class="nav-text">Process (进程)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-Management"><span class="nav-text">Process Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory"><span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Management"><span class="nav-text">Memory Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File-System-amp-I-O"><span class="nav-text">File System &amp; I&#x2F;O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protection-and-Security"><span class="nav-text">Protection and Security</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec02-OS-Basics"><span class="nav-text">Lec02. OS Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dual-Mode-Operations"><span class="nav-text">Dual-Mode Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mode-Transitions"><span class="nav-text">Mode Transitions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#System-Calls"><span class="nav-text">System Calls</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exception-and-Interrupt"><span class="nav-text">Exception and Interrupt</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-Structure"><span class="nav-text">Kernel Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intro"><span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OS-Design-Principles"><span class="nav-text">OS Design Principles</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operating-System-Services"><span class="nav-text">Operating System Services</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec03-Process"><span class="nav-text">Lec03. Process</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-1"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-and-System-Calls"><span class="nav-text">Process and System Calls</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What%E2%80%99s-a-process"><span class="nav-text">What’s a process ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-Life-Cycle"><span class="nav-text">Process Life Cycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What%E2%80%99s-System-calls"><span class="nav-text">What’s System calls ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#System-Call-v-s-Library-API-Call"><span class="nav-text">System Call v.s. Library API Call</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-Creation"><span class="nav-text">Process Creation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fork"><span class="nav-text">fork()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exec"><span class="nav-text">exec()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait"><span class="nav-text">wait()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-view-of-processes"><span class="nav-text">Kernel view of processes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCB"><span class="nav-text">PCB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-and-Thread"><span class="nav-text">Process and Thread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Context-Switch"><span class="nav-text">Context Switch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-view-of-fork-exec-and-wait-%E2%9D%97Important"><span class="nav-text">Kernel view of fork(), exec(), and wait() (❗Important)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-1"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fork-Kernel-View"><span class="nav-text">fork(): Kernel View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exec-Kernel-View"><span class="nav-text">exec(): Kernel View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-and-exit-Kernel-View"><span class="nav-text">wait() and exit(): Kernel View</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-about-processes"><span class="nav-text">More about processes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-First-Process"><span class="nav-text">The First Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Measure-Process-Time"><span class="nav-text">Measure Process Time</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec04-CPU-Scheduler"><span class="nav-text">Lec04. CPU Scheduler</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-2"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scheduler-Concept"><span class="nav-text">Scheduler Concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Different-Algorithm"><span class="nav-text">Different Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shortest-Job-First-SJF"><span class="nav-text">Shortest Job First (SJF)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Round-robin-RR"><span class="nav-text">Round-robin (RR)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Priority-scheduling"><span class="nav-text">Priority scheduling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization-Completely-Fair-Scheduler"><span class="nav-text">Optimization: Completely Fair Scheduler</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec05-Synchronization"><span class="nav-text">Lec05. Synchronization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-3"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-Communications"><span class="nav-text">Process Communications</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems-Synchronization-of-Threads-Processes"><span class="nav-text">Problems: Synchronization of Threads&#x2F;Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Race-Condition"><span class="nav-text">Race Condition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Critical-Section"><span class="nav-text">Solution: Critical Section</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-Disabling-Interrupts"><span class="nav-text">Solution: Disabling Interrupts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Spin-based-Locks"><span class="nav-text">Solution: Spin-based Locks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-about-Locks"><span class="nav-text">Overview about Locks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spin-based-lock"><span class="nav-text">Spin-based lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improvement-Peterson%E2%80%99s-Solution"><span class="nav-text">Improvement: Peterson’s Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-Process-Mutual-Exclusion"><span class="nav-text">Multi-Process Mutual Exclusion</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Priority-Inversion"><span class="nav-text">Priority Inversion</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Sleep-based-Locks"><span class="nav-text">Solution: Sleep-based Locks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems-solved-by-semaphore"><span class="nav-text">Problems solved by semaphore</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Producer-Consumer-Problem"><span class="nav-text">Producer-Consumer Problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dining-Philosopher-Problem"><span class="nav-text">Dining Philosopher Problem</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec06-Address-Translation"><span class="nav-text">Lec06. Address Translation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-4"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Virtualization"><span class="nav-text">Memory Virtualization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Address-Space"><span class="nav-text">Address Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Address-Translation"><span class="nav-text">Address Translation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Base-amp-Bound"><span class="nav-text">Base &amp; Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Limitation"><span class="nav-text">Limitation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segmentation-Generalized-Base-Bounds"><span class="nav-text">Segmentation: Generalized Base&#x2F;Bounds</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation"><span class="nav-text">Implementation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Allocation"><span class="nav-text">Memory Allocation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Some-Strategies"><span class="nav-text">Some Strategies</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec07-Paging"><span class="nav-text">Lec07. Paging</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-5"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro-to-Paging"><span class="nav-text">Intro to Paging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-level-page-tables"><span class="nav-text">Multi-level page tables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other-Page-Table-Strctures"><span class="nav-text">Other Page Table Strctures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Real-world-Paging-Scheme"><span class="nav-text">Real-world Paging Scheme</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Translation-Lookaside-Buffer"><span class="nav-text">Translation Lookaside Buffer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec08-Demand-Paging"><span class="nav-text">Lec08. Demand Paging</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-6"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demand-Paging-Mechanisms"><span class="nav-text">Demand Paging Mechanisms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swap-Space"><span class="nav-text">Swap Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demand-Paging"><span class="nav-text">Demand Paging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Page-Fault"><span class="nav-text">Page Fault</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Replacement-Policy"><span class="nav-text">Page Replacement Policy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Effective-Access-Time-EAT"><span class="nav-text">Effective Access Time (EAT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Page-Replacement-Policies"><span class="nav-text">Page Replacement Policies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LRU-Impl"><span class="nav-text">LRU Impl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clock-Algorithm"><span class="nav-text">Clock Algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Frame-Allocation"><span class="nav-text">Page Frame Allocation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Allocation-Algorithms"><span class="nav-text">Allocation Algorithms</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec09-Linux-Memory-Management"><span class="nav-text">Lec09. Linux Memory Management</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-7"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Address-Space-in-Linux"><span class="nav-text">Address Space in Linux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Slab-Allocator"><span class="nav-text">Slab Allocator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buddy-System"><span class="nav-text">Buddy System</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec10-I-O"><span class="nav-text">Lec10. I&#x2F;O</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-8"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O-Management-amp-View-of-Device"><span class="nav-text">I&#x2F;O Management &amp; View of Device</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-I-O-Polling"><span class="nav-text">Basic I&#x2F;O: Polling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Efficient-I-O-Interrupts"><span class="nav-text">Efficient I&#x2F;O: Interrupts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Movement"><span class="nav-text">Data Movement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Programmed-I-O"><span class="nav-text">Programmed I&#x2F;O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA"><span class="nav-text">DMA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Device-Driver"><span class="nav-text">Device Driver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Life-Cycle-of-an-I-O-Request"><span class="nav-text">Life Cycle of an I&#x2F;O Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Different-types-of-device"><span class="nav-text">Different types of device</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec11-Storage"><span class="nav-text">Lec11. Storage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-9"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storage-Devices"><span class="nav-text">Storage Devices</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Concepts-for-Magnetic-Disk"><span class="nav-text">Concepts for Magnetic Disk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calculation-Time-of-read-write"><span class="nav-text">Calculation: Time of read&#x2F;write</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disk-Scheduling"><span class="nav-text">Disk Scheduling</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec12-File-System"><span class="nav-text">Lec12. File System</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-10"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-System-Basic"><span class="nav-text">File System Basic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contiguous-Allocation"><span class="nav-text">Contiguous Allocation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linked-Allocation"><span class="nav-text">Linked Allocation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison-to-contiguous-allocation"><span class="nav-text">Comparison to contiguous allocation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FAT"><span class="nav-text">FAT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Header-of-file-name"><span class="nav-text">Header of file name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#About-FAT-reading-appending-and-deleting-files"><span class="nav-text">About FAT reading, appending and deleting files</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iNode"><span class="nav-text">iNode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ext-2-3-4"><span class="nav-text">Ext 2 &#x2F; 3 &#x2F; 4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ext-2-3"><span class="nav-text">Ext 2&#x2F;3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hard-amp-Soft-link"><span class="nav-text">Hard &amp; Soft link</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec13-Deadlock"><span class="nav-text">Lec13. Deadlock</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-11"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deadlock-Basic"><span class="nav-text">Deadlock Basic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-ways-to-handle-deadlock"><span class="nav-text">Two ways to handle deadlock</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Deadlock-detection-with-Resource-Allocation-Graphs"><span class="nav-text">Deadlock detection with Resource Allocation Graphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deadlock-Prevention"><span class="nav-text">Deadlock Prevention</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Banker%CA%BCs-Algorithm"><span class="nav-text">Bankerʼs Algorithm</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec14-Security-and-Protection"><span class="nav-text">Lec14. Security and Protection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-12"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Access-Matrix"><span class="nav-text">Access Matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Principles-of-Protection"><span class="nav-text">Principles of Protection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Matrix-1"><span class="nav-text">Access Matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation-of-Access-Matrix"><span class="nav-text">Implementation of Access Matrix</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Security"><span class="nav-text">Security</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation-of-Security-Defenses"><span class="nav-text">Implementation of Security Defenses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Firewalling-to-Protect-Systems-and-Networks"><span class="nav-text">Firewalling to Protect Systems and Networks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cryptography"><span class="nav-text">Cryptography</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Encryption"><span class="nav-text">Encryption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Authentication"><span class="nav-text">Authentication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Certification-in-Network"><span class="nav-text">Certification in Network</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec15-Virtualization"><span class="nav-text">Lec15. Virtualization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline-13"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-Virtualization"><span class="nav-text">About Virtualization</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -368,7 +372,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-12-16 00:06:48" itemprop="dateModified" datetime="2024-12-16T00:06:48+08:00">2024-12-16</time>
+      <time title="Modified: 2024-12-18 00:57:45" itemprop="dateModified" datetime="2024-12-18T00:57:45+08:00">2024-12-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -3048,7 +3052,305 @@
 </ul>
 </li>
 </ul>
-<h2 id="Two-ways-to-handle-deadlock"><a href="#Two-ways-to-handle-deadlock" class="headerlink" title="Two ways to handle deadlock"></a>Two ways to handle deadlock</h2><h3 id="Deadlock-detection-with-Resource-Allocation-Graphs"><a href="#Deadlock-detection-with-Resource-Allocation-Graphs" class="headerlink" title="Deadlock detection with Resource Allocation Graphs"></a>Deadlock detection with Resource Allocation Graphs</h3>
+<h2 id="Two-ways-to-handle-deadlock"><a href="#Two-ways-to-handle-deadlock" class="headerlink" title="Two ways to handle deadlock"></a>Two ways to handle deadlock</h2><blockquote>
+<p>Of course you can directly ignore it (like UNIX), but we are going to talk about 2 methods which truly handle it.</p>
+</blockquote>
+<h3 id="Deadlock-detection-with-Resource-Allocation-Graphs"><a href="#Deadlock-detection-with-Resource-Allocation-Graphs" class="headerlink" title="Deadlock detection with Resource Allocation Graphs"></a>Deadlock detection with Resource Allocation Graphs</h3><ol>
+<li>If there is only one type of resource, go searching for cycle.</li>
+<li>If there are multiple types of resource, we have to firstly represent the resource:<ul>
+<li><strong>Available</strong>: A vector of length $m$ indicates the number of available resources of each type.</li>
+<li><strong>Allocation</strong>: An $n \times m$ matrix defines the number of resources of each type currently allocated to each process.</li>
+<li><strong>Request</strong>: An $n \times m$ matrix indicates the current request  of each process.  If Request $[i_j] = k$, then process $P_i$ is requesting $k$ more instances of resource type $R_j$. (Request-based)</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Suppose m and n are number of resources and processes</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/* Step 1 */</span><br><span class="line">init Work[m], Finish[n]</span><br><span class="line">init Work &lt;- Available</span><br><span class="line">for 1..n:</span><br><span class="line">  if Alloc[i] != 0: Finish[i] = false</span><br><span class="line">  else Finish[i] = true</span><br><span class="line"></span><br><span class="line">/* Step 2 */</span><br><span class="line">find i where</span><br><span class="line">  Finish[i] == false and Request[i] &lt;= Work[i]</span><br><span class="line">  jump Step 4</span><br><span class="line">else: jump Step 3</span><br><span class="line"></span><br><span class="line">/* Step 3 */</span><br><span class="line">Work = Work + Allocation[i]</span><br><span class="line">Finish[i] = true</span><br><span class="line">jump Step 2</span><br><span class="line"></span><br><span class="line">/* Step 4 */</span><br><span class="line">if Finish[i] == false:</span><br><span class="line">  P[i] is in deadlock /* process i&#x27;s deadlock detected */</span><br></pre></td></tr></table></figure>
+<table>
+<tr>
+    <td><img src="/2024/09/13/Operating-Systems/os1302.png"></td>
+    <td><img src="/2024/09/13/Operating-Systems/os1303.png"></td>
+</tr>
+</table>
+
+<blockquote>
+<p>Explanation: 经过进程 0，0 完成并释放一个资源 B，然而其他进程都无法得到相应资源，进入死锁</p>
+</blockquote>
+<p><strong>What if Deadlock Detected?</strong></p>
+<ul>
+<li>Terminate process, force it to give up resources<ul>
+<li>Shoot a dining philosopher !?</li>
+<li>But, not always possible</li>
+</ul>
+</li>
+<li>Preempt resources without killing off process <ul>
+<li>Take away resources from process temporarily</li>
+<li>Does not always fit with semantics of computation</li>
+</ul>
+</li>
+<li>Roll back actions of deadlocked process <ul>
+<li>Common technique in databases (transactions)</li>
+<li>Of course, deadlock may happen once again</li>
+</ul>
+</li>
+</ul>
+<h3 id="Deadlock-Prevention"><a href="#Deadlock-Prevention" class="headerlink" title="Deadlock Prevention"></a>Deadlock Prevention</h3><blockquote>
+<p>Try to ensure at least one of the requirements of deadlock cannot hold</p>
+</blockquote>
+<ul>
+<li>Remove “Mutual Exclusion” ? impossible for non-sharable resource.</li>
+<li>Remove “Hold and Wait” ? low resource utilization or starvation</li>
+<li>Remove “Preemption” ?<ul>
+<li>If a process that is holding some resources requests another resource that cannot be immediately allocated to it, then all resources currently being held are released 👉 may cause starvation</li>
+<li>Process will be restarted only when it can regain its old resources, as well as the new ones that it is requesting</li>
+</ul>
+</li>
+<li>Remove “Circular Wait”<ul>
+<li>impose a total ordering of all resource types, and require that each process requests resources in an increasing order of enumeration: $R= \{ R_1, R_2, \cdots , R_m \}$</li>
+<li>One to one function $F:R\to N$</li>
+<li>If a process request a resource $R_i$, it can request another resource $R_j$ if and only if $F(R_i) \lt F(R_j)$</li>
+<li>Or, it must first release all resource $R_i$ such that $F(R_i) \ge F(R_j)$ </li>
+</ul>
+</li>
+</ul>
+<p><strong>Some concept go first</strong></p>
+<ul>
+<li>Deadlock Avoidance<ul>
+<li>The deadlock-avoidance algorithm dynamically examines the resource-allocation state to ensure that there can never be a <strong>circular-wait condition</strong></li>
+<li>Resource-allocation state is defined by the number of available and allocated resources, and the maximum demands of the processes</li>
+</ul>
+</li>
+<li>Safe State<ul>
+<li>System is in safe state if there exists a sequence $<P_1, p_2, \cdots , p_n>$ of <strong>ALL</strong> the processes in the systems such that for each $P_i$, the resources that $P_i$ can still request can be satisfied by currently available resources + resources held by all the $P_j$, with $j &lt; i$</P_1,></li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/09/13/Operating-Systems/os1304.png"></p>
+<h4 id="Bankerʼs-Algorithm"><a href="#Bankerʼs-Algorithm" class="headerlink" title="Bankerʼs Algorithm"></a>Bankerʼs Algorithm</h4><p><strong>Idea</strong></p>
+<ul>
+<li>Multiple instances of each resource type</li>
+<li>Each process must a priori claim maximum use</li>
+<li>When a process requests a resource it may have to wait </li>
+<li>When a process gets all its resources it must return them in a finite amount of time</li>
+</ul>
+<p><strong>Setting</strong></p>
+<ul>
+<li><strong>Available</strong>: Vector of length m.</li>
+<li><strong>Max</strong>: $n \times m$ matrix. (<code>Max[i, j] = k</code> represent process i can request at most k instances of resource j)</li>
+<li><strong>Allocation</strong>: $n \times m$ matrix.</li>
+<li><strong>Need</strong>: $n \times m$ matrix.<ul>
+<li><code>Need[i,j] = Max[i,j] - Alloc[i,j]</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Pseudo code</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/* Check safe function */</span><br><span class="line">/* 1 */</span><br><span class="line">Init Work = Available, Finish[i] = false for 0..(n-1)</span><br><span class="line">/* 2 */</span><br><span class="line">find i where (Finish[i] is false) and (Need[i][k] &lt;= Work[k] for all k)</span><br><span class="line">if no such i, goto 4</span><br><span class="line">/* 3 */</span><br><span class="line">Work = Work + Alloc[i]</span><br><span class="line">Finish[i] = true</span><br><span class="line">/* 4 */</span><br><span class="line">If Finish[i] == true for all i, then system is in safe state</span><br></pre></td></tr></table></figure>
+<p><strong>Resource-Request Algorithm</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/* Request Resource of Process[i] */</span><br><span class="line">/* 1 */</span><br><span class="line">if Request[j] &lt;= Need[j] for all j then goto 2</span><br><span class="line">else raise exception /* process has exceeded its maximum claim */</span><br><span class="line">/* 2 */</span><br><span class="line">if Request[j] &lt;= Avail[j] for all j then goto 3</span><br><span class="line">else wait() /* Process i cannot get enough resource */</span><br><span class="line">/* 3 */</span><br><span class="line">&#123; /* state update */</span><br><span class="line">  Avail = Avail - Request</span><br><span class="line">  Alloc[i] = Alloc[i] + Request</span><br><span class="line">  Need = Need - Request</span><br><span class="line">  if checksafe():  /* define above */</span><br><span class="line">    update()       /* truly alloc  */</span><br><span class="line">  else:</span><br><span class="line">    rollback()     /* undo update  */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Lec14-Security-and-Protection"><a href="#Lec14-Security-and-Protection" class="headerlink" title="Lec14. Security and Protection"></a>Lec14. Security and Protection</h1><h2 id="Outline-12"><a href="#Outline-12" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Access Matrix</li>
+<li>Security</li>
+<li>Cryptography</li>
+</ul>
+<h2 id="Access-Matrix"><a href="#Access-Matrix" class="headerlink" title="Access Matrix"></a>Access Matrix</h2><h3 id="Principles-of-Protection"><a href="#Principles-of-Protection" class="headerlink" title="Principles of Protection"></a>Principles of Protection</h3><ul>
+<li>Programs, users and systems should be given <strong>just enough</strong> privileges to perform their tasks</li>
+<li>Limits damage if entity has a bug, gets abused</li>
+<li>Can be static (during life of system, during life of process)</li>
+<li>Or dynamic (changed by process as needed)</li>
+</ul>
+<h3 id="Access-Matrix-1"><a href="#Access-Matrix-1" class="headerlink" title="Access Matrix"></a>Access Matrix</h3><ul>
+<li>View protection as a matrix (access matrix)</li>
+<li>Rows represent domains (e.g. users or processes)</li>
+<li>Columns represent objects</li>
+<li><code>Access(i, j)</code> is the set of operations that a process executing in Domain i can invoke on Object j (as the following pic shown)</li>
+</ul>
+<p><img src="/2024/09/13/Operating-Systems/os1305.png"></p>
+<ul>
+<li><strong>Access matrix</strong> design separates mechanism from policy<ul>
+<li>Mechanism <ul>
+<li>Operating system provides access-matrix + rules</li>
+<li>It ensures that the matrix is only manipulated by authorized agents and that rules are strictly enforced</li>
+</ul>
+</li>
+<li>Policy<ul>
+<li>User dictates policy</li>
+<li>Who can access what object and in what mode</li>
+<li><font color="red">User who creates object can define access column for that object</font>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Implementation-of-Access-Matrix"><a href="#Implementation-of-Access-Matrix" class="headerlink" title="Implementation of Access Matrix"></a>Implementation of Access Matrix</h3><p>Option 1 —— Global table</p>
+<ul>
+<li>Store ordered triples <code>&lt;domain, object, rights-set&gt;</code> in table</li>
+<li>Problems<ul>
+<li>too large to fit in main memory</li>
+<li>difficult to group objects (consider an object that all domains can read)</li>
+</ul>
+</li>
+</ul>
+<p>Option 2 —— Access-control lists for objects</p>
+<ul>
+<li>per-object list consists of ordered pairs <code>&lt;domain, rights-set&gt;</code> defining all domains with non-empty set of access rights for the object</li>
+</ul>
+<p>Option 3 —— Capability list for domains</p>
+<ul>
+<li>Domain based lists</li>
+<li><font color="blue">Capability list</font> for domain is list of objects together with operations allows on them</li>
+<li>Object represented by its name or address, called a <font color="blue">capability</font>.</li>
+</ul>
+<p><strong>Last Solution: Combine Access-control lists and Capability lists.</strong></p>
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><ul>
+<li>Concept<ul>
+<li>Threat is potential security violation<ul>
+<li>Breach of confidentiality: Unauthorized reading of data</li>
+<li>Breach of integrity: Unauthorized modification of data</li>
+<li>Breach of availability: Unauthorized destruction of data</li>
+<li>Theft of service: Unauthorized use of resources</li>
+<li>Denial of service (DoS): Prevention of legitimate use</li>
+</ul>
+</li>
+<li>Attack is attempt to breach security</li>
+</ul>
+</li>
+<li>Security must occur at four levels to be effective:<ul>
+<li>Physical<ul>
+<li>Data centers, servers, connected terminals</li>
+</ul>
+</li>
+<li>Human<ul>
+<li>Avoid social engineering, phishing, dumpster diving</li>
+</ul>
+</li>
+<li>Operating System<ul>
+<li>Protection mechanisms, debugging</li>
+</ul>
+</li>
+<li>Network<ul>
+<li>Intercepted communications, interruption, DoS</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Implementation-of-Security-Defenses"><a href="#Implementation-of-Security-Defenses" class="headerlink" title="Implementation of Security Defenses"></a>Implementation of Security Defenses</h3><ul>
+<li>Intrusion detection endeavors to detect attempted or successful intrusions<ul>
+<li>Signature-based detection spots known bad patterns</li>
+<li>Anomaly detection spots differences from normal behavior</li>
+<li>Can detect zero-day attacks</li>
+<li>False-positives and false-negatives a problem</li>
+</ul>
+</li>
+<li>Virus protection<ul>
+<li>Searching all programs or programs at execution for known virus patterns</li>
+<li>Or run in sandbox so can’t damage system</li>
+</ul>
+</li>
+</ul>
+<h3 id="Firewalling-to-Protect-Systems-and-Networks"><a href="#Firewalling-to-Protect-Systems-and-Networks" class="headerlink" title="Firewalling to Protect Systems and Networks"></a>Firewalling to Protect Systems and Networks</h3><ul>
+<li>A network firewall is placed between trusted and untrusted hosts<ul>
+<li>The firewall limits network access between these two security domains</li>
+</ul>
+</li>
+<li>Can be tunneled or spoofed<ul>
+<li>Tunneling allows disallowed protocol to travel within allowed protocol (i.e., telnet inside of HTTP)</li>
+<li>Firewall rules typically based on host name or IP address which can be spoofed</li>
+</ul>
+</li>
+<li>Personal firewall is software layer on given host<ul>
+<li>Can monitor / limit traffic to and from the host</li>
+</ul>
+</li>
+<li>Application proxy firewall understands application protocol and can control them (i.e., SMTP)</li>
+<li>System-call firewall monitors all important system calls and apply rules to them (i.e., this program can execute that system call)</li>
+</ul>
+<p>…</p>
+<h2 id="Cryptography"><a href="#Cryptography" class="headerlink" title="Cryptography"></a>Cryptography</h2><h3 id="Encryption"><a href="#Encryption" class="headerlink" title="Encryption"></a>Encryption</h3><ul>
+<li>Set $K$ as keys</li>
+<li>Set $M$ as messages</li>
+<li>Set $C$ as ciphertexts</li>
+<li>A function $E:K\to (M\to C)$, where for $k\in K$, $E_k$ is function for generating ciphertexts from messages</li>
+<li>A function $D:K\to (C\to M)$, where for $k\in K$, $D_k$ is function for generating ciphertexts from messages</li>
+</ul>
+<blockquote>
+<p>Users who get the <strong>keys</strong> are able to decrypte the ciphertext</p>
+</blockquote>
+<ul>
+<li>Symmetric Encryption vs. Asymmetric Encryption</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Symmetric</th>
+<th style="text-align:center">Asymmetric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Same key for encrypt and decrypt</td>
+<td style="text-align:center">public key for encrypt but private key for decrypt</td>
+</tr>
+<tr>
+<td style="text-align:center">Block cipher / Stream cipher</td>
+<td style="text-align:center">Using an reliable encryption scheme</td>
+</tr>
+<tr>
+<td style="text-align:center">DES, Advanced Encryption Standard (AES), RC4(Stream)</td>
+<td style="text-align:center">RSA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h3><blockquote>
+<p>Algorithm alike encrypt, but no decrypt 👉 function $K \to (M\times A\to \{ true,false \})$ to verify auth</p>
+</blockquote>
+<ul>
+<li>Usage<ul>
+<li>Message-authentication code (MAC) authentication algorithm<ul>
+<li>symm based</li>
+</ul>
+</li>
+<li>Digital signatures authentication algorithm<ul>
+<li>asym based</li>
+<li><strong>anyone</strong> can verify authenticity of a message using the public key</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Key Distribution<ul>
+<li>Delivery of symmetric key is huge challenge<ul>
+<li>Sometimes done out-of-band (?)</li>
+</ul>
+</li>
+<li>Asymmetric keys distribution – public key<ul>
+<li>Even asymmetric key distribution needs care – man-in-the-middle attack</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Certification-in-Network"><a href="#Certification-in-Network" class="headerlink" title="Certification in Network"></a>Certification in Network</h3><ul>
+<li>Used between web servers and browsers for secure communication (credit card numbers)</li>
+<li>The server is verified with a <strong>certificate</strong> assuring client is talking to correct server</li>
+<li>Asymmetric cryptography used to establish a secure <strong>session key</strong> (symmetric encryption) for bulk of communication during session</li>
+<li>Communication between each computer then uses symmetric key cryptography</li>
+</ul>
+<h1 id="Lec15-Virtualization"><a href="#Lec15-Virtualization" class="headerlink" title="Lec15. Virtualization"></a>Lec15. Virtualization</h1><h2 id="Outline-13"><a href="#Outline-13" class="headerlink" title="Outline"></a>Outline</h2><h2 id="About-Virtualization"><a href="#About-Virtualization" class="headerlink" title="About Virtualization"></a>About Virtualization</h2><ul>
+<li>Virtualization leverages a software component (i.e., the hypervisor) and some hardware support to create an abstraction layer over computer hardware </li>
+<li>It enables the hardware resources of a single computer (processors, memory, storage) to be multiplexed by multiple virtual machines (VMs). </li>
+<li>VMs run their own operating systems (OS) and operate as if they are independent computers, though they are using only a portion of the underlying computer hardware. </li>
+</ul>
+<p><strong>Types of Virtualization</strong></p>
+<ul>
+<li>Type-I hypervisor: run directly on the host’s physical hardware</li>
+<li>Type-II hypervisor: installed on existing OSs, and rely on them for virtualization and resource managemen</li>
+</ul>
+<p>…</p>
+
     </div>
     
     <div>
