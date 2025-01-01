@@ -1,7 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>计算机网络</title>
+    <title>CS303 人工智能</title>
+    <url>/2025/01/01/Artificial-Intelligence/</url>
+    <content><![CDATA[<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><p><strong>AI Search</strong></p>
+<ul>
+<li>Lecture 1. AI as Search</li>
+<li>Lecture 2. </li>
+<li>Lecture 3.</li>
+<li>Lecture 4.</li>
+<li>Lecture 5.</li>
+<li>Lecture 6.</li>
+<li>Lecture 7.</li>
+<li>Lecture 8.</li>
+<li>Lecture 9.</li>
+<li>Lecture 10.</li>
+<li>Lecture 11.</li>
+<li>Lecture 12.</li>
+<li>Lecture 13.</li>
+</ul>
+<h1 id="Lecture-1-AI-as-Search"><a href="#Lecture-1-AI-as-Search" class="headerlink" title="Lecture 1. AI as Search"></a>Lecture 1. AI as Search</h1><h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>From searching to search tree</li>
+<li>Uninformed Search Methods </li>
+<li><font color="red">Heuristic (informed) Search</font> </li>
+<li>Further Studies on Heuristics</li>
+</ul>
+<h2 id="Search-in-a-Tree"><a href="#Search-in-a-Tree" class="headerlink" title="Search in a Tree ?"></a>Search in a Tree ?</h2><blockquote>
+<p><strong>概念：最短路径选择，搜索树</strong></p>
+<p>通过将所有“图”中的路径展开，可以得到一个搜索树。对树进行全局搜索必然可以得到最短路径。</p>
+<p>但是，当图变得复杂时（如一个省的地图，or a state），搜索量极大，全局搜索及其低能。</p>
+</blockquote>
+<ul>
+<li><font color="red">Q:</font> What is A Good Search Method?<ul>
+<li><font color="green">Completeness</font>: Does it always find a solution if it exists?</li>
+<li><font color="green">Optimality</font>: Does it always find the least-cost solution?</li>
+<li><font color="green">Time complexity</font>: # nodes generated/expanded.</li>
+<li><font color="green">Space complexity</font>: maximum # nodes in memory.</li>
+</ul>
+</li>
+<li>In general, time and space complexity depend on:<ul>
+<li>$b$ 👉 maximum # successors of any node in search tree. [枝]</li>
+<li>$d$ 👉 depth of the least-cost solution. </li>
+<li>$m$ 👉 maximum length of any path in the state space.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Un-informed-Search-Methods"><a href="#Un-informed-Search-Methods" class="headerlink" title="Un-informed Search Methods"></a>Un-informed Search Methods</h2><blockquote>
+<p>How to define “un-informed” ?</p>
+</blockquote>
+<ul>
+<li>Use only the information available in the problem definition.</li>
+<li>Use <strong>NO</strong> problem-specific knowledge.</li>
+</ul>
+<blockquote>
+<p>As some algorithms have been learnt in course Algorithm Design and Analysis, we skip them.</p>
+</blockquote>
+<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><ul>
+<li><font color="cyan">Completeness?</font> Yes (Suppose $b$ is finite)</li>
+<li><font color="cyan">Optimality?</font> Yes (Suppose all edge values are <strong>non-negative</strong>)</li>
+<li><font color="cyan">Time &amp; Space?</font> Both $O(b^{d+1})$</li>
+</ul>
+<h3 id="UCS-Uniform-Cost-Search"><a href="#UCS-Uniform-Cost-Search" class="headerlink" title="UCS (Uniform-Cost Search)"></a>UCS (Uniform-Cost Search)</h3><ul>
+<li>Idea<ul>
+<li>Expand the cheapest unexpanded node.</li>
+<li>Implementation: a queue ordered by path cost, lowest first.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai101.png" style="zoom:60%"></p>
+<ul>
+<li><font color="cyan">Completeness?</font> Yes (Suppose every step costs $\ge \epsilon$)</li>
+<li><font color="cyan">Optimality?</font> Yes (Suppose all edge values are <strong>non-negative</strong>)</li>
+<li><font color="cyan">Time &amp; Space?</font>  $O(b^{1+\lfloor C^{*}/\epsilon\rfloor})$<ul>
+<li>$C^{*}$ : the cost of the optimal solution.</li>
+<li>every action costs at least $\epsilon$.</li>
+<li>Only if all step costs are equal, time/space $=O(b^{d+1})$</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>2024 Fall</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>CSE Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS305 计算机网络</title>
     <url>/2024/09/09/Computer-Networks/</url>
     <content><![CDATA[<h1 id="Chapter-1-Introduction"><a href="#Chapter-1-Introduction" class="headerlink" title="Chapter 1: Introduction"></a>Chapter 1: Introduction</h1><HR style="FILTER: alpha(opacity=0, finishopacity=100,style=1)" width="100%" color="black" size="2">
 
@@ -2278,26 +2365,26 @@
 <p><img src="/2024/09/09/Computer-Networks/cn101.png" style="zoom:60%"></p>
 <ul>
 <li>intra-AS routing<ul>
-<li>routing among hosts, routers in <fotn color="red">same AS&lt;/font&gt; (“network”)</fotn></li>
+<li>routing among hosts, routers in <font color="red">same AS</font> (“network”)</li>
 <li>all routers in AS must run same intra-domain protocol</li>
 <li>routers in different AS can run different intra-AS routing protocol</li>
 </ul>
 </li>
 <li>inter-AS routing<ul>
 <li>routing among AS’es</li>
-<li>gateways perform interAS routing (as well as intra-AS routing)</li>
+<li>gateways perform inter-AS routing (as well as intra-AS routing)</li>
 </ul>
 </li>
 </ul>
 <blockquote>
 <p>Q: How does it function in practice?</p>
-<p>A: forwarding table  configured by both intra- and inter-AS routing algorithm</p>
+<p>A: forwarding table  configured by both intra and inter-AS routing algorithm</p>
 </blockquote>
 <h3 id="Intra-AS-Routing"><a href="#Intra-AS-Routing" class="headerlink" title="Intra-AS Routing"></a>Intra-AS Routing</h3><ul>
 <li>also known as interior gateway protocols (IGP)</li>
 <li>most common intra-AS routing protocols:<ul>
 <li>RIP: Routing Information Protocol (distance vector-based)</li>
-<li>OSPF: Open Shortest Path First (link statebased)</li>
+<li>OSPF: Open Shortest Path First (link state based)</li>
 <li>IS-IS protocol essentially same as OSPF</li>
 <li>IGRP: Interior Gateway Routing Protocol (Cisco proprietary for decades, until 2016)</li>
 </ul>
@@ -2318,7 +2405,7 @@
 </ul>
 </li>
 <li>router floods OSPF link-state advertisements to all other routers in entire AS<ul>
-<li>carried in OSPF messages directly over IP (rather than TCP or UDP)</li>
+<li>carried in OSPF messages <font color="red">directly over IP</font> (rather than TCP or UDP)</li>
 <li>Reliable message transfer, link-state broadcast</li>
 </ul>
 </li>
@@ -2364,17 +2451,17 @@
 </ul>
 <p><img src="/2024/09/09/Computer-Networks/cn93.png" style="zoom:50%"></p>
 <ul>
-<li><strong>eBGP:</strong> When AS3 gateway router 3a advertises path AS3,X to AS2 ateway router 2c:<ul>
+<li><strong>eBGP:</strong> When AS3 gateway router 3a advertises path AS3,X to AS2 gateway router 2c:<ul>
 <li>AS3 promises to AS2 it will forward datagrams towards X</li>
 </ul>
 </li>
 </ul>
 <p><img src="/2024/09/09/Computer-Networks/cn94.png" style="zoom:50%"></p>
 <ul>
-<li><strong>iBGP:</strong> When 1c accept the advertisement from 2a (2a told 1c that “it has a way to X”), 1c will propagate it to all routers in AS1</li>
+<li><strong>iBGP:</strong> When 1c accept the advertisement from 2a (2a told 1c that “it has a way to X”), 1c will propagate it to <strong>all routers</strong> in AS1</li>
 </ul>
 <blockquote>
-<p><font color="red">Q:&lt;/fonr&gt; how does router set forwarding table entry to distant prefix ?</font></p>
+<p><font color="red">Q:</font> how does router set forwarding table entry to distant prefix ?</p>
 <p><font color="green">A:</font> Work BGP, OSPF and forwarding table entries together 👇</p>
 </blockquote>
 <ul>
@@ -2395,7 +2482,7 @@
 <blockquote>
 <p>Hot potato routing: choose local gateway that has least intra domain cost (the shortest way to “go out”!)</p>
 </blockquote>
-<h3 id="IP-Anycast-Service-CDN-DNS"><a href="#IP-Anycast-Service-CDN-DNS" class="headerlink" title="IP Anycast Service: CDN/DNS"></a>IP Anycast Service: CDN/DNS</h3><p><img src="/2024/09/09/Computer-Networks/cn95" style="zoom:60%"></p>
+<h3 id="IP-Anycast-Service-CDN-DNS"><a href="#IP-Anycast-Service-CDN-DNS" class="headerlink" title="IP Anycast Service: CDN/DNS"></a>IP Anycast Service: CDN/DNS</h3><p><img src="/2024/09/09/Computer-Networks/cn95.png" style="zoom:60%"></p>
 <h3 id="BGP-Routing-Policy"><a href="#BGP-Routing-Policy" class="headerlink" title="BGP Routing Policy"></a>BGP Routing Policy</h3><ul>
 <li>policy: <ul>
 <li>inter-AS: admin wants control over how its traffic routed, who routes through its net. </li>
@@ -2416,9 +2503,9 @@
 <p><font color="green">Recall:</font> SDN logically centralized control plane</p>
 <p>A distinct (typically remote) controller interacts with local control agents (CAs) in routers to compute forwarding tables</p>
 </blockquote>
-<p><img src="/2024/09/09/Computer-Networks/cn96" style="zoom:60%"></p>
+<p><img src="/2024/09/09/Computer-Networks/cn96.png" style="zoom:60%"></p>
 <ul>
-<li>Why a logically centralized control plane ?</li>
+<li><font color="red">Q:</font> Why a logically centralized control plane ?</li>
 <li>easier network management: avoid router misconfigurations, greater flexibility of traffic flows</li>
 <li>table-based forwarding (recall OpenFlow API) allows “programming” routers<ul>
 <li>centralized “programming” easier: compute tables centrally and distribute</li>
@@ -2427,7 +2514,46 @@
 </li>
 <li>open (non-proprietary) implementation of control plane</li>
 </ul>
-<p>(bu bi ji ……)</p>
+<blockquote>
+<p>Traffic engineering has difficulties:</p>
+<ol>
+<li>To define path needs to know link weights</li>
+<li>hard to support multi-path routing (balance traffic)</li>
+<li>one switch hard to handle different source to different dst.</li>
+</ol>
+</blockquote>
+<ul>
+<li>What SDN do ?<ol>
+<li>generalized “flow based” forwarding  (e.g., OpenFlow)</li>
+<li>control, data plane  separation</li>
+<li>control plane functions external to data plane switches</li>
+<li>programmable control applications</li>
+</ol>
+</li>
+</ul>
+<h3 id="Components-of-SDN-controller"><a href="#Components-of-SDN-controller" class="headerlink" title="Components of SDN controller"></a>Components of SDN controller</h3><ul>
+<li><strong>Interface layer to network control apps</strong>: abstractions API</li>
+<li><strong>Network-wide state management layer</strong>: state of networks links, switches, services: a distributed database</li>
+<li><strong>communication layer</strong>: communicate between SDN controller and controlled switches (e.g. OpenFlow)</li>
+</ul>
+<blockquote>
+<p>OpenFlow protocol</p>
+</blockquote>
+<ul>
+<li>controller-to-switch messages<ul>
+<li><strong>configure</strong>: controller queries/sets  switch configuration parameters</li>
+<li><strong>modify-state</strong>: add, delete, modify  flow entries in the OpenFlow tables</li>
+<li><strong>Read-state</strong>: collect statistics and  counter values from the switch’s  flow table and ports</li>
+<li><strong>packet-out</strong>: controller can send this  packet out of specific switch port</li>
+</ul>
+</li>
+<li>switch-to-controller messages<ul>
+<li>packet-in: transfer packet (and its  control) to controller.  See packet out message from controller</li>
+<li>flow-removed: flow table entry  deleted at switch</li>
+<li>port status: inform controller of a change on a port.</li>
+</ul>
+</li>
+</ul>
 <h2 id="5-6-ICMP-The-Internet-Control-Message-Protocol"><a href="#5-6-ICMP-The-Internet-Control-Message-Protocol" class="headerlink" title="5.6. ICMP: The Internet Control Message Protocol"></a>5.6. ICMP: The Internet Control Message Protocol</h2><ul>
 <li>used by hosts &amp; routers to communicate network level information<ul>
 <li>error reporting: unreachable host, network, port, protocol</li>
@@ -2572,8 +2698,8 @@
 <ul>
 <li>view <code>D</code>, and choose (r + 1) bit pattern (generator), <code>G</code></li>
 <li>goal: choose r CRC bits, R, such that<ul>
-<li>\<D, r> exactly divisible by G (modulo 2)</D,></li>
-<li>receiver knows G, divides \<D, r> by G. If non-zero remainder: error detected!</D,></li>
+<li>{D, R} exactly divisible by G (modulo 2)</li>
+<li>receiver knows G, divides {D, R} by G. If non-zero remainder: error detected!</li>
 <li>can detect all consecutive bit errors of r bits or less</li>
 </ul>
 </li>
@@ -3116,16 +3242,16 @@
 <td style="text-align:center">动态主机配置协议</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center">NAT</td>
+<td style="text-align:center">网络地址翻译</td>
+<td style="text-align:center">MAC</td>
+<td style="text-align:center">(Media Access Control)</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center">OSPF</td>
+<td style="text-align:center">Open Shortest Path First</td>
+<td style="text-align:center">BGP</td>
+<td style="text-align:center">Border Gateway Protocol</td>
 </tr>
 <tr>
 <td style="text-align:center"></td>
@@ -3186,7 +3312,347 @@
       </tags>
   </entry>
   <entry>
-    <title>操作系统</title>
+    <title>MA21概率论与数理统计</title>
+    <url>/2024/08/19/Probability-Theory-and-Mathematical-Statistics/</url>
+    <content><![CDATA[<h1 id="第一章-概率"><a href="#第一章-概率" class="headerlink" title="第一章 概率"></a>第一章 概率</h1><h2 id="记数方法"><a href="#记数方法" class="headerlink" title="记数方法"></a>记数方法</h2><ul>
+<li>古典概型<ul>
+<li>$\Omega$ 只含有限个样本点</li>
+<li>每个样本点出现是等可能的</li>
+</ul>
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>P(A)=\frac{A \text{的有利场合数}}{\text{样本点总数}}=\frac{k}{n}<br>$</p>
+
+</blockquote>
+<ul>
+<li>几何概型<ul>
+<li>对比古典概型有无限个样本点</li>
+</ul>
+</li>
+</ul>
+<h2 id="全概率定律"><a href="#全概率定律" class="headerlink" title="全概率定律"></a>全概率定律</h2><p><strong>Def.</strong> 设 $\Omega$ 为样本空间，若事件 $B_1,B_2,\cdots ,B_n$ 满足：</p>
+<ol>
+<li>$B_1,B_2,\cdots ,B_n$ 两两不相容</li>
+<li>$B_1 \cup B_2 \cup \cdots \cup B_n = \Omega$</li>
+</ol>
+<p>则称 $B_1,B_2,\cdots ,B_n$ 为样本空间的一个<font color="red">划分</font>。</p>
+<p>由此推出全概率公式：</p>
+<blockquote class="blockquote-center">
+<p>$<br>P(A)=\sum_{i=1}^{n} P(A|B_i) \cdot P(B_i)<br>$</p>
+
+</blockquote>
+<p>由全概率公式和条件概率的乘法公式推导出 <font color="red">Bayes 公式</font>：</p>
+<blockquote class="blockquote-center">
+<p>$<br>P(B_i|A)=\frac{P(A|B_i)P(B_i)}{\sum_{j=1}^{n} P(A|B_j)P(B_j)}<br>$</p>
+
+</blockquote>
+<p>Bayes 公式的实际意义：</p>
+<p>假定 $B_1,B_2,\cdots ,B_n$ 为导致实验结果的“原因”，称 $P(B_i) (i=1,2,\cdots ,n)$ 为<font color="red">先验概率</font>。</p>
+<p>若试验产生事件 A ，则要探讨事件发生的“原因”：称 $P(B_i|A)$ 为<font color="red">后验概率</font>，称 $P(A|B_i)$ 为<font color="red">原因概率</font></p>
+<h1 id="第二章-随机变量"><a href="#第二章-随机变量" class="headerlink" title="第二章 随机变量"></a>第二章 随机变量</h1><h2 id="离散随机变量"><a href="#离散随机变量" class="headerlink" title="离散随机变量"></a>离散随机变量</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>P\{ X=x_k \}= p(x_k),\ \ (k=1,2,3,\cdots)<br>$</p>
+
+</blockquote>
+<p>为离散型 r.v. X 的概率质量函数 (PMF)</p>
+<blockquote class="blockquote-center">
+<p>$<br>F(x)=P\{ X \le x \}, -\infty \lt x \lt \infty<br>$</p>
+
+</blockquote>
+<p>为离散型 r.v. X 的累计分布函数 (CDF)</p>
+<p><strong>泊松定理</strong></p>
+<p>设 $\lambda \gt 0$，$n$ 为正整数，$\lim_{n \to \infty} np_n=\lambda$，则有</p>
+<blockquote class="blockquote-center">
+<p>$<br>\lim_{n\to \infty} C^k_n p^k_n(1-p_n)^{n-k}=\frac{\lambda^{k}e^{-\lambda}}{k!}<br>$</p>
+
+</blockquote>
+<h2 id="连续随机变量"><a href="#连续随机变量" class="headerlink" title="连续随机变量"></a>连续随机变量</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>F(x)=\int_{-\infty}^{x} f(t)\text{d}t,\ -\infty \lt x \lt \infty<br>$</p>
+
+</blockquote>
+<p>其中 $f(t)$ 为连续型 r.v. X 的概率密度函数 (PDF)</p>
+<p><strong>标准正态分布</strong></p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;\Phi(x)=\int_{-\infty}^{x} \psi(x)\text{d}x \\<br>&amp;\psi(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \\<br>&amp;s.t.\ \mu=0,\ \sigma^2=1<br>\end{array}<br>$</p>
+
+</blockquote>
+<h2 id="随机变量的函数"><a href="#随机变量的函数" class="headerlink" title="随机变量的函数"></a>随机变量的函数</h2><p>例：设随机变量 $X$，$Y$，满足 $Y=aX+b$，如何通过 $X$ 的概率密度分布求出 $Y$ 的 PDF？</p>
+<p>解：令 $x=g(y)=\frac{y-b}{a}$，可得 $F_Y(y)=P\{ Y\le y \}=P\{ X\le\frac{y-b}{a} \}=F_X(\frac{y-b}{a})$。</p>
+<p>化简得：$f_Y(y)=F_{X}’(g(y))=(g(y))’f_X(g(y))$</p>
+<p>如正态分布 $X\sim N(\mu,\sigma^2)$ 的线性函数 $aX+b \sim N(a\mu +b,(a\sigma)^2)$ 也是正态分布</p>
+<h1 id="第三章-联合分布"><a href="#第三章-联合分布" class="headerlink" title="第三章 联合分布"></a>第三章 联合分布</h1><h2 id="联合随机变量"><a href="#联合随机变量" class="headerlink" title="联合随机变量"></a>联合随机变量</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>F(X,Y)\triangleq P\{ X\le x,Y\le y \}\ \ s.t.\ \{x,y\}\in \mathbb{R}<br>$</p>
+
+</blockquote>
+<p>为 $X$ 与 $Y$ 的联合累积分布函数。</p>
+<blockquote class="blockquote-center">
+<p>$<br>F_X(x)= P\{ X\le x,Y\le \infty \}\ \ s.t.\ x\in \mathbb{R}<br>$</p>
+
+</blockquote>
+<p>称为 $X$ 的边际分布，$Y$ 同理。</p>
+<p><strong>概率密度函数</strong></p>
+<blockquote class="blockquote-center">
+<p>$<br>F(x,y)=\int_{-\infty}^{x} \int_{-\infty}^{y} f(u,v)\text{d}u\text{d}v,\ s.t.\ \{ x,y\}\in\mathbb{R}<br>$</p>
+
+</blockquote>
+<p>则 $f(x,y)$ 为 $X$，$Y$ 的概率密度函数(joint PDF)</p>
+<p><strong>边际密度</strong></p>
+<blockquote class="blockquote-center">
+<p>$<br>f_X(u)=\int_{-\infty}^{\infty} f(u,y)\text{d}y<br>$</p>
+
+</blockquote>
+<p>称为 $X$ 的边际密度，$Y$ 同理。</p>
+<h2 id="独立随机变量"><a href="#独立随机变量" class="headerlink" title="独立随机变量"></a>独立随机变量</h2><blockquote class="blockquote-center">
+<p>$<br>f(x,y)=f_X(x)\cdot f_Y(y)<br>$</p>
+
+</blockquote>
+<p>当上式成立时，$X$，$Y$ 相互独立，即相关系数 $\rho=0$。</p>
+<h2 id="条件分布"><a href="#条件分布" class="headerlink" title="条件分布"></a>条件分布</h2><p>（只看连续，离散情况容易推导）</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>P(X\le x|y\le Y\le y+\epsilon) &amp;=\frac{P\{X\le x,y\le Y\le y+\epsilon\}}{P\{ y\le Y\le y+\epsilon\ \}} \\<br>&amp;=\frac{\int_{-\infty}^{x}\int_{y}^{y+\epsilon} f(u,v)\text{d}u\text{d}v}{\int_{y}^{y+\epsilon} f_Y(v)\text{d}v} \\<br>&amp;=\frac{\epsilon\int_{-\infty}^{x}f(u,y_\epsilon)\text{d}u}{\epsilon f_Y(\tilde{y}_{\epsilon})} \\<br>&amp;= \int_{-\infty}^{x}\frac{f(u,y)}{f_Y(y)} \text{d}u\ \ (\epsilon\to 0)<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>定义 $\frac{f(u,y)}{f_Y(y)} \triangleq f_{X|Y}(x|y)$ 为 $Y=y$ 下 $X$ 的<font color="red">条件密度</font></p>
+<h2 id="联合分布随机变量的函数"><a href="#联合分布随机变量的函数" class="headerlink" title="联合分布随机变量的函数"></a>联合分布随机变量的函数</h2><p>1 . $Z=X+Y$</p>
+<p>利用卷积公式 (可写作 $f_X * f_Y$)：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)\text{d}y \\<br>\text{or } &amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\text{d}x<br>\end{array}<br>$</p>
+
+</blockquote>
+<font color="red">前提：</font> 
+
+<p>$X$，$Y$ 相互独立（如不独立，可利用联合分布、条件分布求得，或变换成独立变量再求解）。</p>
+<p>2 . $Z=\frac{X}{Y}$</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;\text{由于 }F_Z(z)=P\{ X/Y\le z \}=\underset{\frac{x}{y}\le z}{\int\int} f(x,y)\text{d}x \text{d}y \text{ 积分区域可能不是矩形} \\<br>&amp;\text{为简化积分计算，使用 }\textbf{J}=\frac{\partial{(x,y)}}{\partial{(u, v)}}= \Large{\left| \begin{array}{c} \frac{\partial{x}}{\partial{u}} &amp; \frac{\partial{x}}{\partial{v}} \\ \frac{\partial{y}}{\partial{u}} &amp; \frac{\partial{y}}{\partial{v}} \end{array} \right|} \\<br>&amp;\text{得 }F_Z(z)=\underset{\Omega}{\int\int} f[x(u,v),y(u,v)] |\textbf{J}|\text{d}u \text{d}v<br>\end{array}<br>$</p>
+
+</blockquote>
+<h2 id="顺序统计量"><a href="#顺序统计量" class="headerlink" title="顺序统计量"></a>顺序统计量</h2><p>设 $X_i\sim f(x)$ 是独立同分布的连续型 r.v.，则对于顺序统计量 $X_{(1)}(\min),\cdots ,X_{(n)}(\max)$ ，如何求 $X_{(k)}$ 的密度？</p>
+<p>解：对于充分小的空间 $[x,x+\text{d}x]$，有</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;P\{ x\lt X_{(k)} \lt x+\text{d}x \}=\left(\begin{array}{c}n \\ k-1 \end{array} \right) F(x)^{k-1} \left(\begin{array}{c}n-k+1 \\ 1 \end{array} \right) [F(x+\text{d}x)-F(x)] \left(\begin{array}{c}n-k \\ n-k  \end{array} \right) [1-F(x+\text{d}x)^{n-k}] \\<br>\therefore\ \ &amp;f_k(x)=\frac{\text{d}P\{ x\lt X_{(k)} \lt x+\text{d}x \}}{\text{d}x}=\frac{n!}{(k-1)!(n-k)!}F(x)^{k-1} f(x)[1-F(x)]^{n-k}<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>称此为 Veta 分布，记为 $X\sim Beta(k, n-k+1)$</p>
+<p>Beta 密度用于刻画 [0, 1] 上的随机变量：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;f(u)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}u^{a-1}(1-u)^{b-1} \\<br>s.t.\ &amp;\Gamma(x)=(x-1)! ,\ 0\le u\le 1<br>\end{array}<br>$</p>
+
+</blockquote>
+<h1 id="第四章-随机变量的数字特征"><a href="#第四章-随机变量的数字特征" class="headerlink" title="第四章 随机变量的数字特征"></a>第四章 随机变量的数字特征</h1><h2 id="协方差"><a href="#协方差" class="headerlink" title="协方差"></a>协方差</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;Cov(X,Y)\triangleq E[(X-E(X))\cdot (Y-E(Y))]<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>称为 X，Y 的协方差，其相关系数表示为：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;\rho_{XY}\triangleq Cov(X^{*},Y^{*})=\frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{E(Y)}}<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>利用这个属性进行 X，Y 线性拟合的计算：</p>
+<p>记均方误差为 $e=E[(Y-\hat{Y})^2]=E[(Y-(aX+b))^2]$</p>
+<p>令 $\left\{ \begin{array}{l} &amp;\frac{\partial{e}}{\partial{b}}=2b+2aE(X)-2E(Y)=0 \\ &amp;\frac{\partial{e}}{\partial{a}}=2aE(X^2)-2E(XY)+2bE(X)=0 \end{array} \right.$</p>
+<p>解得 $\left\{ \begin{array}{l} &amp;b_0=\frac{Cov(X,Y)}{D(X)} \\ &amp;a_0=E(Y)-E(X)\cdot b_0 \end{array} \right.$</p>
+<p>进一步得 $\underset{a,b}{\min e}=D(Y)(1-\frac{Cov^2(X,Y)}{D(X)D(Y)})=D(Y)(1-\rho^2_{XY})$</p>
+<font color="red">注意：</font>$\rho_{XY}=0$ 并不意味着 X，Y 相互独立！（但正态分布能证明 不相关 = 独立）
+
+
+
+定义：
+
+对 r.v. X，Y，
+
+$E(X^k)\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶原点矩</font>
+
+<p>$E[(X-E(X))^k]\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶中心矩</font></p>
+<p>$E[(X-E(X))^k(Y-E(Y))^l]\ \ \ (k,l=1,2,\cdots)$ 为 <font color="red">k+l 阶混合中心矩</font></p>
+<blockquote>
+<p>因此，r.v. 的期望是一阶原点矩，方差是2阶中心矩，协方差是2阶混合中心矩。</p>
+</blockquote>
+<h2 id="条件期望"><a href="#条件期望" class="headerlink" title="条件期望"></a>条件期望</h2><p>定义：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\left\{\begin{array}{rl}<br>&amp;E(h(Y)|X=x)=\sum_{y}h(y)p_{Y|X}(y|x) &amp;\text{（离散）} \\<br>&amp;E(h(Y)|X=x)=\int_{y}h(y)f_{Y|X}(y|x)\text{d}y &amp;\text{（连续）}<br>\end{array}\right.<br>$</p>
+
+</blockquote>
+<blockquote>
+<p>特殊情况下，$h(y)=y$</p>
+</blockquote>
+<p><font color="green">回顾泊松分布：</font> $X\sim P(\lambda t)$</p>
+<p>$P(X=k)=\frac{(\lambda t)^k}{k!}e^{-\lambda t}\ \ \ k\in\mathbb{N}$  称为泊松强度。</p>
+<p>例：考虑 [0, 1] 区间上均值为 $\lambda$ 的泊松流，令 N 是 [0, 1] 上点的个数。对于 $p\lt 1$，令 X 是 [0, p] 上点的个数。计算给定 N = n 的情况下，X 的条件分布和条件期望。</p>
+<p>解：联合分布</p>
+<p>$P\{X=x,N=n \}=\frac{(p\lambda)^xe^{-p\lambda}}{x!}\cdot \frac{((1-p)\lambda)^{(n-x)}e^{-(1-p)\lambda}}{(n-x)!}$</p>
+<p>而 $N\sim P(\lambda)$</p>
+<p>因此 $P\{X=x|N=n \}=\frac{n!}{x!(n-x)!}p^x(1-p)^{(n-x)}\sim b(n,p)$</p>
+<p>从而 $X$ 的条件期望为 $np$。</p>
+<h1 id="第五章-数理统计（入门）"><a href="#第五章-数理统计（入门）" class="headerlink" title="第五章 数理统计（入门）"></a>第五章 数理统计（入门）</h1><h2 id="大数定律"><a href="#大数定律" class="headerlink" title="大数定律"></a>大数定律</h2><p>（伯努利版）设 $P(A)=p$，则对任意 $\epsilon\gt 0$，有 $\color{red} \underset{n\to \infty}{\lim}=P\{|\frac{n_A}{n}-p|\ge \epsilon \}=0$</p>
+<p>（切比雪夫版）$\{X_n\}$ 为独立随机变量列，且期望方差相同，则对任意 $\epsilon\gt 0$，有 $\color{red} \underset{n\to \infty}{\lim}=P\{|\frac{1}{n}\sum_{i=1}^{n}X_i-\mu|\ge \epsilon \}=0$</p>
+<p>（这意味着样本量足够大时，期望可被样本的算术均值替代）</p>
+<h2 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h2><p>若 $X_n$ 的分布 $F_n(x)$ 对任意 $x$ 满足</p>
+<blockquote class="blockquote-center">
+<p>$<br>\color{red}<br>\begin{array}{l}<br>&amp;\underset{n\to \infty}{\lim} F_n(x)=\underset{n\to \infty}{\lim}P\{ \frac{\sum_{i=1}^{n}(X_i-\mu_i)}{\sqrt{\sum_{i=1}^{n}\sigma_i^2}}\le x \}=\psi(x)<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>则称 $\{X_n \}$ 服从中心极限定理（$\psi(x)$ 为标准正态）</p>
+<p>特别当 $X_n$ 独立同分布，则有 $\underset{n\to \infty}{\lim}P\{ \frac{\sum_{i=1}^{n}X_i-n\mu_i}{\sqrt{n}\sigma_i}\le x \}=\psi(x)$</p>
+<blockquote>
+<p>德莫夫-拉普拉斯中心极限定理：对 $\eta_n\sim b(n,p)$</p>
+<p>$\frac{\eta_n-np}{\sqrt{np(1-p)}}\sim N(0,1)$</p>
+<p>参考高尔顿钉板</p>
+</blockquote>
+<h1 id="第六章-数理统计（基础）"><a href="#第六章-数理统计（基础）" class="headerlink" title="第六章 数理统计（基础）"></a>第六章 数理统计（基础）</h1><h2 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h2><p>1 . $\chi^2$ - 分布</p>
+<p>设 $X_1-X_n$ 是来自总体 $X\sim N(0,1)$ 的样本，令</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>\chi^2=X_1^2+X_2^2+\cdots +X_n^2<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>称 $\chi^2$ 服从自由度为 $n$ 的 $\chi^2$ - 分布（也称卡方分布），记为 $\chi^2(n)$。</p>
+<blockquote>
+<p><font color="blue">自由度：</font>自由度是二次型 $\chi^2=X_1^2+X_2^2+\cdots +X_n^2$ 的秩，即可独立变化的变量个数。</p>
+</blockquote>
+<p>数字特征：</p>
+<ul>
+<li>$E(\chi^2)=n$</li>
+<li>$D(\chi^2)=2n$</li>
+</ul>
+<p>2 . t - 分布</p>
+<p>设 $X\sim N(0,1)$，$Y\sim \chi^2(n)$，且 $X$，$Y$ 独立，令</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>t=X/\sqrt{Y/n}<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>称 $t$ 为服从自由度为 n 的 t - 分布，记为 $t(n)$。</p>
+<p>性质：</p>
+<ul>
+<li>数字特征<ul>
+<li>$E(t)=0$</li>
+<li>$D(t)=\frac{n}{n+2}$</li>
+</ul>
+</li>
+<li>当 n 充分大时，T 近似服从 N(0, 1)，即趋近标准正态分布<ul>
+<li>可证明 $\underset{n\to\infty}{\lim}f(x)=(2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}$</li>
+</ul>
+</li>
+</ul>
+<p>3 . F - 分布</p>
+<p>设 $U\sim \chi^2(n_1)$，$V\sim \chi^2(n_2)$，且 $U$，$V$ 独立，令</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>F=\Large\frac{U/n_1}{V/n_2}<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>称 F 为服从自由度为 $(n_1,n_2)$ 的 F - 分布，记为 $F(n_1,n_2)$。</p>
+<p>二级结论：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;T\sim t(n) \Rightarrow T^2\sim F(1,n) \\<br>\text{证：} &amp;T=\frac{X}{\sqrt{Y/n}} \Rightarrow T^2=\frac{X^2/1}{Y/n}, \\<br>\text{ 且 }&amp;X^2,Y\text{ 仍相互独立}<br>\end{array}<br>$</p>
+
+</blockquote>
+<h2 id="抽样分布定理"><a href="#抽样分布定理" class="headerlink" title="抽样分布定理"></a>抽样分布定理</h2><p>1 . 设 $X_1\sim X_n$ 是来自总体 $X\sim N(\mu,\sigma^2)$ 的样本，则</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>\bar{X}\sim N(\mu,\frac{\sigma^2}{n})<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>因为 $\bar{X}=(X_1+\cdots +X_n)/n$ ，而线性组合仍服从正态分布。</p>
+<p>因此，$E(\bar{X})=\mu$，$D(\bar{X})=\frac{\sigma^2}{n}$</p>
+<p>2 . 设 $X_1\sim X_n$ 是来自总体 $X\sim N(\mu,\sigma^2)$ 的样本，$\bar{X}$ 、$S^2$ 分别是样本均值和样本方差，则有</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{lr}<br>&amp;\frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1) &amp;(1) \\<br>&amp;\bar{X},S^2\text{ 相互独立} &amp;(2)<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>3 . waiting…</p>
+<p>4 . </p>
+<p>5 . </p>
+<h1 id="第七章-参数估计"><a href="#第七章-参数估计" class="headerlink" title="第七章 参数估计"></a>第七章 参数估计</h1><h2 id="点估计"><a href="#点估计" class="headerlink" title="点估计"></a>点估计</h2><p>定义：设总体分布函数 $F(x,\theta)$ ， $X_1\sim X_n$ 为样本，构造一个统计量 $\theta=\theta(X_1,\cdots ,X_n)$ 来估计参数 $\theta$ ，则称为参数 $\theta$ 的<strong>估计量</strong>。</p>
+<p>将观测值 $x_1,\cdots ,x_n$ 带入 $\theta(X_1,\cdots ,X_n)$ ，得到的 $\theta(x_1,\cdots ,x_n)$ 称为参数 $\theta$ 的<strong>估计值</strong>。</p>
+<p>常用点估计法：</p>
+<ul>
+<li>矩估计：设总体 $X\sim F(x;\theta)$ ，$\theta_1\sim \theta_m$ 未知，设对 n 个样本，总体矩都存在（即 $\alpha_k \triangleq E(X^k),(k=1,2,\cdots,m)$ ），由辛钦大数定律得</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;A_k=\frac{1}{n}\sum_{i=1}^{n}X^k_i \overset{P}{\longrightarrow}E(X^k)=\alpha_k\ \ (n\to\infty,k=1,2,\cdots,m) \\<br>\text{可认为 }&amp;A_k\approx E(X^k)=\int{x^k}\text{d}F \triangleq \alpha_k(\theta_1,\cdots, \theta_m) &amp; \\<br>\therefore &amp; \left\{\begin{array}{l}<br>&amp;\alpha_1(\theta_1,\cdots, \theta_m)=E(X) \approx A_1 \\<br>&amp;\alpha_2(\theta_1,\cdots, \theta_m)=E(X^2) \approx A_2 \\<br>&amp;\vdots \\<br>&amp;\alpha_m(\theta_1,\cdots, \theta_m)=E(X^m) \approx A_m<br>\end{array}\right.<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>解上述方程组得：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\left\{<br>\begin{array}{l}<br>&amp;\hat{\theta}_1=\hat{\theta}_1(A_1,A_2,\cdots,A_m) \\<br>&amp;\vdots \\<br>&amp;\hat{\theta}_m=\hat{\theta}_m(A_1,A_2,\cdots,A_m) \\<br>\end{array}<br>\right.<br>$</p>
+
+</blockquote>
+<ul>
+<li>最大似然估计：构造似然函数 $L(\theta)$ ，通过求极大值点得到参数值</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>L(\theta)=<br>\left\{<br>\begin{array}{lr}<br>&amp;p(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta) &amp;(\text{离散}) \\<br>&amp;f(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta) &amp;(\text{连续}) \\<br>\end{array}<br>\right.<br>$</p>
+
+</blockquote>
+<p>取对数便于求偏导（对每个参数 $\theta_i$ 求偏导）：$\large\frac{\partial{\ln{L}}}{\partial{\theta_i}}=0$</p>
+<p><strong>参数评价标准</strong></p>
+<ul>
+<li>无偏性：$E(\hat\theta)=\theta$</li>
+<li>有效性：$E(\hat\theta_1)=E(\hat\theta_2)=\theta$ 且 $D(\hat\theta_1)\le D(\hat\theta_2)$，则称 $\hat\theta_1$ 较 $\hat\theta_2$ 有效。</li>
+<li>相合性（一致性）：设 $\hat\theta_n=\hat\theta(X_1,X_2,\cdots,X_n)$ 是 $\theta$ 的点估计，若 $\forall \theta\in\Theta$ 满足对 $\forall\epsilon\gt 0$ 有 $\color{red}\underset{n\to\infty}{\lim}P\{|\hat\theta_n -\theta|\ge \epsilon \}=0$ ，则称 $\hat\theta_n$ 是 $\theta$ 的<font color="red">相合估计</font>，记作 $\hat\theta_n\overset{P}{\longrightarrow}\theta(n\to\infty)$ 。</li>
+</ul>
+<h2 id="区间估计"><a href="#区间估计" class="headerlink" title="区间估计"></a>区间估计</h2><blockquote>
+<p>区别：点估计构造一个参数统计量，而区间估计构造两个并将 $(\theta_1,\theta_2)$ 以一定的置信度作为 $\theta$ 的估算区间。</p>
+</blockquote>
+<p>定义：设总体 $X\sim F(x;\theta)$ ，若存在 2 个统计量</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{lr}<br>&amp;\underline{\theta}=\underline{\theta}(X_1,\cdots,X_n),\ \ \ \overline{\theta}=\overline{\theta}(X_1,\cdots,X_n) &amp;(\underline{\theta}\lt\overline{\theta})<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>使得 $\forall\theta\in\Theta$ 有 $P\{\underline{\theta}\le\theta\le\overline{\theta}\}\ge 1-\alpha$ ，则称随机区间 $(\underline{\theta},\overline{\theta})$ 为 $\theta$ 的<font color="red">置信水平</font>为 $1-\alpha$ 的<font color="red">置信区间</font>，$\underline{\theta}$ 和 $\overline{\theta}$ 分别称为置信下限和置信上限。</p>
+<ul>
+<li>区间估计一般方法<ul>
+<li>枢轴法（对应 t-分布的应用）</li>
+<li>波动理论（对应卡方分布的应用）</li>
+</ul>
+</li>
+</ul>
+<p><strong>二级结论总结</strong></p>
+<ol>
+<li>$\sigma^2$ 已知，对 $\mu$ 估计：$\color{red}(\bar{X}-u_{1-\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}},\bar{X}+u_{1-\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}})$</li>
+<li>$\sigma^2$ 未知，对 $\mu$ 估计：$\color{red}(\bar{X}-\frac{S}{\sqrt{n}}t_{1-\frac{\alpha}{2}}(n-1),\bar{X}+\frac{S}{\sqrt{n}}t_{1-\frac{\alpha}{2}}(n-1))$</li>
+<li>$\mu$ 未知，对 $\sigma^2$ 估计：$\large\color{red}(\frac{(n-1)S^2}{\chi^2_{1-\frac{\alpha}{2}}(n-1)}, \frac{(n-1)S^2}{\chi^2_{\frac{\alpha}{2}}(n-1)})$</li>
+</ol>
+<p><em>后两条的推导式：</em></p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{c}<br>&amp;P\left\{ \frac{|\bar{X}-\mu|}{S/\sqrt{n}}\lt t_{1-\frac{\alpha}{2}}(n-1) \right\}=1-\alpha \\<br>&amp;P\left\{\chi^2_{\frac{\alpha}{2}}(n-1)\lt \frac{(n-1)S^2}{\sigma^2}\lt\chi^2_{1-\frac{\alpha}{2}}(n-1) \right\}=1-\alpha<br>\end{array}<br>$</p>
+
+</blockquote>
+<h1 id="第八章-假设检验"><a href="#第八章-假设检验" class="headerlink" title="第八章 假设检验"></a>第八章 假设检验</h1><h2 id="一、建立对立的假设："><a href="#一、建立对立的假设：" class="headerlink" title="一、建立对立的假设："></a>一、建立对立的假设：</h2><p>原假设（零假设）$H_0$ 和备择假设（对立假设）$H_1$</p>
+<ol>
+<li>保护原假设：原假设错误的“代价”必须小于备择假设（如原假设新药物有副作用）</li>
+<li>原假设趋于维持现状</li>
+<li>原假设取简单假设</li>
+</ol>
+<h2 id="二、给出检验统计量，确定拒绝域形式"><a href="#二、给出检验统计量，确定拒绝域形式" class="headerlink" title="二、给出检验统计量，确定拒绝域形式"></a>二、给出检验统计量，确定拒绝域形式</h2><p>拒绝域是拒绝原假设的样本值范围，其补集为接受域。</p>
+<p>设置合理的 $C$ 值（待定常数），使得 $\bar{X}$ 大于/小于该常数时，拒绝原假设。</p>
+<p><strong>I 类错误与 II 类错误</strong></p>
+<p>I 类错误指拒绝原假设但是原假设为真的情况，用 $\alpha$ 表示犯错概率，一般控制在 $(0.01,0.1)$ 范围内。(也称<font color="red">显著水平</font>)</p>
+<p>II 类错误指接受原假设但原假设为假的情况，用 $\beta$ 表示。</p>
+<h2 id="三、根据显著水平和统计量的分布确定临界值"><a href="#三、根据显著水平和统计量的分布确定临界值" class="headerlink" title="三、根据显著水平和统计量的分布确定临界值"></a>三、根据显著水平和统计量的分布确定临界值</h2><p>根据 NP 原则，先保证犯 I 类错误的概率不超过 $\alpha$，再令犯 II 类错误的概率尽可能小。</p>
+<p>例：取 $\alpha=0.05$ ，当 $H_0:\mu=0$ 成立时，$\frac{\bar{X}}{0.6/\sqrt{9}}\sim N(0,1)$。（统计量分布）则可进行如下计算：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>P\{\bar{X}\ge C|\mu=0 \}&amp;=P\left\{\frac{\bar{X}}{\sigma/\sqrt{n}}\ge\frac{C}{\sigma/\sqrt{n}}|\mu=0 \right\} \\<br>&amp;=1-\psi\left(\frac{C}{\sigma/\sqrt{n}}\right)\le\alpha=0.05\ \ (0.05=\psi(-\textbf{z}_{0.05})) \\<br>&amp;\Rightarrow \frac{C}{0.6/\sqrt{9}}\ge \textbf{z}_{0.05}=1.645 \Rightarrow C\ge0.329<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>因此取 $C=0.329$ 以减小 II 类错误！</p>
+<h2 id="四、根据样本数据判断是否要拒绝假设"><a href="#四、根据样本数据判断是否要拒绝假设" class="headerlink" title="四、根据样本数据判断是否要拒绝假设"></a>四、根据样本数据判断是否要拒绝假设</h2><blockquote>
+<p>例：如 $\bar{x}=0.522\gt 0.329$，则拒绝原假设。</p>
+</blockquote>
+<h2 id="正态总体参数的假设检验样例"><a href="#正态总体参数的假设检验样例" class="headerlink" title="正态总体参数的假设检验样例"></a>正态总体参数的假设检验样例</h2><p>In development…</p>
+]]></content>
+      <categories>
+        <category>2023 Fall</category>
+      </categories>
+      <tags>
+        <tag>CSE Learning</tag>
+        <tag>Maths</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS302 计算机操作系统</title>
     <url>/2024/09/13/Operating-Systems/</url>
     <content><![CDATA[<h1 id="Lec01-Intro"><a href="#Lec01-Intro" class="headerlink" title="Lec01. Intro"></a>Lec01. Intro</h1><h2 id="Before-this-course-about"><a href="#Before-this-course-about" class="headerlink" title="Before this course (about)"></a>Before this course (about)</h2><ul>
 <li>Have basic concept about Computer Organization</li>
@@ -6154,7 +6620,177 @@
       </tags>
   </entry>
   <entry>
-    <title>大数据导论与实践（三）</title>
+    <title>MA113 线性代数</title>
+    <url>/2024/08/25/Linear-Algebra/</url>
+    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><p>由于篇仅用于某些计算机相关课程的复习，所以某些“不太重要”的知识点要么默认已知，要么不会提及（如转置的概念和二级结论，行列式的概念等）。</p>
+<p>由于教材不同或版本原因，对于一些符号可能有差异（如表示单位方阵有 $I/E$，以下统一使用本人学习的教材所用符号）</p>
+<h1 id="第一章-矩阵（入门）"><a href="#第一章-矩阵（入门）" class="headerlink" title="第一章 矩阵（入门）"></a>第一章 矩阵（入门）</h1><h2 id="矩阵的逆"><a href="#矩阵的逆" class="headerlink" title="矩阵的逆"></a>矩阵的逆</h2><p>定义：$AC=CA=I\Longleftrightarrow$ $C$ 是 $A$ 的逆，记作 $A^{-1}$。</p>
+<blockquote>
+<p>不是所有方阵都有逆，不可逆<font color="red">方阵</font>称为<font color="red">奇异矩阵</font>。</p>
+</blockquote>
+<h2 id="矩阵的-LDU-分解"><a href="#矩阵的-LDU-分解" class="headerlink" title="矩阵的 LDU 分解"></a>矩阵的 LDU 分解</h2><p>定义：$\color{red}PA=LDU$，其中 $L$ 是下三角矩阵，$D$ 是对角矩阵，$U$ 是主对角元为 1 的上三角矩阵。($P$ 仅用作行交换)</p>
+<h1 id="第二章-向量空间"><a href="#第二章-向量空间" class="headerlink" title="第二章 向量空间"></a>第二章 向量空间</h1><h2 id="基的相关定理"><a href="#基的相关定理" class="headerlink" title="基的相关定理"></a>基的相关定理</h2><p><strong>一、坐标：</strong> 令 $A=\{v_1,v_2,\cdots,v_n\}$ 是 $\mathbb{V}^n$ 的一组基，$\forall w\in\mathbb{V}^n$ ，有唯一数组 $\{a_1,a_2,\cdots,a_n\}$ 使 $w=a_1v_1+a_2v_2+\cdots +a_nv_n$ ，则该数组是 $\mathbb{A}$（向量空间的一组基）中 $w$ 的坐标，记为 $[w]_A$ 。</p>
+<p><strong>二、满秩：</strong> 对于一个 $m*n$ 矩阵 $A$，若 $rank(A)=m$，则称 $A$ 行满秩，若 $rank(A)=n$，则称 $A$ 列满秩。</p>
+<ul>
+<li>若 $A_{m\times n}$ 行满秩（可推出 $m\le n$），且前 $m$ 列线性独立，令 $A=\left[A_0|X\right]$ ，则右逆 $C=\left[\begin{array}{c}A_0^{-1} \\ 0\end{array}\right]$ ；</li>
+<li>若 $A_{m\times n}$ 列满秩（可推出 $m\ge n$），且前 $n$ 行线性独立，令 $A=\left[\begin{array}{c}A_0 \\ Y\end{array}\right]$ ，则左逆 $B=\left[A_0^{-1}|\ 0\right]$ 。</li>
+</ul>
+<p><strong>三、线性变换：</strong></p>
+<ul>
+<li>求解变换矩阵的方法：<ul>
+<li>1）自然基变换求解</li>
+<li>2）非自然基变换求解：利用矩阵逆运算</li>
+</ul>
+</li>
+</ul>
+<h1 id="第三章-正交性"><a href="#第三章-正交性" class="headerlink" title="第三章 正交性"></a>第三章 正交性</h1><p><strong>正交补</strong></p>
+<p>对于子空间 $V \subseteq \mathbb{R}^n$，所有与 $V$ 正交的向量集合组成的空间称为正交补，写作 $W=V^{\bot}$。</p>
+<p><strong>投影</strong></p>
+<p>向量 $b$ 在向量 $a$ 上的投影表示为：$proj_a:b\mapsto p=\hat xa$</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;0=a^T(b-\hat{x}a)\Rightarrow \hat{x}=\frac{a^Tb}{a^T a} \\<br>\therefore &amp;proj_a(b)=\frac{aa^T}{a^Ta}\cdot b<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>所以，投影矩阵为 $P=\frac{aa^T}{|a|^2}$</p>
+<h2 id="最小二乘"><a href="#最小二乘" class="headerlink" title="最小二乘"></a>最小二乘</h2><p>若系统 $Ax=b$ 无解，则其最小二乘解（残差最小）为 $\hat{x}=(A^TA)^{-1}A^T b$，其投影 $p=A\hat{x}=A(A^TA)^{-1}A^T b$。</p>
+<h2 id="正交基（重点）"><a href="#正交基（重点）" class="headerlink" title="正交基（重点）"></a>正交基（重点）</h2><p>正交矩阵 $Q$ 满足 $Q^TQ=I$，即 $Q$ 的每一列（向量）组成了 $\mathbb{R}^n$ 的标准正交基。</p>
+<h2 id="Gram-Schmidt-正交化"><a href="#Gram-Schmidt-正交化" class="headerlink" title="Gram-Schmidt 正交化"></a>Gram-Schmidt 正交化</h2><ul>
+<li>基本思想：从每一个新向量中扣除其在已知方向上的投影分量</li>
+<li>步骤：<ol>
+<li>求投影（正交化）</li>
+<li>求标准基（单位化）</li>
+</ol>
+</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;A_j=a_j-(q_1^T a_j)q_1-(q_2^T a_j)q_2—\cdots -(q_{j-1}^T a_j)q_{j-1} \\<br>&amp;q_j=\frac{A_j}{|A_j|}<br>\end{array}<br>$</p>
+
+</blockquote>
+<h2 id="QR-分解（重点）"><a href="#QR-分解（重点）" class="headerlink" title="QR 分解（重点）"></a>QR 分解（重点）</h2><p>$A=QR$</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>A= \left[\begin{array}{c} a&amp;b&amp;c \end{array}\right]=\left[\begin{array}{c} q_1 &amp; q_2 &amp; q_3 \end{array}\right]\left[\begin{array}{c} q_1^Ta &amp; q_1^Tb &amp; q_1^Tc \\ &amp; q_2^Tb &amp; q_2^Tc \\ &amp;&amp; q_3^Tc \end{array}\right]=QR<br>\end{array}<br>$</p>
+
+</blockquote>
+<blockquote>
+<p>$Q$ 可通过 Gram-Schmidt 过程求得，$R$ 通过 $R=Q^TA$ 求得。</p>
+</blockquote>
+<h1 id="第四章-行列式"><a href="#第四章-行列式" class="headerlink" title="第四章 行列式"></a>第四章 行列式</h1><p>略。</p>
+<h1 id="第五章-特征值与特征向量"><a href="#第五章-特征值与特征向量" class="headerlink" title="第五章 特征值与特征向量"></a>第五章 特征值与特征向量</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>定义：设 $A$ 为 $n$ 阶矩阵。若存在一个非零向量 $x$ 和标量 $\lambda$ 满足 $Ax=\lambda x$ ，则称 $\lambda$ 为 $A$ 的一个特征值，$x$ 为 $\lambda$ 对应的特征向量。</p>
+<p>定义：设 $A=[a_{ij}]_{n\times n}$ 为 $n$ 阶方阵：</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>f(\lambda)=|A-\lambda I|=\left|\begin{array}{c} a_{11}-\lambda &amp; a_{12} &amp; \cdots &amp; a_{1n} \\ a_{21} &amp; a_{22}-\lambda &amp; \cdots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}-\lambda \end{array}\right|<br>\end{array}<br>$</p>
+
+</blockquote>
+<p>为 $A$ 的特征多项式。</p>
+<ul>
+<li>求特征值和特征向量的方法：<ul>
+<li>计算 A 的特征多项式</li>
+<li>求出全部根（特征值）</li>
+<li>带入特征方程求出特征向量</li>
+</ul>
+</li>
+<li>特征值的性质：以矩阵 $A$ 的所有特征值为例<ul>
+<li>特征值之积：$\prod_{i}\lambda_i=|A|$</li>
+<li>特征值之和：$\sum_{i}\lambda_i=trace(A)$，称为 $A$ 的迹</li>
+</ul>
+</li>
+</ul>
+<h2 id="矩阵对角化"><a href="#矩阵对角化" class="headerlink" title="矩阵对角化"></a>矩阵对角化</h2><p>定义：$\exists S,\ S^{-1}AS=\Lambda\Rightarrow$ 矩阵 $A$ 可对角化（$\Lambda$ 是对角矩阵，对角元为 $A$ 的特征值）</p>
+<p>概念：</p>
+<ul>
+<li>代数重数：特征值 $\lambda_i$ 的最大重复数</li>
+<li>几何重数：$\lambda_i$ 对应的特征子空间（即 $A-\lambda_i I$ 的零空间）的维数</li>
+</ul>
+<p>定理：</p>
+<ul>
+<li>当且仅当对于 $A$ 的每个特征值 $\lambda_i$，几何重数等于（一般是小于等于）代数重数时，矩阵 $A$ 可对角化</li>
+<li>定义中 $S$ 的第 $j$ 列是 $A$ 的第 $j$ 个特征值所对应的特征向量</li>
+<li>设 $A$，$B$ 为同阶可对角化矩阵，当且仅当 $AB=BA$ 时，它们有相同的特征向量。</li>
+</ul>
+<h2 id="复矩阵"><a href="#复矩阵" class="headerlink" title="复矩阵"></a>复矩阵</h2><p>概念：</p>
+<ul>
+<li>共轭：$z=a+ib \to \bar{z}=a-ib$</li>
+<li>极坐标：$\begin{array}{l} &amp;a+ib=r(\cos{\theta}+i\sin{\theta})=re^{i\theta} \\ &amp;a-ib=r(\cos{\theta}-i\sin{\theta})=re^{-i\theta} \end{array}$</li>
+</ul>
+<p>极坐标简化运算：$(a+bi)\times (c+di)=re^{i\theta}\times Re^{i\alpha} \to$ 模长为 $rR$，角度为 $\theta +\alpha$</p>
+<p><strong>厄米特矩阵 (Hermitian Matrix)</strong></p>
+<p>定义1：对于一复数矩阵 $A$，其转置为 $\bar{A}^T$，称为 $A$ 的厄米特矩阵，记为 $A^H$ 。</p>
+<p>定义2：若矩阵 $A$ 满足 $A^H=A$，则称 $A$ 是厄米特矩阵。</p>
+<h2 id="三种对角化分解"><a href="#三种对角化分解" class="headerlink" title="三种对角化分解"></a>三种对角化分解</h2><ul>
+<li><font color="red">可对角化矩阵</font>可以用<font color="blue">可逆矩阵</font>进行对角化：$A=S\Lambda S^{-1}$</li>
+<li><font color="red">实对称矩阵</font>可以用<font color="blue">正交矩阵</font>进行对角化：$A=Q\Lambda Q^T$</li>
+<li><font color="red">厄米特矩阵</font>可以用<font color="blue">酉矩阵</font>进行对角化：$A=U\Lambda U^H$<ul>
+<li>酉矩阵是满足 $U^H=U^{-1}$ 的矩阵</li>
+</ul>
+</li>
+</ul>
+<h2 id="相似矩阵"><a href="#相似矩阵" class="headerlink" title="相似矩阵"></a>相似矩阵</h2><p>定义：若矩阵 $A$，$B$ 满足 $B=MAM^{-1}$（其中，$M$ 是可逆矩阵），则称 $A$ 与 $B$ 相似，记为 $A\sim B$。</p>
+<p>定理：</p>
+<ol>
+<li>$A$ 和 $B$ 有相同的特征值。</li>
+<li>当且仅当 $M^{-1}v$ 是 $B$ 的一个特征向量时，$v$ 是 $A$ 的特征向量。</li>
+<li>$A$ 和 $B$ 有相同的行列式、秩和迹。</li>
+</ol>
+<p><strong>相似变换</strong></p>
+<p>定理：同一个线性变换在两组基下的表示矩阵 $A$ 和 $B$ 是相似的</p>
+<p>证明：令 $V=\mathbb{R}^2$ ，$T$ 为 $V$ 的一个线性变换；又设另一组基 $\{w_1,w_2\}$，证明如下</p>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{l}<br>&amp;T(v_1)=a_{11}v_1+a_{12}v_2\ \ \ \ T(v_2)=a_{21}v_1+a_{22}v_2 \\<br>\therefore &amp;\left[\begin{array}{c}Tv_1&amp;Tv_2\end{array}\right]=\left[\begin{array}{c}v_1&amp;v_2\end{array}\right]\left[\begin{array}{c}a_{11}&amp;a_{21} \\ a_{12}&amp;a_{22}\end{array}\right]=\left[\begin{array}{c}v_1&amp;v_2\end{array}\right]A \\<br>\because &amp;\left\{\begin{array}{l}&amp;w_1=m_{11}v_1+m_{12}v_2 \\ &amp;w_2=m_{21}v_1+m_{22}v_2 \end{array}\right. \\<br>\therefore &amp;\left[\begin{array}{c}w_1&amp;w_2\end{array}\right]=\left[\begin{array}{c}v_1&amp;v_2\end{array}\right]M \\<br>&amp;\left[\begin{array}{c}Tw_1&amp;Tw_2\end{array}\right]=\left[\begin{array}{c}Tv_1&amp;Tv_2\end{array}\right]M \\<br>\text{also }\because &amp;\left[\begin{array}{c}Tw_1&amp;Tw_2\end{array}\right]=\left[\begin{array}{c}w_1&amp;w_2\end{array}\right]B \\<br>\therefore &amp;MB=AM \Rightarrow B=M^{-1}AM\text{(相似)}<br>\end{array}<br>$</p>
+
+</blockquote>
+<h2 id="舒尔定理"><a href="#舒尔定理" class="headerlink" title="舒尔定理"></a>舒尔定理</h2><p>对一个 $n$ 阶方阵 $A$，总有一个酉矩阵 $U$，令 $U^{-1}AU=T$，$T$ 为与 $A$ 相似的三角矩阵，且对角线上的值是 $A$ 的特征值</p>
+<p>推论：当 $A$ 为厄米特矩阵时，$T^H=(U^{-1}AU)^H=U^{-1}A^H U=T$。$T$ 是对角矩阵（证明了谱定律：$A=A^H \Rightarrow A$ 是可对角化的）</p>
+<h1 id="第六章-正定矩阵"><a href="#第六章-正定矩阵" class="headerlink" title="第六章 正定矩阵"></a>第六章 正定矩阵</h1><h2 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h2><blockquote class="blockquote-center">
+<p>$<br>f(x,y)=ax^2+2bxy+cy^2<br>$</p>
+
+</blockquote>
+<ul>
+<li>当且仅当 $ac\gt b^2$ 且 $a\gt 0(a\lt 0)$ 时，$f(x,y)$ 为正定（负定），存在唯一最小（最大）值【定点】</li>
+<li>若 $ac=b^2$，则根据 $a$ 的值称为半正定/半负定，存在不唯一最小（最大）值</li>
+<li>当 $ac\lt b^2$，称二次型 $f$ 不定，此时二次型所过定点非最大也非最小，称为<font color="red">鞍点</font></li>
+</ul>
+<p>二次型的另一种表示：($A$ 是实对称矩阵)</p>
+<blockquote class="blockquote-center">
+<p>$<br>ax^2+2bxy+cy^2=\left[\begin{array}{c}x&amp;y\end{array}\right]\left[\begin{array}{c}a&amp;b \\ b&amp;c\end{array}\right]\left[\begin{array}{c}x \\ y\end{array}\right]=x^TAx<br>$</p>
+
+</blockquote>
+<blockquote>
+<p>正定二次型所对应矩阵 $A$ 为正定矩阵 </p>
+</blockquote>
+<h2 id="主轴定理（重点）"><a href="#主轴定理（重点）" class="headerlink" title="主轴定理（重点）"></a>主轴定理（重点）</h2><p>定义：</p>
+<p>设 $A_{n\times n}$ 为实对称矩阵则有一个变换 $x=Qy$（ 为正交矩阵），将二次型 $x^T Ax$ 转变为 $y^T\Lambda y$（不含交叉乘积项），通过这种变换，可以得到一个标准二次型 $y^T\Lambda y=\lambda_1y_1^2+\lambda_2y_2^2+\cdots +\lambda_n y_n^2$。</p>
+<p>例：设 $A=\left[\begin{array}{c}5&amp;-2 \\ -2&amp;5\end{array}\right]$ ，即 $x^T Ax=5x_1^2-4x_1x_2+5x_2^2$ 。可求得 $A$ 的特征值是 $3$ 和 $7$，对应的特征向量为 $u_1=\left[\begin{array}{c}1/\sqrt{2} \\ 1/\sqrt{2}\end{array}\right]$ 和 $u_2=\left[\begin{array}{c}-1/\sqrt{2} \\ 1/\sqrt{2}\end{array}\right]$。</p>
+<p>令 $Q=\left[\begin{array}{c}u_1&amp;u_2\end{array}\right]=\left[\begin{array}{c}1/\sqrt{2}&amp;-1/\sqrt{2} \\ 1/\sqrt{2}&amp;1/\sqrt{2}\end{array}\right]$，由 $x=Qy$ 得：$y^T\Lambda y=3y_1^2+7y_2^2$。</p>
+<blockquote>
+<p>用法：将实对称矩阵 $A$ 正交对角化：$A=Q\Lambda Q^T$。再通过 $y=Q^T x$ 得到 $y$。</p>
+</blockquote>
+<h2 id="合同变换法"><a href="#合同变换法" class="headerlink" title="合同变换法"></a>合同变换法</h2><p>思路：任意 n 阶实对称矩阵 A，都存在可逆矩阵 C，使得 $C^TAC=diag(d_1,d_2,\cdots,d_n)$。通过对矩阵 $A$ 的初等行/列变换，可以得到合同变换矩阵 $C$ 和变换后的矩阵 $D=C^TAC$</p>
+<blockquote class="blockquote-center">
+<p>$<br>\left[\begin{array}{c}C^T&amp;0 \\ 0&amp;I\end{array}\right]\left[\begin{array}{c}A \\ I\end{array}\right]C=\left[\begin{array}{c}C^TAC \\ C\end{array}\right]=\left[\begin{array}{c}D \\ C\end{array}\right]<br>$</p>
+
+</blockquote>
+<p>由此可见，用正交变换法得到的标准型并不唯一（参考主轴定理）。标准型不唯一，但是标准型的正负号个数不变。</p>
+<h2 id="奇异值分解（重点）"><a href="#奇异值分解（重点）" class="headerlink" title="奇异值分解（重点）"></a>奇异值分解（重点）</h2><p>思路：当矩阵非方阵时，不可进行特征值分解（正交对角化）。此时可以进行奇异值分解。</p>
+<p>定义：可对任意矩阵进行奇异值分解（SVD）：</p>
+<blockquote class="blockquote-center">
+<p>$<br>A=U\Sigma V^T<br>$</p>
+
+</blockquote>
+<p>其中，$\Sigma$ 为 $m\times n$ 对角阵（非方阵），其对角线处非零元素记为 $\sigma_1,\sigma_2.\cdots,\sigma_r$ ，这些元素称为 $A$ 的奇异值，也是 $AA^T$ 的特征值的平方根。</p>
+<ul>
+<li>正交矩阵 $U$：$m$ 行 $n$ 列，每个向量是 $AA^T$ 的特征向量；</li>
+<li>正交矩阵 $V$：$n$ 行 $n$ 列，每个向量是 $A^TA$ 的特征向量。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>2022 Fall</category>
+      </categories>
+      <tags>
+        <tag>Maths</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MA234 大数据导论与实践（三）</title>
     <url>/2024/08/29/Big-Data-3/</url>
     <content><![CDATA[<h1 id="Big-Data-III"><a href="#Big-Data-III" class="headerlink" title="Big Data (III)"></a>Big Data (III)</h1><h2 id="VI-Ensemble-Methods-集成方法"><a href="#VI-Ensemble-Methods-集成方法" class="headerlink" title="VI. Ensemble Methods (集成方法)"></a>VI. Ensemble Methods (集成方法)</h2><ul>
 <li>Two commonly used ensemble methods<ul>
@@ -7504,516 +8140,6 @@ R_{\text{adj}}^2=1-\frac{(1-R^2)(n-1)}{n-p-1}</script><ul>
       <tags>
         <tag>Python</tag>
         <tag>CSE Learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linear Algebra</title>
-    <url>/2024/08/25/Linear-Algebra/</url>
-    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><p>由于篇仅用于某些计算机相关课程的复习，所以某些“不太重要”的知识点要么默认已知，要么不会提及（如转置的概念和二级结论，行列式的概念等）。</p>
-<p>由于教材不同或版本原因，对于一些符号可能有差异（如表示单位方阵有 $I/E$，以下统一使用本人学习的教材所用符号）</p>
-<h1 id="第一章-矩阵（入门）"><a href="#第一章-矩阵（入门）" class="headerlink" title="第一章 矩阵（入门）"></a>第一章 矩阵（入门）</h1><h2 id="矩阵的逆"><a href="#矩阵的逆" class="headerlink" title="矩阵的逆"></a>矩阵的逆</h2><p>定义：$AC=CA=I\Longleftrightarrow$ $C$ 是 $A$ 的逆，记作 $A^{-1}$。</p>
-<blockquote>
-<p>不是所有方阵都有逆，不可逆<font color="red">方阵</font>称为<font color="red">奇异矩阵</font>。</p>
-</blockquote>
-<h2 id="矩阵的-LDU-分解"><a href="#矩阵的-LDU-分解" class="headerlink" title="矩阵的 LDU 分解"></a>矩阵的 LDU 分解</h2><p>定义：$\color{red}PA=LDU$，其中 $L$ 是下三角矩阵，$D$ 是对角矩阵，$U$ 是主对角元为 1 的上三角矩阵。($P$ 仅用作行交换)</p>
-<h1 id="第二章-向量空间"><a href="#第二章-向量空间" class="headerlink" title="第二章 向量空间"></a>第二章 向量空间</h1><h2 id="基的相关定理"><a href="#基的相关定理" class="headerlink" title="基的相关定理"></a>基的相关定理</h2><p><strong>一、坐标：</strong> 令 $A=\{v_1,v_2,\cdots,v_n\}$ 是 $\mathbb{V}^n$ 的一组基，$\forall w\in\mathbb{V}^n$ ，有唯一数组 $\{a_1,a_2,\cdots,a_n\}$ 使 $w=a_1v_1+a_2v_2+\cdots +a_nv_n$ ，则该数组是 $\mathbb{A}$（向量空间的一组基）中 $w$ 的坐标，记为 $[w]_A$ 。</p>
-<p><strong>二、满秩：</strong> 对于一个 $m*n$ 矩阵 $A$，若 $rank(A)=m$，则称 $A$ 行满秩，若 $rank(A)=n$，则称 $A$ 列满秩。</p>
-<ul>
-<li>若 $A_{m\times n}$ 行满秩（可推出 $m\le n$），且前 $m$ 列线性独立，令 $A=\left[A_0|X\right]$ ，则右逆 $C=\left[\begin{array}{c}A_0^{-1} \\ 0\end{array}\right]$ ；</li>
-<li>若 $A_{m\times n}$ 列满秩（可推出 $m\ge n$），且前 $n$ 行线性独立，令 $A=\left[\begin{array}{c}A_0 \\ Y\end{array}\right]$ ，则左逆 $B=\left[A_0^{-1}|\ 0\right]$ 。</li>
-</ul>
-<p><strong>三、线性变换：</strong></p>
-<ul>
-<li>求解变换矩阵的方法：<ul>
-<li>1）自然基变换求解</li>
-<li>2）非自然基变换求解：利用矩阵逆运算</li>
-</ul>
-</li>
-</ul>
-<h1 id="第三章-正交性"><a href="#第三章-正交性" class="headerlink" title="第三章 正交性"></a>第三章 正交性</h1><p><strong>正交补</strong></p>
-<p>对于子空间 $V \subseteq \mathbb{R}^n$，所有与 $V$ 正交的向量集合组成的空间称为正交补，写作 $W=V^{\bot}$。</p>
-<p><strong>投影</strong></p>
-<p>向量 $b$ 在向量 $a$ 上的投影表示为：$proj_a:b\mapsto p=\hat xa$</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;0=a^T(b-\hat{x}a)\Rightarrow \hat{x}=\frac{a^Tb}{a^T a} \\<br>\therefore &amp;proj_a(b)=\frac{aa^T}{a^Ta}\cdot b<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>所以，投影矩阵为 $P=\frac{aa^T}{|a|^2}$</p>
-<h2 id="最小二乘"><a href="#最小二乘" class="headerlink" title="最小二乘"></a>最小二乘</h2><p>若系统 $Ax=b$ 无解，则其最小二乘解（残差最小）为 $\hat{x}=(A^TA)^{-1}A^T b$，其投影 $p=A\hat{x}=A(A^TA)^{-1}A^T b$。</p>
-<h2 id="正交基（重点）"><a href="#正交基（重点）" class="headerlink" title="正交基（重点）"></a>正交基（重点）</h2><p>正交矩阵 $Q$ 满足 $Q^TQ=I$，即 $Q$ 的每一列（向量）组成了 $\mathbb{R}^n$ 的标准正交基。</p>
-<h2 id="Gram-Schmidt-正交化"><a href="#Gram-Schmidt-正交化" class="headerlink" title="Gram-Schmidt 正交化"></a>Gram-Schmidt 正交化</h2><ul>
-<li>基本思想：从每一个新向量中扣除其在已知方向上的投影分量</li>
-<li>步骤：<ol>
-<li>求投影（正交化）</li>
-<li>求标准基（单位化）</li>
-</ol>
-</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;A_j=a_j-(q_1^T a_j)q_1-(q_2^T a_j)q_2—\cdots -(q_{j-1}^T a_j)q_{j-1} \\<br>&amp;q_j=\frac{A_j}{|A_j|}<br>\end{array}<br>$</p>
-
-</blockquote>
-<h2 id="QR-分解（重点）"><a href="#QR-分解（重点）" class="headerlink" title="QR 分解（重点）"></a>QR 分解（重点）</h2><p>$A=QR$</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>A= \left[\begin{array}{c} a&amp;b&amp;c \end{array}\right]=\left[\begin{array}{c} q_1 &amp; q_2 &amp; q_3 \end{array}\right]\left[\begin{array}{c} q_1^Ta &amp; q_1^Tb &amp; q_1^Tc \\ &amp; q_2^Tb &amp; q_2^Tc \\ &amp;&amp; q_3^Tc \end{array}\right]=QR<br>\end{array}<br>$</p>
-
-</blockquote>
-<blockquote>
-<p>$Q$ 可通过 Gram-Schmidt 过程求得，$R$ 通过 $R=Q^TA$ 求得。</p>
-</blockquote>
-<h1 id="第四章-行列式"><a href="#第四章-行列式" class="headerlink" title="第四章 行列式"></a>第四章 行列式</h1><p>略。</p>
-<h1 id="第五章-特征值与特征向量"><a href="#第五章-特征值与特征向量" class="headerlink" title="第五章 特征值与特征向量"></a>第五章 特征值与特征向量</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>定义：设 $A$ 为 $n$ 阶矩阵。若存在一个非零向量 $x$ 和标量 $\lambda$ 满足 $Ax=\lambda x$ ，则称 $\lambda$ 为 $A$ 的一个特征值，$x$ 为 $\lambda$ 对应的特征向量。</p>
-<p>定义：设 $A=[a_{ij}]_{n\times n}$ 为 $n$ 阶方阵：</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>f(\lambda)=|A-\lambda I|=\left|\begin{array}{c} a_{11}-\lambda &amp; a_{12} &amp; \cdots &amp; a_{1n} \\ a_{21} &amp; a_{22}-\lambda &amp; \cdots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}-\lambda \end{array}\right|<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>为 $A$ 的特征多项式。</p>
-<ul>
-<li>求特征值和特征向量的方法：<ul>
-<li>计算 A 的特征多项式</li>
-<li>求出全部根（特征值）</li>
-<li>带入特征方程求出特征向量</li>
-</ul>
-</li>
-<li>特征值的性质：以矩阵 $A$ 的所有特征值为例<ul>
-<li>特征值之积：$\prod_{i}\lambda_i=|A|$</li>
-<li>特征值之和：$\sum_{i}\lambda_i=trace(A)$，称为 $A$ 的迹</li>
-</ul>
-</li>
-</ul>
-<h2 id="矩阵对角化"><a href="#矩阵对角化" class="headerlink" title="矩阵对角化"></a>矩阵对角化</h2><p>定义：$\exists S,\ S^{-1}AS=\Lambda\Rightarrow$ 矩阵 $A$ 可对角化（$\Lambda$ 是对角矩阵，对角元为 $A$ 的特征值）</p>
-<p>概念：</p>
-<ul>
-<li>代数重数：特征值 $\lambda_i$ 的最大重复数</li>
-<li>几何重数：$\lambda_i$ 对应的特征子空间（即 $A-\lambda_i I$ 的零空间）的维数</li>
-</ul>
-<p>定理：</p>
-<ul>
-<li>当且仅当对于 $A$ 的每个特征值 $\lambda_i$，几何重数等于（一般是小于等于）代数重数时，矩阵 $A$ 可对角化</li>
-<li>定义中 $S$ 的第 $j$ 列是 $A$ 的第 $j$ 个特征值所对应的特征向量</li>
-<li>设 $A$，$B$ 为同阶可对角化矩阵，当且仅当 $AB=BA$ 时，它们有相同的特征向量。</li>
-</ul>
-<h2 id="复矩阵"><a href="#复矩阵" class="headerlink" title="复矩阵"></a>复矩阵</h2><p>概念：</p>
-<ul>
-<li>共轭：$z=a+ib \to \bar{z}=a-ib$</li>
-<li>极坐标：$\begin{array}{l} &amp;a+ib=r(\cos{\theta}+i\sin{\theta})=re^{i\theta} \\ &amp;a-ib=r(\cos{\theta}-i\sin{\theta})=re^{-i\theta} \end{array}$</li>
-</ul>
-<p>极坐标简化运算：$(a+bi)\times (c+di)=re^{i\theta}\times Re^{i\alpha} \to$ 模长为 $rR$，角度为 $\theta +\alpha$</p>
-<p><strong>厄米特矩阵 (Hermitian Matrix)</strong></p>
-<p>定义1：对于一复数矩阵 $A$，其转置为 $\bar{A}^T$，称为 $A$ 的厄米特矩阵，记为 $A^H$ 。</p>
-<p>定义2：若矩阵 $A$ 满足 $A^H=A$，则称 $A$ 是厄米特矩阵。</p>
-<h2 id="三种对角化分解"><a href="#三种对角化分解" class="headerlink" title="三种对角化分解"></a>三种对角化分解</h2><ul>
-<li><font color="red">可对角化矩阵</font>可以用<font color="blue">可逆矩阵</font>进行对角化：$A=S\Lambda S^{-1}$</li>
-<li><font color="red">实对称矩阵</font>可以用<font color="blue">正交矩阵</font>进行对角化：$A=Q\Lambda Q^T$</li>
-<li><font color="red">厄米特矩阵</font>可以用<font color="blue">酉矩阵</font>进行对角化：$A=U\Lambda U^H$<ul>
-<li>酉矩阵是满足 $U^H=U^{-1}$ 的矩阵</li>
-</ul>
-</li>
-</ul>
-<h2 id="相似矩阵"><a href="#相似矩阵" class="headerlink" title="相似矩阵"></a>相似矩阵</h2><p>定义：若矩阵 $A$，$B$ 满足 $B=MAM^{-1}$（其中，$M$ 是可逆矩阵），则称 $A$ 与 $B$ 相似，记为 $A\sim B$。</p>
-<p>定理：</p>
-<ol>
-<li>$A$ 和 $B$ 有相同的特征值。</li>
-<li>当且仅当 $M^{-1}v$ 是 $B$ 的一个特征向量时，$v$ 是 $A$ 的特征向量。</li>
-<li>$A$ 和 $B$ 有相同的行列式、秩和迹。</li>
-</ol>
-<p><strong>相似变换</strong></p>
-<p>定理：同一个线性变换在两组基下的表示矩阵 $A$ 和 $B$ 是相似的</p>
-<p>证明：令 $V=\mathbb{R}^2$ ，$T$ 为 $V$ 的一个线性变换；又设另一组基 $\{w_1,w_2\}$，证明如下</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;T(v_1)=a_{11}v_1+a_{12}v_2\ \ \ \ T(v_2)=a_{21}v_1+a_{22}v_2 \\<br>\therefore &amp;\left[\begin{array}{c}Tv_1&amp;Tv_2\end{array}\right]=\left[\begin{array}{c}v_1&amp;v_2\end{array}\right]\left[\begin{array}{c}a_{11}&amp;a_{21} \\ a_{12}&amp;a_{22}\end{array}\right]=\left[\begin{array}{c}v_1&amp;v_2\end{array}\right]A \\<br>\because &amp;\left\{\begin{array}{l}&amp;w_1=m_{11}v_1+m_{12}v_2 \\ &amp;w_2=m_{21}v_1+m_{22}v_2 \end{array}\right. \\<br>\therefore &amp;\left[\begin{array}{c}w_1&amp;w_2\end{array}\right]=\left[\begin{array}{c}v_1&amp;v_2\end{array}\right]M \\<br>&amp;\left[\begin{array}{c}Tw_1&amp;Tw_2\end{array}\right]=\left[\begin{array}{c}Tv_1&amp;Tv_2\end{array}\right]M \\<br>\text{also }\because &amp;\left[\begin{array}{c}Tw_1&amp;Tw_2\end{array}\right]=\left[\begin{array}{c}w_1&amp;w_2\end{array}\right]B \\<br>\therefore &amp;MB=AM \Rightarrow B=M^{-1}AM\text{(相似)}<br>\end{array}<br>$</p>
-
-</blockquote>
-<h2 id="舒尔定理"><a href="#舒尔定理" class="headerlink" title="舒尔定理"></a>舒尔定理</h2><p>对一个 $n$ 阶方阵 $A$，总有一个酉矩阵 $U$，令 $U^{-1}AU=T$，$T$ 为与 $A$ 相似的三角矩阵，且对角线上的值是 $A$ 的特征值</p>
-<p>推论：当 $A$ 为厄米特矩阵时，$T^H=(U^{-1}AU)^H=U^{-1}A^H U=T$。$T$ 是对角矩阵（证明了谱定律：$A=A^H \Rightarrow A$ 是可对角化的）</p>
-<h1 id="第六章-正定矩阵"><a href="#第六章-正定矩阵" class="headerlink" title="第六章 正定矩阵"></a>第六章 正定矩阵</h1><h2 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h2><blockquote class="blockquote-center">
-<p>$<br>f(x,y)=ax^2+2bxy+cy^2<br>$</p>
-
-</blockquote>
-<ul>
-<li>当且仅当 $ac\gt b^2$ 且 $a\gt 0(a\lt 0)$ 时，$f(x,y)$ 为正定（负定），存在唯一最小（最大）值【定点】</li>
-<li>若 $ac=b^2$，则根据 $a$ 的值称为半正定/半负定，存在不唯一最小（最大）值</li>
-<li>当 $ac\lt b^2$，称二次型 $f$ 不定，此时二次型所过定点非最大也非最小，称为<font color="red">鞍点</font></li>
-</ul>
-<p>二次型的另一种表示：($A$ 是实对称矩阵)</p>
-<blockquote class="blockquote-center">
-<p>$<br>ax^2+2bxy+cy^2=\left[\begin{array}{c}x&amp;y\end{array}\right]\left[\begin{array}{c}a&amp;b \\ b&amp;c\end{array}\right]\left[\begin{array}{c}x \\ y\end{array}\right]=x^TAx<br>$</p>
-
-</blockquote>
-<blockquote>
-<p>正定二次型所对应矩阵 $A$ 为正定矩阵 </p>
-</blockquote>
-<h2 id="主轴定理（重点）"><a href="#主轴定理（重点）" class="headerlink" title="主轴定理（重点）"></a>主轴定理（重点）</h2><p>定义：</p>
-<p>设 $A_{n\times n}$ 为实对称矩阵则有一个变换 $x=Qy$（ 为正交矩阵），将二次型 $x^T Ax$ 转变为 $y^T\Lambda y$（不含交叉乘积项），通过这种变换，可以得到一个标准二次型 $y^T\Lambda y=\lambda_1y_1^2+\lambda_2y_2^2+\cdots +\lambda_n y_n^2$。</p>
-<p>例：设 $A=\left[\begin{array}{c}5&amp;-2 \\ -2&amp;5\end{array}\right]$ ，即 $x^T Ax=5x_1^2-4x_1x_2+5x_2^2$ 。可求得 $A$ 的特征值是 $3$ 和 $7$，对应的特征向量为 $u_1=\left[\begin{array}{c}1/\sqrt{2} \\ 1/\sqrt{2}\end{array}\right]$ 和 $u_2=\left[\begin{array}{c}-1/\sqrt{2} \\ 1/\sqrt{2}\end{array}\right]$。</p>
-<p>令 $Q=\left[\begin{array}{c}u_1&amp;u_2\end{array}\right]=\left[\begin{array}{c}1/\sqrt{2}&amp;-1/\sqrt{2} \\ 1/\sqrt{2}&amp;1/\sqrt{2}\end{array}\right]$，由 $x=Qy$ 得：$y^T\Lambda y=3y_1^2+7y_2^2$。</p>
-<blockquote>
-<p>用法：将实对称矩阵 $A$ 正交对角化：$A=Q\Lambda Q^T$。再通过 $y=Q^T x$ 得到 $y$。</p>
-</blockquote>
-<h2 id="合同变换法"><a href="#合同变换法" class="headerlink" title="合同变换法"></a>合同变换法</h2><p>思路：任意 n 阶实对称矩阵 A，都存在可逆矩阵 C，使得 $C^TAC=diag(d_1,d_2,\cdots,d_n)$。通过对矩阵 $A$ 的初等行/列变换，可以得到合同变换矩阵 $C$ 和变换后的矩阵 $D=C^TAC$</p>
-<blockquote class="blockquote-center">
-<p>$<br>\left[\begin{array}{c}C^T&amp;0 \\ 0&amp;I\end{array}\right]\left[\begin{array}{c}A \\ I\end{array}\right]C=\left[\begin{array}{c}C^TAC \\ C\end{array}\right]=\left[\begin{array}{c}D \\ C\end{array}\right]<br>$</p>
-
-</blockquote>
-<p>由此可见，用正交变换法得到的标准型并不唯一（参考主轴定理）。标准型不唯一，但是标准型的正负号个数不变。</p>
-<h2 id="奇异值分解（重点）"><a href="#奇异值分解（重点）" class="headerlink" title="奇异值分解（重点）"></a>奇异值分解（重点）</h2><p>思路：当矩阵非方阵时，不可进行特征值分解（正交对角化）。此时可以进行奇异值分解。</p>
-<p>定义：可对任意矩阵进行奇异值分解（SVD）：</p>
-<blockquote class="blockquote-center">
-<p>$<br>A=U\Sigma V^T<br>$</p>
-
-</blockquote>
-<p>其中，$\Sigma$ 为 $m\times n$ 对角阵（非方阵），其对角线处非零元素记为 $\sigma_1,\sigma_2.\cdots,\sigma_r$ ，这些元素称为 $A$ 的奇异值，也是 $AA^T$ 的特征值的平方根。</p>
-<ul>
-<li>正交矩阵 $U$：$m$ 行 $n$ 列，每个向量是 $AA^T$ 的特征向量；</li>
-<li>正交矩阵 $V$：$n$ 行 $n$ 列，每个向量是 $A^TA$ 的特征向量。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>2022 Fall</category>
-      </categories>
-      <tags>
-        <tag>Maths</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>概率论与数理统计</title>
-    <url>/2024/08/19/Probability-Theory-and-Mathematical-Statistics/</url>
-    <content><![CDATA[<h1 id="第一章-概率"><a href="#第一章-概率" class="headerlink" title="第一章 概率"></a>第一章 概率</h1><h2 id="记数方法"><a href="#记数方法" class="headerlink" title="记数方法"></a>记数方法</h2><ul>
-<li>古典概型<ul>
-<li>$\Omega$ 只含有限个样本点</li>
-<li>每个样本点出现是等可能的</li>
-</ul>
-</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>P(A)=\frac{A \text{的有利场合数}}{\text{样本点总数}}=\frac{k}{n}<br>$</p>
-
-</blockquote>
-<ul>
-<li>几何概型<ul>
-<li>对比古典概型有无限个样本点</li>
-</ul>
-</li>
-</ul>
-<h2 id="全概率定律"><a href="#全概率定律" class="headerlink" title="全概率定律"></a>全概率定律</h2><p><strong>Def.</strong> 设 $\Omega$ 为样本空间，若事件 $B_1,B_2,\cdots ,B_n$ 满足：</p>
-<ol>
-<li>$B_1,B_2,\cdots ,B_n$ 两两不相容</li>
-<li>$B_1 \cup B_2 \cup \cdots \cup B_n = \Omega$</li>
-</ol>
-<p>则称 $B_1,B_2,\cdots ,B_n$ 为样本空间的一个<font color="red">划分</font>。</p>
-<p>由此推出全概率公式：</p>
-<blockquote class="blockquote-center">
-<p>$<br>P(A)=\sum_{i=1}^{n} P(A|B_i) \cdot P(B_i)<br>$</p>
-
-</blockquote>
-<p>由全概率公式和条件概率的乘法公式推导出 <font color="red">Bayes 公式</font>：</p>
-<blockquote class="blockquote-center">
-<p>$<br>P(B_i|A)=\frac{P(A|B_i)P(B_i)}{\sum_{j=1}^{n} P(A|B_j)P(B_j)}<br>$</p>
-
-</blockquote>
-<p>Bayes 公式的实际意义：</p>
-<p>假定 $B_1,B_2,\cdots ,B_n$ 为导致实验结果的“原因”，称 $P(B_i) (i=1,2,\cdots ,n)$ 为<font color="red">先验概率</font>。</p>
-<p>若试验产生事件 A ，则要探讨事件发生的“原因”：称 $P(B_i|A)$ 为<font color="red">后验概率</font>，称 $P(A|B_i)$ 为<font color="red">原因概率</font></p>
-<h1 id="第二章-随机变量"><a href="#第二章-随机变量" class="headerlink" title="第二章 随机变量"></a>第二章 随机变量</h1><h2 id="离散随机变量"><a href="#离散随机变量" class="headerlink" title="离散随机变量"></a>离散随机变量</h2><p>定义：</p>
-<blockquote class="blockquote-center">
-<p>$<br>P\{ X=x_k \}= p(x_k),\ \ (k=1,2,3,\cdots)<br>$</p>
-
-</blockquote>
-<p>为离散型 r.v. X 的概率质量函数 (PMF)</p>
-<blockquote class="blockquote-center">
-<p>$<br>F(x)=P\{ X \le x \}, -\infty \lt x \lt \infty<br>$</p>
-
-</blockquote>
-<p>为离散型 r.v. X 的累计分布函数 (CDF)</p>
-<p><strong>泊松定理</strong></p>
-<p>设 $\lambda \gt 0$，$n$ 为正整数，$\lim_{n \to \infty} np_n=\lambda$，则有</p>
-<blockquote class="blockquote-center">
-<p>$<br>\lim_{n\to \infty} C^k_n p^k_n(1-p_n)^{n-k}=\frac{\lambda^{k}e^{-\lambda}}{k!}<br>$</p>
-
-</blockquote>
-<h2 id="连续随机变量"><a href="#连续随机变量" class="headerlink" title="连续随机变量"></a>连续随机变量</h2><p>定义：</p>
-<blockquote class="blockquote-center">
-<p>$<br>F(x)=\int_{-\infty}^{x} f(t)\text{d}t,\ -\infty \lt x \lt \infty<br>$</p>
-
-</blockquote>
-<p>其中 $f(t)$ 为连续型 r.v. X 的概率密度函数 (PDF)</p>
-<p><strong>标准正态分布</strong></p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;\Phi(x)=\int_{-\infty}^{x} \psi(x)\text{d}x \\<br>&amp;\psi(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \\<br>&amp;s.t.\ \mu=0,\ \sigma^2=1<br>\end{array}<br>$</p>
-
-</blockquote>
-<h2 id="随机变量的函数"><a href="#随机变量的函数" class="headerlink" title="随机变量的函数"></a>随机变量的函数</h2><p>例：设随机变量 $X$，$Y$，满足 $Y=aX+b$，如何通过 $X$ 的概率密度分布求出 $Y$ 的 PDF？</p>
-<p>解：令 $x=g(y)=\frac{y-b}{a}$，可得 $F_Y(y)=P\{ Y\le y \}=P\{ X\le\frac{y-b}{a} \}=F_X(\frac{y-b}{a})$。</p>
-<p>化简得：$f_Y(y)=F_{X}’(g(y))=(g(y))’f_X(g(y))$</p>
-<p>如正态分布 $X\sim N(\mu,\sigma^2)$ 的线性函数 $aX+b \sim N(a\mu +b,(a\sigma)^2)$ 也是正态分布</p>
-<h1 id="第三章-联合分布"><a href="#第三章-联合分布" class="headerlink" title="第三章 联合分布"></a>第三章 联合分布</h1><h2 id="联合随机变量"><a href="#联合随机变量" class="headerlink" title="联合随机变量"></a>联合随机变量</h2><p>定义：</p>
-<blockquote class="blockquote-center">
-<p>$<br>F(X,Y)\triangleq P\{ X\le x,Y\le y \}\ \ s.t.\ \{x,y\}\in \mathbb{R}<br>$</p>
-
-</blockquote>
-<p>为 $X$ 与 $Y$ 的联合累积分布函数。</p>
-<blockquote class="blockquote-center">
-<p>$<br>F_X(x)= P\{ X\le x,Y\le \infty \}\ \ s.t.\ x\in \mathbb{R}<br>$</p>
-
-</blockquote>
-<p>称为 $X$ 的边际分布，$Y$ 同理。</p>
-<p><strong>概率密度函数</strong></p>
-<blockquote class="blockquote-center">
-<p>$<br>F(x,y)=\int_{-\infty}^{x} \int_{-\infty}^{y} f(u,v)\text{d}u\text{d}v,\ s.t.\ \{ x,y\}\in\mathbb{R}<br>$</p>
-
-</blockquote>
-<p>则 $f(x,y)$ 为 $X$，$Y$ 的概率密度函数(joint PDF)</p>
-<p><strong>边际密度</strong></p>
-<blockquote class="blockquote-center">
-<p>$<br>f_X(u)=\int_{-\infty}^{\infty} f(u,y)\text{d}y<br>$</p>
-
-</blockquote>
-<p>称为 $X$ 的边际密度，$Y$ 同理。</p>
-<h2 id="独立随机变量"><a href="#独立随机变量" class="headerlink" title="独立随机变量"></a>独立随机变量</h2><blockquote class="blockquote-center">
-<p>$<br>f(x,y)=f_X(x)\cdot f_Y(y)<br>$</p>
-
-</blockquote>
-<p>当上式成立时，$X$，$Y$ 相互独立，即相关系数 $\rho=0$。</p>
-<h2 id="条件分布"><a href="#条件分布" class="headerlink" title="条件分布"></a>条件分布</h2><p>（只看连续，离散情况容易推导）</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>P(X\le x|y\le Y\le y+\epsilon) &amp;=\frac{P\{X\le x,y\le Y\le y+\epsilon\}}{P\{ y\le Y\le y+\epsilon\ \}} \\<br>&amp;=\frac{\int_{-\infty}^{x}\int_{y}^{y+\epsilon} f(u,v)\text{d}u\text{d}v}{\int_{y}^{y+\epsilon} f_Y(v)\text{d}v} \\<br>&amp;=\frac{\epsilon\int_{-\infty}^{x}f(u,y_\epsilon)\text{d}u}{\epsilon f_Y(\tilde{y}_{\epsilon})} \\<br>&amp;= \int_{-\infty}^{x}\frac{f(u,y)}{f_Y(y)} \text{d}u\ \ (\epsilon\to 0)<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>定义 $\frac{f(u,y)}{f_Y(y)} \triangleq f_{X|Y}(x|y)$ 为 $Y=y$ 下 $X$ 的<font color="red">条件密度</font></p>
-<h2 id="联合分布随机变量的函数"><a href="#联合分布随机变量的函数" class="headerlink" title="联合分布随机变量的函数"></a>联合分布随机变量的函数</h2><p>1 . $Z=X+Y$</p>
-<p>利用卷积公式 (可写作 $f_X * f_Y$)：</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)\text{d}y \\<br>\text{or } &amp;f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\text{d}x<br>\end{array}<br>$</p>
-
-</blockquote>
-<font color="red">前提：</font> 
-
-<p>$X$，$Y$ 相互独立（如不独立，可利用联合分布、条件分布求得，或变换成独立变量再求解）。</p>
-<p>2 . $Z=\frac{X}{Y}$</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;\text{由于 }F_Z(z)=P\{ X/Y\le z \}=\underset{\frac{x}{y}\le z}{\int\int} f(x,y)\text{d}x \text{d}y \text{ 积分区域可能不是矩形} \\<br>&amp;\text{为简化积分计算，使用 }\textbf{J}=\frac{\partial{(x,y)}}{\partial{(u, v)}}= \Large{\left| \begin{array}{c} \frac{\partial{x}}{\partial{u}} &amp; \frac{\partial{x}}{\partial{v}} \\ \frac{\partial{y}}{\partial{u}} &amp; \frac{\partial{y}}{\partial{v}} \end{array} \right|} \\<br>&amp;\text{得 }F_Z(z)=\underset{\Omega}{\int\int} f[x(u,v),y(u,v)] |\textbf{J}|\text{d}u \text{d}v<br>\end{array}<br>$</p>
-
-</blockquote>
-<h2 id="顺序统计量"><a href="#顺序统计量" class="headerlink" title="顺序统计量"></a>顺序统计量</h2><p>设 $X_i\sim f(x)$ 是独立同分布的连续型 r.v.，则对于顺序统计量 $X_{(1)}(\min),\cdots ,X_{(n)}(\max)$ ，如何求 $X_{(k)}$ 的密度？</p>
-<p>解：对于充分小的空间 $[x,x+\text{d}x]$，有</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;P\{ x\lt X_{(k)} \lt x+\text{d}x \}=\left(\begin{array}{c}n \\ k-1 \end{array} \right) F(x)^{k-1} \left(\begin{array}{c}n-k+1 \\ 1 \end{array} \right) [F(x+\text{d}x)-F(x)] \left(\begin{array}{c}n-k \\ n-k  \end{array} \right) [1-F(x+\text{d}x)^{n-k}] \\<br>\therefore\ \ &amp;f_k(x)=\frac{\text{d}P\{ x\lt X_{(k)} \lt x+\text{d}x \}}{\text{d}x}=\frac{n!}{(k-1)!(n-k)!}F(x)^{k-1} f(x)[1-F(x)]^{n-k}<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>称此为 Veta 分布，记为 $X\sim Beta(k, n-k+1)$</p>
-<p>Beta 密度用于刻画 [0, 1] 上的随机变量：</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;f(u)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}u^{a-1}(1-u)^{b-1} \\<br>s.t.\ &amp;\Gamma(x)=(x-1)! ,\ 0\le u\le 1<br>\end{array}<br>$</p>
-
-</blockquote>
-<h1 id="第四章-随机变量的数字特征"><a href="#第四章-随机变量的数字特征" class="headerlink" title="第四章 随机变量的数字特征"></a>第四章 随机变量的数字特征</h1><h2 id="协方差"><a href="#协方差" class="headerlink" title="协方差"></a>协方差</h2><p>定义：</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;Cov(X,Y)\triangleq E[(X-E(X))\cdot (Y-E(Y))]<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>称为 X，Y 的协方差，其相关系数表示为：</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;\rho_{XY}\triangleq Cov(X^{*},Y^{*})=\frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{E(Y)}}<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>利用这个属性进行 X，Y 线性拟合的计算：</p>
-<p>记均方误差为 $e=E[(Y-\hat{Y})^2]=E[(Y-(aX+b))^2]$</p>
-<p>令 $\left\{ \begin{array}{l} &amp;\frac{\partial{e}}{\partial{b}}=2b+2aE(X)-2E(Y)=0 \\ &amp;\frac{\partial{e}}{\partial{a}}=2aE(X^2)-2E(XY)+2bE(X)=0 \end{array} \right.$</p>
-<p>解得 $\left\{ \begin{array}{l} &amp;b_0=\frac{Cov(X,Y)}{D(X)} \\ &amp;a_0=E(Y)-E(X)\cdot b_0 \end{array} \right.$</p>
-<p>进一步得 $\underset{a,b}{\min e}=D(Y)(1-\frac{Cov^2(X,Y)}{D(X)D(Y)})=D(Y)(1-\rho^2_{XY})$</p>
-<font color="red">注意：</font>$\rho_{XY}=0$ 并不意味着 X，Y 相互独立！（但正态分布能证明 不相关 = 独立）
-
-
-
-定义：
-
-对 r.v. X，Y，
-
-$E(X^k)\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶原点矩</font>
-
-<p>$E[(X-E(X))^k]\ \ \ (k=1,2,\cdots)$ 为 <font color="red">k 阶中心矩</font></p>
-<p>$E[(X-E(X))^k(Y-E(Y))^l]\ \ \ (k,l=1,2,\cdots)$ 为 <font color="red">k+l 阶混合中心矩</font></p>
-<blockquote>
-<p>因此，r.v. 的期望是一阶原点矩，方差是2阶中心矩，协方差是2阶混合中心矩。</p>
-</blockquote>
-<h2 id="条件期望"><a href="#条件期望" class="headerlink" title="条件期望"></a>条件期望</h2><p>定义：</p>
-<blockquote class="blockquote-center">
-<p>$<br>\left\{\begin{array}{rl}<br>&amp;E(h(Y)|X=x)=\sum_{y}h(y)p_{Y|X}(y|x) &amp;\text{（离散）} \\<br>&amp;E(h(Y)|X=x)=\int_{y}h(y)f_{Y|X}(y|x)\text{d}y &amp;\text{（连续）}<br>\end{array}\right.<br>$</p>
-
-</blockquote>
-<blockquote>
-<p>特殊情况下，$h(y)=y$</p>
-</blockquote>
-<p><font color="green">回顾泊松分布：</font> $X\sim P(\lambda t)$</p>
-<p>$P(X=k)=\frac{(\lambda t)^k}{k!}e^{-\lambda t}\ \ \ k\in\mathbb{N}$  称为泊松强度。</p>
-<p>例：考虑 [0, 1] 区间上均值为 $\lambda$ 的泊松流，令 N 是 [0, 1] 上点的个数。对于 $p\lt 1$，令 X 是 [0, p] 上点的个数。计算给定 N = n 的情况下，X 的条件分布和条件期望。</p>
-<p>解：联合分布</p>
-<p>$P\{X=x,N=n \}=\frac{(p\lambda)^xe^{-p\lambda}}{x!}\cdot \frac{((1-p)\lambda)^{(n-x)}e^{-(1-p)\lambda}}{(n-x)!}$</p>
-<p>而 $N\sim P(\lambda)$</p>
-<p>因此 $P\{X=x|N=n \}=\frac{n!}{x!(n-x)!}p^x(1-p)^{(n-x)}\sim b(n,p)$</p>
-<p>从而 $X$ 的条件期望为 $np$。</p>
-<h1 id="第五章-数理统计（入门）"><a href="#第五章-数理统计（入门）" class="headerlink" title="第五章 数理统计（入门）"></a>第五章 数理统计（入门）</h1><h2 id="大数定律"><a href="#大数定律" class="headerlink" title="大数定律"></a>大数定律</h2><p>（伯努利版）设 $P(A)=p$，则对任意 $\epsilon\gt 0$，有 $\color{red} \underset{n\to \infty}{\lim}=P\{|\frac{n_A}{n}-p|\ge \epsilon \}=0$</p>
-<p>（切比雪夫版）$\{X_n\}$ 为独立随机变量列，且期望方差相同，则对任意 $\epsilon\gt 0$，有 $\color{red} \underset{n\to \infty}{\lim}=P\{|\frac{1}{n}\sum_{i=1}^{n}X_i-\mu|\ge \epsilon \}=0$</p>
-<p>（这意味着样本量足够大时，期望可被样本的算术均值替代）</p>
-<h2 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h2><p>若 $X_n$ 的分布 $F_n(x)$ 对任意 $x$ 满足</p>
-<blockquote class="blockquote-center">
-<p>$<br>\color{red}<br>\begin{array}{l}<br>&amp;\underset{n\to \infty}{\lim} F_n(x)=\underset{n\to \infty}{\lim}P\{ \frac{\sum_{i=1}^{n}(X_i-\mu_i)}{\sqrt{\sum_{i=1}^{n}\sigma_i^2}}\le x \}=\psi(x)<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>则称 $\{X_n \}$ 服从中心极限定理（$\psi(x)$ 为标准正态）</p>
-<p>特别当 $X_n$ 独立同分布，则有 $\underset{n\to \infty}{\lim}P\{ \frac{\sum_{i=1}^{n}X_i-n\mu_i}{\sqrt{n}\sigma_i}\le x \}=\psi(x)$</p>
-<blockquote>
-<p>德莫夫-拉普拉斯中心极限定理：对 $\eta_n\sim b(n,p)$</p>
-<p>$\frac{\eta_n-np}{\sqrt{np(1-p)}}\sim N(0,1)$</p>
-<p>参考高尔顿钉板</p>
-</blockquote>
-<h1 id="第六章-数理统计（基础）"><a href="#第六章-数理统计（基础）" class="headerlink" title="第六章 数理统计（基础）"></a>第六章 数理统计（基础）</h1><h2 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h2><p>1 . $\chi^2$ - 分布</p>
-<p>设 $X_1-X_n$ 是来自总体 $X\sim N(0,1)$ 的样本，令</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>\chi^2=X_1^2+X_2^2+\cdots +X_n^2<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>称 $\chi^2$ 服从自由度为 $n$ 的 $\chi^2$ - 分布（也称卡方分布），记为 $\chi^2(n)$。</p>
-<blockquote>
-<p><font color="blue">自由度：</font>自由度是二次型 $\chi^2=X_1^2+X_2^2+\cdots +X_n^2$ 的秩，即可独立变化的变量个数。</p>
-</blockquote>
-<p>数字特征：</p>
-<ul>
-<li>$E(\chi^2)=n$</li>
-<li>$D(\chi^2)=2n$</li>
-</ul>
-<p>2 . t - 分布</p>
-<p>设 $X\sim N(0,1)$，$Y\sim \chi^2(n)$，且 $X$，$Y$ 独立，令</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>t=X/\sqrt{Y/n}<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>称 $t$ 为服从自由度为 n 的 t - 分布，记为 $t(n)$。</p>
-<p>性质：</p>
-<ul>
-<li>数字特征<ul>
-<li>$E(t)=0$</li>
-<li>$D(t)=\frac{n}{n+2}$</li>
-</ul>
-</li>
-<li>当 n 充分大时，T 近似服从 N(0, 1)，即趋近标准正态分布<ul>
-<li>可证明 $\underset{n\to\infty}{\lim}f(x)=(2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}$</li>
-</ul>
-</li>
-</ul>
-<p>3 . F - 分布</p>
-<p>设 $U\sim \chi^2(n_1)$，$V\sim \chi^2(n_2)$，且 $U$，$V$ 独立，令</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>F=\Large\frac{U/n_1}{V/n_2}<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>称 F 为服从自由度为 $(n_1,n_2)$ 的 F - 分布，记为 $F(n_1,n_2)$。</p>
-<p>二级结论：</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;T\sim t(n) \Rightarrow T^2\sim F(1,n) \\<br>\text{证：} &amp;T=\frac{X}{\sqrt{Y/n}} \Rightarrow T^2=\frac{X^2/1}{Y/n}, \\<br>\text{ 且 }&amp;X^2,Y\text{ 仍相互独立}<br>\end{array}<br>$</p>
-
-</blockquote>
-<h2 id="抽样分布定理"><a href="#抽样分布定理" class="headerlink" title="抽样分布定理"></a>抽样分布定理</h2><p>1 . 设 $X_1\sim X_n$ 是来自总体 $X\sim N(\mu,\sigma^2)$ 的样本，则</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>\bar{X}\sim N(\mu,\frac{\sigma^2}{n})<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>因为 $\bar{X}=(X_1+\cdots +X_n)/n$ ，而线性组合仍服从正态分布。</p>
-<p>因此，$E(\bar{X})=\mu$，$D(\bar{X})=\frac{\sigma^2}{n}$</p>
-<p>2 . 设 $X_1\sim X_n$ 是来自总体 $X\sim N(\mu,\sigma^2)$ 的样本，$\bar{X}$ 、$S^2$ 分别是样本均值和样本方差，则有</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{lr}<br>&amp;\frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1) &amp;(1) \\<br>&amp;\bar{X},S^2\text{ 相互独立} &amp;(2)<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>3 . waiting…</p>
-<p>4 . </p>
-<p>5 . </p>
-<h1 id="第七章-参数估计"><a href="#第七章-参数估计" class="headerlink" title="第七章 参数估计"></a>第七章 参数估计</h1><h2 id="点估计"><a href="#点估计" class="headerlink" title="点估计"></a>点估计</h2><p>定义：设总体分布函数 $F(x,\theta)$ ， $X_1\sim X_n$ 为样本，构造一个统计量 $\theta=\theta(X_1,\cdots ,X_n)$ 来估计参数 $\theta$ ，则称为参数 $\theta$ 的<strong>估计量</strong>。</p>
-<p>将观测值 $x_1,\cdots ,x_n$ 带入 $\theta(X_1,\cdots ,X_n)$ ，得到的 $\theta(x_1,\cdots ,x_n)$ 称为参数 $\theta$ 的<strong>估计值</strong>。</p>
-<p>常用点估计法：</p>
-<ul>
-<li>矩估计：设总体 $X\sim F(x;\theta)$ ，$\theta_1\sim \theta_m$ 未知，设对 n 个样本，总体矩都存在（即 $\alpha_k \triangleq E(X^k),(k=1,2,\cdots,m)$ ），由辛钦大数定律得</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>&amp;A_k=\frac{1}{n}\sum_{i=1}^{n}X^k_i \overset{P}{\longrightarrow}E(X^k)=\alpha_k\ \ (n\to\infty,k=1,2,\cdots,m) \\<br>\text{可认为 }&amp;A_k\approx E(X^k)=\int{x^k}\text{d}F \triangleq \alpha_k(\theta_1,\cdots, \theta_m) &amp; \\<br>\therefore &amp; \left\{\begin{array}{l}<br>&amp;\alpha_1(\theta_1,\cdots, \theta_m)=E(X) \approx A_1 \\<br>&amp;\alpha_2(\theta_1,\cdots, \theta_m)=E(X^2) \approx A_2 \\<br>&amp;\vdots \\<br>&amp;\alpha_m(\theta_1,\cdots, \theta_m)=E(X^m) \approx A_m<br>\end{array}\right.<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>解上述方程组得：</p>
-<blockquote class="blockquote-center">
-<p>$<br>\left\{<br>\begin{array}{l}<br>&amp;\hat{\theta}_1=\hat{\theta}_1(A_1,A_2,\cdots,A_m) \\<br>&amp;\vdots \\<br>&amp;\hat{\theta}_m=\hat{\theta}_m(A_1,A_2,\cdots,A_m) \\<br>\end{array}<br>\right.<br>$</p>
-
-</blockquote>
-<ul>
-<li>最大似然估计：构造似然函数 $L(\theta)$ ，通过求极大值点得到参数值</li>
-</ul>
-<blockquote class="blockquote-center">
-<p>$<br>L(\theta)=<br>\left\{<br>\begin{array}{lr}<br>&amp;p(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta) &amp;(\text{离散}) \\<br>&amp;f(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta) &amp;(\text{连续}) \\<br>\end{array}<br>\right.<br>$</p>
-
-</blockquote>
-<p>取对数便于求偏导（对每个参数 $\theta_i$ 求偏导）：$\large\frac{\partial{\ln{L}}}{\partial{\theta_i}}=0$</p>
-<p><strong>参数评价标准</strong></p>
-<ul>
-<li>无偏性：$E(\hat\theta)=\theta$</li>
-<li>有效性：$E(\hat\theta_1)=E(\hat\theta_2)=\theta$ 且 $D(\hat\theta_1)\le D(\hat\theta_2)$，则称 $\hat\theta_1$ 较 $\hat\theta_2$ 有效。</li>
-<li>相合性（一致性）：设 $\hat\theta_n=\hat\theta(X_1,X_2,\cdots,X_n)$ 是 $\theta$ 的点估计，若 $\forall \theta\in\Theta$ 满足对 $\forall\epsilon\gt 0$ 有 $\color{red}\underset{n\to\infty}{\lim}P\{|\hat\theta_n -\theta|\ge \epsilon \}=0$ ，则称 $\hat\theta_n$ 是 $\theta$ 的<font color="red">相合估计</font>，记作 $\hat\theta_n\overset{P}{\longrightarrow}\theta(n\to\infty)$ 。</li>
-</ul>
-<h2 id="区间估计"><a href="#区间估计" class="headerlink" title="区间估计"></a>区间估计</h2><blockquote>
-<p>区别：点估计构造一个参数统计量，而区间估计构造两个并将 $(\theta_1,\theta_2)$ 以一定的置信度作为 $\theta$ 的估算区间。</p>
-</blockquote>
-<p>定义：设总体 $X\sim F(x;\theta)$ ，若存在 2 个统计量</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{lr}<br>&amp;\underline{\theta}=\underline{\theta}(X_1,\cdots,X_n),\ \ \ \overline{\theta}=\overline{\theta}(X_1,\cdots,X_n) &amp;(\underline{\theta}\lt\overline{\theta})<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>使得 $\forall\theta\in\Theta$ 有 $P\{\underline{\theta}\le\theta\le\overline{\theta}\}\ge 1-\alpha$ ，则称随机区间 $(\underline{\theta},\overline{\theta})$ 为 $\theta$ 的<font color="red">置信水平</font>为 $1-\alpha$ 的<font color="red">置信区间</font>，$\underline{\theta}$ 和 $\overline{\theta}$ 分别称为置信下限和置信上限。</p>
-<ul>
-<li>区间估计一般方法<ul>
-<li>枢轴法（对应 t-分布的应用）</li>
-<li>波动理论（对应卡方分布的应用）</li>
-</ul>
-</li>
-</ul>
-<p><strong>二级结论总结</strong></p>
-<ol>
-<li>$\sigma^2$ 已知，对 $\mu$ 估计：$\color{red}(\bar{X}-u_{1-\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}},\bar{X}+u_{1-\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}})$</li>
-<li>$\sigma^2$ 未知，对 $\mu$ 估计：$\color{red}(\bar{X}-\frac{S}{\sqrt{n}}t_{1-\frac{\alpha}{2}}(n-1),\bar{X}+\frac{S}{\sqrt{n}}t_{1-\frac{\alpha}{2}}(n-1))$</li>
-<li>$\mu$ 未知，对 $\sigma^2$ 估计：$\large\color{red}(\frac{(n-1)S^2}{\chi^2_{1-\frac{\alpha}{2}}(n-1)}, \frac{(n-1)S^2}{\chi^2_{\frac{\alpha}{2}}(n-1)})$</li>
-</ol>
-<p><em>后两条的推导式：</em></p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{c}<br>&amp;P\left\{ \frac{|\bar{X}-\mu|}{S/\sqrt{n}}\lt t_{1-\frac{\alpha}{2}}(n-1) \right\}=1-\alpha \\<br>&amp;P\left\{\chi^2_{\frac{\alpha}{2}}(n-1)\lt \frac{(n-1)S^2}{\sigma^2}\lt\chi^2_{1-\frac{\alpha}{2}}(n-1) \right\}=1-\alpha<br>\end{array}<br>$</p>
-
-</blockquote>
-<h1 id="第八章-假设检验"><a href="#第八章-假设检验" class="headerlink" title="第八章 假设检验"></a>第八章 假设检验</h1><h2 id="一、建立对立的假设："><a href="#一、建立对立的假设：" class="headerlink" title="一、建立对立的假设："></a>一、建立对立的假设：</h2><p>原假设（零假设）$H_0$ 和备择假设（对立假设）$H_1$</p>
-<ol>
-<li>保护原假设：原假设错误的“代价”必须小于备择假设（如原假设新药物有副作用）</li>
-<li>原假设趋于维持现状</li>
-<li>原假设取简单假设</li>
-</ol>
-<h2 id="二、给出检验统计量，确定拒绝域形式"><a href="#二、给出检验统计量，确定拒绝域形式" class="headerlink" title="二、给出检验统计量，确定拒绝域形式"></a>二、给出检验统计量，确定拒绝域形式</h2><p>拒绝域是拒绝原假设的样本值范围，其补集为接受域。</p>
-<p>设置合理的 $C$ 值（待定常数），使得 $\bar{X}$ 大于/小于该常数时，拒绝原假设。</p>
-<p><strong>I 类错误与 II 类错误</strong></p>
-<p>I 类错误指拒绝原假设但是原假设为真的情况，用 $\alpha$ 表示犯错概率，一般控制在 $(0.01,0.1)$ 范围内。(也称<font color="red">显著水平</font>)</p>
-<p>II 类错误指接受原假设但原假设为假的情况，用 $\beta$ 表示。</p>
-<h2 id="三、根据显著水平和统计量的分布确定临界值"><a href="#三、根据显著水平和统计量的分布确定临界值" class="headerlink" title="三、根据显著水平和统计量的分布确定临界值"></a>三、根据显著水平和统计量的分布确定临界值</h2><p>根据 NP 原则，先保证犯 I 类错误的概率不超过 $\alpha$，再令犯 II 类错误的概率尽可能小。</p>
-<p>例：取 $\alpha=0.05$ ，当 $H_0:\mu=0$ 成立时，$\frac{\bar{X}}{0.6/\sqrt{9}}\sim N(0,1)$。（统计量分布）则可进行如下计算：</p>
-<blockquote class="blockquote-center">
-<p>$<br>\begin{array}{l}<br>P\{\bar{X}\ge C|\mu=0 \}&amp;=P\left\{\frac{\bar{X}}{\sigma/\sqrt{n}}\ge\frac{C}{\sigma/\sqrt{n}}|\mu=0 \right\} \\<br>&amp;=1-\psi\left(\frac{C}{\sigma/\sqrt{n}}\right)\le\alpha=0.05\ \ (0.05=\psi(-\textbf{z}_{0.05})) \\<br>&amp;\Rightarrow \frac{C}{0.6/\sqrt{9}}\ge \textbf{z}_{0.05}=1.645 \Rightarrow C\ge0.329<br>\end{array}<br>$</p>
-
-</blockquote>
-<p>因此取 $C=0.329$ 以减小 II 类错误！</p>
-<h2 id="四、根据样本数据判断是否要拒绝假设"><a href="#四、根据样本数据判断是否要拒绝假设" class="headerlink" title="四、根据样本数据判断是否要拒绝假设"></a>四、根据样本数据判断是否要拒绝假设</h2><blockquote>
-<p>例：如 $\bar{x}=0.522\gt 0.329$，则拒绝原假设。</p>
-</blockquote>
-<h2 id="正态总体参数的假设检验样例"><a href="#正态总体参数的假设检验样例" class="headerlink" title="正态总体参数的假设检验样例"></a>正态总体参数的假设检验样例</h2><p>In development…</p>
-]]></content>
-      <categories>
-        <category>2023 Fall</category>
-      </categories>
-      <tags>
-        <tag>CSE Learning</tag>
-        <tag>Maths</tag>
       </tags>
   </entry>
   <entry>

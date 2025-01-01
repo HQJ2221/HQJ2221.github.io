@@ -20,28 +20,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="This is an introduction about the basic step to use Hexo">
+    <meta name="description" content="The most basic AI knowledge, including some ML algorithm and concept of Agents.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Introduction to Hexo and Github Page">
-<meta property="og:url" content="http://hqj2221.github.io/2024/06/07/hello-world/index.html">
+<meta property="og:title" content="CS303 人工智能">
+<meta property="og:url" content="http://hqj2221.github.io/2025/01/01/Artificial-Intelligence/index.html">
 <meta property="og:site_name" content="牛马农田">
-<meta property="og:description" content="This is an introduction about the basic step to use Hexo">
+<meta property="og:description" content="The most basic AI knowledge, including some ML algorithm and concept of Agents.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-06-07T06:36:53.967Z">
-<meta property="article:modified_time" content="2024-06-22T12:04:56.838Z">
+<meta property="og:image" content="http://hqj2221.github.io/2025/01/01/Artificial-Intelligence/ai101.png">
+<meta property="article:published_time" content="2025-01-01T14:05:22.000Z">
+<meta property="article:modified_time" content="2025-01-01T17:52:12.024Z">
 <meta property="article:author" content="Bionic l&#39;Hôpital">
-<meta property="article:tag" content="Steven He, 何, 个人站点, Personal Blog">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="CSE Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hqj2221.github.io/2025/01/01/Artificial-Intelligence/ai101.png">
 
 
-<link rel="canonical" href="http://hqj2221.github.io/2024/06/07/hello-world/">
+<link rel="canonical" href="http://hqj2221.github.io/2025/01/01/Artificial-Intelligence/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2024/06/07/hello-world/","path":"2024/06/07/hello-world/","title":"Introduction to Hexo and Github Page"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2025/01/01/Artificial-Intelligence/","path":"2025/01/01/Artificial-Intelligence/","title":"CS303 人工智能"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Introduction to Hexo and Github Page | 牛马农田</title>
+<title>CS303 人工智能 | 牛马农田</title>
   
 
 
@@ -143,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Contents"><span class="nav-text">Contents</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-1-AI-as-Search"><span class="nav-text">Lecture 1. AI as Search</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search-in-a-Tree"><span class="nav-text">Search in a Tree ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Un-informed-Search-Methods"><span class="nav-text">Un-informed Search Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS"><span class="nav-text">BFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UCS-Uniform-Cost-Search"><span class="nav-text">UCS (Uniform-Cost Search)</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2024/06/07/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2025/01/01/Artificial-Intelligence/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/me.png">
@@ -221,12 +224,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Introduction to Hexo and Github Page | 牛马农田">
-      <meta itemprop="description" content="This is an introduction about the basic step to use Hexo">
+      <meta itemprop="name" content="CS303 人工智能 | 牛马农田">
+      <meta itemprop="description" content="The most basic AI knowledge, including some ML algorithm and concept of Agents.">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Introduction to Hexo and Github Page
+          CS303 人工智能
         </h1>
 
         <div class="post-meta-container">
@@ -237,35 +240,110 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2024-06-07 14:36:53" itemprop="dateCreated datePublished" datetime="2024-06-07T14:36:53+08:00">2024-06-07</time>
+      <time title="Created: 2025-01-01 22:05:22" itemprop="dateCreated datePublished" datetime="2025-01-01T22:05:22+08:00">2025-01-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-22 20:04:56" itemprop="dateModified" datetime="2024-06-22T20:04:56+08:00">2024-06-22</time>
+      <time title="Modified: 2025-01-02 01:52:12" itemprop="dateModified" datetime="2025-01-02T01:52:12+08:00">2025-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2024-Fall/" itemprop="url" rel="index"><span itemprop="name">2024 Fall</span></a>
+        </span>
     </span>
 
   
 </div>
 
-            <div class="post-description">This is an introduction about the basic step to use Hexo</div>
+            <div class="post-description">The most basic AI knowledge, including some ML algorithm and concept of Agents.</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is the very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <div class="post-body" itemprop="articleBody"><h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><p><strong>AI Search</strong></p>
+<ul>
+<li>Lecture 1. AI as Search</li>
+<li>Lecture 2. </li>
+<li>Lecture 3.</li>
+<li>Lecture 4.</li>
+<li>Lecture 5.</li>
+<li>Lecture 6.</li>
+<li>Lecture 7.</li>
+<li>Lecture 8.</li>
+<li>Lecture 9.</li>
+<li>Lecture 10.</li>
+<li>Lecture 11.</li>
+<li>Lecture 12.</li>
+<li>Lecture 13.</li>
+</ul>
+<h1 id="Lecture-1-AI-as-Search"><a href="#Lecture-1-AI-as-Search" class="headerlink" title="Lecture 1. AI as Search"></a>Lecture 1. AI as Search</h1><h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>From searching to search tree</li>
+<li>Uninformed Search Methods </li>
+<li><font color="red">Heuristic (informed) Search</font> </li>
+<li>Further Studies on Heuristics</li>
+</ul>
+<h2 id="Search-in-a-Tree"><a href="#Search-in-a-Tree" class="headerlink" title="Search in a Tree ?"></a>Search in a Tree ?</h2><blockquote>
+<p><strong>概念：最短路径选择，搜索树</strong></p>
+<p>通过将所有“图”中的路径展开，可以得到一个搜索树。对树进行全局搜索必然可以得到最短路径。</p>
+<p>但是，当图变得复杂时（如一个省的地图，or a state），搜索量极大，全局搜索及其低能。</p>
+</blockquote>
+<ul>
+<li><font color="red">Q:</font> What is A Good Search Method?<ul>
+<li><font color="green">Completeness</font>: Does it always find a solution if it exists?</li>
+<li><font color="green">Optimality</font>: Does it always find the least-cost solution?</li>
+<li><font color="green">Time complexity</font>: # nodes generated/expanded.</li>
+<li><font color="green">Space complexity</font>: maximum # nodes in memory.</li>
+</ul>
+</li>
+<li>In general, time and space complexity depend on:<ul>
+<li>$b$ 👉 maximum # successors of any node in search tree. [枝]</li>
+<li>$d$ 👉 depth of the least-cost solution. </li>
+<li>$m$ 👉 maximum length of any path in the state space.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Un-informed-Search-Methods"><a href="#Un-informed-Search-Methods" class="headerlink" title="Un-informed Search Methods"></a>Un-informed Search Methods</h2><blockquote>
+<p>How to define “un-informed” ?</p>
+</blockquote>
+<ul>
+<li>Use only the information available in the problem definition.</li>
+<li>Use <strong>NO</strong> problem-specific knowledge.</li>
+</ul>
+<blockquote>
+<p>As some algorithms have been learnt in course Algorithm Design and Analysis, we skip them.</p>
+</blockquote>
+<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><ul>
+<li><font color="cyan">Completeness?</font> Yes (Suppose $b$ is finite)</li>
+<li><font color="cyan">Optimality?</font> Yes (Suppose all edge values are <strong>non-negative</strong>)</li>
+<li><font color="cyan">Time &amp; Space?</font> Both $O(b^{d+1})$</li>
+</ul>
+<h3 id="UCS-Uniform-Cost-Search"><a href="#UCS-Uniform-Cost-Search" class="headerlink" title="UCS (Uniform-Cost Search)"></a>UCS (Uniform-Cost Search)</h3><ul>
+<li>Idea<ul>
+<li>Expand the cheapest unexpanded node.</li>
+<li>Implementation: a queue ordered by path cost, lowest first.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai101.png" style="zoom:60%"></p>
+<ul>
+<li><font color="cyan">Completeness?</font> Yes (Suppose every step costs $\ge \epsilon$)</li>
+<li><font color="cyan">Optimality?</font> Yes (Suppose all edge values are <strong>non-negative</strong>)</li>
+<li><font color="cyan">Time &amp; Space?</font>  $O(b^{1+\lfloor C^{*}/\epsilon\rfloor})$<ul>
+<li>$C^{*}$ : the cost of the optimal solution.</li>
+<li>every action costs at least $\epsilon$.</li>
+<li>Only if all step costs are equal, time/space $=O(b^{d+1})$</li>
+</ul>
+</li>
+</ul>
 
     </div>
     
@@ -284,16 +362,20 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/CSE-Learning/" rel="tag"># CSE Learning</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2024/09/13/Operating-Systems/" rel="prev" title="CS302 计算机操作系统">
+                  <i class="fa fa-angle-left"></i> CS302 计算机操作系统
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/06/22/Big-Data-1/" rel="next" title="MA234 大数据导论与实践（一）">
-                  MA234 大数据导论与实践（一） <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -348,7 +430,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
