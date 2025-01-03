@@ -6,8 +6,8 @@
     <content><![CDATA[<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><p><strong>AI Search</strong></p>
 <ul>
 <li>Lecture 1. AI as Search</li>
-<li>Lecture 2. </li>
-<li>Lecture 3.</li>
+<li>Lecture 2. Beyond Classical Search</li>
+<li>Lecture 3. Problem-Specific Search</li>
 <li>Lecture 4.</li>
 <li>Lecture 5.</li>
 <li>Lecture 6.</li>
@@ -22,8 +22,11 @@
 <h1 id="Lecture-1-AI-as-Search"><a href="#Lecture-1-AI-as-Search" class="headerlink" title="Lecture 1. AI as Search"></a>Lecture 1. AI as Search</h1><h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><ul>
 <li>From searching to search tree</li>
 <li>Uninformed Search Methods </li>
-<li><font color="red">Heuristic (informed) Search</font> </li>
-<li>Further Studies on Heuristics</li>
+<li><font color="red">Heuristic (informed) Search</font> 
+
+
+
+</li>
 </ul>
 <h2 id="Search-in-a-Tree"><a href="#Search-in-a-Tree" class="headerlink" title="Search in a Tree ?"></a>Search in a Tree ?</h2><blockquote>
 <p><strong>概念：最短路径选择，搜索树</strong></p>
@@ -56,9 +59,9 @@
 <p>As some algorithms have been learnt in course Algorithm Design and Analysis, we skip them.</p>
 </blockquote>
 <h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><ul>
-<li><font color="cyan">Completeness?</font> Yes (Suppose $b$ is finite)</li>
-<li><font color="cyan">Optimality?</font> Yes (Suppose all edge values are <strong>non-negative</strong>)</li>
-<li><font color="cyan">Time &amp; Space?</font> Both $O(b^{d+1})$</li>
+<li><font color="DodgerBlue">Completeness?</font> Yes (Suppose $b$ is finite)</li>
+<li><font color="DodgerBlue">Optimality?</font> Yes (Suppose all edge values are <strong>non-negative</strong>)</li>
+<li><font color="DodgerBlue">Time &amp; Space?</font> Both $O(b^{d+1})$</li>
 </ul>
 <h3 id="UCS-Uniform-Cost-Search"><a href="#UCS-Uniform-Cost-Search" class="headerlink" title="UCS (Uniform-Cost Search)"></a>UCS (Uniform-Cost Search)</h3><ul>
 <li>Idea<ul>
@@ -69,16 +72,449 @@
 </ul>
 <p><img src="/2025/01/01/Artificial-Intelligence/ai101.png" style="zoom:60%"></p>
 <ul>
-<li><font color="cyan">Completeness?</font> Yes (Suppose every step costs $\ge \epsilon$)</li>
-<li><font color="cyan">Optimality?</font> Yes (Suppose all edge values are <strong>non-negative</strong>)</li>
-<li><font color="cyan">Time &amp; Space?</font>  $O(b^{1+\lfloor C^{*}/\epsilon\rfloor})$<ul>
+<li><font color="DodgerBlue">Completeness?</font> Yes (Suppose every step costs $\ge \epsilon$)</li>
+<li><font color="DodgerBlue">Optimality?</font> Yes (Suppose all edge values are <strong>non-negative</strong>)</li>
+<li><font color="DodgerBlue">Time &amp; Space?</font>  $O(b^{1+\lfloor C^{*}/\epsilon\rfloor})$<ul>
 <li>$C^{*}$ : the cost of the optimal solution.</li>
 <li>every action costs at least $\epsilon$.</li>
 <li>Only if all step costs are equal, time/space $=O(b^{d+1})$</li>
 </ul>
 </li>
 </ul>
-]]></content>
+<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><ul>
+<li><font color="DodgerBlue">Completeness?</font> No (fail in infinite-depth space and space with loops.)</li>
+<li><font color="DodgerBlue">Optimality?</font> No</li>
+<li><font color="DodgerBlue">Time?</font> $O(b^m)$<ul>
+<li>Terrible if $m$ is much larger than $d$.</li>
+</ul>
+</li>
+<li><font color="DodgerBlue">Space?</font> $O(bm)$ - linear!</li>
+</ul>
+<h3 id="DLS-Depth-Limit-Search"><a href="#DLS-Depth-Limit-Search" class="headerlink" title="DLS (Depth-Limit Search)"></a>DLS (Depth-Limit Search)</h3><ul>
+<li>A variant of DFS: node at depth $l$ has no sucessors.</li>
+<li><font color="DodgerBlue">Completeness?</font> No</li>
+<li><font color="DodgerBlue">Optimality?</font> No</li>
+<li><font color="DodgerBlue">Time?</font> $O(b^l)$</li>
+<li><font color="DodgerBlue">Space?</font> $O(bl)$</li>
+</ul>
+<h3 id="IDS-Iterative-Deepening-Search"><a href="#IDS-Iterative-Deepening-Search" class="headerlink" title="IDS (Iterative Deepening Search)"></a>IDS (Iterative Deepening Search)</h3><ul>
+<li>Idea<ul>
+<li>Apply <strong>DLS</strong> with increasing limits</li>
+<li>Combine benefit of <strong>BFS</strong> and <strong>DFS</strong></li>
+</ul>
+</li>
+<li><font color="DodgerBlue">Completeness?</font> Yes</li>
+<li><font color="DodgerBlue">Optimality?</font> Yes (Suppose costs of edges are non-negative)</li>
+<li><font color="DodgerBlue">Time?</font> $O(b^d)$<ul>
+<li>$(d+1)b^{0}+ db^{1}+(d-1)b^{2}+\cdots +b^d=O(b^{d})$</li>
+</ul>
+</li>
+<li><font color="DodgerBlue">Space?</font> $O(bd)$</li>
+</ul>
+<blockquote>
+<p>Preference when <strong>search space</strong> is large and <strong>depth</strong> of solution is unknown.</p>
+</blockquote>
+<h3 id="Bi-directional-Search"><a href="#Bi-directional-Search" class="headerlink" title="Bi-directional Search"></a>Bi-directional Search</h3><ul>
+<li>Idea: simultaneous<ul>
+<li>Replace single search tree with two smaller sub trees.</li>
+<li>Forward tree: forward search from source to goal.</li>
+<li>Backward tree: backward search from goal to source.</li>
+</ul>
+</li>
+<li><font color="DodgerBlue">Completeness &amp; Optimality?</font> Like BFS (if BFS used in both trees)</li>
+<li><font color="DodgerBlue">Time &amp; Space?</font> $O(b^{d/2})$</li>
+<li>Cons: not always applicable<ul>
+<li>Reversible actions? [是否可以“由果溯因”？]</li>
+<li>Explicitly stated goal state? [叶子节点代表“结局”，所有结局是否已知？]</li>
+</ul>
+</li>
+</ul>
+<h2 id="Heuristic-informed-Search"><a href="#Heuristic-informed-Search" class="headerlink" title="Heuristic (informed) Search"></a><font color="red">Heuristic (informed) Search</font></h2><blockquote>
+<p><font color="red">Q:</font> What is “Heuristic” ?</p>
+<p><font color="green">A:</font> Based on algorithm design, it searches the trees with intelligence, making use of <strong>domain knowledge</strong>.</p>
+<p><font color="red">Q:</font> How to Design the Evaluation Function?</p>
+<p><font color="green">A:</font> It depends (but some advice). Use heuristic function $f(x)$ to estimates the cheapest cost from $x$ to the goal state.</p>
+<ol>
+<li>$h(x)=0$ if $x$ is the goal state</li>
+<li>non-negative</li>
+<li><strong>problem-specific</strong></li>
+</ol>
+</blockquote>
+<h3 id="Greedy-Best-first-Search"><a href="#Greedy-Best-first-Search" class="headerlink" title="Greedy Best-first Search"></a>Greedy Best-first Search</h3><ul>
+<li>A simple example to describe heuristic function: let’s say $f(x)=h_{SLD}(x)$ , where $h_{SLD}(x)$ is physical distance between two nodes (cities)</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai102.png" style="zoom:60%"></p>
+<ul>
+<li><font color="DodgerBlue">Completeness?</font> Yes (finite space + repeated-state checking)</li>
+<li><font color="DodgerBlue">Optimality?</font> No</li>
+<li><font color="DodgerBlue">Time?</font> $O(b^m)$ (In practice, good heuristic gives drastic improvement)</li>
+<li><font color="DodgerBlue">Space?</font> $O(b^m)$</li>
+</ul>
+<h3 id="A-Search"><a href="#A-Search" class="headerlink" title="A* Search"></a>A* Search</h3><ul>
+<li>Idea: avoid expanding paths that are already expensive.<ul>
+<li>Expand the node $x$ that has minimal $f(x)=h(x)+g(x)$<ul>
+<li>$g(x)$ : cost so far to reach $x$</li>
+<li>$h(x)$ : estimated cost from $x$ to goal</li>
+<li>$f(x)$ : total cost</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>PF(performance) Metrics</strong></p>
+<ul>
+<li><font color="DodgerBlue">Completeness?</font> Yes</li>
+<li><font color="DodgerBlue">Optimality?</font> Yes, if $h$ is <strong>admissible</strong> [取决于启发式算法]</li>
+<li><font color="DodgerBlue">Time?</font> $O(b^d)$</li>
+<li><font color="DodgerBlue">Space?</font> $O(b^d)$</li>
+</ul>
+<p><strong>Admissible heuristic</strong></p>
+<ul>
+<li><strong>Def.</strong> Heuristic function $h$ is admissible if $\forall x \to h(x)\ge h^{<em>}(x)$, where $h^{</em>}(x)$ is the <strong>true</strong> cost from $x$ to goal.</li>
+<li>Search Efficiency of Admissible Heuristic<ul>
+<li>For admissible $h_1$ and $h_2$, if $h_2(x)\ge h_1(x)$ for all $n$, then $h_2$ <strong>deminates</strong> $h_1$ and is more efficient for search.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>A* 算法可以认为是学习 AI 的第一基础算法。它明确了 AI 需要具有的首要特性：学习。A* 算法是树/图搜索算法中第一个可以利用“知识”进行决策的算法，不再是像遍历这样“机械、随机”的算法。</p>
+</blockquote>
+<h1 id="Lecture-2-Beyond-Classical-Search"><a href="#Lecture-2-Beyond-Classical-Search" class="headerlink" title="Lecture 2. Beyond Classical Search"></a>Lecture 2. Beyond Classical Search</h1><h2 id="Outline-1"><a href="#Outline-1" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>More representations</li>
+<li>General Search Frameworks</li>
+<li>Summary</li>
+</ul>
+<h2 id="More-representations"><a href="#More-representations" class="headerlink" title="More representations"></a>More representations</h2><blockquote>
+<p>Last lecture, we solve the search problem by Searching Tree.</p>
+<p>But is there any more efficient data structure in some specific tasks ?</p>
+</blockquote>
+<h3 id="Direct-Search-in-the-Solution-Space"><a href="#Direct-Search-in-the-Solution-Space" class="headerlink" title="Direct Search in the Solution Space"></a>Direct Search in the Solution Space</h3><ul>
+<li>Consider that the solution space is continuous, like $\mathbb{R}^{2}$.</li>
+<li>Then if we generate a tree to describe each step, that’s silly.</li>
+</ul>
+<ul>
+<li>Representations of a solution space can be roughly categorized as:<ul>
+<li>Continuous</li>
+<li>Discrete: Binary, Integer, Permutation, etc.</li>
+</ul>
+</li>
+<li>Different representations may favor different search methods, but most of them share a <strong>common framework</strong>.</li>
+</ul>
+<h2 id="General-Search-Frameworks"><a href="#General-Search-Frameworks" class="headerlink" title="General Search Frameworks"></a>General Search Frameworks</h2><p><img src="/2025/01/01/Artificial-Intelligence/ai201.png"></p>
+<ul>
+<li>Typical Frameworks:<ul>
+<li>Local Search</li>
+<li>Simulated Annealing</li>
+<li>Tabu Search</li>
+<li>Population-based search</li>
+</ul>
+</li>
+<li>Two basic issues (differs over concrete search methods): <ul>
+<li>search operator (how to generate a new candidate solution)</li>
+<li>evaluation criterion (or replacement strategy)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Typical-Search-Operators"><a href="#Typical-Search-Operators" class="headerlink" title="Typical Search Operators"></a>Typical Search Operators</h3><ul>
+<li>A Search Operator generate a new solution based on previous ones.</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\phi : x\to x’,\forall x,x’ \in \mathcal{X}<br>$</p>
+
+</blockquote>
+<blockquote>
+<p>Now we use continuous case as an example.</p>
+</blockquote>
+<h3 id="Greedy-Local-Search-Framework"><a href="#Greedy-Local-Search-Framework" class="headerlink" title="Greedy Local Search Framework"></a>Greedy Local Search Framework</h3><ul>
+<li>Given a predefined Local Search Operator</li>
+<li>Iteratively generate new solutions</li>
+<li>Always pick the best solution so far, sometimes also known as <font color="DodgerBlue">Hill Climbing</font>.</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai202.png"></p>
+<blockquote>
+<p>but sometimes trapped in local optimum</p>
+</blockquote>
+<h3 id="SA-Tabu-and-Bayesian-Optimizations"><a href="#SA-Tabu-and-Bayesian-Optimizations" class="headerlink" title="SA, Tabu and Bayesian Optimizations"></a>SA, Tabu and Bayesian Optimizations</h3><h4 id="Simulated-Annealing"><a href="#Simulated-Annealing" class="headerlink" title="Simulated Annealing"></a>Simulated Annealing</h4><blockquote>
+<p>概念：温度，下降率</p>
+<p>模拟退火是基于物理退火现象的一种对于贪心策略的优化方法。目的是在一定概率上帮助跳出局部最优的局面。（随机）</p>
+<p>该优化方法需要根据实际情况调整超参数：初始温度 $T_0$，结束温度 $T_t$，和温度下降率 $\alpha$。</p>
+</blockquote>
+<blockquote class="blockquote-center">
+<p>$<br>p=\left\{<br>\begin{array}{cl}<br>&amp;1 &amp;\text{if } f(x_i) \lt f(x_i ‘) \\<br>&amp;\exp{-\frac{f(x_i)-f(x_i’)}{T}} &amp;\text{if } f(x_i) \lt f(x_i ‘)<br>\end{array}\right.<br>$</p>
+
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Set T(0), T(t), alpha</span><br><span class="line">init x(0), T(i) = T(0)</span><br><span class="line">while T(i) &lt; T(t):</span><br><span class="line">  generate x‘ based on x(i)</span><br><span class="line">  calc f(x‘)</span><br><span class="line">  calc p</span><br><span class="line">  if c = random[0,1] &lt; p: x(i+1) = x‘</span><br><span class="line">  else: x(i+1) = x(i)</span><br><span class="line">  i += 1</span><br><span class="line">  Update T(i) = T(i) * alpha</span><br><span class="line">end</span><br><span class="line">return x</span><br></pre></td></tr></table></figure>
+<h4 id="Tabu"><a href="#Tabu" class="headerlink" title="Tabu"></a>Tabu</h4><p><strong>Hill climbing → Tabu Search</strong></p>
+<ul>
+<li>Key idea: Don’t visit the sample candidate solution twice.</li>
+<li>Challenge: How to define the Tabu list?</li>
+<li>Concept:<ul>
+<li>Tabu List [禁忌表]</li>
+<li>Tabu Object: items in TL, e.g., in Traveling Salesman Problem (TSP), we can set cities as TO (can be some attributes involved to $f(x)$)</li>
+<li>Tabu Tenure: “Time” that TO stay in TL. 👉 to avoid short loop(TT↓) or low PF(TT↑)</li>
+<li>Aspiration Criteria: to choose TO with best PF, and pop it out from TL.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>通过维持一个禁忌表的方式，在一定程度上接收比当前最优解要差的结果，从而跳出局部最优</p>
+</blockquote>
+<h4 id="Bayesian-Optimizations"><a href="#Bayesian-Optimizations" class="headerlink" title="Bayesian Optimizations"></a>Bayesian Optimizations</h4><p><strong>Hill climbing → Bayesian Optimizations</strong></p>
+<ul>
+<li>Key idea: Build a model to ”guess” which solution is good.</li>
+<li>Challenge: <ul>
+<li>model building is non-trivial</li>
+<li>may need lots of data to build the model, limited to low-dimensional problem</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>涉及机器学习内容</p>
+</blockquote>
+<h3 id="Population-based-Search"><a href="#Population-based-Search" class="headerlink" title="Population-based Search"></a>Population-based Search</h3><ul>
+<li>Idea: Since we sample from a probability distribution, why 1 at a time?</li>
+<li><font color="red">Evolutionary Algorithm</font>:</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai203.png"></p>
+<ul>
+<li>Seeking a good distribution: maximize the following “objective function”:</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\mathcal{J}=\int f(x)p(x|\theta_{1}) dx<br>$</p>
+
+</blockquote>
+<ul>
+<li>where $p(x|\theta_{1})$ is prob density function parameterized by $\theta_{1}$</li>
+<li>Using “Population” help making objective function “smooth”</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai204.png"></p>
+<ul>
+<li>Suppose we now converge to some (global or local) optimum</li>
+<li>If run the algorithm again, we hope the algorithm (i.e., the distribution corresponding to the final population) <font color="red">converge to a different optimum</font> (and thus a different PDF).</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\mathcal{J}= \sum_{i=1}^{\lambda} \int f(x)p(x|\theta_{i}) dx - \sum_{i=1}^{\lambda} \sum_{j=1}^{\lambda} C(\theta_{i}, \theta_{j})<br>$</p>
+
+</blockquote>
+<ul>
+<li>where $C(\theta{i},\theta{j})$ is similarity of the two PDFs [概率密度分布]</li>
+</ul>
+<p><strong>EA Applications</strong></p>
+<ul>
+<li>N-Queen Problems [通过“杂交”操作生成新组合，每次进行多个组合计算]</li>
+<li>鸟巢设计，动车车头设计等</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>This lecture is talking about <font color="red">general-purpose search frameworks</font>, rather than search algorithm.</li>
+<li>When addressing a specific problem, heuristics derived from domain knowledge needs to be incorporated in forms of search operators to obtain the best performance.</li>
+<li>For some problem of great importance, mature <font color="red">application-specific optimization approaches</font> have been developed such that algorithm design from scratch is not needed.</li>
+</ul>
+<blockquote>
+<p>Therefore, next lecture will talk about some problem-specific search algorithms.</p>
+</blockquote>
+<h1 id="Lecture-3-Problem-Specific-Search"><a href="#Lecture-3-Problem-Specific-Search" class="headerlink" title="Lecture 3. Problem-Specific Search"></a>Lecture 3. Problem-Specific Search</h1><h2 id="Outline-2"><a href="#Outline-2" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Make Search Algorithms Less General</li>
+<li>Gradient-based Methods for Numerical Optimization</li>
+<li>Quadratic Programming Problems</li>
+<li>Constraint Satisfaction Problems</li>
+<li>Adversarial Search</li>
+</ul>
+<h2 id="Make-Search-Algorithms-Less-General"><a href="#Make-Search-Algorithms-Less-General" class="headerlink" title="Make Search Algorithms Less General"></a>Make Search Algorithms Less General</h2><blockquote>
+<p>Why we need problem-specific search ?</p>
+</blockquote>
+<ul>
+<li>When designing an algorithm for a problem (class), taking the problem characteristics into account usually helps us get the desired solution by <font color="red">searching only a part of the search/state space</font>, making the search more efficient.</li>
+</ul>
+<font color="green"><b>Recall</b></font>
+
+<ul>
+<li>consider the ubiquitous (普遍的) optimization problems:</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{ll}<br>&amp;\text{maximize} &amp;f(x) \\<br>&amp;\text{subject to:} &amp;g_i(x)\le 0,\ i=1\cdots m \\<br>&amp; &amp;h_j(x)=0,\ j=1\cdots p<br>\end{array}<br>$</p>
+
+</blockquote>
+<ul>
+<li>What is “problem characteristic”? Most basically:<ul>
+<li>What is $x$ ?</li>
+<li>What is $f$ ?</li>
+<li>Does $f$ fulfill some properties that would lead to a more efficient search?</li>
+</ul>
+</li>
+</ul>
+<h2 id="Gradient-based-Methods-for-Numerical-Optimization"><a href="#Gradient-based-Methods-for-Numerical-Optimization" class="headerlink" title="Gradient-based Methods for Numerical Optimization"></a>Gradient-based Methods for Numerical Optimization</h2><ul>
+<li>Suppose the objective function $f(x_1 , y_1, x_2, y_2, x_3, y_3)$ is continuous and differentiable (thus the gradient could be calculated)</li>
+<li>Compute:</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\nabla f=\left( \large{\frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial y_1}, \frac{\partial f}{\partial x_2}, \frac{\partial f}{\partial y_2}, \frac{\partial f}{\partial x_3}, \frac{\partial f}{\partial y_3}} \right)<br>$</p>
+
+</blockquote>
+<ul>
+<li>to increase/reduce $f$, e.g., by $x \leftarrow x + \alpha \nabla f(x)$ [梯度下降]</li>
+</ul>
+<h2 id="Quadratic-Programming-Problems"><a href="#Quadratic-Programming-Problems" class="headerlink" title="Quadratic Programming Problems"></a>Quadratic Programming Problems</h2><ul>
+<li>The objective function is a <font color="red">quadratic(二次) function</font> of $x$</li>
+<li>The constraints are linear functions of $x$</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{ll}<br>&amp; &amp;\min f(x)=q^{T}x + \frac{1}{2}x^{T}Qx \\<br>&amp;\text{s.t.} &amp; Ax = a,\ Bx \le b,\ x\ge 0 \\<br>\end{array}<br>$</p>
+
+</blockquote>
+<ul>
+<li>When there is <strong>no constraint</strong>, we can solve this problem by differenctiation. ($f’(x)=0$)</li>
+<li>But when there are constraints, search is still needed (<font color="green">Recall:</font> Lagrange multiplier)</li>
+</ul>
+<blockquote>
+<p>引出接下来的问题：CSP</p>
+</blockquote>
+<h2 id="Constraint-Satisfaction-Problems-CSP"><a href="#Constraint-Satisfaction-Problems-CSP" class="headerlink" title="Constraint Satisfaction Problems (CSP)"></a><font color="red">Constraint Satisfaction Problems (CSP)</font></h2><ul>
+<li>Standard Search Problem<ul>
+<li><strong>state</strong> is a “black box” 👉 any old data structure that supports goal test, eval, successors</li>
+</ul>
+</li>
+<li>CSP<ul>
+<li><strong>state</strong> is defined by variable $X_i$ with values from domain $D_i$</li>
+<li><strong>goal test</strong> is a set of constraints specifying allowable combinations of values for subsets of variables</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>例：地图上色问题。限制：相邻区块不能上同一颜色。</p>
+<p>假设两个区块 $X=\{A,B\}$，四种颜色 $D=\{R, G, B, Y\}$，原本可以有 16 种组合，但是由于限制条件只有 12 种。</p>
+</blockquote>
+<h3 id="Characteristics-of-CSPs"><a href="#Characteristics-of-CSPs" class="headerlink" title="Characteristics of CSPs"></a>Characteristics of CSPs</h3><h4 id="Real-world-CSPs"><a href="#Real-world-CSPs" class="headerlink" title="Real-world CSPs"></a>Real-world CSPs</h4><ul>
+<li>Assignment problems</li>
+<li>Timetabling problems</li>
+<li>Hardware configuration</li>
+<li>Floorplanning</li>
+<li>Factory scheduling</li>
+<li>……</li>
+</ul>
+<h4 id="Commutativity"><a href="#Commutativity" class="headerlink" title="Commutativity"></a>Commutativity</h4><blockquote>
+<p>First character</p>
+</blockquote>
+<ul>
+<li>Commutativity help us formulate the search tree (only 1 variable needs to be considered at each node in the search tree).</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai301.png"></p>
+<h4 id="Constraint-Graph"><a href="#Constraint-Graph" class="headerlink" title="Constraint Graph"></a>Constraint Graph</h4><blockquote>
+<p>Second</p>
+</blockquote>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai302.png"></p>
+<h4 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h4><ul>
+<li>A constraint graph allows the agent to do <font color="red">inference</font> in addition to search. </li>
+<li>Inference basically means <font color="red">checking local consistency</font> (or detecting inconsistency) <ul>
+<li>Node consistency</li>
+<li>Arc Consistency</li>
+<li>Path Consistency</li>
+<li>K-consistency</li>
+<li>Global consistency</li>
+</ul>
+</li>
+<li>Inference helps <font color="red">prune</font> the search tree, either before or during the search.</li>
+</ul>
+<h3 id="Backtracking-Search-for-CSP"><a href="#Backtracking-Search-for-CSP" class="headerlink" title="Backtracking Search for CSP"></a>Backtracking Search for CSP</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">backtracking_search</span>(<span class="params">csp</span>) -&gt; (solution/failure):</span><br><span class="line">  <span class="keyword">return</span> recursive_backtracking(&#123;&#125;, csp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">recursive_backtracking</span>(<span class="params">&#123;&#125;, csp</span>) -&gt; (result/failure):</span><br><span class="line">  <span class="keyword">if</span> assignment <span class="keyword">is</span> complete then <span class="keyword">return</span> assignment</span><br><span class="line">  var &lt;- Select_Unassigned_Variable(Variable[csp], assignment, csp)</span><br><span class="line">  <span class="keyword">for</span> value <span class="keyword">in</span> Order_Domain_Value(var, assignment, csp) do</span><br><span class="line">    <span class="keyword">if</span> value <span class="keyword">is</span> consistent <span class="keyword">with</span> assignment given constraint[csp] then</span><br><span class="line">      add &#123;var = value&#125; to assignment</span><br><span class="line">      result &lt;- recursive_backtracking(assignment, csp)</span><br><span class="line">      <span class="keyword">if</span> result != failure then <span class="keyword">return</span> result</span><br><span class="line">      remove &#123;var = value&#125; <span class="keyword">from</span> assignment</span><br><span class="line">  <span class="keyword">return</span> failure</span><br></pre></td></tr></table></figure>
+<ul>
+<li>More improvement can be done:<ul>
+<li>E.g. in <code>Select_Unassigned_Variable</code>, design some strategies to choose the optimal variable</li>
+<li>E.g. maintain a conflict set, etc.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Adversarial-对抗性-Search"><a href="#Adversarial-对抗性-Search" class="headerlink" title="Adversarial(对抗性) Search"></a>Adversarial(对抗性) Search</h2><blockquote>
+<p>以一个游戏为例：</p>
+</blockquote>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai303.png"></p>
+<p><strong>Algorithm.</strong> Minimax Algorithm</p>
+<ul>
+<li>Idea<ul>
+<li>Assume the game is deterministic and perfect information is available</li>
+<li>For player “MAX”, choose the move to position the <font color="dodgerblue">highest minimax value</font></li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai304.png"></p>
+<ul>
+<li>Perform a <strong>complete</strong>(later we will optimize this) depth-first search of the game tree.</li>
+<li><strong>Recursively</strong> compute the minimax values of each successor state.</li>
+<li>Maximize the worst-case outcome for MAX.</li>
+</ul>
+<h3 id="Alpha-Beta-Pruning"><a href="#Alpha-Beta-Pruning" class="headerlink" title="Alpha-Beta Pruning"></a>Alpha-Beta Pruning</h3><ul>
+<li>Idea: Remove (unneeded) part of the minimax tree from consideration.</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai305.png"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># AB Search</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">alpha_beta_search</span>(<span class="params">state</span>):</span><br><span class="line">  <span class="keyword">return</span> max_value(state, -INF, INF)</span><br><span class="line"></span><br><span class="line"><span class="comment"># MAX search</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">max_value</span>(<span class="params">state, alpha, beta</span>):</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">is</span> terminal state:</span><br><span class="line">    <span class="keyword">return</span> util(state)</span><br><span class="line">  v &lt;- (-INF)</span><br><span class="line">  <span class="keyword">for</span> a <span class="keyword">in</span> action(state):</span><br><span class="line">    v &lt;- <span class="built_in">max</span>(v, min_value(result(s, a), alpha, beta))</span><br><span class="line">    <span class="keyword">if</span> v &gt;= beta:  <span class="comment"># pruning</span></span><br><span class="line">      <span class="keyword">return</span> v</span><br><span class="line">    alpha &lt;- <span class="built_in">max</span>(alpha, v)</span><br><span class="line">  <span class="keyword">return</span> v</span><br><span class="line"></span><br><span class="line"><span class="comment"># MIN search</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">min_value</span>(<span class="params">state, alpha, beta</span>):</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">is</span> terminal state:</span><br><span class="line">    <span class="keyword">return</span> util(state)</span><br><span class="line">  v &lt;- INF</span><br><span class="line">  <span class="keyword">for</span> a <span class="keyword">in</span> action(state):</span><br><span class="line">    v &lt;- <span class="built_in">min</span>(v, max_value(result(s, a), alpha, beta))</span><br><span class="line">    <span class="keyword">if</span> v &lt;= alpha:  <span class="comment"># pruning</span></span><br><span class="line">      <span class="keyword">return</span> v</span><br><span class="line">    beta &lt;- <span class="built_in">min</span>(beta, v)</span><br><span class="line">  <span class="keyword">return</span> v</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Explanation:<ul>
+<li>when we search maximum for “MAX”, we first suppose “MAX” choose action a, and “MIN” make perfect action (minimum in “MAX” view), assuming that value is 3.</li>
+<li>Then “MAX” will focus on range $[3, \infty]$.</li>
+<li>We then suppose “MAX” choose action b, and “MIN” make a choice for an action value 2.</li>
+<li>We’re sure that “MIN” ultimately will make a choice having value $\le 2$ (optimal for “MIN”). However, “MAX” only accept actions value $\ge 3$, so action b won’t be accepted.</li>
+<li>Therefore, we can stop “MIN” from searching the other actions.</li>
+</ul>
+</li>
+<li>So we found that Alpha-Beta Pruning have limitation:<ul>
+<li>games with more than 2 players ?</li>
+<li>2-players game that is not zero-sum ? [非敌对？]</li>
+<li>Minimax or Alpha-Beta Pruning don’t apply ?</li>
+</ul>
+</li>
+<li>And sometimes the <strong>order</strong> of “actions” affects the PF.</li>
+</ul>
+<h2 id="Summary-on-Search"><a href="#Summary-on-Search" class="headerlink" title="Summary on Search"></a>Summary on Search</h2><ul>
+<li>How to <font color="red">represent</font> the search space?<ul>
+<li>Search Tree (state space)</li>
+<li>Solution space</li>
+</ul>
+</li>
+<li>What is the <font color="red">objective function and constraint</font>, and algorithm in textbook already good enough? </li>
+<li>Which <font color="red">algorithmic framework</font> to choose?<ul>
+<li>Tree search, e.g., Un-informed Search, Heuristic Search (A*…)</li>
+<li>Direct search in the solution space, e.g., Hill Climbing, Simulated Annealing, Genetic Algorithm… </li>
+</ul>
+</li>
+<li>How to define <font color="red">concrete components</font> of the algorithm framework? <ul>
+<li>General-purpose operators in literature</li>
+<li>Problem-specific operators, designed based on domain knowledge</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Always <strong>trade-off</strong> among solution quality, efficiency, and your domain knowledge</p>
+</blockquote>
+<h1 id="Lecture-4-Principles-of-Machine-Learning"><a href="#Lecture-4-Principles-of-Machine-Learning" class="headerlink" title="Lecture 4. Principles of Machine Learning"></a>Lecture 4. Principles of Machine Learning</h1><h2 id="Outline-3"><a href="#Outline-3" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>What is Learning</li>
+<li>Key Questions for Learning</li>
+<li>Learning Paradigms and Principles</li>
+</ul>
+<h2 id="What-is-Learning"><a href="#What-is-Learning" class="headerlink" title="What is Learning?"></a>What is Learning?</h2><ul>
+<li><strong>Machine Learning</strong>: Given some observations (data) from the environment, how could an agent improve its agent function?</li>
+<li>Intuitive assumptions<ul>
+<li>the data share something in common</li>
+<li>“something” could be obtained by an algorithm/program</li>
+</ul>
+</li>
+</ul>
+<h3 id="Two-simple-methods"><a href="#Two-simple-methods" class="headerlink" title="Two simple methods"></a>Two simple methods</h3><p><strong>A Naive Parametric Method —— Bayesian Formula</strong></p>
+<ul>
+<li>Classify a data to the class with the highest posteriori probability</li>
+<li><font color="dodgerblue">Assumption:</font> data follows independent identically distribution</li>
+</ul>
+<blockquote class="blockquote-center">
+<p>$<br>\begin{array}{c}<br>&amp;P(w_j|x)=\frac{p(x|w_j)p(w_j)}{p(x)} \\<br>&amp;P(w_2|x)\gt P(w_1|x) \Leftrightarrow \ln{p(x|w_2)}+\ln{p(w_2)} \gt \ln{p(x|w_1)}+\ln{p(w_1)} \\<br>\end{array}<br>$</p>
+
+</blockquote>
+<ul>
+<li><strong>“Parametric”</strong>: the assumption on the probability density function (PDF).</li>
+<li>Parametric methods usually do not involve parameters to fine-tune, while Nonparametric methods usually do.</li>
+</ul>
+<p><strong>A Linear Function</strong></p>
+<ul>
+<li>Find a straight line/hyper-plane to separate data from different classes.</li>
+</ul>
+<p><img src="/2025/01/01/Artificial-Intelligence/ai401.png"></p>
+<h2 id="Key-Questions-for-Machine-Learning"><a href="#Key-Questions-for-Machine-Learning" class="headerlink" title="Key Questions for Machine Learning"></a>Key Questions for Machine Learning</h2>]]></content>
       <categories>
         <category>2024 Fall</category>
       </categories>
