@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Traps that I&#39;m in —— `Next.js` App-dev</title>
+    <url>/2025/03/30/Traps-that-I-m-in-%E2%80%94%E2%80%94-Next-js-App-dev/</url>
+    <content><![CDATA[<h1 id="Before"><a href="#Before" class="headerlink" title="Before"></a>Before</h1><ul>
+<li>A note for project development of Software Engineering</li>
+<li>Recording the trap I’ve been in when I was coding by <code>React/Next.js</code></li>
+<li>I was responsible for front-end. Although my team use framework <code>Springboot + React</code>, this note will only includes contents of <code>Next.js</code></li>
+</ul>
+<h1 id="1-Using-State-amp-Using-Effect"><a href="#1-Using-State-amp-Using-Effect" class="headerlink" title="1. Using State &amp; Using Effect"></a>1. Using State &amp; Using Effect</h1>]]></content>
+      <categories>
+        <category>2025 Spring</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>React</tag>
+        <tag>Next.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CS303 人工智能</title>
     <url>/2025/01/01/Artificial-Intelligence/</url>
     <content><![CDATA[<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><p><strong>AI Search</strong></p>
@@ -8,16 +26,22 @@
 <li>Lecture 1. AI as Search</li>
 <li>Lecture 2. Beyond Classical Search</li>
 <li>Lecture 3. Problem-Specific Search</li>
+</ul>
+<p><strong>Machine Learning</strong></p>
+<ul>
 <li>Lecture 4. Principles of Machine Learning</li>
 <li>Lecture 5. Supervised Learning</li>
 <li>Lecture 6. Performance Evaluation for Machine Learning</li>
 <li>Lecture 7. Unsupervised Learning</li>
 <li>Lecture 8. Recommender System</li>
 <li>Lecture 9. Automated Machine Learning</li>
+</ul>
+<p><strong>Knowledge and Reasoning</strong></p>
+<ul>
 <li>Lecture 10. Logical Agents</li>
 <li>Lecture 11. First Order Logic</li>
 <li>Lecture 12. Representing and Inference with Uncertainty</li>
-<li>Lecture 13.</li>
+<li>Lecture 13. Knowledge Graph</li>
 </ul>
 <h1 id="Lecture-1-AI-as-Search"><a href="#Lecture-1-AI-as-Search" class="headerlink" title="Lecture 1. AI as Search"></a>Lecture 1. AI as Search</h1><h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><ul>
 <li>From searching to search tree</li>
@@ -170,7 +194,7 @@
 </ul>
 <p><strong>Admissible heuristic</strong></p>
 <ul>
-<li><strong>Def.</strong> Heuristic function $h$ is admissible if $\forall x \to h(x)\ge h^{<em>}(x)$, where $h^{</em>}(x)$ is the <strong>true</strong> cost from $x$ to goal.</li>
+<li><strong>Def.</strong> Heuristic function $h$ is admissible if $\forall x \to h(x)\ge h’(x)$, where $h’(x)$ is the <strong>true</strong> cost from $x$ to goal.</li>
 <li>Search Efficiency of Admissible Heuristic<ul>
 <li>For admissible $h_1$ and $h_2$, if $h_2(x)\ge h_1(x)$ for all $n$, then $h_2$ <strong>deminates</strong> $h_1$ and is more efficient for search.</li>
 </ul>
@@ -192,6 +216,7 @@
 <li>Consider that the solution space is continuous, like $\mathbb{R}^{2}$.</li>
 <li>Then if we generate a tree to describe each step, that’s silly.</li>
 </ul>
+<hr>
 <ul>
 <li>Representations of a solution space can be roughly categorized as:<ul>
 <li>Continuous</li>
@@ -240,10 +265,10 @@
 <p>该优化方法需要根据实际情况调整超参数：初始温度 $T_0$，结束温度 $T_t$，和温度下降率 $\alpha$。</p>
 </blockquote>
 <blockquote class="blockquote-center">
-<p>$<br>p=\left\{<br>\begin{array}{cl}<br>&amp;1 &amp;\text{if } f(x_i) \lt f(x_i ‘) \\<br>&amp;\exp{-\frac{f(x_i)-f(x_i’)}{T}} &amp;\text{if } f(x_i) \lt f(x_i ‘)<br>\end{array}\right.<br>$</p>
+<p>$<br>p=\left\{<br>\begin{array}{cl}<br>&amp;1 &amp;\text{if } f(x_i) \lt f(x_i’) \\<br>&amp;\exp{-\frac{f(x_i)-f(x_i’)}{T}} &amp;\text{if } f(x_i) \lt f(x_i’)<br>\end{array}\right.<br>$</p>
 
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Set T(0), T(t), alpha</span><br><span class="line">init x(0), T(i) = T(0)</span><br><span class="line">while T(i) &lt; T(t):</span><br><span class="line">  generate x‘ based on x(i)</span><br><span class="line">  calc f(x‘)</span><br><span class="line">  calc p</span><br><span class="line">  if c = random[0,1] &lt; p: x(i+1) = x‘</span><br><span class="line">  else: x(i+1) = x(i)</span><br><span class="line">  i += 1</span><br><span class="line">  Update T(i) = T(i) * alpha</span><br><span class="line">end</span><br><span class="line">return x</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="type">Set</span> T(<span class="number">0</span>), T(t), alpha</span><br><span class="line">init x(<span class="number">0</span>), T(i) = T(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span> T(i) &lt; T(t):</span><br><span class="line">  generate x‘ based on x(i)</span><br><span class="line">  calc f(x‘)</span><br><span class="line">  calc p</span><br><span class="line">  <span class="keyword">if</span> c = random[<span class="number">0</span>,<span class="number">1</span>] &lt; p: x(i+<span class="number">1</span>) = x‘</span><br><span class="line">  <span class="keyword">else</span>: x(i+<span class="number">1</span>) = x(i)</span><br><span class="line">  i += <span class="number">1</span></span><br><span class="line">  Update T(i) = T(i) * alpha</span><br><span class="line">end</span><br><span class="line"><span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
 <h4 id="Tabu"><a href="#Tabu" class="headerlink" title="Tabu"></a>Tabu</h4><p><strong>Hill climbing → Tabu Search</strong></p>
 <ul>
 <li>Key idea: Don’t visit the sample candidate solution twice.</li>
@@ -297,7 +322,7 @@
 
 </blockquote>
 <ul>
-<li>where $C(\theta{i},\theta{j})$ is similarity of the two PDFs [概率密度分布]</li>
+<li>where $C(\theta_{i},\theta_{j})$ is similarity of the two PDFs [概率密度分布]</li>
 </ul>
 <p><strong>EA Applications</strong></p>
 <ul>
@@ -498,7 +523,7 @@
 </ul>
 <h3 id="Two-simple-methods"><a href="#Two-simple-methods" class="headerlink" title="Two simple methods"></a>Two simple methods</h3><p><strong>A Naive Parametric Method —— Bayesian Formula</strong></p>
 <ul>
-<li>Classify a data to the class with the highest posteriori probability</li>
+<li>Classify a data to the class with the highest posterior probability</li>
 <li><font color="dodgerblue">Assumption:</font> data follows independent identically distribution</li>
 </ul>
 <blockquote class="blockquote-center">
@@ -635,7 +660,7 @@
 <li>Update weights between output and hidden layers</li>
 </ul>
 <blockquote class="blockquote-center">
-<p>$<br>\grad{w_{ji}}=-\eta\frac{\partial{J}}{ \partial{w_{ji}}}<br>$</p>
+<p>$<br>\nabla w_{ji}=-\eta\frac{\partial{J}}{ \partial{w_{ji}}}<br>$</p>
 
 </blockquote>
 <ul>
