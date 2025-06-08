@@ -1234,7 +1234,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #f6a8ff;
+    background: #ffffa7;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2827,4 +2827,39 @@ body {
 }
 .post-body img {
   border-radius: 1em;
+}
+table tr {
+  background-color: rgba(255,255,255,0.4) !important;
+}
+table tr:nth-child(even),
+table tr:nth-child(2n) {
+  background-color: rgba(255,255,255,0.4) !important;
+}
+.posts-collapse .post-content .post-title {
+  transition: font-size 0.05s ease, font-weight 0.05s ease; /* 添加过渡动画 */
+}
+.posts-collapse .post-content .post-title:hover {
+  font-weight: bold;
+  font-size: 1.1em; /* 放大字体大小，1.1em 表示放大 10% */
+}
+.posts-collapse .post-content .collection-title {
+  display: none !important;
+}
+.posts-collapse .post-content::before {
+  background: var(--archive-post-content-before-color);
+  margin-left: -0.5px;
+  top: 1em;
+  width: 1px;
+}
+.posts-collapse .post-content .collection-year {
+  margin: 40px 0 0 0;
+}
+.posts-collapse .post-content .collection-year::before {
+  display: none;
+}
+.posts-collapse .post-content .post-header {
+  font-size: 1.1em;
+}
+.posts-collapse .post-content .post-meta-container {
+  font-size: inherit; /* or use initial or unset */
 }
