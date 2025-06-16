@@ -265,7 +265,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2025-06-17 02:52:31 / Modified: 02:57:37" itemprop="dateCreated datePublished" datetime="2025-06-17T02:52:31+08:00">2025-06-17</time>
+      <time title="Created: 2025-06-17 02:52:31 / Modified: 03:02:04" itemprop="dateCreated datePublished" datetime="2025-06-17T02:52:31+08:00">2025-06-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -287,186 +287,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="PlACo-Document"><a href="#PlACo-Document" class="headerlink" title="PlACo Document"></a>PlACo Document</h1><ul>
-<li><a href="#Introduction">Introduction</a></li>
-<li><a href="#Installation">Installation</a></li>
-<li><p><a href="#Usages">Usages</a></p>
-<ul>
-<li><a href="#Login">Login</a></li>
-<li><p><a href="#Users">Users</a></p>
-<ul>
-<li><a href="#Course-Intructor">Instructor</a></li>
-<li><a href="#Course-Student">Student</a></li>
-</ul>
-</li>
-<li><p><a href="#Administrater">Administrater</a></p>
-</li>
-</ul>
-</li>
-<li><p><a href="#Contributing">Contributing</a></p>
-</li>
-<li><a href="#License">License</a></li>
-</ul>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
-<li><strong>PlACo</strong> (<strong>Pl</strong>atform of <strong>A</strong>ssignment and <strong>Co</strong>ding) is an integrated platform with a streamlined user interface</li>
-<li>Our design combines the functions of Blackboard(an assignment submission platform) and Online Judge(a programming judge platform)</li>
-<li>Our supported functions include (details seen in <a href="#usage">Usage</a>):<ul>
-<li>Customized settings</li>
-<li>Assignment submission</li>
-<li>Programming problem submission</li>
-<li>Online judge</li>
-</ul>
-</li>
-</ul>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><h3 id="By-source-code"><a href="#By-source-code" class="headerlink" title="By source code"></a>By source code</h3><ol>
-<li>Clone frontend source code</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [repo-address] -b frontend/main</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Install necessary packages</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Run in develop mode</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Build the project (or you can run it in a Docker container)<ul>
-<li>we use normal next.js framework, so you can view next.js deployment for this deployment</li>
-</ul>
-</li>
-</ol>
-<h2 id="Usages"><a href="#Usages" class="headerlink" title="Usages"></a>Usages</h2><h3 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h3><ul>
-<li>In <code>Login</code> page, users can input <strong>Username</strong> and <strong>Password</strong> for login.</li>
-<li>If you are a new user, feel free to sign in via Github, and we will register a new user for you!</li>
-</ul>
-<p><img src="/2025/06/17/Placo/login.png"></p>
-<h3 id="Users"><a href="#Users" class="headerlink" title="Users"></a>Users</h3><p><strong>Intro</strong></p>
-<ul>
-<li>Users have normal authority in <em>PlACo</em>. Also, they may have different authorities according to their <code>role</code> in a specific course</li>
-</ul>
-<p><img src="/2025/06/17/Placo/mainPage.png"></p>
-<h4 id="Schedule-and-Settings"><a href="#Schedule-and-Settings" class="headerlink" title="Schedule and Settings"></a>Schedule and Settings</h4><ul>
-<li>There is a <code>Tab</code> at the Header of :house:main page (after you login). Click the <code>Schedule</code> to enter :calendar:schedule page.</li>
-<li>You can check <strong>all the upcoming assignments</strong> of all courses that you attend in a table.</li>
-<li>There is a button “View Calendar” to see the assignment DDL in a calendar.</li>
-<li>There is a button “Add Entry” that you can add your own schedule<ul>
-<li>Input entry’s name and due time to create a new entry</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li>There is a <code>Menu</code> at the up-right of main page. Click the <code>Setting</code> to enter setting page</li>
-<li>You can change your <code>username</code> and <code>password</code> of your account. Just input a new one and click <code>update</code>.</li>
-<li>There is a switch that you can turn to dark mode. The default mode is light, but we will keep your customized setting.</li>
-</ul>
-<h4 id="Course-Intructor"><a href="#Course-Intructor" class="headerlink" title="Course Intructor"></a>Course Intructor</h4><blockquote>
-<p>:fountain_pen: <strong>IMPORTANT!</strong> In a specific course, you will have a “role”, a teacher (<code>INSTRUCTOR</code>) or a student (<code>STUDENT</code>).</p>
-<p>:fountain_pen: <strong>IMPORTANT!</strong> Your role is specified by the administrater, and you can view your role of a course on the “course card” in :house:main page.</p>
-</blockquote>
-<ul>
-<li>If you are <strong>INSTRUCTOR</strong> of a course, you can create assignments (following steps) at the first page you enter a course.<ul>
-<li>Click the <code>Create Assignment</code> button</li>
-<li>Input all necessary items (e.g. assignment title, type, due date, full mark and max attempts)<ul>
-<li>you can set assignment type to<code>TEXT</code> or <code>CODE</code>. You are given different operations on different mode.</li>
-</ul>
-</li>
-<li>You can submit files as assignment documents, you can also add document after create this assignment.</li>
-<li>You can enable OCR service to check students submission after convert them from hand-written version to type-version.</li>
-</ul>
-</li>
-<li>A <strong>navbar</strong> is offered to select assignment that you can view details and operate.</li>
-<li>For a <strong>TEXT</strong> assignment, you can:<ul>
-<li>click <code>Modify</code> button to change publish time, due time, full mark and enable-OCR state.</li>
-<li>preview your submitted documents by clicking <code>Preview</code> button of each file</li>
-<li>click <code>Add documents</code> or <code>Delete documents</code> to add or delete document files.</li>
-<li>:fountain_pen: <strong>IMPORTANT!</strong> check students’ submissions information:<ul>
-<li>click link <code>View Details</code> to preview files that students submit (if exists)</li>
-<li>input scores and click <code>save</code> button to score for this submission</li>
-<li>click <code>Publish Scores</code> to make them available to students if <strong>Due time is expired</strong> and <strong>all students’ submissions are scored</strong>.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>For a <strong>CODE</strong> assignment, you can:<ul>
-<li><strong>also</strong> modify assignment information and add/delete documents</li>
-<li>You can add testcases by clicking <code>Add Testcases</code> button:<ul>
-<li>then set all necessary configuration of a testcase (detailed description inside this page)</li>
-<li>you can upload an input file and an expected output file as “testcase”</li>
-<li>then add this testcase to the <strong>testcase list</strong> (<strong>you can add multiple testcases!</strong>)</li>
-<li>at last, you can click <code>Confirm All</code> to upload all testcases at a time</li>
-</ul>
-</li>
-<li>You can click <code>View Testcases</code> button to delete a testcase or view details like:<ul>
-<li>CPU time limit, global time limit, memory limit, stack limit</li>
-<li>Input file content, output file content, enabled attributes</li>
-</ul>
-</li>
-<li>there is also a table showing students’ submissions. You can view files that students submit, <strong>BUT</strong> you can’t score because we have a judge service to score it automatically.</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2025/06/17/Placo/assignment-instructor.png"></p>
-<h4 id="Course-Student"><a href="#Course-Student" class="headerlink" title="Course Student"></a>Course Student</h4><ul>
-<li>As a student in a course, you can <strong>submit assignment or code</strong> and <strong>check out your scores</strong>.</li>
-<li>For a <strong>TEXT</strong> assignment, you can:<ul>
-<li>click <code>Pick files</code> to upload file for a submission</li>
-<li>this page will only show your latest submission (view submit time on the right)</li>
-<li>You can <strong>view your score</strong> if teacher publish it. (on the right)</li>
-</ul>
-</li>
-<li>For a <strong>CODE</strong> assignment, you can:<ul>
-<li>click <code>Pick files</code> and <strong>Choose programming language</strong> to make submission</li>
-<li>this page will show all your submissions ordered by submit time (desc.)</li>
-<li>you can click link <code>View Details</code> to see each of your submissions and check results of all testcases (if exists)</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Code assighments are judged by auto service, so you <strong>MUST</strong> choose programming language before submitting</p>
-</blockquote>
-<p><img src="/2025/06/17/Placo/assignment-student.png"></p>
-<h3 id="Administrater"><a href="#Administrater" class="headerlink" title="Administrater"></a>Administrater</h3><p><strong>Intro</strong></p>
-<ul>
-<li>ADMINs have all authority that users have. And they also have authority to register new users and new courses.</li>
-<li>Compared to Users, administraters have 2 more tabs on hearder.</li>
-</ul>
-<p><img src="/2025/06/17/Placo/header.png"></p>
-<h4 id="Manage-Courses"><a href="#Manage-Courses" class="headerlink" title="Manage Courses"></a>Manage Courses</h4><ul>
-<li>Click <code>Courses</code> tab to manage courses</li>
-<li>You can:<ul>
-<li>click one existed course to add/delete members as instructor/student (all enable to search and choose)</li>
-<li>click <code>Create Course</code> button to create new course<ul>
-<li>You can initialize course attributes (name, instructors, students) to create one single course</li>
-<li>You can also upload a <strong>CSV</strong> file in formal format &amp; order to create multiple courses.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="Manage-Users"><a href="#Manage-Users" class="headerlink" title="Manage Users"></a>Manage Users</h4><ul>
-<li>Click <code>Users</code> tab to manage users</li>
-<li>You can:<ul>
-<li>check a user’s information and deactivate it (after that, this user cannot login)</li>
-<li>register a new user by clicking <code>New</code> button:<ul>
-<li>You can initialize user attributes (email, username, password, role) to create one single user</li>
-<li>You can also upload a <strong>CSV</strong> file in formal format &amp; order to create multiple users.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><h3 id="Contributors"><a href="#Contributors" class="headerlink" title="Contributors"></a>Contributors</h3><ul>
-<li><p>Now our group have 4 members: <a target="_blank" rel="noopener" href="https://github.com/fest6">fest6</a>, <a target="_blank" rel="noopener" href="https://github.com/LatiosInAltoMare">LatiosInAltoMare</a>, <a target="_blank" rel="noopener" href="https://github.com/zxx3312">zxx3312</a>, <a target="_blank" rel="noopener" href="https://github.com/HQJ2221">HQJ2221</a>.</p>
-</li>
-<li><p>Two of us working for backend, and the other two for frontend. We all do part of testing, and our PM complete deployment.</p>
-</li>
-<li><p>If you want to contribute to our code, please refer to Developer Document(wait for publishment).</p>
-</li>
-</ul>
-<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a target="_blank" rel="noopener" href="https://mit-license.org/">MIT License</a></p>
-
+          <p>PlACo (Platform of Assignment and Coding) is an integrated platform with a streamlined user interface</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/06/17/Placo/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
     
