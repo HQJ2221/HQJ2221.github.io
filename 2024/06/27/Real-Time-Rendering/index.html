@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons8-fox-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons8-fox-16.png">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-atom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本课程为 NUS Soc 暑期课程，主要学习现实 3D 图形的实时渲染原理以及在 C++ 上的实现（使用 OpenGL ）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NUS Soc SWS3005  实时 3D 图形渲染">
+<meta property="og:url" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/index.html">
+<meta property="og:site_name" content="Ho Kai Kwan&#39;s Personal Pages">
+<meta property="og:description" content="本课程为 NUS Soc 暑期课程，主要学习现实 3D 图形的实时渲染原理以及在 C++ 上的实现（使用 OpenGL ）。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr1.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr2.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr4.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr5.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr6.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr7.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr8.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr11.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr9.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr10.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr12.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr13.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr13.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr17.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr18.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr14.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr15.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr19.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr16.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr20.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr21.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr22.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr23.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr24.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr25.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr26.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr27.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr16.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr28.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr30.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr29.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr31.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr32.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr33.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr34.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr37.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr38.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr39.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr35.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr36.png">
+<meta property="article:published_time" content="2024-06-27T06:57:57.000Z">
+<meta property="article:modified_time" content="2025-06-18T12:08:33.030Z">
+<meta property="article:author" content="Bionic l&#39;Hôpital">
+<meta property="article:tag" content="CSE Learning">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/rtr1.png">
+
+
+<link rel="canonical" href="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/","path":"2024/06/27/Real-Time-Rendering/","title":"NUS Soc SWS3005  实时 3D 图形渲染"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NUS Soc SWS3005  实时 3D 图形渲染 | Ho Kai Kwan's Personal Pages</title>
+  
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    'use strict';
+    
+      if (NexT.utils.hasMobileUA()) return;
+    
+    let time, hidden, visible, title = document.title;
+    let favicon = document.querySelector('link[rel="icon"]');
+    
+      hidden = 'ヽ（≧□≦）ノ,Waiting you back...';
+      visible = 'o(*￣▽￣*)ブ,Welcome back!';
+    
+    let random = t => t[Math.floor(Math.random() * t.length)];
+    const change = () => {
+      if (document.hidden) {
+        favicon.setAttribute('href', '/images/favicon-32x32-next.png');
+        
+          document.title = hidden;
+        
+        clearTimeout(time);
+      } else {
+        favicon.setAttribute('href', '/images/favicon-32x32-next.png');
+        
+          document.title = visible;
+        
+        time = setTimeout(() => {
+          document.title = title;
+        }, 200);
+      }
+    }
+    document.addEventListener('visibilitychange', change, false);
+  });
+</script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ho Kai Kwan's Personal Pages</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">A personal site by Ho Kai Kwan,</br>junior student from South University of Science and Technology.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fas fa-list fa-fw"></i>Categories<span class="badge">8</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#I-Pre-Knowledge-Phase-1"><span class="nav-text">I. Pre-Knowledge (Phase 1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Formation"><span class="nav-text">Image Formation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements-of-Image-Formation"><span class="nav-text">Elements of Image Formation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-text">Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphics-System-Design"><span class="nav-text">Graphics System Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rendering-Approaches"><span class="nav-text">Rendering Approaches</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Contents"><span class="nav-text">API Contents</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Specifications"><span class="nav-text">Object Specifications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Camera-Specification"><span class="nav-text">Camera Specification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lights-and-Materials"><span class="nav-text">Lights and Materials</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#II-Elementary-OpenGL-Programming"><span class="nav-text">II. Elementary OpenGL Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenGL-Libraries"><span class="nav-text">OpenGL Libraries</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-Library"><span class="nav-text">Core Library</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GLUT-FreeGLUT-Libraries"><span class="nav-text">GLUT &#x2F; FreeGLUT Libraries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Software-Organization"><span class="nav-text">Software Organization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-OpenGL-Rendering-Pipeline"><span class="nav-text">Basic OpenGL Rendering Pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-Functions"><span class="nav-text">OpenGL Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-State"><span class="nav-text">OpenGL State</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-Concept"><span class="nav-text">Simple Concept</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples"><span class="nav-text">Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Loop"><span class="nav-text">Event Loop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Program-Structure"><span class="nav-text">Program Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-text">main()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init"><span class="nav-text">init()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-methods-of-OpenGL"><span class="nav-text">Other methods of OpenGL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D-OpenGL"><span class="nav-text">3D OpenGL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Three-Dimensional-Applications"><span class="nav-text">Three-Dimensional Applications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gasket-Program"><span class="nav-text">Gasket Program</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Move-to-3D-triangle"><span class="nav-text">Move to 3D triangle</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#III-Input-amp-Interaction"><span class="nav-text">III. Input &amp; Interaction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Concept"><span class="nav-text">Concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GLUT-Event-Loop"><span class="nav-text">GLUT Event Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Display-Callback"><span class="nav-text">Display Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idle-Callback"><span class="nav-text">Idle Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mouse-and-Keyboard-Callbacks"><span class="nav-text">Mouse and Keyboard Callbacks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reshape-Callback"><span class="nav-text">Reshape Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Menu"><span class="nav-text">Menu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Functions"><span class="nav-text">Other Functions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IV-Geometric-Objects-amp-Transformations"><span class="nav-text">IV. Geometric Objects &amp; Transformations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Representation"><span class="nav-text">Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Coordinate-Systems"><span class="nav-text">Coordinate Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Frame"><span class="nav-text">Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homogeneous-Coordinates"><span class="nav-text">Homogeneous Coordinates</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformation"><span class="nav-text">Transformation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenGL-Transformations"><span class="nav-text">OpenGL Transformations</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#V-Camera-amp-Viewing"><span class="nav-text">V. Camera &amp; Viewing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Computer-Viewing"><span class="nav-text">Computer Viewing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Specify-Different-Space"><span class="nav-text">Specify Different Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View-Transformation"><span class="nav-text">View Transformation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Projection-%E2%80%94%E2%80%94-Defining-the-View-Volume"><span class="nav-text">Projection —— Defining the View Volume</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-Orthographic-Projection"><span class="nav-text">OpenGL Orthographic Projection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-Perspective-Projection"><span class="nav-text">OpenGL Perspective Projection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Principle-of-Perspective-Projection"><span class="nav-text">Principle of Perspective Projection</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VI-Rasterization"><span class="nav-text">VI. Rasterization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Recall-for-OpenGL-Rendering-Pipeline"><span class="nav-text">Recall for OpenGL Rendering Pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Primitive-Assembly-etc"><span class="nav-text">Primitive Assembly, etc.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rasterization-amp-Fragment-Processing"><span class="nav-text">Rasterization &amp; Fragment Processing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clipping"><span class="nav-text">Clipping</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clipping-2D-Line-Segments"><span class="nav-text">Clipping 2D Line Segments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cohen-Sutherland-Algorithm"><span class="nav-text">Cohen-Sutherland Algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Polygon-Clipping"><span class="nav-text">Polygon Clipping</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rasterization"><span class="nav-text">Rasterization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scan-Conversion-of-Line-Segments"><span class="nav-text">Scan Conversion of Line Segments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scan-Conversion-of-Polygons"><span class="nav-text">Scan Conversion of Polygons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hidden-Surface-Removal"><span class="nav-text">Hidden-Surface Removal</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VII-Illumination"><span class="nav-text">VII. Illumination</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Phong-Illumination-Equation"><span class="nav-text">Phong Illumination Equation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Illumination-in-OpenGL"><span class="nav-text">Illumination in OpenGL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shading"><span class="nav-text">Shading</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gouraud-Shading-vs-Phong-Shading"><span class="nav-text">Gouraud Shading vs. Phong Shading</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VIII-Modern-OpenGL-Intro"><span class="nav-text">VIII. Modern OpenGL (Intro)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-OpenGL-Programs-The-Modern-Way"><span class="nav-text">Example OpenGL Programs: The Modern Way</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#New-Lib"><span class="nav-text">New Lib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples-1"><span class="nav-text">Examples</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IX-Shading-Language"><span class="nav-text">IX. Shading Language</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#X-Texture-Mapping-amp-Applications"><span class="nav-text">X. Texture Mapping &amp; Applications</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Surface-Parameterization"><span class="nav-text">Surface Parameterization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XI-FBO-amp-Shadow-Mapping"><span class="nav-text">XI. FBO &amp; Shadow Mapping</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Framebuffer-Objects-FBO"><span class="nav-text">Framebuffer Objects(FBO)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-Pass-Rendering"><span class="nav-text">Multi-Pass Rendering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shadow-Mapping"><span class="nav-text">Shadow Mapping</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithm-Overview"><span class="nav-text">Algorithm Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shadow-Map-Coordinates"><span class="nav-text">Shadow Map Coordinates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Issues"><span class="nav-text">Issues</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XII-Image-Processing"><span class="nav-text">XII. Image Processing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XIII-Ray-Tracing"><span class="nav-text">XIII. Ray Tracing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Ray-Casting"><span class="nav-text">Basic Ray Casting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ray-Tracing"><span class="nav-text">Ray Tracing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Whitted-style-Recursive-Ray-Tracing"><span class="nav-text">Whitted-style(Recursive) Ray Tracing</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Appendices-Reference"><span class="nav-text">Appendices (Reference)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bionic l'Hôpital"
+      src="/images/me.png">
+  <p class="site-author-name" itemprop="name">Bionic l'Hôpital</p>
+  <div class="site-description" itemprop="description">Ho Kai Kwan's Personal Pages</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HQJ2221" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HQJ2221" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/about/" title="About-Me → &#x2F;about&#x2F;" rel="noopener me"><i class="fa fa-user-circle fa-fw"></i>About-Me</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2024/06/27/Real-Time-Rendering/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.png">
+      <meta itemprop="name" content="Bionic l'Hôpital">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ho Kai Kwan's Personal Pages">
+      <meta itemprop="description" content="Ho Kai Kwan's Personal Pages">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="NUS Soc SWS3005  实时 3D 图形渲染 | Ho Kai Kwan's Personal Pages">
+      <meta itemprop="description" content="本课程为 NUS Soc 暑期课程，主要学习现实 3D 图形的实时渲染原理以及在 C++ 上的实现（使用 OpenGL ）。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NUS Soc SWS3005  实时 3D 图形渲染
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-27 14:57:57" itemprop="dateCreated datePublished" datetime="2024-06-27T14:57:57+08:00">2024-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-06-18 20:08:33" itemprop="dateModified" datetime="2025-06-18T20:08:33+08:00">2025-06-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2024-Summer/" itemprop="url" rel="index"><span itemprop="name">2024 Summer</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">本课程为 NUS Soc 暑期课程，主要学习现实 3D 图形的实时渲染原理以及在 C++ 上的实现（使用 OpenGL ）。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="I-Pre-Knowledge-Phase-1"><a href="#I-Pre-Knowledge-Phase-1" class="headerlink" title="I. Pre-Knowledge (Phase 1)"></a>I. Pre-Knowledge (Phase 1)</h1><h2 id="Image-Formation"><a href="#Image-Formation" class="headerlink" title="Image Formation"></a>Image Formation</h2><blockquote>
+<p>How does a realistic graphic form? </p>
+</blockquote>
+<h3 id="Elements-of-Image-Formation"><a href="#Elements-of-Image-Formation" class="headerlink" title="Elements of Image Formation"></a>Elements of Image Formation</h3><ul>
+<li>Objects</li>
+<li>Viewer</li>
+<li>Light sources</li>
+<li>Materials (材质)<ul>
+<li>Attributes that govern how light interacts with the materials in the scene</li>
+</ul>
+</li>
+</ul>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p><strong>Know about Pinhole Camera</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr1.png" alt="Pinhole Camera" style="zoom:60%"></div>
+
+<p>Use trigonometry(三角几何) to find <strong>projection</strong> of 3D point at $(x, y, z)$</p>
+<script type="math/tex; mode=display">
+x_p=-dx/z\ \ \ \ y_p=-dy/z\ \ \ \ z_p=-d</script><p><strong>Synthetic Camera Model (合成相机模型)</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr2.png" alt="Synthetic Camera Model
+" style="zoom:60%"></div>
+
+<p><strong>Luminance and Color Images (光线与颜色的映射)</strong></p>
+<ul>
+<li>Luminance Image<ul>
+<li>Monochromatic(单色)<ul>
+<li>Values are gray levels</li>
+<li>Analogous to working with black and white film or television</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Color Image<ul>
+<li>Has perceptional attributes of hue(色相), saturation(饱和度), and lightness</li>
+</ul>
+</li>
+</ul>
+<p>↓</p>
+<ul>
+<li>Representation of Color<ul>
+<li><font color="red">Additive color</font>: Form a color by adding amounts of three primaries<font color="grey">(RGB)</font><ul>
+<li>E.g. CRTs, projection systems, positive film</li>
+</ul>
+</li>
+<li><font color="red">Subtractive color</font>: Form a color by filtering white light with <font color="cyan">Cyan (C)</font>, <font color="magenta">Magenta (M)</font>, and <font color="deyellow">Yellow (Y)</font> filters<ul>
+<li><font color="blue">Noted:</font> Cyan = –Red; Magenta = –Green; Yellow = –Blue</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Graphics-System-Design"><a href="#Graphics-System-Design" class="headerlink" title="Graphics System Design"></a>Graphics System Design</h2><font size="4">A graphics system has two main components</font>
+
+<ol>
+<li>Application Programmer Interface (API)<ul>
+<li>For specifying the <font color="red"><b>scene</b></font><ul>
+<li>objects, materials, viewer, lights</li>
+</ul>
+</li>
+<li>For <font color="red">configuring/controlling</font> the system</li>
+</ul>
+</li>
+<li>Renderer<ul>
+<li>Renders the images<ul>
+<li>Using scene info and system configuration</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Rendering-Approaches"><a href="#Rendering-Approaches" class="headerlink" title="Rendering Approaches"></a>Rendering Approaches</h3><ol>
+<li><strong>Ray tracing:</strong> follow rays of light from center of projection until they are absorbed by objects or go off to infinity<ul>
+<li>符合物理解释，泛用性广；但是速度慢，性能低</li>
+</ul>
+</li>
+<li>Radiosity: Energy based approach<ul>
+<li>非常慢且不泛用</li>
+</ul>
+</li>
+</ol>
+<p><strong>Practical Approach</strong></p>
+<ol>
+<li><font coklor="red"><b>Polygon Rasterization</b></font>(多边形光栅)</li>
+</ol>
+<blockquote>
+<p>3D 物体可以近似地表示为平面多边形刻面 (planar polygonal facets) 的网或网格</p>
+</blockquote>
+<table>
+<tr>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr3.png" alt="polygon rasterization
+" style="zoom:60%"></td>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr4.png" alt="polygon rasterization
+" style="zoom:40%"></td>
+</tr>
+</table>
+
+<font color="blue">Pipeline architecture</font>
+
+<blockquote>
+<p>The pipeline consists of stages that each primitive (e.g. polygon) must go through</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Vertices -&gt; |Vertex processor| -&gt; |Clipper and primitive assembler| -&gt; |Rasterizer| </span><br><span class="line">-&gt; |Fragment processor| -&gt; Pixels</span><br></pre></td></tr></table></figure>
+<p>(i) Vertex Processing</p>
+<ul>
+<li>Much of the work in the pipeline is in converting object representations from one coordinate system to another<ul>
+<li>Object coordinates</li>
+<li>Camera (eye) coordinates</li>
+<li>Screen coordinates</li>
+</ul>
+</li>
+<li>Also computes vertex colors</li>
+</ul>
+<p>(ii) Projection</p>
+<ul>
+<li>Projection is the process that combines the <strong>3D</strong> viewer with the <strong>3D</strong> objects to produce the <strong>2D</strong> image<ul>
+<li>Perspective projections: all projectors meet at the center of projection</li>
+<li>Parallel projection: projectors are parallel, center of projection is replaced by a direction of projection</li>
+</ul>
+</li>
+</ul>
+<p>(iii) Clipping</p>
+<ul>
+<li>Simulate a <font color="red">virtual camera</font> to clip the images</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr5.png" alt="clip" style="zoom:70%"></div>
+
+
+
+<p>(iv) <font color="red">Rasterization</font></p>
+<ul>
+<li>Rasterizer produces a set of <a href="#fragment">fragments</a> for each object</li>
+<li><a name="fragment">Fragments</a> are “potential pixels”<ul>
+<li>Have a location in frame bufffer</li>
+<li>Color and depth attributes</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Fragment Processing</p>
+<ul>
+<li>Fragments are processed to determine the color of the corresponding pixel in the frame buffer</li>
+<li>Colors can be determined by texture mapping or interpolation(插值) of vertex colors</li>
+<li>Fragments may be blocked/occluded(阻塞) by other fragments closer to the camera<ul>
+<li>Using Hidden-surface removal</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="API-Contents"><a href="#API-Contents" class="headerlink" title="API Contents"></a>API Contents</h2><ul>
+<li><font color="green">Recall: Functions that specify what we need to form an image</font><ul>
+<li>Objects</li>
+<li>Viewer</li>
+<li>Light Source(s)</li>
+<li>Materials</li>
+</ul>
+</li>
+</ul>
+<h3 id="Object-Specifications"><a href="#Object-Specifications" class="headerlink" title="Object Specifications"></a>Object Specifications</h3><ul>
+<li>Most APIs support a limited set of primitives including<ul>
+<li>Points (0D object)</li>
+<li>Line segments (1D objects)</li>
+<li>Polygons (2D objects)</li>
+<li>Some curves and surfaces<ul>
+<li>Quadrics</li>
+<li>Parametric polynomials</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>All are defined through locations in space or vertices</li>
+</ul>
+<h3 id="Camera-Specification"><a href="#Camera-Specification" class="headerlink" title="Camera Specification"></a>Camera Specification</h3><ul>
+<li>Six degrees of freedom<ul>
+<li>Position of center of lens</li>
+<li>Orientation</li>
+</ul>
+</li>
+<li>Lens</li>
+<li>Film size</li>
+<li>Orientation of film plane</li>
+</ul>
+<h3 id="Lights-and-Materials"><a href="#Lights-and-Materials" class="headerlink" title="Lights and Materials"></a>Lights and Materials</h3><ul>
+<li>Types of lights<ul>
+<li>Point sources vs distributed sources</li>
+<li>Spot lights</li>
+<li>Near and far sources</li>
+<li>Color properties</li>
+</ul>
+</li>
+<li>Material properties<ul>
+<li>Absorption: color properties</li>
+<li>Scattering<ul>
+<li>Diffuse</li>
+<li>Specular</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div align="center"><font color="grey" size="5">----- <font face="Segoe Script">Let's start Phase 2!</font> -----</font></div>
+
+<h1 id="II-Elementary-OpenGL-Programming"><a href="#II-Elementary-OpenGL-Programming" class="headerlink" title="II. Elementary OpenGL Programming"></a>II. Elementary OpenGL Programming</h1><h2 id="OpenGL-Libraries"><a href="#OpenGL-Libraries" class="headerlink" title="OpenGL Libraries"></a>OpenGL Libraries</h2><h3 id="Core-Library"><a href="#Core-Library" class="headerlink" title="Core Library"></a>Core Library</h3><ul>
+<li>OpenGL core library<ul>
+<li>OpenGL32 on Windows</li>
+<li>GL on most unix/linux systems ( <code>libGL.a</code> )</li>
+</ul>
+</li>
+<li>OpenGL Utility Library ( GLU )<ul>
+<li>Provides functionality in OpenGL core but avoids having to rewrite code</li>
+</ul>
+</li>
+<li>Links with window system<ul>
+<li><code>GLX</code> for X window systems</li>
+<li><code>WGL</code> for Windows</li>
+<li><code>AGL</code> for Macintosh</li>
+</ul>
+</li>
+</ul>
+<h3 id="GLUT-FreeGLUT-Libraries"><a href="#GLUT-FreeGLUT-Libraries" class="headerlink" title="GLUT / FreeGLUT Libraries"></a>GLUT / FreeGLUT Libraries</h3><ul>
+<li><strong>GLUT = OpenGL Utility Toolkit</strong><ul>
+<li><font color="red"><b>Not</b></font> part of OpenGL</li>
+<li>Provides functionality common to all window systems<ul>
+<li>Open a window</li>
+<li>Get input from mouse and keyboard</li>
+<li>Menus</li>
+<li>Event-driven</li>
+</ul>
+</li>
+<li>Code is portable but GLUT lacks the functionality of a good  toolkit for a specific platform<ul>
+<li>No slide bars</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="http://freeglut.sourceforge.net/">FreeGLUT</a></li>
+</ul>
+<h3 id="Software-Organization"><a href="#Software-Organization" class="headerlink" title="Software Organization"></a>Software Organization</h3><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr6.png" alt="GL Organ" style="zoom:70%"></div>
+
+
+
+<h2 id="Basic-OpenGL-Rendering-Pipeline"><a href="#Basic-OpenGL-Rendering-Pipeline" class="headerlink" title="Basic OpenGL Rendering Pipeline"></a>Basic OpenGL Rendering Pipeline</h2><ul>
+<li>To render a primitive using OpenGL, the primitive goes through the following main stages: <ul>
+<li><font color="green">Goal:</font> Turning primitive into pixels</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr7.png" alt="stage 1" style="zoom:70%"></div>
+
+
+
+<h3 id="OpenGL-Functions"><a href="#OpenGL-Functions" class="headerlink" title="OpenGL Functions"></a>OpenGL Functions</h3><ul>
+<li>Specify primitives<ul>
+<li>E.g. points, line segments, triangles, quadrilaterals, polygons </li>
+</ul>
+</li>
+<li>Specify vertex attributes<ul>
+<li>E.g. color, normal vector, material, texture coordinates</li>
+</ul>
+</li>
+<li>Specify transformations<ul>
+<li>E.g. modeling, viewing</li>
+</ul>
+</li>
+<li>Control (<code>GLUT</code>)</li>
+<li>Input (<code>GLUT</code>)</li>
+<li>Query: “ask for the state of object” etc.</li>
+</ul>
+<h3 id="OpenGL-State"><a href="#OpenGL-State" class="headerlink" title="OpenGL State"></a>OpenGL State</h3><ul>
+<li><font color="red">OpenGL is a <b>state machine</b></font>
+</li>
+<li><p>OpenGL functions are <font color="red">of two types</font></p>
+<ul>
+<li>Primitive generating<ul>
+<li>Can cause output if primitive is visible</li>
+<li>How vertices are processed and appearance of primitive are controlled by the state</li>
+</ul>
+</li>
+<li>State changing<ul>
+<li>Transformation functions</li>
+<li>Attribute functions</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Simple-Concept"><a href="#Simple-Concept" class="headerlink" title="Simple Concept"></a>Simple Concept</h2><h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GL/glut.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mydisplay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT); </span><br><span class="line">    <span class="built_in">glBegin</span>(GL_POLYGON); </span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">-0.5</span>, <span class="number">-0.5</span>); </span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">-0.5</span>, <span class="number">0.5</span>); </span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">0.5</span>, <span class="number">0.5</span>); </span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">0.5</span>, <span class="number">-0.5</span>); </span><br><span class="line">    <span class="built_in">glEnd</span>();</span><br><span class="line">    <span class="built_in">glFlush</span>(); </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">glutInit</span>(&amp;argc, argv);</span><br><span class="line">    <span class="built_in">glutCreateWindow</span>(<span class="string">&quot;simple&quot;</span>); </span><br><span class="line">    <span class="built_in">glutDisplayFunc</span>(mydisplay); </span><br><span class="line">    <span class="built_in">glutMainLoop</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>This code is to draw a white square in black background.</p>
+</blockquote>
+<h3 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h3><p>Note that the program defines a <font color="red">display callback</font> function named <code>mydisplay</code></p>
+<ul>
+<li>Every GLUT program <font color="red"><b>must</b></font> have a display callback</li>
+<li>The display callback is executed whenever OpenGL decides the display must be refreshed<ul>
+<li>For example, when the window is opened</li>
+</ul>
+</li>
+<li>The <strong>main function ends</strong> with the program entering an event loop</li>
+</ul>
+<h2 id="Program-Structure"><a href="#Program-Structure" class="headerlink" title="Program Structure"></a>Program Structure</h2><ul>
+<li>Most OpenGL programs have a similar structure that consists of the following functions<ul>
+<li><code>main()</code>: <ul>
+<li>defines the callback functions </li>
+<li>opens one or more windows with the required properties</li>
+<li>enters event loop (last executable statement)</li>
+</ul>
+</li>
+<li><code>init()</code>: sets the state variables<ul>
+<li>Viewing</li>
+<li>Attributes</li>
+</ul>
+</li>
+<li>callbacks<ul>
+<li>Display callback function</li>
+<li>Input and window functions</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Then we’re going to see an explicit form of <code>Example</code></p>
+</blockquote>
+<h3 id="main"><a href="#main" class="headerlink" title="main()"></a><code>main()</code></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GL/glut.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">glutInit</span>(&amp;argc, argv); </span><br><span class="line">	<span class="built_in">glutInitDisplayMode</span>(GLUT_SINGLE | GLUT_RGB); </span><br><span class="line">	<span class="built_in">glutInitWindowSize</span>(<span class="number">500</span>, <span class="number">500</span>); </span><br><span class="line">	<span class="built_in">glutInitWindowPosition</span>(<span class="number">0</span>, <span class="number">0</span>); </span><br><span class="line">	<span class="built_in">glutCreateWindow</span>(<span class="string">&quot;simple2&quot;</span>); </span><br><span class="line">	<span class="built_in">glutDisplayFunc</span>(mydisplay); </span><br><span class="line">	<span class="built_in">init</span>(); </span><br><span class="line">	<span class="built_in">glutMainLoop</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>glutInit</code> —— allows application to get command line arguments and initializes system</li>
+<li><code>gluInitDisplayMode</code> —— requests properties for the window (the rendering context)<ul>
+<li>RGB color</li>
+<li>Single buffering</li>
+<li>Properties logically ORed together</li>
+</ul>
+</li>
+<li><code>glutWindowSize</code> —— in pixels</li>
+<li><code>glutWindowPosition</code> —— from top-left corner of display</li>
+<li><code>glutCreateWindow</code> —— create window with title “simple”</li>
+<li><code>glutDisplayFunc</code> —— display callback</li>
+<li><code>glutMainLoop</code> —— enter infinite event loop</li>
+</ul>
+<h3 id="init"><a href="#init" class="headerlink" title="init()"></a><code>init()</code></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">glClearColor</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>); </span><br><span class="line">	<span class="comment">// black clear color with opaque window</span></span><br><span class="line">	<span class="built_in">glColor3f</span>(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>); <span class="comment">// white fill color</span></span><br><span class="line">	<span class="built_in">glMatrixMode</span>(GL_PROJECTION); </span><br><span class="line">	<span class="built_in">glLoadIdentity</span>(); </span><br><span class="line">	<span class="built_in">glOrtho</span>(<span class="number">-1.0</span>, <span class="number">1.0</span>, <span class="number">-1.0</span>, <span class="number">1.0</span>, <span class="number">-1.0</span>, <span class="number">1.0</span>); <span class="comment">// viewing volume</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Coordinate Systems (have a rough knowing)<ul>
+<li>object coordinates (3D)</li>
+<li>world coordinates (camera)</li>
+<li>window coordinates</li>
+</ul>
+</li>
+<li>About OpenGL Camera</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr8.png" alt="opengl camera" style="zoom:50%"></div>
+
+<ul>
+<li>Orthographic Viewing and Transformation<ul>
+<li>In the default orthographic view, points are projected forward along the $z$ axis onto the plane $z = 0$</li>
+<li>In OpenGL, projection is carried out by a projection matrix (transformation)</li>
+<li>There is only one set of transformation functions so we must set the matrix mode first<ul>
+<li><code>glMatrixMode(GL_PROJECTION)</code></li>
+</ul>
+</li>
+<li>Transformation functions are incremental so we start with an identity matrix and alter it with a projection matrix that gives the view volume<ul>
+<li><code>glLoadIdentity();</code></li>
+<li><code>glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);</code></li>
+</ul>
+</li>
+<li><code>glOrtho(left, right, bottom, top, near, far)</code> is used to determine the projection area.</li>
+<li>If the application is in 2D, we can use the function <code>gluOrtho2D(left, right, bottom, top)</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Here is an example of how to draw a projection on 2D windows. </p>
+<p>Because a projection from 3D to 2D is in <strong>OpenGL-Primitives</strong> (I show below), so we only need to paint it out.</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mydisplay</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT); </span><br><span class="line">	<span class="built_in">glBegin</span>(GL_POLYGON); </span><br><span class="line">	<span class="comment">// define as polygon</span></span><br><span class="line">	<span class="built_in">glVertex2f</span>(<span class="number">-0.5</span>, <span class="number">-0.5</span>); </span><br><span class="line">	<span class="built_in">glVertex2f</span>(<span class="number">-0.5</span>, <span class="number">0.5</span>); </span><br><span class="line">	<span class="built_in">glVertex2f</span>(<span class="number">0.5</span>, <span class="number">0.5</span>); </span><br><span class="line">	<span class="built_in">glVertex2f</span>(<span class="number">0.5</span>, <span class="number">-0.5</span>); </span><br><span class="line">	<span class="comment">// set 4 vertex to form 4-edges polygon</span></span><br><span class="line">	<span class="built_in">glEnd</span>();</span><br><span class="line">	<span class="built_in">glFlush</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr11.png" alt="opengl primitives" style="zoom:70%"></div>
+
+
+
+<h3 id="Other-methods-of-OpenGL"><a href="#Other-methods-of-OpenGL" class="headerlink" title="Other methods of OpenGL"></a>Other methods of OpenGL</h3><ol>
+<li><code>glShadeModel()</code> to set the color rendering to be <code>GL_SMOOTH</code> (渐变) or <code>GL_FLAT</code> (单色).</li>
+<li><code>glViewport(x, y, w, h)</code> to set the viewport of windows.</li>
+</ol>
+<h2 id="3D-OpenGL"><a href="#3D-OpenGL" class="headerlink" title="3D OpenGL"></a>3D OpenGL</h2><h3 id="Three-Dimensional-Applications"><a href="#Three-Dimensional-Applications" class="headerlink" title="Three-Dimensional Applications"></a>Three-Dimensional Applications</h3><ul>
+<li>In OpenGL, 2D applications are a special case of 3D graphics</li>
+<li>Going to 3D<ul>
+<li>Not much changes</li>
+<li>Use <code>glVertex3*()</code></li>
+<li>Have to worry about the order in which polygons are drawn or use <strong>hidden-surface removal</strong> (occlusion problem)</li>
+<li>Polygons should be simple, convex, flat</li>
+</ul>
+</li>
+</ul>
+<h3 id="Gasket-Program"><a href="#Gasket-Program" class="headerlink" title="Gasket Program"></a>Gasket Program</h3><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr9.png" alt="triangle division" style="zoom:50%"></div>
+
+<ul>
+<li>Consider the filled area (black) and the perimeter (the length of all the lines around the filled triangles)</li>
+<li>As we continue subdividing<ul>
+<li>the area goes to zero (&lt; 2D)</li>
+<li>but the perimeter goes to infinity (&gt; 1D)</li>
+</ul>
+</li>
+<li>This is not an ordinary geometric object<ul>
+<li>It is neither one- nor two-dimensional</li>
+</ul>
+</li>
+<li>It is a fractal (fractional dimension) object<ul>
+<li>Approximately 1.585 D</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<font color="red">How to do in program?</font>
+
+<font color="green">Using algorithm of Recursion!</font>
+
+
+</blockquote>
+<ul>
+<li>Design <code>display()</code> and <code>myinit()</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT);</span><br><span class="line">    <span class="built_in">glBegin</span>(GL_TRIANGLES);</span><br><span class="line">    <span class="built_in">divide_triangle</span>(v[<span class="number">0</span>], v[<span class="number">1</span>], v[<span class="number">2</span>], n);</span><br><span class="line">    <span class="built_in">glEnd</span>();</span><br><span class="line">    <span class="built_in">glFlush</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myinit</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">glMatrixMode</span>(GL_PROJECTION);</span><br><span class="line">    <span class="built_in">glLoadIdentity</span>();</span><br><span class="line">    <span class="built_in">gluOrtho2D</span>(<span class="number">-2.0</span>, <span class="number">2.0</span>, <span class="number">-2.0</span>, <span class="number">2.0</span>);</span><br><span class="line">    <span class="built_in">glMatrixMode</span>(GL_MODELVIEW);</span><br><span class="line">    <span class="built_in">glClearColor</span> (<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>);</span><br><span class="line">    <span class="built_in">glColor3f</span>(<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">0.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Then set parameter and callback function in <code>main()</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    n = <span class="number">4</span>;</span><br><span class="line">    <span class="built_in">glutInit</span>(&amp;argc, argv);</span><br><span class="line">    <span class="built_in">glutInitDisplayMode</span>(GLUT_SINGLE | GLUT_RGB);</span><br><span class="line">    <span class="built_in">glutInitWindowSize</span>(<span class="number">500</span>, <span class="number">500</span>);</span><br><span class="line">    <span class="built_in">glutCreateWindow</span>(<span class="string">&quot;Sierpinski Gasket&quot;</span>);</span><br><span class="line">    <span class="built_in">glutDisplayFunc</span>(display);</span><br><span class="line">    <span class="built_in">myinit</span>();</span><br><span class="line">    <span class="built_in">glutMainLoop</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Move-to-3D-triangle"><a href="#Move-to-3D-triangle" class="headerlink" title="Move to 3D triangle"></a>Move to 3D triangle</h3><ul>
+<li>Add an extra vertex to form tetrahedra</li>
+<li>Then we can do like 2D triangle subdivision</li>
+</ul>
+<font color="red">But we have to deal with <b>Hidden-Surface Removal</b> !!</font>
+
+<ul>
+<li><ul>
+<li>OpenGL uses a hidden-surface removal method called the z-buffer algorithm that saves depth information as objects are rendered so that only the front objects appear in the image.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Using the z-buffer Algorithm</strong></p>
+<p>Requested in <code>main()</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glutInitDisplayMode</span>(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH)</span><br></pre></td></tr></table></figure>
+<p>Enabled in <code>init()</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glEnable</span>(GL_DEPTH_TEST)</span><br></pre></td></tr></table></figure>
+<p>Cleared in the display callback</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)</span><br></pre></td></tr></table></figure>
+<p><strong>Surface vs. Volume Subdivision</strong></p>
+<ul>
+<li>In our example, we subdivided the <strong>surface</strong> of each face</li>
+<li>We could also subdivide the volume using the same midpoints</li>
+<li>The midpoints define four smaller tetrahedrons, one for each vertex</li>
+<li>Keeping only these tetrahedrons removes a volume in the middle</li>
+<li>Good programming exercise</li>
+</ul>
+<hr>
+<h1 id="III-Input-amp-Interaction"><a href="#III-Input-amp-Interaction" class="headerlink" title="III. Input &amp; Interaction"></a>III. Input &amp; Interaction</h1><h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><ul>
+<li>Graphical Input<ul>
+<li>Devices can be described either by<ul>
+<li>Physical properties<ul>
+<li>Mouse, Keyboard, Trackball, etc.</li>
+</ul>
+</li>
+<li>Logical properties: What is returned to program via API<ul>
+<li>A position</li>
+<li>An object identifier</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Trigger and Measure</p>
+<ul>
+<li>Input devices contain a <font color="red">trigger</font> which can be used to send a signal to the operating system<ul>
+<li>Button on mouse</li>
+<li>Pressing or releasing a key</li>
+</ul>
+</li>
+<li>When triggered, input devices return information (their <font color="red">measure</font>) to the system<ul>
+<li>Mouse returns position information</li>
+<li>Keyboard returns ASCII code</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Event Mode</p>
+<ul>
+<li>Each trigger generates an event whose measure is put in an event queue which can be examined by the user program</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr10.png" alt="procedure" style="zoom:70%"></div>
+
+<ul>
+<li><p>Event Type</p>
+<ul>
+<li>Window: resize, expose, minimize</li>
+<li>Mouse: click one or more buttons</li>
+<li>Motion: move mouse</li>
+<li>Keyboard: press or release a key</li>
+<li>Idle: non-event (无输入时的活动)<ul>
+<li>Define what should be done if no other event is in queue</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><font color="green">Recall:</font> callbacks</p>
+<ul>
+<li>Define a callback function for <strong>each type of event</strong> the graphics system recognizes</li>
+<li>E.g. <code>glutMouseFunc(mymouse)</code> where <code>mymouse</code> is a mouse callback function.</li>
+</ul>
+</li>
+<li><font color="red">GLUT  recognizes a subset of the events recognized by any particular operation system</font> : <ul>
+<li><code>glutDisplayFunc</code></li>
+<li><code>glutMouseFunc</code></li>
+<li><code>glutReshapeFunc</code></li>
+<li><code>glutKeyboardFunc</code></li>
+<li><code>glutIdleFunc</code></li>
+<li><code>glutMotionFunc</code>, <code>glutPassiveMotionFunc</code> </li>
+</ul>
+</li>
+</ul>
+<h2 id="GLUT-Event-Loop"><a href="#GLUT-Event-Loop" class="headerlink" title="GLUT Event Loop"></a>GLUT Event Loop</h2><ul>
+<li><font color="green">Recall:</font> the last statement in <code>main()</code> for a program using GLUT must be <code>glutMainLoop();</code></li>
+<li>In each pass through the event loop, GLUT <ul>
+<li>looks at the events in the <strong>queue</strong></li>
+<li>execute each event if the corresponding callback function is defined.</li>
+</ul>
+</li>
+</ul>
+<font color="purple">Important before talking about callbacks:</font> 
+
+<ul>
+<li>The form of all GLUT callbacks is fixed</li>
+<li>So we must use <strong>globals</strong> (全局变量) to pass information to callbacks</li>
+</ul>
+<h3 id="Display-Callback"><a href="#Display-Callback" class="headerlink" title="Display Callback"></a>Display Callback</h3><ul>
+<li>When windows are refreshed, apply display callbacks<ul>
+<li><code>glutDisplayFunc(mydisplay)</code> in <code>main()</code></li>
+<li><code>glutPostRedisplay()</code> to <font color="red">avoid multiple display</font> in one single pass through the event loop<ul>
+<li>set a <strong>“flag”</strong> at the end of the event loop.</li>
+<li>GLUT checks it and display callback function is executed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Then what’s inside <code>mydisplay</code>?<ul>
+<li><code>glClear()</code> to clear the window</li>
+<li>Use <font color="red"><b>Double Buffer</b></font> to avoid <font color="blue">partial drawn</font> <ul>
+<li><strong>Front Buffer</strong>: one that is <strong>displayed</strong> but not written to</li>
+<li><strong>Back Buffer</strong>: one that is <strong>written</strong> to but not displayed</li>
+</ul>
+</li>
+<li><code>glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE)</code> declare in <code>main()</code> to request a <font color="red">double buffer</font></li>
+<li>At the end of display callback buffers are swapped.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mydisplay</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT|…)</span><br><span class="line"> ...</span><br><span class="line"> <span class="comment">/* draw graphics here */</span></span><br><span class="line"> ...</span><br><span class="line"> <span class="built_in">glutSwapBuffers</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Idle-Callback"><a href="#Idle-Callback" class="headerlink" title="Idle Callback"></a>Idle Callback</h3><ul>
+<li>The idle callback is executed whenever there are <font color="red">no events</font> in the event queue<ul>
+<li><code>glutIdleFunc(myidle)</code> in <code>main()</code></li>
+<li><font color="blue">Useful for animation</font> 
+
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">myidle</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> <span class="comment">/* change something */</span></span><br><span class="line"> t += dt</span><br><span class="line"> <span class="built_in">glutPostRedisplay</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Mouse-and-Keyboard-Callbacks"><a href="#Mouse-and-Keyboard-Callbacks" class="headerlink" title="Mouse and Keyboard Callbacks"></a>Mouse and Keyboard Callbacks</h3><ul>
+<li><code>glutMouseFunc(mymouse)</code> in <code>main()</code></li>
+<li><code>void mymouse(GLint button, GLint state,  GLint x, GLint y)</code> to define mouse callbacks<ul>
+<li>Buttons: <code>GLUT_LEFT_BUTTON</code>, <code>GLUT_MIDDLE_BUTTON</code> or <code>GLUT_RIGHT_BUTTON</code></li>
+<li>States: <code>GLUT_UP</code> or <code>GLUT_DOWN</code></li>
+<li>Cursor Position: top-left corner is (0,0) <font color="gray">[Others depend on winsize]</font></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr12.png" alt="position" style="zoom:50%"></div>
+
+
+<script type="math/tex; mode=display">
+y_{\text{OpenGL}}= h-1-y_{text{win}}</script><font color="blue">E.g. To draw a square when mouse click</font>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mymouse</span><span class="params">(<span class="type">int</span> btn, <span class="type">int</span> state, <span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (btn==GLUT_RIGHT_BUTTON &amp;&amp; state==GLUT_DOWN) <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line"> <span class="keyword">if</span> (btn==GLUT_LEFT_BUTTON &amp;&amp; state==GLUT_DOWN) <span class="built_in">drawSquare</span>(x, y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">drawSquare</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> y = w – <span class="number">1</span> - y; <span class="comment">/* invert y position */</span></span><br><span class="line"> <span class="comment">/* a random color */</span></span><br><span class="line"> <span class="built_in">glColor3ub</span>((<span class="type">char</span>)<span class="built_in">rand</span>()%<span class="number">256</span>,(<span class="type">char</span>)<span class="built_in">rand</span>()%<span class="number">256</span>,(<span class="type">char</span>)<span class="built_in">rand</span>()%<span class="number">256</span> );</span><br><span class="line"> <span class="built_in">glBegin</span>(GL_POLYGON);</span><br><span class="line"> <span class="built_in">glVertex2f</span>(x+size, y+size);</span><br><span class="line"> <span class="built_in">glVertex2f</span>(x-size, y+size);</span><br><span class="line"> <span class="built_in">glVertex2f</span>(x-size, y-size);</span><br><span class="line"> <span class="built_in">glVertex2f</span>(x+size, y-size);</span><br><span class="line"> <span class="built_in">glEnd</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>We can draw squares (or anything else) continuously as long as a mouse button is depressed by using the motion callback<ul>
+<li><code>glutMotionFunc(drawSquare)</code></li>
+</ul>
+</li>
+<li><p>We can draw squares without depressing a button using the <font color="red">passive motion</font> callback (用于鼠标没按下但在移动时的操作)</p>
+<ul>
+<li><code>glutPassiveMotionFunc(drawSquare)</code></li>
+</ul>
+</li>
+<li><p><strong>Keyboard is almost the same</strong></p>
+<ul>
+<li><code>glutKeyboardFunc(mykey)</code></li>
+<li><code>void mykey(unsigned char key,  int x, int y)</code></li>
+</ul>
+</li>
+</ul>
+<p>E.g.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mykey</span><span class="params">(<span class="type">unsigned</span> <span class="type">char</span> key, <span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (key == <span class="string">&#x27;Q&#x27;</span> | key == <span class="string">&#x27;q&#x27;</span>) </span><br><span class="line"> <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Others:</strong></p>
+<p>GLUT defines the <strong>special keys</strong> in <code>glut.h</code></p>
+<ul>
+<li>Function key 1: <code>GLUT_KEY_F1</code></li>
+<li>Up arrow key: <code>GLUT_KEY_UP</code></li>
+</ul>
+<p>Also check <strong>modifiers</strong></p>
+<ul>
+<li><code>GLUT_ACTIVE_SHIFT</code>, <code>GLUT_ACTIVE_CTRL</code>, <code>GLUT_ACTIVE_ALT</code> is depressed using <code>glutGetModifiers()</code> </li>
+</ul>
+</blockquote>
+<h3 id="Reshape-Callback"><a href="#Reshape-Callback" class="headerlink" title="Reshape Callback"></a>Reshape Callback</h3><ul>
+<li><code>glutReshapeFunc(myreshape)</code> in <code>main()</code></li>
+<li><code>void myreshape(int w, int h)</code></li>
+</ul>
+<p>E.g.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">myReshape</span><span class="params">(<span class="type">int</span> w, <span class="type">int</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, w, h);</span><br><span class="line"> <span class="built_in">glMatrixMode</span>(GL_PROJECTION); <span class="comment">/* switch matrix mode */</span></span><br><span class="line"> <span class="built_in">glLoadIdentity</span>();</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">if</span> (w &lt;= h)</span><br><span class="line"> <span class="built_in">gluOrtho2D</span>( <span class="number">-2.0</span>, <span class="number">2.0</span>, <span class="number">-2.0</span> * (GLfloat) h / w,</span><br><span class="line"> <span class="number">2.0</span> * (GLfloat) h / w );</span><br><span class="line"> <span class="keyword">else</span> </span><br><span class="line"> <span class="built_in">gluOrtho2D</span>( <span class="number">-2.0</span> * (GLfloat) w / h, </span><br><span class="line"> <span class="number">2.0</span> * (GLfloat) w / h, <span class="number">-2.0</span>, <span class="number">2.0</span> );</span><br><span class="line"> <span class="built_in">glMatrixMode</span>(GL_MODELVIEW); <span class="comment">/* return to modelview mode */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Menu"><a href="#Menu" class="headerlink" title="Menu"></a>Menu</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main()</span></span><br><span class="line">GLint menu_id = <span class="built_in">glutCreateMenu</span>(mymenu);</span><br><span class="line"><span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Clear&quot;</span>, <span class="number">1</span>);</span><br><span class="line"><span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Quit&quot;</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">glutAttachMenu</span>(GLUT_RIGHT_BUTTON);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mymenu</span><span class="params">(<span class="type">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(id == <span class="number">1</span>) <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT);</span><br><span class="line"> <span class="keyword">if</span>(id == <span class="number">2</span>) <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Other-Functions"><a href="#Other-Functions" class="headerlink" title="Other Functions"></a>Other Functions</h3><ul>
+<li>Dynamic Windows<ul>
+<li>Create and destroy during execution</li>
+</ul>
+</li>
+<li>Subwindows</li>
+<li>Multiple Windows</li>
+<li>Changing callbacks during execution</li>
+<li>Timers (look up glutTimerFunc)<ul>
+<li>Useful for controlling speed of animation</li>
+</ul>
+</li>
+<li>Portable fonts<ul>
+<li>glutBitmapCharacter</li>
+<li>glutStrokeCharacter</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="IV-Geometric-Objects-amp-Transformations"><a href="#IV-Geometric-Objects-amp-Transformations" class="headerlink" title="IV. Geometric Objects &amp; Transformations"></a>IV. Geometric Objects &amp; Transformations</h1><ul>
+<li>Basic elements<ul>
+<li>Scalars</li>
+<li>Vectors</li>
+<li>Points</li>
+</ul>
+</li>
+<li>Basic primitives<ul>
+<li>Line segments</li>
+<li>Polygons</li>
+</ul>
+</li>
+</ul>
+<h2 id="Representation"><a href="#Representation" class="headerlink" title="Representation"></a>Representation</h2><ul>
+<li>Introduce<ul>
+<li><strong>coordinate systems</strong> for representing vector spaces</li>
+<li>frames for representing <strong>affine spaces</strong>(仿射空间)</li>
+</ul>
+</li>
+<li>Discuss change of frames and bases</li>
+<li>Introduce homogeneous coordinates</li>
+</ul>
+<h3 id="Coordinate-Systems"><a href="#Coordinate-Systems" class="headerlink" title="Coordinate Systems"></a>Coordinate Systems</h3><font color="green">Recall: Linear Algebra</font>
+
+<ul>
+<li>basis: $v_1,v_2,…,v_n$</li>
+<li>a vector written as $v=\alpha_1 v_1+\alpha_2 v_2 + \cdots + \alpha_n v_n$</li>
+<li>the <font color="red">coordinate</font> of $v$ in this basis is $\{ \alpha_1,\alpha_2, \cdots , \alpha_n \}$</li>
+</ul>
+<h3 id="Frame"><a href="#Frame" class="headerlink" title="Frame"></a>Frame</h3><p><strong>Def.</strong> A <font color="red">frame</font> is a system with a single point(origin $P_0$) and a basis vector <font color="blue">in an affine space</font>.</p>
+<script type="math/tex; mode=display">
+P=P_0 + \beta_1 v_1 + \beta_2 v_2 + \cdots + \beta_n v_n</script><h3 id="Homogeneous-Coordinates"><a href="#Homogeneous-Coordinates" class="headerlink" title="Homogeneous Coordinates"></a>Homogeneous Coordinates</h3><p>E.g. for a 3 * 3 space, the 3 * 3 matrices cannot used for translation(平移), because vectors have no position.</p>
+<ul>
+<li>We extend the $3\times 3$ point to 4-dimension: $(x,y,z) \rightarrow (x,y,z,1)$</li>
+<li>and a $4\times 4$ matrix can represent translation, rotation and scaling and shear</li>
+<li>using matrix(a template) below, we can maintain $w=0$ for vectors and $w=1$ for points for <font color="red">orthographic viewing</font> .</li>
+</ul>
+<script type="math/tex; mode=display">
+\left( \begin{array}{c}
+a & b & c & tx \\
+d & e & f & ty \\
+g & h & i & tz \\
+0 & 0 & 0 & 1
+\end{array}\right)</script><font color="blue">E.g. For a 3D point $(x,y,z)$ , its homogeneous coordinate is $P_h = (x,y,z,1)$ . To translate it, we define a matrix:</font>
+
+
+<script type="math/tex; mode=display">
+\left( \begin{array}{c}
+1 & 0 & 0 & tx \\
+0 & 1 & 0 & ty \\
+0 & 0 & 1 & tz \\
+0 & 0 & 0 & 1
+\end{array}\right)
+\left( \begin{array}{c}
+x \\ y \\ z \\ 1
+\end{array}\right) = 
+\left( \begin{array}{c}
+x+ tx \\ y+ ty \\ z+ tz \\  1
+\end{array}\right)</script><ul>
+<li>More generally, homogeneous coordinates are represented as $p=[ wx,wy,wz,w ]^T$</li>
+</ul>
+<h2 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h2><ul>
+<li>Affine Transformation: Line preserving</li>
+<li><p>Translation: move points</p>
+<ul>
+<li>$P’=P+d$ where $d=[d_x, d_y, d_z, 0]^T$ </li>
+</ul>
+</li>
+<li><p><font color="green">Recall for Linear Algebra:</font> Some linear transformation: </p>
+<ul>
+<li>Rotation (2D)</li>
+<li>Scaling</li>
+<li>Reflection</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>try to remember their transformation matrices.</p>
+</blockquote>
+<p><strong>Inverses</strong></p>
+<ul>
+<li>Translation: $\textbf{T}^{-1}=\textbf{T}(-d_x, -d_y, -d_z)$</li>
+<li>Rotation: $\textbf{R}^{-1}(\theta)=\textbf{R}(- \theta)$<ul>
+<li>Noted that only $cos(\theta)$ on orthogonal entry</li>
+</ul>
+</li>
+<li>Scaling: $\textbf{S}^{-1}(s_x, s_y, s_z)=\textbf{S}(1/s_x, 1/s_y, 1/s_z)$ </li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Rotation About a Fixed Point Other than the Origin:</p>
+<ol>
+<li>Move fixed point to origin</li>
+<li>Rotate</li>
+<li>Move fixed point back</li>
+</ol>
+<script type="math/tex; mode=display">
+\textbf{M}=\textbf{T}(p_f)\textbf{R}(\theta)\textbf{T}(-p_f)</script><p>(bu)</p>
+<h2 id="OpenGL-Transformations"><a href="#OpenGL-Transformations" class="headerlink" title="OpenGL Transformations"></a>OpenGL Transformations</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr13.png" alt="procedure" style="zoom:50%"></div>
+
+<ul>
+<li><p><font color="green">Recall:</font> <code>glMatrixMode(GLenum mode)</code> to change the mode of matrix calculation</p>
+<ul>
+<li>when doing transformation, use <code>GL_MODELVIEW</code> state</li>
+</ul>
+</li>
+<li><p>For all CTM(Current Transformation Matrix) Operations, our CPP Code must load identity matrix first:</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glMatrixMode</span>(GL_MODELVIEW);</span><br><span class="line"><span class="built_in">glLoadIdentity</span>(); <span class="comment">// 重置</span></span><br><span class="line"><span class="built_in">glTranslatef</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">-5.0</span>); <span class="comment">// 平移物体</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Beware of using <strong>post-multiplications</strong> (the later operations should be multipled to result matrix $\textbf{C}$ <font color="red">earlier</font>)<ul>
+<li>E.g. Rotation About a Fixed Point: $\textbf{C}=\textbf{T}^{-1}\textbf{R}\textbf{T}$</li>
+</ul>
+</li>
+<li>Other Transformation Matrix specifying<ul>
+<li>rotation: <code>glRotatef(theta, vx, vy, yz)</code></li>
+<li>translation: <code>glTranslatef(dx, dy, dz)</code></li>
+<li>scale: <code>glScalef(sx, sy, sz)</code> </li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="V-Camera-amp-Viewing"><a href="#V-Camera-amp-Viewing" class="headerlink" title="V. Camera &amp; Viewing"></a>V. Camera &amp; Viewing</h1><h2 id="Computer-Viewing"><a href="#Computer-Viewing" class="headerlink" title="Computer Viewing"></a>Computer Viewing</h2><ul>
+<li><font color="red">2</font> attributes to define the viewing:<ul>
+<li>Positioning the camera<ul>
+<li><font color="green">Setting the <b>model-view</b> matrix</font> </li>
+</ul>
+</li>
+<li>Selecting a lens<ul>
+<li><font color="green">Setting the <b>projection</b> matrix</font></li>
+<li>Perspective or orthographic / view volume / clipping volume …</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Specify-Different-Space"><a href="#Specify-Different-Space" class="headerlink" title="Specify Different Space"></a>Specify Different Space</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr13.png" style="zoom:60%"></div>
+
+<ul>
+<li>Local / Modeling / Object Space<ul>
+<li>Each object model has its own local coordinate frame</li>
+</ul>
+</li>
+<li>World Space (类似全局空间)<ul>
+<li><font color="blue">Lights and Camera pose</font> are defined in this space</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr17.png" style="zoom:60%"></div>
+
+<ul>
+<li><strong>Camera Space / View Space / Eye Space</strong><ul>
+<li>Camera is located at the origin</li>
+<li>Looking in negative $z$ direction</li>
+<li>$+y$-axis is the “up-vector”</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Initially the <strong>world</strong> and <strong>camera</strong> frames are the same.</p>
+<p>To specify camera pose, we need to specify the camera coordinate frame with respect to the world coordinate frame.</p>
+</blockquote>
+<h2 id="View-Transformation"><a href="#View-Transformation" class="headerlink" title="View Transformation"></a>View Transformation</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glLookAt</span>( eyex, eyey, eyez,</span><br><span class="line">		  atx , aty , atz ,</span><br><span class="line">		  upx , upy , upz )</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过 eye 和 at 求出前向量</li>
+</ul>
+<script type="math/tex; mode=display">
+\text{forward}=\frac{\text{at} - \text{eye}}{|\text{at} - \text{eye}|}</script><ul>
+<li>通过 forward 和 up 求出右向量</li>
+</ul>
+<script type="math/tex; mode=display">
+\text{side}=\frac{\text{forward} \times \text{up}}{|\text{forward} \times \text{up}|}</script><ul>
+<li>然后就能得到修正后的上向量</li>
+</ul>
+<script type="math/tex; mode=display">
+\text{up'}= \text{forward} \times \text{side}</script><ul>
+<li>求出三个向量后就能确定 camera 的位置和 pose 了</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr18.png" alt="view-trans" style="zoom:60%"></div>
+
+<ul>
+<li>Suppose the camera has been moved to the location $[e_x, e_y, e_z]^T$, and its $x_c$, $y_c$, $z_c$ axes are the unit vectors $\textbf{u}$, $\textbf{v}$, $\textbf{n}$, respectively, then</li>
+</ul>
+<script type="math/tex; mode=display">
+\textbf{M}_{\text{view}}=
+\left[ \begin{array}{c}
+u_x & u_y & u_z & 0 \\
+v_x & v_y & v_z & 0 \\
+n_x & n_y & n_z & 0 \\
+0 & 0 & 0 & 1
+\end{array}\right]
+\cdot
+\left[ \begin{array}{c}
+1 & 0 & 0 & -e_x \\
+0 & 1 & 0 & -e_y \\
+0 & 0 & 1 & -e_z \\
+0 & 0 & 0 & 1
+\end{array}\right]</script><p>▪ Note that $[e_x, e_y, e_z]^T$ and $\textbf{u}$, $\textbf{v}$, $\textbf{n}$ are all specified with respect to the world frame</p>
+<h2 id="Projection-——-Defining-the-View-Volume"><a href="#Projection-——-Defining-the-View-Volume" class="headerlink" title="Projection —— Defining the View Volume"></a>Projection —— Defining the View Volume</h2><ul>
+<li>For orthographic projection, use <code>glOrtho()</code></li>
+<li>For perspective projection, use <code>glFrustum()</code></li>
+</ul>
+<h3 id="OpenGL-Orthographic-Projection"><a href="#OpenGL-Orthographic-Projection" class="headerlink" title="OpenGL Orthographic Projection"></a>OpenGL Orthographic Projection</h3><ul>
+<li>The glOrtho() function then generates a matrix that linearly maps the view volume to the canonical view volume, where<ul>
+<li>(left, bottom, –near) is mapped to (–1, –1, –1)</li>
+<li>(right, top, – far) is mapped to (1, 1, 1)</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr14.png" alt="ortho-projection" style="zoom:60%"></div>
+
+<blockquote>
+<p>正投影，能较真实地反映物体大小，物体显示的大小不会因视角变化改变。常用于CAD设计、地图绘制、2D游戏等不需要表现深度感的场景。</p>
+</blockquote>
+<h3 id="OpenGL-Perspective-Projection"><a href="#OpenGL-Perspective-Projection" class="headerlink" title="OpenGL Perspective Projection"></a>OpenGL Perspective Projection</h3><ul>
+<li><code>glFrustum( left, right, bottom, top, near, far )</code><ul>
+<li>The <code>glFrustum()</code> function allows (off-center) non-symmetric view volume</li>
+</ul>
+</li>
+<li>Often, we want a <strong>symmetric view volume</strong>. We can use<ul>
+<li><code>gluPerspective( fovy, aspect, near, far );</code></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr15.png" alt="persp-projection" style="zoom:60%"></div>
+
+<blockquote>
+<p>透视投影，有深度感，近大远小。常用于3D游戏、虚拟现实、建筑可视化等需要真实感的场景。</p>
+</blockquote>
+<h4 id="Principle-of-Perspective-Projection"><a href="#Principle-of-Perspective-Projection" class="headerlink" title="Principle of Perspective Projection"></a>Principle of Perspective Projection</h4><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr19.png" alt="persp-projection-d" style="zoom:60%"></div>
+
+<ul>
+<li>Center of projection at the origin</li>
+<li>Projection plane is $z = d$, $d &lt; 0$</li>
+</ul>
+<script type="math/tex; mode=display">
+x_p=\frac{x}{z/d}\ \ \ \ y_p=\frac{y}{z/d}\ \ \ \ z_p=d</script><ul>
+<li>Consider $p=Mq$ where</li>
+</ul>
+<script type="math/tex; mode=display">
+p=
+\left[ \begin{array}{c}
+x \\ y \\ z \\ z/d
+\end{array}\right] \ \ \ \ M=
+\left[ \begin{array}{c}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 1/d & 0
+\end{array}\right] \ \ \ \ q=
+\left[ \begin{array}{c}
+x \\ y \\ z \\ 1
+\end{array}\right]</script><ul>
+<li>If we scale $p$ , then we get the projection point on plane $z=d$ .</li>
+</ul>
+<h1 id="VI-Rasterization"><a href="#VI-Rasterization" class="headerlink" title="VI. Rasterization"></a>VI. Rasterization</h1><h2 id="Recall-for-OpenGL-Rendering-Pipeline"><a href="#Recall-for-OpenGL-Rendering-Pipeline" class="headerlink" title="Recall for OpenGL Rendering Pipeline"></a>Recall for OpenGL Rendering Pipeline</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr16.png" alt="Rendering Pipeline" style="zoom:60%"></div>
+
+<h3 id="Primitive-Assembly-etc"><a href="#Primitive-Assembly-etc" class="headerlink" title="Primitive Assembly, etc."></a>Primitive Assembly, etc.</h3><ul>
+<li>Primitive assembly<ul>
+<li>Vertex data is collected into complete primitives</li>
+<li>Necessary for clipping and back-face culling</li>
+</ul>
+</li>
+<li>Clipping</li>
+<li>Perspective division (Object Oriented)<ul>
+<li>To normalized device coordinate (NDC) space</li>
+</ul>
+</li>
+<li>Viewport transformation (Viewer Oriented)<ul>
+<li>To window space</li>
+<li>Include depth range scaling</li>
+</ul>
+</li>
+<li>Back-face culling</li>
+</ul>
+<h3 id="Rasterization-amp-Fragment-Processing"><a href="#Rasterization-amp-Fragment-Processing" class="headerlink" title="Rasterization &amp; Fragment Processing"></a>Rasterization &amp; Fragment Processing</h3><ul>
+<li>Attribute values at fragments are computed by interpolating attribute values assigned to vertices<ul>
+<li>Interpolation is performed in window space (2D)</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr20.png" alt="interpolation" style="zoom:55%"></div>
+
+<ul>
+<li>Each generated fragment is processed to determine the color of the corresponding pixel in the frame buffer</li>
+<li>Fragment color can be modified by <strong>texture mapping</strong> (纹理映射)<ul>
+<li>Texture access (using interpolated texture coordinates)<ul>
+<li>Access texture map using texture coordinates</li>
+</ul>
+</li>
+<li>Texture application<ul>
+<li>Texture color can be combined with the fragment color of the primitive</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Per-Fragment Operations</strong></p>
+<ul>
+<li><font color="blue">Fragment is discarded if it is blocked (occluded) by the corresponding pixel already in the frame buffer</font><ul>
+<li>Z-buffer hidden-surface removal</li>
+</ul>
+</li>
+<li><font color="blue">Fragment may be blended with the corresponding pixel already in the frame buffer</font> <ul>
+<li>Blending</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Let’s talk about something important !!!</p>
+</blockquote>
+<h2 id="Clipping"><a href="#Clipping" class="headerlink" title="Clipping"></a>Clipping</h2><blockquote>
+<p>To clip out primitives that are outside the view volume</p>
+</blockquote>
+<h3 id="Clipping-2D-Line-Segments"><a href="#Clipping-2D-Line-Segments" class="headerlink" title="Clipping 2D Line Segments"></a>Clipping 2D Line Segments</h3><h4 id="Cohen-Sutherland-Algorithm"><a href="#Cohen-Sutherland-Algorithm" class="headerlink" title="Cohen-Sutherland Algorithm"></a>Cohen-Sutherland Algorithm</h4><ul>
+<li>Using <a name="edge-table">edge table</a></li>
+</ul>
+<table>
+<tr>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr21.png" style="zoom:50%"></td>
+<td><p><li>Case 1: Both endpoints inside all four lines
+<ul><li>Draw (accept) line segment as is</li></ul></li>
+<li>Case 2: Both endpoints outside same line
+<ul><li>Discard (reject) the line segment</li></ul></li></p></td>
+</tr>
+<tr>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr22.png" style="zoom:50%"></td>
+<td><p><li>Case 3: One endpoint inside all lines and one outside
+<ul><li>Must do at least one intersection</li></ul></li>
+<li>Case 4: Both outside
+<ul><li>May have part inside</li>
+<li>Must do at least one intersection</li></ul></li></p></td>
+</tr>
+</table>
+
+<p><strong>Using Outcode</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr23.png" alt="outcode" style="zoom:60%"></div>
+
+<p>E.g. Suppose a line $AB$ with endpoints $A$ and $B$ .</p>
+<ul>
+<li>If $\text{outcode}(A)=\text{outcode}(B)=0$ , accept the segment</li>
+<li>If $\text{outcode}(A)=0$ , $\text{outcode}(B)\not= 0$ , <ul>
+<li>Compute intersection</li>
+<li>Location of $1$ in outcode($B$) determines which edge to intersect with</li>
+<li>If outcode($B$) has two $1$’s, then need to do two intersections</li>
+</ul>
+</li>
+<li>If $\text{outcode}(A)$ &amp; $\text{outcode}(B) \not= 0$ , reject the segment</li>
+<li><p>If $\text{outcode}(A)$ &amp; $\text{outcode}(B) = 0$ , but neither of them are $0$ , </p>
+<ul>
+<li>Shorten line segment by intersecting with one of sides of window</li>
+<li>Compute outcode of intersection (new endpoint of shortened line segment)</li>
+<li>Re-execute algorithm</li>
+</ul>
+</li>
+<li><p><strong>When it goes to 3D</strong>, we can use 6-bit outcode to represent 6 faces of the window.</p>
+</li>
+</ul>
+<h3 id="Polygon-Clipping"><a href="#Polygon-Clipping" class="headerlink" title="Polygon Clipping"></a>Polygon Clipping</h3><blockquote>
+<p>Problems of polygon clipping: may generate multiple polygons.</p>
+<p>Solution: For concave polygons, use tessellation function(镶嵌函数) in <code>GLU</code> to change it to multiple convex polygons.</p>
+</blockquote>
+<ul>
+<li>simple way: set axis-aligned bounding box(AABB) for simple calculation.</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr24.png" alt="outcode" style="zoom:50%"></div>
+
+
+
+<h2 id="Rasterization"><a href="#Rasterization" class="headerlink" title="Rasterization"></a>Rasterization</h2><h3 id="Scan-Conversion-of-Line-Segments"><a href="#Scan-Conversion-of-Line-Segments" class="headerlink" title="Scan Conversion of Line Segments"></a>Scan Conversion of Line Segments</h3><p><a name="BA"><b>Bresenham’s Algorithm</b></a></p>
+<ul>
+<li><font color="red">Key thought</font>: A binary decision problem on how the next pixel lies based on the previous pixel.</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr25.png" alt="BA" style="zoom:50%"></div>
+
+<ul>
+<li>On the next point: $y=m(x_k + 1) + b$</li>
+<li>$d_\text{lower} = y-y_k$</li>
+<li>$d_\text{upper}=(y_k+1)-y$</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+p_k&=\Delta x(d_\text{lower} - d_\text{upper}) \\
+&=2x_k \Delta y - 2y_k \Delta x + c
+\end{align}</script><p>where $c=2\Delta y + \Delta x (2b - 1)$ is an <font color="red">integer constant</font> .</p>
+<ul>
+<li>If $p_k &gt; 0$ , plot upper pixel</li>
+<li><p>If $p_k &lt; 0$ , plot lower pixel</p>
+</li>
+<li><p>We can incrementally compute $p_{k+1}$ from $p_k$</p>
+<ul>
+<li>If $p_k &gt; 0$ ,  $p_{k + 1} = p_k + 2\Delta y – 2\Delta x$</li>
+<li>If $p_k &lt; 0$, $p_{k + 1} = p_k + 2\Delta y$</li>
+<li>where $p_0=2\Delta y - \Delta x$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Scan-Conversion-of-Polygons"><a href="#Scan-Conversion-of-Polygons" class="headerlink" title="Scan Conversion of Polygons"></a>Scan Conversion of Polygons</h3><p><strong>Scan-Line Fill — Interpolation</strong></p>
+<ul>
+<li>$C_1$ $C_2$ $C_3$ specified by glColor or by vertex shading (lighting computation)</li>
+<li>$C_4$ determined by interpolating between $C_1$ and $C_3$</li>
+<li>$C_5$ determined by interpolating between $C_2$ and $C_3$</li>
+<li>Interpolate between $C_4$ and $C_5$ along span</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr26.png" alt="scPolygon" style="zoom:50%"></div>
+
+<blockquote>
+<p>So what we need to do in this algorithm is calculating : </p>
+<ol>
+<li>points intersact with scan-line (Recall <a href="#BA">Bresenham’s Algorithm</a>)</li>
+<li>which polygons lie on this pixel (多边形扫描转换，<a href="#edge-table">边表</a>，活动边表)</li>
+</ol>
+</blockquote>
+<h3 id="Hidden-Surface-Removal"><a href="#Hidden-Surface-Removal" class="headerlink" title="Hidden-Surface Removal"></a>Hidden-Surface Removal</h3><ul>
+<li>Painter’s Algorithm<ul>
+<li>Fill the objects at the back first, then cover with the front objects</li>
+</ul>
+</li>
+<li>Depth Sorting<ul>
+<li>Need $O(n^2)$ at worst</li>
+</ul>
+</li>
+</ul>
+<p><strong>Back-Face Culling</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr27.png" alt="BFC" style="zoom:90%"></div>
+
+<ul>
+<li>Polygons is <font color="red">back-facing</font> if $\textbf{N}_p \cdot \textbf{N} &lt;0$</li>
+<li><font color="blue">In OpenGL, we can simply enable culling</font><ul>
+<li>By default, polygon vertices must be provided in <font color="blue">counter clockwise</font> order</li>
+<li>But may not work correctly for <font color="blue">non-convex</font> polygon</li>
+</ul>
+</li>
+</ul>
+<p><strong>Z-Buffer</strong></p>
+<ul>
+<li>Key thought: Exchange time with space</li>
+<li>Use a <font color="red">z-buffer</font> (depth buffer) to store the depth of the closest object at each pixel found so far</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr16.png" alt="Rendering Pipeline" style="zoom:60%"></div>
+
+<ul>
+<li>Viewing this pipeline again:</li>
+<li>Using back-face culling to remove hidden-surface</li>
+<li>Using scan conversion to do rasterization</li>
+<li>Using z-buffer to test the per-fragment</li>
+<li>At the end, output frame buffer.</li>
+</ul>
+<hr>
+<h1 id="VII-Illumination"><a href="#VII-Illumination" class="headerlink" title="VII. Illumination"></a>VII. Illumination</h1><p><strong>Local Reflection vs Global Illumination</strong></p>
+<ul>
+<li>Local reflection<ul>
+<li>Considers relationship between a light source, a single surface point, and a view point</li>
+<li>No interaction with other objects</li>
+</ul>
+</li>
+<li>Global illumination<ul>
+<li>Considers all light sources and surfaces</li>
+<li>Inter-reflections and shadows</li>
+</ul>
+</li>
+</ul>
+<h2 id="Phong-Illumination-Equation"><a href="#Phong-Illumination-Equation" class="headerlink" title="Phong Illumination Equation"></a>Phong Illumination Equation</h2><script type="math/tex; mode=display">
+I_{\text{Phong}}=k_a i_a + \sum_{m \in \text{lights}} \left(k_d (\textbf{L}_m \cdot \textbf{N}) i_{m,d} + k_s (\textbf{R}_m \cdot \textbf{V})^{\alpha} i_{m,s}  \right)</script><p>where :</p>
+<ul>
+<li>$k_a$ 表示环境光反射系数，常数</li>
+<li>$k_d$ 表示漫反射系数，常数</li>
+<li>$k_s$ 表示镜面高光反射系数，常数</li>
+<li>$\alpha$ 表示物体材质光滑程度，由材质决定（材质越光滑系数越大），常量</li>
+<li>$\textbf{L}_m$ 表示相对于 $L$ 的反射光线方向</li>
+<li>$\textbf{N}$ 表示该点的法线 [Normal Vector]</li>
+<li>$\textbf{R}_m$ 表示反射光的方向</li>
+<li>$\textbf{V}$ 表示摄像机的方向</li>
+<li>$i_{m,d}$ 表示光源$m$的漫反射反射光照，RGB</li>
+<li>$i_{m,s}$ 表示光源$m$的高光反射光照，RGB</li>
+<li>$i_a$ 表示环境光的光照，RGB</li>
+<li>$I_p$ 表示 $p$ 的总光照，RGB</li>
+<li>$m$ 表示其中一个光源</li>
+</ul>
+<blockquote>
+<p>Sum 中的两项分别对应下图的两步（Diffuse【漫反射】是 $L \cdot N$ ，Specular 【镜面】是 $R \cdot V$），ambient 对应 $k_a \times i_a$ ，表示局部的环境色渲染。</p>
+</blockquote>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr28.png" alt="PIE" style="zoom:70%"></div>
+
+
+<ul>
+<li>Diffuse Reflection: <strong>Lambert’s Cosine Law</strong><ul>
+<li>diffuse reflection $\propto \cos{\theta} = \textbf{N} \cdot \textbf{L}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Illumination-in-OpenGL"><a href="#Illumination-in-OpenGL" class="headerlink" title="Illumination in OpenGL"></a>Illumination in OpenGL</h2><ul>
+<li>Lighting Computation at <strong>Vertex Processing</strong> stage.</li>
+<li>Specifying Vertex Normal Vectors<ul>
+<li>Set by <code>glNormal*()</code><ul>
+<li><code>glNormal3f(x, y, z)</code></li>
+<li><code>glNormal3fv(p)</code></li>
+</ul>
+</li>
+<li><code>glEnable(GL_NORMALIZE)</code> allows for auto-normalization at a performance penalty</li>
+</ul>
+</li>
+<li>Enabling Lighting Computation<ul>
+<li>Shading calculations are enabled by<ul>
+<li><code>glEnable(GL_LIGHTING)</code></li>
+<li>Once lighting is enabled, <code>glColor()</code> is <font color="red">ignored</font></li>
+</ul>
+</li>
+<li>Must enable each light source individually<ul>
+<li><code>glEnable(GL_LIGHTi)</code> $i = 0, 1, 2, \cdots $</li>
+</ul>
+</li>
+<li>Can choose light model parameters<ul>
+<li><code>glLightModeli(parameter, GL_TRUE)</code><ul>
+<li><code>GL_LIGHT_MODEL_LOCAL_VIEWER</code> do not use simplifying distant viewer assumption in calculation</li>
+<li><code>GL_LIGHT_MODEL_TWO_SIDED</code> shades both sides of polygons independently</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><font color="red">An example code of using light</font>:</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GLfloat diffuse0[] = &#123;<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>&#125;;</span><br><span class="line">GLfloat ambient0[] = &#123;<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>&#125;;</span><br><span class="line">GLfloat specular0[] = &#123;<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>&#125;;</span><br><span class="line">GLfloat light0_pos[] = &#123;<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3</span>,<span class="number">0</span>, <span class="number">1.0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">glEnable</span>(GL_LIGHTING);</span><br><span class="line"><span class="built_in">glEnable</span>(GL_LIGHT0);</span><br><span class="line"><span class="built_in">glLightfv</span>(GL_LIGHT0, GL_POSITION, light0_pos);</span><br><span class="line"><span class="built_in">glLightfv</span>(GL_LIGHT0, GL_AMBIENT, ambient0);		<span class="comment">// def ambient</span></span><br><span class="line"><span class="built_in">glLightfv</span>(GL_LIGHT0, GL_DIFFUSE, diffuse0);		<span class="comment">// def diffuse</span></span><br><span class="line"><span class="built_in">glLightfv</span>(GL_LIGHT0, GL_SPECULAR, specular0);	<span class="comment">// def spec</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Or using <strong>Global Ambient Light</strong> : <code>glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient)</code></li>
+</ul>
+<blockquote>
+<p>设置材质和设置光源的参数很像，用 <code>glMaterialfv()</code> 函数，第一个参数改成 <code>GL_FRONT, GL_BACK, GL_FRONT_AND_BACK</code> 表示内外渲染</p>
+</blockquote>
+<h2 id="Shading"><a href="#Shading" class="headerlink" title="Shading"></a>Shading</h2><h3 id="Gouraud-Shading-vs-Phong-Shading"><a href="#Gouraud-Shading-vs-Phong-Shading" class="headerlink" title="Gouraud Shading vs. Phong Shading"></a>Gouraud Shading vs. Phong Shading</h3><ul>
+<li>Flat shading is “bad”</li>
+<li>Gouraud Shading<ol>
+<li>For each vertex, compute the <font color="red">average normal vector</font> of the polygons that share the vertex</li>
+<li>Apply <font color="red">PIE</font> at the vertex using its <font color="blue">average normal vector</font></li>
+<li>Smoothly interpolate the computed colors at the vertices of the polygon to the interior of the polygon</li>
+</ol>
+</li>
+<li>Using <font color="red">Gouraud Shading</font> in OpenGL: <code>glShadeModel(GL_SMOOTH)</code> (No Phong Shading use directly)</li>
+</ul>
+<ul>
+<li>Phong Shading<ol>
+<li>In Phong Shading, we do not compute the colors of the vertices for interpolation. Instead, for each fragment in the polygon, we interpolate the normal vectors from the vertices</li>
+<li>Then, at each fragment, we apply PIE on the interpolated normal vector to compute a color for the fragment</li>
+</ol>
+</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr30.png" alt="Gouraud-and-Phong" style="zoom:70%"></div>
+
+<ul>
+<li>Differences<ul>
+<li>Highlights are produced more faithfully with Phong shading</li>
+<li>Gouraud shading produces only “linear interpolation” of colors</li>
+<li>Gouraud shading may even miss the highlight</li>
+</ul>
+</li>
+<li>OpenGL does not support Phong Shading<ul>
+<li>But can be done by reprogramming the rendering pipeline <font color="red">using shaders</font></li>
+</ul>
+</li>
+</ul>
+<h1 id="VIII-Modern-OpenGL-Intro"><a href="#VIII-Modern-OpenGL-Intro" class="headerlink" title="VIII. Modern OpenGL (Intro)"></a>VIII. Modern OpenGL (Intro)</h1><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr29.png" alt="modern-opengl" style="zoom:60%"></div>
+
+<h2 id="Example-OpenGL-Programs-The-Modern-Way"><a href="#Example-OpenGL-Programs-The-Modern-Way" class="headerlink" title="Example OpenGL Programs: The Modern Way"></a>Example OpenGL Programs: The Modern Way</h2><h3 id="New-Lib"><a href="#New-Lib" class="headerlink" title="New Lib"></a>New Lib</h3><ul>
+<li><code>GLEW</code><ul>
+<li><font coolr="blue">The OpenGL Extension Wrangler Library</font> </li>
+<li>a cross-platform open-source C/C++ extension loading library</li>
+<li>provides efficient run-time mechanisms for determining which OpenGL extensions are supported on the target platform</li>
+<li><font color="red">Automatically initializes</font> the entry points of new OpenGL functions</li>
+</ul>
+</li>
+<li><code>GLM</code><ul>
+<li><font color="blue">OpenGL Mathematics</font> 
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h3><blockquote>
+<p>注意：由于课程上给出的示例代码过长，这里只总结一些重要部分，不展示示例代码。OpenGL 的相关教程网上不会缺，可以自行获取。</p>
+</blockquote>
+<h1 id="IX-Shading-Language"><a href="#IX-Shading-Language" class="headerlink" title="IX. Shading Language"></a>IX. Shading Language</h1><blockquote>
+<p>This section is all about coding.</p>
+<p>Some basis(Data Type, Data Structure, etc.) is ignored.</p>
+</blockquote>
+<p><strong>Storage Quantifiers</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr31.png" style="zoom:60%"></div>
+
+<p><strong>Function Parameter Qualifiers</strong></p>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr32.png" style="zoom:60%"></div>
+
+<ul>
+<li>GLSL has no concepts of pointer or reference</li>
+<li>Functions are called by <font color="red">value-return</font></li>
+</ul>
+<p><strong>Vertex and Fragment Built-in Variables</strong></p>
+<table>
+<tr>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr33.png"></td>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr34.png"></td>
+</tr>
+</table>
+
+
+
+<ul>
+<li><code>gl_FragCoord</code> contains window relative coordinates $(x, y, z, 1/w)$<ul>
+<li>$z$ is the depth value (after depth range scaling)</li>
+<li>$w$ is $–z_e$ where $z_e$ is the $z$-coordinate of the fragment in the eye space</li>
+</ul>
+</li>
+<li>If <code>gl_FragDepth</code> is not written to, <code>gl_FragCoord.z</code> is used as fragment’s depth</li>
+</ul>
+<ul>
+<li>A fragment’s 2D position is the window-relative coordinates of the fragment’s center<ul>
+<li>By default, for the <font color="red">bottom-left-most</font> pixel in the window<ul>
+<li><code>gl_FragCoord.x == 0.5</code></li>
+<li><code>gl_FragCoord.y == 0.5</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Modern OpenGL uses <code>.vert</code> and <code>.frag</code> to describe the vertex and fragment rendering.</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A simple pseudo-code</span></span><br><span class="line">GLuint ShaderProjObj;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span> vert[] = <span class="string">&quot;exmaple.vert&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span> frag[] = <span class="string">&quot;example.frag&quot;</span>;</span><br><span class="line"><span class="type">const</span> GLfloat lightAmbient[] = &#123; <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">MyInit</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Create Gouraud Shading shader program object.</span></span><br><span class="line">  ShaderProjObj = <span class="built_in">makeShaderProgramFromFiles</span>(vert, frag, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="comment">// Install Gauraud Shading shader program to the rendering pipeline first.</span></span><br><span class="line">  <span class="built_in">glUseProgram</span>(ShaderProjObj);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">MyDrawFunc</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Query locations of uniform variables.(exmaple)</span></span><br><span class="line">  GLint la = <span class="built_in">glGetUniformLocation</span>(ShaderProjObj, <span class="string">&quot;LightAmbient&quot;</span>);</span><br><span class="line">  <span class="comment">// Set Uniform variable</span></span><br><span class="line">  <span class="built_in">glUniform4fv</span>(la, <span class="number">1</span>, lightAmbient);</span><br><span class="line">  </span><br><span class="line">  objModel3D-&gt;<span class="built_in">render</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="X-Texture-Mapping-amp-Applications"><a href="#X-Texture-Mapping-amp-Applications" class="headerlink" title="X. Texture Mapping &amp; Applications"></a>X. Texture Mapping &amp; Applications</h1><h2 id="Surface-Parameterization"><a href="#Surface-Parameterization" class="headerlink" title="Surface Parameterization"></a>Surface Parameterization</h2><ul>
+<li>Defines a mapping between the 3D surfaces and the 2D texture map<ul>
+<li>Defines the mapping $(x_w, y_w, z_w) \leftrightarrow (s,t)$<ul>
+<li>$(x_w, y_w, z_w)$ is the 3D coordinates of surface point</li>
+<li>$(s, t )$ is the 2D texture coordinates (limited to $[0,1]^2$)</li>
+</ul>
+</li>
+<li>Defines which <strong>“texel”</strong> maps to each surface point</li>
+</ul>
+</li>
+<li>Difficulty<ul>
+<li>Non-trivial surface topology causes severe distortion of textures (有些不正常的表面拓扑后会产生纹理混乱)</li>
+</ul>
+</li>
+</ul>
+<h1 id="XI-FBO-amp-Shadow-Mapping"><a href="#XI-FBO-amp-Shadow-Mapping" class="headerlink" title="XI. FBO &amp; Shadow Mapping"></a>XI. FBO &amp; Shadow Mapping</h1><h2 id="Framebuffer-Objects-FBO"><a href="#Framebuffer-Objects-FBO" class="headerlink" title="Framebuffer Objects(FBO)"></a>Framebuffer Objects(FBO)</h2><h3 id="Multi-Pass-Rendering"><a href="#Multi-Pass-Rendering" class="headerlink" title="Multi-Pass Rendering"></a>Multi-Pass Rendering</h3><p><strong>Def.</strong> Render 3D scene multiple times (passes), and “combine” the multiple rendered images to synthesize final frame</p>
+<ul>
+<li>Allows creation of non-displayable framebuffers</li>
+<li>OpenGL can redirect rendering output to FBO</li>
+<li>Each FBO contains a collection of rendering destinations</li>
+</ul>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr37.png" style="zoom:50%"></div>
+
+
+
+<ul>
+<li>Two types of framebuffer-attachable images<ul>
+<li>Texture images<ul>
+<li>Render to texture</li>
+</ul>
+</li>
+<li>Renderbuffer images<ul>
+<li>Offscreen rendering</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Many color attachment points allow multiple render targets (MRT)<ul>
+<li>Can query the maximum number of color attachment points with <code>GL_MAX_COLOR_ATTACHMENTS</code> (usually 8)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// cpp file</span></span><br><span class="line"><span class="comment">// set up FBO</span></span><br><span class="line">GLuint fboHandle; <span class="comment">// The handle to the FBO</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Generate and bind the framebuffer</span></span><br><span class="line"><span class="built_in">glGenFramebuffers</span>(<span class="number">1</span>, &amp;fboHandle);</span><br><span class="line"><span class="built_in">glBindFramebuffer</span>(GL_FRAMEBUFFER, fboHandle);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create first texture object</span></span><br><span class="line">GLuint renderTexA;</span><br><span class="line"><span class="built_in">glGenTextures</span>(<span class="number">1</span>, &amp;renderTexA);</span><br><span class="line"><span class="built_in">glActiveTexture</span>(GL_TEXTURE0); <span class="comment">// Use texture unit 0</span></span><br><span class="line"><span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, renderTexA);</span><br><span class="line"><span class="built_in">glTexImage2D</span>(GL_TEXTURE_2D, <span class="number">0</span>, GL_RGBA8, fboWidth, fboHeight, <span class="number">0</span>,</span><br><span class="line">  GL_RGBA, GL_UNSIGNED_BYTE, <span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Attach first texture to FBO</span></span><br><span class="line"><span class="built_in">glFramebufferTexture2D</span>(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2,</span><br><span class="line">  GL_TEXTURE_2D, renderTexA, <span class="number">0</span>);</span><br><span class="line">  </span><br><span class="line"><span class="comment">// ... second texture object as above</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Create the depth buffer</span></span><br><span class="line">GLuint depthBuf;</span><br><span class="line"><span class="built_in">glGenRenderbuffers</span>(<span class="number">1</span>, &amp;depthBuf);</span><br><span class="line"><span class="built_in">glBindRenderbuffer</span>(GL_RENDERBUFFER, depthBuf);</span><br><span class="line"><span class="built_in">glRenderbufferStorage</span>(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, </span><br><span class="line">  fboWidth, fboHeight);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Bind the depth buffer to the FBO</span></span><br><span class="line"><span class="built_in">glFramebufferRenderbuffer</span>(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,</span><br><span class="line">  GL_RENDERBUFFER, depthBuf);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set the target for the fragment shader outputs</span></span><br><span class="line">GLenum drawBufs[] = &#123; GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3 &#125;;</span><br><span class="line"><span class="built_in">glDrawBuffers</span>(<span class="number">2</span>, drawBufs);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Unbind the framebuffer, and revert to default</span></span><br><span class="line"><span class="built_in">glBindFramebuffer</span>(GL_FRAMEBUFFER, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// often in other functions</span></span><br><span class="line"><span class="comment">// DRAW TO TEXTURES</span></span><br><span class="line"><span class="comment">// Bind to texture&#x27;s FBO</span></span><br><span class="line"><span class="built_in">glBindFramebuffer</span>(GL_FRAMEBUFFER, fboHandle);</span><br><span class="line"></span><br><span class="line"><span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, fboWidth, fboHeight); <span class="comment">// Viewport for the texture</span></span><br><span class="line"><span class="built_in">glClear</span>(GL_DEPTH_BUFFER_BIT);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use glClearBufferfv() to individually clear color buffers</span></span><br><span class="line"><span class="type">const</span> GLfloat lightGreen[<span class="number">4</span>] = &#123; <span class="number">0.5f</span>, <span class="number">1.0f</span>, <span class="number">0.5f</span>, <span class="number">1.0f</span> &#125;;</span><br><span class="line"><span class="type">const</span> GLfloat lightRed[<span class="number">4</span>] = &#123; <span class="number">1.0f</span>, <span class="number">0.5f</span>, <span class="number">0.5f</span>, <span class="number">1.0f</span> &#125;;</span><br><span class="line"><span class="built_in">glClearBufferfv</span>(GL_COLOR, <span class="number">0</span>, lightGreen);</span><br><span class="line"><span class="built_in">glClearBufferfv</span>(GL_COLOR, <span class="number">1</span>, lightRed);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Setup the projection matrix and view matrix</span></span><br><span class="line"><span class="comment">// for the scene to be rendered to the texture here.</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">renderTextureScene</span>();</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DRAW FINAL FRAME</span></span><br><span class="line"><span class="comment">// Unbind texture&#x27;s FBO (back to default FB)</span></span><br><span class="line"><span class="built_in">glBindFramebuffer</span>(GL_FRAMEBUFFER, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, winWidth, winHeight); <span class="comment">// Viewport for main window</span></span><br><span class="line"><span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Setup the projection matrix and view matrix.</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="built_in">renderScene</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="Shadow-Mapping"><a href="#Shadow-Mapping" class="headerlink" title="Shadow Mapping"></a>Shadow Mapping</h2><table>
+<tr align="center">
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr38.png"></td>
+<td><img src="/2024/06/27/Real-Time-Rendering/rtr39.png"></td>
+</tr>
+</table>
+
+
+
+<h3 id="Algorithm-Overview"><a href="#Algorithm-Overview" class="headerlink" title="Algorithm Overview"></a>Algorithm Overview</h3><ol>
+<li>Render the scene using the light source as viewpoint</li>
+<li>Save the depth buffer <font color="blue">(a.k.a. shadow map)</font></li>
+<li>Clear the framebuffer</li>
+<li>Render the scene from camera’s viewpoint<ul>
+<li>For each fragment, transform it to the “light space” and compare its “light space” $z$ value with the corresponding $z$ value in the shadow map<ul>
+<li>If “light space” z value is larger, the fragment is in shadow and it is lit with only ambient light</li>
+<li>Otherwise, the fragment is <font color="red">not</font> in shadow and is <font color="red">fully lit</font></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Shadow-Map-Coordinates"><a href="#Shadow-Map-Coordinates" class="headerlink" title="Shadow Map Coordinates"></a>Shadow Map Coordinates</h3><ul>
+<li>Any 3D point in the view frustum(视图) of the light source must be transformed to the shadow map coordinates $[s, t, p]$ where $s$, $t$, $p$ are in the range $[0,1]$</li>
+<li>Given a 3D point $p_M$ in modeling coordinates, its shadow map coordinates $p_L$ is</li>
+</ul>
+<script type="math/tex; mode=display">
+p_L=B \cdot P_L \cdot V_L \cdot M \cdot p_M</script><ul>
+<li>$M$ is the modeling matrix</li>
+<li>$V_L$ is the light’s view transformation matrix</li>
+<li>$P_L$ is the light’s projection matrix</li>
+<li>and $B=\left[ \begin{array} \\<br>0.5&amp;0&amp;0&amp;0.5 \\<br>0&amp;0.5&amp;0&amp;0.5 \\<br>0&amp;0&amp;0.5&amp;0.5 \\<br>0&amp;0&amp;0&amp;1 \\<br>\end{array}\right]$</li>
+</ul>
+<h3 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h3><ul>
+<li>shadow acnes(失真)<ul>
+<li>Sol 1: Subtract a tolerance value from <code>ShadowCoord.z</code> in the fragment shader before the depth comparison</li>
+<li>Sol 2: “Offset” the scene backwards when generating the shadow map from the light source<ul>
+<li>Use OpenGL function <code>glPolygonOffset()</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Obvious jaggies(锯齿)<ul>
+<li>Percentage Closer Filtering (PCF)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before using PCF</span></span><br><span class="line"><span class="type">void</span> shadeWithShadow()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">vec3</span> ambient = ...; <span class="comment">// ambient</span></span><br><span class="line">  <span class="type">vec3</span> diffSpec = ...; <span class="comment">// diffuse and specular</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// Do the shadow-map lookup</span></span><br><span class="line">  <span class="type">float</span> shadow = <span class="built_in">textureProj</span>(ShadowMap, ShadowCoord);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// If the fragment is in shadow, use ambient light only.</span></span><br><span class="line">  FragColor = <span class="type">vec4</span>(diffSpec * shadow + ambient, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// after using PCF</span></span><br><span class="line"><span class="type">void</span> shadeWithShadow()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">vec3</span> ambient = ...; <span class="comment">// ambient</span></span><br><span class="line">  <span class="type">vec3</span> diffSpec = ...; <span class="comment">// diffuse and specular</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// The sum of the comparisons with nearby texels</span></span><br><span class="line">  <span class="type">float</span> sum = <span class="number">0.0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// Sum contributions from texels around ShadowCoord</span></span><br><span class="line">  sum += <span class="built_in">textureProjOffset</span>(ShadowMap, ShadowCoord, <span class="type">ivec2</span>(<span class="number">-1</span>,<span class="number">-1</span>));</span><br><span class="line">  sum += <span class="built_in">textureProjOffset</span>(ShadowMap, ShadowCoord, <span class="type">ivec2</span>(<span class="number">-1</span>,<span class="number">1</span>));</span><br><span class="line">  sum += <span class="built_in">textureProjOffset</span>(ShadowMap, ShadowCoord, <span class="type">ivec2</span>(<span class="number">1</span>,<span class="number">1</span>));</span><br><span class="line">  sum += <span class="built_in">textureProjOffset</span>(ShadowMap, ShadowCoord, <span class="type">ivec2</span>(<span class="number">1</span>,<span class="number">-1</span>));</span><br><span class="line">  <span class="type">float</span> shadow = sum * <span class="number">0.25</span>;</span><br><span class="line">  </span><br><span class="line">  FragColor = <span class="type">vec4</span>(diffSpec * shadow + ambient, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="XII-Image-Processing"><a href="#XII-Image-Processing" class="headerlink" title="XII. Image Processing"></a>XII. Image Processing</h1><h1 id="XIII-Ray-Tracing"><a href="#XIII-Ray-Tracing" class="headerlink" title="XIII. Ray Tracing"></a>XIII. Ray Tracing</h1><h2 id="Basic-Ray-Casting"><a href="#Basic-Ray-Casting" class="headerlink" title="Basic Ray Casting"></a>Basic Ray <font color="red">Casting</font></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">For every pixel</span><br><span class="line">  Construct a ray from the eye</span><br><span class="line">  For every object in the scene</span><br><span class="line">    Find intersection with the ray </span><br><span class="line">    Keep if closest</span><br><span class="line">  Shade depending on light and normal vector(using Phong reflection)</span><br></pre></td></tr></table></figure>
+<div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr35.png" style="zoom:50%"></div>
+
+
+
+<p><strong>Rasterization vs. Ray Casting</strong></p>
+<ul>
+<li>Rasterization<ul>
+<li>Given a primitive in 3D space, determine which pixels are covered by the primitive</li>
+</ul>
+</li>
+<li>Ray Casting<ul>
+<li>At each pixel, determine which primitive covers it</li>
+</ul>
+</li>
+</ul>
+<h2 id="Ray-Tracing"><a href="#Ray-Tracing" class="headerlink" title="Ray Tracing"></a>Ray <font color="red">Tracing</font></h2><ul>
+<li>From the closest intersection point, secondary rays are shot out<ul>
+<li>Reflection ray</li>
+<li>Refraction ray</li>
+<li>Shadow rays</li>
+</ul>
+</li>
+</ul>
+<h3 id="Whitted-style-Recursive-Ray-Tracing"><a href="#Whitted-style-Recursive-Ray-Tracing" class="headerlink" title="Whitted-style(Recursive) Ray Tracing"></a>Whitted-style(Recursive) Ray Tracing</h3><script type="math/tex; mode=display">
+\begin{align}
+&\textbf{I}= \textbf{I}_{\text{local}}+k_{\text{rg}} \textbf{I}_{\text{reflected}}+k_{\text{tg}} \textbf{I}_{\text{transmitted}} \\
+\text{where }&\textbf{I}_{\text{local}}= \textbf{I}_{a}k_a+ \color{red}k_{\text{shadow}}\color{black}\textbf{I}_{\text{source}}\left[ k_d(\textbf{N} \cdot \textbf{L}) + k_r (\textbf{R} \cdot \textbf{V})^n + k_t (\textbf{T} \cdot \textbf{V})^m \right]
+\end{align}</script><div align="center"><img src="/2024/06/27/Real-Time-Rendering/rtr36.png" style="zoom:50%"></div>
+
+<ul>
+<li>So if the material is opaque, the $k_t (\textbf{T} \cdot \textbf{V})^m$ can be omitted.</li>
+<li>Also consider <font color="red">Shadow Rays</font>.</li>
+</ul>
+<p><strong>Scene Description</strong></p>
+<ul>
+<li>Camera view &amp; image resolution<ul>
+<li>Camera position and orientation in world coordinate frame<ul>
+<li>Similar to <code>gluLookAt()</code></li>
+</ul>
+</li>
+<li>Field of view<ul>
+<li>Similar to <code>gluPerspective()</code>, but <font color="red">no need</font> near &amp; far plane</li>
+</ul>
+</li>
+<li>Image resolution<ul>
+<li>Number of pixels in each dimension</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Each point light source<ul>
+<li>Position</li>
+<li>Brightness and color ($\text{I}_{source}$)</li>
+<li>A global ambient ($\text{I}_{a}$)</li>
+<li>Spotlight is also possible</li>
+</ul>
+</li>
+<li>Each object surface material<ul>
+<li>$k$ (each is a RGB vector)</li>
+<li>$n$, $m$</li>
+<li>Refractive index $\mu$ if $k_{tg} \not= 0$ or $k_{t} \not= 0$</li>
+</ul>
+</li>
+<li>Objects<ul>
+<li>Implicit representations (e.g. plane, sphere, quadrics)</li>
+<li>Polygon</li>
+<li>Parametric (e.g. bicubic Bezier patches)</li>
+<li>Volumetric</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Q: When to stop recursion?</p>
+</blockquote>
+<ul>
+<li>When the surface is totally diffuse (and opaque)</li>
+<li>When reflected/refracted ray hits nothing</li>
+<li>When maximum recursion depth is reached</li>
+<li>When the contribution of the reflected/refracted ray to the color at the top level is too small<ul>
+<li>$(k_{rg1} | k_{tg1}) \times … \times (k_{rg(n−1)} | k_{tg(n−1)}) &lt; \text{threshold}$ </li>
+</ul>
+</li>
+</ul>
+<h1 id="Appendices-Reference"><a href="#Appendices-Reference" class="headerlink" title="Appendices (Reference)"></a>Appendices (Reference)</h1><p>If you want to search the reference pages of OpenGL Programming on <code>C++</code> , or use real-time 3D rendering in other field using OpenGL API, please refer to the <a target="_blank" rel="noopener" href="https://registry.khronos.org/OpenGL-Refpages/gl4/">OpenGL® 4.5 Reference Pages</a> .</p>
+<p>If you are just interesting in shader rendering (like only do fragment shaders), you can go to <a target="_blank" rel="noopener" href="https://www.shadertoy.com/">shadertoy</a> to take a look at others’ work or create your own.</p>
+<p>One of the contributor of “shadertoy”, Inigo Quilez, has published a tutorial of the skills of shadertoy, and you can learn it here → <a target="_blank" rel="noopener" href="https://iquilezles.org/articles/">https://iquilezles.org/articles/</a></p>
+
+    </div>
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #9d9d9d;font-size:18px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSE-Learning/" rel="tag"><i class="fa fa-tag"></i> CSE Learning</a>
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/25/Computer-Organization/" rel="prev" title="CS202 计算机组成原理">
+                  <i class="fa fa-angle-left"></i> CS202 计算机组成原理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/30/Summer-Workshop-Diary/" rel="next" title="NUS 夏令营日记">
+                  NUS 夏令营日记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

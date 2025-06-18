@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons8-fox-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons8-fox-16.png">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-atom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="大数据导论与实践（二）的续集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MA234 大数据导论与实践（三）">
+<meta property="og:url" content="http://hqj2221.github.io/2024/08/29/Big-Data-3/index.html">
+<meta property="og:site_name" content="Ho Kai Kwan&#39;s Personal Pages">
+<meta property="og:description" content="大数据导论与实践（二）的续集">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hqj2221.github.io/2024/08/29/Big-Data-3/bd36.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/08/29/Big-Data-3/bd37.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/08/29/Big-Data-3/bd38.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/08/29/Big-Data-3/bd39.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/08/29/Big-Data-3/bd40.png">
+<meta property="og:image" content="http://hqj2221.github.io/2024/08/29/Big-Data-3/bd41.png">
+<meta property="article:published_time" content="2024-08-29T08:50:10.000Z">
+<meta property="article:modified_time" content="2025-06-18T14:04:00.725Z">
+<meta property="article:author" content="Bionic l&#39;Hôpital">
+<meta property="article:tag" content="CSE Learning">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hqj2221.github.io/2024/08/29/Big-Data-3/bd36.png">
+
+
+<link rel="canonical" href="http://hqj2221.github.io/2024/08/29/Big-Data-3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2024/08/29/Big-Data-3/","path":"2024/08/29/Big-Data-3/","title":"MA234 大数据导论与实践（三）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MA234 大数据导论与实践（三） | Ho Kai Kwan's Personal Pages</title>
+  
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    'use strict';
+    
+      if (NexT.utils.hasMobileUA()) return;
+    
+    let time, hidden, visible, title = document.title;
+    let favicon = document.querySelector('link[rel="icon"]');
+    
+      hidden = 'ヽ（≧□≦）ノ,Waiting you back...';
+      visible = 'o(*￣▽￣*)ブ,Welcome back!';
+    
+    let random = t => t[Math.floor(Math.random() * t.length)];
+    const change = () => {
+      if (document.hidden) {
+        favicon.setAttribute('href', '/images/favicon-32x32-next.png');
+        
+          document.title = hidden;
+        
+        clearTimeout(time);
+      } else {
+        favicon.setAttribute('href', '/images/favicon-32x32-next.png');
+        
+          document.title = visible;
+        
+        time = setTimeout(() => {
+          document.title = title;
+        }, 200);
+      }
+    }
+    document.addEventListener('visibilitychange', change, false);
+  });
+</script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ho Kai Kwan's Personal Pages</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">A personal site by Ho Kai Kwan,</br>junior student from South University of Science and Technology.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fas fa-list fa-fw"></i>Categories<span class="badge">8</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data-III"><span class="nav-text">Big Data (III)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VI-Ensemble-Methods-%E9%9B%86%E6%88%90%E6%96%B9%E6%B3%95"><span class="nav-text">VI. Ensemble Methods (集成方法)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging"><span class="nav-text">Bagging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">Random Forest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">Model Evaluation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boosting-amp-AdaBoost"><span class="nav-text">Boosting &amp; AdaBoost</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">AdaBoost Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-text">Loss Functions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-Boosting-Decision-Tree-GBDT"><span class="nav-text">Gradient Boosting Decision Tree (GBDT)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">Boosting Tree</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">Boosting Tree as Forward Stagewise Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">Gradient Descent for General Loss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">GBDT Algorithm</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VII-Clustering"><span class="nav-text">VII. Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K-Mean-Clustering"><span class="nav-text">K-Mean Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hierarchical-Clustering"><span class="nav-text">Hierarchical Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-text">Agglomerate Clustering</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-text">Generalized Agglomerative Scheme</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBSCAN"><span class="nav-text">DBSCAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Assessment"><span class="nav-text">Model Assessment</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bionic l'Hôpital"
+      src="/images/me.png">
+  <p class="site-author-name" itemprop="name">Bionic l'Hôpital</p>
+  <div class="site-description" itemprop="description">Ho Kai Kwan's Personal Pages</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HQJ2221" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HQJ2221" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/about/" title="About-Me → &#x2F;about&#x2F;" rel="noopener me"><i class="fa fa-user-circle fa-fw"></i>About-Me</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2024/08/29/Big-Data-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.png">
+      <meta itemprop="name" content="Bionic l'Hôpital">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ho Kai Kwan's Personal Pages">
+      <meta itemprop="description" content="Ho Kai Kwan's Personal Pages">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MA234 大数据导论与实践（三） | Ho Kai Kwan's Personal Pages">
+      <meta itemprop="description" content="大数据导论与实践（二）的续集">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MA234 大数据导论与实践（三）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-08-29 16:50:10" itemprop="dateCreated datePublished" datetime="2024-08-29T16:50:10+08:00">2024-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-06-18 22:04:00" itemprop="dateModified" datetime="2025-06-18T22:04:00+08:00">2025-06-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2024-Spring/" itemprop="url" rel="index"><span itemprop="name">2024 Spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">大数据导论与实践（二）的续集</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Big-Data-III"><a href="#Big-Data-III" class="headerlink" title="Big Data (III)"></a>Big Data (III)</h1><h2 id="VI-Ensemble-Methods-集成方法"><a href="#VI-Ensemble-Methods-集成方法" class="headerlink" title="VI. Ensemble Methods (集成方法)"></a>VI. Ensemble Methods (集成方法)</h2><ul>
+<li>Two commonly used ensemble methods<ul>
+<li><strong>Bagging</strong><ul>
+<li>Random sampling : generating independent models, and averaging for regressions (making majority vote for classifications) [随机采样进行建模]</li>
+<li><font color="red">Reducing variances(方差)</font></li>
+<li>E.g. <em>Random Forest</em></li>
+</ul>
+</li>
+<li><strong>Boosting</strong><ul>
+<li>Sequential training : training the subsequent models based on the errors of previous models <font color="grey">[复盘“错误”]</font></li>
+<li><font color="red">Reducing bias(误差)</font></li>
+<li>E.g. AdaBoost and GBDT</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h3><p><strong>Algorithm</strong></p>
+<ul>
+<li>Input : training set $D = \{(x_1, y_1), …,(x_N, y_N)\}$</li>
+<li>Output : additive model $\hat{f}_\text{bag} (x)$</li>
+</ul>
+<ol>
+<li>For $m = 1$ to $M$ :<ol>
+<li>Sample from $D$ with replacement to obtain $D_m$</li>
+<li><font color="red">Train a model</font> $\hat f_m(x)$ from the dataset $D_m$ : for <font color="#4a4aff">classification</font>, $\hat f_m(x)$ returns a $K$-class 0-1 vector $e_k$ ; for <font color="#4a4aff">regression</font>, it is just a value</li>
+</ol>
+</li>
+<li>Compute <strong>bagging estimate</strong> $\hat{f}_\text{bag} (x)=\frac{1}{M} \sum_{m=1}^{M} \hat f_m(x) $<ol>
+<li>for <font color="#4a4aff">classification</font>, make majority vote $\hat{G}_\text{bag}(x)=\arg\max_k \hat f_k(x)$</li>
+<li>for <font color="#4a4aff">regression</font>,  just return <font color="red">the average value</font></li>
+</ol>
+</li>
+</ol>
+<p><strong>Variance Reduction</strong></p>
+<ul>
+<li>In bagging, we use the same model to train different sample set in each iteration ; assume the models $\{\hat f_m(x)\}_{m=1}^{M}$ have the <font color="red">same variance</font> $\sigma^2 (x)$, while the <font color="red">correlation</font> of each pair is $\rho(x)$ </li>
+<li>Then the variance of the final model is :</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+\text{Var}(\hat{f}_{bag}(x)) &= \frac{1}{M^2}\left(\sum_{m=1}^{M}\text{Var}(\hat{f}_m(x)) + \sum_{t\neq m}\text{Cov}(\hat{f}_t(x)\hat{f}_m(x))\right) \\ &= \rho(x)\sigma^2(x) + \frac{1-\rho(x)}{M}\sigma^2(x) 
+\end{array}</script><ul>
+<li>As $M\to\infty$ , $\text{Var}(\hat f_{bag}(x))\to \rho(x)\sigma^2(x)$ . This usually <font color="red">reduces the variance</font>.</li>
+<li>If $\rho(x)=0$ , the variance approach zero.</li>
+<li>The <font color="red">random sampling</font> in bagging is to reduce the correlation $ρ(x)$, i.e., make the sub-predictors as independent as possible</li>
+</ul>
+<h4>Random Forest</h4>
+
+<ul>
+<li>More randomness on <strong>Decision Tree</strong> : avoid local optimal<ul>
+<li>Sampling on the <font color="blue">training data</font> with replacement</li>
+<li>Select <font color="blue">features</font> at random</li>
+</ul>
+</li>
+<li>Example : RF consisting of $3$ independent trees, each with an error rate of $40\%$. Then the probability that more than one tree misclassify the samples is $0.4^3 + 3 <em> 0.4^2 </em> (1 − 0.4) = 0.352$</li>
+<li><strong>Algorithm</strong><ul>
+<li>Input : training set $D =\{(x_1,y_1),(x_2,y_2),…,(x_N,y_N)\}$</li>
+<li>Output : additive model $\hat{f}_{\text{rf}}(x)$</li>
+</ul>
+<ol>
+<li>For $m = 1$ to $M$ :<ol>
+<li>Sample from $D$ with replacement to obtain $D_m$</li>
+<li>Grow a random-forest tree $T_m$ to the dataset $D_m$ : by recursively repeating the following steps for each terminal node of the tree, until the minimum node size $n_{min}$ is reached<ul>
+<li>Select $q$ features at <font color="red">random</font> from the $p$ features</li>
+<li>Pick the best feature/split-point among the $q$</li>
+<li>Split the node into two daughter nodes</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Output the ensemble of trees $\{T_m\}_{m=1}^M$ : for <font color="blue">regression</font>, $\hat{f}_rf(x) = \frac{1}{M} \sum_{m=1}^M T_m(x)$; for <font color="blue">classification</font>, make majority vote</li>
+</ol>
+</li>
+<li><font color="red">Small value</font> of $q$ increases the <font color="red">independency</font> of trees;  empirically, $q = \log_2 p + 1$</li>
+</ul>
+<h4>Model Evaluation</h4>
+
+<ul>
+<li><strong>Out-of-bag (OOB)</strong> errors : The observation is called out-of-bag sample to some trees if it is <font color="red">not sampled</font> for those trees. Denote the training set in the m-th sampling by $D_m$. <em>OOB error</em> is computed as :<ol>
+<li>For each observation $(x_i, y_i)$, find the trees which treat it as OOB sample : <br>$\{\hat T_m(\textbf{x}) : (\textbf{x}_i, y_i) \notin D_m \}$</li>
+<li>Use those trees to classify this observation and make majority vote as the label of this observation :<br>$\hat{f}_\text{oob}(\textbf{x}_i)=\arg\underset{y\in\mathcal Y}\max \sum_{m=1}^{M} I(\hat{f}_{m}(\textbf{x}_{i})=y)I(\textbf{x}_{i} \notin D_{m})$</li>
+<li>Compute the number of misclassified samples, and take the ratio of this number to the total number of samples as OOB error : <br>$Err_{oob}=\frac{1}{N} \sum_{m=1}^{M} I(\hat{f}_{oob}(\textbf{x}_i) \not = y_i)$</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>Q: OOB 数据是否指所有生成的树都没有选择到的数据？</p>
+<p>Q: 第二步为什么不是 $I(\hat f_m(\textbf{x}_i)=y \wedge \textbf{x}_i\notin D_m)$ ?</p>
+</blockquote>
+<ul>
+<li><strong>Pros</strong><ul>
+<li>Bagging or random forest (RF) work for models with high variance but low bias (<font color="red">deal with overfitting</font>)</li>
+<li>Better for <font color="red">nonlinear</font> estimators</li>
+<li>RF works for very <font color="red">high-dimensional data</font>, and no need to do feature selection as RF gives the feature importance</li>
+<li>Easy to do <font color="red">parallel computing</font></li>
+</ul>
+</li>
+<li><strong>Cons</strong><ul>
+<li>Overfitting when the samples are large-sized with <font color="blue">great noise</font>, or when the dimension of data is low</li>
+<li>Slow computing performance comparing to single tree</li>
+<li><font color="red">Hard to interpret</font>
+
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Boosting-amp-AdaBoost"><a href="#Boosting-amp-AdaBoost" class="headerlink" title="Boosting &amp; AdaBoost"></a>Boosting &amp; AdaBoost</h3><blockquote>
+<p>Principle : Combines the outputs of many <font color="blue">“weak” classifiers</font> to produce a powerful “committee”</p>
+<p><font color="blue">Weak classifiers</font> : error rate $&lt; 0.5$ (random guessing)</p>
+</blockquote>
+<table>
+    <tr><td><img align="left" src="/2024/08/29/Big-Data-3/bd36.png" style="zoom:100%"></td>
+        <td><font color="red">Sequentially</font> apply the weak classifiers to the repeatedly modified data, emphasizing the misclassified samples<br><br>
+        Combine weak classifiers through a weighted majority vote or averaging to produce the final prediction</td></tr>
+</table>
+
+
+
+<font size="4">Boosting fits an additive model</font>
+
+<ul>
+<li>Additive Model : $f(x)=\sum_{m=1}^{M}\beta_m b(x;\gamma_m)$  where $\gamma$ is the parameter of basic function, $\beta$ is the coefficient.</li>
+<li>Possible choices for <font color="blue">basis function</font> $b(x;\gamma_m)$<ul>
+<li>Neural Network : $\sigma(\gamma_0+\gamma_1^T x)$ , where $\sigma(t)=1/(1+e^{-t})$</li>
+<li>Wavelets</li>
+<li>Cubic Spline Basis</li>
+<li>Trees</li>
+<li>Eigenfunctions in reproducing kernel Hilbert space (RKHS)</li>
+</ul>
+</li>
+<li><strong>Parameter fitting</strong> : $\underset{ \{ \beta_{m},\gamma_{m}\} } \min \sum_{i=1}^{N} L(y_i,\sum_{m=1}^{M}\beta_{m} b(x_i;\gamma_{m}))$</li>
+<li>Loss function : <font color="red">squared error</font> $\color{red}L(y, f (x)) = (y − f (x))^2$ or likelihood-based loss</li>
+</ul>
+<p><b><font size="4">Forward <font color="red">Stagewise</font> Additive Model&lt;/font&gt;</font></b></p>
+<blockquote>
+<p>Difference between “Forward Stepwise” and “Forward Stagewise”</p>
+<ul>
+<li>Stepwise regression initialize model with all predictors(forward) or no predictors(backward), and then iteratively <font color="red">adds or removes</font> variables based on a defined criterion(e.g. AIC and BIC)</li>
+<li><strong>Stagewise</strong> regression initialize model with all predictors, and then in each iteration, it <font color="red">adjusts the coefficients</font> of the predictors by a small amount in the direction that improves the model’s performance.</li>
+</ul>
+<p><strong>Stagewise</strong> regression is designed to be more robust to multicollinearity and can produce more stable and interpretable models compared to stepwise regression.<br>Useful when there are many potential predictors, and the goal is to identify the most important ones while maintaining model stability.</p>
+</blockquote>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>Input : training set $D =\{(x_1,y_1),(x_2,y_2),…,(x_N,y_N)\}$</li>
+<li>Output : additive model $f_M(x)$</li>
+</ul>
+<ol>
+<li>Initialize $f_0(x)=0$</li>
+<li>For $m=1$ to $M$ :<br> 2.1. Compute $(\beta_m,\gamma_m)=\underset{\beta ,\gamma}{\arg\min} \sum_{i=1}^{N} L(y_i,f_{m-1}(x_i)+\beta b(x_i;\gamma))$<br> 2.2. Update $f_m(x)=f_{m-1}(x)+\beta_m b(x_i;\gamma_m)$</li>
+</ol>
+<p>Squared error loss in step 2.1:</p>
+<script type="math/tex; mode=display">
+L(y_i,f_{m-1}(x_i)+\beta b(x_i;\gamma))=\underbrace{(y_i-f_{m-1}(x_i))}_{\text{residual}}-\beta b(x_i;\gamma)^2</script><blockquote>
+<p>What if we use Exponential loss in step 2.1 ?</p>
+</blockquote>
+<ul>
+<li>Exponential loss : $L(y,f(x))=\exp(-yf(x))$</li>
+<li><font color="blue">Classifier</font> as basis function : $b(x; \gamma) = G(x) \in \{−1, 1\}$</li>
+<li>Let $w_i^{(m)}=\exp(-y_i f_{m-1}(x_i))$ , then step 2.1 turn to be :</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}{l}
+(\beta_m, G_m) &= \arg \min_{\beta, G} \sum_{i=1}^{n} w_i^{(m)} \exp(-\beta y_i G(x_i))\\
+&=\arg \min_{\beta, G} \left[ \sum_{y_i \neq G(x_i)} w_i^{(m)} (e^{\beta} - e^{-\beta}) + e^{-\beta} \sum_{i=1}^{n} w_i^{(m)} \right]
+\end {align}</script><ul>
+<li>We get $\beta_m$ and $G_m$ separately :</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}{l}
+G_m &= \arg \min_G \sum_{i=1}^{n} w_i^{(m)} I(y_i \neq G(x_i)) \\
+\beta_m &= \arg \min_{\beta} \left[ \epsilon_m (e^{\beta} - e^{-\beta}) + e^{-\beta} \right] = \frac{1}{2} \log \frac{1-\epsilon_m}{\epsilon_m} \\
+\epsilon_m &= \left(\left(\sum_{i=1}^{n} w_i^{(m)} I(y_i \neq G(x_i))\right) \left/\right. \sum_{i=1}^{n} w_i^{(m)}\right)
+\end{align}</script><p>where $\epsilon_m$ is weighted error rate.</p>
+<h4>AdaBoost Algorithm</h4>
+
+<table><tr>
+<td><img align="center" src="/2024/08/29/Big-Data-3/bd37.png" style="zoom:50%"></td>
+<td><img align="center" src="/2024/08/29/Big-Data-3/bd38.png" style="zoom:90%"></td>
+</tr></table>
+
+<h5>Loss Functions</h5>
+
+<ul>
+<li>For classification, exponential loss and binomial negative log-likelihood (deviance) loss $\log(1 + \exp(−2yf))$ share the same population minimizer ; thus it is equivalent to MLE rule</li>
+<li>For classification, squared error loss is not good (not monotonically decreasing) ; the exponential loss is good and binomial deviance is better (less penalty for large $−yf$)</li>
+</ul>
+<hr>
+<h3 id="Gradient-Boosting-Decision-Tree-GBDT"><a href="#Gradient-Boosting-Decision-Tree-GBDT" class="headerlink" title="Gradient Boosting Decision Tree (GBDT)"></a>Gradient Boosting Decision Tree (GBDT)</h3><center><h4>Boosting Tree</h4></center>
+
+<ul>
+<li>Using classification trees or regression trees as <font color="blue">base learners</font></li>
+<li>$f_M(x) = \sum_{m=1}^{M} T(x; \Theta_m)$ where $T(x; \Theta) = \sum_{j=1}^{J} \gamma_j I(x \in R_j)$ <font color="grey">[树的表示方法：代表将输入空间划分为$J$个互不相交的区域$R_1,\cdots,R_J$，并在每个区域上确定输出的常量$\gamma_j$。所以$J$代表树的复杂度即叶节点个数 ]</font></li>
+<li>Parameter set $\Theta = \{R_j, \gamma_j\}_{j=1}^{J}$ </li>
+<li>Parameter finding : minimizing the empirical risk </li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{rl}
+&\hat{\Theta} = \arg \min_{\Theta} \sum_{j=1}^{J} \sum_{x_i \in R_j} L(y_i, \gamma_j) \qquad &\text{Combinatorial optimization}
+\end{array}</script><ul>
+<li>Approximate suboptimal solutions : <ol>
+<li>Finding $\gamma_j$ given $R_j$ : $\gamma_j = \bar{y}_j = \frac{1}{|R_j|} \sum_{y_i \in R_j} y_i$   for $L^2$ loss ; and  $\gamma_j =$ modal class in $R_j$   for misclassification loss </li>
+<li>Finding $R_j$ given $\gamma_j$ : Difficult, need to estimate $\gamma_j$ as well ;<br>greedy, top-down recursive partitioning algorithm</li>
+</ol>
+</li>
+</ul>
+<center><h4>Boosting Tree as Forward Stagewise Algorithm</h4></center>
+
+<ul>
+<li>$\hat{\Theta}_m = \arg \min_{\Theta_m} \sum_{i=1}^{N} L(y_i, f_{m-1}(x_i) + T(x_i; \Theta_m))$<ol>
+<li>$\hat{\gamma}_{jm} = \arg \min_{\gamma_{jm}} \sum_{x_i \in R_{jm}} L(y_i, f_{m-1}(x_i) + \gamma_{jm})$</li>
+<li>Finding $R_{jm}$ is more difficult than for a single tree in general.</li>
+</ol>
+</li>
+<li>Squared-error loss : fit a tree to the residual<br> $L(y_i, f_{m-1}(x_i) + T(x_i; \Theta_m)) = (y_i - f_{m-1}(x_i) - T(x_i; \Theta_m))^2$</li>
+<li>Two-class classification and exponential loss : AdaBoost for trees, <ul>
+<li>$\hat{\Theta}_m = \arg \min_{\Theta_m} \sum_{i=1}^{N} w_i^{(m)} \exp[-y_i T(x_i; \Theta_m)]$</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\hat{\gamma}_{jm} = \log \Large\frac{\sum_{x_i \in R_{jm}} w_i^{(m)} l(y_i = 1)}{\sum_{x_i \in R_{jm}} w_i^{(m)} l(y_i = -1)}</script><ul>
+<li>Absolute error or the Huber loss : robust but slow</li>
+</ul>
+<center><h4>Gradient Descent for General Loss</h4></center>
+
+<ul>
+<li>Supervised learning is equivalent to the optimization problem</li>
+</ul>
+<script type="math/tex; mode=display">
+\min_{f}L(f)=\min_{f}\sum_{i=1}^{N}L(y_i,f(x_i))</script><ul>
+<li>Numberical optimization : $\hat{\textbf{f}}=\arg\min_{\textbf{f}}L(\textbf{f})$  where  $\textbf{f}=\{f(x_1),f(x_2),\cdots,f(x_N)\}$ </li>
+<li>Appriximate $\hat{\textbf{f}}$ by $\textbf{f}_M=\sum_{m=0}^{M} \textbf{h}_m$ , where $\textbf{f}_0=\textbf{h}_0$ is <font color="red">the initial guess</font>.</li>
+<li>Gradient Descent method : $\textbf{f}_m=\textbf{f}_{m-1}-\rho_m \textbf{g}_m$  , where $g_{im}=\left[\frac{\partial L(y_i,f(x_i))}{\partial f(x_i)} \right]_{f(x_i)=f_{m-1}(x_i)}$  , and $\textbf{h}_m=-\rho_m\textbf{g}_m$ .</li>
+<li>Here $\color{red}\rho_m$ is the learning rate, and $\color{red}\textbf{g}_m$ is the <font color="red">gradient of the target function</font> $\color{red}L(f)$ at the point $f(x_i)$ . So $\rho_m$ decides the <font color="blue">step length</font> of the gradient.</li>
+</ul>
+<blockquote>
+<p>Usage of Gradient Descent on <strong>Decision Tree</strong></p>
+<ul>
+<li>Find a Tree $T(x;\Theta_m)$ by minimization problem :</li>
+</ul>
+</blockquote>
+<script type="math/tex; mode=display">
+\tilde{\Theta}_m=\arg\min_{\Theta_m}\sum_{i=1}^{N}(-g_{im}-T(x_i;\Theta_m))^2</script><blockquote>
+<p>In general, $\tilde{R}_{jm}\not=R_{jm}$ </p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Setting</th>
+<th style="text-align:center">Loss Function</th>
+<th style="text-align:center">$-\partial L(y_i,f(x_i))/\partial f(x_i)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Regression</td>
+<td style="text-align:center">$\frac{1}{2}\left[y_i-f(x_i) \right]^2$</td>
+<td style="text-align:center">$y_i-f(x_i)$</td>
+</tr>
+<tr>
+<td style="text-align:center">Regression</td>
+<td style="text-align:center">$\lvert y_i-f(x_i)\rvert$</td>
+<td style="text-align:center">$\text{sign}\left[y_i-f(x_i) \right]$</td>
+</tr>
+<tr>
+<td style="text-align:center">Regression</td>
+<td style="text-align:center">Huber</td>
+<td style="text-align:center">$y_i-f(x_i)$  for $\lvert y_i-f(x_i)\rvert \le \delta_m$<br>$\delta_m\text{sign}\left[y_i-f(x_i) \right]$  for $\lvert y_i-f(x_i)\rvert \gt \delta_m$ <br>where $\delta_m=\alpha^{\text{th}}$-quantile $\{\lvert y_i-f(x_i)\rvert \}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Classification</td>
+<td style="text-align:center">Deviance</td>
+<td style="text-align:center">$k^{th}$ component: $I(y_i=\mathcal G_k)-p_k(x_i)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<center><h4>GBDT Algorithm</h4></center>
+
+<ul>
+<li>Input : training set $D = \{(x_1, y_1), \ldots, (x_N, y_N)\}$, loss function $L(y, f(x))$</li>
+<li>Output : boosting tree $\hat{f}(x)$</li>
+</ul>
+<ol>
+<li>Initialize $f_0(x) = \arg\min_\gamma \sum_{i=1}^{N} L(y_i, \gamma)$</li>
+<li>For $m = 1$ to $M$ : <ol>
+<li>For $i = 1, 2, \ldots, N$ compute $r_{im} = \bigg[\frac{\partial L(y_i,f(x_i))}{\partial f(x_i)}\bigg]_{f=f_{m-1}}$</li>
+<li>Fit a regression tree to the target residual $r_{im}$, giving terminal regions $R_{jm}$ (表示第 j 个样本在第 m 个基模型上的残差) , $j = 1, \ldots, J_m$ </li>
+<li>For $j = 1, \ldots, J_m$, compute $\gamma_{jm} = \arg\min_\gamma \sum_{x_i \in R_{jm}} L(y_i, f_{m-1}(x_i) + \gamma)$</li>
+<li>Update $f_m(x) = f_{m-1}(x) + \sum_{j=1}^{J_m} \gamma_{jm}I(x_i \in R_{jm})$</li>
+</ol>
+</li>
+<li>$\hat{f}(x) = f_M(x)$</li>
+</ol>
+<p><strong>Regularization</strong></p>
+<ul>
+<li><p><font color="red">Shrinkage</font> : the step 2.4 is modified as $f_m(x) = f_{m-1}(x) + \nu \sum_{j=1}^{J_m} \gamma_{jm}I(x_i \in R_{jm})$</p>
+</li>
+<li><p><font color="red">Subsampling</font> : at each iteration, sample a fraction $\eta$ of the training set and grow the next tree using the subsample</p>
+</li>
+<li><p>Shrinkage + subsampling : best performance</p>
+</li>
+</ul>
+<p><strong>Feature importance and Partial Dependence Plots</strong></p>
+<ul>
+<li>Feature importance<ul>
+<li>When fitting a single tree $T$, at each node $t$, one feature $X_{v(t)}$ and one separate value $X_{v(t)} = c_{v(t)}$ are chosen to improve a certain quantity of criterion (e.g. GINI, entropy, squared error, etc.)</li>
+<li>Sum all these improvements $i_t$ brought by each feature $X_k$ over all internal nodes: $I_k(T) = \sum_{t=1}^{J-1} i_t I(v(t) = k)$</li>
+<li>Average the improvements of all trees $\Rightarrow$ importance of that feature: $I_k=\frac{1}{M} \sum_{m=1}^{M} I_k(T_m)$</li>
+</ul>
+</li>
+<li>Partial Dependence Plots<ul>
+<li>Partial dependence of $f(X)$ on $X_S$ : $f_S(X_S) = E_{X_C}f(X_S, X_C)$</li>
+<li>Estimate by empirical mean : $\hat{f}_S(X_S) = \frac{1}{N} \sum_{i=1}^{N} f(X_S, X_{iC})$</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="VII-Clustering"><a href="#VII-Clustering" class="headerlink" title="VII. Clustering"></a>VII. Clustering</h2><ul>
+<li>Different from classification : it is <font color="red">unsupervised learning</font> ; no outputs or labels</li>
+<li>Central goal : Optimize the similarity (or dissimilarity) between the individual objects being clustered :<ul>
+<li>Obtain <font color="blue">great similarity</font> of samples <font color="blue">within</font> cluster</li>
+<li>Obtain <font color="#c4c400">small similarity</font> of samples <font color="#c4c400">between</font> clusters</li>
+</ul>
+</li>
+<li>Cost functions : not related to the outputs, but related to the similarity</li>
+<li>Two kinds of input data :<ul>
+<li>$n × n$ similarity (dissimilarity) matrix $D$ : only depends on the distances between pairs of samples ; may lose some information on data</li>
+<li>Original data with features $X \in R^{n×d}$</li>
+</ul>
+</li>
+</ul>
+<h3 id="K-Mean-Clustering"><a href="#K-Mean-Clustering" class="headerlink" title="K-Mean Clustering"></a>K-Mean Clustering</h3><center><font size="5">Idea</font></center>
+
+<ul>
+<li>Data set $\{x_i\}_{i=1}^n$, $x_i \in \mathbb{R}^d$</li>
+<li>Representatives : Mass center of $k$th-cluster $C_k$ is $c_k$, $k = 1, \ldots, K$</li>
+<li>Sample $x_i$ belongs to cluster $k$ if $d(x_i, c_k) &lt; d(x_i, c_m)$ for $m \neq k$, where $d(x_i, x_j)$ is dissimilarity function</li>
+<li>Make the mass centers well-located so that the average distance between each sample to its cluster center is as small as possible</li>
+</ul>
+<center><img src="/2024/08/29/Big-Data-3/bd39.png" style="zoom:90%"></center>
+
+
+
+<center><font size="5">Optimization Problem</font></center>
+
+<ul>
+<li>Let $C : \{1, \ldots, n\} \rightarrow \{1, \ldots, k\}$ be the assignment from the data indices to the cluster indices. $C(i) = k$ means $x_i \in C_k$</li>
+<li>Total point scatter : <ul>
+<li>$T = \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} d(x_i, x_j) =\frac{1}{2} \sum_{k=1}^{K} \sum_{C(i)=k}\left( \sum_{C(j)=k} d_{ij} + \sum_{C(j)\neq k} d_{ij}\right) = W(C) + B(C)$</li>
+</ul>
+</li>
+<li>Loss function ($d$ is the distance) :<ul>
+<li>within-cluster point scatter $W(C) = \frac{1}{2} \sum_{k=1}^{K} \sum_{C(i)=k} \sum_{C(j)=k} d_{ij}$ ; </li>
+<li>between-cluster point scatter $B(C) = \frac{1}{2} \sum_{k=1}^{K} \sum_{C(i)=k} \sum_{C(j)\neq k} d_{ij}$</li>
+</ul>
+</li>
+<li>Minimize $W(C)$ is equivalent to maximize $B(C)$</li>
+</ul>
+<h4 id="Hierarchical-Clustering"><a href="#Hierarchical-Clustering" class="headerlink" title="Hierarchical Clustering"></a>Hierarchical Clustering</h4><ul>
+<li>Clustering in different hierarchies, generating tree structure </li>
+<li>Two approaches : <ul>
+<li><font color="blue">Agglomerate clustering : bottom-up</font></li>
+<li><font color="blue">Divisive clustering : top-down</font> </li>
+</ul>
+</li>
+<li>Limitation : once merged or divided, the operation cannot be modified</li>
+</ul>
+<h5>Agglomerate Clustering</h5>
+
+<ul>
+<li><p>Given n samples and proximity matrix, do the following steps : </p>
+<ol>
+<li>Let every observation represent a singleton cluster </li>
+<li>Merge the two closest clusters into one single cluster </li>
+<li>Calculate the new proximity matrix (dissimilarity between two clusters) </li>
+<li>Repeat step 2 and 3, until all samples are merged into one cluster </li>
+</ol>
+</li>
+<li><p>Three methods for computing intergroup dissimilarity : </p>
+<ul>
+<li>Single linkage (SL) </li>
+<li>Complete linkage (CL) </li>
+<li>Average linkage (AL)</li>
+</ul>
+</li>
+</ul>
+<h5>Generalized Agglomerative Scheme</h5>
+
+<p>()</p>
+<h3 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h3><center><font size="5">Concept</font></center>
+
+<ul>
+<li>Three type of points :<ul>
+<li><strong>Core point</strong> : # of samples in its $\epsilon$-neighborhood $&gt; \text{MinPts}$</li>
+<li><strong>Boundary point</strong> : it lies in the $\epsilon$-neighborhood of some core point, # of samples in its $\epsilon$-neighborhood $&lt; \text{MinPts}$ </li>
+<li><strong>Noise point</strong> : neither core point nor boundary point, it lies in the sparse region</li>
+</ul>
+</li>
+</ul>
+<center><img src="/2024/08/29/Big-Data-3/bd40.png" style="zoom:70%"></center>
+
+
+
+
+
+<h3 id="Model-Assessment"><a href="#Model-Assessment" class="headerlink" title="Model Assessment"></a>Model Assessment</h3><center><font size="5">Purity</font></center>
+
+<p><strong>Def.</strong> Total purity defined as </p>
+<script type="math/tex; mode=display">
+\text{Purity}\triangleq \sum_i \frac{n_i}{n}p_i=\sum_i\frac{n_i}{n}(\max_j p_{ij})</script><p>E.g. $\text{purity}=\frac{6}{17}\cdot \frac{4}{6}+\frac{6}{17}\cdot\frac{5}{6}+\frac{5}{17}\cdot\frac{3}{5}=0.71$ </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|-------|-------|--------|</span><br><span class="line">| A B B | A A A |  A  A  |</span><br><span class="line">|       |       |        |</span><br><span class="line">| B B C | A A B | C C C  |</span><br><span class="line">|-------|-------|--------|</span><br></pre></td></tr></table></figure>
+<center><font size="5">Confusion Matrix</font></center>
+
+<div>
+<img src="/2024/08/29/Big-Data-3/bd41.png" style="zoom:70%">
+</div>
+
+    </div>
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #9d9d9d;font-size:18px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSE-Learning/" rel="tag"><i class="fa fa-tag"></i> CSE Learning</a>
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/08/25/Linear-Algebra/" rel="prev" title="MA113 线性代数">
+                  <i class="fa fa-angle-left"></i> MA113 线性代数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/09/09/Computer-Networks/" rel="next" title="CS305 计算机网络">
+                  CS305 计算机网络 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
