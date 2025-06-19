@@ -12,14 +12,14 @@
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetbrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-atom.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="仅作为其他课程复习用，不记录全部知识点。">
 <meta property="og:type" content="article">
@@ -272,19 +272,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="About"><a class="header-anchor" href="#About">¶</a>About</h1>
+    <div class="post-body" itemprop="articleBody"><h1 id="About">About</h1>
 <p>由于篇仅用于某些计算机相关课程的复习，所以某些“不太重要”的知识点要么默认已知，要么不会提及（如转置的概念和二级结论，行列式的概念等）。</p>
 <p>由于教材不同或版本原因，对于一些符号可能有差异（如表示单位方阵有 $I/E$，以下统一使用本人学习的教材所用符号）</p>
-<h1 id="第一章-矩阵（入门）"><a class="header-anchor" href="#第一章-矩阵（入门）">¶</a>第一章 矩阵（入门）</h1>
-<h2 id="矩阵的逆"><a class="header-anchor" href="#矩阵的逆">¶</a>矩阵的逆</h2>
+<h1 id="第一章-矩阵（入门）">第一章 矩阵（入门）</h1>
+<h2 id="矩阵的逆">矩阵的逆</h2>
 <p>定义：$AC=CA=I\Longleftrightarrow$ $C$ 是 $A$ 的逆，记作 $A^{-1}$。</p>
 <blockquote>
 <p>不是所有方阵都有逆，不可逆<font color="red">方阵</font>称为<font color="red">奇异矩阵</font>。</p>
 </blockquote>
-<h2 id="矩阵的-LDU-分解"><a class="header-anchor" href="#矩阵的-LDU-分解">¶</a>矩阵的 LDU 分解</h2>
+<h2 id="矩阵的-LDU-分解">矩阵的 LDU 分解</h2>
 <p>定义：$\color{red}PA=LDU$，其中 $L$ 是下三角矩阵，$D$ 是对角矩阵，$U$ 是主对角元为 1 的上三角矩阵。($P$ 仅用作行交换)</p>
-<h1 id="第二章-向量空间"><a class="header-anchor" href="#第二章-向量空间">¶</a>第二章 向量空间</h1>
-<h2 id="基的相关定理"><a class="header-anchor" href="#基的相关定理">¶</a>基的相关定理</h2>
+<h1 id="第二章-向量空间">第二章 向量空间</h1>
+<h2 id="基的相关定理">基的相关定理</h2>
 <p><strong>一、坐标：</strong> 令 $A={v_1,v_2,\cdots,v_n}$ 是 $\mathbb{V}^n$ 的一组基，$\forall w\in\mathbb{V}^n$ ，有唯一数组 ${a_1,a_2,\cdots,a_n}$ 使 $w=a_1v_1+a_2v_2+\cdots +a_nv_n$ ，则该数组是 $\mathbb{A}$（向量空间的一组基）中 $w$ 的坐标，记为 $[w]_A$ 。</p>
 <p><strong>二、满秩：</strong> 对于一个 $m*n$ 矩阵 $A$，若 $rank(A)=m$，则称 $A$ 行满秩，若 $rank(A)=n$，则称 $A$ 列满秩。</p>
 <ul>
@@ -300,7 +300,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="第三章-正交性"><a class="header-anchor" href="#第三章-正交性">¶</a>第三章 正交性</h1>
+<h1 id="第三章-正交性">第三章 正交性</h1>
 <p><strong>正交补</strong></p>
 <p>对于子空间 $V \subseteq \mathbb{R}^n$，所有与 $V$ 正交的向量集合组成的空间称为正交补，写作 $W=V^{\bot}$。</p>
 <p><strong>投影</strong></p>
@@ -312,11 +312,11 @@
 \end{array}<br>
 $$</p>
 <p>所以，投影矩阵为 $P=\frac{aa^T}{|a|^2}$</p>
-<h2 id="最小二乘"><a class="header-anchor" href="#最小二乘">¶</a>最小二乘</h2>
+<h2 id="最小二乘">最小二乘</h2>
 <p>若系统 $Ax=b$ 无解，则其最小二乘解（残差最小）为 $\hat{x}=(A^TA)^{-1}A^T b$，其投影 $p=A\hat{x}=A(A^TA)^{-1}A^T b$。</p>
-<h2 id="正交基（重点）"><a class="header-anchor" href="#正交基（重点）">¶</a>正交基（重点）</h2>
+<h2 id="正交基（重点）">正交基（重点）</h2>
 <p>正交矩阵 $Q$ 满足 $Q^TQ=I$，即 $Q$ 的每一列（向量）组成了 $\mathbb{R}^n$ 的标准正交基。</p>
-<h2 id="Gram-Schmidt-正交化"><a class="header-anchor" href="#Gram-Schmidt-正交化">¶</a>Gram-Schmidt 正交化</h2>
+<h2 id="Gram-Schmidt-正交化">Gram-Schmidt 正交化</h2>
 <ul>
 <li>基本思想：从每一个新向量中扣除其在已知方向上的投影分量</li>
 <li>步骤：
@@ -332,7 +332,7 @@ $$</p>
 &amp;q_j=\frac{A_j}{|A_j|}<br>
 \end{array}<br>
 $$</p>
-<h2 id="QR-分解（重点）"><a class="header-anchor" href="#QR-分解（重点）">¶</a>QR 分解（重点）</h2>
+<h2 id="QR-分解（重点）">QR 分解（重点）</h2>
 <p>$A=QR$</p>
 <p>$$<br>
 \begin{array}{l}<br>
@@ -342,10 +342,10 @@ $$</p>
 <blockquote>
 <p>$Q$ 可通过 Gram-Schmidt 过程求得，$R$ 通过 $R=Q^TA$ 求得。</p>
 </blockquote>
-<h1 id="第四章-行列式"><a class="header-anchor" href="#第四章-行列式">¶</a>第四章 行列式</h1>
+<h1 id="第四章-行列式">第四章 行列式</h1>
 <p>略。</p>
-<h1 id="第五章-特征值与特征向量"><a class="header-anchor" href="#第五章-特征值与特征向量">¶</a>第五章 特征值与特征向量</h1>
-<h2 id="介绍"><a class="header-anchor" href="#介绍">¶</a>介绍</h2>
+<h1 id="第五章-特征值与特征向量">第五章 特征值与特征向量</h1>
+<h2 id="介绍">介绍</h2>
 <p>定义：设 $A$ 为 $n$ 阶矩阵。若存在一个非零向量 $x$ 和标量 $\lambda$ 满足 $Ax=\lambda x$ ，则称 $\lambda$ 为 $A$ 的一个特征值，$x$ 为 $\lambda$ 对应的特征向量。</p>
 <p>定义：设 $A=[a_{ij}]_{n\times n}$ 为 $n$ 阶方阵：</p>
 <p>$$<br>
@@ -369,7 +369,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="矩阵对角化"><a class="header-anchor" href="#矩阵对角化">¶</a>矩阵对角化</h2>
+<h2 id="矩阵对角化">矩阵对角化</h2>
 <p>定义：$\exists S,\ S^{-1}AS=\Lambda\Rightarrow$ 矩阵 $A$ 可对角化（$\Lambda$ 是对角矩阵，对角元为 $A$ 的特征值）</p>
 <p>概念：</p>
 <ul>
@@ -382,7 +382,7 @@ $$</p>
 <li>定义中 $S$ 的第 $j$ 列是 $A$ 的第 $j$ 个特征值所对应的特征向量</li>
 <li>设 $A$，$B$ 为同阶可对角化矩阵，当且仅当 $AB=BA$ 时，它们有相同的特征向量。</li>
 </ul>
-<h2 id="复矩阵"><a class="header-anchor" href="#复矩阵">¶</a>复矩阵</h2>
+<h2 id="复矩阵">复矩阵</h2>
 <p>概念：</p>
 <ul>
 <li>共轭：$z=a+ib \to \bar{z}=a-ib$</li>
@@ -392,7 +392,7 @@ $$</p>
 <p><strong>厄米特矩阵 (Hermitian Matrix)</strong></p>
 <p>定义1：对于一复数矩阵 $A$，其转置为 $\bar{A}^T$，称为 $A$ 的厄米特矩阵，记为 $A^H$ 。</p>
 <p>定义2：若矩阵 $A$ 满足 $A^H=A$，则称 $A$ 是厄米特矩阵。</p>
-<h2 id="三种对角化分解"><a class="header-anchor" href="#三种对角化分解">¶</a>三种对角化分解</h2>
+<h2 id="三种对角化分解">三种对角化分解</h2>
 <ul>
 <li><font color="red">可对角化矩阵</font>可以用<font color="blue">可逆矩阵</font>进行对角化：$A=S\Lambda S^{-1}$</li>
 <li><font color="red">实对称矩阵</font>可以用<font color="blue">正交矩阵</font>进行对角化：$A=Q\Lambda Q^T$</li>
@@ -402,7 +402,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="相似矩阵"><a class="header-anchor" href="#相似矩阵">¶</a>相似矩阵</h2>
+<h2 id="相似矩阵">相似矩阵</h2>
 <p>定义：若矩阵 $A$，$B$ 满足 $B=MAM^{-1}$（其中，$M$ 是可逆矩阵），则称 $A$ 与 $B$ 相似，记为 $A\sim B$。</p>
 <p>定理：</p>
 <ol>
@@ -424,11 +424,11 @@ $$</p>
 \therefore &amp;MB=AM \Rightarrow B=M^{-1}AM\text{(相似)}<br>
 \end{array}<br>
 $$</p>
-<h2 id="舒尔定理"><a class="header-anchor" href="#舒尔定理">¶</a>舒尔定理</h2>
+<h2 id="舒尔定理">舒尔定理</h2>
 <p>对一个 $n$ 阶方阵 $A$，总有一个酉矩阵 $U$，令 $U^{-1}AU=T$，$T$ 为与 $A$ 相似的三角矩阵，且对角线上的值是 $A$ 的特征值</p>
 <p>推论：当 $A$ 为厄米特矩阵时，$T^H=(U^{-1}AU)^H=U^{-1}A^H U=T$。$T$ 是对角矩阵（证明了谱定律：$A=A^H \Rightarrow A$ 是可对角化的）</p>
-<h1 id="第六章-正定矩阵"><a class="header-anchor" href="#第六章-正定矩阵">¶</a>第六章 正定矩阵</h1>
-<h2 id="二次型"><a class="header-anchor" href="#二次型">¶</a>二次型</h2>
+<h1 id="第六章-正定矩阵">第六章 正定矩阵</h1>
+<h2 id="二次型">二次型</h2>
 <p>$$<br>
 f(x,y)=ax^2+2bxy+cy^2<br>
 $$</p>
@@ -444,7 +444,7 @@ $$</p>
 <blockquote>
 <p>正定二次型所对应矩阵 $A$ 为正定矩阵</p>
 </blockquote>
-<h2 id="主轴定理（重点）"><a class="header-anchor" href="#主轴定理（重点）">¶</a>主轴定理（重点）</h2>
+<h2 id="主轴定理（重点）">主轴定理（重点）</h2>
 <p>定义：</p>
 <p>设 $A_{n\times n}$ 为实对称矩阵则有一个变换 $x=Qy$（ 为正交矩阵），将二次型 $x^T Ax$ 转变为 $y^T\Lambda y$（不含交叉乘积项），通过这种变换，可以得到一个标准二次型 $y^T\Lambda y=\lambda_1y_1^2+\lambda_2y_2^2+\cdots +\lambda_n y_n^2$。</p>
 <p>例：设 $A=\left[\begin{array}{c}5&amp;-2 \ -2&amp;5\end{array}\right]$ ，即 $x^T Ax=5x_1^2-4x_1x_2+5x_2^2$ 。可求得 $A$ 的特征值是 $3$ 和 $7$，对应的特征向量为 $u_1=\left[\begin{array}{c}1/\sqrt{2} \ 1/\sqrt{2}\end{array}\right]$ 和 $u_2=\left[\begin{array}{c}-1/\sqrt{2} \ 1/\sqrt{2}\end{array}\right]$。</p>
@@ -452,13 +452,13 @@ $$</p>
 <blockquote>
 <p>用法：将实对称矩阵 $A$ 正交对角化：$A=Q\Lambda Q^T$。再通过 $y=Q^T x$ 得到 $y$。</p>
 </blockquote>
-<h2 id="合同变换法"><a class="header-anchor" href="#合同变换法">¶</a>合同变换法</h2>
+<h2 id="合同变换法">合同变换法</h2>
 <p>思路：任意 n 阶实对称矩阵 A，都存在可逆矩阵 C，使得 $C^TAC=diag(d_1,d_2,\cdots,d_n)$。通过对矩阵 $A$ 的初等行/列变换，可以得到合同变换矩阵 $C$ 和变换后的矩阵 $D=C^TAC$</p>
 <p>$$<br>
 \left[\begin{array}{c}C^T&amp;0 \ 0&amp;I\end{array}\right]\left[\begin{array}{c}A \ I\end{array}\right]C=\left[\begin{array}{c}C^TAC \ C\end{array}\right]=\left[\begin{array}{c}D \ C\end{array}\right]<br>
 $$</p>
 <p>由此可见，用正交变换法得到的标准型并不唯一（参考主轴定理）。标准型不唯一，但是标准型的正负号个数不变。</p>
-<h2 id="奇异值分解（重点）"><a class="header-anchor" href="#奇异值分解（重点）">¶</a>奇异值分解（重点）</h2>
+<h2 id="奇异值分解（重点）">奇异值分解（重点）</h2>
 <p>思路：当矩阵非方阵时，不可进行特征值分解（正交对角化）。此时可以进行奇异值分解。</p>
 <p>定义：可对任意矩阵进行奇异值分解（SVD）：</p>
 <p>$$<br>

@@ -18,10 +18,10 @@
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #f3f3f3;
-  --highlight-foreground: #444;
-  --highlight-gutter-background: #e1e1e1;
-  --highlight-gutter-foreground: #555;
+  --highlight-background: #fff;
+  --highlight-foreground: #24292e;
+  --highlight-gutter-background: #e9e9ea;
+  --highlight-gutter-foreground: #393e42;
   color-scheme: light;
 }
 html {
@@ -375,113 +375,114 @@ code.hljs {
   padding: 3px 5px
 }
 /*!
-  Theme: Default
-  Description: Original highlight.js style
-  Author: (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
-  Maintainer: @highlightjs/core-team
-  Website: https://highlightjs.org/
-  License: see project LICENSE
-  Touched: 2021
-*/
-/*
-This is left on purpose making default.css the single file that can be lifted
-as-is from the repository directly without the need for a build step
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
 
-Typically this "required" baseline CSS is added by `makestuff.js` during build.
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
 */
-pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 1em
-}
-code.hljs {
-  padding: 3px 5px
-}
-/* end baseline CSS */
 .hljs {
-  background: #F3F3F3;
-  color: #444
+  color: #24292e;
+  background: #ffffff
 }
-/* Base color: saturation 0; */
-.hljs-subst {
-  /* default */
-  
-}
-/* purposely ignored */
-.hljs-formula,
-.hljs-attr,
-.hljs-property,
-.hljs-params {
-  
-}
-.hljs-comment {
-  color: #697070
-}
-.hljs-tag,
-.hljs-punctuation {
-  color: #444a
-}
-.hljs-tag .hljs-name,
-.hljs-tag .hljs-attr {
-  color: #444
-}
-.hljs-keyword,
-.hljs-attribute,
-.hljs-selector-tag,
-.hljs-meta .hljs-keyword,
 .hljs-doctag,
-.hljs-name {
-  font-weight: bold
-}
-/* User color: hue: 0 */
-.hljs-type,
-.hljs-string,
-.hljs-number,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-quote,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
 .hljs-template-tag,
-.hljs-deletion {
-  color: #880000
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
 }
 .hljs-title,
-.hljs-section {
-  color: #880000;
-  font-weight: bold
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
 }
 .hljs-regexp,
-.hljs-symbol,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-link,
-.hljs-selector-attr,
-.hljs-operator,
-.hljs-selector-pseudo {
-  color: #ab5656
-}
-/* Language color: hue: 90; */
-.hljs-literal {
-  color: #695
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
 }
 .hljs-built_in,
-.hljs-bullet,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
 .hljs-code,
-.hljs-addition {
-  color: #397300
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
 }
-/* Meta color: hue: 200 */
-.hljs-meta {
-  color: #1f7199
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
 }
-.hljs-meta .hljs-string {
-  color: #38a
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
 }
-/* Misc effects */
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
 .hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
   font-style: italic
 }
 .hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
   font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
 }
 .highlight:hover .copy-btn,
 .code-container:hover .copy-btn {
@@ -498,13 +499,29 @@ code.hljs {
   padding: 2px 6px;
   position: absolute;
   transition: opacity 0.2s ease-in-out;
-  background-color: #eee;
-  background-image: linear-gradient(#fcfcfc, #eee);
-  border: 1px solid #d5d5d5;
-  border-radius: 3px;
-  font-size: 0.8125em;
-  right: 4px;
-  top: 8px;
+  color: var(--highlight-foreground);
+  font-size: 14px;
+  right: 0;
+  top: 2px;
+}
+figure.highlight {
+  border-radius: 5px;
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.4);
+  padding-top: 30px;
+}
+figure.highlight .table-container {
+  border-radius: 0 0 5px 5px;
+}
+figure.highlight::before {
+  background: #fc625d;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  left: 12px;
+  margin-top: -20px;
+  position: absolute;
+  border-radius: 50%;
+  content: ' ';
+  height: 12px;
+  width: 12px;
 }
 code,
 kbd,
@@ -541,7 +558,7 @@ pre figcaption a:hover {
 }
 pre,
 code {
-  font-family: JetBrains Mono, consolas, Menlo, monospace, "Noto Serif SC";
+  font-family: Jetbrains Mono, consolas, Menlo, monospace, "Noto Serif SC";
 }
 code {
   border-radius: 3px;
@@ -1294,7 +1311,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #3b5578;
+    background: #acff8a;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2832,21 +2849,28 @@ header.header {
   }
 }
 .post-button .btn {
+/* 黑白主色调 */
   color: #555 !important;
   background-color: #fff;
+  border: 0px !important;
+/* 保留原有基础样式 */
   border-radius: 3px;
   font-size: 18px;
-  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.2);
-  border: none !important;
-  transition-property: unset;
+  box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,0.205); /* 调浅阴影 */
   padding: 0px 15px;
+/* 添加过渡动画 */
+  transition: all 0.5s ease-in-out;
+  background-size: 200% auto; /* 为渐变动画准备 */
 }
 .post-button .btn:hover {
-  color: #fff !important;
-  border-radius: 3px;
-  font-size: 18px;
-  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.2);
-  background-image: linear-gradient(90deg, #0015ff 0%, #4e91ef 25%, #55e1f3 50%, #4e91ef 75%, #0015ff 100%);
+/* 橙色渐变效果 */
+  background-image: linear-gradient(90deg, #fff 0%, rgba(255,140,0,0.8) 30%, #ff8c00 50%, rgba(255,140,0,0.8) 70%, #fff 100% /* 结束白色 */);
+/* 动画效果 */
+  background-position: 100% 0; /* 移动渐变位置 */
+  box-shadow: 0 4px 10px rgba(255,140,0,0.25), inset 0px 0px 5px rgba(0,0,0,0.1);
+  transform: translateY(-2px); /* 轻微上浮效果 */
+  color: #000 !important;
+  border-color: rgba(255,140,0,0.5) !important; /* 边框融入橙色 */
 }
 .post-block,
 .comments {
@@ -2944,9 +2968,96 @@ body {
 .posts-collapse .post-content .collection-year::before {
   display: none;
 }
+a,
+span.exturl {
+  border-bottom: none;
+}
+a:hover,
+span.exturl:hover {
+  color: #ff8c00;
+}
 .posts-collapse .post-content .post-header {
   font-size: 1.1em;
 }
 .posts-collapse .post-content .post-meta-container {
   font-size: inherit; /* or use initial or unset */
+}
+.headband {
+  height: 0;
+}
+.header .header-inner {
+  background: rgba(255,255,255,0);
+  margin-top: 20px;
+  overflow: hidden;
+}
+.sidebar {
+  background: rgba(255,255,255,0);
+}
+.sidebar-inner {
+  background: rgba(255,255,255,0.85);
+}
+.posts-expand .post-title-link::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ff8c00;
+  visibility: false;
+  transform: scaleX(0);
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.posts-expand .post-title-link:hover {
+  color: #ff8c00;
+}
+.post-toc ol a:hover {
+  color: #ff8c00;
+}
+.post-toc .nav .active > a {
+  color: #ff8c00;
+  border-bottom-color: #ff8c00;
+}
+/* webkit, opera, IE9 */
+::selection {
+  background: #4036ff;
+  color: #fff;
+}
+/* firefox */
+::-moz-selection {
+  background: #4036ff;
+  color: #fff;
+}
+.back-to-top {
+  background: rgba(255,255,255,0.85);
+  color: rgba(0,0,0,0.85);
+  border-radius: 9px;
+}
+.back-to-top:hover {
+  background: #ff8c00;
+  color: #fff;
+}
+.btn {
+  background: rgba(255,255,255,0);
+}
+.table-container {
+  background: rgba(240,240,222,0.2);
+}
+table > tbody > tr:nth-of-type(odd) {
+  background-color: rgba(255,255,255,0);
+}
+table > tbody > tr:hover {
+  background-color: rgba(233,230,230,0);
+}
+pre,
+.highlight {
+  background: rgba(200,31,33,0);
+}
+.highlight .gutter pre {
+  background: rgbargba(227, 235, 227, 0.3);
+}
+.highlight .code pre {
+  background: rgba(29,31,100,0);
 }

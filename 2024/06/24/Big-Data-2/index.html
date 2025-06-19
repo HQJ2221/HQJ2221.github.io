@@ -12,14 +12,14 @@
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetbrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-atom.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="大数据导论与实践（一）的续集">
 <meta property="og:type" content="article">
@@ -58,8 +58,8 @@
 <meta property="article:published_time" content="2024-06-24T03:43:04.000Z">
 <meta property="article:modified_time" content="2025-06-18T19:47:19.394Z">
 <meta property="article:author" content="Bionic l&#39;Hôpital">
-<meta property="article:tag" content="CSE Learning">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="CSE Learning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://hqj2221.github.io/2024/06/24/Big-Data-2/bd8.png">
 
@@ -301,8 +301,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="Big-Data-II"><a class="header-anchor" href="#Big-Data-II">¶</a>Big Data (II)</h1>
-<h2 id="IV-Classification"><a class="header-anchor" href="#IV-Classification">¶</a>IV. Classification</h2>
+    <div class="post-body" itemprop="articleBody"><h1 id="Big-Data-II">Big Data (II)</h1>
+<h2 id="IV-Classification">IV. Classification</h2>
 <blockquote>
 <p>本章内容较多，先写下本章主要内容：</p>
 <p>本章涉及分类算法，主要会提及 KNN 算法，决策树算法和朴素贝叶斯算法（是分类算法中最基础的几种）<br>
@@ -310,7 +310,7 @@
 <p>介绍三种基本算法后，本章还涉及模型评估，讲解如何通过不同问题使用不同的算法以得到最优的结果</p>
 <p>注：本章含有不亚于数据预处理章节的数学公式，要求理解公式基本内涵。</p>
 </blockquote>
-<h3 id="K-Nearest-Neighbor-KNN"><a class="header-anchor" href="#K-Nearest-Neighbor-KNN">¶</a>K-Nearest Neighbor (KNN)</h3>
+<h3 id="K-Nearest-Neighbor-KNN">K-Nearest Neighbor (KNN)</h3>
 <blockquote>
 <p>Supervised learning method, especially useful when prior knowledge on the data is very limited.</p>
 <p><font color="red">Low bias, high variance</font> : <font color="blue">just for small</font> <code>k</code></p>
@@ -422,7 +422,7 @@ $$</p>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">KNeighborsClassifier(n_neighbors = <span class="number">10</span>, metric = <span class="string">&#x27;minkowski&#x27;</span>, p = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="Decision-Tree"><a class="header-anchor" href="#Decision-Tree">¶</a>Decision Tree</h3>
+<h3 id="Decision-Tree">Decision Tree</h3>
 <ul>
 <li>Tree structure : internal nodes indicate features, while leaf nodes represent classes.</li>
 <li>Start from root, choose a suitable feature $x_i$ and its split point $c_i$ at each internal node, split the node to two child nodes depending on whether $x_i \le c_i$ , until the child nodes are pure.</li>
@@ -565,7 +565,7 @@ $$</p>
 </li>
 </ul>
 <hr>
-<h3 id="Naive-Bayes-朴素贝叶斯"><a class="header-anchor" href="#Naive-Bayes-朴素贝叶斯">¶</a>Naive Bayes (朴素贝叶斯)</h3>
+<h3 id="Naive-Bayes-朴素贝叶斯">Naive Bayes (朴素贝叶斯)</h3>
 <ul>
 <li>Based on <strong>Bayes Theorem</strong> and conditional independency assumption on features (Recall <a href="#Bayes">Bayes Classifier</a>)</li>
 <li>Bayes Theorem : $\Large{P(Y|X)=\frac{P(X|Y)P(Y)}{P(X)}}$
@@ -593,7 +593,7 @@ $$</p>
 </li>
 </ul>
 <hr>
-<h3 id="Model-Assessment"><a class="header-anchor" href="#Model-Assessment">¶</a>Model Assessment</h3>
+<h3 id="Model-Assessment">Model Assessment</h3>
 <p><strong>Confusion Matrix</strong></p>
 <div align="center"><img src="/2024/06/24/Big-Data-2/bd14.png" alt="bd14" style="zoom:100%"></div>
 <ul>
@@ -653,8 +653,8 @@ $$</p>
 <li>$\kappa \in [-1,1]$, $\kappa\ge 0.75$ for good performance and $\kappa\lt 0.4$ for bad one.</li>
 </ul>
 <hr>
-<h2 id="V-Regression"><a class="header-anchor" href="#V-Regression">¶</a>V. Regression</h2>
-<h3 id="Linear-Model"><a class="header-anchor" href="#Linear-Model">¶</a>Linear Model</h3>
+<h2 id="V-Regression">V. Regression</h2>
+<h3 id="Linear-Model">Linear Model</h3>
 <p><strong>Linear model</strong> :</p>
 <ul>
 <li>For <strong>Univariate</strong> linear model,  $y = w_0 + w_1x + \epsilon$, where $w_0$ and $w_1$ are regression coeﬃcients, $\epsilon$ is the error or noise</li>
@@ -783,7 +783,7 @@ $$</p>
 <li>For large $k$, underfitting, bias ↑, variance ↓</li>
 </ul>
 <hr>
-<h3 id="a-name-regul-Regularization-a-正则化"><a class="header-anchor" href="#a-name-regul-Regularization-a-正则化">¶</a><a name="regul">Regularization</a> (正则化)</h3>
+<h3 id="a-name-regul-Regularization-a-正则化"><a name="regul">Regularization</a> (正则化)</h3>
 <blockquote>
 <p>Why we need Regularization ?</p>
 <ul>
@@ -946,7 +946,7 @@ $$</p>
 </ul>
 </li>
 </ol>
-<h3 id="Model-Assessment-2"><a class="header-anchor" href="#Model-Assessment-2">¶</a>Model Assessment</h3>
+<h3 id="Model-Assessment-2">Model Assessment</h3>
 <ul>
 <li>
 <p>Mean absolute error (MAE) : $MAE =\frac{1}{n} \sum_{i=1}^{n} |y_i - \hat y_i|$</p>
@@ -977,7 +977,7 @@ $$</p>
 <li>When adding important variables into the model, $\text{R}<em>{\text{adj}}^2$ gets larger and $\text{SS}</em>{\text{res}}$ is reduced</li>
 </ul>
 <hr>
-<h2 id="VI-Classification-II"><a class="header-anchor" href="#VI-Classification-II">¶</a>VI. Classification II</h2>
+<h2 id="VI-Classification-II">VI. Classification II</h2>
 <blockquote>
 <p>Why talk about Regression first ?</p>
 <ul>
@@ -985,7 +985,7 @@ $$</p>
 <li>Regression all apply <strong>MLE</strong>, which is connected with Bayes rules.</li>
 </ul>
 </blockquote>
-<h3 id="Logistic-Regression"><a class="header-anchor" href="#Logistic-Regression">¶</a>Logistic Regression</h3>
+<h3 id="Logistic-Regression">Logistic Regression</h3>
 <blockquote>
 <p>逻辑回归是一种分类方法（不是回归）</p>
 </blockquote>
@@ -1013,7 +1013,7 @@ $$</p>
 <blockquote>
 <p>用 MLE 计算 $\hat{\textbf{w}}$ ，需要提前知道 $x$ 的分布，所以逻辑回归是一种分类算法。</p>
 </blockquote>
-<h3 id="Linear-Discriminant-Analysis-LDA"><a class="header-anchor" href="#Linear-Discriminant-Analysis-LDA">¶</a>Linear Discriminant Analysis (LDA)</h3>
+<h3 id="Linear-Discriminant-Analysis-LDA">Linear Discriminant Analysis (LDA)</h3>
 <blockquote>
 <p>线性判别分析，是一种监督学习的降维方法（无监督学习一般用<strong>PCA</strong>，主成分分析来降维）</p>
 </blockquote>
@@ -1055,7 +1055,7 @@ $$</p>
 <p>$\hat\mu$ 看作图中椭圆的中心，图中的 $w$ 为投影方向。由上述公式计算可得到样本在投影基向量上的方向，从而判断其类别</p>
 <p>从定性上看，投影的作用是降维，选择的投影空间应当是能将不同类数据点在映射后尽可能分开（或同类的点尽可能紧凑）。</p>
 </blockquote>
-<h3 id="Neural-Network"><a class="header-anchor" href="#Neural-Network">¶</a>Neural Network</h3>
+<h3 id="Neural-Network">Neural Network</h3>
 <center><img src="/2024/06/24/Big-Data-2/bd29.png" style="zoom:70%"><font size="2">Pic 21. NN</font></center>
 <p>$$<br>
 \hat y=g(w_0+\sum_{i=1}^{m} x_iw_i)<br>
@@ -1136,7 +1136,7 @@ $$</p>
 <li>Mini-batches lead to fast training ! (need not to calculate all gradient for trainset $x$)</li>
 <li>Can parallelize computation + achieve significant speed increases on GPUs.</li>
 </ul>
-<h3 id="Support-Vector-Machine-SVM"><a class="header-anchor" href="#Support-Vector-Machine-SVM">¶</a>Support Vector Machine (SVM)</h3>
+<h3 id="Support-Vector-Machine-SVM">Support Vector Machine (SVM)</h3>
 <p><strong>About SVM</strong></p>
 <ul>
 <li>Use <strong>hyperplane</strong> [超平面] to separate data : maximize <strong>margin</strong></li>
@@ -1230,7 +1230,7 @@ $$</p>
 &amp;\text{s.t. }0\le \alpha_i \le C,\ i=1,…,n,\ \sum_i\alpha_iy_i=0<br>
 \end{align}<br>
 $$</p>
-<h4 id="Nonlinear-SVM"><a class="header-anchor" href="#Nonlinear-SVM">¶</a>Nonlinear SVM</h4>
+<h4 id="Nonlinear-SVM">Nonlinear SVM</h4>
 <ul>
 <li>Nonlinear decision boundary could be mapped to linear boundary in <font color="red">high-dimensional space</font></li>
 </ul>
@@ -1261,8 +1261,8 @@ $$</p>
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CSE-Learning/" rel="tag"><i class="fa fa-tag"></i> CSE Learning</a>
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/CSE-Learning/" rel="tag"><i class="fa fa-tag"></i> CSE Learning</a>
           </div>
 
         

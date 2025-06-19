@@ -12,14 +12,14 @@
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetbrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-atom.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="The most basic AI knowledge, including some ML algorithm and concept of Agents.">
 <meta property="og:type" content="article">
@@ -99,8 +99,8 @@
 <meta property="article:published_time" content="2025-01-01T14:05:22.000Z">
 <meta property="article:modified_time" content="2025-06-18T17:45:29.162Z">
 <meta property="article:author" content="Bionic l&#39;Hôpital">
-<meta property="article:tag" content="CSE Learning">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="CSE Learning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://hqj2221.github.io/2025/01/01/Artificial-Intelligence/ai101.png">
 
@@ -342,7 +342,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="Contents"><a class="header-anchor" href="#Contents">¶</a>Contents</h1>
+    <div class="post-body" itemprop="articleBody"><h1 id="Contents">Contents</h1>
 <p><strong>AI Search</strong></p>
 <ul>
 <li>Lecture 1. AI as Search</li>
@@ -365,14 +365,14 @@
 <li>Lecture 12. Representing and Inference with Uncertainty</li>
 <li>Lecture 13. Knowledge Graph</li>
 </ul>
-<h1 id="Lecture-1-AI-as-Search"><a class="header-anchor" href="#Lecture-1-AI-as-Search">¶</a>Lecture 1. AI as Search</h1>
-<h2 id="Outline"><a class="header-anchor" href="#Outline">¶</a>Outline</h2>
+<h1 id="Lecture-1-AI-as-Search">Lecture 1. AI as Search</h1>
+<h2 id="Outline">Outline</h2>
 <ul>
 <li>From searching to search tree</li>
 <li>Uninformed Search Methods</li>
 <li><font color="red">Heuristic (informed) Search</font></li>
 </ul>
-<h2 id="Search-in-a-Tree"><a class="header-anchor" href="#Search-in-a-Tree">¶</a>Search in a Tree ?</h2>
+<h2 id="Search-in-a-Tree">Search in a Tree ?</h2>
 <blockquote>
 <p><strong>概念：最短路径选择，搜索树</strong></p>
 <p>通过将所有“图”中的路径展开，可以得到一个搜索树。对树进行全局搜索必然可以得到最短路径。</p>
@@ -395,7 +395,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Un-informed-Search-Methods"><a class="header-anchor" href="#Un-informed-Search-Methods">¶</a>Un-informed Search Methods</h2>
+<h2 id="Un-informed-Search-Methods">Un-informed Search Methods</h2>
 <blockquote>
 <p>How to define “un-informed” ?</p>
 </blockquote>
@@ -406,13 +406,13 @@
 <blockquote>
 <p>As some algorithms have been learnt in course Algorithm Design and Analysis, we skip them.</p>
 </blockquote>
-<h3 id="BFS"><a class="header-anchor" href="#BFS">¶</a>BFS</h3>
+<h3 id="BFS">BFS</h3>
 <ul>
 <li><font color="DodgerBlue">Completeness?</font> Yes (Suppose $b$ is finite)</li>
 <li><font color="DodgerBlue">Optimality?</font> Yes (Suppose all edge values are <strong>non-negative</strong>)</li>
 <li><font color="DodgerBlue">Time &amp; Space?</font> Both $O(b^{d+1})$</li>
 </ul>
-<h3 id="UCS-Uniform-Cost-Search"><a class="header-anchor" href="#UCS-Uniform-Cost-Search">¶</a>UCS (Uniform-Cost Search)</h3>
+<h3 id="UCS-Uniform-Cost-Search">UCS (Uniform-Cost Search)</h3>
 <ul>
 <li>Idea
 <ul>
@@ -433,7 +433,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="DFS"><a class="header-anchor" href="#DFS">¶</a>DFS</h3>
+<h3 id="DFS">DFS</h3>
 <ul>
 <li><font color="DodgerBlue">Completeness?</font> No (fail in infinite-depth space and space with loops.)</li>
 <li><font color="DodgerBlue">Optimality?</font> No</li>
@@ -444,7 +444,7 @@
 </li>
 <li><font color="DodgerBlue">Space?</font> $O(bm)$ - linear!</li>
 </ul>
-<h3 id="DLS-Depth-Limit-Search"><a class="header-anchor" href="#DLS-Depth-Limit-Search">¶</a>DLS (Depth-Limit Search)</h3>
+<h3 id="DLS-Depth-Limit-Search">DLS (Depth-Limit Search)</h3>
 <ul>
 <li>A variant of DFS: node at depth $l$ has no sucessors.</li>
 <li><font color="DodgerBlue">Completeness?</font> No</li>
@@ -452,7 +452,7 @@
 <li><font color="DodgerBlue">Time?</font> $O(b^l)$</li>
 <li><font color="DodgerBlue">Space?</font> $O(bl)$</li>
 </ul>
-<h3 id="IDS-Iterative-Deepening-Search"><a class="header-anchor" href="#IDS-Iterative-Deepening-Search">¶</a>IDS (Iterative Deepening Search)</h3>
+<h3 id="IDS-Iterative-Deepening-Search">IDS (Iterative Deepening Search)</h3>
 <ul>
 <li>Idea
 <ul>
@@ -472,7 +472,7 @@
 <blockquote>
 <p>Preference when <strong>search space</strong> is large and <strong>depth</strong> of solution is unknown.</p>
 </blockquote>
-<h3 id="Bi-directional-Search"><a class="header-anchor" href="#Bi-directional-Search">¶</a>Bi-directional Search</h3>
+<h3 id="Bi-directional-Search">Bi-directional Search</h3>
 <ul>
 <li>Idea: simultaneous
 <ul>
@@ -490,7 +490,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="font-color-red-Heuristic-informed-Search-font"><a class="header-anchor" href="#font-color-red-Heuristic-informed-Search-font">¶</a><font color="red">Heuristic (informed) Search</font></h2>
+<h2 id="font-color-red-Heuristic-informed-Search-font"><font color="red">Heuristic (informed) Search</font></h2>
 <blockquote>
 <p><font color="red">Q:</font> What is “Heuristic” ?</p>
 <p><font color="green">A:</font> Based on algorithm design, it searches the trees with intelligence, making use of <strong>domain knowledge</strong>.</p>
@@ -502,7 +502,7 @@
 <li><strong>problem-specific</strong></li>
 </ol>
 </blockquote>
-<h3 id="Greedy-Best-first-Search"><a class="header-anchor" href="#Greedy-Best-first-Search">¶</a>Greedy Best-first Search</h3>
+<h3 id="Greedy-Best-first-Search">Greedy Best-first Search</h3>
 <ul>
 <li>A simple example to describe heuristic function: let’s say $f(x)=h_{SLD}(x)$ , where $h_{SLD}(x)$ is physical distance between two nodes (cities)</li>
 </ul>
@@ -513,7 +513,7 @@
 <li><font color="DodgerBlue">Time?</font> $O(b^m)$ (In practice, good heuristic gives drastic improvement)</li>
 <li><font color="DodgerBlue">Space?</font> $O(b^m)$</li>
 </ul>
-<h3 id="A-Search"><a class="header-anchor" href="#A-Search">¶</a>A* Search</h3>
+<h3 id="A-Search">A* Search</h3>
 <ul>
 <li>Idea: avoid expanding paths that are already expensive.
 <ul>
@@ -546,19 +546,19 @@
 <blockquote>
 <p>A* 算法可以认为是学习 AI 的第一基础算法。它明确了 AI 需要具有的首要特性：学习。A* 算法是树/图搜索算法中第一个可以利用“知识”进行决策的算法，不再是像遍历这样“机械、随机”的算法。</p>
 </blockquote>
-<h1 id="Lecture-2-Beyond-Classical-Search"><a class="header-anchor" href="#Lecture-2-Beyond-Classical-Search">¶</a>Lecture 2. Beyond Classical Search</h1>
-<h2 id="Outline-2"><a class="header-anchor" href="#Outline-2">¶</a>Outline</h2>
+<h1 id="Lecture-2-Beyond-Classical-Search">Lecture 2. Beyond Classical Search</h1>
+<h2 id="Outline-2">Outline</h2>
 <ul>
 <li>More representations</li>
 <li>General Search Frameworks</li>
 <li>Summary</li>
 </ul>
-<h2 id="More-representations"><a class="header-anchor" href="#More-representations">¶</a>More representations</h2>
+<h2 id="More-representations">More representations</h2>
 <blockquote>
 <p>Last lecture, we solve the search problem by Searching Tree.</p>
 <p>But is there any more efficient data structure in some specific tasks ?</p>
 </blockquote>
-<h3 id="Direct-Search-in-the-Solution-Space"><a class="header-anchor" href="#Direct-Search-in-the-Solution-Space">¶</a>Direct Search in the Solution Space</h3>
+<h3 id="Direct-Search-in-the-Solution-Space">Direct Search in the Solution Space</h3>
 <ul>
 <li>Consider that the solution space is continuous, like $\mathbb{R}^{2}$.</li>
 <li>Then if we generate a tree to describe each step, that’s silly.</li>
@@ -573,7 +573,7 @@
 </li>
 <li>Different representations may favor different search methods, but most of them share a <strong>common framework</strong>.</li>
 </ul>
-<h2 id="General-Search-Frameworks"><a class="header-anchor" href="#General-Search-Frameworks">¶</a>General Search Frameworks</h2>
+<h2 id="General-Search-Frameworks">General Search Frameworks</h2>
 <img src="/2025/01/01/Artificial-Intelligence/ai201.png">
 <ul>
 <li>Typical Frameworks:
@@ -591,7 +591,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="Typical-Search-Operators"><a class="header-anchor" href="#Typical-Search-Operators">¶</a>Typical Search Operators</h3>
+<h3 id="Typical-Search-Operators">Typical Search Operators</h3>
 <ul>
 <li>A Search Operator generate a new solution based on previous ones.</li>
 </ul>
@@ -601,7 +601,7 @@ $$</p>
 <blockquote>
 <p>Now we use continuous case as an example.</p>
 </blockquote>
-<h3 id="Greedy-Local-Search-Framework"><a class="header-anchor" href="#Greedy-Local-Search-Framework">¶</a>Greedy Local Search Framework</h3>
+<h3 id="Greedy-Local-Search-Framework">Greedy Local Search Framework</h3>
 <ul>
 <li>Given a predefined Local Search Operator</li>
 <li>Iteratively generate new solutions</li>
@@ -611,8 +611,8 @@ $$</p>
 <blockquote>
 <p>but sometimes trapped in local optimum</p>
 </blockquote>
-<h3 id="SA-Tabu-and-Bayesian-Optimizations"><a class="header-anchor" href="#SA-Tabu-and-Bayesian-Optimizations">¶</a>SA, Tabu and Bayesian Optimizations</h3>
-<h4 id="Simulated-Annealing"><a class="header-anchor" href="#Simulated-Annealing">¶</a>Simulated Annealing</h4>
+<h3 id="SA-Tabu-and-Bayesian-Optimizations">SA, Tabu and Bayesian Optimizations</h3>
+<h4 id="Simulated-Annealing">Simulated Annealing</h4>
 <blockquote>
 <p>概念：温度，下降率</p>
 <p>模拟退火是基于物理退火现象的一种对于贪心策略的优化方法。目的是在一定概率上帮助跳出局部最优的局面。（随机）</p>
@@ -626,7 +626,7 @@ p=\left{<br>
 \end{array}\right.<br>
 $$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Set</span> T(<span class="number">0</span>), T(t), alpha</span><br><span class="line">init x(<span class="number">0</span>), T(i) = T(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span> T(i) &lt; T(t):</span><br><span class="line">  generate x‘ based on x(i)</span><br><span class="line">  calc f(x‘)</span><br><span class="line">  calc p</span><br><span class="line">  <span class="keyword">if</span> c = random[<span class="number">0</span>,<span class="number">1</span>] &lt; p: x(i+<span class="number">1</span>) = x‘</span><br><span class="line">  <span class="keyword">else</span>: x(i+<span class="number">1</span>) = x(i)</span><br><span class="line">  i += <span class="number">1</span></span><br><span class="line">  Update T(i) = T(i) * alpha</span><br><span class="line">end</span><br><span class="line"><span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
-<h4 id="Tabu"><a class="header-anchor" href="#Tabu">¶</a>Tabu</h4>
+<h4 id="Tabu">Tabu</h4>
 <p><strong>Hill climbing → Tabu Search</strong></p>
 <ul>
 <li>Key idea: Don’t visit the sample candidate solution twice.</li>
@@ -643,7 +643,7 @@ $$</p>
 <blockquote>
 <p>通过维持一个禁忌表的方式，在一定程度上接收比当前最优解要差的结果，从而跳出局部最优</p>
 </blockquote>
-<h4 id="Bayesian-Optimizations"><a class="header-anchor" href="#Bayesian-Optimizations">¶</a>Bayesian Optimizations</h4>
+<h4 id="Bayesian-Optimizations">Bayesian Optimizations</h4>
 <p><strong>Hill climbing → Bayesian Optimizations</strong></p>
 <ul>
 <li>Key idea: Build a model to ”guess” which solution is good.</li>
@@ -657,7 +657,7 @@ $$</p>
 <blockquote>
 <p>涉及机器学习内容</p>
 </blockquote>
-<h3 id="Population-based-Search"><a class="header-anchor" href="#Population-based-Search">¶</a>Population-based Search</h3>
+<h3 id="Population-based-Search">Population-based Search</h3>
 <ul>
 <li>Idea: Since we sample from a probability distribution, why 1 at a time?</li>
 <li><font color="red">Evolutionary Algorithm</font>:</li>
@@ -689,7 +689,7 @@ $$</p>
 <li>N-Queen Problems [通过“杂交”操作生成新组合，每次进行多个组合计算]</li>
 <li>鸟巢设计，动车车头设计等</li>
 </ul>
-<h2 id="Summary"><a class="header-anchor" href="#Summary">¶</a>Summary</h2>
+<h2 id="Summary">Summary</h2>
 <ul>
 <li>This lecture is talking about <font color="red">general-purpose search frameworks</font>, rather than search algorithm.</li>
 <li>When addressing a specific problem, heuristics derived from domain knowledge needs to be incorporated in forms of search operators to obtain the best performance.</li>
@@ -698,8 +698,8 @@ $$</p>
 <blockquote>
 <p>Therefore, next lecture will talk about some problem-specific search algorithms.</p>
 </blockquote>
-<h1 id="Lecture-3-Problem-Specific-Search"><a class="header-anchor" href="#Lecture-3-Problem-Specific-Search">¶</a>Lecture 3. Problem-Specific Search</h1>
-<h2 id="Outline-3"><a class="header-anchor" href="#Outline-3">¶</a>Outline</h2>
+<h1 id="Lecture-3-Problem-Specific-Search">Lecture 3. Problem-Specific Search</h1>
+<h2 id="Outline-3">Outline</h2>
 <ul>
 <li>Make Search Algorithms Less General</li>
 <li>Gradient-based Methods for Numerical Optimization</li>
@@ -707,7 +707,7 @@ $$</p>
 <li>Constraint Satisfaction Problems</li>
 <li>Adversarial Search</li>
 </ul>
-<h2 id="Make-Search-Algorithms-Less-General"><a class="header-anchor" href="#Make-Search-Algorithms-Less-General">¶</a>Make Search Algorithms Less General</h2>
+<h2 id="Make-Search-Algorithms-Less-General">Make Search Algorithms Less General</h2>
 <blockquote>
 <p>Why we need problem-specific search ?</p>
 </blockquote>
@@ -734,7 +734,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="Gradient-based-Methods-for-Numerical-Optimization"><a class="header-anchor" href="#Gradient-based-Methods-for-Numerical-Optimization">¶</a>Gradient-based Methods for Numerical Optimization</h2>
+<h2 id="Gradient-based-Methods-for-Numerical-Optimization">Gradient-based Methods for Numerical Optimization</h2>
 <ul>
 <li>Suppose the objective function $f(x_1 , y_1, x_2, y_2, x_3, y_3)$ is continuous and differentiable (thus the gradient could be calculated)</li>
 <li>Compute:</li>
@@ -745,7 +745,7 @@ $$</p>
 <ul>
 <li>to increase/reduce $f$, e.g., by $x \leftarrow x + \alpha \nabla f(x)$ [梯度下降]</li>
 </ul>
-<h2 id="Quadratic-Programming-Problems"><a class="header-anchor" href="#Quadratic-Programming-Problems">¶</a>Quadratic Programming Problems</h2>
+<h2 id="Quadratic-Programming-Problems">Quadratic Programming Problems</h2>
 <ul>
 <li>The objective function is a <font color="red">quadratic(二次) function</font> of $x$</li>
 <li>The constraints are linear functions of $x$</li>
@@ -763,7 +763,7 @@ $$</p>
 <blockquote>
 <p>引出接下来的问题：CSP</p>
 </blockquote>
-<h2 id="font-color-red-Constraint-Satisfaction-Problems-CSP-font"><a class="header-anchor" href="#font-color-red-Constraint-Satisfaction-Problems-CSP-font">¶</a><font color="red">Constraint Satisfaction Problems (CSP)</font></h2>
+<h2 id="font-color-red-Constraint-Satisfaction-Problems-CSP-font"><font color="red">Constraint Satisfaction Problems (CSP)</font></h2>
 <ul>
 <li>Standard Search Problem
 <ul>
@@ -781,8 +781,8 @@ $$</p>
 <p>例：地图上色问题。限制：相邻区块不能上同一颜色。</p>
 <p>假设两个区块 $X={A,B}$，四种颜色 $D={R, G, B, Y}$，原本可以有 16 种组合，但是由于限制条件只有 12 种。</p>
 </blockquote>
-<h3 id="Characteristics-of-CSPs"><a class="header-anchor" href="#Characteristics-of-CSPs">¶</a>Characteristics of CSPs</h3>
-<h4 id="Real-world-CSPs"><a class="header-anchor" href="#Real-world-CSPs">¶</a>Real-world CSPs</h4>
+<h3 id="Characteristics-of-CSPs">Characteristics of CSPs</h3>
+<h4 id="Real-world-CSPs">Real-world CSPs</h4>
 <ul>
 <li>Assignment problems</li>
 <li>Timetabling problems</li>
@@ -791,7 +791,7 @@ $$</p>
 <li>Factory scheduling</li>
 <li>…</li>
 </ul>
-<h4 id="Commutativity"><a class="header-anchor" href="#Commutativity">¶</a>Commutativity</h4>
+<h4 id="Commutativity">Commutativity</h4>
 <blockquote>
 <p>First character</p>
 </blockquote>
@@ -799,12 +799,12 @@ $$</p>
 <li>Commutativity help us formulate the search tree (only 1 variable needs to be considered at each node in the search tree).</li>
 </ul>
 <img src="/2025/01/01/Artificial-Intelligence/ai301.png">
-<h4 id="Constraint-Graph"><a class="header-anchor" href="#Constraint-Graph">¶</a>Constraint Graph</h4>
+<h4 id="Constraint-Graph">Constraint Graph</h4>
 <blockquote>
 <p>Second</p>
 </blockquote>
 <img src="/2025/01/01/Artificial-Intelligence/ai302.png">
-<h4 id="Inference"><a class="header-anchor" href="#Inference">¶</a>Inference</h4>
+<h4 id="Inference">Inference</h4>
 <ul>
 <li>A constraint graph allows the agent to do <font color="red">inference</font> in addition to search.</li>
 <li>Inference basically means <font color="red">checking local consistency</font> (or detecting inconsistency)
@@ -818,7 +818,7 @@ $$</p>
 </li>
 <li>Inference helps <font color="red">prune</font> the search tree, either before or during the search.</li>
 </ul>
-<h3 id="Backtracking-Search-for-CSP"><a class="header-anchor" href="#Backtracking-Search-for-CSP">¶</a>Backtracking Search for CSP</h3>
+<h3 id="Backtracking-Search-for-CSP">Backtracking Search for CSP</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">backtracking_search</span>(<span class="params">csp</span>) -&gt; (solution/failure):</span><br><span class="line">  <span class="keyword">return</span> recursive_backtracking(&#123;&#125;, csp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">recursive_backtracking</span>(<span class="params">&#123;&#125;, csp</span>) -&gt; (result/failure):</span><br><span class="line">  <span class="keyword">if</span> assignment <span class="keyword">is</span> complete then <span class="keyword">return</span> assignment</span><br><span class="line">  var &lt;- Select_Unassigned_Variable(Variable[csp], assignment, csp)</span><br><span class="line">  <span class="keyword">for</span> value <span class="keyword">in</span> Order_Domain_Value(var, assignment, csp) do</span><br><span class="line">    <span class="keyword">if</span> value <span class="keyword">is</span> consistent <span class="keyword">with</span> assignment given constraint[csp] then</span><br><span class="line">      add &#123;var = value&#125; to assignment</span><br><span class="line">      result &lt;- recursive_backtracking(assignment, csp)</span><br><span class="line">      <span class="keyword">if</span> result != failure then <span class="keyword">return</span> result</span><br><span class="line">      remove &#123;var = value&#125; <span class="keyword">from</span> assignment</span><br><span class="line">  <span class="keyword">return</span> failure</span><br></pre></td></tr></table></figure>
 <ul>
 <li>More improvement can be done:
@@ -828,7 +828,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="Adversarial-对抗性-Search"><a class="header-anchor" href="#Adversarial-对抗性-Search">¶</a>Adversarial(对抗性) Search</h2>
+<h2 id="Adversarial-对抗性-Search">Adversarial(对抗性) Search</h2>
 <blockquote>
 <p>以一个游戏为例：</p>
 </blockquote>
@@ -848,7 +848,7 @@ $$</p>
 <li><strong>Recursively</strong> compute the minimax values of each successor state.</li>
 <li>Maximize the worst-case outcome for MAX.</li>
 </ul>
-<h3 id="Alpha-Beta-Pruning"><a class="header-anchor" href="#Alpha-Beta-Pruning">¶</a>Alpha-Beta Pruning</h3>
+<h3 id="Alpha-Beta-Pruning">Alpha-Beta Pruning</h3>
 <ul>
 <li>Idea: Remove (unneeded) part of the minimax tree from consideration.</li>
 </ul>
@@ -873,7 +873,7 @@ $$</p>
 </li>
 <li>And sometimes the <strong>order</strong> of “actions” affects the PF.</li>
 </ul>
-<h2 id="Summary-on-Search"><a class="header-anchor" href="#Summary-on-Search">¶</a>Summary on Search</h2>
+<h2 id="Summary-on-Search">Summary on Search</h2>
 <ul>
 <li>How to <font color="red">represent</font> the search space?
 <ul>
@@ -898,14 +898,14 @@ $$</p>
 <blockquote>
 <p>Always <strong>trade-off</strong> among solution quality, efficiency, and your domain knowledge</p>
 </blockquote>
-<h1 id="Lecture-4-Principles-of-Machine-Learning"><a class="header-anchor" href="#Lecture-4-Principles-of-Machine-Learning">¶</a>Lecture 4. Principles of Machine Learning</h1>
-<h2 id="Outline-4"><a class="header-anchor" href="#Outline-4">¶</a>Outline</h2>
+<h1 id="Lecture-4-Principles-of-Machine-Learning">Lecture 4. Principles of Machine Learning</h1>
+<h2 id="Outline-4">Outline</h2>
 <ul>
 <li>What is Learning</li>
 <li>Key Questions for Learning</li>
 <li>Learning Paradigms and Principles</li>
 </ul>
-<h2 id="What-is-Learning"><a class="header-anchor" href="#What-is-Learning">¶</a>What is Learning?</h2>
+<h2 id="What-is-Learning">What is Learning?</h2>
 <ul>
 <li><strong>Machine Learning</strong>: Given some observations (data) from the environment, how could an agent improve its agent function?</li>
 <li>Intuitive assumptions
@@ -915,7 +915,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h3 id="Two-simple-methods"><a class="header-anchor" href="#Two-simple-methods">¶</a>Two simple methods</h3>
+<h3 id="Two-simple-methods">Two simple methods</h3>
 <p><strong>A Naive Parametric Method —— Bayesian Formula</strong></p>
 <ul>
 <li>Classify a data to the class with the highest posterior probability</li>
@@ -936,7 +936,7 @@ $$</p>
 <li>Find a straight line/hyper-plane to separate data from different classes.</li>
 </ul>
 <p><a name="ai401"><img src="/2025/01/01/Artificial-Intelligence/ai401.png"></a></p>
-<h2 id="Key-Questions-for-Machine-Learning"><a class="header-anchor" href="#Key-Questions-for-Machine-Learning">¶</a>Key Questions for Machine Learning</h2>
+<h2 id="Key-Questions-for-Machine-Learning">Key Questions for Machine Learning</h2>
 <ul>
 <li>What is the format of the data? (data representation)</li>
 <li>What does the agent function look like? (model representation)</li>
@@ -944,7 +944,7 @@ $$</p>
 <li>What is the learning algorithm? (to get a good agent function)</li>
 </ul>
 <center><b>Representation + Algorithm + Evaluation = Agent function/Model</b></center>
-<h2 id="Learning-Paradigms-and-Principles"><a class="header-anchor" href="#Learning-Paradigms-and-Principles">¶</a>Learning Paradigms and Principles</h2>
+<h2 id="Learning-Paradigms-and-Principles">Learning Paradigms and Principles</h2>
 <ul>
 <li>Learning Principles: <font color="magenta">Generalization!</font>
 <ul>
@@ -969,18 +969,18 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h1 id="Lecture-5-Supervised-Learning"><a class="header-anchor" href="#Lecture-5-Supervised-Learning">¶</a>Lecture 5. Supervised Learning</h1>
+<h1 id="Lecture-5-Supervised-Learning">Lecture 5. Supervised Learning</h1>
 <blockquote>
 <p>注意：以下内容部分与课程 MA234 大数据导论与实践相重合！</p>
 </blockquote>
-<h2 id="Outline-5"><a class="header-anchor" href="#Outline-5">¶</a>Outline</h2>
+<h2 id="Outline-5">Outline</h2>
 <ul>
 <li>LDA</li>
 <li>SVM</li>
 <li>ANN (NN)</li>
 <li>DT</li>
 </ul>
-<h2 id="Linear-Discriminant-Analysis"><a class="header-anchor" href="#Linear-Discriminant-Analysis">¶</a>Linear Discriminant Analysis</h2>
+<h2 id="Linear-Discriminant-Analysis">Linear Discriminant Analysis</h2>
 <ul>
 <li>Idea: Viewing each datum to lie in a Euclidean space, find a straight line (a linear function) in the space (recall the <a href="#ai401">example</a> used in the last lecture), where the data projection on this line/plane can be well separate according to their label.</li>
 <li>Let’s learn some Maths:
@@ -1032,7 +1032,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="Support-Vector-Machine"><a class="header-anchor" href="#Support-Vector-Machine">¶</a>Support Vector Machine</h2>
+<h2 id="Support-Vector-Machine">Support Vector Machine</h2>
 <ul>
 <li>Basic idea: margin maximization
 <ul>
@@ -1062,12 +1062,12 @@ $$</p>
 </li>
 </ul>
 <img src="/2025/01/01/Artificial-Intelligence/ai504.png">
-<h2 id="Artificial-Neural-Networks"><a class="header-anchor" href="#Artificial-Neural-Networks">¶</a>Artificial Neural Networks</h2>
+<h2 id="Artificial-Neural-Networks">Artificial Neural Networks</h2>
 <ul>
 <li>A highly nonlinear function that mimic the structure of biological NN.</li>
 </ul>
 <img src="/2025/01/01/Artificial-Intelligence/ai505.png">
-<h3 id="Training-NN"><a class="header-anchor" href="#Training-NN">¶</a>Training NN</h3>
+<h3 id="Training-NN">Training NN</h3>
 <ul>
 <li>Optimize weights to minimize the Loss function</li>
 </ul>
@@ -1098,13 +1098,13 @@ $$</p>
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> Optimality conditions are <span class="keyword">not</span> satisfied:</span><br><span class="line">  <span class="keyword">for</span> (x, y) <span class="keyword">in</span> D:</span><br><span class="line">    calc current output by current param</span><br><span class="line">    calc grad <span class="keyword">for</span> output-layer neurons</span><br><span class="line">    calc grad <span class="keyword">for</span> hidden-layer neurons</span><br><span class="line">    update weight <span class="keyword">and</span> thresholds</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h3 id="Some-issues"><a class="header-anchor" href="#Some-issues">¶</a>Some issues</h3>
+<h3 id="Some-issues">Some issues</h3>
 <ul>
 <li>Universal Approximation Theory</li>
 <li>Fully connected NN (MLP) with more than 1 hidden layer is very difficult to train</li>
 <li>etc.</li>
 </ul>
-<h2 id="Decision-Tree"><a class="header-anchor" href="#Decision-Tree">¶</a>Decision Tree</h2>
+<h2 id="Decision-Tree">Decision Tree</h2>
 <ul>
 <li>A natural way to handle nonmetric data (also applicable to real-valued data).</li>
 <li>Tree searching metrics
@@ -1139,14 +1139,14 @@ $$</p>
 <li>Introduce the tree height (or any other complexity measure as a penalty)</li>
 <li>Fully grow the tree first, and then prune it (post processing)</li>
 </ul>
-<h1 id="Lecture-6-Performance-Evaluation-for-Machine-Learning"><a class="header-anchor" href="#Lecture-6-Performance-Evaluation-for-Machine-Learning">¶</a>Lecture 6. Performance Evaluation for Machine Learning</h1>
-<h2 id="Outline-6"><a class="header-anchor" href="#Outline-6">¶</a>Outline</h2>
+<h1 id="Lecture-6-Performance-Evaluation-for-Machine-Learning">Lecture 6. Performance Evaluation for Machine Learning</h1>
+<h2 id="Outline-6">Outline</h2>
 <ul>
 <li>Brief view</li>
 <li>Performance Metrics</li>
 <li>Estimating the Generalization</li>
 </ul>
-<h2 id="Brief-view"><a class="header-anchor" href="#Brief-view">¶</a>Brief view</h2>
+<h2 id="Brief-view">Brief view</h2>
 <ul>
 <li>Be careful when choosing your objective function, two principles:
 <ul>
@@ -1161,7 +1161,7 @@ $$</p>
 </li>
 <li>Can only reduce rather than remove risk. There is no guarantee in life.</li>
 </ul>
-<h2 id="Performance-Metrics"><a class="header-anchor" href="#Performance-Metrics">¶</a>Performance Metrics</h2>
+<h2 id="Performance-Metrics">Performance Metrics</h2>
 <blockquote>
 <p>Review MA234.</p>
 </blockquote>
@@ -1185,7 +1185,7 @@ $$</p>
 <li>ROC 👉 TPR / FPR</li>
 <li>AUC : slope of ROC, good PF when $AUC\gt 0.75$</li>
 </ul>
-<h2 id="Estimating-the-Generalization"><a class="header-anchor" href="#Estimating-the-Generalization">¶</a>Estimating the Generalization</h2>
+<h2 id="Estimating-the-Generalization">Estimating the Generalization</h2>
 <ul>
 <li>Generalization performance is a random variable.</li>
 <li>Split the data in hand into training and testing subsets.
@@ -1198,15 +1198,15 @@ $$</p>
 <li>Collecting the test performance for many times, calculate the average and standard deviation.</li>
 <li>Do statistical tests (check your textbook on statistics)</li>
 </ul>
-<h1 id="Lecture-7-Unsupervised-Learning"><a class="header-anchor" href="#Lecture-7-Unsupervised-Learning">¶</a>Lecture 7. Unsupervised Learning</h1>
-<h2 id="Outline-7"><a class="header-anchor" href="#Outline-7">¶</a>Outline</h2>
+<h1 id="Lecture-7-Unsupervised-Learning">Lecture 7. Unsupervised Learning</h1>
+<h2 id="Outline-7">Outline</h2>
 <ul>
 <li>Why Unsupervised ?</li>
 <li>Clustering</li>
 <li>K-Means</li>
 <li>Dimensionality Reduction</li>
 </ul>
-<h2 id="Why-Unsupervised"><a class="header-anchor" href="#Why-Unsupervised">¶</a>Why Unsupervised ?</h2>
+<h2 id="Why-Unsupervised">Why Unsupervised ?</h2>
 <ul>
 <li>In practice, it might neither be tractable to collect sufficient labelled data</li>
 <li>Instead, it is relatively easy to accumulate large amount of unlabeled data.</li>
@@ -1218,7 +1218,7 @@ $$</p>
 <li>For unsupervised learning, the evaluation is usually less specific and <font color="red">more subjective</font>.</li>
 <li>It is more likely that an unsupervised learning problem is ill-defined and the learning output deviate from our intuition.</li>
 </ul>
-<h2 id="Clustering"><a class="header-anchor" href="#Clustering">¶</a>Clustering</h2>
+<h2 id="Clustering">Clustering</h2>
 <ul>
 <li><strong>Def.</strong> a typical ill-defined problem as there is no unique definition of the similarity between clusters.</li>
 <li>Idea: gathering similar data into one class
@@ -1242,8 +1242,8 @@ $$</p>
 <blockquote>
 <p>层次聚类？</p>
 </blockquote>
-<h2 id="K-Means"><a class="header-anchor" href="#K-Means">¶</a>K-Means</h2>
-<h3 id="Algorithm"><a class="header-anchor" href="#Algorithm">¶</a>Algorithm</h3>
+<h2 id="K-Means">K-Means</h2>
+<h3 id="Algorithm">Algorithm</h3>
 <ul>
 <li>Given a predefined $K$
 <ol>
@@ -1257,10 +1257,10 @@ $$</p>
 <blockquote>
 <p>Not only similarity metric, but also needs calculating of the average.</p>
 </blockquote>
-<h3 id="Application-Clustering-for-Graph-Data"><a class="header-anchor" href="#Application-Clustering-for-Graph-Data">¶</a>Application: Clustering for Graph Data</h3>
+<h3 id="Application-Clustering-for-Graph-Data">Application: Clustering for Graph Data</h3>
 <img src="/2025/01/01/Artificial-Intelligence/ai701.png">
-<h2 id="Dimensionality-Reduction"><a class="header-anchor" href="#Dimensionality-Reduction">¶</a>Dimensionality Reduction</h2>
-<h3 id="Principle-Component-Analysis"><a class="header-anchor" href="#Principle-Component-Analysis">¶</a>Principle Component Analysis</h3>
+<h2 id="Dimensionality-Reduction">Dimensionality Reduction</h2>
+<h3 id="Principle-Component-Analysis">Principle Component Analysis</h3>
 <ul>
 <li>Given a n-by-d data set, can we map it into a lower dimensional space with a <font color="red">linear</font> transformation, while only introduce the minimum information loss?</li>
 <li>Suppose we want to reduce data dimension from $n$ to $k$
@@ -1274,7 +1274,7 @@ $$</p>
 </ol>
 </li>
 </ul>
-<h3 id="Locally-Linear-Embedding"><a class="header-anchor" href="#Locally-Linear-Embedding">¶</a>Locally Linear Embedding</h3>
+<h3 id="Locally-Linear-Embedding">Locally Linear Embedding</h3>
 <img src="/2025/01/01/Artificial-Intelligence/ai702.png">
 <ul>
 <li>Idea flow:
@@ -1293,14 +1293,14 @@ $$</p>
 </ol>
 </li>
 </ul>
-<h1 id="Lecture-8-Recommender-System"><a class="header-anchor" href="#Lecture-8-Recommender-System">¶</a>Lecture 8. Recommender System</h1>
-<h2 id="Outline-8"><a class="header-anchor" href="#Outline-8">¶</a>Outline</h2>
+<h1 id="Lecture-8-Recommender-System">Lecture 8. Recommender System</h1>
+<h2 id="Outline-8">Outline</h2>
 <ul>
 <li>Overview of recommender system (RS)</li>
 <li>How does RS do recommendation?</li>
 <li>How to build a RS?</li>
 </ul>
-<h2 id="Overview-of-recommender-system-RS"><a class="header-anchor" href="#Overview-of-recommender-system-RS">¶</a>Overview of recommender system (RS)</h2>
+<h2 id="Overview-of-recommender-system-RS">Overview of recommender system (RS)</h2>
 <ul>
 <li>Recommender System recommend new items to its user.</li>
 <li>Based on ?
@@ -1317,7 +1317,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="How-does-RS-do-recommendation"><a class="header-anchor" href="#How-does-RS-do-recommendation">¶</a>How does RS do recommendation?</h2>
+<h2 id="How-does-RS-do-recommendation">How does RS do recommendation?</h2>
 <img src="/2025/01/01/Artificial-Intelligence/ai801.png">
 <ul>
 <li>RS basically estimate the probability of interaction between a user and an item,</li>
@@ -1330,14 +1330,14 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="How-to-build-a-RS"><a class="header-anchor" href="#How-to-build-a-RS">¶</a>How to build a RS?</h2>
-<h3 id="Problem-Formulation"><a class="header-anchor" href="#Problem-Formulation">¶</a>Problem Formulation</h3>
+<h2 id="How-to-build-a-RS">How to build a RS?</h2>
+<h3 id="Problem-Formulation">Problem Formulation</h3>
 <ul>
 <li><strong>Input:</strong> Historical user-item interaction records or additional side information (e.g. user’s social relations, item’s knowledge, etc.)</li>
 <li><strong>Output:</strong> The score function</li>
 </ul>
 <img src="/2025/01/01/Artificial-Intelligence/ai802.png">
-<h3 id="Typical-methods"><a class="header-anchor" href="#Typical-methods">¶</a>Typical methods</h3>
+<h3 id="Typical-methods">Typical methods</h3>
 <ul>
 <li><strong>Content-based method</strong>:
 <ul>
@@ -1357,7 +1357,7 @@ $$</p>
 </li>
 <li><strong>Hybrid method</strong>: Combination of CF-based and Content-based method</li>
 </ul>
-<h3 id="CF-based-method"><a class="header-anchor" href="#CF-based-method">¶</a>CF-based method</h3>
+<h3 id="CF-based-method">CF-based method</h3>
 <ul>
 <li>Attributes/features of users and items are not available,
 <ul>
@@ -1367,7 +1367,7 @@ $$</p>
 </li>
 </ul>
 <img src="/2025/01/01/Artificial-Intelligence/ai803.png">
-<h3 id="Represented-by-correlation"><a class="header-anchor" href="#Represented-by-correlation">¶</a>Represented by correlation</h3>
+<h3 id="Represented-by-correlation">Represented by correlation</h3>
 <ul>
 <li>Represent the user/item by its correlation with the other users/items.
 <ul>
@@ -1405,7 +1405,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h3 id="Represent-by-matrix-factorization"><a class="header-anchor" href="#Represent-by-matrix-factorization">¶</a>Represent by matrix factorization</h3>
+<h3 id="Represent-by-matrix-factorization">Represent by matrix factorization</h3>
 <ul>
 <li>A matrix $R\in \mathbb{R}^{n\times m}$ approximate to the product of two matrix:</li>
 </ul>
@@ -1433,8 +1433,8 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h1 id="Lecture-9-Automated-Machine-Learning"><a class="header-anchor" href="#Lecture-9-Automated-Machine-Learning">¶</a>Lecture 9. Automated Machine Learning</h1>
-<h2 id="Tuning-Hyper-parameters"><a class="header-anchor" href="#Tuning-Hyper-parameters">¶</a>Tuning Hyper-parameters</h2>
+<h1 id="Lecture-9-Automated-Machine-Learning">Lecture 9. Automated Machine Learning</h1>
+<h2 id="Tuning-Hyper-parameters">Tuning Hyper-parameters</h2>
 <blockquote>
 <p>How to tune the hyper-parameters?</p>
 </blockquote>
@@ -1455,15 +1455,15 @@ $$</p>
 <blockquote>
 <p>Too short ? Sorry, my lecture slides is only 6 pages.</p>
 </blockquote>
-<h1 id="Lecture-10-Logical-Agents"><a class="header-anchor" href="#Lecture-10-Logical-Agents">¶</a>Lecture 10. Logical Agents</h1>
-<h2 id="Outline-9"><a class="header-anchor" href="#Outline-9">¶</a>Outline</h2>
+<h1 id="Lecture-10-Logical-Agents">Lecture 10. Logical Agents</h1>
+<h2 id="Outline-9">Outline</h2>
 <ul>
 <li>Knowledge-based Agents</li>
 <li>Represent Knowledge with Logic</li>
 <li>(Propositional) Logic</li>
 <li>Inference with Propositional Logic</li>
 </ul>
-<h2 id="Knowledge-based-Agents"><a class="header-anchor" href="#Knowledge-based-Agents">¶</a>Knowledge-based Agents</h2>
+<h2 id="Knowledge-based-Agents">Knowledge-based Agents</h2>
 <p><strong>Agent Components</strong></p>
 <ul>
 <li>Intelligent agents need <font color="red">knowledge</font> about the world to choose good actions/decisions.</li>
@@ -1507,7 +1507,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="Represent-Knowledge-with-Logic"><a class="header-anchor" href="#Represent-Knowledge-with-Logic">¶</a>Represent Knowledge with Logic</h2>
+<h2 id="Represent-Knowledge-with-Logic">Represent Knowledge with Logic</h2>
 <ul>
 <li><font color="dodgerblue">Knowledge base</font>: a set of sentences in a formal representation</li>
 <li><font color="dodgerblue">Syntax</font>: defines well-formed sentences in the language</li>
@@ -1520,13 +1520,13 @@ $$</p>
 	<td><img src="/2025/01/01/Artificial-Intelligence/ai1003.png"></td>
 </tr>
 </table>
-<h3 id="Inference-2"><a class="header-anchor" href="#Inference-2">¶</a>Inference</h3>
+<h3 id="Inference-2">Inference</h3>
 <ul>
 <li>Inference: the procedure of deriving a sentence from another sentence</li>
 <li><font color="red">Model Checking</font>: A basic (and general) idea to inference</li>
 </ul>
 <img src="/2025/01/01/Artificial-Intelligence/ai1004.png" style="zoom:50%">
-<h2 id="Propositional-Logic"><a class="header-anchor" href="#Propositional-Logic">¶</a>Propositional Logic</h2>
+<h2 id="Propositional-Logic">Propositional Logic</h2>
 <blockquote>
 <p>Most have been learnt in CS201 Discrete Mathemetics</p>
 </blockquote>
@@ -1542,7 +1542,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="Inference-with-Propositional-Logic"><a class="header-anchor" href="#Inference-with-Propositional-Logic">¶</a>Inference with Propositional Logic</h2>
+<h2 id="Inference-with-Propositional-Logic">Inference with Propositional Logic</h2>
 <ul>
 <li>Our inference algorithm target:</li>
 <li><strong>Sound</strong>: oes not infer false formulas, that is, derives only entailed sentences.
@@ -1561,7 +1561,7 @@ $$</p>
 <p>Go review some Inferences instance:</p>
 <p>e.g. Modus Ponens, Modus Tollens, etc.</p>
 </blockquote>
-<h3 id="Inference-as-a-search-problem"><a class="header-anchor" href="#Inference-as-a-search-problem">¶</a>Inference as a search problem</h3>
+<h3 id="Inference-as-a-search-problem">Inference as a search problem</h3>
 <ul>
 <li><font color="red">Initial state:</font> The initial KB</li>
 <li><font color="red">Actions:</font> all inference rules applied to all sentences that match the top of the inference rule</li>
@@ -1587,7 +1587,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h3 id="Proof-by-resolution"><a class="header-anchor" href="#Proof-by-resolution">¶</a>Proof by resolution</h3>
+<h3 id="Proof-by-resolution">Proof by resolution</h3>
 <img src="/2025/01/01/Artificial-Intelligence/ai1005.png" style="zoom:60%">
 <ul>
 <li>Two cases to end loop:
@@ -1597,7 +1597,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h3 id="Forward-chaining"><a class="header-anchor" href="#Forward-chaining">¶</a>Forward chaining</h3>
+<h3 id="Forward-chaining">Forward chaining</h3>
 <img src="/2025/01/01/Artificial-Intelligence/ai1006.png" style="zoom:60%">
 <ul>
 <li><strong>Idea</strong>: Find any rule whose premises are satisfied in the $KB$, add its conclusion to the KB, until query is found</li>
@@ -1616,7 +1616,7 @@ $$</p>
 	<td><img src="/2025/01/01/Artificial-Intelligence/ai1014.png"></td>
 </tr>
 </table>
-<h3 id="Backward-chaining"><a class="header-anchor" href="#Backward-chaining">¶</a>Backward chaining</h3>
+<h3 id="Backward-chaining">Backward chaining</h3>
 <ul>
 <li><strong>Idea:</strong> Works backwards from the query $q$</li>
 <li>To prove $q$ by Backward Chaining:
@@ -1687,7 +1687,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h3 id="DPLL"><a class="header-anchor" href="#DPLL">¶</a>DPLL</h3>
+<h3 id="DPLL">DPLL</h3>
 <blockquote>
 <p>The <strong>DPLL algorithm</strong> is similar to <strong>Backtracking</strong> for CSP, but using various problem dependent information/heuristics, such as Early Termination, Pure symbol heuristic and Unit clause heuristic.</p>
 </blockquote>
@@ -1725,7 +1725,7 @@ $$</p>
 </li>
 <li>At last, we got a <code>model</code> with some assigned literal. That’s the solution we want.</li>
 </ul>
-<h3 id="Summary-2"><a class="header-anchor" href="#Summary-2">¶</a>Summary</h3>
+<h3 id="Summary-2">Summary</h3>
 <ul>
 <li><strong>Inference with Propositional Logic</strong> 👉 we want an inference algorithm that is:
 <ul>
@@ -1765,8 +1765,8 @@ $$</p>
 </li>
 </ul>
 </blockquote>
-<h1 id="Lecture-11-First-Order-Logic"><a class="header-anchor" href="#Lecture-11-First-Order-Logic">¶</a>Lecture 11. First Order Logic</h1>
-<h2 id="Inference-with-FOL"><a class="header-anchor" href="#Inference-with-FOL">¶</a>Inference with FOL</h2>
+<h1 id="Lecture-11-First-Order-Logic">Lecture 11. First Order Logic</h1>
+<h2 id="Inference-with-FOL">Inference with FOL</h2>
 <blockquote>
 <p><strong>Basic concept of FOL</strong></p>
 <p>Three basic component: Objects, Relations, Functions</p>
@@ -1786,12 +1786,12 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h1 id="Lecture-12-Representing-and-Inference-with-Uncertainty"><a class="header-anchor" href="#Lecture-12-Representing-and-Inference-with-Uncertainty">¶</a>Lecture 12. Representing and Inference with Uncertainty</h1>
-<h2 id="Outline-10"><a class="header-anchor" href="#Outline-10">¶</a>Outline</h2>
+<h1 id="Lecture-12-Representing-and-Inference-with-Uncertainty">Lecture 12. Representing and Inference with Uncertainty</h1>
+<h2 id="Outline-10">Outline</h2>
 <ul>
 <li>Uncertainty and Rational Decisions</li>
 </ul>
-<h2 id="Uncertainty-and-Rational-Decisions"><a class="header-anchor" href="#Uncertainty-and-Rational-Decisions">¶</a>Uncertainty and Rational Decisions</h2>
+<h2 id="Uncertainty-and-Rational-Decisions">Uncertainty and Rational Decisions</h2>
 <ul>
 <li>Alternative to Logic
 <ul>
@@ -1803,7 +1803,7 @@ $$</p>
 </li>
 <li><font color="red">In a word, use probability to replace logic.</font></li>
 </ul>
-<h2 id="Basic-Probability-Theory-and-Usage"><a class="header-anchor" href="#Basic-Probability-Theory-and-Usage">¶</a>Basic Probability Theory and Usage</h2>
+<h2 id="Basic-Probability-Theory-and-Usage">Basic Probability Theory and Usage</h2>
 <table>
 <tr>
 	<td><img src="/2025/01/01/Artificial-Intelligence/ai1201.png"></td>
@@ -1814,7 +1814,7 @@ $$</p>
 <p><font color="green">Recall:</font> MA212 概率论与数理统计</p>
 <p>贝叶斯公式，条件概率，联合概率等</p>
 </blockquote>
-<h2 id="Bayesian-Networks"><a class="header-anchor" href="#Bayesian-Networks">¶</a>Bayesian Networks</h2>
+<h2 id="Bayesian-Networks">Bayesian Networks</h2>
 <ul>
 <li>What is a BN ?
 <ul>
@@ -1834,7 +1834,7 @@ $$</p>
 <li>How to construct a <strong>CPT for BN</strong>?</li>
 </ul>
 <img src="/2025/01/01/Artificial-Intelligence/ai1204.png" style="zoom:60%">
-<h3 id="Inference-with-BN"><a class="header-anchor" href="#Inference-with-BN">¶</a>Inference with BN</h3>
+<h3 id="Inference-with-BN">Inference with BN</h3>
 <ul>
 <li>Given a Bayesian Network, and an (or some) observed events, which specifies the value for <font color="red">evidence variables</font>, we want to know the probability distribution of one (or several) <font color="red">query variables</font> $\color{red}X$, i.e. $P(X | \text{events})$</li>
 <li>First we try enumeration (calc all possible cases)</li>
@@ -1845,7 +1845,7 @@ $$</p>
 <li>A way to simplify: Enumeration by Variable Elimination</li>
 </ul>
 <img src="/2025/01/01/Artificial-Intelligence/ai1206.png" style="zoom:70%">
-<h3 id="Approximate-Inference-with-BN"><a class="header-anchor" href="#Approximate-Inference-with-BN">¶</a>Approximate Inference with BN</h3>
+<h3 id="Approximate-Inference-with-BN">Approximate Inference with BN</h3>
 <ul>
 <li>Basic Idea:
 <ol>
@@ -1863,15 +1863,15 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h4 id="Sampling-from-an-empty-network"><a class="header-anchor" href="#Sampling-from-an-empty-network">¶</a>Sampling from an empty network</h4>
+<h4 id="Sampling-from-an-empty-network">Sampling from an empty network</h4>
 <img src="/2025/01/01/Artificial-Intelligence/ai1207.png" style="zoom:60%">
-<h4 id="Rejection-Sampling"><a class="header-anchor" href="#Rejection-Sampling">¶</a>Rejection Sampling</h4>
+<h4 id="Rejection-Sampling">Rejection Sampling</h4>
 <img src="/2025/01/01/Artificial-Intelligence/ai1208.png" style="zoom:80%">
-<h4 id="Likelihood-Weighting"><a class="header-anchor" href="#Likelihood-Weighting">¶</a>Likelihood Weighting</h4>
+<h4 id="Likelihood-Weighting">Likelihood Weighting</h4>
 <img src="/2025/01/01/Artificial-Intelligence/ai1209.png" style="zoom:80%">
-<h4 id="MCMC"><a class="header-anchor" href="#MCMC">¶</a>MCMC</h4>
+<h4 id="MCMC">MCMC</h4>
 <img src="/2025/01/01/Artificial-Intelligence/ai1210.png" style="zoom:70%">
-<h3 id="How-to-construct-a-BN-or-KB-in-general"><a class="header-anchor" href="#How-to-construct-a-BN-or-KB-in-general">¶</a>How to construct a BN (or KB in general) ?</h3>
+<h3 id="How-to-construct-a-BN-or-KB-in-general">How to construct a BN (or KB in general) ?</h3>
 <ul>
 <li>Challenge
 <ul>
@@ -1901,8 +1901,8 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h1 id="Lecture-13-Knowledge-Graph"><a class="header-anchor" href="#Lecture-13-Knowledge-Graph">¶</a>Lecture 13. Knowledge Graph</h1>
-<h2 id="Overview-of-Knowledge-Graph-KG"><a class="header-anchor" href="#Overview-of-Knowledge-Graph-KG">¶</a>Overview of Knowledge Graph (KG)</h2>
+<h1 id="Lecture-13-Knowledge-Graph">Lecture 13. Knowledge Graph</h1>
+<h2 id="Overview-of-Knowledge-Graph-KG">Overview of Knowledge Graph (KG)</h2>
 <blockquote>
 <p>What is Knowledge Graph?</p>
 </blockquote>
@@ -1930,7 +1930,7 @@ $$</p>
 </li>
 </ul>
 <img src="/2025/01/01/Artificial-Intelligence/ai1301.png" style="zoom:90%">
-<h2 id="How-to-construct-Knowledge-Graph？"><a class="header-anchor" href="#How-to-construct-Knowledge-Graph？">¶</a>How to construct Knowledge Graph？</h2>
+<h2 id="How-to-construct-Knowledge-Graph？">How to construct Knowledge Graph？</h2>
 <ul>
 <li>Heterogeneous directed graphs.
 <ul>
@@ -1948,7 +1948,7 @@ $$</p>
 </ul>
 <p><strong>The General (Semi-)Automatic Viewpoint</strong></p>
 <img src="/2025/01/01/Artificial-Intelligence/ai1302.png" style="zoom:60%">
-<h3 id="Automatic-Entity-Recognition"><a class="header-anchor" href="#Automatic-Entity-Recognition">¶</a>Automatic Entity Recognition</h3>
+<h3 id="Automatic-Entity-Recognition">Automatic Entity Recognition</h3>
 <ul>
 <li>Identify meaningful entities based on the statistical metrics of vocabulary across various texts.
 <ul>
@@ -1984,7 +1984,7 @@ $$</p>
 <p>Also, some ML techniques can solve the NER(Name Entity Recognition) tasks. Considering <strong>input</strong> is a sentence, <strong>output</strong> is the label of each word in the sentence.</p>
 </blockquote>
 <img src="/2025/01/01/Artificial-Intelligence/ai1303.png" style="zoom:80%">
-<h3 id="Automatic-Relation-Extraction"><a class="header-anchor" href="#Automatic-Relation-Extraction">¶</a>Automatic Relation Extraction</h3>
+<h3 id="Automatic-Relation-Extraction">Automatic Relation Extraction</h3>
 <blockquote>
 <p>By recognizing entities, now AI should “learn” about relations.</p>
 </blockquote>
@@ -2006,7 +2006,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h3 id="Knowledge-Graph-Completion"><a class="header-anchor" href="#Knowledge-Graph-Completion">¶</a>Knowledge Graph Completion</h3>
+<h3 id="Knowledge-Graph-Completion">Knowledge Graph Completion</h3>
 <img src="/2025/01/01/Artificial-Intelligence/ai1304.png" style="zoom:80%">
 <ul>
 <li>
@@ -2039,7 +2039,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="KG-Based-Recommender-System"><a class="header-anchor" href="#KG-Based-Recommender-System">¶</a>KG-Based Recommender System</h2>
+<h2 id="KG-Based-Recommender-System">KG-Based Recommender System</h2>
 <img src="/2025/01/01/Artificial-Intelligence/ai1305.png" style="zoom:80%">
 <img src="/2025/01/01/Artificial-Intelligence/ai1306.png" style="zoom:80%">
 <img src="/2025/01/01/Artificial-Intelligence/ai1307.png" style="zoom:80%">
@@ -2055,7 +2055,7 @@ $u$ and item $w$ by a model $M$, such as MLP or matrix multiplication.</li>
 </ul>
 </li>
 </ul>
-<h1 id="Review-and-Semester-Summary"><a class="header-anchor" href="#Review-and-Semester-Summary">¶</a>Review and Semester Summary</h1>
+<h1 id="Review-and-Semester-Summary">Review and Semester Summary</h1>
 <blockquote>
 <p>I can build a knowledge base here to tell you what we’ve learnt in AI course. 😂</p>
 <p>Just a framework.</p>
@@ -2084,7 +2084,7 @@ $u$ and item $w$ by a model $M$, such as MLP or matrix multiplication.</li>
 </ul>
 </li>
 </ul>
-<h2 id="Connection-with-Previous-Courses"><a class="header-anchor" href="#Connection-with-Previous-Courses">¶</a>Connection with Previous Courses</h2>
+<h2 id="Connection-with-Previous-Courses">Connection with Previous Courses</h2>
 <ul>
 <li>In searching module, we use algorithm of graph, which we’ve learnt in <strong>DSAA</strong>.</li>
 <li>In ML module, we use knowledge in <strong>Big Data</strong> Course.
@@ -2118,8 +2118,8 @@ $u$ and item $w$ by a model $M$, such as MLP or matrix multiplication.</li>
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CSE-Learning/" rel="tag"><i class="fa fa-tag"></i> CSE Learning</a>
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/CSE-Learning/" rel="tag"><i class="fa fa-tag"></i> CSE Learning</a>
           </div>
 
         

@@ -12,14 +12,14 @@
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetbrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-atom.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="大数据导论与实践是一门关于数据处理和分析的数学课程。它着重于机器学习，可以了解一些关于数据分析的算法和原理。">
 <meta property="og:type" content="article">
@@ -39,8 +39,8 @@
 <meta property="article:published_time" content="2024-06-22T13:59:45.000Z">
 <meta property="article:modified_time" content="2025-06-18T17:50:24.330Z">
 <meta property="article:author" content="Bionic l&#39;Hôpital">
-<meta property="article:tag" content="CSE Learning">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="CSE Learning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://hqj2221.github.io/2024/06/22/Big-Data-1/bd2.png">
 
@@ -282,9 +282,9 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="Big-Data-I"><a class="header-anchor" href="#Big-Data-I">¶</a>Big Data (I)</h1>
-<h2 id="I-Pre-Knowledge"><a class="header-anchor" href="#I-Pre-Knowledge">¶</a>I. Pre-Knowledge</h2>
-<h3 id="Recall-for-Linear-Algebra"><a class="header-anchor" href="#Recall-for-Linear-Algebra">¶</a>Recall for Linear Algebra</h3>
+    <div class="post-body" itemprop="articleBody"><h1 id="Big-Data-I">Big Data (I)</h1>
+<h2 id="I-Pre-Knowledge">I. Pre-Knowledge</h2>
+<h3 id="Recall-for-Linear-Algebra">Recall for Linear Algebra</h3>
 <p><strong>1. Linear Combination and Linear Function</strong></p>
 <p><strong>Def.</strong> Suppose $\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e$ are finite vector from <font color="red">linear space</font> $\textbf{V}$. If any vector from $\textbf{V}$ can be represented as $\vec\alpha = k_1\vec\alpha_1+k_2\vec\alpha_2+\cdots + k_e \vec\alpha_e$ , we say that $\vec\alpha$ can be linearly represented by vector group ${\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e}$ , or $\alpha$ is a Linear Combination of ${\vec\alpha_1,\vec\alpha_2,\cdots, \vec\alpha_e}$.</p>
 <p>$$<br>
@@ -328,9 +328,9 @@ $$</p>
 <ul>
 <li>If $A$ is a basis of $V$ , then $\forall \vec{w} \in V$ , there must be unique array $[a_1, a_2,\cdots,a_k]$ such that $\vec{w}=a_1v_1+a_2v_2+\cdots +a_kv_k$ . Then we call this array a <font color="red">coordinate</font> of $\vec w$ in $A$ , noted $[\vec w]_{A}$</li>
 </ul>
-<h3 id="Recall-for-Calculus"><a class="header-anchor" href="#Recall-for-Calculus">¶</a>Recall for Calculus</h3>
+<h3 id="Recall-for-Calculus">Recall for Calculus</h3>
 <p><strong>1. Langrange Multiplier</strong> [拉格朗日乘数法]</p>
-<h3 id="Other-Prepared-Knowledge"><a class="header-anchor" href="#Other-Prepared-Knowledge">¶</a>Other Prepared Knowledge</h3>
+<h3 id="Other-Prepared-Knowledge">Other Prepared Knowledge</h3>
 <p><strong>1. Norm</strong></p>
 <p>On vectors :</p>
 <ul>
@@ -346,8 +346,8 @@ $$</p>
 <li>$\infty$-Norm(行和范数) : $|A|<em>\infty=\underset{i}\max \sum</em>{j=1}^{n}{|a_{i,j}|}$  , maximum among <font color="red">absolute sum of row vector</font>.</li>
 <li>F-Norm(核范数) : $|A|<em>*=\sum</em>{i=1}^{n}\lambda_i$  , where $\lambda_i$ is singular value(奇异值) of $A$</li>
 </ul>
-<h2 id="II-Intro"><a class="header-anchor" href="#II-Intro">¶</a>II. Intro</h2>
-<h3 id="About-Big-Data"><a class="header-anchor" href="#About-Big-Data">¶</a>About Big Data</h3>
+<h2 id="II-Intro">II. Intro</h2>
+<h3 id="About-Big-Data">About Big Data</h3>
 <ul>
 <li><font color="Red"><strong>4 Big “V”</strong></font> required in Big Data
 <ul>
@@ -409,7 +409,7 @@ $$</p>
 <li>Complex <font color="#921aff">variety</font> of data</li>
 <li>Large noise (噪点, <font color="#921aff">values</font>) : data are always contaminated with noises</li>
 </ul>
-<h3 id="Representation-of-Data"><a class="header-anchor" href="#Representation-of-Data">¶</a>Representation of Data</h3>
+<h3 id="Representation-of-Data">Representation of Data</h3>
 <ul>
 <li>Input space $\mathcal X = {\text{All possible samples}}$ ; $\textbf{x} \in \mathcal{X}$ is an input vector, also called feature, predictor, independent variable, etc; <strong>typically multi-dimension</strong>. For multi-dimension, $\textbf{x} \in \mathbb R^p$ is a weight vector (权重向量，每一维度所占权重可调整) or coding vector (编码向量，e.g. 矢量图).</li>
 <li>Output space $\mathcal{Y} = {\text{All possible results}}$ ; $y \in \mathcal{Y}$ is an output vector, also called response, dependent variable, etc; <strong>typically one dimension</strong>. E.g. $y = 0\ \text{or}\ 1$ for classiﬁcation problems, $y \in \mathbb{R}$ for regression problems.</li>
@@ -455,7 +455,7 @@ $$</p>
 <ul>
 <li><font color="red">No label, but have target</font>. Play games, e.g., Go, StarCraft; robotics; auto-steering.</li>
 </ul>
-<h3 id="Modeling-and-Analysis"><a class="header-anchor" href="#Modeling-and-Analysis">¶</a>Modeling and Analysis</h3>
+<h3 id="Modeling-and-Analysis">Modeling and Analysis</h3>
 <ul>
 <li>Decision function (hypothesis) space :
 <ul>
@@ -564,8 +564,8 @@ $$</p>
 <img src="/2024/06/22/Big-Data-1/bd1.png" alt="bd1" width="60%">
 </div>
 <hr>
-<h2 id="III-Data-Preprocessing"><a class="header-anchor" href="#III-Data-Preprocessing">¶</a>III. Data Preprocessing</h2>
-<h3 id="Data-Type"><a class="header-anchor" href="#Data-Type">¶</a>Data Type</h3>
+<h2 id="III-Data-Preprocessing">III. Data Preprocessing</h2>
+<h3 id="Data-Type">Data Type</h3>
 <ul>
 <li>Types of Attributes  <font size="2">(每门课几乎都离不开这个)</font>
 <ul>
@@ -677,7 +677,7 @@ $$</p>
 <p>$$<br>
 \text d(\textbf{x}<em>i,\textbf{x}<em>j)=\frac{\sum</em>{g=1}^{G}w</em>{ij}^{(g)}\text d_{ij}^{(g)}}{\sum_{g=1}^{G}w_{ij}^{(g)}}<br>
 $$</p>
-<h3 id="Data-Preprocessing-Lecture"><a class="header-anchor" href="#Data-Preprocessing-Lecture">¶</a>Data Preprocessing (Lecture)</h3>
+<h3 id="Data-Preprocessing-Lecture">Data Preprocessing (Lecture)</h3>
 <div align="center">
 <img src="/2024/06/22/Big-Data-1/bd7.png" alt="bd7" width="90%">
 </div>
@@ -743,7 +743,7 @@ $$</p>
 </li>
 <li>Model based methods : treat missing variable as <code>y</code>, other variables as <code>x</code> ; take the  data without missing values as out training set to train a <font color="#009100">classification</font> or <font color="#009100">regression</font> model ; take those with missing values as test set to predict the missing values.</li>
 </ul>
-<h3 id="Outlier-异常值"><a class="header-anchor" href="#Outlier-异常值">¶</a>Outlier (异常值)</h3>
+<h3 id="Outlier-异常值">Outlier (异常值)</h3>
 <ul>
 <li>
 <p>Outlier Detection</p>
@@ -801,8 +801,8 @@ $$</p>
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CSE-Learning/" rel="tag"><i class="fa fa-tag"></i> CSE Learning</a>
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/CSE-Learning/" rel="tag"><i class="fa fa-tag"></i> CSE Learning</a>
           </div>
 
         
