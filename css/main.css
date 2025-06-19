@@ -1294,7 +1294,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #65ffc1;
+    background: #f72893;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2906,7 +2906,7 @@ header.header {
   }
 }
 body {
-  background: url("/images/star.png");
+  background: url("/images/carlotta.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
