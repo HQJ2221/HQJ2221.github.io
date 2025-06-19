@@ -1,0 +1,2828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons8-fox-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons8-fox-16.png">
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-atom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="The basic concept of software development and process of each step of engineering. You will learn how to complete a software by designing, building, testing, deploying and maintaining it.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS304 软件工程">
+<meta property="og:url" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/index.html">
+<meta property="og:site_name" content="Qijun He&#39;s Personal Pages">
+<meta property="og:description" content="The basic concept of software development and process of each step of engineering. You will learn how to complete a software by designing, building, testing, deploying and maintaining it.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/1.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/2.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/4.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/5.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/6.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/7.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/8.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/9.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/10.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/11.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/12.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/13.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/14.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/15.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/16.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/17.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/18.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/20.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/21.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/22.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/23.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/63.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/64.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/24.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/25.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/26.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/27.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/65.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/28.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/29.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/30.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/31.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/32.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/33.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/34.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/35.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/36.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/37.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/38.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/39.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/40.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/41.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/44.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/42.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/43.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/45.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/46.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/66.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/67.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/47.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/48.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/49.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/68.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/50.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/51.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/52.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/53.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/54.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/55.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/56.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/57.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/58.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/59.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/60.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/61.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/62.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/69.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/70.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/71.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/72.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/73.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/74.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/75.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/76.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/77.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/78.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/79.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/80.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/81.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/82.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/83.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/84.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/85.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/86.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/87.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/88.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/89.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/90.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/3.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/92.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/93.png">
+<meta property="og:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/94.png">
+<meta property="article:published_time" content="2025-06-13T06:26:00.000Z">
+<meta property="article:modified_time" content="2025-06-18T17:50:24.371Z">
+<meta property="article:author" content="Bionic l&#39;Hôpital">
+<meta property="article:tag" content="CSE Learning">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hqj2221.github.io/2025/06/13/Software-Engineering/1.png">
+
+
+<link rel="canonical" href="http://hqj2221.github.io/2025/06/13/Software-Engineering/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2025/06/13/Software-Engineering/","path":"2025/06/13/Software-Engineering/","title":"CS304 软件工程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CS304 软件工程 | Qijun He's Personal Pages</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Qijun He's Personal Pages</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">A personal site by Qijun He,</br>junior student from South University of Science and Technology.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">11</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fas fa-list fa-fw"></i>Categories<span class="badge">8</span></a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Content-Deprecated"><span class="nav-text">Content (Deprecated)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-1-Introduction"><span class="nav-text">Lec 1. Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Software-Artifacts"><span class="nav-text">What is Software ? (Artifacts)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-build-a-software"><span class="nav-text">How to build a software ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What%E2%80%99s-software-engineering"><span class="nav-text">What’s software engineering ?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Software-Crisis"><span class="nav-text">Software Crisis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objective-of-SE"><span class="nav-text">Objective of SE ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What%E2%80%99s-in-SE-progress-Dev-Ops"><span class="nav-text">What’s in SE progress ? (Dev&amp;Ops)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-2-Software-Process-DevOps"><span class="nav-text">Lec 2. Software Process &amp; DevOps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-Model"><span class="nav-text">Process Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Waterfall-model"><span class="nav-text">Waterfall model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Incremental-Process-Model"><span class="nav-text">Incremental Process Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evolutionary-Process-Model"><span class="nav-text">Evolutionary Process Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Agile-Scrum"><span class="nav-text">Agile &amp; Scrum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DevOps"><span class="nav-text">DevOps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-principles"><span class="nav-text">Key principles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benefits"><span class="nav-text">Benefits</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-3-Requirement"><span class="nav-text">Lec 3. Requirement</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview-of-software-requirements"><span class="nav-text">Overview of software requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stakeholders-%E5%88%A9%E7%9B%8A%E7%9B%B8%E5%85%B3%E8%80%85"><span class="nav-text">Stakeholders [利益相关者]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Types-of-requirements"><span class="nav-text">Types of requirements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Classification-of-Softward-Requirements"><span class="nav-text">Classification of Softward Requirements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functional-Requirements"><span class="nav-text">Functional Requirements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-Functional-Requirements"><span class="nav-text">Non-Functional Requirements</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirements-analysis-in-Scrum"><span class="nav-text">Requirements analysis in Scrum</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Story"><span class="nav-text">User Story</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-4-Version-Control-System"><span class="nav-text">Lec 4. Version Control System</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview-of-VCS"><span class="nav-text">Overview of VCS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-Centralized-VCS"><span class="nav-text">Local &amp; Centralized VCS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Distributed-Version-Control-System"><span class="nav-text">Distributed Version Control System</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-Basic"><span class="nav-text">Git Basic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Snapshot"><span class="nav-text">Snapshot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Architecture"><span class="nav-text">Git Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-Local-Repo-Workflow"><span class="nav-text">Git Local Repo: Workflow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-Remote-Repo"><span class="nav-text">Git Remote Repo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Internals"><span class="nav-text">Git Internals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Branching"><span class="nav-text">Git Branching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Merge-vs-Rebase"><span class="nav-text">Git Merge vs. Rebase</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Workflow"><span class="nav-text">Github Workflow</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-5-Software-Design-Architecture"><span class="nav-text">Lec 5. Software Design &amp; Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Architectural-design"><span class="nav-text">Architectural design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Software-Architectural-Style"><span class="nav-text">Software Architectural Style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monolithic-Architecture-%E5%8D%95%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="nav-text">Monolithic Architecture [单体架构]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-based-Distributed-DevOps"><span class="nav-text">Service-based, Distributed, DevOps</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Restful-API"><span class="nav-text">Restful API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GRPC"><span class="nav-text">GRPC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Messaging"><span class="nav-text">Messaging</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-interface-design"><span class="nav-text">User interface design</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-6-Build"><span class="nav-text">Lec 6. Build</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-system-overviews"><span class="nav-text">Build system overviews</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Types-of-build-systems"><span class="nav-text">Types of build systems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Task-based-Build-Systems"><span class="nav-text">Task-based Build Systems</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven"><span class="nav-text">Maven</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Artifact-based-Build-Systems"><span class="nav-text">Artifact-based Build Systems</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bazel"><span class="nav-text">Bazel</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-artifacts"><span class="nav-text">Build artifacts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Managing-dependencies"><span class="nav-text">Managing dependencies</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dependency-Problems"><span class="nav-text">Dependency Problems</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-7-Quality-Control"><span class="nav-text">Lec 7. Quality Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-should-be-considered-in-code-quality"><span class="nav-text">What should be considered in code quality?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluating-Code-Quality"><span class="nav-text">Evaluating Code Quality</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Metrics"><span class="nav-text">Metrics</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Line-of-Code"><span class="nav-text">Line of Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cyclomatic-Complexity"><span class="nav-text">Cyclomatic Complexity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OO-Metrics-ckjm-%E2%80%93-Chidamber-and-Kemerer-Java-Metrics"><span class="nav-text">OO Metrics (ckjm – Chidamber and Kemerer Java Metrics)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linters"><span class="nav-text">Linters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Review"><span class="nav-text">Code Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AI-Generated-Code-Quality"><span class="nav-text">AI-Generated Code &amp; Quality</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-8-Testing"><span class="nav-text">Lec 8. Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Core-Testing-Concepts"><span class="nav-text">Core Testing Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Stages-of-Testing"><span class="nav-text">3 Stages of Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-Case-vs-Test-Suite"><span class="nav-text">Test Case vs. Test Suite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-Input-vs-Test-Oracle"><span class="nav-text">Test Input vs. Test Oracle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing-Quadrants"><span class="nav-text">Testing Quadrants</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Testing-Levels-Types-Q1-and-Q2"><span class="nav-text">Testing Levels &amp; Types (Q1 and Q2)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unit-Testing"><span class="nav-text">Unit Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Integration-Testing"><span class="nav-text">Integration Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#System-Testing"><span class="nav-text">System Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison"><span class="nav-text">Comparison</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-Size"><span class="nav-text">Test Size</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Testing-Levels-Types-Q3-and-Q4"><span class="nav-text">Testing Levels &amp; Types (Q3 and Q4)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance-Testing"><span class="nav-text">Performance Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Acceptance-Testing-UAT"><span class="nav-text">User Acceptance Testing (UAT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-B-Testing"><span class="nav-text">A&#x2F;B Testing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Testing-Pyramid-Size"><span class="nav-text">Testing Pyramid &amp; Size</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing-Pyramid"><span class="nav-text">Testing Pyramid</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Testing-Techniques"><span class="nav-text">Testing Techniques</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Black-box-White-box-Testing"><span class="nav-text">Black-box &amp; White-box Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Coverage-Metrics-for-white-box"><span class="nav-text">Coverage Metrics (for white-box)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-Data-Selection-for-Black-box-testing"><span class="nav-text">Test Data Selection (for Black-box testing)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-9-Testing-2"><span class="nav-text">Lec 9. Testing (2)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maintainable-Unit-Tests"><span class="nav-text">Maintainable Unit Tests</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ultimate-Goal-Unchanging-Tests"><span class="nav-text">Ultimate Goal: Unchanging Tests</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Best-Practices-for-Maintainable-Tests"><span class="nav-text">Best Practices for Maintainable Tests</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Test-via-Public-APIs"><span class="nav-text">1. Test via Public APIs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Test-Behaviors-Not-Methods"><span class="nav-text">2. Test Behaviors, Not Methods</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integration-Tests-Test-Doubles"><span class="nav-text">Integration Tests: Test Doubles</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Use-Test-Doubles"><span class="nav-text">Why Use Test Doubles?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-Testing"><span class="nav-text">UI Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-2"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Automation-with-Tools"><span class="nav-text">Automation with Tools</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluating-Test-Quality"><span class="nav-text">Evaluating Test Quality</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-Metrics"><span class="nav-text">Test Metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mutation-Testing"><span class="nav-text">Mutation Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fuzzing-%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95"><span class="nav-text">Fuzzing (模糊测试)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-10-Documentation"><span class="nav-text">Lec 10. Documentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Types-of-Software-Documentation"><span class="nav-text">Types of Software Documentation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#External-Documentation"><span class="nav-text">External Documentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Internal-Documentation"><span class="nav-text">Internal Documentation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Best-Practices-for-Documentation"><span class="nav-text">Best Practices for Documentation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Self-Documenting-Code"><span class="nav-text">1. Self-Documenting Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Effective-Code-Comments"><span class="nav-text">2. Effective Code Comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Javadoc-for-API-Documentation"><span class="nav-text">3. Javadoc for API Documentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Documentation-Generators"><span class="nav-text">Documentation Generators</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Less-Recognized-Documentation"><span class="nav-text">Less Recognized Documentation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tests-as-Documentation"><span class="nav-text">Tests as Documentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Commit-Messages"><span class="nav-text">Git Commit Messages</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Documentation-as-Code"><span class="nav-text">Documentation as Code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenges"><span class="nav-text">Challenges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-%E2%80%9CDocs-as-Code%E2%80%9D"><span class="nav-text">Solution: “Docs as Code”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Outcomes"><span class="nav-text">Outcomes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-11-Continuous-Integration-and-Continuous-Deployment-CI-CD"><span class="nav-text">Lec 11. Continuous Integration and Continuous Deployment (CI&#x2F;CD)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Outline"><span class="nav-text">Outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#History-of-CI-CD"><span class="nav-text">History of CI&#x2F;CD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1980s-at-Microsoft"><span class="nav-text">1980s at Microsoft</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1990s-at-Chrysler-C3-Project"><span class="nav-text">1990s at Chrysler (C3 Project)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Continuous-Integration-CI"><span class="nav-text">Continuous Integration (CI)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-Process"><span class="nav-text">CI Process</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Commit-Phase"><span class="nav-text">Commit Phase</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-Servers"><span class="nav-text">CI Servers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-at-Meta"><span class="nav-text">Example at Meta</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Continuous-Delivery"><span class="nav-text">Continuous Delivery</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Environments"><span class="nav-text">Environments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Deployment"><span class="nav-text">Continuous Deployment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-Pipeline"><span class="nav-text">CI&#x2F;CD Pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pipeline-Breakdown"><span class="nav-text">Pipeline Breakdown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Brief-Summary"><span class="nav-text">Brief Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deployment-Strategies"><span class="nav-text">Deployment Strategies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Branching-Strategies"><span class="nav-text">Branching Strategies</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trunk-Based-Development-Release"><span class="nav-text">Trunk-Based Development &amp; Release</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trunk-Based-Development-Branch-Based-Release"><span class="nav-text">Trunk-Based Development &amp; Branch-Based Release</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Branch-Based-Development-Trunk-Based-Release"><span class="nav-text">Branch-Based Development &amp; Trunk-Based Release</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Flow"><span class="nav-text">Git Flow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Study-CI-CD-at-Meta"><span class="nav-text">Case Study: CI&#x2F;CD at Meta</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Before-2016"><span class="nav-text">Before 2016</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Current-Process"><span class="nav-text">Current Process</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-12-Cloud-Native-Applications"><span class="nav-text">Lec 12. Cloud-Native Applications</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deploy"><span class="nav-text">Deploy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploying-to-a-Single-Server"><span class="nav-text">Deploying to a Single Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenges-of-Deploying-to-Multiple-Servers-50"><span class="nav-text">Challenges of Deploying to Multiple Servers (50+)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solutions-for-Multi-Server-Deployment"><span class="nav-text">Solutions for Multi-Server Deployment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Infrastructure"><span class="nav-text">Infrastructure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Types-of-Scaling"><span class="nav-text">Types of Scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Infrastructure-Components"><span class="nav-text">Infrastructure Components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complexities-of-Scaling-Out-Inconvenience-drawbacks"><span class="nav-text">Complexities of Scaling Out (Inconvenience&#x2F;drawbacks)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Traditional-On-Premise-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2-Infrastructure"><span class="nav-text">Traditional On-Premise(本地部署) Infrastructure</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloud-Native-Applications"><span class="nav-text">Cloud-Native Applications</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cloud-Computing"><span class="nav-text">Cloud Computing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cloud-Native-Applications-2"><span class="nav-text">Cloud-Native Applications</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Monolithic-Architecture"><span class="nav-text">Monolithic Architecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Microservices"><span class="nav-text">Microservices</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Containers-and-Docker"><span class="nav-text">Containers and Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Deploy-Pattern"><span class="nav-text">Other Deploy Pattern</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Language-Specific-Package-Pattern"><span class="nav-text">1. Language-Specific Package Pattern</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Virtual-Machine"><span class="nav-text">2. Virtual Machine</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Containers"><span class="nav-text">Containers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker"><span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-Images-multi-layers"><span class="nav-text">Docker Images: multi-layers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dockerfile"><span class="nav-text">Dockerfile</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container-Orchestration"><span class="nav-text">Container Orchestration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Orchestration-%E7%BC%96%E6%8E%92-Purpose"><span class="nav-text">Orchestration(编排) Purpose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tools"><span class="nav-text">Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kubernetes-Architecture"><span class="nav-text">Kubernetes Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Kubernetes-YAML-Files"><span class="nav-text">Kubernetes YAML Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#K8S-Deployment-Strategies"><span class="nav-text">K8S Deployment Strategies</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Infrastructure-as-Code-IaC"><span class="nav-text">Infrastructure as Code (IaC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-Jenkins-Pipeline"><span class="nav-text">Example: Jenkins Pipeline</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monitoring-and-Cloud-Service-Providers"><span class="nav-text">Monitoring and Cloud Service Providers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lec-13-Software-Evolution"><span class="nav-text">Lec 13. Software Evolution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Software-Maintenance"><span class="nav-text">Software Maintenance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maintainability"><span class="nav-text">Maintainability</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Measurement"><span class="nav-text">Measurement</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Technical-Debt"><span class="nav-text">Technical Debt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring"><span class="nav-text">Refactoring</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Types-of-Code-Smells"><span class="nav-text">Types of Code Smells</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Re-Architecting"><span class="nav-text">Re-Architecting</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Software-Evolution"><span class="nav-text">Software Evolution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Legacy-Systems"><span class="nav-text">Legacy Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Legacy-System-Decisions"><span class="nav-text">Legacy System Decisions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deprecation"><span class="nav-text">Deprecation</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bionic l'Hôpital"
+      src="/images/me.png">
+  <p class="site-author-name" itemprop="name">Bionic l'Hôpital</p>
+  <div class="site-description" itemprop="description">Qijun He's Personal Pages</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0hRSjIyMjE=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HQJ2221"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/about/" title="About-Me → &#x2F;about&#x2F;" rel="noopener me"><i class="fa fa-user-circle fa-fw"></i>About-Me</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2025/06/13/Software-Engineering/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.png">
+      <meta itemprop="name" content="Bionic l'Hôpital">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qijun He's Personal Pages">
+      <meta itemprop="description" content="Qijun He's Personal Pages">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CS304 软件工程 | Qijun He's Personal Pages">
+      <meta itemprop="description" content="The basic concept of software development and process of each step of engineering. You will learn how to complete a software by designing, building, testing, deploying and maintaining it.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS304 软件工程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-06-13 14:26:00" itemprop="dateCreated datePublished" datetime="2025-06-13T14:26:00+08:00">2025-06-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-06-19 01:50:24" itemprop="dateModified" datetime="2025-06-19T01:50:24+08:00">2025-06-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2025-Spring/" itemprop="url" rel="index"><span itemprop="name">2025 Spring</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">The basic concept of software development and process of each step of engineering. You will learn how to complete a software by designing, building, testing, deploying and maintaining it.</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Content-Deprecated"><a class="header-anchor" href="#Content-Deprecated">¶</a>Content (Deprecated)</h1>
+<ul>
+<li>Lec 1. Intro</li>
+<li>Lec 2. Software Process &amp; DevOps</li>
+<li>Lec 3. Software Requirements</li>
+<li>Lec 4. Version Control Systems</li>
+<li>Lec 5. Software Design</li>
+<li>Lec 6. Software Architecture</li>
+<li>Lec 7. Build &amp; Dependency Management</li>
+<li>Lec 8. Software Documentation</li>
+<li>Lec 9. Software Testing</li>
+<li>Lec 10. Continuous Integration</li>
+<li>Lec 11. Continuous Deployment</li>
+<li>Lec 12. Software Quality &amp; Metrics</li>
+<li>Lec 13. Software Evolution &amp; Maintenance</li>
+<li>Lec 14. AI in Software Engineering</li>
+</ul>
+<h1 id="Lec-1-Introduction"><a class="header-anchor" href="#Lec-1-Introduction">¶</a>Lec 1. Introduction</h1>
+<h2 id="What-is-Software-Artifacts"><a class="header-anchor" href="#What-is-Software-Artifacts">¶</a>What is Software ? (Artifacts)</h2>
+<ul>
+<li>Source code</li>
+<li>Tests</li>
+<li>Documentation</li>
+<li>Build scripts</li>
+<li>Configurations</li>
+<li>Executables (.exe etc.)</li>
+<li>…</li>
+</ul>
+<h2 id="How-to-build-a-software"><a class="header-anchor" href="#How-to-build-a-software">¶</a>How to build a software ?</h2>
+<ul>
+<li>Programming is a significant part of software engineering
+<ul>
+<li>Programming is how you generate a new software in the first place</li>
+</ul>
+</li>
+<li>Building a software is programming integrated over time, scale, and trade-offs</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/1.png" style="zoom:40%">
+<h2 id="What’s-software-engineering"><a class="header-anchor" href="#What’s-software-engineering">¶</a>What’s software engineering ?</h2>
+<h3 id="Software-Crisis"><a class="header-anchor" href="#Software-Crisis">¶</a>Software Crisis</h3>
+<ul>
+<li>Over-budget, over-time</li>
+<li>Inefficient or low quality</li>
+<li>Not meet requirement</li>
+<li>Difficult to maintain</li>
+<li>Never delivered</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/2.png" style="zoom:40%">
+<p><font color="dodgerblue"><b>Def.</b> Software engineering is the branch of engineering that deals with the design, development, testing, and maintenance of software applications, while ensuring that the software to be built is:</font></p>
+<ul>
+<li>Correct</li>
+<li>Consistent</li>
+<li>On budget</li>
+<li>On time</li>
+<li>Align with the requirements.</li>
+</ul>
+<h2 id="Objective-of-SE"><a class="header-anchor" href="#Objective-of-SE">¶</a>Objective of SE ?</h2>
+<ol>
+<li><font color="red">Quality:</font> improve the quality of software</li>
+<li><font color="red">Efficiency:</font> improve the efficiency of building software</li>
+</ol>
+<h2 id="What’s-in-SE-progress-Dev-Ops"><a class="header-anchor" href="#What’s-in-SE-progress-Dev-Ops">¶</a>What’s in SE progress ? (Dev&amp;Ops)</h2>
+<img src="/2025/06/13/Software-Engineering/3.png" style="zoom:40%">
+<ul>
+<li>And all the objectives are to <strong>improve quality and efficiency</strong> !</li>
+</ul>
+<h1 id="Lec-2-Software-Process-DevOps"><a class="header-anchor" href="#Lec-2-Software-Process-DevOps">¶</a>Lec 2. Software Process &amp; DevOps</h1>
+<h2 id="Overview"><a class="header-anchor" href="#Overview">¶</a>Overview</h2>
+<ul>
+<li>Process model</li>
+<li>Agile &amp; Scrum</li>
+<li>DevOps</li>
+</ul>
+<h2 id="Intro"><a class="header-anchor" href="#Intro">¶</a>Intro</h2>
+<img src="/2025/06/13/Software-Engineering/4.png" style="zoom:40%">
+<img src="/2025/06/13/Software-Engineering/5.png" style="zoom:40%">
+<blockquote>
+<p>How to build software process ?</p>
+</blockquote>
+<ul>
+<li><strong>Software process models</strong> (or software lifecycle model) were originally proposed to bring order to the chaos of software development, it determines:
+<ul>
+<li>The <font color="red">order</font> of these phases</li>
+<li>The <font color="red">criteria for transition</font> of each phase</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/6.png" style="zoom:40%">
+<blockquote>
+<p>What is agile ?</p>
+<p><strong>the ability to create and respond to change.</strong></p>
+</blockquote>
+<h2 id="Process-Model"><a class="header-anchor" href="#Process-Model">¶</a>Process Model</h2>
+<h3 id="Waterfall-model"><a class="header-anchor" href="#Waterfall-model">¶</a>Waterfall model</h3>
+<p><strong>Def.</strong> The waterfall model is a sequential and linear approach for software development process.</p>
+<ul>
+<li>No overlap between phases.</li>
+<li>result of each phase is one or more documents that are approved</li>
+<li><font color="red">Problems:</font> adapted <strong>only when</strong> requirements are well defined and reasonably stable.</li>
+</ul>
+<h3 id="Incremental-Process-Model"><a class="header-anchor" href="#Incremental-Process-Model">¶</a>Incremental Process Model</h3>
+<img src="/2025/06/13/Software-Engineering/7.png" style="zoom:40%">
+<ul>
+<li><font color="green">Pros</font>
+<ul>
+<li><strong>Reducing cost</strong> due to requirement changes</li>
+<li>Easier to get <strong>customer feedback</strong> and adapt</li>
+<li>Easier to <strong>test and debug</strong> during a smaller iteration</li>
+<li><strong>More rapid</strong> delivery and deployment of useful software</li>
+<li>Particularly useful when staffing is unavailable for a complete implementation</li>
+</ul>
+</li>
+<li><font color="red">Cons</font>
+<ul>
+<li>Needs good planning and design of the whole system before breaking it down for incremental builds</li>
+<li>System structure tends to <strong>degrade</strong> as new increments are added. Unless effort is spent on refactoring to improve the software, regular change tends to <strong>corrupt its structure</strong>. [项目结构不稳定]</li>
+<li><strong>Incorporating further</strong> software <strong>changes</strong> becomes increasingly difficult and costly. [额外开发费时费力]</li>
+</ul>
+</li>
+</ul>
+<h3 id="Evolutionary-Process-Model"><a class="header-anchor" href="#Evolutionary-Process-Model">¶</a>Evolutionary Process Model</h3>
+<ul>
+<li>Early evolutionary process models: <font color="dodgerblue">prototyping</font> and the <font color="dodgerblue">spiral model</font></li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/8.png" style=":zoom:60%">
+<ul>
+<li>Developers often make implementation compromises, e.g., inappropriate OS, PL, and inefficient algorithms, in order to get a prototype working quickly</li>
+<li>The prototype is often discarded (at least in part), and the actual software is engineered with an eye toward quality.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/9.png" stylee=":zoom:60%">
+<ul>
+<li><font color="green">Pros</font>
+<ul>
+<li>Effectively reducing potential risks</li>
+<li>Features can be updated because of the iterative nature</li>
+<li>Better for high-risk project, e.g., banking, medical systems</li>
+</ul>
+</li>
+<li><font color="red">Cons</font>
+<ul>
+<li>Risk analysis highly rely on experts</li>
+<li>Complex and costly</li>
+</ul>
+</li>
+</ul>
+<h2 id="Agile-Scrum"><a class="header-anchor" href="#Agile-Scrum">¶</a>Agile &amp; Scrum</h2>
+<p><strong>Concepts</strong></p>
+<ul>
+<li>agile: 一种敏捷开发的思维方式/思路</li>
+<li>scrum: 基于 agile 的具体方法论，提供了一套明确的规则、角色和工作流程，帮助团队有效地实施Agile原则：
+<ul>
+<li>Sprint</li>
+<li>TODOLists / ScrumBoard</li>
+<li>Daily Scrum</li>
+<li>Sprint Retrospective, etc.</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/10.png" style=":zoom:40%">
+<img src="/2025/06/13/Software-Engineering/11.png" style=":zoom:40%">
+<img src="/2025/06/13/Software-Engineering/12.png" style=":zoom:40%">
+<img src="/2025/06/13/Software-Engineering/13.png" style=":zoom:40%">
+<img src="/2025/06/13/Software-Engineering/14.png" style=":zoom:40%">
+<h2 id="DevOps"><a class="header-anchor" href="#DevOps">¶</a>DevOps</h2>
+<h3 id="Key-principles"><a class="header-anchor" href="#Key-principles">¶</a>Key principles</h3>
+<ul>
+<li><strong>Collaboration</strong>: Bridges the gap between developers and IT operations.</li>
+<li><strong>Automation</strong>: Automates builds, testing, and deployments.</li>
+<li><strong>Monitoring &amp; Feedback</strong>: Uses real-time monitoring to improve system performance and user experience.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/15.png" style=":zoom:80%">
+<h3 id="Benefits"><a class="header-anchor" href="#Benefits">¶</a>Benefits</h3>
+<ul>
+<li>Faster software releases</li>
+<li>Faster feedback</li>
+<li>Improved system reliability and stability</li>
+<li>Reduced deployment failures and rollback times</li>
+<li>Increased efficiency and resource utilization</li>
+</ul>
+<h1 id="Lec-3-Requirement"><a class="header-anchor" href="#Lec-3-Requirement">¶</a>Lec 3. Requirement</h1>
+<h2 id="Overview-of-software-requirements"><a class="header-anchor" href="#Overview-of-software-requirements">¶</a>Overview of software requirements</h2>
+<ul>
+<li>Software requirements (需求) describe the following:
+<ul>
+<li>what the system should do</li>
+<li>the services that it provides</li>
+<li>the constraints on its operation</li>
+</ul>
+</li>
+</ul>
+<h2 id="Stakeholders-利益相关者"><a class="header-anchor" href="#Stakeholders-利益相关者">¶</a>Stakeholders [利益相关者]</h2>
+<img src="/2025/06/13/Software-Engineering/16.png" style=":zoom:80%">
+<img src="/2025/06/13/Software-Engineering/17.png" style=":zoom:60%">
+<img src="/2025/06/13/Software-Engineering/18.png" style=":zoom:80%">
+<h2 id="Types-of-requirements"><a class="header-anchor" href="#Types-of-requirements">¶</a>Types of requirements</h2>
+<h3 id="Classification-of-Softward-Requirements"><a class="header-anchor" href="#Classification-of-Softward-Requirements">¶</a>Classification of Softward Requirements</h3>
+<ul>
+<li><strong>Business View</strong>: Why is the project needed? [WHY?]
+<ul>
+<li>outline a general overview of a product
+<ul>
+<li>primary usage</li>
+<li>why it is needed</li>
+<li>scope and vision, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>User View</strong>: What do users need the system to do? [WHO?]
+<ul>
+<li>User requirements are gathered using use case, user scenarios, and user stories</li>
+<li>written in natural languages with <font color="red">little/no</font> technical details</li>
+</ul>
+</li>
+<li><strong>System View</strong>: What Does the system need to do? [HOW?]
+<ul>
+<li>describe software as <font color="red">functional modules</font> and <font color="red">non-functional attributes</font>.</li>
+<li>written for developers with more formal format</li>
+</ul>
+</li>
+</ul>
+<h3 id="Functional-Requirements"><a class="header-anchor" href="#Functional-Requirements">¶</a>Functional Requirements</h3>
+<ul>
+<li><strong>Functional requirements</strong> are <font color="dodgerblue">basic functionalities</font> that the system should offer.</li>
+<li>They are represented or stated in the form of <font color="dodgerblue">input</font> to be given to the system, the <font color="dodgerblue">operation</font> performed and the <font color="dodgerblue">output</font> expected.</li>
+<li>Functional requirements are basically the requirements stated by the user which one <font color="dodgerblue">can see directly in the final product</font>.</li>
+</ul>
+<p>e.g. ⬇️</p>
+<img src="/2025/06/13/Software-Engineering/20.png" style="zoom:60%">
+<h3 id="Non-Functional-Requirements"><a class="header-anchor" href="#Non-Functional-Requirements">¶</a>Non-Functional Requirements</h3>
+<ul>
+<li><strong>Non-functional requirements</strong> are not related to the software’s functional aspect</li>
+<li>Non-functional requirements specify the software’s <font color="dodgerblue">quality attribute</font>.</li>
+<li>Non-functional requirements define the general characteristics, behavior of the system, and features that <font color="dodgerblue">affect the experience of the user</font>.</li>
+</ul>
+<p>e.g. ⬇️</p>
+<img src="/2025/06/13/Software-Engineering/21.png" style="zoom:60%">
+<h2 id="Requirements-analysis-in-Scrum"><a class="header-anchor" href="#Requirements-analysis-in-Scrum">¶</a>Requirements analysis in Scrum</h2>
+<h3 id="User-Story"><a class="header-anchor" href="#User-Story">¶</a>User Story</h3>
+<ul>
+<li>The <font color="red">product owner</font> is responsible for talking to all <font color="dodgerblue">stakeholders</font> and gathering requirements.</li>
+<li>Based on the gathered information, the <font color="red">scrum team</font> work together to come up with <font color="dodgerblue">user stories</font>, which are simple sentences that describe what the users need</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/22.png" style="zoom:50%">
+<blockquote>
+<p><font color="red">Then what after a user story ?</font><br>
+From user story to tasks</p>
+</blockquote>
+<ul>
+<li>Tasks are used to <strong>break down user stories</strong> even further.</li>
+<li>Tasks are the smallest unit used in scrum to track work.</li>
+<li>A task should be completed by one person on the team</li>
+<li>A task typically takes ~1 day</li>
+</ul>
+<blockquote>
+<p><font color="red">How to prioritize user stories?</font><br>
+A <strong>MoSCoW Model</strong>.</p>
+</blockquote>
+<ul>
+<li><strong>MUST HAVE         (M)</strong>: Non-negotiable product needs that are mandatory for the team</li>
+<li><strong>SHOULD HAVE     (S)</strong>: Important initiatives that are not vital, but add significant value</li>
+<li><strong>COULD HAVE       ©</strong>: Nice to have initiatives that will have a small impact if left out</li>
+<li><strong>WILL NOT HAVE(W)</strong>: Initiatives that are not priority for this specific time frame</li>
+</ul>
+<blockquote>
+<p><font color="red">How do we know if a user story is complete?</font></p>
+</blockquote>
+<ul>
+<li>In agile, <strong>acceptance criteria</strong> refer to set of predefined requirements that must be met to mark a user story complete.</li>
+<li>A <strong>product owner</strong> may be responsible for writing acceptance criteria for the stories in the product backlog</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/23.png" style="zoom:50%">
+<h1 id="Lec-4-Version-Control-System"><a class="header-anchor" href="#Lec-4-Version-Control-System">¶</a>Lec 4. Version Control System</h1>
+<h2 id="Overview-of-VCS"><a class="header-anchor" href="#Overview-of-VCS">¶</a>Overview of VCS</h2>
+<ul>
+<li><strong>Version control systems</strong> (VCS) are software tools that help software teams track and manage modifications to artifacts (typically source code) over time.
+<ul>
+<li><strong>Revisit</strong> older versions</li>
+<li><strong>Revert</strong> selected files back to a previous state and <strong>recover</strong> from mistakes</li>
+<li><strong>Compare</strong> changes over time</li>
+<li><strong>Diagnosing</strong>: see <font color="dodgerblue">who</font> last modified something that might be causing a problem, who introduced an issue and <font color="dodgerblue">when</font>, and more.</li>
+</ul>
+</li>
+<li>VCS are especially useful for DevOps teams since they help them to <font color="red">reduce risks</font> caused by <font color="red">continuous changes</font> and <font color="red">increase successful deployments</font>.</li>
+</ul>
+<h3 id="Local-Centralized-VCS"><a class="header-anchor" href="#Local-Centralized-VCS">¶</a>Local &amp; Centralized VCS</h3>
+<ul>
+<li>
+<p>Representative local VCS(<strong>RVCS</strong>): keeping patch sets in a special format on disk</p>
+</li>
+<li>
+<p>Centralized VCS emerged since developers need to <font color="red">collaborate</font> with each other</p>
+</li>
+<li>
+<p>Centralized VCS (e.g., CVS, Subversion/SVN) have a <strong>single server</strong> that contains all the versioned files; clients check out files from that central place.</p>
+</li>
+</ul>
+<table>
+<tr>
+	<td><img src="/2025/06/13/Software-Engineering/63.png"></td>
+	<td><img src="/2025/06/13/Software-Engineering/64.png"></td>
+</tr>
+</table>
+<h3 id="Distributed-Version-Control-System"><a class="header-anchor" href="#Distributed-Version-Control-System">¶</a>Distributed Version Control System</h3>
+<ul>
+<li>In a Distributed VCS (e.g., BitKeeper, git, Mercurial), clients don’t just check out the latest snapshot of the files.</li>
+<li>Rather, they <font color="red">fully mirror</font> the repository, including its <font color="red">full history</font>. Every clone is really a full backup of all the data.</li>
+<li>Thus, if any server dies, and these systems were collaborating via that server, any of the client repositories can be copied back up to the server to restore it.</li>
+</ul>
+<h2 id="Git-Basic"><a class="header-anchor" href="#Git-Basic">¶</a>Git Basic</h2>
+<h3 id="Snapshot"><a class="header-anchor" href="#Snapshot">¶</a>Snapshot</h3>
+<ul>
+<li>The major difference between Git and any other VCS is the way Git <strong>thinks about its data</strong>.</li>
+<li>Conceptually, most other systems store information as a list of file-based changes.</li>
+<li>These other systems (e.g., CVS, SVN, Perforce) think of the information they store as <strong>a set of files</strong> and the changes made to each file over time (this is commonly described as delta-based version control).</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/24.png" style="zoom:50%">
+<ul>
+<li>Git thinks of its data more like <font color="red">a series of snapshots of a miniature filesystem</font>.</li>
+<li>With Git, every time you commit, or save the state of your project, Git basically takes a picture of what all your files look like at that moment and stores a reference to that snapshot.</li>
+<li>To be efficient, if files have not changed, Git doesn’t store the file again, just a link to the previous identical file it has already stored.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/25.png" style="zoom:50%">
+<ul>
+<li>Git has integrity
+<ul>
+<li>Everything in Git is checksummed before it is stored and is then referred to by that <font color="red">checksum</font>.</li>
+<li>It’s impossible to change the contents of any file or directory without Git knowing about it.</li>
+<li>The mechanism that Git uses for this checksumming is called a <font color="red">SHA-1 hash</font>. This is a 40-character string composed of <code>HEX</code> characters and calculated based on the contents of a file or directory structure in Git.</li>
+<li>Git stores everything in its database not by file name but by the hash value of its contents.</li>
+</ul>
+</li>
+<li>Git generally only adds data
+<ul>
+<li>When you do actions in Git, nearly all of them only add data to the Git database</li>
+<li>It is hard to get the system to erase data in any way.</li>
+<li>After you commit a snapshot into Git, it is very difficult to lose, especially if you regularly push your database to another repository.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Git-Architecture"><a class="header-anchor" href="#Git-Architecture">¶</a>Git Architecture</h3>
+<h4 id="Git-Local-Repo-Workflow"><a class="header-anchor" href="#Git-Local-Repo-Workflow">¶</a>Git Local Repo: Workflow</h4>
+<img src="/2025/06/13/Software-Engineering/26.png" style="zoom:50%">
+<ul>
+<li>Untracked files are the ones still <font color="red">NOT</font> versioned—”tracked”—by Git. This is the state of new files you add to your repository.</li>
+<li>Git is aware the file exists, but still hasn’t saved it in its internal database.</li>
+<li>If you lose the information from an <font color="dodgerblue">untracked file</font>, it’s typically gone for good. Git can’t recover it since it didn’t store it in the first place.</li>
+<li><strong>Staging area</strong>: a file in your Git directory, that stores information about what will go into your next commit.
+<ul>
+<li><font color="dodgerblue">Untracked</font>: files not tracked by Git (<code>git add</code> to next stage)</li>
+<li><font color="dodgerblue">Staged</font>: means that you have marked a modified file in its current version to go into your next commit snapshot. (<code>git commit</code> to next stage)</li>
+<li><font color="dodgerblue">Committed</font>: means that the data is safely stored in your local database. (<code>git push</code> to update version)</li>
+<li><font color="dodgerblue">Modified</font>: means that you have changed the file but have not committed it to your database yet. (<code>git commit</code> to next stage)</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/27.png" style="zoom:50%">
+<p><strong>3 Sections</strong></p>
+<ul>
+<li><strong>Working tree</strong>: a single checkout of one version of the project. These files are pulled out of the compressed database in the Git directory and placed on disk for you to use or modify.</li>
+<li><strong>Staging area (index)</strong>: a file in your Git directory, that stores information about what will go into your next commit.</li>
+<li><strong>Git directory</strong>: where Git stores the metadata and object database for your project. This is what is copied when you clone a repository from another computer.</li>
+</ul>
+<h4 id="Git-Remote-Repo"><a class="header-anchor" href="#Git-Remote-Repo">¶</a>Git Remote Repo</h4>
+<img src="/2025/06/13/Software-Engineering/65.png" style="zoom:80%">
+<h3 id="Git-Internals"><a class="header-anchor" href="#Git-Internals">¶</a>Git Internals</h3>
+<ul>
+<li>
+<p><strong>3 Components inside <code>.git</code></strong></p>
+<ul>
+<li><strong>Objects</strong>: content of files, directories, commits, and tags, identified by SHA-1 hash, stored in <code>.git/objects/</code></li>
+<li><strong>References</strong>: A branch, remote branch or a tag, which is simply a pointer to an object, stored in plain text in <code>.git/refs/</code></li>
+<li><strong>Index</strong>: a staging area, stored as a binary file in <code>.git/index</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Types of Git Objects</strong></p>
+<ul>
+<li><strong>Blob</strong>: file content, identified by a hash</li>
+<li><strong>Tree</strong>: list of pointers to blob (file), or tree (directory), identified by a hash</li>
+<li><strong>Commit Object</strong>:
+<ul>
+<li>Reference to the top-level tree for the snapshot of the project at that point</li>
+<li>Parent commit (if any)</li>
+<li>Author info, commit message, etc.</li>
+</ul>
+</li>
+<li><strong>Tag Object</strong>: name associated with a commit</li>
+</ul>
+</li>
+</ul>
+<h3 id="Git-Branching"><a class="header-anchor" href="#Git-Branching">¶</a>Git Branching</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch &lt;branch&gt;         <span class="comment"># create</span></span><br><span class="line">git checkout &lt;branch&gt;       <span class="comment"># switch</span></span><br><span class="line">git push &lt;remote&gt; &lt;branch&gt;  <span class="comment"># push</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Example of merging branch:</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/28.png" style="zoom:50%">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout main   <span class="comment"># switch to branch main</span></span><br><span class="line">git merge dev       <span class="comment"># merge dev to main</span></span><br></pre></td></tr></table></figure>
+<h3 id="Git-Merge-vs-Rebase"><a class="header-anchor" href="#Git-Merge-vs-Rebase">¶</a>Git Merge vs. Rebase</h3>
+<blockquote>
+<p>How to solve conflicts ?</p>
+</blockquote>
+<img src="/2025/06/13/Software-Engineering/29.png" style="zoom:50%">
+<h2 id="Github-Workflow"><a class="header-anchor" href="#Github-Workflow">¶</a>Github Workflow</h2>
+<img src="/2025/06/13/Software-Engineering/30.png" style="zoom:40%">
+<img src="/2025/06/13/Software-Engineering/31.png" style="zoom:40%">
+<img src="/2025/06/13/Software-Engineering/32.png" style="zoom:40%">
+<ul>
+<li><strong>Git clone vs. fork</strong>
+<ul>
+<li>Any public git repository can be forked or cloned</li>
+<li>Key difference: how much <strong>control and independence</strong> you want over the codebase once you’ve copied it.
+<ul>
+<li>Clone: a clone creates a linked copy that will continue to <strong>synchronize</strong> with the target repository.</li>
+<li>Fork: A fork creates a <strong>completely independent</strong> copy of Git repo, <strong>disconnecting</strong> the codebase from previous committers.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Lec-5-Software-Design-Architecture"><a class="header-anchor" href="#Lec-5-Software-Design-Architecture">¶</a>Lec 5. Software Design &amp; Architecture</h1>
+<blockquote>
+<p><font color="red">Where we’re in?</font><br>
+<font color="green">Code: Design</font></p>
+<img src="/2025/06/13/Software-Engineering/3.png" style="zoom:30%">
+</blockquote>
+<h2 id="Architectural-design"><a class="header-anchor" href="#Architectural-design">¶</a>Architectural design</h2>
+<h3 id="Software-Architectural-Style"><a class="header-anchor" href="#Software-Architectural-Style">¶</a>Software Architectural Style</h3>
+<ul>
+<li><strong>Classic, Monolithic</strong>
+<ul>
+<li>Data-centered architecture</li>
+<li>Data-flow architecture</li>
+<li>Call-and-return architecture</li>
+<li>Object-oriented architecture</li>
+<li>Layered architecture</li>
+</ul>
+</li>
+<li><strong>Service-based, Distributed, DevOps</strong>
+<ul>
+<li>Microkernel architecture</li>
+<li>Event-driven architecture</li>
+<li>Microservice architecture</li>
+</ul>
+</li>
+</ul>
+<h3 id="Monolithic-Architecture-单体架构"><a class="header-anchor" href="#Monolithic-Architecture-单体架构">¶</a>Monolithic Architecture [单体架构]</h3>
+<img src="/2025/06/13/Software-Engineering/33.png" style="zoom:30%">
+<ul>
+<li>A data store (e.g., a file or database) resides at the center of this architecture</li>
+<li>The data store is accessed frequently by other components that update, add, delete, or modify data within the store</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/34.png" style="zoom:30%">
+<ul>
+<li>A <font color="dodgerblue">pipe-and-filter pattern</font> has a set of components, called <font color="dodgerblue">filters</font>, connected by pipes that transmit data from one component to the next.</li>
+<li>Each filter works <strong>independently</strong></li>
+<li>Expect certain form of input to produce output</li>
+<li>Suitable for automated <font color="dodgerblue">data analysis and transmission systems</font></li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/35.png" style="zoom:50%">
+<img src="/2025/06/13/Software-Engineering/36.png" style="zoom:50%">
+<img src="/2025/06/13/Software-Engineering/37.png" style="zoom:50%">
+<img src="/2025/06/13/Software-Engineering/38.png" style="zoom:50%">
+<blockquote>
+<p>Monolithic Problems ?</p>
+<ul>
+<li>Bad for big project (management of code, service, etc.)</li>
+<li>Large overhead</li>
+<li>Slow down development lifecycle</li>
+</ul>
+</blockquote>
+<h3 id="Service-based-Distributed-DevOps"><a class="header-anchor" href="#Service-based-Distributed-DevOps">¶</a>Service-based, Distributed, DevOps</h3>
+<img src="/2025/06/13/Software-Engineering/39.png" style="zoom:50%">
+<ul>
+<li>Examples: IntelliJ, VSCode, Chrome, etc.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/40.png" style="zoom:50%">
+<img src="/2025/06/13/Software-Engineering/41.png" style="zoom:50%">
+<table>
+<tr>
+	<td><img src="/2025/06/13/Software-Engineering/44.png"></td>
+	<td><img src="/2025/06/13/Software-Engineering/42.png"></td>
+</tr>
+<tr>
+	<td><img src="/2025/06/13/Software-Engineering/43.png"></td>
+	<td><img src="/2025/06/13/Software-Engineering/45.png"></td>
+</tr>
+</table>
+<blockquote>
+<p>How do MicroService communicate?</p>
+</blockquote>
+<ul>
+<li><strong>Synchronous</strong>
+<ul>
+<li>The client expects a timely response from the service and might even block while it waits.</li>
+<li>E.g. <strong>RESTful API</strong>, <strong>gRPC</strong></li>
+</ul>
+</li>
+<li><strong>Asynchronous</strong>
+<ul>
+<li>The client doesn’t block, and the response, if any, isn’t necessarily sent immediately.</li>
+<li>E.g. The <strong>Messaging</strong> Model</li>
+</ul>
+</li>
+</ul>
+<h4 id="Restful-API"><a class="header-anchor" href="#Restful-API">¶</a>Restful API</h4>
+<ul>
+<li><strong>Client-server</strong>: A client-server architecture made up of clients, servers, and resources (info like text, image, video)</li>
+<li><strong>Resources</strong> could be accessed using URL</li>
+<li><strong>Stateless</strong>: Resource requests should be made independently of one another</li>
+<li>Requests are made using HTTP protocol: GET, POST, PUT, DELETE</li>
+<li>Used by X (Twitter), Youtube, etc.</li>
+<li><font color="dodgerblue">REST API is best suited for applications with simple data sources where resources are well-defined.</font></li>
+<li><font color="dodgerblue">REST API is not suitable for fetching multiple resources in a single request</font></li>
+<li><font color="dodgerblue">Alternatives</font>
+<ul>
+<li><font color="dodgerblue">GraphQL: Meta(Facebook), Netflix Falcor</font></li>
+</ul>
+</li>
+</ul>
+<h4 id="GRPC"><a class="header-anchor" href="#GRPC">¶</a>GRPC</h4>
+<ul>
+<li>binary message-based protocol, facilitating efficient communication between distributed systems through <strong>Remote Procedure Calls</strong>(RPC).</li>
+<li>Support more operations (verbs) than REST</li>
+<li>Best suited for <font color="dodgerblue">high-performance</font> or <font color="dodgerblue">data-heavy</font> microservice architectures.</li>
+<li>Used by Netflix, Google, etc.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/46.png" style="zoom:50%">
+<h4 id="Messaging"><a class="header-anchor" href="#Messaging">¶</a>Messaging</h4>
+<ul>
+<li>Data (messages) exchanged via <strong>Channels</strong></li>
+<li>Use <em>senders</em> and <em>receivers</em> (instead of server/client)</li>
+</ul>
+ <img src="/2025/06/13/Software-Engineering/66.png" style="zoom:80%">
+<h2 id="User-interface-design"><a class="header-anchor" href="#User-interface-design">¶</a>User interface design</h2>
+<ul>
+<li><strong>Visual Design</strong>
+<ul>
+<li>Focuses on aesthetics, layout, color, typography, and visual hierarchy.</li>
+<li>Enhance usability and user experience.</li>
+</ul>
+</li>
+<li><strong>Interaction Design</strong>
+<ul>
+<li>How users interact with UI elements (buttons, forms, navigation).</li>
+<li>Goal: Minimize friction and cognitive load.</li>
+</ul>
+</li>
+<li><strong>Principles</strong>
+<ul>
+<li><strong>Consistency</strong> &gt;&gt; e.g. 统一图标</li>
+<li><strong>Clarity</strong> &gt;&gt; e.g. 警示操作用红色按钮</li>
+<li><strong>Accessibility</strong> &gt;&gt; e.g. 菜单</li>
+<li><strong>Feedback</strong> &gt;&gt; e.g. 密码输入返回</li>
+</ul>
+</li>
+<li><strong>Prototyping</strong>: an early sample or model of a user interface used to test concepts and gather feedback.
+<ul>
+<li>Helps visualize design, test usability, and refine interactions before development.</li>
+<li><strong>Types(Stages)</strong>
+<ul>
+<li><strong>Low-Fidelity (Lo-Fi) Prototypes (低保真)</strong>: hand-drawn or wireframes. <em>Quick draft for design</em>.</li>
+<li><strong>Mid-Fidelity Prototypes (中保真)</strong>: digital wireframes with basic interactions. <em>Layout &amp; interaction test</em>.</li>
+<li><strong>High-Fidelity (Hi-Fi) Prototypes (高保真)</strong>: interactive and visually detailed. <em>deployed product</em>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/67.png" style="zoom:60%">
+<h1 id="Lec-6-Build"><a class="header-anchor" href="#Lec-6-Build">¶</a>Lec 6. Build</h1>
+<h2 id="Build-system-overviews"><a class="header-anchor" href="#Build-system-overviews">¶</a>Build system overviews</h2>
+<ul>
+<li><strong>Goal</strong>: transforming the source code into executable binaries</li>
+<li>Building is the process of creating a complete, executable software by <strong>compiling</strong> and <strong>linking</strong> the software components, external libraries, configuration files, etc.</li>
+<li>Building involves assembling a large amount of info about the software and its operating environment.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/47.png" style="zoom:60%">
+<h2 id="Types-of-build-systems"><a class="header-anchor" href="#Types-of-build-systems">¶</a>Types of build systems</h2>
+<h3 id="Task-based-Build-Systems"><a class="header-anchor" href="#Task-based-Build-Systems">¶</a>Task-based Build Systems</h3>
+<ul>
+<li>In a task-based build system, the <strong>fundamental unit</strong> of work is the task</li>
+<li>Each task is a script of some sort that can execute any sort of logics</li>
+<li>Tasks can specify other tasks as dependencies that must run before them</li>
+<li>Most major build systems (e.g., Ant, <strong>Maven, Gradle</strong>, Grunt, and Rake), are task based</li>
+<li>Most modern build systems require engineers to <strong>create build-files</strong> that describe how to perform the build (e.g., <code>pom.xml</code> for Maven)</li>
+</ul>
+<h4 id="Maven"><a class="header-anchor" href="#Maven">¶</a>Maven</h4>
+<ul>
+<li><strong>Build lifecycle</strong>: an ordered list of build phases. Maven has 3 lifecycles</li>
+<li><strong>Build phase</strong>: a set of build tasks</li>
+<li>We can execute a build phase, which runs all phases prior to it and the phase itself</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/48.png" style="zoom:60%">
+<ul>
+<li><strong>Plugin</strong>: an artifact used for executing build tasks. A plugin provides one or more goals</li>
+<li><strong>Goals</strong>: used to execute build tasks. Smallest step of maven builds</li>
+<li>Goals of plugins are attached to one or more phases</li>
+<li>We could also execute a plugin goal.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/49.png" style="zoom:60%">
+<ul>
+<li>The <strong>POM</strong> contains all necessary information about a project, as well as configurations of plugins to be used during the build process</li>
+<li><strong>Drawbacks</strong>
+<ul>
+<li><strong>Difficulty maintaining &amp; debugging build scripts</strong>
+<ul>
+<li>give too much power to engineers (they define any script as a task)</li>
+</ul>
+</li>
+<li><strong>Difficulty performing incremental builds &amp; parallelism</strong>
+<ul>
+<li>hard to determine the change impact and side effects</li>
+<li>hard for incremental build and parallel build</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Artifact-based-Build-Systems"><a class="header-anchor" href="#Artifact-based-Build-Systems">¶</a>Artifact-based Build Systems</h3>
+<ul>
+<li>Role of build systems: <strong>Build Artifact</strong> (e.g., executable binary, docs, etc.)</li>
+<li>Engineers define <font color="red">what</font> to build, and BS define <font color="red">how</font>.</li>
+</ul>
+<h4 id="Bazel"><a class="header-anchor" href="#Bazel">¶</a>Bazel</h4>
+<ul>
+<li>Build-files: a <font color="dodgerblue">declarative</font> manifest describing
+<ul>
+<li>Artifacts to build</li>
+<li>their dependencies</li>
+<li>configs</li>
+</ul>
+</li>
+<li>Engineers: specify set of <font color="red">targets</font>. (WHAT)</li>
+<li><strong>Bazel</strong>: configuring, running, and scheduling the compilation steps (HOW)</li>
+</ul>
+<hr>
+<ul>
+<li><strong>Targets</strong>: each correspond to an artifact</li>
+<li>Example
+<ul>
+<li><code>java binary</code>: product binaries that can be directly executed.</li>
+<li><code>java library</code>: produce libraries used by binaries or other libraries.</li>
+</ul>
+</li>
+<li>Structure:
+<ul>
+<li><code>name</code>: ref to target (like ID)</li>
+<li><code>srcs</code>: source files to be compiled</li>
+<li><code>deps</code>: targets that <font color="red">must be</font> built before</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Build Process
+<ol>
+<li>Parse all build-files to workspace to create <font color="red">graph of dependencies</font>;</li>
+<li>Determine the <font color="red">transitive dependencies</font> of, e.g., <code>MyBinary</code>;【依赖传递】</li>
+<li>Build dependencies in order;</li>
+<li>Build <code>MyBinary</code> to generate an executable file that links all dependencies built in (3).</li>
+</ol>
+</li>
+<li>Benefits
+<ol>
+<li><strong>Parallelism</strong>: run step 3 in parallel</li>
+<li><strong>Incremental Build</strong>: no side effects, rebuild only a few set of artifacts.</li>
+</ol>
+</li>
+</ul>
+<h2 id="Build-artifacts"><a class="header-anchor" href="#Build-artifacts">¶</a>Build artifacts</h2>
+<blockquote>
+<p><font color="red">Q1:</font> How do we uniquely identify these artifacts?</p>
+<p><font color="green">A:</font> Semantic Versioning</p>
+</blockquote>
+<ul>
+<li>Format: <code>&#123;MAJOR&#125;.&#123;MINOR&#125;.&#123;PATCH&#125;</code> (e.g. 1.0.0, 2.4.72)
+<ul>
+<li><code>MAJOR</code>: a change to an <strong>existing API</strong> that can break existing usage (backward uncompatible)</li>
+<li><code>MINOR</code>: purely added **functionality **(backward compatible)</li>
+<li><code>PATCH</code>: <strong>non-API-impacting</strong> implementation details – low risk</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/68.png" style="zoom:60%">
+<ul>
+<li>E.g. As shown above, the build systems will find out the unique version of <code>Qux</code> is <code>1.6</code></li>
+</ul>
+<blockquote>
+<p><font color="red">Q2:</font> Should we package dependencies into the final artifacts?</p>
+<p><font color="green">A:</font></p>
+<ol>
+<li>Bundle everything up</li>
+</ol>
+<ul>
+<li>pros: beneficial for end-user installed</li>
+<li>cons: time-consuming, dedicated distributor and hard to manage update</li>
+</ul>
+<ol start="2">
+<li>Leave dependencies out</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><font color="red">Q3:</font> How do we manage the versions of these artifacts?</p>
+<p><font color="green">A:</font> buildfile (e.g. <code>pom.xml</code>) should be version controlled just like source code. <strong>Binary dependencies and artifacts</strong> are stored in other places (artifacts repo)</p>
+</blockquote>
+<p><strong>Summary</strong></p>
+<ul>
+<li>As long as we have <strong>source code and the buildfile</strong>, we can always build the software</li>
+<li>That’s a crucial step for <strong>CI/CD</strong> (Lec 11.)</li>
+</ul>
+<h2 id="Managing-dependencies"><a class="header-anchor" href="#Managing-dependencies">¶</a>Managing dependencies</h2>
+<ul>
+<li>
+<p><strong>Internal vs. External Dependencies</strong></p>
+<ul>
+<li><strong>Int</strong>: depend on codebase owned by your project/team</li>
+<li><strong>Ext</strong>: depend on that owned by $3^{\text{rd}}$ party providers.</li>
+</ul>
+</li>
+<li>
+<p><strong>Task vs Artifact Dependency</strong></p>
+<ul>
+<li><strong>Task</strong>: “I need to push the documentation before I mark a release as complete”</li>
+<li><strong>Artifact</strong>: “I need to have the latest version of the compute vision library before I could build my code”</li>
+</ul>
+</li>
+<li>
+<p><strong>Dependency Scopes</strong> (when I need it)</p>
+<ul>
+<li><strong>Compile-time</strong></li>
+<li><strong>Runtime</strong></li>
+<li><strong>Test</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="Dependency-Problems"><a class="header-anchor" href="#Dependency-Problems">¶</a>Dependency Problems</h3>
+<ol>
+<li><strong>Task A</strong> needs <strong>Task B</strong>. Owner of B update it, but owner of A doesn’t know until A failed.</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; B</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>As shown, if <strong>B</strong> decide not to depend on <strong>C</strong>, it causes <strong>Task A</strong> failed.</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; B -&gt; C</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><strong>Diamond Dependency Issues</strong>: unexpected resuls</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; B -&gt; D</span><br><span class="line">  -&gt; C -&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>Circular Dependency</li>
+</ol>
+<h1 id="Lec-7-Quality-Control"><a class="header-anchor" href="#Lec-7-Quality-Control">¶</a>Lec 7. Quality Control</h1>
+<blockquote>
+<p><font color="red">Where we’re in?</font><br>
+<font color="green">Quality control: code quality</font></p>
+<img src="/2025/06/13/Software-Engineering/3.png" style="zoom:30%">
+</blockquote>
+<h2 id="What-should-be-considered-in-code-quality"><a class="header-anchor" href="#What-should-be-considered-in-code-quality">¶</a>What should be considered in code quality?</h2>
+<p><strong>User-Oriented</strong></p>
+<ul>
+<li>Correctness (正确性)</li>
+<li>Reliability (可靠性)</li>
+<li>Security (安全性)</li>
+<li>Efficiency (高效性)</li>
+</ul>
+<p><strong>Developer-Oriented</strong></p>
+<ul>
+<li>Portability (可移植性)</li>
+<li>Readability (可读性)</li>
+<li>Maintainability (可维护性)</li>
+</ul>
+<h2 id="Evaluating-Code-Quality"><a class="header-anchor" href="#Evaluating-Code-Quality">¶</a>Evaluating Code Quality</h2>
+<h3 id="Metrics"><a class="header-anchor" href="#Metrics">¶</a>Metrics</h3>
+<h4 id="Line-of-Code"><a class="header-anchor" href="#Line-of-Code">¶</a>Line of Code</h4>
+<ul>
+<li>relatively measure readability and maintainability</li>
+<li>a metric for developer</li>
+<li>Problems:
+<ul>
+<li>needs to be <font color="red">normalized</font> to be meaningful and comparable</li>
+<li>is <font color="red">language related</font> (不同语言实现的代码量不同)</li>
+</ul>
+</li>
+</ul>
+<h4 id="Cyclomatic-Complexity"><a class="header-anchor" href="#Cyclomatic-Complexity">¶</a>Cyclomatic Complexity</h4>
+<ul>
+<li>Cyclomatic complexity (圈复杂度) is a software metric used to indicate the <strong>logic complexity</strong> of a program.</li>
+<li>computed using the control-flow graph (控制流图) of the program</li>
+<li><font color="dodgerblue">Core idea:</font> complexity of code depends on the number of decisions in the code.(<code>if</code>, <code>while</code>, <code>for</code>)</li>
+<li>control-flow graph:</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/50.png" style="zoom:40%">
+<ul>
+<li>Approach 1: $V(G)=P+1$
+<ul>
+<li>$P$ : Number of branch nodes (e.g., if, for, while, case)</li>
+</ul>
+</li>
+<li>Approach 2: $V(G)=E-N+2$
+<ul>
+<li>$E$ : number of edges; $N$ : number of nodes</li>
+</ul>
+</li>
+</ul>
+<h4 id="OO-Metrics-ckjm-–-Chidamber-and-Kemerer-Java-Metrics"><a class="header-anchor" href="#OO-Metrics-ckjm-–-Chidamber-and-Kemerer-Java-Metrics">¶</a>OO Metrics (ckjm – Chidamber and Kemerer Java Metrics)</h4>
+<ul>
+<li><strong>Weighted Methods per Class (WMC)</strong>
+<ul>
+<li>indicate the development and maintenance effort for the class</li>
+</ul>
+</li>
+<li><strong>Depth of Inheritance Tree (DIT)</strong>
+<ul>
+<li>the deeper a class is, the more methods it inherits, the harder to predict its behavior</li>
+</ul>
+</li>
+<li><strong>Number of Children (NOC)</strong>
+<ul>
+<li>indicates the number of immediate subclasses</li>
+</ul>
+</li>
+<li><strong>Coupling (耦) between Object Classes (CBO)</strong>
+<ul>
+<li><strong>Coupling</strong>: Dependencies between modules, which is bad (<strong>cohesion</strong> is that within modules, good)</li>
+<li>CBO represents the number of classes coupled to a given class. (CBO=1 - 4 is good)</li>
+</ul>
+</li>
+<li><strong>Lack of Cohesion in Methods (LCOM)</strong>
+<ul>
+<li>counts the sets of methods in a class that are <strong>not related</strong> through the sharing of some of the class’s fields.</li>
+<li>$LCOM=P-Q$ where
+<ul>
+<li>$Q$: In some pairs, both methods access <strong>at least one</strong> common field of the class</li>
+<li>$P$: In other pairs, the two methods do <strong>not share any</strong> common field accesses</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Linters"><a class="header-anchor" href="#Linters">¶</a>Linters</h3>
+<ul>
+<li>A linter (静态语法检查器) is a tool that analyzes source code for <strong>style, syntax, and potential errors</strong> that can lead to bugs and vulnerabilities</li>
+<li><strong>Purpose</strong>: Static analysis for syntax, style, and errors.</li>
+<li><strong>Tools</strong>:
+<ul>
+<li>ESLint (JavaScript/TypeScript)</li>
+<li>Pylint (Python)</li>
+<li>SpotBugs (Java)</li>
+</ul>
+</li>
+<li><strong>Integration</strong>: Often part of build pipelines.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/51.png" style="zoom:50%">
+<h3 id="Code-Review"><a class="header-anchor" href="#Code-Review">¶</a>Code Review</h3>
+<ul>
+<li>
+<p><strong>Targets</strong> (code types to be reviewed):</p>
+<ul>
+<li>Modifications to existing code</li>
+<li>Entirely new code</li>
+<li>Automatically generated code</li>
+</ul>
+</li>
+<li>
+<p><strong>Goals</strong>:</p>
+<ul>
+<li>Ensure design quality, functionality, complexity and adherence to style guides.</li>
+<li>Ensure well-designed unit tests</li>
+<li>Ensure clear comments, appropriate document and clear names.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tools</strong>: GitHub Copilot (AI-assisted review), Crucible, Gerrit.</p>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/52.png" style="zoom:50%">
+<h3 id="AI-Generated-Code-Quality"><a class="header-anchor" href="#AI-Generated-Code-Quality">¶</a>AI-Generated Code &amp; Quality</h3>
+<ul>
+<li><strong>Challenges</strong>:
+<ul>
+<li>Lower code quality due to over-reliance on AI tools.</li>
+<li>Survey on metrics that should be used for AI coding: code quality (36%), production incidents (33%).</li>
+</ul>
+</li>
+<li><strong>Example</strong>: AI tools may introduce subtle bugs (e.g., variable name typos).</li>
+</ul>
+<h1 id="Lec-8-Testing"><a class="header-anchor" href="#Lec-8-Testing">¶</a>Lec 8. Testing</h1>
+<blockquote>
+<p><font color="red">Where we’re in?</font><br>
+<font color="green">Quality control: testing</font></p>
+<img src="/2025/06/13/Software-Engineering/3.png" style="zoom:30%">
+</blockquote>
+<h2 id="Core-Testing-Concepts"><a class="header-anchor" href="#Core-Testing-Concepts">¶</a>Core Testing Concepts</h2>
+<h3 id="3-Stages-of-Testing"><a class="header-anchor" href="#3-Stages-of-Testing">¶</a>3 Stages of Testing</h3>
+<ul>
+<li><strong>Basic testing</strong>: Constraint based, needs based</li>
+<li><strong>Developer-driven testing</strong>: make developers responsible for their codes.</li>
+<li><strong>Automated testing</strong>: good for large-scale testing, <font color="red">another important component of CI/CD</font></li>
+</ul>
+<h3 id="Test-Case-vs-Test-Suite"><a class="header-anchor" href="#Test-Case-vs-Test-Suite">¶</a>Test Case vs. Test Suite</h3>
+<ul>
+<li><strong>Test Case</strong>:
+<ul>
+<li>Validates a specific feature (e.g., valid login)</li>
+<li>Includes prerequisites, steps, and expected outcomes.</li>
+</ul>
+</li>
+<li><strong>Test Suite</strong>:
+<ul>
+<li>Collection of test cases grouped by functionality (e.g., “Checkout Process” suite).</li>
+</ul>
+</li>
+</ul>
+<h3 id="Test-Input-vs-Test-Oracle"><a class="header-anchor" href="#Test-Input-vs-Test-Oracle">¶</a>Test Input vs. Test Oracle</h3>
+<ul>
+<li><strong>Test Input</strong>: Data fed into the system (e.g., username/password).</li>
+<li><strong>Test Oracle</strong>: Source of correct expected outputs (e.g., specifications, expert judgment).</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/53.png" style="zoom:50%">
+<h3 id="Testing-Quadrants"><a class="header-anchor" href="#Testing-Quadrants">¶</a>Testing Quadrants</h3>
+<img src="/2025/06/13/Software-Engineering/54.png" style="zoom:50%">
+<h2 id="Testing-Levels-Types-Q1-and-Q2"><a class="header-anchor" href="#Testing-Levels-Types-Q1-and-Q2">¶</a>Testing Levels &amp; Types (Q1 and Q2)</h2>
+<h3 id="Unit-Testing"><a class="header-anchor" href="#Unit-Testing">¶</a>Unit Testing</h3>
+<ul>
+<li><strong>Scope</strong>: Smallest code units (methods/classes)</li>
+<li><strong>Focus</strong>:
+<ul>
+<li>Local data structures</li>
+<li>Boundary conditions (e.g., input limits)</li>
+<li>Error handling paths</li>
+</ul>
+</li>
+</ul>
+<h3 id="Integration-Testing"><a class="header-anchor" href="#Integration-Testing">¶</a>Integration Testing</h3>
+<ul>
+<li><strong>Goal</strong>: Verify interactions between modules.</li>
+<li><strong>Example</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Test ID</th>
+<th style="text-align:center">Objective</th>
+<th style="text-align:center">Expected Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Login → Mailbox interface</td>
+<td style="text-align:center">Redirect to Mailbox</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Mailbox → Delete Email</td>
+<td style="text-align:center">Email moved to Trash</td>
+</tr>
+</tbody>
+</table>
+<h3 id="System-Testing"><a class="header-anchor" href="#System-Testing">¶</a>System Testing</h3>
+<ul>
+<li><strong>Purpose</strong>: Validate end-to-end functionality to fulfill business specifications. (whether it’s ready for deployment)</li>
+<li><strong>Environment</strong>: conducted in <code>prod</code> environment (仿真)</li>
+</ul>
+<h3 id="Comparison"><a class="header-anchor" href="#Comparison">¶</a>Comparison</h3>
+<img src="/2025/06/13/Software-Engineering/55.png" style="zoom:50%">
+<h3 id="Test-Size"><a class="header-anchor" href="#Test-Size">¶</a>Test Size</h3>
+<img src="/2025/06/13/Software-Engineering/56.png" style="zoom:60%">
+<ul>
+<li><strong>Small tests</strong>: single thread/process, no blocking calls —— fast, effective and reliable</li>
+<li><strong>Medium tests</strong>: run on single machine, multiple processes, enable testing integration of multiple components</li>
+<li><strong>Large tests</strong>: run on multiple machines over network, more about validating configurations.</li>
+</ul>
+<h2 id="Testing-Levels-Types-Q3-and-Q4"><a class="header-anchor" href="#Testing-Levels-Types-Q3-and-Q4">¶</a>Testing Levels &amp; Types (Q3 and Q4)</h2>
+<h3 id="Performance-Testing"><a class="header-anchor" href="#Performance-Testing">¶</a>Performance Testing</h3>
+<ul>
+<li><strong>Types</strong>:
+<ul>
+<li><strong>Load Testing</strong>: Simulate expected user traffic.</li>
+<li><strong>Stress Testing</strong>: Exceed normal load capacity.</li>
+<li><strong>Endurance Testing</strong>: Prolonged load simulation.</li>
+<li><strong>Spike Testing</strong>: Sudden traffic surges.</li>
+<li><strong>Volumn Testing</strong>: Test capacity</li>
+</ul>
+</li>
+</ul>
+<h3 id="User-Acceptance-Testing-UAT"><a class="header-anchor" href="#User-Acceptance-Testing-UAT">¶</a>User Acceptance Testing (UAT)</h3>
+<ul>
+<li><strong>Performed By</strong>: End-users/business stakeholders.</li>
+<li><strong>Focus</strong>: Real-world usability and requirements compliance.</li>
+</ul>
+<h3 id="A-B-Testing"><a class="header-anchor" href="#A-B-Testing">¶</a>A/B Testing</h3>
+<ul>
+<li><strong>Use Case</strong>: Compare UI/UX variants (e.g., button colors).</li>
+<li><strong>Outcome</strong>: Data-driven design decisions (e.g., 72% click rate for variant B).</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/57.png" style="zoom:50%">
+<h2 id="Testing-Pyramid-Size"><a class="header-anchor" href="#Testing-Pyramid-Size">¶</a>Testing Pyramid &amp; Size</h2>
+<h3 id="Testing-Pyramid"><a class="header-anchor" href="#Testing-Pyramid">¶</a>Testing Pyramid</h3>
+<ul>
+<li><strong>Foundation</strong>: Unit tests (80% coverage)</li>
+<li><strong>Middle</strong>: Integration tests (15%)</li>
+<li><strong>Top</strong>: E2E/UI tests (5%)</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/58.png" style="zoom:50%">
+<h2 id="Testing-Techniques"><a class="header-anchor" href="#Testing-Techniques">¶</a>Testing Techniques</h2>
+<h3 id="Black-box-White-box-Testing"><a class="header-anchor" href="#Black-box-White-box-Testing">¶</a>Black-box &amp; White-box Testing</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:left">Black-box</th>
+<th style="text-align:left">White-box</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>Basis</strong></td>
+<td style="text-align:left"><strong>Software specifications (no code visibility)</strong><br>Internal program structure is unknown<br>Cover as much <em>specified behaviors</em> as possible</td>
+<td style="text-align:left"><strong>Source code structure</strong><br>Internal program structure is known<br>Cover as much <em>coded behaviors</em> as possible</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Pros</strong></td>
+<td style="text-align:left">simplicity, realistic results</td>
+<td style="text-align:left">comprehensive testing, early bug detection</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Cons</strong></td>
+<td style="text-align:left">Limited coverage (misses edge cases)</td>
+<td style="text-align:left">Requires technical expertise, expensive, <br>limited real-world simulation.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Coverage-Metrics-for-white-box"><a class="header-anchor" href="#Coverage-Metrics-for-white-box">¶</a>Coverage Metrics (for white-box)</h3>
+<ul>
+<li><strong>Code coverage</strong> (代码覆盖率) is a metric that shows how much of an application’s code has tests checking its <strong>functionality</strong></li>
+<li><strong>Statement Coverage</strong>:</li>
+</ul>
+<p>$$<br>
+\text{Statement Coverage}=\frac{\text{Num of executed statements}}{\text{Total num of statement}} * 100%<br>
+$$</p>
+<ul>
+<li>e.g. <code>a=1, b=2</code> for the following code, statement coverage is $5/7 \approx 71%$</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sum(<span class="type">int</span> a, <span class="type">int</span> b) &#123;</span><br><span class="line">	<span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> a + b;</span><br><span class="line">	<span class="keyword">if</span> (result &gt; <span class="number">0</span>)</span><br><span class="line">		print(<span class="string">&quot;res &gt; 0&quot;</span>);</span><br><span class="line">	<span class="keyword">else</span> (result &lt; <span class="number">0</span>)</span><br><span class="line">		print(<span class="string">&quot;res &lt; 0&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>If test case #1: <code>a=1, b=2</code> ; test case #2: <code>a=-2, b=-4</code> , then SC of test suite(tc1 + tc2) = 100%</p>
+<p>Is that what we want ?</p>
+</blockquote>
+<ul>
+<li><strong>Branch Coverage</strong> $=(\text{num of executed branches} / \text{num of total branches})*100%$
+<ul>
+<li>for the same example, we only got BC = 75% (then we check out a bug)</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/59.png" style="zoom:50%">
+<blockquote>
+<p>What if the following condition happens?</p>
+</blockquote>
+<img src="/2025/06/13/Software-Engineering/60.png" style="zoom:50%">
+<ul>
+<li><strong>Condition Coverage</strong> $=(\text{num of conditions that are both T and F}/\text{num of total conditions})* 100%$</li>
+</ul>
+<h3 id="Test-Data-Selection-for-Black-box-testing"><a class="header-anchor" href="#Test-Data-Selection-for-Black-box-testing">¶</a>Test Data Selection (for Black-box testing)</h3>
+<ul>
+<li><strong>Exhausted testing</strong>: test all possible conditions (<font color="red">absolutely impractical</font>)</li>
+<li><strong>Random Testing</strong>: good in normal case (<font color="red">what if failure are dense in some subdomains?</font>)</li>
+<li><strong>Partition Testing</strong>: divides input data into equivalent data classes (等价类).
+<ul>
+<li>Random choice in each <font color="dodgerblue">partitions</font></li>
+<li><font color="blue">Equivalence Partition Hypothesis</font>: if one condition/value in a partition passes, then all others will also pass, vice versa.</li>
+</ul>
+</li>
+<li><strong>Boundary Values</strong>: <font color="dodgerblue">Assume that errors tend to occur at boundary of a subdomain.</font> Choose boundaries data between partitions.</li>
+</ul>
+<h1 id="Lec-9-Testing-2"><a class="header-anchor" href="#Lec-9-Testing-2">¶</a>Lec 9. Testing (2)</h1>
+<h2 id="Maintainable-Unit-Tests"><a class="header-anchor" href="#Maintainable-Unit-Tests">¶</a>Maintainable Unit Tests</h2>
+<h3 id="Ultimate-Goal-Unchanging-Tests"><a class="header-anchor" href="#Ultimate-Goal-Unchanging-Tests">¶</a>Ultimate Goal: Unchanging Tests</h3>
+<ul>
+<li><strong>Ideal Scenario</strong>: Tests remain unchanged unless system requirements change.</li>
+<li><strong>Characteristics</strong>:
+<ul>
+<li>Tests “just work” after being written.</li>
+<li>Failures indicate real bugs with clear causes.</li>
+</ul>
+</li>
+<li><strong>Impact of Changes</strong>:
+<ul>
+<li><strong>Refactoring</strong>: Should not affect existing tests.</li>
+<li><strong>New Features/Bug Fixes</strong>: Require new tests but leave existing ones intact.</li>
+<li>Only changes to <font color="red"><b>system behavior</b></font> necessitate test updates.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Best-Practices-for-Maintainable-Tests"><a class="header-anchor" href="#Best-Practices-for-Maintainable-Tests">¶</a>Best Practices for Maintainable Tests</h3>
+<h4 id="1-Test-via-Public-APIs"><a class="header-anchor" href="#1-Test-via-Public-APIs">¶</a>1. Test via Public APIs</h4>
+<ul>
+<li><strong>Why?</strong> Public APIs change less frequently than internal implementations.</li>
+<li><strong>Benefits</strong>:
+<ul>
+<li>Tests mimic real user interactions.</li>
+<li>Less brittle[脆弱] to internal refactoring.</li>
+<li>Serve as documentation/examples for users.</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-Test-Behaviors-Not-Methods"><a class="header-anchor" href="#2-Test-Behaviors-Not-Methods">¶</a>2. Test Behaviors, Not Methods</h4>
+<ul>
+<li><strong>Problem with Method-Driven Tests</strong>:
+<ul>
+<li>Tests grow complex as methods evolve.</li>
+<li>E.g. A single test for <code>displayTransactionResults()</code> becomes convoluted when new behavior (e.g., low balance warning) is added.</li>
+</ul>
+</li>
+<li><strong>Solution</strong>: Split tests by <strong>behaviors</strong>:
+<ul>
+<li>One test checks if the item name is displayed.</li>
+<li>Another test verifies low balance warnings.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Integration-Tests-Test-Doubles"><a class="header-anchor" href="#Integration-Tests-Test-Doubles">¶</a>Integration Tests: Test Doubles</h2>
+<h3 id="Why-Use-Test-Doubles"><a class="header-anchor" href="#Why-Use-Test-Doubles">¶</a>Why Use Test Doubles?</h3>
+<ul>
+<li>Imagine test suite run with external server and stores responses in database (issues?):
+<ul>
+<li>Slow execution (e.g., external APIs/databases).</li>
+<li>Flakiness (e.g., network issues).</li>
+</ul>
+</li>
+<li><strong>Types of Test Doubles</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Stub</strong></td>
+<td>Returns predefined data to SUT (system under test)<br>Respond to specific inputs with specific outputs<br><font color="dodgerblue">Used when we don’t want to involve objects that have undesirable <b>side effects</b></font></td>
+<td>A <code>UserService</code> stub returns a fixed user.</td>
+</tr>
+<tr>
+<td><strong>Fake</strong></td>
+<td>Simplified/in-memory implementation<br>Pre-written implementation of the object that are supposed to represent<br><font color="dodgerblue"><b>Idea</b>: removing unnecessary/heavy dependencies(e.g. database)</font></td>
+<td>A fake <code>DatabaseService</code> uses a <code>HashMap</code> instead of disk storage.</td>
+</tr>
+<tr>
+<td><strong>Mock</strong></td>
+<td>similar to <strong>Stub</strong>, add behavior verification<br><font color="dodgerblue"><b>Purpose</b>: assert how SUT interacted with dependency</font><br><font color="dodgerblue">Used when we don’t want to invoke production code or when there is no easy way to verify that intended code was executed</font></td>
+<td>A mock <code>CreditCardService</code> confirms <code>chargeCreditCard()</code> was invoked.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Mocking Frameworks</strong>:
+<ul>
+<li>Tools like <strong>Mockito</strong> simplify creating mocks. For example, a mock <code>CreditCardService</code> is configured to return <code>false</code> for charge attempts, allowing tests to validate error handling.</li>
+</ul>
+</li>
+</ul>
+<h2 id="UI-Testing"><a class="header-anchor" href="#UI-Testing">¶</a>UI Testing</h2>
+<h3 id="Overview-2"><a class="header-anchor" href="#Overview-2">¶</a>Overview</h3>
+<ul>
+<li><strong>Goal</strong>: Validate UI functionality and appearance as an end user would.</li>
+<li><strong>Key Aspects</strong>:
+<ul>
+<li><strong>Consistency</strong>: Fonts, colors, layout.</li>
+<li><strong>Spelling/Typography</strong>: Readability, contrast.</li>
+<li><strong>Interactive Elements</strong>: Buttons, forms, etc. work as intended</li>
+<li><strong>Functional validation</strong>: Expected outputs for specific inputs</li>
+<li><strong>Adaptability</strong>: Responsiveness across devices/browsers.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Automation-with-Tools"><a class="header-anchor" href="#Automation-with-Tools">¶</a>Automation with Tools</h3>
+<ul>
+<li><strong>Example</strong>: <strong>Selenium</strong> automates browser interactions
+<ul>
+<li>Tests validate scenarios like adding items to a cart or enforcing input constraints (e.g., blocking negative numbers).</li>
+</ul>
+</li>
+</ul>
+<h2 id="Evaluating-Test-Quality"><a class="header-anchor" href="#Evaluating-Test-Quality">¶</a>Evaluating Test Quality</h2>
+<h3 id="Test-Metrics"><a class="header-anchor" href="#Test-Metrics">¶</a>Test Metrics</h3>
+<ul>
+<li><strong>Coverage</strong>:
+<ul>
+<li><em>Requirements Coverage</em> $=\frac{\text{Covered Requirements}}{\text{Total Requirements}} \times 100%$</li>
+<li><em>Code Coverage</em>: Statement/branch coverage.</li>
+</ul>
+</li>
+<li><strong>Test tracking</strong>: Passed percentage / Failed percentage</li>
+<li><strong>Defect Tracking</strong>:
+<ul>
+<li>Metrics include <font color="red">Accepted/Rejected</font> Defects, <font color="red">Critical</font> Defects, and <font color="red">Deferred (延迟的)</font> Defects.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Mutation-Testing"><a class="header-anchor" href="#Mutation-Testing">¶</a>Mutation Testing</h3>
+<ul>
+<li><strong>Process</strong>:
+<ol>
+<li>Introduce small code changes (<strong>mutation operators</strong>), e.g., altering a loop condition (<code>&lt;</code> to <code>&gt;</code>).</li>
+<li>Run tests; mutants are “killed” if any tests fail.</li>
+<li>Calculate <strong>Mutation Score</strong>: $\text{Mutation Score} = \frac{\text{Killed Mutants}}{\text{Total Mutants}} \times 100%$</li>
+</ol>
+</li>
+<li><strong>Purpose</strong>: Higher mutation score increases the confidence of using the original test cases</li>
+</ul>
+<h3 id="Fuzzing-模糊测试"><a class="header-anchor" href="#Fuzzing-模糊测试">¶</a>Fuzzing (模糊测试)</h3>
+<ul>
+<li><strong>Goal</strong>: Discover crashes/memory leaks via invalid inputs (e.g., <code>null</code>, SQL injection strings).</li>
+<li><strong>Types</strong>:
+<ul>
+<li><em>Generation-based</em>: Create inputs from scratch.</li>
+<li><em>Mutation-based</em>: Modify existing inputs (e.g., inserting emojis or binary data).</li>
+</ul>
+</li>
+<li><strong>Coverage-guided Fuzzers</strong>: focus on finding inputs that cause new code coverage to <font color="red">explore edge</font> cases that may crash the program.</li>
+</ul>
+<h1 id="Lec-10-Documentation"><a class="header-anchor" href="#Lec-10-Documentation">¶</a>Lec 10. Documentation</h1>
+<blockquote>
+<p>This piece is “missing” from DevOps, actually lies before release.</p>
+</blockquote>
+<h2 id="Types-of-Software-Documentation"><a class="header-anchor" href="#Types-of-Software-Documentation">¶</a>Types of Software Documentation</h2>
+<h3 id="External-Documentation"><a class="header-anchor" href="#External-Documentation">¶</a>External Documentation</h3>
+<ul>
+<li><strong>End-user Documentation</strong>:
+<ul>
+<li>Provides instructions for installation, usage, and troubleshooting.</li>
+<li>E.g. User manuals, quick start guides, FAQs.</li>
+</ul>
+</li>
+<li><strong>Just-in-time Documentation</strong>:
+<ul>
+<li>Offers context-specific support when users need it.</li>
+<li>Examples: Tooltips, in-app help, contextual tutorials.</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/61.png" style="zoom:50%">
+<h3 id="Internal-Documentation"><a class="header-anchor" href="#Internal-Documentation">¶</a>Internal Documentation</h3>
+<ul>
+<li><strong>Administrative Documentation</strong>:
+<ul>
+<li>High-level guidelines for teams (e.g. project roadmaps, status reports).</li>
+</ul>
+</li>
+<li><strong>Developer Documentation</strong>:
+<ul>
+<li>Guides developers in building/maintaining the software.</li>
+<li>Includes:
+<ul>
+<li><strong>Requirements docs</strong>: Functional and non-functional specifications.</li>
+<li><strong>Architecture/design docs</strong>: System structure and design decisions.</li>
+<li><strong>API docs</strong>: Usage instructions for interfaces.</li>
+<li><strong>Code comments</strong>: Inline explanations of code logic.</li>
+<li><strong>Readme/Release notes</strong>: Setup and usage instructions.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Best-Practices-for-Documentation"><a class="header-anchor" href="#Best-Practices-for-Documentation">¶</a>Best Practices for Documentation</h2>
+<h3 id="1-Self-Documenting-Code"><a class="header-anchor" href="#1-Self-Documenting-Code">¶</a>1. Self-Documenting Code</h3>
+<ul>
+<li><strong>Goal</strong>: Make code readable without external explanations.</li>
+<li><strong>Techniques</strong>:
+<ul>
+<li><strong>Meaningful names</strong>: Use <code>gravitationalForce</code> instead of <code>g</code>.</li>
+<li><strong>Structured logic</strong>: Avoid “magic numbers” (e.g., replace <code>if (port &lt; 1024)</code> with <code>if (port &lt;= HIGHEST_PRIVILEGED_PORT)</code>).</li>
+<li><strong>Modular design</strong>: Break code into small, reusable functions.</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/62.png" style="zoom:50%">
+<h3 id="2-Effective-Code-Comments"><a class="header-anchor" href="#2-Effective-Code-Comments">¶</a>2. Effective Code Comments</h3>
+<ul>
+<li><strong>When to Comment</strong>:
+<ul>
+<li>Explain <strong>WHY</strong> (rationales), not <strong>WHAT</strong> (implementations).</li>
+<li>Highlight technical debt (e.g., <code>// TODO: Refactor this hack</code>).</li>
+<li>Warn about edge cases (e.g., <code>// WARNING: This test takes 15 minutes</code>).</li>
+</ul>
+</li>
+<li><strong>Examples</strong>:
+<ul>
+<li>Bad: <code>// Multiply a and b</code></li>
+<li>Good: <code>// Use Newton’s equation to calculate displacement</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Javadoc-for-API-Documentation"><a class="header-anchor" href="#3-Javadoc-for-API-Documentation">¶</a>3. Javadoc for API Documentation</h3>
+<ul>
+<li><strong>Syntax</strong>:
+<ul>
+<li>Use <code>/** ... */</code> for class/method-level comments.</li>
+<li>Include tags like <code>@param</code>, <code>@return</code>, <code>@throws</code>.</li>
+</ul>
+</li>
+<li><strong>Call for generation</strong></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javadoc -d C:\home\html -sourcepath C:\home\src java.my.package</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Example</strong>:
+<ul>
+<li>Class-level: Describes the purpose of a <code>SuperHero</code> class.</li>
+<li>Method-level: Explains inputs, outputs, and exceptions for <code>get(int index)</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Documentation-Generators"><a class="header-anchor" href="#Documentation-Generators">¶</a>Documentation Generators</h3>
+<ul>
+<li><strong>Sphinx</strong>: Generates HTML/PDF docs</li>
+<li><strong>Swagger</strong>: Documents REST APIs with interactive UIs.</li>
+<li><strong>GitBook</strong>: Collaborative platform for technical docs.</li>
+</ul>
+<h2 id="Less-Recognized-Documentation"><a class="header-anchor" href="#Less-Recognized-Documentation">¶</a>Less Recognized Documentation</h2>
+<h3 id="Tests-as-Documentation"><a class="header-anchor" href="#Tests-as-Documentation">¶</a>Tests as Documentation</h3>
+<ul>
+<li>Demonstrate <font color="dodgerblue">API usage</font> (e.g., <code>shouldTransferFunds()</code>).</li>
+<li>Validate <font color="dodgerblue">edge cases</font> (e.g., <code>shouldThrowExceptionIfStackIsEmpty()</code>).</li>
+</ul>
+<h3 id="Git-Commit-Messages"><a class="header-anchor" href="#Git-Commit-Messages">¶</a>Git Commit Messages</h3>
+<ul>
+<li>Explain <strong>why</strong> a change was made.</li>
+<li>Reference issues (e.g., <code>Closes #20: Fix null pointer exception</code>).</li>
+</ul>
+<h2 id="Documentation-as-Code"><a class="header-anchor" href="#Documentation-as-Code">¶</a>Documentation as Code</h2>
+<blockquote>
+<p>Case study: Google</p>
+</blockquote>
+<h3 id="Challenges"><a class="header-anchor" href="#Challenges">¶</a>Challenges</h3>
+<ul>
+<li><strong>Poor Documentation Culture</strong>:
+<ul>
+<li>Docs were outdated, hard to find, or nonexistent.</li>
+<li>Engineers lacked incentives to write/maintain docs.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Solution-“Docs-as-Code”"><a class="header-anchor" href="#Solution-“Docs-as-Code”">¶</a>Solution: “Docs as Code”</h3>
+<ul>
+<li>
+<p><strong>Integration with Codebase</strong>:</p>
+<ul>
+<li>use <code>g3doc</code> for rendering</li>
+<li>Store docs in Markdown files alongside source code.</li>
+<li>Use version control (e.g., Git) for tracking changes.</li>
+</ul>
+</li>
+<li>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li><strong>Collaboration</strong>: Code reviews, diffs, and blame tracking.</li>
+<li><strong>Accessibility</strong>: Rendered as HTML for easy browsing.</li>
+<li><strong>Consistency</strong>: Docs stay updated with code changes.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Outcomes"><a class="header-anchor" href="#Outcomes">¶</a>Outcomes</h3>
+<ul>
+<li><strong>Scalability</strong>: Over 10,000 projects adopted <code>g3doc</code>.</li>
+<li><strong>Cultural Shift</strong>: Documentation became a core engineering practice.</li>
+</ul>
+<h1 id="Lec-11-Continuous-Integration-and-Continuous-Deployment-CI-CD"><a class="header-anchor" href="#Lec-11-Continuous-Integration-and-Continuous-Deployment-CI-CD">¶</a>Lec 11. Continuous Integration and Continuous Deployment (CI/CD)</h1>
+<blockquote>
+<p><font color="red">Where we’re in?</font><br>
+<font color="green">Release: automate commit + build + test</font></p>
+<img src="/2025/06/13/Software-Engineering/3.png" style="zoom:30%">
+</blockquote>
+<h2 id="Outline"><a class="header-anchor" href="#Outline">¶</a>Outline</h2>
+<ul>
+<li><a href="#history-of-cicd">History of CI/CD</a></li>
+<li><a href="#continuous-integration-ci">Continuous Integration (CI)</a></li>
+<li><a href="#ci-process">CI Process</a></li>
+<li><a href="#ci-servers">CI Servers</a></li>
+<li><a href="#cicd-pipeline">CI/CD Pipeline</a></li>
+<li><a href="#deployment-strategies">Deployment Strategies</a></li>
+<li><a href="#branching-strategies">Branching Strategies</a></li>
+<li><a href="#case-study-cicd-at-meta">Case Study: CI/CD at Meta</a></li>
+</ul>
+<h2 id="History-of-CI-CD"><a class="header-anchor" href="#History-of-CI-CD">¶</a>History of CI/CD</h2>
+<h3 id="1980s-at-Microsoft"><a class="header-anchor" href="#1980s-at-Microsoft">¶</a>1980s at Microsoft</h3>
+<ul>
+<li><strong>Context:</strong> In the 1980s, Microsoft’s products grew too complex for individual developers to manage alone.</li>
+<li><strong>Solution:</strong> Introduced the concept of “daily build” or “nightly build.”
+<ul>
+<li>Developers synchronized their work daily and stabilized the product incrementally throughout the project, rather than waiting until the end.</li>
+<li>The latest version was built every day, ensuring it remained in a runnable state.</li>
+</ul>
+</li>
+<li><strong>Reference:</strong> <span class="exturl" data-url="aHR0cHM6Ly9kbC5hY20ub3JnL2RvaS9wZGYvMTAuMTE0NS8yNTU2NTYuMjU1Njk4">ACM Article<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p><strong>Insert Image:</strong> Slide 4 - “HISTORY”</p>
+<h3 id="1990s-at-Chrysler-C3-Project"><a class="header-anchor" href="#1990s-at-Chrysler-C3-Project">¶</a>1990s at Chrysler (C3 Project)</h3>
+<ul>
+<li><strong>Context:</strong> The Chrysler Comprehensive Compensation System (C3 Project) aimed to support 90,000 employees but faced significant difficulties and delays.</li>
+<li><strong>Challenge:</strong> In 1996, Kent Beck and his team found that integrating and running the project code took one to two weeks, slowing development.</li>
+<li><strong>Solution:</strong> Increased integration frequency.
+<ul>
+<li>Resulted in significantly reduced integration time.</li>
+<li>Enabled earlier detection and resolution of software issues.</li>
+</ul>
+</li>
+<li><strong>Impact:</strong> This practice laid groundwork for modern CI principles.</li>
+</ul>
+<p><strong>Insert Image:</strong> Slide 5 - “HISTOR”</p>
+<h2 id="Continuous-Integration-CI"><a class="header-anchor" href="#Continuous-Integration-CI">¶</a>Continuous Integration (CI)</h2>
+<ul>
+<li><strong>Definition:</strong> Developers commit changes in small increments (at least daily, often multiple times a day).</li>
+<li><strong>Process:</strong>
+<ul>
+<li>Each change is automatically built and tested by a CI server before merging into the main codebase.</li>
+<li>If issues are detected, the CI server blocks the merge and alerts the team for immediate fixes.</li>
+</ul>
+</li>
+<li><strong>Goal:</strong> Identify and address problematic changes as early as possible to maintain a stable codebase.</li>
+</ul>
+<h2 id="CI-Process"><a class="header-anchor" href="#CI-Process">¶</a>CI Process</h2>
+<h3 id="Commit-Phase"><a class="header-anchor" href="#Commit-Phase">¶</a>Commit Phase</h3>
+<p><strong>Reference:</strong> <span class="exturl" data-url="aHR0cHM6Ly9tYXJ0aW5mb3dsZXIuY29tL2FydGljbGVzL2NvbnRpbnVvdXNJbnRlZ3JhdGlvbi5odG1s">Martin Fowler on CI<i class="fa fa-external-link-alt"></i></span></p>
+<p>The CI process involves a structured sequence of steps to ensure code quality and integration:</p>
+<ol>
+<li>
+<p><strong>Pull from Central Store</strong></p>
+<img src="/2025/06/13/Software-Engineering/69.png">
+</li>
+<li>
+<p><strong>Make Changes</strong></p>
+<img src="/2025/06/13/Software-Engineering/70.png">
+</li>
+<li>
+<p><strong>Pull Collaborators’ Changes</strong></p>
+<img src="/2025/06/13/Software-Engineering/71.png">
+</li>
+<li>
+<p><strong>Rebuild and Test</strong></p>
+<img src="/2025/06/13/Software-Engineering/72.png">
+</li>
+<li>
+<p><strong>Push to Central Repo</strong></p>
+<img src="/2025/06/13/Software-Engineering/73.png">
+</li>
+<li>
+<p><strong>Central Build and Notification</strong></p>
+<img src="/2025/06/13/Software-Engineering/74.png">
+</li>
+</ol>
+<p><strong>E.g.</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch                   <span class="comment"># optional</span></span><br><span class="line">$ git pull [REMOTE] [BRANCH]</span><br><span class="line">$ git add [CHANGE_CONTENT]</span><br><span class="line">$ git commit -m <span class="string">&quot;[MESSAGE]&quot;</span></span><br><span class="line">$ git push [REMOTE] [BRANCH]</span><br></pre></td></tr></table></figure>
+<h2 id="CI-Servers"><a class="header-anchor" href="#CI-Servers">¶</a>CI Servers</h2>
+<ul>
+<li>
+<p><strong>Process</strong></p>
+<ul>
+<li>Tasks automatically triggered by push</li>
+<li>Executed: <code>Compilation -&gt; Linters -&gt; Testing -&gt; Artifact generation -&gt; Security scan -&gt; Deployment</code></li>
+<li>Pass results to team</li>
+</ul>
+</li>
+<li>
+<p><strong>Benefits Compared to Local Builds:</strong></p>
+<ul>
+<li><strong>Consistency:</strong> Tests run in a clean, controlled environment identical for all developers.</li>
+<li><strong>Automation:</strong> Eliminates manual steps, ensuring no tests or builds are skipped.</li>
+<li><strong>Scalability:</strong> Supports large teams pushing changes continuously without conflicts.</li>
+<li><strong>Immediate Feedback:</strong> Quickly notifies developers if their code or others’ breaks the build.</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/75.png">
+<h3 id="Example-at-Meta"><a class="header-anchor" href="#Example-at-Meta">¶</a>Example at Meta</h3>
+<ul>
+<li><strong>CI Stack Structure:</strong> Divided into three layers:
+<ol>
+<li><strong>Builds:</strong> Code committed to mobile master branches is built across all affected products.</li>
+<li><strong>Static Analysis:</strong> Linters and static analysis tools run concurrently with builds to check code quality.</li>
+<li><strong>Testing:</strong> Automated tests verify functionality before release on the main branch.</li>
+</ol>
+</li>
+<li><strong>Process:</strong> Ensures rigorous validation before code is merged.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/76.png">
+<h2 id="Continuous-Delivery"><a class="header-anchor" href="#Continuous-Delivery">¶</a>Continuous Delivery</h2>
+<h3 id="Environments"><a class="header-anchor" href="#Environments">¶</a>Environments</h3>
+<ul>
+<li>Development Environment (开发环境): where developer modify and test code isolated to integrated codebase.</li>
+<li>Staging Environment (类生产环境): validate change, perform integration test and simulate real-world condition before deploying.</li>
+<li>Production Environment (生产环境): final deployment, backbone for service to customers.</li>
+</ul>
+<h3 id="Continuous-Deployment"><a class="header-anchor" href="#Continuous-Deployment">¶</a>Continuous Deployment</h3>
+<ul>
+<li>
+<p><strong>Continuous Delivery</strong>: extension of continuous integration, automatically deploys all code changes to a staging or production environment after the build stage.</p>
+<ul>
+<li>no constraint on release time (just suits your business requirements)</li>
+<li>deploy step is manual <em>(picture shown below, orange part)</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Continuous Deployment</strong>: every change that passes all stages of your production pipeline is released to your customers.</p>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/77.png">
+<h2 id="CI-CD-Pipeline"><a class="header-anchor" href="#CI-CD-Pipeline">¶</a>CI/CD Pipeline</h2>
+<ul>
+<li><strong>Definition:</strong> A series of automated steps that code changes go through from development to production.</li>
+</ul>
+<h3 id="Pipeline-Breakdown"><a class="header-anchor" href="#Pipeline-Breakdown">¶</a>Pipeline Breakdown</h3>
+<ul>
+<li><strong>Version control</strong>
+<ul>
+<li>Source code</li>
+<li>Buildfile (as code)</li>
+<li>Documentation (as code)</li>
+<li>Infrastructure (as code)</li>
+</ul>
+</li>
+<li><strong>Artifact repositories</strong>
+<ul>
+<li>Libraries, plugins, etc.</li>
+</ul>
+</li>
+<li><strong>Stage 1</strong>
+<ol>
+<li>Commit to version control</li>
+<li>Trigger the build
+<ul>
+<li>Compile</li>
+<li><font color="blue">Unit Test</font></li>
+<li>Doc</li>
+<li>Binary</li>
+</ul>
+</li>
+<li>Generated binaries stored in the artifact repository</li>
+</ol>
+</li>
+<li><strong>Stage 2</strong>
+<ol>
+<li>Automatically triggered by stage 1</li>
+<li>Run automated acceptance tests that take a long time to execute (e.g., <font color="blue">integration testing, system/E2E testing</font>)</li>
+<li>Can be executed on the <font color="orange">staging environment</font></li>
+</ol>
+</li>
+<li><strong>Stage 3</strong>
+<ul>
+<li>Basic: <strong>Ops team</strong> confirms and deploys the verified binary version to the production environment with <font color="green">one button click</font></li>
+<li>Optional:
+<ol>
+<li>following stage 2, automatically deployed to <font color="orange">staging environment</font> for <font color="dodgerblue">tool-aided non-functional</font> tests, or manual UAT(user acceptance tests)</li>
+<li>Testers select proper version to release to <font color="orange">product environment</font></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Notes:</strong></p>
+<ol>
+<li>In stage 2, configurations for the environment are version controlled</li>
+<li><strong>Smoke test</strong>: <font color="orange">minimal set of tests</font> run on each build to test <font color="orange">major functionalities</font>, confirmation for QA team to proceed further software testing.</li>
+</ol>
+</blockquote>
+<h3 id="Brief-Summary"><a class="header-anchor" href="#Brief-Summary">¶</a>Brief Summary</h3>
+<ul>
+<li>
+<p><strong>CI/CD</strong> enables the application to be delivered reliably, quickly, and with high quality</p>
+</li>
+<li>
+<p><strong>CI/CD vs. Rapid Release</strong>: Sometimes same</p>
+<ul>
+<li><strong>Deployment</strong>: available for use in staging/production environment</li>
+<li><strong>Release</strong>: available for end-user.</li>
+</ul>
+</li>
+<li>
+<p><strong>Risk for CI/CD</strong></p>
+<ul>
+<li>New version with problems should be rolled back</li>
+<li>Service temporarily down during upgrading.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Deployment-Strategies"><a class="header-anchor" href="#Deployment-Strategies">¶</a>Deployment Strategies</h2>
+<ul>
+<li><strong>Blue-Green Deployment:</strong>
+<ul>
+<li>Uses two identical environments: Blue (current/old version) and Green (staging).</li>
+<li>New version is deployed to Green, tested, and then router is switched from Blue to Green.</li>
+<li><strong>Benefits:</strong>
+<ul>
+<li>Minimal downtime</li>
+<li>Rollback is easy and fast</li>
+</ul>
+</li>
+<li><strong>Drawbacks:</strong>
+<ul>
+<li>Expensive: a redundant  infrastructure</li>
+<li>Data consistency and integrity  problems</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Canary/Greyscale Deployment:</strong>
+<ul>
+<li>Gradually rolls out the new version to a small subset of users (e.g., 2% of production).</li>
+<li>Monitors performance and issues before full deployment.</li>
+<li><strong>Benefits:</strong>
+<ul>
+<li>Test with real users</li>
+<li>If failure, affection scale is small</li>
+</ul>
+</li>
+<li><strong>Drawbacks:</strong>
+<ul>
+<li>Complex traffic routing</li>
+<li>Strong monitoring of canaries required</li>
+<li>Canary users [内测用户] might not be representative</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Rolling Deployment:</strong>
+<ul>
+<li>Updates servers incrementally, one or a few at a time.</li>
+<li><strong>Benefits:</strong>
+<ul>
+<li>No need for double resources</li>
+<li>Less infrastructure cost and  maintenance efforts</li>
+<li>Minimal disruption</li>
+</ul>
+</li>
+<li><strong>Drawbacks:</strong>
+<ul>
+<li>Significant latency between the moment  you start deploying the new version and  the moment it is all live</li>
+<li>Can’t control which users get the new  version</li>
+<li>Inconsistent states among servers</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Feature Toggle:</strong> Flexible use for different deployment strategies</p>
+<img src="/2025/06/13/Software-Engineering/78.png">
+</blockquote>
+<h2 id="Branching-Strategies"><a class="header-anchor" href="#Branching-Strategies">¶</a>Branching Strategies</h2>
+<h3 id="Trunk-Based-Development-Release"><a class="header-anchor" href="#Trunk-Based-Development-Release">¶</a>Trunk-Based Development &amp; Release</h3>
+<ul>
+<li><strong>Approach:</strong> Developers work on a single branch (trunk) with frequent commits and integrations.</li>
+<li><strong>Benefits:</strong> Simplifies merging, reduces conflicts, and ensures continuous integration.</li>
+<li><strong>Drawbacks:</strong> Requires discipline to keep the trunk stable. Hard to rollback.</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/79.png">
+<h3 id="Trunk-Based-Development-Branch-Based-Release"><a class="header-anchor" href="#Trunk-Based-Development-Branch-Based-Release">¶</a>Trunk-Based Development &amp; Branch-Based Release</h3>
+<img src="/2025/06/13/Software-Engineering/80.png">
+<ul>
+<li><strong>Benefit:</strong>
+<ul>
+<li>devs on trunk and are less affected by release</li>
+<li>release won’t be affected by unfinished devs</li>
+</ul>
+</li>
+<li><strong>Drawback:</strong>
+<ul>
+<li>too much branches !!</li>
+</ul>
+</li>
+</ul>
+<h3 id="Branch-Based-Development-Trunk-Based-Release"><a class="header-anchor" href="#Branch-Based-Development-Trunk-Based-Release">¶</a>Branch-Based Development &amp; Trunk-Based Release</h3>
+<img src="/2025/06/13/Software-Engineering/81.png">
+<ul>
+<li><strong>Benefit:</strong>
+<ul>
+<li>Flexible choices on features to release</li>
+<li>Fast, clean(not affect other branch) fix of bugs</li>
+</ul>
+</li>
+<li><strong>Drawbacks:</strong>
+<ul>
+<li>Risk of big merges</li>
+<li>Delayed integration</li>
+</ul>
+</li>
+</ul>
+<h3 id="Git-Flow"><a class="header-anchor" href="#Git-Flow">¶</a>Git Flow</h3>
+<img src="/2025/06/13/Software-Engineering/82.png">
+<ul>
+<li><strong>Structure:</strong>
+<ul>
+<li><strong>Master:</strong> Holds official releases.</li>
+<li><strong>Develop:</strong> Integrates features for the next release.</li>
+<li><strong>Feature Branches:</strong> Used for developing individual features.</li>
+<li><strong>Release Branches:</strong> Prepared for QA, merged back to master and develop after passing tests (optionally through Alpha/Beta phases).</li>
+<li><strong>Hotfix Branches:</strong> Quick fixes for production issues.</li>
+</ul>
+</li>
+<li><strong>Benefits:</strong> Provides a structured workflow for managing releases.</li>
+<li><strong>Drawbacks:</strong> Can become complex with many branches.</li>
+</ul>
+<h2 id="Case-Study-CI-CD-at-Meta"><a class="header-anchor" href="#Case-Study-CI-CD-at-Meta">¶</a>Case Study: CI/CD at Meta</h2>
+<h3 id="Before-2016"><a class="header-anchor" href="#Before-2016">¶</a>Before 2016</h3>
+<ul>
+<li><strong>Strategy:</strong> Master and release branch approach.</li>
+<li><strong>Process:</strong> Engineers requested cherrypicks (tested changes) from master to the release branch for daily pushes.</li>
+<li><strong>Reference:</strong> <span class="exturl" data-url="aHR0cHM6Ly9lbmdpbmVlcmluZy5mYi5jb20vMjAxNy8wOC8zMS93ZWIvcmFwaWQtcmVsZWFzZS1hdC1tYXNzaXZlLXNjYWxlLw==">Facebook Engineering Blog<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h3 id="Current-Process"><a class="header-anchor" href="#Current-Process">¶</a>Current Process</h3>
+<ul>
+<li><strong>Three-Stage Rollout:</strong>
+<ol>
+<li><strong>C1 (Employees):</strong>
+<ul>
+<li>Code diffs passing automated tests are pushed to Facebook employees.</li>
+<li>Push-blocking alerts flag regressions, and an emergency stop button halts further rollout.</li>
+</ul>
+</li>
+<li><strong>C2 (2% Production):</strong>
+<ul>
+<li>If C1 succeeds, changes roll out to 2% of production.</li>
+<li>Monitors edge cases not caught in testing or employee use.</li>
+</ul>
+</li>
+<li><strong>C3 (100% Production):</strong>
+<ul>
+<li>Rolls out to all users over a few hours.</li>
+<li>Flytrap tool aggregates user reports and alerts for anomalies.</li>
+<li>Team can stop the push if issues arise.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/83.png">
+<h1 id="Lec-12-Cloud-Native-Applications"><a class="header-anchor" href="#Lec-12-Cloud-Native-Applications">¶</a>Lec 12. Cloud-Native Applications</h1>
+<blockquote>
+<p><font color="red">Where we’re in?</font><br>
+<font color="green">Deploy &amp; Infrastructure</font></p>
+<img src="/2025/06/13/Software-Engineering/3.png" style="zoom:30%">
+</blockquote>
+<h2 id="Deploy"><a class="header-anchor" href="#Deploy">¶</a>Deploy</h2>
+<h3 id="Deploying-to-a-Single-Server"><a class="header-anchor" href="#Deploying-to-a-Single-Server">¶</a>Deploying to a Single Server</h3>
+<ul>
+<li>Process:
+<ul>
+<li>SFTP(Secure File Transfer Protocol) code to the server.</li>
+<li>SSH into the server.</li>
+<li>Run the code.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Challenges-of-Deploying-to-Multiple-Servers-50"><a class="header-anchor" href="#Challenges-of-Deploying-to-Multiple-Servers-50">¶</a>Challenges of Deploying to Multiple Servers (50+)</h3>
+<ul>
+<li>
+<p><font color="dodgerblue">Described as a “logistical, time-consuming nightmare”</font></p>
+</li>
+<li>
+<p><strong>Issues:</strong> Manual process for starting and monitoring processes on 50+ machines.</p>
+<ol>
+<li>
+<p>No automatic migration if a machine fails. (<font color="red">single-point</font> issue)</p>
+</li>
+<li>
+<p><font color="red">Ad hoc</font> monitoring of job progress.</p>
+</li>
+<li>
+<p><font color="red">Process interference</font> leads to less-than-optimal scheduling and resource contention.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="Solutions-for-Multi-Server-Deployment"><a class="header-anchor" href="#Solutions-for-Multi-Server-Deployment">¶</a>Solutions for Multi-Server Deployment</h3>
+<ul>
+<li><strong>Solution 1 (#1):</strong> Use reusable, robust, easy-to-maintain shell scripts for deployment</li>
+<li><strong>Solution 2 (#2):</strong> Automate server status checks, export key health metrics, and detect anomalies</li>
+<li><strong>Solution 3 (#2):</strong> Automatically handle anomalies (e.g., kill and reboot processes)</li>
+<li><strong>Solution 4 (#3):</strong> Ensure processes run without interference from others</li>
+<li><strong>Solution 5 (#3):</strong> Use a central service to pick unoccupied machines and deploy binaries</li>
+<li><strong>Solution 6 (#3):</strong> Automate configuration parameter settings</li>
+</ul>
+<blockquote>
+<p>It’s all about scale. Considering scale up(<code>2 vCPU|4 GB RAM -&gt; 8 vCPU|16 GB RAM </code>) or scale out (more CPU and RAM) ?</p>
+</blockquote>
+<h2 id="Infrastructure"><a class="header-anchor" href="#Infrastructure">¶</a>Infrastructure</h2>
+<h3 id="Types-of-Scaling"><a class="header-anchor" href="#Types-of-Scaling">¶</a>Types of Scaling</h3>
+<ul>
+<li><strong>Scale Up (Vertical Scaling):</strong> Increase resources (e.g., CPU, RAM) on a single server.</li>
+<li><strong>Scale Out (Horizontal Scaling):</strong> Add more servers/nodes and distribute workload.</li>
+</ul>
+<h3 id="Infrastructure-Components"><a class="header-anchor" href="#Infrastructure-Components">¶</a>Infrastructure Components</h3>
+<ul>
+<li>
+<p><strong>Computing:</strong></p>
+<ul>
+<li>Hardware</li>
+<li>Software</li>
+</ul>
+</li>
+<li>
+<p><strong>Networks</strong></p>
+</li>
+<li>
+<p><strong>Data Centers</strong></p>
+</li>
+<li>
+<p><strong>Monitoring and Control Plane:</strong></p>
+<ul>
+<li>3 forms of infrastructure monitoring: hardware, network and application monitoring.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Complexities-of-Scaling-Out-Inconvenience-drawbacks"><a class="header-anchor" href="#Complexities-of-Scaling-Out-Inconvenience-drawbacks">¶</a>Complexities of Scaling Out (Inconvenience/drawbacks)</h3>
+<ul>
+<li><strong>Load Balancing:</strong> Distribute traffic evenly across servers.</li>
+<li><strong>Configuration:</strong> Each new server needs proper setup (e.g., network, security).</li>
+<li><strong>Monitoring/Troubleshooting:</strong> Harder with more servers.</li>
+<li><strong>Maintenance:</strong> Increased workload for hardware/software updates.</li>
+</ul>
+<h3 id="Traditional-On-Premise-本地部署-Infrastructure"><a class="header-anchor" href="#Traditional-On-Premise-本地部署-Infrastructure">¶</a>Traditional On-Premise(本地部署) Infrastructure</h3>
+<ul>
+<li>Organizations manage their own hardware/software in-house (servers, storage, networking).</li>
+<li><strong>Drawbacks:</strong>
+<ul>
+<li>Significant manual intervention</li>
+<li>Long release cycles</li>
+<li>Complex, time-consuming, and error-prone</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cloud-Native-Applications"><a class="header-anchor" href="#Cloud-Native-Applications">¶</a>Cloud-Native Applications</h2>
+<h3 id="Cloud-Computing"><a class="header-anchor" href="#Cloud-Computing">¶</a>Cloud Computing</h3>
+<ul>
+<li>Running applications on resources managed by cloud providers (e.g., AWS).</li>
+<li><strong>Benefits:</strong>
+<ul>
+<li>Frees teams from infrastructure management.</li>
+<li>Fast support of new resources.</li>
+<li>Effortless scaling.</li>
+<li>Cost-effective (pay-as-you-go pricing model).</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cloud-Native-Applications-2"><a class="header-anchor" href="#Cloud-Native-Applications-2">¶</a>Cloud-Native Applications</h3>
+<ul>
+<li>Apps designed to exploit[利用] the scale, resiliency, and flexibility of cloud.</li>
+<li><strong>Least Adopted Approaches:</strong>
+<ul>
+<li><strong>Processes:</strong> DevOps &amp; CI/CD.</li>
+<li><strong>Architecture:</strong> Microservices.</li>
+<li><strong>Deployment:</strong> Containers.</li>
+<li><strong>Practice:</strong> Infrastructure as Code (IaC).</li>
+</ul>
+</li>
+</ul>
+<h4 id="Monolithic-Architecture"><a class="header-anchor" href="#Monolithic-Architecture">¶</a>Monolithic Architecture</h4>
+<ul>
+<li>Entire application packaged as a single executable.</li>
+<li><strong>Limitations:</strong>
+<ul>
+<li>Inflexible for large teams/codebases.</li>
+<li>Difficult to scale efficiently.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Microservices"><a class="header-anchor" href="#Microservices">¶</a>Microservices</h4>
+<ul>
+<li>
+<p>Cloud-native apps composed of small, interdependent services.</p>
+<ul>
+<li>each service can be developed, managed and deployed independently.</li>
+</ul>
+</li>
+<li>
+<p>Services communicate with each other by APIs. (e.g. REST)</p>
+</li>
+<li>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Better scalability.</li>
+<li>Flexibility.</li>
+<li>Easier maintenance.</li>
+</ul>
+</li>
+</ul>
+<p><strong>An Example</strong></p>
+<img src="/2025/06/13/Software-Engineering/84.png">
+<h2 id="Containers-and-Docker"><a class="header-anchor" href="#Containers-and-Docker">¶</a>Containers and Docker</h2>
+<h3 id="Other-Deploy-Pattern"><a class="header-anchor" href="#Other-Deploy-Pattern">¶</a>Other Deploy Pattern</h3>
+<h4 id="1-Language-Specific-Package-Pattern"><a class="header-anchor" href="#1-Language-Specific-Package-Pattern">¶</a>1. Language-Specific Package Pattern</h4>
+<ul>
+<li>For example, Spring-boot-based Java application.
+<ul>
+<li>Deployment pipeline builds an <font color="orange">executable JAR file</font> and deploys it into production.</li>
+<li>In production, each service instance is a <font color="orange">JVM</font>.</li>
+</ul>
+</li>
+<li><strong>Drawbacks:</strong>
+<ul>
+<li><strong>Lack of encapsulation of the tech stack</strong>: Ops team must know specific details of how to deploy each service, e.g., versions of <code>Tomcat</code>, <code>Jetty</code> or <code>JRE</code> runtime.</li>
+<li><strong>Lack of isolation</strong>: one service failure will impact another</li>
+<li><strong>Hard for resource controll</strong>: one service may consume all memory (starving other service instances)</li>
+<li><strong>Manually allocation</strong>: determine resources assigned to service instances.</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-Virtual-Machine"><a class="header-anchor" href="#2-Virtual-Machine">¶</a>2. Virtual Machine</h4>
+<ul>
+<li>For example, AWS EC2
+<ul>
+<li>Deployment pipeline creates an AMI(Amazon Machine Image), which has built environment</li>
+<li>All EC2 instances managed by AWS Auto Scaling Group.</li>
+</ul>
+</li>
+<li><strong>Drawbacks:</strong>
+<ul>
+<li><strong>Low resource utilization</strong>: each service needs entire VM</li>
+<li><strong>Slow deployment</strong>: take time to build VM, move VM image over network and boot OS running inside VM.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Therefore, we need a more efficient way other than <strong>LS Package Pattern</strong> and <strong>VM</strong>.</p>
+</blockquote>
+<h3 id="Containers"><a class="header-anchor" href="#Containers">¶</a>Containers</h3>
+<ul>
+<li><strong>Def.</strong> lightweight and portable unit of software that packages an application and its dependencies together in a single environment.
+<ul>
+<li><strong>Use VM basis</strong>: each container has isolated environment. (<font color="red">but a single VM can run multiple containers</font>)</li>
+<li>You can specify CPU, memory resources and I/O resources.</li>
+<li>Containers communicate using standard network (<font color="blue">each of them has unique IP addresses</font>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Docker"><a class="header-anchor" href="#Docker">¶</a>Docker</h3>
+<img src="/2025/06/13/Software-Engineering/85.png">
+<h4 id="Docker-Images-multi-layers"><a class="header-anchor" href="#Docker-Images-multi-layers">¶</a>Docker Images: multi-layers</h4>
+<ul>
+<li><strong>Kernel:</strong> Host machine’s kernel</li>
+<li><strong>Base image</strong> (<code>FROM</code> in <code>Dockerfile</code>):
+<ul>
+<li>Different Linux distribution (e.g. Debian, Ubuntu)</li>
+<li>Various pre-installed software images (e.g. OpenJDK)</li>
+<li><font color="grey">or a blank image</font></li>
+</ul>
+</li>
+<li>Build-time instructions in Dockerfile
+<ul>
+<li><code>RUN</code>: Executes shell commands (e.g. install packages)</li>
+<li><code>ADD</code>/``COPY`: Copies files into the image</li>
+<li><code>WORKDIR</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>In docker build time, each instruction creates a <font color="blue">read-only</font> layer on top of one another</p>
+</blockquote>
+<img src="/2025/06/13/Software-Engineering/86.png" style="zoom:60%">
+<ul>
+<li>Runtime instructions in Dockerfile: <code>CMD</code>, <code>ENTRYPOINT</code></li>
+<li>Each time Docker <font color="dodgerblue">launches a container</font> from an image, it adds a thin <font color="dodgerblue">writable</font> layer, known as the container layer, which stores all changes to the container throughout its runtime (e.g. writing files or logs).</li>
+<li>Multiple containers write changes <font color="red">locally and independently</font>, but <font color="red">share access</font> to the same underlying level of a Docker image.</li>
+</ul>
+<h4 id="Dockerfile"><a class="header-anchor" href="#Dockerfile">¶</a>Dockerfile</h4>
+<img src="/2025/06/13/Software-Engineering/87.png" style="zoom:90%">
+<img src="/2025/06/13/Software-Engineering/88.png" style="zoom:90%">
+<blockquote>
+<p>Final step of build process is to push Docker image to a <font color="dodgerblue">registry/hub</font>. (similar to Java Maven repo for Java libraries)</p>
+</blockquote>
+<ul>
+<li>then run the container:</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/89.png" style="zoom:80%">
+<h2 id="Container-Orchestration"><a class="header-anchor" href="#Container-Orchestration">¶</a>Container Orchestration</h2>
+<h3 id="Orchestration-编排-Purpose"><a class="header-anchor" href="#Orchestration-编排-Purpose">¶</a>Orchestration(编排) Purpose</h3>
+<ul>
+<li>Automates &amp; manage:
+<ul>
+<li>Deploying containers across servers.</li>
+<li>Configuration, scheduling, resource allocation.</li>
+<li>Scaling/removing containers based on demand.</li>
+<li>Monitoring health and restarting failed containers, etc.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Tools"><a class="header-anchor" href="#Tools">¶</a>Tools</h3>
+<ul>
+<li>Docker Swarm.</li>
+<li>Kubernetes (K8s).</li>
+</ul>
+<h3 id="Kubernetes-Architecture"><a class="header-anchor" href="#Kubernetes-Architecture">¶</a>Kubernetes Architecture</h3>
+<ul>
+<li><strong>Cluster:</strong> Control plane + worker nodes.
+<ul>
+<li><strong>Control Plane (Master):</strong> Manages scheduling, scaling, updates.</li>
+<li><strong>Worker Nodes:</strong> Run containerized applications.
+<ul>
+<li><strong>Pod:</strong> Smallest deployable unit, hosts containers.</li>
+<li><strong>Kubelet:</strong> Manages pods on nodes.</li>
+<li><strong>Container Runtime (e.g., Docker):</strong> Runs containers.</li>
+<li><strong>Kube-proxy:</strong> Handles networking and load balancing.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/90.png" style="zoom:80%">
+<h4 id="Kubernetes-YAML-Files"><a class="header-anchor" href="#Kubernetes-YAML-Files">¶</a>Kubernetes YAML Files</h4>
+<ul>
+<li>Define desired state (e.g., replicas, container specs).</li>
+</ul>
+<h4 id="K8S-Deployment-Strategies"><a class="header-anchor" href="#K8S-Deployment-Strategies">¶</a>K8S Deployment Strategies</h4>
+<ul>
+<li><strong>Rolling Strategy:</strong> Gradual updates.</li>
+<li><strong>Recreate:</strong> Terminate all instances, then recreate with new version.</li>
+</ul>
+<blockquote>
+<p>Define in YAML <code>spec.strategy.type</code>, has type <code>RollingUpdate</code> and <code>Recreate</code></p>
+</blockquote>
+<h2 id="Infrastructure-as-Code-IaC"><a class="header-anchor" href="#Infrastructure-as-Code-IaC">¶</a>Infrastructure as Code (IaC)</h2>
+<ul>
+<li>Define/manage infrastructure (servers, networks) using code.</li>
+<li>Stored in version control (e.g., Git), executed via automation tools.</li>
+<li><strong>Benefits:</strong>
+<ul>
+<li>Consistency.</li>
+<li>Repeatability.</li>
+<li>Applies software development best practices.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Example-Jenkins-Pipeline"><a class="header-anchor" href="#Example-Jenkins-Pipeline">¶</a>Example: Jenkins Pipeline</h3>
+<ul>
+<li><strong>Steps:</strong>
+<ol>
+<li>Configure GitHub webhook to notify Jenkins on push.</li>
+<li>Jenkins downloads updates.</li>
+<li>Executes tasks: build (Maven), test (JUnit), build/push Docker image.</li>
+<li>Deploys to Kubernetes cluster.</li>
+<li>Kubernetes pulls images from registry.</li>
+</ol>
+</li>
+</ul>
+<h2 id="Monitoring-and-Cloud-Service-Providers"><a class="header-anchor" href="#Monitoring-and-Cloud-Service-Providers">¶</a>Monitoring and Cloud Service Providers</h2>
+<ul>
+<li><strong>Monitoring:</strong> Tools track Kubernetes cluster and application health.</li>
+<li><strong>Cloud Providers:</strong> AWS, Google Cloud, Huawei Cloud offer managed CI/CD services.</li>
+</ul>
+<h1 id="Lec-13-Software-Evolution"><a class="header-anchor" href="#Lec-13-Software-Evolution">¶</a>Lec 13. Software Evolution</h1>
+<blockquote>
+<p><font color="red">Where we’re in?</font><br>
+<font color="green">Maintenance</font></p>
+<img src="/2025/06/13/Software-Engineering/3.png" style="zoom:30%">
+</blockquote>
+<h2 id="Software-Maintenance"><a class="header-anchor" href="#Software-Maintenance">¶</a>Software Maintenance</h2>
+<p><strong>Components</strong></p>
+<ul>
+<li>Bug/Vulnerabilities fix</li>
+<li>Environmental adaptation</li>
+<li>Functionality addition</li>
+</ul>
+<h3 id="Maintainability"><a class="header-anchor" href="#Maintainability">¶</a>Maintainability</h3>
+<h4 id="Measurement"><a class="header-anchor" href="#Measurement">¶</a>Measurement</h4>
+<ul>
+<li>Num of requests for corrective maintenance</li>
+<li>Average time required for impact analysis</li>
+<li>Average time taken to implement a change request</li>
+</ul>
+<h3 id="Technical-Debt"><a class="header-anchor" href="#Technical-Debt">¶</a>Technical Debt</h3>
+<ul>
+<li>
+<p><strong>Def.</strong> refers to the long-term cost of making short-term or suboptimal decisions in software design</p>
+</li>
+<li>
+<p><strong>Types</strong></p>
+<ul>
+<li><strong>Quick and dirty fixes</strong>: minimal testing, code rushed to DDL.</li>
+<li><strong>Well-intentioned past decisions that don’t scale well anymore</strong>: as business evolves, system becomes <font color="red">bottleneck or liability</font></li>
+</ul>
+</li>
+<li>
+<p><strong>Case Study:</strong> Overflow</p>
+<ul>
+<li><strong>Split codebases</strong>: The code for handling user login and registration was split across two different codebases</li>
+<li><strong>Functional limitations</strong>: Email addresses were stored in two separate databases; users couldn’t reset the password with their new email addresses</li>
+<li><strong>Outdated Dependencies</strong>: <em>CareersAuth</em> had not been updated for several years, necessitating time-consuming updates to various dependencies to make it operational on a local development environment</li>
+</ul>
+</li>
+</ul>
+<h3 id="Refactoring"><a class="header-anchor" href="#Refactoring">¶</a>Refactoring</h3>
+<ul>
+<li><strong>Def.</strong> To improves the internal structure while preserving external behavior</li>
+<li><strong>Why?</strong>
+<ul>
+<li>Improve design of software; simplify code by removing unnecessary complexity or duplication</li>
+<li>find bugs and make code robust; increase readability and productivity</li>
+<li>reduce cost of software maintenance; prepare for future customization</li>
+</ul>
+</li>
+<li><strong>When?</strong>
+<ul>
+<li><font color="red">Rule for Three</font>: same thing happens the third time</li>
+<li>when new feature is <font color="dodgerblue">hard to integrate</font> with existing code</li>
+<li>when bug is <font color="dodgerblue">hard to trace</font>, refactor first to make code more clear</li>
+<li>during <font color="dodgerblue">code review</font> (last chance)</li>
+</ul>
+</li>
+<li><strong>What to refactor?</strong>
+<ul>
+<li>a warning sign of your code</li>
+<li>a surface indication that usually corresponds to a deeper problem in the code or system</li>
+<li>Code that doesn’t smell good / doesn’t feel right <font color="grey">(actually not just a feeling, keep going)</font></li>
+</ul>
+</li>
+</ul>
+<h4 id="Types-of-Code-Smells"><a class="header-anchor" href="#Types-of-Code-Smells">¶</a>Types of Code Smells</h4>
+<ul>
+<li><strong>Bloaters</strong> (代码臃肿)
+<ul>
+<li>Long method: make method less understandable</li>
+<li>Long parameter list: too much param leads to error-prone (example shown below)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// long param list</span></span><br><span class="line"><span class="type">double</span> <span class="variable">basePrice</span> <span class="operator">=</span> itemPrice * quantity;</span><br><span class="line"><span class="type">double</span> <span class="variable">fees</span> <span class="operator">=</span> <span class="built_in">this</span>.getFee();</span><br><span class="line"><span class="type">double</span> <span class="variable">discount</span> <span class="operator">=</span> <span class="built_in">this</span>.getDiscount();</span><br><span class="line"><span class="type">double</span> <span class="variable">finalPrice</span> <span class="operator">=</span> getPayment(basePrice, fees, discount);</span><br><span class="line"></span><br><span class="line"><span class="comment">// after refactor</span></span><br><span class="line"><span class="type">double</span> <span class="variable">basePrice</span> <span class="operator">=</span> itemPrice * quantity;</span><br><span class="line"><span class="type">double</span> <span class="variable">finalPrice</span> <span class="operator">=</span> getPayment(basePrice);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>OO(object-oriented) Abusers</strong>
+<ul>
+<li>Violation of the <font color="red">Liskov Substitution Principle</font>: a subclass inherits from a parent class, but the subclass doesn’t need all behaviors of parent class. (Inheritance doesn’t make sense)</li>
+<li><strong>Refactor</strong>: replace inheritance with delegation [分配？], i.e., put the behaviors that subclass refuses off the parent class.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="type">void</span> <span class="title">Drive</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Car</span> : Vehicle&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Plane</span> : Vehicle&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// after refactor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Vehicle</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Car</span> : Vehicle &#123;</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">Drive</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Plane</span> : Vehicle &#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Change Preventers</strong>
+<ul>
+<li>You have to change much when you only need to change one. [代码重复]</li>
+<li>Violation of the <font color="red">Single Responsibility Principle</font></li>
+<li><strong>Refactor:</strong> extract method [代码复用]</li>
+</ul>
+</li>
+<li><strong>Couplers</strong>
+<ul>
+<li>Feature envy: 类方法大量使用另一个类的数据</li>
+<li>Inappropriate intimacy: 类使用另一个类的 fields 和方法</li>
+<li>Message chains: 方法链式调用</li>
+<li>Middle man: 中间类“行为”太少，没有存在必要</li>
+</ul>
+</li>
+<li><strong>Dispensibles</strong>: something whose disappearance would make code cleaner, more efficient and more understandable
+<ul>
+<li>Duplicate code</li>
+<li>Dead code (unused and obsolete code)</li>
+<li>Lazy class (classes that don’t do enough to earn your attention)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Code smells are usually not bugs, and don’t always indicate a problem. But improving it can benefit maintenance.</p>
+</blockquote>
+<h3 id="Re-Architecting"><a class="header-anchor" href="#Re-Architecting">¶</a>Re-Architecting</h3>
+<ul>
+<li>
+<p><strong>When to re-architecting Monolithics?</strong></p>
+<ul>
+<li>Find out problems: slow delivery, buggy releases or poor scalability</li>
+<li>and problems remain after trying refactor or other solutions…</li>
+<li><strong>then re-architect to Microservices</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Strategies</strong></p>
+<ol>
+<li>New features as services</li>
+<li>Separate the presentation tier from backend</li>
+<li>Break up monolithic by extracting functionality into services</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>About Sol.2, here’s a figure:</p>
+</blockquote>
+<img src="/2025/06/13/Software-Engineering/92.png">
+<h2 id="Software-Evolution"><a class="header-anchor" href="#Software-Evolution">¶</a>Software Evolution</h2>
+<blockquote>
+<p><strong>Why software evolution costly?</strong></p>
+<ul>
+<li>needs to migrate to new platforms, for different machines and OS, and meet new requirements</li>
+<li>complexity grows.</li>
+<li>people (DevOps teams) come and go</li>
+</ul>
+</blockquote>
+<h3 id="Legacy-Systems"><a class="header-anchor" href="#Legacy-Systems">¶</a>Legacy Systems</h3>
+<ul>
+<li>
+<p><strong>Definition</strong>: Outdated but operational software/hardware (e.g., Windows XP in ATMs)</p>
+</li>
+<li>
+<p><strong>Risks of replacing legacy code</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Risk Factor</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Implicit Business Rules</td>
+<td>Critical logic undocumented</td>
+</tr>
+<tr>
+<td>Structural Decay</td>
+<td>Hard to understand/extend</td>
+</tr>
+<tr>
+<td>Obsolete[过时] Technologies</td>
+<td>COBOL skills shortage</td>
+</tr>
+<tr>
+<td>Integration Complexity</td>
+<td>High failure risk (e.g., Southwest Airlines meltdown)</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="Legacy-System-Decisions"><a class="header-anchor" href="#Legacy-System-Decisions">¶</a>Legacy System Decisions</h3>
+<table>
+<thead>
+<tr>
+<th>Business Value</th>
+<th>System Quality</th>
+<th>Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low</td>
+<td>Low</td>
+<td>Abandon</td>
+</tr>
+<tr>
+<td>High</td>
+<td>Low</td>
+<td>Modernize</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>High</td>
+<td>Maintain (abandon if changes costly)</td>
+</tr>
+<tr>
+<td>High</td>
+<td>High</td>
+<td>Continue maintenance</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><strong>Modernization Strategies</strong></p>
+<ul>
+<li><strong>Re-host, Re-platform</strong>: migrate to a new platform or infrastructure</li>
+<li><strong>Refactor</strong></li>
+<li><strong>Re-architect</strong></li>
+<li><strong>Replace</strong>: part or all of the system</li>
+<li><strong>Re-engineer/Rebuild</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Re-engineer Process</strong></p>
+<ul>
+<li><strong>Reverse engineering</strong>: legacy code $\to$ old design $\to$ old requirements</li>
+<li><strong>System transformation</strong>: new requirements</li>
+<li><strong>Forward engineering</strong>: new requirements $\to$ new design $\to$ new code</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/93.png" style="zoom:70%">
+<h3 id="Deprecation"><a class="header-anchor" href="#Deprecation">¶</a>Deprecation</h3>
+<ul>
+<li>
+<p><strong>When to Deprecate</strong>: Demonstrably obsolete systems with replacements (not just “old”)</p>
+</li>
+<li>
+<p><strong>Elegant Strategies</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Tools/Process</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dependency Discovery</td>
+<td>Static analysis, Logging</td>
+<td>Identify users/usages</td>
+</tr>
+<tr>
+<td>Warning Flags</td>
+<td><code>@Deprecated</code> Java annotations</td>
+<td>Prevent new usage</td>
+</tr>
+<tr>
+<td>Sunset Periods</td>
+<td>6-12 month phased support</td>
+<td>Allow migration time</td>
+</tr>
+<tr>
+<td>Automated Migration</td>
+<td>Code update tools, Test suites</td>
+<td>Ensure functionality</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Chart about <strong>Sunset Period</strong>:</p>
+</li>
+</ul>
+<img src="/2025/06/13/Software-Engineering/94.png">
+
+    </div>
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #9d9d9d;font-size:18px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSE-Learning/" rel="tag"><i class="fa fa-tag"></i> CSE Learning</a>
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/06/08/Management/" rel="prev" title="EBA106 管理学">
+                  <i class="fa fa-angle-left"></i> EBA106 管理学
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/06/17/Placo/" rel="next" title="PlACo User Document">
+                  PlACo User Document <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hxajIyMjE=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"hqj2221","repo":"hqj2221.github.io","client_id":"Ov23liOFt85UmxD8JcOX","client_secret":"fa3f10758d7350bc33936e9033a569e7da10d179","admin_user":"hqj2221","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"966c276d3fceb46b9fcc3b151cb7687e"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
