@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons8-fox-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons8-fox-16.png">
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetbrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-atom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="三大类型：COCO，VOC，YOLO COCO  COCO数据集现在有3种标注类型，分别是：  object instances(目标实例) object keypoints(目标上的关键点) image captions(看图说话)   这3种类型共享这些基本类型：info、image、license，使用JSON文件存储。   以 object instances 为例，COCO 格式将会如此">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不同格式数据集的转换——“图形码检测”项目笔记">
+<meta property="og:url" content="http://hqj2221.github.io/2025/06/23/Format-Transform-Of-Object-Detection/index.html">
+<meta property="og:site_name" content="Qijun He&#39;s Personal Pages">
+<meta property="og:description" content="三大类型：COCO，VOC，YOLO COCO  COCO数据集现在有3种标注类型，分别是：  object instances(目标实例) object keypoints(目标上的关键点) image captions(看图说话)   这3种类型共享这些基本类型：info、image、license，使用JSON文件存储。   以 object instances 为例，COCO 格式将会如此">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-23T12:02:27.000Z">
+<meta property="article:modified_time" content="2025-06-24T09:14:17.799Z">
+<meta property="article:author" content="Bionic l&#39;Hôpital">
+<meta property="article:tag" content="Steven He, 何, 个人站点, Ho Kai Kwan, Personal Blog, Qijun He, He Qijun, HQJ2221">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://hqj2221.github.io/2025/06/23/Format-Transform-Of-Object-Detection/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2025/06/23/Format-Transform-Of-Object-Detection/","path":"2025/06/23/Format-Transform-Of-Object-Detection/","title":"不同格式数据集的转换——“图形码检测”项目笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>不同格式数据集的转换——“图形码检测”项目笔记 | Qijun He's Personal Pages</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Qijun He's Personal Pages</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">A personal site by Qijun He,</br>junior student from South University of Science and Technology.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">19</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fas fa-list fa-fw"></i>Categories<span class="badge">8</span></a></li><li class="menu-item menu-item-cs-note"><a href="/tags/CSE-Learning/" rel="section"><i class="fa fa-desktop fa-fw"></i>CS Note</a></li><li class="menu-item menu-item-recommended"><a href="/tags/Recommended/" rel="section"><i class="fa fa-star fa-fw"></i>Recommended</a></li><li class="menu-item menu-item-diary"><a href="/categories/Tools/" rel="section"><i class="fa fa-paint-brush fa-fw"></i>Diary</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E7%B1%BB%E5%9E%8B%EF%BC%9ACOCO%EF%BC%8CVOC%EF%BC%8CYOLO"><span class="nav-text">三大类型：COCO，VOC，YOLO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#COCO"><span class="nav-text">COCO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VOC"><span class="nav-text">VOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO"><span class="nav-text">YOLO</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%BD%AC%E6%8D%A2%EF%BC%9F"><span class="nav-text">如何转换？</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bionic l'Hôpital"
+      src="/images/me.png">
+  <p class="site-author-name" itemprop="name">Bionic l'Hôpital</p>
+  <div class="site-description" itemprop="description">Qijun He's Personal Pages</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0hRSjIyMjE=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HQJ2221"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/about/" title="About-Me → &#x2F;about&#x2F;" rel="noopener me"><i class="fa fa-user-circle fa-fw"></i>About-Me</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2025/06/23/Format-Transform-Of-Object-Detection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.png">
+      <meta itemprop="name" content="Bionic l'Hôpital">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qijun He's Personal Pages">
+      <meta itemprop="description" content="Qijun He's Personal Pages">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="不同格式数据集的转换——“图形码检测”项目笔记 | Qijun He's Personal Pages">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          不同格式数据集的转换——“图形码检测”项目笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-06-23 20:02:27" itemprop="dateCreated datePublished" datetime="2025-06-23T20:02:27+08:00">2025-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-06-24 17:14:17" itemprop="dateModified" datetime="2025-06-24T17:14:17+08:00">2025-06-24</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="三大类型：COCO，VOC，YOLO">三大类型：COCO，VOC，YOLO</h1>
+<h2 id="COCO">COCO</h2>
+<ul>
+<li>COCO数据集现在有3种标注类型，分别是：
+<ul>
+<li>object instances(目标实例)</li>
+<li>object keypoints(目标上的关键点)</li>
+<li>image captions(看图说话)</li>
+</ul>
+</li>
+<li>这3种类型共享这些基本类型：info、image、license，使用JSON文件存储。</li>
+</ul>
+<blockquote>
+<p>以 object instances 为例，COCO 格式将会如此进行标注：</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;info&quot;</span><span class="punctuation">:</span> info<span class="punctuation">,</span>               # dict</span><br><span class="line">  <span class="attr">&quot;licenses&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>license<span class="punctuation">]</span><span class="punctuation">,</span>      # list<span class="punctuation">,</span>内部是dict</span><br><span class="line">  <span class="attr">&quot;images&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>image<span class="punctuation">]</span><span class="punctuation">,</span>          # list<span class="punctuation">,</span>内部是dict</span><br><span class="line">  <span class="attr">&quot;annotations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>annotation<span class="punctuation">]</span><span class="punctuation">,</span># list<span class="punctuation">,</span>内部是dict</span><br><span class="line">  <span class="attr">&quot;categories&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>category<span class="punctuation">]</span>    # list<span class="punctuation">,</span>内部是dict</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">info<span class="punctuation">&#123;</span>                         # 数据集信息描述</span><br><span class="line">  <span class="attr">&quot;year&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span>                # 数据集年份</span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span>             # 数据集版本</span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span>         # 数据集描述</span><br><span class="line">  <span class="attr">&quot;contributor&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span>         # 数据集提供者</span><br><span class="line">  <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span>                 # 数据集下载链接</span><br><span class="line">  <span class="attr">&quot;date_created&quot;</span><span class="punctuation">:</span> datetime<span class="punctuation">,</span>   # 数据集创建日期</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">license<span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span> </span><br><span class="line">image<span class="punctuation">&#123;</span> # images是一个list<span class="punctuation">,</span>存放所有图片(dict)信息。image是一个dict<span class="punctuation">,</span>存放单张图片信息 </span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span>                  # 图片的ID编号（每张图片ID唯一）</span><br><span class="line">  <span class="attr">&quot;width&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span>               # 图片宽</span><br><span class="line">  <span class="attr">&quot;height&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span>              # 图片高</span><br><span class="line">  <span class="attr">&quot;file_name&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span>           # 图片名字</span><br><span class="line">  <span class="attr">&quot;license&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span>             # 协议</span><br><span class="line">  <span class="attr">&quot;flickr_url&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span>          # flickr链接地址</span><br><span class="line">  <span class="attr">&quot;coco_url&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span>            # 网络连接地址</span><br><span class="line">  <span class="attr">&quot;date_captured&quot;</span><span class="punctuation">:</span> datetime<span class="punctuation">,</span>  # 数据集获取日期</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">annotation<span class="punctuation">&#123;</span> # annotations是一个list<span class="punctuation">,</span>存放所有标注(dict)信息。annotation是一个dict<span class="punctuation">,</span>存放单个目标标注信息。</span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span>                  # 目标对象ID（每个对象ID唯一），每张图片可能有多个目标</span><br><span class="line">  <span class="attr">&quot;image_id&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span>            # 对应图片ID</span><br><span class="line">  <span class="attr">&quot;category_id&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span>         # 对应类别ID，与categories中的ID对应</span><br><span class="line">  <span class="attr">&quot;segmentation&quot;</span><span class="punctuation">:</span> RLE or <span class="punctuation">[</span>polygon<span class="punctuation">]</span><span class="punctuation">,</span>   # 实例分割，对象的边界点坐标<span class="punctuation">[</span>x1<span class="punctuation">,</span>y1<span class="punctuation">,</span>x2<span class="punctuation">,</span>y2<span class="punctuation">,</span>....<span class="punctuation">,</span>xn<span class="punctuation">,</span>yn<span class="punctuation">]</span></span><br><span class="line">  <span class="attr">&quot;area&quot;</span><span class="punctuation">:</span> float<span class="punctuation">,</span>              # 对象区域面积</span><br><span class="line">  <span class="attr">&quot;bbox&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>xmin<span class="punctuation">,</span>ymin<span class="punctuation">,</span>width<span class="punctuation">,</span>height<span class="punctuation">]</span><span class="punctuation">,</span> # 目标检测，对象定位边框<span class="punctuation">[</span>x<span class="punctuation">,</span>y<span class="punctuation">,</span>w<span class="punctuation">,</span>h<span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">categories<span class="punctuation">&#123;</span>                   # 类别描述</span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span>                  # 类别对应的ID</span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span>                # 类别名字</span><br><span class="line">  <span class="attr">&quot;supercategory&quot;</span><span class="punctuation">:</span> str<span class="punctuation">,</span>       # 主类别名字</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="VOC">VOC</h2>
+<ul>
+<li>VOC 类数据集由以下 5 个部分构成
+<ul>
+<li><strong>JPEGImages</strong>: 存放的是训练与测试的所有图片。</li>
+<li><strong>Annotations</strong>: 里面存放的是每张图片打完标签所对应的 <code>XML</code> 文件。</li>
+<li><strong>ImageSets</strong>: ImageSets 文件夹下本次讨论的只有 <code>Main</code> 文件夹，此文件夹中存放的主要又有四个文本文件<code>test.txt</code>、<code>train.txt</code>、<code>trainval.txt</code>、<code>val.txt</code>, 其中分别存放的是测试集图片的文件名、训练集图片的文件名、训练验证集图片的文件名、验证集图片的文件名。</li>
+<li><strong>SegmentationClass/SegmentationObject</strong>: 存放的都是图片，且都是图像分割结果图，对目标检测任务来说没有用</li>
+<li><strong>ObjectSegmentation</strong>: 标注出每一个像素属于哪一个物体。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>An example:</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">annotation</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">folder</span>&gt;</span>pdf417<span class="tag">&lt;/<span class="name">folder</span>&gt;</span> # 图片所处文件夹</span><br><span class="line">  <span class="tag">&lt;<span class="name">filename</span>&gt;</span>7758258.jpg<span class="tag">&lt;/<span class="name">filename</span>&gt;</span> # 图片名</span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span>&gt;</span>~/data/images/pdf417/7758258.jpg<span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span>&gt;</span>  #图片来源相关信息</span><br><span class="line">    <span class="tag">&lt;<span class="name">database</span>&gt;</span>Unknown<span class="tag">&lt;/<span class="name">database</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">size</span>&gt;</span> #图片尺寸</span><br><span class="line">    <span class="tag">&lt;<span class="name">width</span>&gt;</span>640<span class="tag">&lt;/<span class="name">width</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">height</span>&gt;</span>480<span class="tag">&lt;/<span class="name">height</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">depth</span>&gt;</span>3<span class="tag">&lt;/<span class="name">depth</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">size</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">segmented</span>&gt;</span>0<span class="tag">&lt;/<span class="name">segmented</span>&gt;</span>  #是否有分割label</span><br><span class="line">  <span class="tag">&lt;<span class="name">object</span>&gt;</span> 包含的物体</span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>pdf417<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  #物体类别</span><br><span class="line">    <span class="tag">&lt;<span class="name">pose</span>&gt;</span>Unspecified<span class="tag">&lt;/<span class="name">pose</span>&gt;</span>  #物体的姿态</span><br><span class="line">    <span class="tag">&lt;<span class="name">truncated</span>&gt;</span>0<span class="tag">&lt;/<span class="name">truncated</span>&gt;</span>  #物体是否被部分遮挡（大于15%）</span><br><span class="line">    <span class="tag">&lt;<span class="name">difficult</span>&gt;</span>0<span class="tag">&lt;/<span class="name">difficult</span>&gt;</span>  #是否为难以辨识的物体， 主要指要结体背景才能判断出类别的物体。虽有标注， 但一般忽略这类物体</span><br><span class="line">    <span class="tag">&lt;<span class="name">bndbox</span>&gt;</span>  #物体的bound box</span><br><span class="line">      <span class="tag">&lt;<span class="name">xmin</span>&gt;</span>2<span class="tag">&lt;/<span class="name">xmin</span>&gt;</span>     #左</span><br><span class="line">      <span class="tag">&lt;<span class="name">ymin</span>&gt;</span>156<span class="tag">&lt;/<span class="name">ymin</span>&gt;</span>   #上</span><br><span class="line">      <span class="tag">&lt;<span class="name">xmax</span>&gt;</span>111<span class="tag">&lt;/<span class="name">xmax</span>&gt;</span>   #右</span><br><span class="line">      <span class="tag">&lt;<span class="name">ymax</span>&gt;</span>259<span class="tag">&lt;/<span class="name">ymax</span>&gt;</span>   #下</span><br><span class="line">    <span class="tag">&lt;/<span class="name">bndbox</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">annotation</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="YOLO">YOLO</h2>
+<ul>
+<li>使用 <code>TXT</code> 文件进行保存，对每个图片编写一个<strong>同名</strong>文本文件</li>
+</ul>
+<blockquote>
+<p>假设对于图片 <code>7758258.jpg</code>，在同目录下创建 <code>7758258.txt</code>:</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;object-<span class="keyword">class</span>&gt; &lt;<span class="symbol">x</span>&gt; &lt;<span class="symbol">y</span>&gt; &lt;<span class="symbol">width</span>&gt; &lt;<span class="symbol">height</span>&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="如何转换？">如何转换？</h1>
+<blockquote>
+<p>首先我们关注到 COCO 是对整个数据集建立 JSON 文件，而 VOC 和 YOLO 都是对单张图片建立文件。</p>
+</blockquote>
+<ol>
+<li>关于从 COCO 数据集中读写数据（JSON I/O）</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读操作</span></span><br><span class="line"><span class="keyword">from</span> pycocotools.coco <span class="keyword">import</span> COCO  <span class="comment"># 这个库支持原本比较复杂的JSON读取操作</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_coco</span>(<span class="params">file_path, xml_save_path</span>):</span><br><span class="line">  coco = COCO(file_path)</span><br><span class="line"></span><br><span class="line">  classes = <span class="built_in">dict</span>()</span><br><span class="line">  <span class="keyword">for</span> cat <span class="keyword">in</span> coco.dataset[<span class="string">&#x27;categories&#x27;</span>]:</span><br><span class="line">      classes[cat[<span class="string">&#x27;id&#x27;</span>]] = cat[<span class="string">&#x27;name&#x27;</span>]</span><br><span class="line">  imgIds = coco.getImgIds()</span><br><span class="line">  classesIds = coco.getCatIds()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> imgId <span class="keyword">in</span> tqdm(imgIds):  <span class="comment"># JSON 每进一步，用循环来加载所有属性</span></span><br><span class="line">    size = &#123;&#125;</span><br><span class="line">    img = coco.loadImgs(imgId)[<span class="number">0</span>]</span><br><span class="line">    filename = img[<span class="string">&#x27;file_name&#x27;</span>]</span><br><span class="line">    width = img[<span class="string">&#x27;width&#x27;</span>]</span><br><span class="line">    height = img[<span class="string">&#x27;height&#x27;</span>]</span><br><span class="line">    size[<span class="string">&#x27;width&#x27;</span>] = width</span><br><span class="line">    size[<span class="string">&#x27;height&#x27;</span>] = height</span><br><span class="line">    annIds = coco.getAnnIds(imgIds=img[<span class="string">&#x27;id&#x27;</span>], iscrowd=<span class="literal">None</span>)</span><br><span class="line">    anns = coco.loadAnns(annIds)</span><br><span class="line">    </span><br><span class="line">    objs = []</span><br><span class="line">    <span class="keyword">for</span> ann <span class="keyword">in</span> anns:</span><br><span class="line">      <span class="comment"># obj = ...</span></span><br><span class="line">      objs.append(obj)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果转为 VOC，YOLO，则在每个 image 加载后进行一次 XML/TXT 文件构造，如：</span></span><br><span class="line">    save_anno_to_xml(filename, size, objs, xml_save_path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写操作</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">coco = <span class="built_in">dict</span>()</span><br><span class="line">coco[<span class="string">&#x27;images&#x27;</span>] = []</span><br><span class="line">coco[<span class="string">&#x27;type&#x27;</span>] = <span class="string">&#x27;instances&#x27;</span></span><br><span class="line">coco[<span class="string">&#x27;annotations&#x27;</span>] = []</span><br><span class="line">coco[<span class="string">&#x27;categories&#x27;</span>] = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_coco</span>(<span class="params">data_dir, json_save_path</span>):</span><br><span class="line">  <span class="comment"># prepare data</span></span><br><span class="line">  json.dump(coco, <span class="built_in">open</span>(json_save_path, <span class="string">&#x27;w&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>关于从 VOC 数据集中读写数据 (XML I/O)</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读操作</span></span><br><span class="line"><span class="keyword">import</span> xml.etree.ElementTree <span class="keyword">as</span> ET</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_xml</span>(<span class="params">data_dir</span>):</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 写操作</span></span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #9d9d9d;font-size:18px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/06/20/Natural-Language-Processing/" rel="prev" title="Natural Language Processing">
+                  <i class="fa fa-angle-left"></i> Natural Language Processing
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/06/23/YuNet-Development-Guide/" rel="next" title="YuNetForCode 项目笔记">
+                  YuNetForCode 项目笔记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hxajIyMjE=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"hqj2221","repo":"hqj2221.github.io","client_id":"Ov23liOFt85UmxD8JcOX","client_secret":"fa3f10758d7350bc33936e9033a569e7da10d179","admin_user":"hqj2221","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4231a34d03be7d6d61bc0a63ad976d3d"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
