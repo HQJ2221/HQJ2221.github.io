@@ -1311,7 +1311,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #acff8a;
+    background: #e0ac4a;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2968,13 +2968,10 @@ body {
 .posts-collapse .post-content .collection-year::before {
   display: none;
 }
-a,
-span.exturl {
-  border-bottom: none;
-}
 a:hover,
 span.exturl:hover {
   color: #ff8c00;
+  border-bottom-color: #ff8c00;
 }
 .posts-collapse .post-content .post-header {
   font-size: 1.1em;
