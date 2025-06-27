@@ -29,7 +29,7 @@
 <meta property="og:description" content="This is a learning note about distributed storage, but not from my college courses, which means I learn on my own using browser. So it&#39;s not a recommended note, even a mistake. Waiting for your correc">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-06-19T19:34:04.000Z">
-<meta property="article:modified_time" content="2025-06-26T09:12:25.776Z">
+<meta property="article:modified_time" content="2025-06-27T08:23:10.138Z">
 <meta property="article:author" content="Bionic l&#39;Hôpital">
 <meta property="article:tag" content="CSE Learning">
 <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Before-Learning"><span class="nav-text">Before Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Brief-History-of-DSS"><span class="nav-text">Brief History of DSS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Distributed-Storage"><span class="nav-text">Distributed Storage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Metrics-to-measure-storage-performance"><span class="nav-text">Metrics to measure storage performance</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Software-Defined-Systems"><span class="nav-text">Software Defined Systems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-SDS-Architectures-Centralized-vs-Distributed"><span class="nav-text">Two SDS Architectures: Centralized vs. Distributed</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Block-storage-file-storage-and-object-storage"><span class="nav-text">Block storage, file storage and object storage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strip-algorithm-CRUSH-algorithm"><span class="nav-text">Strip algorithm &amp; CRUSH algorithm</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Before-Learning"><span class="nav-text">Before Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Brief-History-of-DSS"><span class="nav-text">Brief History of DSS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Distributed-Storage"><span class="nav-text">Distributed Storage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Metrics-to-measure-storage-performance"><span class="nav-text">Metrics to measure storage performance</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Software-Defined-Systems"><span class="nav-text">Software Defined Systems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-SDS-Architectures-Centralized-vs-Distributed"><span class="nav-text">Two SDS Architectures: Centralized vs. Distributed</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Block-storage-file-storage-and-object-storage"><span class="nav-text">Block storage, file storage and object storage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strip-algorithm-CRUSH-algorithm"><span class="nav-text">Strip algorithm &amp; CRUSH algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Protocols-of-Distributed-Block-Storage"><span class="nav-text">Network Protocols of Distributed Block Storage</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Storage-Cluster"><span class="nav-text">Storage Cluster</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-Balance"><span class="nav-text">Load Balance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Distributed-Cluster"><span class="nav-text">Distributed Cluster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#High-Availability"><span class="nav-text">High Availability</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Distributed-Systems"><span class="nav-text">Distributed Systems</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -243,7 +243,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-06-26 17:12:25" itemprop="dateModified" datetime="2025-06-26T17:12:25+08:00">2025-06-26</time>
+      <time title="Modified: 2025-06-27 16:23:10" itemprop="dateModified" datetime="2025-06-27T16:23:10+08:00">2025-06-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -429,6 +429,9 @@
 <p><strong>File storage:</strong> human</p>
 <p><strong>Object storage:</strong> others such as software</p>
 </blockquote>
+<blockquote>
+<p><font color="green">Recall: DAS, NAS and SAN.</font> DAS, SAN use block storage, while NAS use file storage.</p>
+</blockquote>
 <h3 id="Strip-algorithm-CRUSH-algorithm">Strip algorithm &amp; CRUSH algorithm</h3>
 <blockquote>
 <p><strong>Strip algorithm</strong>: divide data into strips, and store them in different disks. They seems continuous logically, but phisically they are not.</p>
@@ -448,10 +451,102 @@
 </ul>
 </li>
 </ul>
-<hr>
 <blockquote>
 <p><strong>CRUSH(Controlled Replication Under Scalable Hashing)</strong>: a pseudo-random algorithm to locate data in distributed storage system.</p>
+<p>Since it’s commonly used in <code>Ceph</code>, we will learn it in detail in the next section</p>
 </blockquote>
+<h2 id="Network-Protocols-of-Distributed-Block-Storage">Network Protocols of Distributed Block Storage</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Protocol</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">iSCSI(Internet Small Computer System Interface)</td>
+<td style="text-align:center">SCSI is a protocol connecting host and external device(but also an interface).<br>ISCSI can be served as a protocol in application layer(apply Ethernet to encapsulate SCSI commands and transfer by TCP)<br>ISCSI is under CS architecture</td>
+</tr>
+<tr>
+<td style="text-align:center">NVMe-oF(NVMe over Fabrics)</td>
+<td style="text-align:center">Extension of NVMe protocol(an intra-server protocol of SSD) over network</td>
+</tr>
+<tr>
+<td style="text-align:center">RDMA(Remote Direct Memory Access)</td>
+<td style="text-align:center">A technology that allows data to be transferred from the memory of one computer to the memory of another without involving the CPU, cache, or operating system of either computer</td>
+</tr>
+<tr>
+<td style="text-align:center">RDMA+NVMe-oF</td>
+<td style="text-align:center">a popular usage of RDMA to accelerate NVMe over Fabrics</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Storage-Cluster">Storage Cluster</h1>
+<ul>
+<li><strong>Cluster</strong>: a group of servers that work together to provide a service, handling the large visiting, high parallel and sea of data.
+<ul>
+<li>2 sub-class: load balance &amp; distributed</li>
+<li>difference on how the multiple servers cooperate</li>
+</ul>
+</li>
+</ul>
+<h2 id="Load-Balance">Load Balance</h2>
+<ul>
+<li><strong>DNS Load Balance</strong>: configure multiple IPs for one domain name, and the DNS server will return one of them randomly(properly)</li>
+<li><strong>HTTP Load Balance</strong>: Calculate a true address of web server by http request, write it into the response header and return to browser(host)</li>
+<li><strong>IP Load Balance</strong>: modify target IP address in network layer</li>
+<li><strong>Link Load Balance</strong>: modify target MAC address in data link layer</li>
+<li><strong>Hybrid Load Balance</strong></li>
+</ul>
+<p><strong>Load Balance Algorithms</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Algorithm</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Round Robin</td>
+<td style="text-align:center">distribute requests evenly to all servers</td>
+</tr>
+<tr>
+<td style="text-align:center">Least Connections</td>
+<td style="text-align:center">distribute requests to the server with the least connections</td>
+</tr>
+<tr>
+<td style="text-align:center">IP Hash</td>
+<td style="text-align:center">use the hash value of client IP address to determine which server to send the request</td>
+</tr>
+<tr>
+<td style="text-align:center">Random</td>
+<td style="text-align:center">randomly select a server to send the request</td>
+</tr>
+<tr>
+<td style="text-align:center">Weighted</td>
+<td style="text-align:center">algorithm above with weighed score</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Distributed-Cluster">Distributed Cluster</h2>
+<ul>
+<li><strong>Def.</strong> Applying multiple servers, each of which has <font color="red">different roles</font>, to provide a service.</li>
+<li><strong>Applications</strong>:
+<ul>
+<li>Distributed applications &amp; services</li>
+<li>Deployment of distributed static resources</li>
+<li>Distributed data &amp; storage</li>
+<li>Distributed computing</li>
+</ul>
+</li>
+</ul>
+<h2 id="High-Availability">High Availability</h2>
+<ul>
+<li><strong>Def.</strong> A system that can continue to provide services even when some of its components fail.</li>
+</ul>
+<h1 id="Distributed-Systems">Distributed Systems</h1>
 
     </div>
     
@@ -483,8 +578,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/06/20/Natural-Language-Processing/" rel="next" title="Natural Language Processing">
-                  Natural Language Processing <i class="fa fa-angle-right"></i>
+                <a href="/2025/06/20/Natural-Language-Processing/" rel="next" title="自然语言处理">
+                  自然语言处理 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

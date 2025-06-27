@@ -176,6 +176,9 @@
 <p><strong>File storage:</strong> human</p>
 <p><strong>Object storage:</strong> others such as software</p>
 </blockquote>
+<blockquote>
+<p><font color="green">Recall: DAS, NAS and SAN.</font> DAS, SAN use block storage, while NAS use file storage.</p>
+</blockquote>
 <h3 id="Strip-algorithm-CRUSH-algorithm">Strip algorithm &amp; CRUSH algorithm</h3>
 <blockquote>
 <p><strong>Strip algorithm</strong>: divide data into strips, and store them in different disks. They seems continuous logically, but phisically they are not.</p>
@@ -195,10 +198,102 @@
 </ul>
 </li>
 </ul>
-<hr>
 <blockquote>
 <p><strong>CRUSH(Controlled Replication Under Scalable Hashing)</strong>: a pseudo-random algorithm to locate data in distributed storage system.</p>
+<p>Since it’s commonly used in <code>Ceph</code>, we will learn it in detail in the next section</p>
 </blockquote>
+<h2 id="Network-Protocols-of-Distributed-Block-Storage">Network Protocols of Distributed Block Storage</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Protocol</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">iSCSI(Internet Small Computer System Interface)</td>
+<td style="text-align:center">SCSI is a protocol connecting host and external device(but also an interface).<br>ISCSI can be served as a protocol in application layer(apply Ethernet to encapsulate SCSI commands and transfer by TCP)<br>ISCSI is under CS architecture</td>
+</tr>
+<tr>
+<td style="text-align:center">NVMe-oF(NVMe over Fabrics)</td>
+<td style="text-align:center">Extension of NVMe protocol(an intra-server protocol of SSD) over network</td>
+</tr>
+<tr>
+<td style="text-align:center">RDMA(Remote Direct Memory Access)</td>
+<td style="text-align:center">A technology that allows data to be transferred from the memory of one computer to the memory of another without involving the CPU, cache, or operating system of either computer</td>
+</tr>
+<tr>
+<td style="text-align:center">RDMA+NVMe-oF</td>
+<td style="text-align:center">a popular usage of RDMA to accelerate NVMe over Fabrics</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Storage-Cluster">Storage Cluster</h1>
+<ul>
+<li><strong>Cluster</strong>: a group of servers that work together to provide a service, handling the large visiting, high parallel and sea of data.
+<ul>
+<li>2 sub-class: load balance &amp; distributed</li>
+<li>difference on how the multiple servers cooperate</li>
+</ul>
+</li>
+</ul>
+<h2 id="Load-Balance">Load Balance</h2>
+<ul>
+<li><strong>DNS Load Balance</strong>: configure multiple IPs for one domain name, and the DNS server will return one of them randomly(properly)</li>
+<li><strong>HTTP Load Balance</strong>: Calculate a true address of web server by http request, write it into the response header and return to browser(host)</li>
+<li><strong>IP Load Balance</strong>: modify target IP address in network layer</li>
+<li><strong>Link Load Balance</strong>: modify target MAC address in data link layer</li>
+<li><strong>Hybrid Load Balance</strong></li>
+</ul>
+<p><strong>Load Balance Algorithms</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Algorithm</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Round Robin</td>
+<td style="text-align:center">distribute requests evenly to all servers</td>
+</tr>
+<tr>
+<td style="text-align:center">Least Connections</td>
+<td style="text-align:center">distribute requests to the server with the least connections</td>
+</tr>
+<tr>
+<td style="text-align:center">IP Hash</td>
+<td style="text-align:center">use the hash value of client IP address to determine which server to send the request</td>
+</tr>
+<tr>
+<td style="text-align:center">Random</td>
+<td style="text-align:center">randomly select a server to send the request</td>
+</tr>
+<tr>
+<td style="text-align:center">Weighted</td>
+<td style="text-align:center">algorithm above with weighed score</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Distributed-Cluster">Distributed Cluster</h2>
+<ul>
+<li><strong>Def.</strong> Applying multiple servers, each of which has <font color="red">different roles</font>, to provide a service.</li>
+<li><strong>Applications</strong>:
+<ul>
+<li>Distributed applications &amp; services</li>
+<li>Deployment of distributed static resources</li>
+<li>Distributed data &amp; storage</li>
+<li>Distributed computing</li>
+</ul>
+</li>
+</ul>
+<h2 id="High-Availability">High Availability</h2>
+<ul>
+<li><strong>Def.</strong> A system that can continue to provide services even when some of its components fail.</li>
+</ul>
+<h1 id="Distributed-Systems">Distributed Systems</h1>
 ]]></content>
       <categories>
         <category>Tools</category>
@@ -208,7 +303,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Natural Language Processing</title>
+    <title>自然语言处理</title>
     <url>/2025/06/20/Natural-Language-Processing/</url>
     <content><![CDATA[<h1 id="I-Intro">I. Intro</h1>
 ]]></content>
@@ -5411,6 +5506,20 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>CSE 经验总结</title>
+    <url>/2025/06/26/Learning-Feedback/</url>
+    <content><![CDATA[<blockquote>
+<p>本篇主要记录我学习 CSE 或申请相关项目/实习踩的坑，大多数都是我自用自查，不具有太多参考价值。</p>
+</blockquote>
+<ol>
+<li><a href="../First-Interview">前端面试失利</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+  </entry>
+  <entry>
     <title>First-Interview</title>
     <url>/2025/06/26/First-Interview/</url>
     <content><![CDATA[<h1 id="前端面试失利">前端面试失利</h1>
@@ -5483,20 +5592,6 @@ $$</p>
 </li>
 </ul>
 ]]></content>
-  </entry>
-  <entry>
-    <title>CSE 经验总结</title>
-    <url>/2025/06/26/Learning-Feedback/</url>
-    <content><![CDATA[<blockquote>
-<p>本篇主要记录我学习 CSE 或申请相关项目/实习踩的坑，大多数都是我自用自查，不具有太多参考价值。</p>
-</blockquote>
-<ol>
-<li><a href="../First-Interview">前端面试失利</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
   </entry>
   <entry>
     <title>不同格式数据集的转换——“图形码检测”项目笔记</title>
