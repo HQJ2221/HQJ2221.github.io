@@ -1311,7 +1311,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #ffa457;
+    background: #c83826;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2930,7 +2930,7 @@ header.header {
   }
 }
 body {
-  background: url("/images/carlotta.png");
+  background: url("/images/skadi.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
