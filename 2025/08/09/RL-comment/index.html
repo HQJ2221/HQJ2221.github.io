@@ -21,26 +21,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Qijun He&#39;s Personal Pages">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Qijun He&#39;s Personal Pages">
-<meta property="og:url" content="http://hqj2221.github.io/categories/2025-Spring/index.html">
+    <meta name="description" content="目前通用智能体预训练主要需要解决的问题：泛化能力，即我们希望通用智能体能够真正像人类一样，不是在某一方面展现出智能（如语言，视觉），而是成为一个“全才”，拥有解决各类问题&#x2F;任务的能力。   由于 “泛” 的原因，通用智能体的预训练面临的最大挑战就是 unbounded-data，数据稀疏。这会涉及到数据难以覆盖通用模型所需的所有任务类别，也涉及到训练数据类别过多导致单类任务训练结果不佳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个人有关 RPT 以及通用智能体预训练的主观看法">
+<meta property="og:url" content="http://hqj2221.github.io/2025/08/09/RL-comment/index.html">
 <meta property="og:site_name" content="Qijun He&#39;s Personal Pages">
-<meta property="og:description" content="Qijun He&#39;s Personal Pages">
+<meta property="og:description" content="目前通用智能体预训练主要需要解决的问题：泛化能力，即我们希望通用智能体能够真正像人类一样，不是在某一方面展现出智能（如语言，视觉），而是成为一个“全才”，拥有解决各类问题&#x2F;任务的能力。   由于 “泛” 的原因，通用智能体的预训练面临的最大挑战就是 unbounded-data，数据稀疏。这会涉及到数据难以覆盖通用模型所需的所有任务类别，也涉及到训练数据类别过多导致单类任务训练结果不佳">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-08-09T15:28:51.000Z">
+<meta property="article:modified_time" content="2025-08-09T15:46:01.845Z">
 <meta property="article:author" content="Bionic l&#39;Hôpital">
 <meta property="article:tag" content="Steven He, 何, 个人站点, Ho Kai Kwan, Personal Blog, Qijun He, He Qijun, HQJ2221">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://hqj2221.github.io/categories/2025-Spring/">
+<link rel="canonical" href="http://hqj2221.github.io/2025/08/09/RL-comment/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"categories/2025-Spring/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2025/08/09/RL-comment/","path":"2025/08/09/RL-comment/","title":"个人有关 RPT 以及通用智能体预训练的主观看法"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Category: 2025 Spring | Qijun He's Personal Pages</title>
+<title>个人有关 RPT 以及通用智能体预训练的主观看法 | Qijun He's Personal Pages</title>
   
 
 
@@ -193,91 +195,122 @@
 
     </div>
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">2025 Spring
-          <small>Category</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2025/08/09/RL-comment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.png">
+      <meta itemprop="name" content="Bionic l'Hôpital">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qijun He's Personal Pages">
+      <meta itemprop="description" content="Qijun He's Personal Pages">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="个人有关 RPT 以及通用智能体预训练的主观看法 | Qijun He's Personal Pages">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          个人有关 RPT 以及通用智能体预训练的主观看法
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2025</span>
-    </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-06-20T03:40:36+08:00"
-              content="2025-06-20">
-          06-20
-        </time>
-      </div>
+      <time title="Created: 2025-08-09 23:28:51 / Modified: 23:46:01" itemprop="dateCreated datePublished" datetime="2025-08-09T23:28:51+08:00">2025-08-09</time>
+    </span>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/06/20/Natural-Language-Processing/" itemprop="url">
-            <span itemprop="name">自然语言处理</span>
-          </a>
-      </div>
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
 
-      
-    </header>
-  </article>
+        </div>
+      </header>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-06-13T14:26:00+08:00"
-              content="2025-06-13">
-          06-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/06/13/Software-Engineering/" itemprop="url">
-            <span itemprop="name">CS304 软件工程</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-06-08T19:02:18+08:00"
-              content="2025-06-08">
-          06-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/06/08/Management/" itemprop="url">
-            <span itemprop="name">EBA106 管理学</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><ul>
+<li>
+<p>目前通用智能体预训练主要需要解决的问题：<strong>泛化能力</strong>，即我们希望通用智能体能够真正像人类一样，不是在某一方面展现出智能（如语言，视觉），而是成为一个“全才”，拥有解决各类问题/任务的能力。</p>
+</li>
+<li>
+<p>由于 <strong>“泛”</strong> 的原因，通用智能体的预训练面临的最大挑战就是 unbounded-data，数据稀疏。这会涉及到数据难以覆盖通用模型所需的所有任务类别，也涉及到训练数据类别过多导致单类任务训练结果不佳</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>从这点出发，RPT 可以细化为两大主题：
+<ul>
+<li><strong>对新任务适应性差</strong>：在模型遇到新任务时，往往需要大量新数据从头开始进行训练。无论是人类智能还是当下的语言模型，都能做到随着“知识”增加，面对新任务的适应性会变好，能较快训练。但是在 RL 领域目前未能成功。</li>
+<li><strong>对旧知识的灾难性遗忘</strong>：由于更新了新任务的知识，导致对旧任务的适应性变差。这点在人类智能上时有发生，但是 RL 应该尽可能降低遗忘的频率，尤其时灾难性遗忘。</li>
+</ul>
+</li>
+</ul>
 
     </div>
-  </div>
-  
-  
-  
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #9d9d9d;font-size:18px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+      
+    </div>
 
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/06/26/First-Interview/" rel="prev" title="First-Interview">
+                  <i class="fa fa-angle-left"></i> First-Interview
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -349,7 +382,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"hqj2221","repo":"hqj2221.github.io","client_id":"Ov23liOFt85UmxD8JcOX","client_secret":"fa3f10758d7350bc33936e9033a569e7da10d179","admin_user":"hqj2221","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"b6d913f84380e8231eebd3ad79c2ddec"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"hqj2221","repo":"hqj2221.github.io","client_id":"Ov23liOFt85UmxD8JcOX","client_secret":"fa3f10758d7350bc33936e9033a569e7da10d179","admin_user":"hqj2221","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"8cc5dfc3a2d71c580009efa5e289d6af"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
