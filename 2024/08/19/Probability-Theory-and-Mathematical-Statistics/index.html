@@ -29,7 +29,7 @@
 <meta property="og:description" content="仅作为其他课程复习用，不记录全部知识点。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-08-19T11:46:18.000Z">
-<meta property="article:modified_time" content="2025-06-23T13:00:23.906Z">
+<meta property="article:modified_time" content="2025-11-09T16:20:09.523Z">
 <meta property="article:author" content="Bionic l&#39;Hôpital">
 <meta property="article:tag" content="CSE Learning">
 <meta property="article:tag" content="Maths">
@@ -244,7 +244,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-06-23 21:00:23" itemprop="dateModified" datetime="2025-06-23T21:00:23+08:00">2025-06-23</time>
+      <time title="Modified: 2025-11-10 00:20:09" itemprop="dateModified" datetime="2025-11-10T00:20:09+08:00">2025-11-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -350,11 +350,11 @@ $$</p>
 <h2 id="联合随机变量">联合随机变量</h2>
 <p>定义：</p>
 <p>$$<br>
-F(X,Y)\triangleq P{ X\le x,Y\le y }\ \ s.t.\ {x,y}\in \mathbb{R}<br>
+F(X,Y)\triangleq P { X\le x,Y\le y }\ \ s.t.\ {x,y}\in \mathbb{R}<br>
 $$</p>
 <p>为 $X$ 与 $Y$ 的联合累积分布函数。</p>
 <p>$$<br>
-F_X(x)= P{ X\le x,Y\le \infty }\ \ s.t.\ x\in \mathbb{R}<br>
+F_X(x)= P { X\le x,Y\le \infty }\ \ s.t.\ x\in \mathbb{R}<br>
 $$</p>
 <p>称为 $X$ 的边际分布，$Y$ 同理。</p>
 <p><strong>概率密度函数</strong></p>
@@ -374,14 +374,14 @@ $$</p>
 <p>当上式成立时，$X$，$Y$ 相互独立，即相关系数 $\rho=0$。</p>
 <h2 id="条件分布">条件分布</h2>
 <p>（只看连续，离散情况容易推导）</p>
-<p>$$<br>
+<p>$<br>
 \begin{array}{l}<br>
 P(X\le x|y\le Y\le y+\epsilon) &amp;=\frac{P{X\le x,y\le Y\le y+\epsilon}}{P{ y\le Y\le y+\epsilon\ }} \<br>
 &amp;=\frac{\int_{-\infty}^{x}\int_{y}^{y+\epsilon} f(u,v)\text{d}u\text{d}v}{\int_{y}^{y+\epsilon} f_Y(v)\text{d}v} \<br>
 &amp;=\frac{\epsilon\int_{-\infty}^{x}f(u,y_\epsilon)\text{d}u}{\epsilon f_Y(\tilde{y}<em>{\epsilon})} \<br>
 &amp;= \int</em>{-\infty}^{x}\frac{f(u,y)}{f_Y(y)} \text{d}u\ \ (\epsilon\to 0)<br>
 \end{array}<br>
-$$</p>
+$</p>
 <p>定义 $\frac{f(u,y)}{f_Y(y)} \triangleq f_{X|Y}(x|y)$ 为 $Y=y$ 下 $X$ 的<font color="red">条件密度</font></p>
 <h2 id="联合分布随机变量的函数">联合分布随机变量的函数</h2>
 <p>1 . $Z=X+Y$</p>
