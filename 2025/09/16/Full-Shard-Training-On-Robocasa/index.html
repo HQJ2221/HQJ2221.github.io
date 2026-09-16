@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons8-fox-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons8-fox-16.png">
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300italic,400,400italic,700,700italic%7CJetbrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-atom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hqj2221.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"post","padding":18,"offset":20},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="技术帖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="针对 Robocasa365 的 FSDP 对模型参数分块时部分问题的解决方法">
+<meta property="og:url" content="http://hqj2221.github.io/2025/09/16/Full-Shard-Training-On-Robocasa/index.html">
+<meta property="og:site_name" content="Qijun He&#39;s Personal Pages">
+<meta property="og:description" content="技术帖">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-16T04:34:56.000Z">
+<meta property="article:modified_time" content="2026-09-16T04:55:45.862Z">
+<meta property="article:author" content="Bionic l&#39;Hôpital">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Pytorch">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://hqj2221.github.io/2025/09/16/Full-Shard-Training-On-Robocasa/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://hqj2221.github.io/2025/09/16/Full-Shard-Training-On-Robocasa/","path":"2025/09/16/Full-Shard-Training-On-Robocasa/","title":"针对 Robocasa365 的 FSDP 对模型参数分块时部分问题的解决方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>针对 Robocasa365 的 FSDP 对模型参数分块时部分问题的解决方法 | Qijun He's Personal Pages</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Qijun He's Personal Pages</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">A personal site by Qijun He,</br>junior student from South University of Science and Technology.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">23</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fas fa-list fa-fw"></i>Categories<span class="badge">9</span></a></li><li class="menu-item menu-item-cs-note"><a href="/tags/CSE-Learning/" rel="section"><i class="fa fa-desktop fa-fw"></i>CS Note</a></li><li class="menu-item menu-item-recommended"><a href="/tags/Recommended/" rel="section"><i class="fa fa-star fa-fw"></i>Recommended</a></li><li class="menu-item menu-item-tools"><a href="/categories/Tools/" rel="section"><i class="fa fa-paint-brush fa-fw"></i>Tools</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E-no-shard-%E5%88%B0-full-shard%EF%BC%9A%E6%AD%A4%E5%89%8D%E5%8F%82%E6%95%B0%E5%88%86%E5%9D%97%E9%97%AE%E9%A2%98%E4%B8%8E%E4%BB%A3%E7%A0%81%E7%BA%A7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-text">从 no_shard 到 full_shard：此前参数分块问题与代码级解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-1%EF%BC%9Ano-shard-%E5%B9%B6%E4%B8%8D%E8%A7%A3%E5%86%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%AD%E7%BB%83%E7%8A%B6%E6%80%81%E5%A4%8D%E5%88%B6"><span class="nav-text">问题 1：no_shard 并不解决大模型的训练状态复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-2%EF%BC%9Afull-shard-%E5%90%8E%EF%BC%8Crollout-weight-sync-%E6%8B%BF%E5%88%B0%E4%BA%86-1D-local-shard"><span class="nav-text">问题 2：full-shard 后，rollout weight sync 拿到了 1D local shard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-3%EF%BC%9APi0-5-tied-parameters-alias-keys-%E5%9C%A8-full-state-dict-%E4%B8%8B%E4%BB%8D%E5%8F%AF%E8%83%BD%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="nav-text">问题 3：Pi0.5 tied parameters &#x2F; alias keys 在 full state dict 下仍可能不一致</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-4%EF%BC%9A%E4%B8%BA-full-shard-%E5%AF%BC%E5%87%BA%E8%A1%8C%E4%B8%BA%E5%A2%9E%E5%8A%A0%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95"><span class="nav-text">问题 4：为 full-shard 导出行为增加回归测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-5%EF%BC%9APi0-5-%E7%9A%84-norm-stats-loader-%E6%9B%BE%E8%A2%AB-LeRobot-%E7%89%88%E6%9C%AC%E8%80%A6%E5%90%88%E9%98%BB%E5%A1%9E"><span class="nav-text">问题 5：Pi0.5 的 norm stats loader 曾被 LeRobot 版本耦合阻塞</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bionic l'Hôpital"
+      src="/images/me.png">
+  <p class="site-author-name" itemprop="name">Bionic l'Hôpital</p>
+  <div class="site-description" itemprop="description">Qijun He's Personal Pages</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0hRSjIyMjE=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HQJ2221"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/about/" title="About-Me → &#x2F;about&#x2F;" rel="noopener me"><i class="fa fa-user-circle fa-fw"></i>About-Me</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hqj2221.github.io/2025/09/16/Full-Shard-Training-On-Robocasa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.png">
+      <meta itemprop="name" content="Bionic l'Hôpital">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qijun He's Personal Pages">
+      <meta itemprop="description" content="Qijun He's Personal Pages">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="针对 Robocasa365 的 FSDP 对模型参数分块时部分问题的解决方法 | Qijun He's Personal Pages">
+      <meta itemprop="description" content="技术帖">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          针对 Robocasa365 的 FSDP 对模型参数分块时部分问题的解决方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-09-16 12:34:56" itemprop="dateCreated datePublished" datetime="2025-09-16T12:34:56+08:00">2025-09-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-09-16 12:55:45" itemprop="dateModified" datetime="2026-09-16T12:55:45+08:00">2026-09-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2026-Spring/" itemprop="url" rel="index"><span itemprop="name">2026 Spring</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">技术帖</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="从-no-shard-到-full-shard：此前参数分块问题与代码级解决办法">从 <code>no_shard</code> 到 <code>full_shard</code>：此前参数分块问题与代码级解决办法</h1>
+<p>下面是此前将 Pi0.5 Fixed ER 从 <code>no_shard</code> 改成真正 <code>full_shard</code> 时遇到的主要问题和实际解决方式。</p>
+<h2 id="问题-1：no-shard-并不解决大模型的训练状态复制">问题 1：<code>no_shard</code> 并不解决大模型的训练状态复制</h2>
+<p>原始配置是：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">actor.fsdp_config:</span></span><br><span class="line">  <span class="attr">strategy:</span> <span class="string">fsdp</span></span><br><span class="line">  <span class="attr">sharding_strategy:</span> <span class="string">no_shard</span></span><br></pre></td></tr></table></figure>
+<p>这看起来用了 FSDP，但 <code>no_shard</code> 的核心行为是：</p>
+<ul>
+<li>每个 rank 持有完整参数</li>
+<li>每个 rank 持有完整梯度</li>
+<li>每个 rank 持有完整 optimizer state</li>
+</ul>
+<p>它更多接近传统 data parallel 的显存模型，而不是参数分片。</p>
+<p>因此 4 卡可以提升吞吐，但无法把单卡容不下的全参 Pi0.5 训练状态拆到多张卡。若某个 rank 的单卡参数+optimizer+activation OOM，增加 GPU 数不一定解决。</p>
+<p>解决方式是在 <code>/export/pgs/heqijun/RLinf/examples/long_cl/config/robocasa365_long_cl.yaml</code> 将配置改为：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">actor.fsdp_config:</span></span><br><span class="line">  <span class="attr">sharding_strategy:</span> <span class="string">full_shard</span></span><br></pre></td></tr></table></figure>
+<p>这样参数、gradient、optimizer state 才会被分片。</p>
+<hr>
+<h2 id="问题-2：full-shard-后，rollout-weight-sync-拿到了-1D-local-shard">问题 2：full-shard 后，rollout weight sync 拿到了 1D local shard</h2>
+<p>改成 <code>full_shard</code> 后，初始报错是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ValueError: Shape mismatch for key</span><br><span class="line">paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight:</span><br><span class="line">expected torch.Size([257152, 2048]),</span><br><span class="line">got torch.Size([131661824])</span><br></pre></td></tr></table></figure>
+<p>这两个数的关系正好说明了问题：</p>
+<p>$$<br>
+257152 \times 2048 / 4 = 131661824<br>
+$$</p>
+<p>即 patch syncer 收到的是 4 卡中的一个一维 local shard，而 rollout 端期望的是完整二维 embedding matrix。</p>
+<p>根因在：<code>/export/pgs/heqijun/RLinf/rlinf/workers/actor/embodied_fsdp_actor_worker.py</code></p>
+<p>原始实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_rollout_state_dict</span>(<span class="params">self</span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    <span class="keyword">return</span> self.get_model_state_dict(</span><br><span class="line">        cpu_offload=<span class="literal">False</span>,</span><br><span class="line">        full_state_dict=<span class="literal">False</span>,</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<p><code>full_state_dict=False</code> 对 full-shard 是正确的 checkpoint shard 导出方式，但不适用于当前 patch syncer。patch syncer 的协议是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">actor 导出完整命名参数 tensor</span><br><span class="line">→ patch/delta encoder</span><br><span class="line">→ rollout worker 将它 patch 到完整 rollout model</span><br></pre></td></tr></table></figure>
+<p>它无法理解 FSDP local shard。</p>
+<p>解决方式是只在 actor → rollout 同步边界使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self.get_model_state_dict(</span><br><span class="line">    cpu_offload=<span class="literal">False</span>,</span><br><span class="line">    full_state_dict=<span class="literal">True</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>即：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">训练期间仍然 full-shard；</span><br><span class="line">只有同步给 rollout model 时临时 materialize 完整 state dict。</span><br></pre></td></tr></table></figure>
+<p>这样避免把 full tensor 常驻在每个训练 rank，但满足 rollout 端的完整 tensor shape contract。</p>
+<hr>
+<h2 id="问题-3：Pi0-5-tied-parameters-alias-keys-在-full-state-dict-下仍可能不一致">问题 3：Pi0.5 tied parameters / alias keys 在 full state dict 下仍可能不一致</h2>
+<p>即便切到 <code>full_state_dict=True</code>，Pi0.5 / PaliGemma 中仍有共享 storage 的 tied parameter。</p>
+<p>典型例子是 language-model embedding 等参数：不同 state-dict key 可能代表同一块底层 storage。</p>
+<p>在 FSDP 展开 state dict 时，一个 alias key 可能已经是完整二维 tensor，另一个 alias key 却仍表现为局部一维 shard。这样 patch syncer 仍会对 alias key 报 shape mismatch。</p>
+<p>因此在 <code>/export/pgs/heqijun/RLinf/rlinf/workers/actor/embodied_fsdp_actor_worker.py</code> 增加了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_collect_state_dict_alias_groups(module)</span><br></pre></td></tr></table></figure>
+<p>它在 FSDP 包装前，依据共享 storage 的：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data pointer</span><br><span class="line">storage offset</span><br><span class="line">shape</span><br><span class="line">stride</span><br><span class="line">dtype</span><br></pre></td></tr></table></figure>
+<p>收集 tied-parameter alias groups。</p>
+<p>之后在导出 rollout state dict 时：</p>
+<ol>
+<li>请求完整 FSDP state dict；</li>
+<li>对每个 alias group 找到已经 materialize 成完整 shape 的 canonical tensor；</li>
+<li>将所有 alias key 指向这个完整 canonical tensor；</li>
+<li>如果没有任何完整 tensor，明确抛错，而不是把错误 local shard 静默同步出去。</li>
+</ol>
+<p>核心逻辑可概括为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">state_dict = self.get_model_state_dict(</span><br><span class="line">    cpu_offload=<span class="literal">False</span>,</span><br><span class="line">    full_state_dict=<span class="literal">True</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> alias_group <span class="keyword">in</span> alias_groups:</span><br><span class="line">    canonical_full_tensor = find_full_tensor(alias_group)</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> alias_group:</span><br><span class="line">        state_dict[name] = canonical_full_tensor</span><br></pre></td></tr></table></figure>
+<p>这直接解决了：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">expected [257152, 2048]</span><br><span class="line">got [131661824]</span><br></pre></td></tr></table></figure>
+<p>这种 tied-key local-shard 错误。</p>
+<hr>
+<h2 id="问题-4：为-full-shard-导出行为增加回归测试">问题 4：为 full-shard 导出行为增加回归测试</h2>
+<p>新增测试文件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/export/pgs/heqijun/RLinf/tests/unit_tests/test_embodied_fsdp_actor_state_dict.py</span><br></pre></td></tr></table></figure>
+<p>测试覆盖两件事：</p>
+<ol>
+<li>能根据 shared storage 正确识别不同名称的 alias parameter；</li>
+<li><code>get_rollout_state_dict()</code> 必须请求：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">full_state_dict=<span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p>且 alias key 最终指向完整 shape 的 canonical tensor。</p>
+<p>此外，实际的 4 GPU Fixed ER minimal smoke test 已验证：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">initial weight sync 成功</span><br><span class="line">rollout 成功</span><br><span class="line">Fixed ER replay 插入与采样成功</span><br><span class="line">critic update 成功</span><br><span class="line">actor update 成功</span><br><span class="line">alpha update 成功</span><br></pre></td></tr></table></figure>
+<p>所以当前 full-shard 路径不是理论修复，而是已经完成了真实多卡训练链路验证。</p>
+<hr>
+<h2 id="问题-5：Pi0-5-的-norm-stats-loader-曾被-LeRobot-版本耦合阻塞">问题 5：Pi0.5 的 norm stats loader 曾被 LeRobot 版本耦合阻塞</h2>
+<p>这不是 FSDP 本身的问题，但它是 Pi0.5 跑通的前置障碍。</p>
+<p>原来 OpenPI 加载 norm stats 时依赖：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpi.training <span class="keyword">import</span> checkpoints <span class="keyword">as</span> _checkpoints</span><br></pre></td></tr></table></figure>
+<p>这个 training checkpoint 模块会引入与当前环境中 LeRobot 版本绑定的训练数据加载依赖。即使 RLinf 自己的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">from</span> lerobot.datasets.lerobot_dataset <span class="keyword">import</span> LeRobotDataset</span><br><span class="line"><span class="keyword">except</span> ModuleNotFoundError:</span><br><span class="line">    <span class="keyword">from</span> lerobot.common.datasets.lerobot_dataset <span class="keyword">import</span> LeRobotDataset</span><br></pre></td></tr></table></figure>
+<p>做了兼容，OpenPI 的内部 <code>openpi.training.checkpoints</code> 导入链仍会绕过这层兼容逻辑。</p>
+<p>解决方法不是继续修补更深层的 LeRobot import，而是新增独立模块：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/export/pgs/heqijun/RLinf/rlinf/models/embodiment/openpi/norm_stats.py</span><br></pre></td></tr></table></figure>
+<p>只用 OpenPI 的稳定 normalization API：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpi.shared <span class="keyword">import</span> normalize <span class="keyword">as</span> _normalize</span><br></pre></td></tr></table></figure>
+<p>加载：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;assets_dir&#125;/&#123;asset_id&#125;/norm_stats.json</span><br></pre></td></tr></table></figure>
+<p>然后统一替换 OpenPI、OpenPI-CFG、RLinf transforms pipeline 中对 training checkpoint loader 的调用。</p>
+<p>这使得：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模型推理 / RL 权重加载</span><br></pre></td></tr></table></figure>
+<p>不再依赖：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OpenPI training data loader</span><br><span class="line">→ 特定 LeRobot layout</span><br></pre></td></tr></table></figure>
+<p>同时，为 Pi0.5 RoboCasa config 显式设定：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use_quantile_norm=<span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<p>因为当前使用的 RoboCasa norm stats 是 mean/std 格式，而不是包含有效 <code>q01/q99</code> 的 quantile stats。</p>
+
+    </div>
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #9d9d9d;font-size:18px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/Pytorch/" rel="tag"><i class="fa fa-tag"></i> Pytorch</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/08/09/RL-comment/" rel="prev" title="个人有关 RPT 以及通用智能体预训练的主观看法">
+                  <i class="fa fa-angle-left"></i> 个人有关 RPT 以及通用智能体预训练的主观看法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hxajIyMjE=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"hqj2221","repo":"hqj2221.github.io","client_id":"Ov23liOFt85UmxD8JcOX","client_secret":"fa3f10758d7350bc33936e9033a569e7da10d179","admin_user":"hqj2221","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"52bc362d988983a442c50468de47b6a0"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

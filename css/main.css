@@ -1311,7 +1311,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #c83826;
+    background: #34cffe;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2941,7 +2941,7 @@ body {
 .main-inner > .tabs-comment,
 .main-inner > .comments,
 .main-inner > .pagination {
-  background: rgba(245,245,245,0.9);
+  background: rgba(255,255,255,0.6);
 }
 .post-body img {
   border-radius: 1em;
@@ -2983,7 +2983,7 @@ span.exturl:hover {
   height: 0;
 }
 .header .header-inner {
-  background: rgba(255,255,255,0);
+  background: rgba(0,0,0,0);
   margin-top: 20px;
   overflow: hidden;
 }
@@ -2991,7 +2991,7 @@ span.exturl:hover {
   background: rgba(255,255,255,0);
 }
 .sidebar-inner {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.6);
 }
 .posts-expand .post-title-link::before {
   content: "";
